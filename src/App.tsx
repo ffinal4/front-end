@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<div>로그인페이지임</div>} />
+          <Route path="/login" element={<div>로그인페이지임!</div>} />
         </Routes>
       </BrowserRouter>
     </div>
