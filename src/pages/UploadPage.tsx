@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import ImageUpload from "../components/UploadPage/Upload/image/ImageUpload";
 import TitleUpload from "../components/UploadPage/Upload/title/TitleUpload";
