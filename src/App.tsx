@@ -8,6 +8,7 @@ import SignupPage from "./pages/SignupPage";
 import SearchInput from "./components/common/SearchInput";
 import UploadPage from "./pages/UploadPage";
 import MainLayout from "./components/Layout";
+import TradeListPage from "./pages/TradeListPage";
 
 function App() {
   return (
@@ -15,13 +16,13 @@ function App() {
       <BrowserRouter>
         <Header />
         <SearchInput />
-
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/upload" element={<UploadPage />} />
+            <Route path="/tradelist" element={<TradeListPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
