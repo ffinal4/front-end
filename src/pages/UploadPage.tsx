@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
-import ImageUpload from "../components/UploadPage/Upload/ImageUpload";
-import TitleUpload from "../components/UploadPage/Upload/TitleUpload";
-import CategoryUpload from "../components/UploadPage/Upload/CategoryUpload";
-import RegionUpload from "../components/UploadPage/Upload/RegionUpload";
-import ConditionUpload from "../components/UploadPage/Upload/ConditionUpload";
-import MethodUpload from "../components/UploadPage/Upload/MethodUpload";
-import DetailUpload from "../components/UploadPage/Upload/DetailUpload";
-import TagUpload from "../components/UploadPage/Upload/TagUpload";
-import WantedUpload from "../components/UploadPage/Upload/WantedUpload";
-import UploadBtn from "../components/UploadPage/Upload/UploadBtn";
+import ImageUpload from "../components/UploadPage/ImageUpload";
+import TitleUpload from "../components/UploadPage/TitleUpload";
+import CategoryUpload from "../components/UploadPage/CategoryUpload";
+import RegionUpload from "../components/UploadPage/RegionUpload";
+import ConditionUpload from "../components/UploadPage/ConditionUpload";
+import MethodUpload from "../components/UploadPage/MethodUpload";
+import DetailUpload from "../components/UploadPage/DetailUpload";
+import TagUpload from "../components/UploadPage/TagUpload";
+import WantedUpload from "../components/UploadPage/WantedUpload";
+import UploadBtn from "../components/UploadPage/UploadBtn";
 
 const UploadPage = () => {
   return (

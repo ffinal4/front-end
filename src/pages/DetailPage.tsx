@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components';
-import DetailContainer from '../components/DetailPage/Detail/DetailContainer';
+import DetailContainer from '../components/DetailPage/DetailContainer';
 
 const DetailPage = () => {
   return (
