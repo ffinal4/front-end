@@ -9,6 +9,7 @@ import SearchInput from "./components/common/SearchInput";
 import UploadPage from "./pages/UploadPage";
 import MainLayout from "./components/Layout";
 import TradeListPage from "./pages/TradeListPage";
+import DetailPage from "./pages/DetailPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/tradelist" element={<TradeListPage />} />
+            <Route path="/detail" element={<DetailPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
