@@ -1,15 +1,15 @@
 import React from "react";
 import { styled } from "styled-components";
-import ImageUpload from "../components/UploadPage/Upload/image/ImageUpload";
-import TitleUpload from "../components/UploadPage/Upload/title/TitleUpload";
-import CategoryUpload from "../components/UploadPage/Upload/category/CategoryUpload";
-import RegionUpload from "../components/UploadPage/Upload/region/RegionUpload";
-import ConditionUpload from "../components/UploadPage/Upload/condition/ConditionUpload";
-import MethodUpload from "../components/UploadPage/Upload/method/MethodUpload";
-import DetailUpload from "../components/UploadPage/Upload/detail/DetailUpload";
-import TagUpload from "../components/UploadPage/Upload/tag/TagUpload";
-import WantedUpload from "../components/UploadPage/Upload/wanted/WantedUpload";
-import UploadBtn from "../components/UploadPage/Upload/uploadbtn/UploadBtn";
+import ImageUpload from "../components/UploadPage/Upload/ImageUpload";
+import TitleUpload from "../components/UploadPage/Upload/TitleUpload";
+import CategoryUpload from "../components/UploadPage/Upload/CategoryUpload";
+import RegionUpload from "../components/UploadPage/Upload/RegionUpload";
+import ConditionUpload from "../components/UploadPage/Upload/ConditionUpload";
+import MethodUpload from "../components/UploadPage/Upload/MethodUpload";
+import DetailUpload from "../components/UploadPage/Upload/DetailUpload";
+import TagUpload from "../components/UploadPage/Upload/TagUpload";
+import WantedUpload from "../components/UploadPage/Upload/WantedUpload";
+import UploadBtn from "../components/UploadPage/Upload/UploadBtn";
 
 const UploadPage = () => {
   return (
@@ -37,9 +37,8 @@ const UploadPage = () => {
 };
 
 const PageLayout = styled.div`
-  width: 1140px;
+  width: 100%;
   height: 1986px;
-  margin: 226px 390px 174px 390px;
 `;
 
 const PageContainer = styled.div`

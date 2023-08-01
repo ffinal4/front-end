@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components';
+import DetailContainer from '../components/DetailPage/Detail/DetailContainer';
 
 const DetailPage = () => {
   return (
@@ -11,16 +12,15 @@ const DetailPage = () => {
             </FilterWrapper>
         </FilterContainer>
         <PageContainer>
-            DetailPage
+            <DetailContainer />
         </PageContainer>
     </PageLayout>
   )
 }
 
 const PageLayout = styled.div`
-    width: 1140px;
+    width: 100%;
     height: 1986px;
-    margin: 226px 390px 174px 390px;
 `;
 
 const FilterContainer = styled.div`
@@ -46,7 +46,7 @@ const ChoiceBox = styled.div`
 
 const PageContainer = styled.div`
     border-top: 4px solid;
-    width: 1140px;
+    width: 100%;
 `;
 
 export default DetailPage
