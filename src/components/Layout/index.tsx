@@ -5,7 +5,13 @@ import React from "react";
 // 모든페이지 공통 메인레이아웃
 export const StMainLayout = styled.div`
   width: 100%;
-  padding: 80px 390px 100px 390px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 80px 0 100px 0;
+
+  /* @media screen and (max-width: 1600px) {
+    padding: 80px 200px 100px 200px;
+  } */
 
   @media screen and (max-width: 834px) {
     padding: 80px 0 100px 0;
