@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components'
-import { StBasicButton } from '../../../styles/BasicButton';
+import { StBasicButton } from '../../styles/BasicButton';
 
 const RegionUpload = () => {
   return (
