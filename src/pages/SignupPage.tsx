@@ -27,21 +27,22 @@ const SignupPage = () => {
           <Label>주소</Label>
           <AddressInput type="text" placeholder="주소를 입력해주세요." />
           <SearchButton>주소 찾기</SearchButton>
-          <Ment>입력한 주소는 나의 주거래 지역으로 표시됩니다.</Ment>
         </AddressContainer>
-
-        {/* <Label>닉네임</Label>
-        <Input type="text" placeholder="닉네임을 입력해주세요." />
-        <div>회원가입</div> */}
+        <Ment>입력한 주소는 나의 주거래 지역으로 표시됩니다.</Ment>
+        <NickNameContainer>
+          <Label>닉네임</Label>
+          <Input type="text" placeholder="닉네임을 입력해주세요." />
+        </NickNameContainer>
       </SignUpForm>
+      <div>회원가입</div>
     </SignUpPageContainer>
   );
 };
 const SignUpPageContainer = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 const TitleContainer = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 1200px;
   margin: auto;
   margin-top: 100px;
@@ -51,16 +52,16 @@ const Title = styled.div`
   font-weight: 800;
 `;
 const SignUpForm = styled.form`
-  border: 1px solid black;
-  /* border-top: 5px solid black;
-  border-bottom: 5px solid black; */
+  /* border: 1px solid black; */
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
   width: 1200px;
   height: 800px;
   margin: auto;
   padding-top: 50px;
 `;
 const EmailContainer = styled.div`
-  border: 3px solid green;
+  border-bottom: 2px solid gray;
   display: flex;
   align-items: center;
   margin-bottom: 50px;
@@ -70,14 +71,17 @@ const Label = styled.div`
   font-size: 20px;
   width: 200px;
   font-weight: 700;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin-right: 50px;
+  margin-bottom: 50px;
 `;
 const Input = styled.input`
   border: 1px solid black;
   width: 658px;
   height: 44px;
   font-size: 16px;
+  margin-bottom: 50px;
+  padding: 10px;
 `;
 const PwContainer = styled.div`
   border: 3px solid green;
@@ -112,5 +116,15 @@ const SearchButton = styled.div`
   justify-content: center;
   margin-left: 16px;
 `;
-const Ment = styled.div``;
+const Ment = styled.div`
+  border: 1px solid blue;
+  width: 465px;
+  height: 24px;
+  margin-left: 250px;
+`;
+const NickNameContainer = styled.div`
+  border: 3px solid green;
+  display: flex;
+  align-items: center;
+`;
 export default SignupPage;
