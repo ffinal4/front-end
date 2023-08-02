@@ -63,8 +63,17 @@ const TitleText = styled.div`
 
 const ItemCardContainer = styled.div`
   width: 100%;
-  display: grid;
-  grid-gap: 30px 16px;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px 16px;
 `;
+
+// const ItemCardContainer = styled.div`
+//   width: 100%;
+//   display: grid;
+//   grid-gap: 30px 16px;
+//   grid-template-columns: repeat(4, 1fr);
+// `;
+
 export default TradeListPage;

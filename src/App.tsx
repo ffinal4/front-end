@@ -10,6 +10,7 @@ import UploadPage from "./pages/UploadPage";
 import MainLayout from "./components/Layout";
 import TradeListPage from "./pages/TradeListPage";
 import DetailPage from "./pages/DetailPage";
+import MyPocketPage from "./pages/MyPocketPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/tradelist" element={<TradeListPage />} />
             <Route path="/detail" element={<DetailPage />} />
+            <Route path="/myPocket" element={<MyPocketPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
