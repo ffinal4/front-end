@@ -1,17 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
 const TitleUpload = () => {
+
+    const [title, setTitle] = useState("");
+
+    const onChangeTitleHandler = () => {
+        if (title.length === 40) {
+            return
+        };
+    };
+
     return (
         <LineContainer>
             <RequiredText>제목</RequiredText>
             <Wrapper>
                 <TitleInput
                     type='text'
+                    value={title}
                     placeholder='제목을 입력해주세요.'
+                    onChange={(event) => setTitle(event.target.value)}
                 >
                 </TitleInput>
-                <Text>0/40</Text>
+                <Text color={(title.length >= 40) ? "red" : "#000"}>{title.length}/40</Text>
             </Wrapper>
         </LineContainer>
     )
@@ -48,11 +59,12 @@ const TitleInput = styled.input`
     border: 1px solid;
 `;
 
-const Text = styled.div`
+const Text = styled.div<{ color: string }>`
     font-family: "Pretendard";
     font-size: 16px;
     font-weight: 400;
     line-height: 150%;
+    color: ${(props) => props.color};
 `;
 
 export default TitleUpload;

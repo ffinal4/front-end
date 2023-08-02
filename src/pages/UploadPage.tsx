@@ -43,7 +43,7 @@ const PageLayout = styled.div`
 
 const PageContainer = styled.div`
   border-top: 4px solid;
-  width: 1140px;
+  width: 100%;
 `;
 
 const TitleWrapper = styled.div`
