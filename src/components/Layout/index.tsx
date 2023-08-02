@@ -5,7 +5,7 @@ import React from "react";
 // 모든페이지 공통 메인레이아웃
 export const StMainLayout = styled.div`
   width: 100%;
-  max-width: 1140px;
+  max-width: 1144px;
   margin: 0 auto;
   padding: 80px 0 100px 0;
 
