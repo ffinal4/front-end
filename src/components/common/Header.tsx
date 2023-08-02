@@ -44,21 +44,22 @@ const HeadContainer = styled.div`
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  /* justify-content: space-between; */
   font-size: 18px;
   border-bottom: 1px solid gray;
+  padding: 30px 60px 30px 60px;
 `;
 
 const FirstContainer = styled.div`
-  /* border: 2px solid red; */
-  width: 540px;
+  border: 2px solid red;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
 `;
 
 const SecondContainer = styled.div`
-  /* border: 2px solid blue; */
-  width: 300px;
+  border: 2px solid blue;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
 `;
