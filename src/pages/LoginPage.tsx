@@ -49,7 +49,7 @@ const LoginPage = () => {
             <path d="M0 0L960 68L1920 0V327H0V0Z" fill="#ADADAD" />
           </svg>
         </FirstFooter>
-        <SecondFooter>
+        {/* <SecondFooter>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
@@ -65,7 +65,7 @@ const LoginPage = () => {
               stroke-dasharray="20 20"
             />
           </svg>
-        </SecondFooter>
+        </SecondFooter> */}
       </FooterContainer>
     </div>
   );
@@ -74,7 +74,7 @@ const LoginPage = () => {
 const LoginContainer = styled.div`
   max-width: 753px;
   height: 652px;
-  border: 2px solid black;
+  border: 1px solid black;
   margin: 0 auto;
   margin-top: 120px;
   box-shadow: black 0px 0px 0px 2px inset,
