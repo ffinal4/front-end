@@ -1,14 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
 import { StBasicButton } from '../../styles/BasicButton';
 
 const MethodUpload = () => {
+
+    const [direct, setDirect] = useState(false);
+    const [parcel, setParcel] = useState(false);
+
+    const onCheckDirectHandler = () => {
+        setDirect(!direct);
+    };
+    const onCheckParcelHandler = () => {
+        setParcel(!parcel);
+    };
+
   return (
     <LineContainer>
         <RequiredText>교환방법</RequiredText>
         <Wrapper>
-            <StBasicButton buttonColor="">직거래</StBasicButton>
-            <StBasicButton buttonColor="">택배</StBasicButton>
+            <StBasicButton
+                buttonColor={(direct) ? "#d6d6d6" : "white"}
+                onClick={onCheckDirectHandler}
+            >직거래
+            </StBasicButton>
+            <StBasicButton
+                buttonColor={(parcel) ? "#d6d6d6" : "white"}
+                onClick={onCheckParcelHandler}
+            >택배
+            </StBasicButton>
         </Wrapper>
     </LineContainer>
   )
