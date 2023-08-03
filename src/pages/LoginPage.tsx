@@ -39,10 +39,24 @@ const LoginPage = () => {
       </LoginContainer>
       <FooterContainer>
         <FirstFooter>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="287" viewBox="0 0 1920 287" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="287"
+            viewBox="0 0 1920 287"
+            fill="none"
+          >
             <path d="M0 0L960 68L1920 0V327H0V0Z" fill="#ADADAD" />
           </svg>
         </FirstFooter>
+        {/* <SecondFooter>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="237"
+            viewBox="0 0 1920 237"
+            fill="none"
+          >
         <SecondFooter>
           <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="237" viewBox="0 0 1920 237" fill="none">
             <path
@@ -53,7 +67,7 @@ const LoginPage = () => {
               stroke-dasharray="20 20"
             />
           </svg>
-        </SecondFooter>
+        </SecondFooter> */}
       </FooterContainer>
     </div>
   );
@@ -62,10 +76,11 @@ const LoginPage = () => {
 const LoginContainer = styled.div`
   max-width: 753px;
   height: 652px;
-  border: 2px solid black;
+  border: 1px solid black;
   margin: 0 auto;
   margin-top: 120px;
-  box-shadow: black 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,
+  box-shadow: black 0px 0px 0px 2px inset,
+    rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,
     rgb(255, 255, 255) 20px -20px 0px -3px, rgb(0, 0, 0) 20px -20px;
 `;
 const LogInFormContainer = styled.div`
