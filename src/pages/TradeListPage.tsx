@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import HorizontalLine from "../components/common/HorizontalLine";
 import FilterButton from "../components/common/FilterButton";
+import ItemCard from "../components/common/ItemCard";
 
 const TradeListPage = () => {
   return (
@@ -12,8 +13,25 @@ const TradeListPage = () => {
         <TitleText>Peeping Pockets</TitleText>
       </TitleContainer>
       <HorizontalLine />
-
       <FilterButton />
+      <ItemCardContainer>
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+        <ItemCard />
+      </ItemCardContainer>
     </TradeListPageContainer>
   );
 };
@@ -42,4 +60,20 @@ const TitleText = styled.div`
   font-weight: 700;
   line-height: 110%;
 `;
+
+const ItemCardContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px 16px;
+`;
+
+// const ItemCardContainer = styled.div`
+//   width: 100%;
+//   display: grid;
+//   grid-gap: 30px 16px;
+//   grid-template-columns: repeat(4, 1fr);
+// `;
+
 export default TradeListPage;

@@ -1,59 +1,24 @@
 import React from 'react'
 import { styled } from "styled-components";
+import Image from '../../assets/images/pocket.png'
+import DetailInfo from './DetailInfo';
 
 const DetailContainer = () => {
   return (
     <LayoutContainer>
-      <ImageBox>사진등록</ImageBox>
-      <InfoContainer>
-        <InfoTitle>스타벅스 교환권 30,000원</InfoTitle>
-        <UserNameContainer>
-          <ColorText>핍포님의 주머니</ColorText>
-          <BoxWrapper>
-            <ColorText>핍포님의 주머니</ColorText><SmallBox />
-          </BoxWrapper>
-        </UserNameContainer>
-        <UserNameContainer style={{border: "none", paddingTop: "30px"}}>
-          <LeftWrapper>
-            <Wrapper>
-              <BigBox></BigBox>
-              <ColorText>00</ColorText>
-            </Wrapper>
-            <Wrapper>
-              <BigBox></BigBox>
-              <ColorText>00일 전</ColorText>
-            </Wrapper>
-          </LeftWrapper>
-          <LeftWrapper>
-            <Wrapper>
-              <BigBox></BigBox>
-              <ColorText>신고하기</ColorText>
-            </Wrapper>
-          </LeftWrapper>
-        </UserNameContainer>
-        <TextContainer>
-          <TextLine>
-            <ColorText style={{paddingRight: "40px"}}>카테고리</ColorText>
-            <Text>기프티콘</Text>
-          </TextLine>
-          <TextLine>
-            <ColorText style={{paddingRight: "40px"}}>상품상태</ColorText>
-            <Text>최상</Text>
-          </TextLine>
-          <TextLine>
-            <ColorText style={{paddingRight: "40px"}}>거래지역</ColorText>
-            <Text>대구광역시 북구 매전로4길 9 매천센트럴파크 205동 401호</Text>
-          </TextLine>
-          <TextLine>
-            <ColorText style={{paddingRight: "40px"}}>카테고리</ColorText>
-            <Text>기프티콘</Text>
-          </TextLine>
-        </TextContainer>
-        <ColorText>*상대방이 교환신청을 수락하여 채팅이 가능해요!</ColorText>
-        <div>
-          {/* <S.Button></S.Button> */}
-        </div>
-      </InfoContainer>
+      <ImageOutContainer>
+        <SlideBtnWrapper>
+          <SlideButton>◀</SlideButton>
+          <SlideButton>▶</SlideButton>
+        </SlideBtnWrapper>
+        <SlidePageBarWrapper>
+          <SlidePageBar height='10px' backgdcolor='#7D7D7D'></SlidePageBar>
+          <SlidePageBar height='8px' backgdcolor='#c7c7c7'></SlidePageBar>
+          <SlidePageBar height='8px' backgdcolor='#c7c7c7'></SlidePageBar>
+        </SlidePageBarWrapper>
+        <ImageBox src={Image}>사진등록</ImageBox>
+      </ImageOutContainer>
+      <DetailInfo />
     </LayoutContainer>
   )
 };
@@ -62,93 +27,80 @@ const LayoutContainer = styled.div`
     padding: 60px 0px 87px 0px;
     display: flex;
     width: 100%;
+    @media screen and (max-width: 834px) {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
 `;
 
-const ImageBox = styled.div`
-    width: 466px;
-    height: 466px;
-    border: 4px solid;
+const ImageBox = styled.div<{ src: string }>`
+    width: 100%;
+    height: 100%;
+    background-image: ${(props) => `url(${props.src})`};
+    background-size: cover;
     background-color: #D9D9D9;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 112px 0px 0px;
 `;
 
-const InfoContainer = styled.div`
-    width: 48%;
+const ImageOutContainer = styled.div`
+  width: 466px;
+  height: 466px;
+  border: 4px solid;
+  margin: 0px 112px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  @media screen and (max-width: 834px) {
+    margin: 0px;
+  }
 `;
 
-const InfoTitle = styled.div`
-    font-family: "Pretendard";
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 150%;
-`;
-
-const UserNameContainer = styled.div`
-    display: flex;
+const SlideBtnWrapper = styled.div`
     width: 100%;
+    display: flex;
+    position: absolute;
     justify-content: space-between;
-    padding: 0px 0px 16px 0px;
-    border-bottom: 2px solid #D9D9D9;
+    z-index: 200;
 `;
 
-const Text = styled.div`
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
-`; 
-
-const ColorText = styled.div`
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
-    color: #717171;
-`;
-
-const BoxWrapper = styled.div`
+const SlideButton = styled.div`
+    width: 42px;
+    height: 42px;
+    background-color: #969696;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    color: #fff;
+    z-index: 200;
+    opacity: 0.2;
+    box-shadow: 2px 2px 15px 0px #6e6e6e;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #b3b3b3;
+        opacity: 0.7;  
+    }
 `;
 
-const SmallBox = styled.div`
-    width: 24px;
-    height: 24px;
-    background-color: #D9D9D9;
+const SlidePageBarWrapper = styled.div`
+  display: flex;
+  align-items: end;
+  position: absolute;
+  bottom: 20px;
+  gap: 8px;
 `;
 
-const BigBox = styled.div`
-    width: 32px;
-    height: 32px;
-    background-color: #D9D9D9;
-`;
-
-const LeftWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 16px;
-`;
-
-const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-`;
-
-const TextContainer = styled.div`
-    display: grid;
-    padding: 14px 0px 52px 0px;
-`;
-
-const TextLine = styled.div`
-    padding: 12px 0px 0px 0px;
-    max-height: 48px;
-    display: flex;
-    width: 100%;
+const SlidePageBar = styled.div<{ height: string, backgdcolor: string }>`
+  width: 24px;
+  height: ${(props) => props.height};
+  background-color: ${(props) => props.backgdcolor};
+  opacity: 0.4;
 `;
 
 export default DetailContainer;

@@ -10,6 +10,8 @@ import UploadPage from "./pages/UploadPage";
 import MainLayout from "./components/Layout";
 import TradeListPage from "./pages/TradeListPage";
 import DetailPage from "./pages/DetailPage";
+import MyPocketPage from "./pages/MyPocketPage";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -19,12 +21,14 @@ function App() {
         <SearchInput />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/mypage" element={<MyPage />} />
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/tradelist" element={<TradeListPage />} />
             <Route path="/detail" element={<DetailPage />} />
+            <Route path="/myPocket" element={<MyPocketPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
