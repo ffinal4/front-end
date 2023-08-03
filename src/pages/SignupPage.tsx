@@ -11,7 +11,8 @@ const SignupPage = () => {
       <SignUpForm>
         <EmailContainer>
           <Label>이메일(아이디)</Label>
-          <EmailInput type="email" placeholder="이메일을 입력해주세요" />@
+          <EmailInput type="email" placeholder="이메일을 입력해주세요" />
+          <div>@</div>
           <EmailSelect>
             <option>naver.com</option>
             <option>hanmail.net</option>
@@ -99,6 +100,7 @@ const EmailInput = styled.input`
   width: 272px;
   height: 44px;
   padding: 10px;
+  font-size: 16px;
 `;
 const EmailSelect = styled.select`
   width: 337px;
@@ -131,7 +133,6 @@ const Input = styled.input`
   width: 656px;
   height: 44px;
   font-size: 16px;
-
   padding: 10px;
 `;
 const CheckPwContainer = styled.div`
@@ -159,6 +160,7 @@ const SecondInput = styled.input`
   width: 465px;
   height: 44px;
   font-size: 16px;
+  padding: 10px;
 `;
 const AddressContent = styled.div`
   /* border: 1px solid blue; */

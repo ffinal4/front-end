@@ -7,16 +7,16 @@ const LoginPage = () => {
     <div>
       <LoginContainer>
         <LogInFormContainer>
-          <FirstContainer>
+          <TitleContainer>
             <LogoContainer>
               <Logo src={eyeImage} />
             </LogoContainer>
             <Title>로그인</Title>
             <SubTitle>주머니 핍핑, 시작해볼까요?</SubTitle>
-          </FirstContainer>
+          </TitleContainer>
           <InputContainer>
-            <Input type="email" placeholder="아이디를 입력해주세요" />
-            <Input type="password" placeholder="비밀번호를 입력해주세요" />
+            <Input type="email" placeholder="아이디를 입력해주세요." />
+            <Input type="password" placeholder="비밀번호를 입력해주세요." />
           </InputContainer>
           <SecondContainer>
             <SearchContainer>
@@ -88,7 +88,7 @@ const LogInFormContainer = styled.div`
   padding: 56px 96px 56px 96px;
   margin: auto;
 `;
-const FirstContainer = styled.div`
+const TitleContainer = styled.div`
   border: 1px solid blue;
   width: 100%;
   display: flex;
