@@ -11,6 +11,7 @@ import TradeListPage from "./pages/TradeListPage";
 import DetailPage from "./pages/DetailPage";
 import MyPocketPage from "./pages/MyPocketPage";
 import MyPage from "./pages/MyPage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/tradelist" element={<TradeListPage />} />
             <Route path="/detail" element={<DetailPage />} />
             <Route path="/myPocket" element={<MyPocketPage />} />
+            <Route path="/editprofile" element={<EditProfilePage />} />
           </Route>
         </Routes>
       </BrowserRouter>
