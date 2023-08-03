@@ -38,6 +38,8 @@ const LoginPage = () => {
         </LogInFormContainer>
       </LoginContainer>
       <FooterContainer>
+        <FirstBoxContainer />
+        <SecondBoxContainer />
         <FirstFooter>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -87,9 +89,10 @@ const LogInFormContainer = styled.div`
   /* border: 1px solid green; */
   padding: 56px 96px 56px 96px;
   margin: auto;
+  position: relative;
 `;
 const TitleContainer = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -98,7 +101,7 @@ const TitleContainer = styled.div`
 `;
 const LogoContainer = styled.div`
   height: 110px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 0 auto;
   margin-top: 60px;
 `;
@@ -143,7 +146,7 @@ const MaintainLogin = styled.span`
 `;
 
 const SecondContainer = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   width: 100%;
   margin: auto;
@@ -168,33 +171,49 @@ const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding: 20px 0px 20px 0px;
 `;
 const SignUpContainer = styled.div`
-  border: 1px solid green;
+  /* border: 1px solid green; */
   display: flex;
   justify-content: center;
   padding: 10px 0px 10px 0px;
 `;
 
 const Content = styled.span`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 const SignUpLink = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   cursor: pointer;
   font-size: 16px;
   font-weight: 1000;
 `;
 
 const FooterContainer = styled.div``;
-
-const FirstFooter = styled.div`
-  position: relative;
-`;
-const SecondFooter = styled.div`
+const FirstBoxContainer = styled.div`
+  width: 431.5px;
+  height: 358.2px;
+  margin: -160px 690.9px 119.2px 212.6px;
+  transform: rotate(-8.96deg);
+  border: solid 2px #000;
+  background-color: #fff;
   position: absolute;
 `;
+const SecondBoxContainer = styled.div`
+  width: 389.6px;
+  height: 401.1px;
+  margin: -200px 195.4px 104.9px 1300px;
+  transform: rotate(-342.64deg);
+  border: solid 2px #000;
+  background-color: #fff;
+  position: absolute;
+`;
+const FirstFooter = styled.div`
+  position: relative;
+  z-index: 999;
+`;
+
 export default LoginPage;
