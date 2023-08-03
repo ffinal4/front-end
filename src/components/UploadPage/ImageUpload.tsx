@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { styled } from 'styled-components'
 
 const ImageUpload = () => {
+
+    const [file, setFile] = useState<FileList | null>(null);
+
+    const onChangeFileHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        const fileList = event.target.files;
+        if (fileList && fileList.length > 0) {
+            for (let i = 0 ; i <= fileList.length ; i++) {
+                const firstFile = fileList[0];
+                const fileUrl = URL.createObjectURL(firstFile);
+                console.log(fileList);
+                console.log(fileUrl);
+            };
+        };
+    }
+
   return (
     <LineContainer>
         <RequiredText>상품이미지</RequiredText>
@@ -10,7 +25,12 @@ const ImageUpload = () => {
                 <InputStyleBox /><Text style={{ color: "#717171" }}>이미지등록</Text>
             </InputStyleWrapper>
         </InputLabel>
-        <UploadInputBox type='file' id='files'></UploadInputBox>
+        <UploadInputBox
+            type='file'
+            id='files'
+            multiple
+            onChange={onChangeFileHandler}
+        />
         <TextWrapper>
             <Text>* 상품 이미지는 640X640에 최적화되어 있습니다.</Text>
             <Text>- 이미지는 상품 등록 시 정사각형으로 잘려서 등록됩니다.</Text>

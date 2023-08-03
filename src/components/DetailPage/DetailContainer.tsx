@@ -47,8 +47,8 @@ const ImageBox = styled.div<{ src: string }>`
 `;
 
 const ImageOutContainer = styled.div`
-  width: 466px;
-  height: 466px;
+  width: 464px;
+  height: 464px;
   border: 4px solid;
   margin: 0px 112px 0px 0px;
   display: flex;

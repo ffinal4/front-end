@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components';
 import ppapparo from '../../assets/images/ppapparo.jpg'
 import Pocket from './Pocket';
@@ -10,10 +10,6 @@ const ProfileContent = () => {
     const onClickPocketHandler = () => {
         setPocket(!pocket)
     };
-
-    // interface PocketProps  {
-    //     setPocket: Dispatch<SetStateAction<boolean>>;
-    //   }
     
     return (
         <LeftContainer>
