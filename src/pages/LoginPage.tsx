@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import { StBasicButton } from "../styles/BasicButton";
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const emailOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+  const pwOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
   return (
     <div>
       <LoginContainer>
@@ -15,8 +28,18 @@ const LoginPage = () => {
             <SubTitle>주머니 핍핑, 시작해볼까요?</SubTitle>
           </TitleContainer>
           <InputContainer>
-            <Input type="email" placeholder="아이디를 입력해주세요." />
-            <Input type="password" placeholder="비밀번호를 입력해주세요." />
+            <Input
+              type="email"
+              placeholder="아이디를 입력해주세요."
+              value={email}
+              onChange={emailOnchange}
+            />
+            <Input
+              type="password"
+              placeholder="비밀번호를 입력해주세요."
+              value={password}
+              onChange={pwOnchange}
+            />
           </InputContainer>
           <SecondContainer>
             <SearchContainer>
@@ -29,11 +52,24 @@ const LoginPage = () => {
             </LoginStateContainer>
           </SecondContainer>
           <ButtonContainer>
-            <StBasicButton buttonColor="#D9D9D9;">로그인</StBasicButton>
+            <StBasicButton
+              buttonColor="#D9D9D9;"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              로그인
+            </StBasicButton>
           </ButtonContainer>
           <SignUpContainer>
             <Content>아직 핍포 회원이 아니신가요?</Content>
-            <SignUpLink>회원가입</SignUpLink>
+            <SignUpLink
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              회원가입
+            </SignUpLink>
           </SignUpContainer>
         </LogInFormContainer>
       </LoginContainer>
@@ -50,7 +86,7 @@ const LoginPage = () => {
           >
             <path d="M0 0L960 68L1920 0V327H0V0Z" fill="#ADADAD" />
           </svg>
-          <SecondFooter>
+          {/* <SecondFooter>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
@@ -66,7 +102,7 @@ const LoginPage = () => {
                 stroke-dasharray="20 20"
               />
             </svg>
-          </SecondFooter>
+          </SecondFooter> */}
         </FirstFooter>
       </FooterContainer>
     </div>
@@ -86,7 +122,7 @@ const LoginContainer = styled.div`
     rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,
     rgb(255, 255, 255) 20px -20px 0px -3px, rgb(0, 0, 0) 20px -20px;
 `;
-const LogInFormContainer = styled.div`
+const LogInFormContainer = styled.form`
   /* border: 1px solid green; */
   padding: 56px 96px 56px 96px;
   margin: auto;
@@ -110,6 +146,7 @@ const Logo = styled.img`
   width: 100%;
   height: 100px;
 `;
+
 const Title = styled.div`
   font-size: 32px;
   font-weight: 800;
@@ -123,14 +160,14 @@ const InputContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 const Input = styled.input`
   width: 100%;
   height: 44px;
   border: 1px solid black;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   font-size: 16px;
 `;
 
@@ -192,7 +229,9 @@ const SignUpLink = styled.div`
   font-weight: 1000;
 `;
 
-const FooterContainer = styled.div``;
+const FooterContainer = styled.div`
+  /* position: relative; */
+`;
 const FirstBoxContainer = styled.div`
   width: 431.5px;
   height: 358.2px;
@@ -205,7 +244,7 @@ const FirstBoxContainer = styled.div`
 const SecondBoxContainer = styled.div`
   width: 389.6px;
   height: 401.1px;
-  margin: -200px 195.4px 104.9px 1300px;
+  margin: -170px 195.4px 104.9px 1200px;
   transform: rotate(-342.64deg);
   border: solid 2px #000;
   background-color: #fff;
@@ -216,7 +255,8 @@ const FirstFooter = styled.div`
   z-index: 999;
 `;
 const SecondFooter = styled.div`
-  z-index: 999;
+  /* position: absolute; */
+  /* z-index: 999; */
 `;
 
 export default LoginPage;
