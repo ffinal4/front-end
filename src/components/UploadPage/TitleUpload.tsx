@@ -5,18 +5,13 @@ const TitleUpload = () => {
 
     const [title, setTitle] = useState("");
 
-    const onChangeTitleHandler = () => {
-        if (title.length === 40) {
-            return
-        };
-    };
-
     return (
         <LineContainer>
             <RequiredText>제목</RequiredText>
             <Wrapper>
                 <TitleInput
                     type='text'
+                    maxLength={40}
                     value={title}
                     placeholder='제목을 입력해주세요.'
                     onChange={(event) => setTitle(event.target.value)}

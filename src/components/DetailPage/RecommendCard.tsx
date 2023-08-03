@@ -150,7 +150,7 @@ const Content = styled.div`
 `;
 
 const SlideBtnWrapper = styled.div`
-    width: 100%;
+    width: 99.5%;
     margin: 113px 0px auto 0px;
     display: flex;
     position: absolute;
