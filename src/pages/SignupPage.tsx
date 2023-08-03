@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../styles/BasicButton";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [nickname, setNickName] = useState("");
+
+  const emailOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const pwOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const checkPwOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckPassword(event.target.value);
+  };
+
+  const addressOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAddress(event.target.value);
+  };
+
+  const nicknameOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNickName(event.target.value);
+  };
+
   return (
     <SignUpPageContainer>
       <TitleContainer>
@@ -11,8 +39,13 @@ const SignupPage = () => {
       <SignUpForm>
         <EmailContainer>
           <Label>이메일(아이디)</Label>
-          <EmailInput type="email" placeholder="이메일을 입력해주세요" />
-          <div>@</div>
+          <EmailInput
+            type="email"
+            placeholder="이메일을 입력해주세요"
+            value={email}
+            onChange={emailOnchange}
+          />
+          <AtContainer>@</AtContainer>
           <EmailSelect>
             <option>naver.com</option>
             <option>hanmail.net</option>
@@ -27,15 +60,30 @@ const SignupPage = () => {
         <Content>* 이미 사용중인 이메일입니다.</Content>
         <PwContainer>
           <Label>비밀번호</Label>
-          <Input type="password" placeholder="비밀번호를 입력해주세요." />
+          <Input
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            value={password}
+            onChange={pwOnchange}
+          />
         </PwContainer>
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
-          <Input type="password" placeholder="비밀번호를 입력해주세요." />
+          <Input
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            value={checkPassword}
+            onChange={checkPwOnchange}
+          />
         </CheckPwContainer>
         <AddressContainer>
           <SecondLabel>주소</SecondLabel>
-          <SecondInput type="text" placeholder="주소를 입력해주세요." />
+          <SecondInput
+            type="text"
+            placeholder="주소를 입력해주세요."
+            value={address}
+            onChange={addressOnchange}
+          />
           <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
             주소찾기
           </StBasicButton>
@@ -45,7 +93,12 @@ const SignupPage = () => {
         </AddressContent>
         <NickNameContainer>
           <SecondLabel>닉네임</SecondLabel>
-          <SecondInput type="text" placeholder="닉네임을 입력해주세요." />
+          <SecondInput
+            type="text"
+            placeholder="닉네임을 입력해주세요."
+            value={nickname}
+            onChange={nicknameOnchange}
+          />
           <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
             중복 확인
           </StBasicButton>
@@ -53,7 +106,14 @@ const SignupPage = () => {
         <Content>닉네임이 중복됩니다.</Content>
       </SignUpForm>
       <AssignButtonContainer>
-        <StBasicButton buttonColor="#D9D9D9;">회원가입</StBasicButton>
+        <StBasicButton
+          buttonColor="#D9D9D9;"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          회원가입
+        </StBasicButton>
       </AssignButtonContainer>
     </SignUpPageContainer>
   );
@@ -70,6 +130,7 @@ const TitleContainer = styled.div`
 const Title = styled.div`
   font-size: 40px;
   font-weight: 800;
+  margin-bottom: 30px;
 `;
 const SignUpForm = styled.form`
   /* border: 1px solid black; */
@@ -101,6 +162,10 @@ const EmailInput = styled.input`
   height: 44px;
   padding: 10px;
   font-size: 16px;
+`;
+const AtContainer = styled.div`
+  /* border: 1px solid red; */
+  padding: 0px 16px 0px 16px;
 `;
 const EmailSelect = styled.select`
   width: 337px;
