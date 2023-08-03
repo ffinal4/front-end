@@ -77,7 +77,7 @@ const SignupPage = () => {
           />
         </CheckPwContainer>
         <AddressContainer>
-          <SecondLabel>주소</SecondLabel>
+          <Label>주소</Label>
           <SecondInput
             type="text"
             placeholder="주소를 입력해주세요."
