@@ -6,59 +6,65 @@ import App from "./../../App";
 const Header = () => {
   const navigate = useNavigate();
   return (
-    <HeadContainer>
-      <LogoContainer>
-        <Button />
-        <Logo>PEEPPO</Logo>
-      </LogoContainer>
-      <Container>
-        <InputContainer>
-          <SearchInput type="search" placeholder="Search" />
-        </InputContainer>
-        <ButtonContainer>
+    <HeaderLayout>
+      <HeaderContainer>
+        <LogoContainer>
           <Button />
-          <Button />
-          <Button />
-        </ButtonContainer>
-      </Container>
-    </HeadContainer>
+          <LogoImage>PEEPPO</LogoImage>
+        </LogoContainer>
+        <Container>
+          <InputContainer>
+            <SearchInput type="search" placeholder="Search" />
+          </InputContainer>
+          <ButtonContainer>
+            <Button />
+            <Button />
+            <Button />
+          </ButtonContainer>
+        </Container>
+      </HeaderContainer>
+    </HeaderLayout>
   );
 };
 
 export default Header;
 
-const HeadContainer = styled.div`
+const HeaderLayout = styled.div`
   position: fixed;
   z-index: 9999;
+  width: 100%;
   top: 0;
   left: 0;
-  right: 0;
-  width: 100%;
+  background-color: #fff;
+  /* border: 2px solid blue; */
+`;
+const HeaderContainer = styled.div`
+  max-width: 1920px;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 18px;
   border-bottom: 1px solid gray;
-  padding: 13px 200px;
-  background-color: #fff;
-  border: 1px solid red;
+  padding: 0 60px 0 60px;
+  /* border: 1px solid red; */
+  margin: 0 auto;
 `;
 
 const LogoContainer = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   align-items: center;
   width: 174px;
   height: 41px;
 `;
-const Logo = styled.div`
+const LogoImage = styled.div`
   font-size: 30px;
   font-weight: bold;
   margin-left: 10px;
 `;
 const Container = styled.div`
-  border: 1px solid green;
+  /* border: 1px solid green; */
   display: flex;
   align-items: center;
 `;
@@ -76,7 +82,7 @@ const SearchInput = styled.input`
   padding: 10px;
 `;
 const ButtonContainer = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
 `;
 const Button = styled.div`
