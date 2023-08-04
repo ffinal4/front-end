@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, MouseEventHandler, useState } from 'react'
 import { styled } from 'styled-components'
 
 const ImageUpload = () => {
@@ -13,12 +13,19 @@ const ImageUpload = () => {
             for (let i = 0; i < fileList.length; i++) {
                 const fileUrl = URL.createObjectURL(fileList[i]);
                 imageUrlLists.push(fileUrl);
-                // console.log(fileList);
-                // console.log(imageUrlLists);
+                console.log(fileList);
+                console.log(fileUrl);
+                console.log(imageUrlLists);
             };
         };
-        setFile(imageUrlLists.slice(0,3));
+        const SliceFile = imageUrlLists.slice(0,3)
+        // const ObjectFile = SliceFile.forEach((element, index) => { obj['key' + index] = element; });
+        setFile(SliceFile);
         // console.log("cut", imageUrlLists.slice(0,3), "no", imageUrlLists)
+    };
+
+    const onClickRemoveHandler = (id: MouseEventHandler<HTMLDivElement>) => {
+
     };
 
   return (
@@ -28,7 +35,10 @@ const ImageUpload = () => {
             {(file.length > 0)
             ? <ImageContainer>
                 {(file[0])
-                ? <ImageThumbnailContainer style={{border: "6px solid #6B6B6B"}}>
+                ? <ImageThumbnailContainer
+                    id={file[0]}
+                    style={{border: "6px solid #6B6B6B"}}
+                >
                         <FirstImage>대표이미지</FirstImage>
                         <ImageThumbnail src={file[0]} alt=''></ImageThumbnail>
                 </ImageThumbnailContainer>
@@ -154,7 +164,6 @@ const ImageThumbnail = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-
 `;
 
 const FirstImage = styled.div`
@@ -179,6 +188,7 @@ const ImageThumbnailContainer = styled.div`
     overflow: hidden;
     position: relative;
     margin: 0px 16px 0px 0px;
+    cursor: pointer;
 `;
 
 const InputLabel = styled.label`
