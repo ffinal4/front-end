@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
+import { StBasicInput } from "../styles/BasicInput";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -39,12 +40,15 @@ const SignupPage = () => {
       <SignUpForm>
         <EmailContainer>
           <Label>이메일(아이디)</Label>
-          <EmailInput
-            type="email"
-            placeholder="이메일을 입력해주세요"
-            value={email}
-            onChange={emailOnchange}
-          />
+          <EmailInputContainer>
+            <StBasicInput
+              type="email"
+              placeholder="이메일을 입력해주세요"
+              value={email}
+              onChange={emailOnchange}
+            />
+          </EmailInputContainer>
+
           <AtContainer>@</AtContainer>
           <EmailSelect>
             <option>naver.com</option>
@@ -60,30 +64,37 @@ const SignupPage = () => {
         <Content>* 이미 사용중인 이메일입니다.</Content>
         <PwContainer>
           <Label>비밀번호</Label>
-          <Input
-            type="password"
-            placeholder="비밀번호를 입력해주세요."
-            value={password}
-            onChange={pwOnchange}
-          />
+          <PwInputContainer>
+            <StBasicInput
+              type="password"
+              placeholder="비밀번호를 입력해주세요."
+              value={password}
+              onChange={pwOnchange}
+            />
+          </PwInputContainer>
         </PwContainer>
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
-          <Input
-            type="password"
-            placeholder="비밀번호를 입력해주세요."
-            value={checkPassword}
-            onChange={checkPwOnchange}
-          />
+          <CheckPwInputContainer>
+            <StBasicInput
+              type="password"
+              placeholder="비밀번호를 입력해주세요."
+              value={checkPassword}
+              onChange={checkPwOnchange}
+            />
+          </CheckPwInputContainer>
         </CheckPwContainer>
         <AddressContainer>
           <Label>주소</Label>
-          <SecondInput
-            type="text"
-            placeholder="주소를 입력해주세요."
-            value={address}
-            onChange={addressOnchange}
-          />
+          <AddressInputContainer>
+            <StBasicInput
+              type="text"
+              placeholder="주소를 입력해주세요."
+              value={address}
+              onChange={addressOnchange}
+            />
+          </AddressInputContainer>
+
           <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
             주소찾기
           </StBasicButton>
@@ -93,12 +104,15 @@ const SignupPage = () => {
         </AddressContent>
         <NickNameContainer>
           <SecondLabel>닉네임</SecondLabel>
-          <SecondInput
-            type="text"
-            placeholder="닉네임을 입력해주세요."
-            value={nickname}
-            onChange={nicknameOnchange}
-          />
+          <NickNameInputContainer>
+            <StBasicInput
+              type="text"
+              placeholder="닉네임을 입력해주세요."
+              value={nickname}
+              onChange={nicknameOnchange}
+            />
+          </NickNameInputContainer>
+
           <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
             중복 확인
           </StBasicButton>
@@ -120,6 +134,7 @@ const SignupPage = () => {
 };
 const SignUpPageContainer = styled.div`
   /* border: 1px solid blue; */
+  /* width: 100%; */
 `;
 const TitleContainer = styled.div`
   /* border: 1px solid red; */
@@ -133,13 +148,17 @@ const Title = styled.div`
   margin-bottom: 30px;
 `;
 const SignUpForm = styled.form`
-  /* border: 1px solid black; */
+  /* border: 5px solid yellow; */
   border-top: 5px solid black;
   border-bottom: 5px solid black;
-  width: 100%;
+  width: 1136px;
   height: 626px;
   margin: auto;
 `;
+const EmailInputContainer = styled.div`
+  width: 272px;
+`;
+
 const EmailContainer = styled.div`
   /* border: 3px solid green; */
   display: flex;
@@ -156,13 +175,6 @@ const Label = styled.div`
   margin-right: 70px;
 `;
 
-const EmailInput = styled.input`
-  border: 1px solid black;
-  width: 272px;
-  height: 44px;
-  padding: 10px;
-  font-size: 16px;
-`;
 const AtContainer = styled.div`
   /* border: 1px solid red; */
   padding: 0px 16px 0px 16px;
@@ -192,14 +204,14 @@ const PwContainer = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
 `;
-
-const Input = styled.input`
-  border: 1px solid black;
+const PwInputContainer = styled.div`
+  /* border: 1px solid red; */
   width: 656px;
-  height: 44px;
-  font-size: 16px;
-  padding: 10px;
 `;
+const CheckPwInputContainer = styled.div`
+  width: 656px;
+`;
+
 const CheckPwContainer = styled.div`
   /* border: 3px solid green; */
   display: flex;
@@ -213,6 +225,9 @@ const AddressContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+const AddressInputContainer = styled.div`
+  width: 464px;
+`;
 const SecondLabel = styled.div`
   font-size: 20px;
   width: 200px;
@@ -220,12 +235,8 @@ const SecondLabel = styled.div`
   /* border: 1px solid red; */
   margin-right: 50px;
 `;
-const SecondInput = styled.input`
-  border: 1px solid black;
-  width: 465px;
-  height: 44px;
-  font-size: 16px;
-  padding: 10px;
+const NickNameInputContainer = styled.div`
+  width: 464px;
 `;
 const AddressContent = styled.div`
   /* border: 1px solid blue; */

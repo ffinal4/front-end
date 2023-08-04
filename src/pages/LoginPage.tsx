@@ -166,7 +166,6 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding-top: 20px; */
   /* border: 1px solid red; */
   margin-top: 14px;
   margin-bottom: 12px;
@@ -183,10 +182,12 @@ const Input = styled.input`
 
 const SearchId = styled.span`
   /* border: 1px solid black; */
+  cursor: pointer;
   font-size: 16px;
 `;
 const SearchPw = styled.span`
   /* border: 1px solid black; */
+  cursor: pointer;
   padding-left: 16px;
   font-size: 16px;
 `;
@@ -228,7 +229,6 @@ const SignUpContainer = styled.div`
   /* border: 1px solid green; */
   display: flex;
   justify-content: center;
-  /* padding: 10px 0px 10px 0px; */
 `;
 
 const Content = styled.span`
