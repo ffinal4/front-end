@@ -7,14 +7,14 @@ const EditProfilePage = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <SignUpPageContainer>
+      <EditProfilePageContainer>
         <TitleContainer>
           <Title>
             MY ACCOUNT
             <br />내 계정
           </Title>
         </TitleContainer>
-        <SignUpForm>
+        <EditProfileForm>
           <EmailContainer>
             <Label>이메일(아이디)</Label>
             <Email>peeppo@gmail.com</Email>
@@ -51,7 +51,7 @@ const EditProfilePage = () => {
               주소찾기
             </StBasicButton>
           </AddressContainer>
-        </SignUpForm>
+        </EditProfileForm>
         <AssignButtonContainer>
           <StBasicButton
             buttonColor="#D9D9D9;"
@@ -62,12 +62,12 @@ const EditProfilePage = () => {
             변경사항 저장
           </StBasicButton>
         </AssignButtonContainer>
-      </SignUpPageContainer>
+      </EditProfilePageContainer>
     </div>
   );
 };
 
-const SignUpPageContainer = styled.div`
+const EditProfilePageContainer = styled.div`
   /* border: 1px solid blue; */
 `;
 const TitleContainer = styled.div`
@@ -81,7 +81,7 @@ const Title = styled.div`
   font-weight: 800;
   margin-bottom: 30px;
 `;
-const SignUpForm = styled.form`
+const EditProfileForm = styled.form`
   /* border: 1px solid black; */
   border-top: 5px solid black;
   border-bottom: 5px solid black;
@@ -108,6 +108,13 @@ const Email = styled.div`
   /* border: 1px solid red; */
 `;
 
+const NickNameContainer = styled.div`
+  /* border: 3px solid green; */
+  border-top: 1px solid gray;
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+`;
 const Content = styled.div`
   /* border: 1px solid blue; */
   width: 465px;
@@ -166,13 +173,6 @@ const SecondInput = styled.input`
   padding: 10px;
 `;
 
-const NickNameContainer = styled.div`
-  /* border: 3px solid green; */
-  border-top: 1px solid gray;
-  padding-top: 30px;
-  display: flex;
-  align-items: center;
-`;
 const AssignButtonContainer = styled.div`
   width: 100%;
   display: flex;
