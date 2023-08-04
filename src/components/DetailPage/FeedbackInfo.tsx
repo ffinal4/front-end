@@ -1,18 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components';
 import Image from '../../assets/images/pocket.png'
 
 const FeedbackInfo = () => {
 
-    const [gauge, setGauge] = useState(0);
+    const [gauge, setGauge] = useState(0); // 게이지바 퍼센트값의 초기값을 0으로 설정(0부터 시작)
 
-    const onClickAddHandler = () => {
-        setGauge(gauge + 5);
-    };
+    useEffect(() => {
+        const intervalPercent = setInterval(() => {   // setInterval메서드를 이용해
+            if (gauge < 80) {                         // 서버에서 받아온 게이지값이 될때까지
+                setGauge((prevGauge) => prevGauge + 1); // gauge의 초기값(0)에서 1씩 더해줌
+            }
+        }, 20);                                       // 이 작업(1씩 더하기)을 20밀리초마다 반복
 
-    const onClickMinusHandler = () => {
-        setGauge(gauge - 5);
-    };
+        return () => {
+            clearInterval(intervalPercent);
+        };
+    }, [gauge]);     // useEffect훅의 의존성배열값을 gauge값으로 설정하여 gauge값이 변할때 마다 렌더링
 
     return (
             <InfoContainer>
@@ -23,8 +27,6 @@ const FeedbackInfo = () => {
                             <Gauge width={gauge}>⚪</Gauge>
                         </GaugeBar>
                         <InfoTextTitle>{gauge}%</InfoTextTitle>
-                        <Button onClick={onClickAddHandler}>+</Button>
-                        <Button onClick={onClickMinusHandler}>-</Button>
                     </PointContainer>
                     <TitleContainer>
                         <InfoTextTitle>핍포님이 받은 유저 평가에요!</InfoTextTitle>
@@ -183,13 +185,6 @@ const ImageBox = styled.div<{ src: string }>`
     height: 118px;
     background-image: ${(props) => `url(${props.src})`};
     background-size: cover;
-`;
-
-const Button = styled.button`
-    width: 30px;
-    height: 30px;
-    background-color: gray;
-    border: 1px solid;
 `;
 
 export default FeedbackInfo;

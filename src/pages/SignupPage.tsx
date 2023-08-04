@@ -1,42 +1,120 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import { StBasicButton } from "../styles/BasicButton";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [nickname, setNickName] = useState("");
+
+  const emailOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const pwOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const checkPwOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckPassword(event.target.value);
+  };
+
+  const addressOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAddress(event.target.value);
+  };
+
+  const nicknameOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNickName(event.target.value);
+  };
+
   return (
     <SignUpPageContainer>
       <TitleContainer>
-        <Title>
-          ARE YOU READY <br />
-          TO PEEP THE POCKETS?
-        </Title>
+        <Title>READY TO PEEPO</Title>
       </TitleContainer>
       <SignUpForm>
         <EmailContainer>
           <Label>이메일(아이디)</Label>
-          <Input type="email" placeholder="이메일을 입력해주세요" />
+          <EmailInput
+            type="email"
+            placeholder="이메일을 입력해주세요"
+            value={email}
+            onChange={emailOnchange}
+          />
+          <AtContainer>@</AtContainer>
+          <EmailSelect>
+            <option>naver.com</option>
+            <option>hanmail.net</option>
+            <option>daum.net</option>
+            <option>gmail.com</option>
+            <option>nate.com</option>
+            <option>hotmail.com</option>
+            <option>outlook.com</option>
+            <option>icloud.com</option>
+          </EmailSelect>
         </EmailContainer>
+        <Content>* 이미 사용중인 이메일입니다.</Content>
         <PwContainer>
           <Label>비밀번호</Label>
-          <Input type="password" placeholder="비밀번호를 입력해주세요." />
+          <Input
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            value={password}
+            onChange={pwOnchange}
+          />
         </PwContainer>
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
-          <Input type="password" placeholder="비밀번호를 입력해주세요." />
+          <Input
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            value={checkPassword}
+            onChange={checkPwOnchange}
+          />
         </CheckPwContainer>
         <AddressContainer>
-          <SecondLabel>주소</SecondLabel>
-          <SecondInput type="text" placeholder="주소를 입력해주세요." />
-          <Button>주소 찾기</Button>
+          <Label>주소</Label>
+          <SecondInput
+            type="text"
+            placeholder="주소를 입력해주세요."
+            value={address}
+            onChange={addressOnchange}
+          />
+          <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
+            주소찾기
+          </StBasicButton>
         </AddressContainer>
-        <Content>입력한 주소는 나의 주거래 지역으로 표시됩니다.</Content>
+        <AddressContent>
+          입력한 주소는 나의 주거래 지역으로 표시됩니다.
+        </AddressContent>
         <NickNameContainer>
           <SecondLabel>닉네임</SecondLabel>
-          <SecondInput type="text" placeholder="닉네임을 입력해주세요." />
-          <Button>중복 확인</Button>
+          <SecondInput
+            type="text"
+            placeholder="닉네임을 입력해주세요."
+            value={nickname}
+            onChange={nicknameOnchange}
+          />
+          <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
+            중복 확인
+          </StBasicButton>
         </NickNameContainer>
         <Content>닉네임이 중복됩니다.</Content>
       </SignUpForm>
-      <SignUpButton>회원가입</SignUpButton>
+      <AssignButtonContainer>
+        <StBasicButton
+          buttonColor="#D9D9D9;"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          회원가입
+        </StBasicButton>
+      </AssignButtonContainer>
     </SignUpPageContainer>
   );
 };
@@ -45,61 +123,93 @@ const SignUpPageContainer = styled.div`
 `;
 const TitleContainer = styled.div`
   /* border: 1px solid red; */
-  width: 1200px;
+  width: 100%;
   margin: auto;
   margin-top: 80px;
 `;
 const Title = styled.div`
   font-size: 40px;
   font-weight: 800;
+  margin-bottom: 30px;
 `;
 const SignUpForm = styled.form`
   /* border: 1px solid black; */
   border-top: 5px solid black;
   border-bottom: 5px solid black;
-  width: 1200px;
-  height: 750px;
+  width: 100%;
+  height: 626px;
   margin: auto;
-  padding-top: 50px;
 `;
 const EmailContainer = styled.div`
-  border-bottom: 2px solid gray;
+  /* border: 3px solid green; */
   display: flex;
   align-items: center;
-  margin-bottom: 50px;
+  margin-top: 44px;
+`;
+const Label = styled.div`
+  /* border: 1px solid red; */
+  font-size: 20px;
+  width: 180px;
+  font-weight: 700;
+
+  display: flex;
+  margin-right: 70px;
 `;
 
-const Label = styled.div`
-  font-size: 20px;
-  width: 200px;
-  font-weight: 700;
-  /* border: 1px solid red; */
-  display: flex;
-  margin-right: 50px;
-  margin-bottom: 50px;
+const EmailInput = styled.input`
+  border: 1px solid black;
+  width: 272px;
+  height: 44px;
+  padding: 10px;
+  font-size: 16px;
 `;
+const AtContainer = styled.div`
+  /* border: 1px solid red; */
+  padding: 0px 16px 0px 16px;
+`;
+const EmailSelect = styled.select`
+  width: 337px;
+  height: 44px;
+  padding: 10px;
+  font-size: 16px;
+`;
+
+const Content = styled.div`
+  /* border: 1px solid blue; */
+  width: 465px;
+  height: 24px;
+  margin-left: 250px;
+  color: red;
+  margin-top: 10px;
+`;
+
+const PwContainer = styled.div`
+  /* border: 3px solid green; */
+  border-top: 1px solid gray;
+  display: flex;
+  align-items: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+`;
+
 const Input = styled.input`
   border: 1px solid black;
-  width: 658px;
+  width: 656px;
   height: 44px;
   font-size: 16px;
-  margin-bottom: 50px;
   padding: 10px;
 `;
-const PwContainer = styled.div`
+const CheckPwContainer = styled.div`
   /* border: 3px solid green; */
   display: flex;
   align-items: center;
   margin-bottom: 30px;
 `;
-const CheckPwContainer = styled.div`
-  border-bottom: 1px solid gray;
-  display: flex;
-  align-items: center;
-  margin-bottom: 50px;
-`;
 const AddressContainer = styled.div`
   /* border: 3px solid green; */
+  border-top: 1px solid gray;
+  padding-top: 30px;
   display: flex;
   align-items: center;
 `;
@@ -115,39 +225,31 @@ const SecondInput = styled.input`
   width: 465px;
   height: 44px;
   font-size: 16px;
+  padding: 10px;
 `;
-const Button = styled.div`
-  cursor: pointer;
-  border: 1px solid black;
-  width: 177px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 16px;
-`;
-const Content = styled.div`
+const AddressContent = styled.div`
   /* border: 1px solid blue; */
   width: 465px;
   height: 24px;
   margin-left: 250px;
-  margin-bottom: 40px;
+  color: gray;
+  margin-bottom: 30px;
+  margin-top: 10px;
 `;
+
 const NickNameContainer = styled.div`
+  /* border: 3px solid green; */
   border-top: 1px solid gray;
-  padding-top: 50px;
+  padding-top: 30px;
   display: flex;
   align-items: center;
 `;
-const SignUpButton = styled.div`
-  cursor: pointer;
-  border: 1px solid black;
-  width: 177px;
-  height: 44px;
+const AssignButtonContainer = styled.div`
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: auto;
-  margin-top: 50px;
+  /* border: 1px solid red; */
+  padding: 20px 0px 20px 0px;
 `;
+
 export default SignupPage;

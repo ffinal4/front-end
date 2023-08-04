@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
 const DetailUpload = () => {
+
+    const [detailInfo, setDetailInfo] = useState("");
+
+    const onChangeInfoHandler = (event: any) => {
+        setDetailInfo(event.target.value);
+        // console.log("d", detailInfo);
+    };
+
   return (
     <LineContainer>
         <RequiredText>상세설명</RequiredText>
@@ -9,9 +17,13 @@ const DetailUpload = () => {
           <InputContainer>
             <DesciptionTextarea
                 typeof='text'
-                placeholder='구입 연도, 브랜드, 사용감, 하자 유무 등 교환을 원하는 사람들에게 필요한 정보를 꼭 포함해주세요! (최소 10자 이상)' />
+                maxLength={2000}
+                value={detailInfo}
+                placeholder='구입 연도, 브랜드, 사용감, 하자 유무 등 교환을 원하는 사람들에게 필요한 정보를 꼭 포함해주세요! (최소 10자 이상)'
+                onChange={onChangeInfoHandler}
+            />
           </InputContainer>
-          <TextCount>0/2000</TextCount>
+          <TextCount color={(detailInfo.length >= 2000) ? "red" : "#000"}>{detailInfo.length}/2000</TextCount>
         </Wrapper>
     </LineContainer>
   )

@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
 const WantedUpload = () => {
+
+    const [info, setInfo] = useState("");
+
+    const onChangeTextInfoHandler = (event: any) => {
+        setInfo(event.target.value);
+    };
+
   return (
     <LastLineContainer>
-        <RequiredText>이걸원해요</RequiredText>
+        <RequiredText>받아요</RequiredText>
         <LastWrapper>
             <SelectBar style={{marginBottom: "30px"}}>
                 <Text>카테고리 선택</Text>
@@ -13,9 +20,16 @@ const WantedUpload = () => {
             <InputContainer>
             <DesciptionTextarea
                 typeof='text'
-                placeholder='구입 연도, 브랜드, 사용감, 하자 유무 등 교환을 원하는 사람들에게 필요한 정보를 꼭 포함해주세요! (최소 10자 이상)' />
+                maxLength={2000}
+                value={info}
+                placeholder='구입 연도, 브랜드, 사용감, 하자 유무 등 교환을 원하는 사람들에게 필요한 정보를 꼭 포함해주세요! (최소 10자 이상)'
+                onChange={onChangeTextInfoHandler}
+            />
             </InputContainer>
-            <TextCount style={{marginBottom: "30px"}}>0/2000</TextCount>
+            <TextCount
+                style={{marginBottom: "30px"}}
+                color={(info.length >= 2000) ? "red" : "#000"}
+            >{info.length}/2000</TextCount>
             <TagInput
                 placeholder='태그를 입력해주세요.'
             />

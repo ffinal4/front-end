@@ -1,73 +1,82 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import App from "./../../App";
 
 const Header = () => {
   const navigate = useNavigate();
   return (
     <HeadContainer>
-      <FirstContainer>
-        <Logo
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          로고
-        </Logo>
-        <SecondMenu>주머니핍핑</SecondMenu>
-        <ThirdMenu>주변둘러보기</ThirdMenu>
-      </FirstContainer>
-      <SecondContainer>
-        <div
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          로그인
-        </div>
-        <div
-          onClick={() => {
-            navigate("/signup");
-          }}
-        >
-          회원가입
-        </div>
-        <div>내주머니</div>
-      </SecondContainer>
+      <LogoContainer>
+        <Button />
+        <Logo>PEEPPO</Logo>
+      </LogoContainer>
+      <Container>
+        <InputContainer>
+          <SearchInput type="search" placeholder="Search" />
+        </InputContainer>
+        <ButtonContainer>
+          <Button />
+          <Button />
+          <Button />
+        </ButtonContainer>
+      </Container>
     </HeadContainer>
   );
 };
 
+export default Header;
+
 const HeadContainer = styled.div`
   width: 100%;
-  height: 76px;
-  margin: auto;
+  height: 70px;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   font-size: 18px;
   border-bottom: 1px solid gray;
-  padding: 30px 60px 30px 60px;
+  padding: 13px 392px;
+  background-color: #fff;
 `;
 
-const FirstContainer = styled.div`
-  border: 2px solid red;
-  width: 100%;
+const LogoContainer = styled.div`
+  /* border: 1px solid red; */
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
+  width: 174px;
+  height: 41px;
 `;
-
-const SecondContainer = styled.div`
-  border: 2px solid blue;
-  width: 100%;
+const Logo = styled.div`
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 10px;
+`;
+const Container = styled.div`
+  /* border: 1px solid red; */
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
 `;
-
-const Logo = styled.div``;
-
-const SecondMenu = styled.div`
+const InputContainer = styled.div`
+  /* border: 1px solid red; */
+  width: 340px;
+  display: flex;
+`;
+const SearchInput = styled.input`
+  border: 1px solid #d9d9d9;
+  background-color: #d9d9d9;
+  width: 100%;
+  height: 44px;
+  font-size: 16px;
+  padding: 10px;
+`;
+const ButtonContainer = styled.div`
+  /* border: 1px solid red; */
+  display: flex;
+`;
+const Button = styled.div`
+  width: 36px;
+  height: 36px;
+  background-color: #d9d9d9;
   cursor: pointer;
+  margin-left: 20px;
 `;
-const ThirdMenu = styled.div``;
-export default Header;
