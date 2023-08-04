@@ -6,6 +6,10 @@ const ItemCard = () => {
   return (
     <ItemCardContainer>
       <StCardPicture image={"none"} />
+      <AddressContent>
+        <AddressBtn />
+        경기도 용인시 기흥구
+      </AddressContent>
       <ItemTitle>물건 이름</ItemTitle>
       <UserName>사용자 이름</UserName>
       <ItemContent>
@@ -15,8 +19,28 @@ const ItemCard = () => {
   );
 };
 
+const AddressContent = styled.div`
+  top: 10px;
+  left: 10px;
+  position: absolute;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+`;
+
+const AddressBtn = styled.div`
+  width: 24px;
+  height: 24px;
+  background-color: #636363;
+  margin-right: 10px;
+`;
 const ItemCardContainer = styled.div`
-  width: 273px;
+  position: relative;
+  width: 272px;
   font-family: Pretendard;
   line-height: 150%;
   font-style: normal;
