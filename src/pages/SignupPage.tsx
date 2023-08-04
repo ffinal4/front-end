@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
+import { StCardPicture } from "../styles/CardPicture";
 
 const SignupPage = () => {
   const navigate = useNavigate();
