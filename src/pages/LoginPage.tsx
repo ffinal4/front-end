@@ -17,7 +17,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <LoginPageContainer>
       <LoginContainer>
         <LogInFormContainer>
           <TitleContainer>
@@ -73,9 +73,9 @@ const LoginPage = () => {
           </SignUpContainer>
         </LogInFormContainer>
       </LoginContainer>
-      <FooterContainer>
-        <FirstBoxContainer />
-        <SecondBoxContainer />
+      <FirstBoxContainer />
+      <SecondBoxContainer />
+      <FooterCon>
         <FirstFooter>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ const LoginPage = () => {
           >
             <path d="M0 0L960 68L1920 0V327H0V0Z" fill="#ADADAD" />
           </svg>
-          {/* <SecondFooter>
+          <SecondFooter>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
@@ -102,12 +102,15 @@ const LoginPage = () => {
                 stroke-dasharray="20 20"
               />
             </svg>
-          </SecondFooter> */}
+          </SecondFooter>
         </FirstFooter>
-      </FooterContainer>
-    </div>
+      </FooterCon>
+    </LoginPageContainer>
   );
 };
+const LoginPageContainer = styled.div`
+  position: relative;
+`;
 
 const LoginContainer = styled.div`
   z-index: 999;
@@ -136,47 +139,56 @@ const TitleContainer = styled.div`
   margin: 0 auto;
 `;
 const LogoContainer = styled.div`
-  height: 110px;
+  width: 66px;
+  height: 54px;
   /* border: 1px solid red; */
   margin: 0 auto;
-  margin-top: 60px;
+  margin-top: 56px;
 `;
 
 const Logo = styled.img`
+  /* border: 1px solid blue; */
   width: 100%;
-  height: 100px;
 `;
 
 const Title = styled.div`
   font-size: 32px;
+  /* border: 1px solid red; */
   font-weight: 800;
+  margin-top: 10px;
 `;
 const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 400;
+  /* border: 1px solid red; */
 `;
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
-  margin-top: 30px;
+  /* padding-top: 20px; */
+  /* border: 1px solid red; */
+  margin-top: 14px;
+  margin-bottom: 12px;
 `;
 const Input = styled.input`
   width: 100%;
   height: 44px;
   border: 1px solid black;
-  padding: 10px;
-  margin-bottom: 16px;
+  padding: 20px;
+  margin-top: 16px;
+  /* margin-bottom: 16px; */
   font-size: 16px;
 `;
 
 const SearchId = styled.span`
   /* border: 1px solid black; */
+  font-size: 16px;
 `;
 const SearchPw = styled.span`
   /* border: 1px solid black; */
-  padding-left: 10px;
+  padding-left: 16px;
+  font-size: 16px;
 `;
 const MaintainLogin = styled.span`
   /* border: 1px solid black; */
@@ -209,13 +221,14 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   /* border: 1px solid red; */
-  padding: 20px 0px 20px 0px;
+  margin-top: 30px;
 `;
 const SignUpContainer = styled.div`
+  margin-top: 40px;
   /* border: 1px solid green; */
   display: flex;
   justify-content: center;
-  padding: 10px 0px 10px 0px;
+  /* padding: 10px 0px 10px 0px; */
 `;
 
 const Content = styled.span`
@@ -223,19 +236,16 @@ const Content = styled.span`
 `;
 
 const SignUpLink = styled.div`
-  /* border: 1px solid red; */
   cursor: pointer;
   font-size: 16px;
   font-weight: 1000;
+  margin-left: 10px;
 `;
 
-const FooterContainer = styled.div`
-  /* position: relative; */
-`;
 const FirstBoxContainer = styled.div`
   width: 431.5px;
   height: 358.2px;
-  margin: -160px 690.9px 119.2px 212.6px;
+  margin: -350px 690.9px 119.2px 100px;
   transform: rotate(-8.96deg);
   border: solid 2px #000;
   background-color: #fff;
@@ -244,19 +254,26 @@ const FirstBoxContainer = styled.div`
 const SecondBoxContainer = styled.div`
   width: 389.6px;
   height: 401.1px;
-  margin: -170px 195.4px 104.9px 1200px;
+  margin: -320px 195.4px 104.9px 1000px;
   transform: rotate(-342.64deg);
   border: solid 2px #000;
   background-color: #fff;
   position: absolute;
 `;
-const FirstFooter = styled.div`
+const FooterCon = styled.div`
+  position: relative;
   position: absolute;
+  top: 500px;
+  z-index: 999;
+`;
+const FirstFooter = styled.div`
+  position: relative;
   z-index: 999;
 `;
 const SecondFooter = styled.div`
-  /* position: absolute; */
-  /* z-index: 999; */
+  position: absolute;
+  z-index: 999;
+  bottom: 0;
 `;
 
 export default LoginPage;

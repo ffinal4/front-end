@@ -35,12 +35,13 @@ const HeadContainer = styled.div`
   justify-content: space-between;
   font-size: 18px;
   border-bottom: 1px solid gray;
-  padding: 13px 392px;
+  padding: 13px 200px;
   background-color: #fff;
+  border: 1px solid red;
 `;
 
 const LogoContainer = styled.div`
-  /* border: 1px solid red; */
+  border: 1px solid blue;
   display: flex;
   align-items: center;
   width: 174px;
@@ -52,13 +53,13 @@ const Logo = styled.div`
   margin-left: 10px;
 `;
 const Container = styled.div`
-  /* border: 1px solid red; */
+  border: 1px solid green;
   display: flex;
   align-items: center;
 `;
 const InputContainer = styled.div`
-  /* border: 1px solid red; */
-  width: 340px;
+  border: 2px solid black;
+  width: 100%;
   display: flex;
 `;
 const SearchInput = styled.input`
@@ -70,7 +71,7 @@ const SearchInput = styled.input`
   padding: 10px;
 `;
 const ButtonContainer = styled.div`
-  /* border: 1px solid red; */
+  border: 1px solid red;
   display: flex;
 `;
 const Button = styled.div`
