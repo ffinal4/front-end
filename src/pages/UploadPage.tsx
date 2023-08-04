@@ -13,32 +13,38 @@ import UploadBtn from "../components/UploadPage/UploadBtn";
 
 const UploadPage = () => {
   return (
-    <div>
-      <PageLayout>
-        <TitleWrapper>
-          <PageTitle>내 주머니에 추가</PageTitle>
-          <PageSubtitle>* 필수항목</PageSubtitle>
-        </TitleWrapper>
-        <PageContainer>
-          <ImageUpload />
-          <TitleUpload />
-          <CategoryUpload />
-          <RegionUpload />
-          <ConditionUpload />
-          <MethodUpload />
-          <DetailUpload />
-          <TagUpload />
-          <WantedUpload />
-          <UploadBtn />
-        </PageContainer>
-      </PageLayout>
-    </div>
+    <PageLayout>
+      <PageHeader>ADD TO MY POCKET</PageHeader>
+      <TitleWrapper>
+        <PageTitle>내 주머니에 추가</PageTitle>
+        <PageSubtitle>* 필수항목</PageSubtitle>
+      </TitleWrapper>
+      <PageContainer>
+        <ImageUpload />
+        <TitleUpload />
+        <CategoryUpload />
+        <RegionUpload />
+        <ConditionUpload />
+        <MethodUpload />
+        <DetailUpload />
+        <TagUpload />
+        <WantedUpload />
+        <UploadBtn />
+      </PageContainer>
+    </PageLayout>
   );
 };
 
 const PageLayout = styled.div`
   width: 100%;
-  height: 1986px;
+  height: 100%;
+`;
+
+const PageHeader = styled.div`
+  font-family: "Lemon/Milk", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 110%;
 `;
 
 const PageContainer = styled.div`
@@ -48,7 +54,7 @@ const PageContainer = styled.div`
 
 const TitleWrapper = styled.div`
   display: flex;
-  margin: 0px 0px 20px 0px;
+  margin: 16px 0px 20px 0px;
 `;
 
 const PageTitle = styled.div`
