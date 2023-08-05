@@ -80,7 +80,7 @@ const LoginPage = () => {
       </LoginContainer>
       <FirstBoxContainer />
       <SecondBoxContainer />
-      <FooterCon>
+      <FooterContainer>
         <FirstFooter>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@ const LoginPage = () => {
             </svg>
           </SecondFooter>
         </FirstFooter>
-      </FooterCon>
+      </FooterContainer>
     </LoginPageContainer>
   );
 };
@@ -259,7 +259,7 @@ const SecondBoxContainer = styled.div`
   background-color: #fff;
   position: absolute;
 `;
-const FooterCon = styled.div`
+const FooterContainer = styled.div`
   position: relative;
   position: absolute;
   top: 500px;

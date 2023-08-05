@@ -70,7 +70,7 @@ const Container = styled.div`
 `;
 const InputContainer = styled.div`
   border: 2px solid black;
-  width: 100%;
+  width: 340px;
   display: flex;
 `;
 const SearchInput = styled.input`
