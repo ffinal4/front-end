@@ -3,11 +3,23 @@ import { styled } from 'styled-components'
 
 const ImageUpload = () => {
 
-    const [file, setFile] = useState<string[]>([]);
+    type FileState = {
+        default: { id: number; imageUrl: string };
+        second: { id: number; imageUrl: string };
+        third: { id: number; imageUrl: string };
+      };
+
+    const [file, setFile] = useState<FileState>({
+        default: {id: 1, imageUrl: ""},
+        second: {id: 2, imageUrl: ""},
+        third: {id: 3, imageUrl: ""},
+    });
+
+    const [imageUrlLists, setImageUrlLists] = useState<string[]>([]);
 
     const onChangeFileHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const fileList = event.target.files;
-        let imageUrlLists: string[] = [...file];
+        // let imageUrlLists: string[] = [];
 
         if (fileList && fileList.length > 0) {
             for (let i = 0; i < fileList.length; i++) {
@@ -18,29 +30,35 @@ const ImageUpload = () => {
                 console.log(imageUrlLists);
             };
         };
-        const SliceFile = imageUrlLists.slice(0,3)
+        // const SliceFile = imageUrlLists.slice(0,3)
         // const ObjectFile = SliceFile.forEach((element, index) => { obj['key' + index] = element; });
-        setFile(SliceFile);
+        setFile({
+            ...file,
+            default: {...file.default, imageUrl: imageUrlLists[0]},
+            second: {...file.second, imageUrl: imageUrlLists[1]},
+            third: {...file.third, imageUrl: imageUrlLists[2]},
+        });
         // console.log("cut", imageUrlLists.slice(0,3), "no", imageUrlLists)
     };
 
-    const onClickRemoveHandler = (id: MouseEventHandler<HTMLDivElement>) => {
-
+    const onClickRemoveHandler = (id: number) => {
+        
     };
 
   return (
     <LineContainer>
         <RequiredText>상품이미지</RequiredText>
         <ContentContainer>
-            {(file.length > 0)
+            {(file.default.imageUrl || file.second.imageUrl || file.third.imageUrl)
             ? <ImageContainer>
-                {(file[0])
+                {(file.default.imageUrl)
                 ? <ImageThumbnailContainer
-                    id={file[0]}
+                    key={file.default.id}
                     style={{border: "6px solid #6B6B6B"}}
+                    onClick={() => onClickRemoveHandler(file.default.id)}
                 >
                         <FirstImage>대표이미지</FirstImage>
-                        <ImageThumbnail src={file[0]} alt=''></ImageThumbnail>
+                        <ImageThumbnail src={file.default.imageUrl} alt=''></ImageThumbnail>
                 </ImageThumbnailContainer>
                 : <div>
                     <InputLabel htmlFor='files'>
@@ -55,9 +73,11 @@ const ImageUpload = () => {
                         onChange={onChangeFileHandler}
                     />
                 </div>}
-                {(file[1])
-                    ? <ImageThumbnailContainer>
-                        <ImageThumbnail src={file[1]} alt=''></ImageThumbnail>
+                {(file.second.imageUrl)
+                    ? <ImageThumbnailContainer
+                        key={file.second.id}
+                    >
+                        <ImageThumbnail src={file.second.imageUrl} alt=''></ImageThumbnail>
                     </ImageThumbnailContainer>
                 : <div>
                     <InputLabel htmlFor='files'>
@@ -72,9 +92,11 @@ const ImageUpload = () => {
                         onChange={onChangeFileHandler}
                     />
                 </div>}
-                {(file[2])
-                    ? <ImageThumbnailContainer>
-                        <ImageThumbnail src={file[2]} alt=''></ImageThumbnail>
+                {(file.third.imageUrl)
+                    ? <ImageThumbnailContainer
+                        key={file.second.id}
+                    >
+                        <ImageThumbnail src={file.third.imageUrl} alt=''></ImageThumbnail>
                     </ImageThumbnailContainer>
                 : <div>
                     <InputLabel htmlFor='files'>
