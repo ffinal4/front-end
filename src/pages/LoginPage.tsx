@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
+import { StBasicInput } from "../styles/BasicInput";
 const LoginPage = () => {
   const navigate = useNavigate();
 
@@ -28,18 +29,22 @@ const LoginPage = () => {
             <SubTitle>주머니 핍핑, 시작해볼까요?</SubTitle>
           </TitleContainer>
           <InputContainer>
-            <Input
-              type="email"
-              placeholder="아이디를 입력해주세요."
-              value={email}
-              onChange={emailOnchange}
-            />
-            <Input
-              type="password"
-              placeholder="비밀번호를 입력해주세요."
-              value={password}
-              onChange={pwOnchange}
-            />
+            <EmailInputContainer>
+              <StBasicInput
+                type="email"
+                placeholder="아이디를 입력해주세요."
+                value={email}
+                onChange={emailOnchange}
+              />
+            </EmailInputContainer>
+            <PwInputContainer>
+              <StBasicInput
+                type="password"
+                placeholder="비밀번호를 입력해주세요."
+                value={password}
+                onChange={pwOnchange}
+              />
+            </PwInputContainer>
           </InputContainer>
           <SecondContainer>
             <SearchContainer>
@@ -163,23 +168,17 @@ const SubTitle = styled.div`
   /* border: 1px solid red; */
 `;
 const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   /* border: 1px solid red; */
   margin-top: 14px;
   margin-bottom: 12px;
 `;
-const Input = styled.input`
-  width: 100%;
-  height: 44px;
-  border: 1px solid black;
-  padding: 20px;
-  margin-top: 16px;
-  /* margin-bottom: 16px; */
-  font-size: 16px;
+const EmailInputContainer = styled.div`
+  /* border: 1px solid blue; */
+  margin-bottom: 16px;
 `;
-
+const PwInputContainer = styled.div`
+  /* border: 1px solid blue; */
+`;
 const SearchId = styled.span`
   /* border: 1px solid black; */
   cursor: pointer;
