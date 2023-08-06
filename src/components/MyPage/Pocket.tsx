@@ -4,9 +4,9 @@ import { styled } from 'styled-components';
 
 interface Props {
     onClickPocketHandler(): void
-}
+}                                 // props의 타입을 interface로 지정
 
-const Pocket: FC<Props> = ({ onClickPocketHandler }) => {
+const Pocket: FC<Props> = ({ onClickPocketHandler }) => {  // 지정한 타입을 FC를 이용해 불러옴
 
     const [height, setHeight] = useState(0);
 

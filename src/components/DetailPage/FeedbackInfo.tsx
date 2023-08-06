@@ -141,7 +141,7 @@ const AllViewTextWrapper = styled.div`
 `;
 
 const AllViewText = styled.div`
-    font-family: Pretendard;
+    font-family: "Pretendard";
     font-size: 20px;
     font-weight: 700;
     line-height: 150%;

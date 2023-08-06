@@ -23,7 +23,7 @@ const DetailInfo = () => {
             <ColorText>핍포님의 주머니</ColorText><SmallBox />
           </BoxWrapper>
         </UserNameContainer>
-        <UserNameContainer style={{ border: "none", paddingTop: "30px" }}>
+        <UserNameContainer style={{ border: "none", paddingTop: "16px" }}>
           <LeftWrapper>
             <Wrapper>
               <BigBox></BigBox>
@@ -161,7 +161,7 @@ const Wrapper = styled.div`
 
 const TextContainer = styled.div`
     display: grid;
-    padding: 14px 0px 52px 0px;
+    padding: 2px 0px 52px 0px;
 `;
 
 const TextLine = styled.div`

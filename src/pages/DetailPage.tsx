@@ -41,8 +41,6 @@ const DetailPage = () => {
         });
     };
 
-
-
   return (
     <PageLayout>
         <FilterContainer>
@@ -61,7 +59,7 @@ const DetailPage = () => {
         </FilterContainer>
         <PageContainer>
             <DetailContainer />
-            <div>
+            <InfoContainer>
             {
             (giveTap === true && wantTap === false && feedbackTap === false)
             && <LayoutContainer>
@@ -95,7 +93,7 @@ const DetailPage = () => {
                     <FeedbackInfo />
                 </LayoutContainer> 
             }
-            </div>
+            </InfoContainer>
         </PageContainer>
         <RecommendCard />
         <MyPickBar />
@@ -114,6 +112,7 @@ const FilterContainer = styled.div`
     align-items: center;
     margin: 0px 56px 20px 0px;
     gap: 20px;
+    width: 100%;
 `;
 
 const FilterWrapper = styled.div`
@@ -171,6 +170,10 @@ const TapDefaultButton = styled.div`
 const LayoutContainer = styled.div`
     padding: 60px 0px 87px 0px;
     display: grid;
+    width: 100%;
+`;
+
+const InfoContainer = styled.div`
     width: 100%;
 `;
 
