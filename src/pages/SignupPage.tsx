@@ -157,8 +157,7 @@ const SignupPage = () => {
                 maxLength: { value: 15, message: "15자 이하로 입력해주세요." },
                 pattern: {
                   value: /^[A-za-z0-9가-힣]{3,10}$/,
-                  message:
-                    "가능한 문자 : 영문 대소문자, 글자 단위 한글, 숫자만 가능합니다.",
+                  message: "영문 대소문자, 글자 단위 한글, 숫자만 가능합니다.",
                 },
               })}
             />
@@ -172,6 +171,7 @@ const SignupPage = () => {
       </SignUpForm>
       <AssignButtonContainer>
         <StBasicButton
+          // type="submit"
           buttonColor="#D9D9D9;"
           onClick={() => {
             navigate("/login");
