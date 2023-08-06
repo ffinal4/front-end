@@ -70,14 +70,14 @@ const LayoutContainer = styled.div`
     }
 `;
 
-const EmptyBox = styled.div<{ src: string }>`
-    width: 100%;
-    height: 100%;
-    background-color: #D9D9D9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
+// const EmptyBox = styled.div<{ src: string }>`
+//     width: 100%;
+//     height: 100%;
+//     background-color: #D9D9D9;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// `;
 
 const SlideWrapper = styled.div`
   display: flex;
