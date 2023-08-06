@@ -1,19 +1,43 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components';
+import ItemCard from '../common/ItemCard';
 
 const RecommendCard = () => {
+
+    const slideRef = useRef<HTMLDivElement>(null);
+    const [currentImg, setCurrentImg] = useState<number>(0);
+    const imageWidth : number = 1152;
+    const slideRange : number = currentImg * imageWidth;
+
+    useEffect(() => {
+        if (slideRef.current) {
+            slideRef.current.style.transition = "all 0.5s ease-in-out";
+            slideRef.current.style.transform = `translateX(-${slideRange}px)`;
+        };
+    }, [slideRange]);
+
+    const moveToNextSlide = () => {
+        if (currentImg === 4) return;
+        setCurrentImg(currentImg + 1);
+    };
+
+    const moveToPrevSlide = () => {
+        if (currentImg === 0) return;
+        setCurrentImg(currentImg - 1);
+    };
+
   return (
     <LayoutContainer>
         <HeadLineContainer>
             <HeaderText>이런 물건은 어떠세요?</HeaderText>
-            <TitleText>1/5</TitleText>
+            <TitleText>{currentImg + 1}/5</TitleText>
         </HeadLineContainer>
         <RecommendList>
             <SlideBtnWrapper>
-                <SlideButton>◀</SlideButton>
-                <SlideButton>▶</SlideButton>
+                <SlideButton onClick={moveToPrevSlide}>◀</SlideButton>
+                <SlideButton onClick={moveToNextSlide}>▶</SlideButton>
             </SlideBtnWrapper>
-            <CardListContainer>
+            <CardListContainer ref={slideRef}>
                 <CardContainer>
                     <CardImage>
                         <LikeButton>♥</LikeButton>
@@ -24,36 +48,63 @@ const RecommendCard = () => {
                     </ContentContainer>
                     <Content>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</Content>
                 </CardContainer>
-                <CardContainer>
-                    <CardImage>
-                        <LikeButton></LikeButton>
-                    </CardImage>
-                    <ContentContainer>
-                        <TitleText>물건이름</TitleText>
-                        <UserInfo>사용자정보</UserInfo>
-                    </ContentContainer>
-                    <Content>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</Content>
-                </CardContainer>
-                <CardContainer>
-                    <CardImage>
-                        <LikeButton></LikeButton>
-                    </CardImage>
-                    <ContentContainer>
-                        <TitleText>물건이름</TitleText>
-                        <UserInfo>사용자정보</UserInfo>
-                    </ContentContainer>
-                    <Content>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</Content>
-                </CardContainer>
-                <CardContainer>
-                    <CardImage>
-                        <LikeButton></LikeButton>
-                    </CardImage>
-                    <ContentContainer>
-                        <TitleText>물건이름</TitleText>
-                        <UserInfo>사용자정보</UserInfo>
-                    </ContentContainer>
-                    <Content>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</Content>
-                </CardContainer>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
             </CardListContainer>
         </RecommendList>
     </LayoutContainer>
@@ -90,23 +141,29 @@ const RecommendList = styled.div`
     display: flex;
     width: 100%;
     position: relative;
+    overflow: hidden;
 `;
 
 const CardListContainer = styled.div`
     display: flex;
     width: 100%;
+    height: 100%;
     gap: 16px;
+`;
 
+const ImageCard = styled.div`
+    width: 272px;
+    height: 100%;
 `;
 
 const CardContainer = styled.div`
-    width: 273px;
+    width: 272px;
     display: grid;
 `;
 
 const CardImage = styled.div`
-    width: 273px;
-    height: 273px;
+    width: 272px;
+    height: 272px;
     background-color: #D9D9D9;
     position: relative;
 `;
