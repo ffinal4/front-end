@@ -78,9 +78,12 @@ const LoginPage = () => {
           </SignUpContainer>
         </LogInFormContainer>
       </LoginContainer>
-      <FirstBoxContainer />
-      <SecondBoxContainer />
-      <FooterCon>
+      <BoxConatainer>
+        <FirstBoxContainer />
+        <SecondBoxContainer />
+      </BoxConatainer>
+
+      <FooterContainer>
         <FirstFooter>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +112,7 @@ const LoginPage = () => {
             </svg>
           </SecondFooter>
         </FirstFooter>
-      </FooterCon>
+      </FooterContainer>
     </LoginPageContainer>
   );
 };
@@ -240,7 +243,11 @@ const SignUpLink = styled.div`
   font-weight: 1000;
   margin-left: 10px;
 `;
-
+const BoxConatainer = styled.div`
+  /* border: 5px solid red; */
+  /* width: 100%;
+  height: 900px; */
+`;
 const FirstBoxContainer = styled.div`
   width: 431.5px;
   height: 358.2px;
@@ -259,7 +266,7 @@ const SecondBoxContainer = styled.div`
   background-color: #fff;
   position: absolute;
 `;
-const FooterCon = styled.div`
+const FooterContainer = styled.div`
   position: relative;
   position: absolute;
   top: 500px;
