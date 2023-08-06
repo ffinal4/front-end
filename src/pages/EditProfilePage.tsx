@@ -1,12 +1,26 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useForm } from "react-hook-form";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 import ImageUpload from "../components/UploadPage/ImageUpload";
 
+interface EditForm {
+  select: string;
+  password: string;
+  confirmPassword: string;
+  nickname: string;
+}
+
 const EditProfilePage = () => {
   const navigate = useNavigate();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    getValues,
+  } = useForm<EditForm>({ mode: "onBlur" });
   return (
     <div>
       <EditProfilePageContainer>
@@ -28,7 +42,11 @@ const EditProfilePage = () => {
           <NickNameContainer>
             <CommonLabel>닉네임</CommonLabel>
             <NickNameInputContainer>
-              <StBasicInput type="text" placeholder="닉네임을 입력해주세요." />
+              <StBasicInput
+                type="text"
+                placeholder="닉네임을 입력해주세요."
+                {...register("nickname", {})}
+              />
             </NickNameInputContainer>
           </NickNameContainer>
           <Content>* 이미 사용중인 이메일입니다.</Content>
@@ -232,7 +250,7 @@ const AddressLabel = styled.label`
 `;
 const AddressContainer = styled.div`
   /* border: 3px solid green; */
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   padding-left: 250px;
