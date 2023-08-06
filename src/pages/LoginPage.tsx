@@ -78,8 +78,11 @@ const LoginPage = () => {
           </SignUpContainer>
         </LogInFormContainer>
       </LoginContainer>
-      <FirstBoxContainer />
-      <SecondBoxContainer />
+      <BoxConatainer>
+        <FirstBoxContainer />
+        <SecondBoxContainer />
+      </BoxConatainer>
+
       <FooterContainer>
         <FirstFooter>
           <svg
@@ -240,7 +243,11 @@ const SignUpLink = styled.div`
   font-weight: 1000;
   margin-left: 10px;
 `;
-
+const BoxConatainer = styled.div`
+  /* border: 5px solid red; */
+  /* width: 100%;
+  height: 900px; */
+`;
 const FirstBoxContainer = styled.div`
   width: 431.5px;
   height: 358.2px;

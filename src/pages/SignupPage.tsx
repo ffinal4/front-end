@@ -2,89 +2,131 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { StBasicInput } from "../styles/BasicInput";
-import { StCardPicture } from "../styles/CardPicture";
+
+interface SignupForm {
+  email: string;
+  select: string;
+  password: string;
+  confirmPassword: string;
+  nickname: string;
+}
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [checkPassword, setCheckPassword] = useState("");
   const [address, setAddress] = useState("");
-  const [nickname, setNickName] = useState("");
-
-  const emailOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
-  const pwOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-
-  const checkPwOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckPassword(event.target.value);
-  };
-
   const addressOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(event.target.value);
   };
-
-  const nicknameOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNickName(event.target.value);
-  };
-
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    getValues,
+  } = useForm<SignupForm>({ mode: "onBlur" });
   return (
     <SignUpPageContainer>
       <TitleContainer>
         <Title>READY TO PEEPO</Title>
       </TitleContainer>
-      <SignUpForm>
+      <SignUpForm
+      // onSubmit={handleSubmit(async (data) => {
+      //   const newForm = {
+      //     email: `${data.email}${data.select}`,
+      //     password: data.password,
+      //     nickname: data.nickname,
+      //   };
+      //   try {
+      //     const res = await postSignupApi(newForm);
+      //     if(res.status === 201) {
+      //       console.log("회원가입성공", res);
+      //       navigate("/login")
+      //     }
+      //   } catch(error){
+      //     console.log(error);
+      //     alert(JSON.stringify(error.response.data.data))
+      //   }
+      // })}
+      >
         <EmailContainer>
           <Label>이메일(아이디)</Label>
           <EmailInputContainer>
             <StBasicInput
               type="email"
               placeholder="이메일을 입력해주세요"
-              value={email}
-              onChange={emailOnchange}
+              {...register("email", {
+                required: "필수입력 항목입니다.",
+                pattern: {
+                  value: /^[a-zA-Z\d]{2,}$/,
+                  message: "이미 사용중인 이메일입니다.",
+                },
+              })}
             />
           </EmailInputContainer>
 
           <AtContainer>@</AtContainer>
-          <EmailSelect>
-            <option>naver.com</option>
-            <option>hanmail.net</option>
-            <option>daum.net</option>
-            <option>gmail.com</option>
-            <option>nate.com</option>
-            <option>hotmail.com</option>
-            <option>outlook.com</option>
-            <option>icloud.com</option>
+          <EmailSelect
+            {...register("select", { required: "필수입력 항목입니다." })}
+          >
+            <option value="">선택해주세요</option>
+            <option value="@naver.com">naver.com</option>
+            <option value="@hanmail.net">hanmail.net</option>
+            <option value="@daum.net">daum.net</option>
+            <option value="@gmail.com">gmail.com</option>
+            <option value="@nate.com">nate.com</option>
+            <option value="@hotmail.com">hotmail.com</option>
+            <option value="@outlook.com">outlook.com</option>
+            <option value="@icloud.com">icloud.com</option>
           </EmailSelect>
         </EmailContainer>
-        <Content>* 이미 사용중인 이메일입니다.</Content>
+        <ValidateMessage>{errors?.email?.message}</ValidateMessage>
         <PwContainer>
           <Label>비밀번호</Label>
           <PwInputContainer>
             <StBasicInput
               type="password"
               placeholder="비밀번호를 입력해주세요."
-              value={password}
-              onChange={pwOnchange}
+              {...register("password", {
+                required: "필수입력 항목입니다.",
+                minLength: {
+                  value: 8,
+                  message:
+                    "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상",
+                },
+                pattern: {
+                  value:
+                    /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"/,
+                  message:
+                    "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
+                },
+              })}
             />
           </PwInputContainer>
         </PwContainer>
+        <PwValidateMessage>{errors?.password?.message}</PwValidateMessage>
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
           <CheckPwInputContainer>
             <StBasicInput
               type="password"
               placeholder="비밀번호를 입력해주세요."
-              value={checkPassword}
-              onChange={checkPwOnchange}
+              {...register("confirmPassword", {
+                required: "필수입력 항목입니다.",
+                validate: {
+                  check: (value) => {
+                    if (getValues("password") !== value) {
+                      return "비밀번호가 일치하지 않습니다.";
+                    }
+                  },
+                },
+              })}
             />
           </CheckPwInputContainer>
         </CheckPwContainer>
+        <CheckPwValidateMessage>
+          {errors?.confirmPassword?.message}
+        </CheckPwValidateMessage>
         <AddressContainer>
           <Label>주소</Label>
           <AddressInputContainer>
@@ -109,8 +151,16 @@ const SignupPage = () => {
             <StBasicInput
               type="text"
               placeholder="닉네임을 입력해주세요."
-              value={nickname}
-              onChange={nicknameOnchange}
+              {...register("nickname", {
+                required: "필수입력 항목입니다.",
+                minLength: { value: 2, message: "2자 이상 입력해주세요." },
+                maxLength: { value: 15, message: "15자 이하로 입력해주세요." },
+                pattern: {
+                  value: /^[A-za-z0-9가-힣]{3,10}$/,
+                  message:
+                    "가능한 문자 : 영문 대소문자, 글자 단위 한글, 숫자만 가능합니다.",
+                },
+              })}
             />
           </NickNameInputContainer>
 
@@ -118,7 +168,7 @@ const SignupPage = () => {
             중복 확인
           </StBasicButton>
         </NickNameContainer>
-        <Content>닉네임이 중복됩니다.</Content>
+        <ValidateMessage>{errors?.nickname?.message}</ValidateMessage>
       </SignUpForm>
       <AssignButtonContainer>
         <StBasicButton
@@ -187,7 +237,7 @@ const EmailSelect = styled.select`
   font-size: 16px;
 `;
 
-const Content = styled.div`
+const ValidateMessage = styled.div`
   /* border: 1px solid blue; */
   width: 465px;
   height: 24px;
@@ -203,11 +253,18 @@ const PwContainer = styled.div`
   align-items: center;
   padding-top: 30px;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 const PwInputContainer = styled.div`
   /* border: 1px solid red; */
   width: 656px;
+`;
+const PwValidateMessage = styled.div`
+  width: 656px;
+  height: 24px;
+  margin-left: 250px;
+  color: red;
+  margin-bottom: 10px;
 `;
 const CheckPwInputContainer = styled.div`
   width: 656px;
@@ -217,7 +274,14 @@ const CheckPwContainer = styled.div`
   /* border: 3px solid green; */
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+`;
+const CheckPwValidateMessage = styled.div`
+  width: 656px;
+  height: 24px;
+  margin-left: 250px;
+  color: red;
+  margin-bottom: 10px;
 `;
 const AddressContainer = styled.div`
   /* border: 3px solid green; */
