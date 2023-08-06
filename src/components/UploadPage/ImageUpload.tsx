@@ -1,5 +1,6 @@
 import React, { ChangeEvent, MouseEventHandler, useState } from 'react'
 import { styled } from 'styled-components'
+import removeIcon from '../../assets/images/remove.png'
 
 const ImageUpload = () => {
 
@@ -25,9 +26,9 @@ const ImageUpload = () => {
             for (let i = 0; i < fileList.length; i++) {
                 const fileUrl = URL.createObjectURL(fileList[i]);
                 imageUrlLists.push(fileUrl);
-                console.log(fileList);
-                console.log(fileUrl);
-                console.log(imageUrlLists);
+                // console.log(fileList);
+                // console.log(fileUrl);
+                // console.log(imageUrlLists);
             };
         };
         // const SliceFile = imageUrlLists.slice(0,3)
@@ -41,8 +42,28 @@ const ImageUpload = () => {
         // console.log("cut", imageUrlLists.slice(0,3), "no", imageUrlLists)
     };
 
-    const onClickRemoveHandler = (id: number) => {
-        
+    const onClickChangeHandler = (id: number) => {
+        const switchValues = (imageUrlLists: string[], index1: number, index2: number) => {
+            [imageUrlLists[index1], imageUrlLists[index2]] = [imageUrlLists[index2], imageUrlLists[index1]];
+        };
+
+        switchValues(imageUrlLists, 0, id-1);
+        setFile({
+            ...file,
+            default: {...file.default, imageUrl: imageUrlLists[0]},
+            second: {...file.second, imageUrl: imageUrlLists[1]},
+            third: {...file.third, imageUrl: imageUrlLists[2]},
+        });
+    };
+
+    const onClickRemoveHandler = () => {
+        setImageUrlLists([]);
+        setFile({
+            ...file,
+            default: {...file.default, imageUrl: ""},
+            second: {...file.second, imageUrl: ""},
+            third: {...file.third, imageUrl: ""},
+        });
     };
 
   return (
@@ -55,7 +76,6 @@ const ImageUpload = () => {
                 ? <ImageThumbnailContainer
                     key={file.default.id}
                     style={{border: "6px solid #6B6B6B"}}
-                    onClick={() => onClickRemoveHandler(file.default.id)}
                 >
                         <FirstImage>대표이미지</FirstImage>
                         <ImageThumbnail src={file.default.imageUrl} alt=''></ImageThumbnail>
@@ -76,6 +96,7 @@ const ImageUpload = () => {
                 {(file.second.imageUrl)
                     ? <ImageThumbnailContainer
                         key={file.second.id}
+                        onClick={() => onClickChangeHandler(file.second.id)}
                     >
                         <ImageThumbnail src={file.second.imageUrl} alt=''></ImageThumbnail>
                     </ImageThumbnailContainer>
@@ -94,7 +115,8 @@ const ImageUpload = () => {
                 </div>}
                 {(file.third.imageUrl)
                     ? <ImageThumbnailContainer
-                        key={file.second.id}
+                        key={file.third.id}
+                        onClick={() => onClickChangeHandler(file.third.id)}
                     >
                         <ImageThumbnail src={file.third.imageUrl} alt=''></ImageThumbnail>
                     </ImageThumbnailContainer>
@@ -111,6 +133,11 @@ const ImageUpload = () => {
                         onChange={onChangeFileHandler}
                     />
                 </div>}
+                <RemoveIcon
+                    src={removeIcon}
+                    alt=''
+                    onClick={onClickRemoveHandler}
+                />
             </ImageContainer>
             : <ImageContainer>
                 <InputLabel htmlFor='files'>
@@ -180,6 +207,7 @@ const ImageContainer = styled.div`
     width: 100%;
     gap: 16px;
     display: flex;
+    align-items: end;
 `;
 
 const ImageThumbnail = styled.img`
@@ -252,5 +280,13 @@ const UploadInputBox = styled.input`
 const TextWrapper = styled.div`
     margin: 22px 0px 0px 0px;
 `;
+
+const RemoveIcon = styled.img`
+    width: 36px;
+    height: 36px;
+    opacity: 0.7;
+    cursor: pointer;
+    /* margin: 120px 0px 0px 0px; */
+`
 
 export default ImageUpload;
