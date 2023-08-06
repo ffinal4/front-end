@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import App from "./../../App";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -70,7 +69,7 @@ const Container = styled.div`
 `;
 const InputContainer = styled.div`
   border: 2px solid black;
-  width: 100%;
+  width: 340px;
   display: flex;
 `;
 const SearchInput = styled.input`

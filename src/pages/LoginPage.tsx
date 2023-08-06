@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import { StBasicButton } from "../styles/BasicButton";
@@ -6,21 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 const LoginPage = () => {
   const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const emailOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-  const pwOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
+  const { register, handleSubmit } = useForm();
 
   return (
     <LoginPageContainer>
       <LoginContainer>
-        <LogInFormContainer>
+        <LogInForm onSubmit={(data) => alert(JSON.stringify(data))}>
           <TitleContainer>
             <LogoContainer>
               <Logo src={eyeImage} />
@@ -33,16 +25,14 @@ const LoginPage = () => {
               <StBasicInput
                 type="email"
                 placeholder="아이디를 입력해주세요."
-                value={email}
-                onChange={emailOnchange}
+                {...register("email")}
               />
             </EmailInputContainer>
             <PwInputContainer>
               <StBasicInput
                 type="password"
                 placeholder="비밀번호를 입력해주세요."
-                value={password}
-                onChange={pwOnchange}
+                {...register("password")}
               />
             </PwInputContainer>
           </InputContainer>
@@ -58,6 +48,7 @@ const LoginPage = () => {
           </SecondContainer>
           <ButtonContainer>
             <StBasicButton
+              // type="submit"
               buttonColor="#D9D9D9;"
               onClick={() => {
                 navigate("/");
@@ -76,11 +67,14 @@ const LoginPage = () => {
               회원가입
             </SignUpLink>
           </SignUpContainer>
-        </LogInFormContainer>
+        </LogInForm>
       </LoginContainer>
-      <FirstBoxContainer />
-      <SecondBoxContainer />
-      <FooterCon>
+      <BoxConatainer>
+        <FirstBoxContainer />
+        <SecondBoxContainer />
+      </BoxConatainer>
+
+      <FooterContainer>
         <FirstFooter>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +103,7 @@ const LoginPage = () => {
             </svg>
           </SecondFooter>
         </FirstFooter>
-      </FooterCon>
+      </FooterContainer>
     </LoginPageContainer>
   );
 };
@@ -130,7 +124,7 @@ const LoginContainer = styled.div`
     rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,
     rgb(255, 255, 255) 20px -20px 0px -3px, rgb(0, 0, 0) 20px -20px;
 `;
-const LogInFormContainer = styled.form`
+const LogInForm = styled.form`
   /* border: 1px solid green; */
   padding: 56px 96px 56px 96px;
   margin: auto;
@@ -240,7 +234,11 @@ const SignUpLink = styled.div`
   font-weight: 1000;
   margin-left: 10px;
 `;
-
+const BoxConatainer = styled.div`
+  /* border: 5px solid red; */
+  /* width: 100%;
+  height: 900px; */
+`;
 const FirstBoxContainer = styled.div`
   width: 431.5px;
   height: 358.2px;
@@ -259,7 +257,7 @@ const SecondBoxContainer = styled.div`
   background-color: #fff;
   position: absolute;
 `;
-const FooterCon = styled.div`
+const FooterContainer = styled.div`
   position: relative;
   position: absolute;
   top: 500px;

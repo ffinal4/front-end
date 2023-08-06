@@ -1,12 +1,26 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useForm } from "react-hook-form";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 import ImageUpload from "../components/UploadPage/ImageUpload";
 
+interface EditForm {
+  select: string;
+  password: string;
+  confirmPassword: string;
+  nickname: string;
+}
+
 const EditProfilePage = () => {
   const navigate = useNavigate();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    getValues,
+  } = useForm<EditForm>({ mode: "onBlur" });
   return (
     <div>
       <EditProfilePageContainer>
@@ -28,7 +42,11 @@ const EditProfilePage = () => {
           <NickNameContainer>
             <CommonLabel>닉네임</CommonLabel>
             <NickNameInputContainer>
-              <StBasicInput type="text" placeholder="닉네임을 입력해주세요." />
+              <StBasicInput
+                type="text"
+                placeholder="닉네임을 입력해주세요."
+                {...register("nickname", {})}
+              />
             </NickNameInputContainer>
           </NickNameContainer>
           <Content>* 이미 사용중인 이메일입니다.</Content>
@@ -65,18 +83,15 @@ const EditProfilePage = () => {
               </CheckPwInputContainer>
             </SetPwInputContainer>
           </CheckPwContainer>
+          <AddressLabelContainer>
+            <AddressLabel>주거래지역</AddressLabel>
+            <CurrentAddress>서울시 강남구</CurrentAddress>
+          </AddressLabelContainer>
           <AddressContainer>
-            <Label>주거래지역</Label>
-
-            <AddressLabelContainer>
-              <Address>서울시 강남구</Address>
-            </AddressLabelContainer>
-            <AddressInputContainer>
-              <StBasicInput
-                type="text"
-                placeholder="수정할 주소를 입력해주세요."
-              />
-            </AddressInputContainer>
+            <StBasicInput
+              type="text"
+              placeholder="수정할 주소를 입력해주세요."
+            />
             <StBasicButton
               buttonColor="#D9D9D9;"
               style={{ marginLeft: "20px" }}
@@ -84,6 +99,9 @@ const EditProfilePage = () => {
               주소찾기
             </StBasicButton>
           </AddressContainer>
+          <AddContent>
+            입력된 주소는 나의 주거래 지역으로 표시됩니다.
+          </AddContent>
         </EditProfileForm>
         <AssignButtonContainer>
           <StBasicButton
@@ -124,7 +142,7 @@ const EditProfileForm = styled.form`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   width: 100%;
-  height: 1343px;
+  height: 1135px;
   margin: auto;
 `;
 const ProfileImageContainer = styled.div``;
@@ -199,6 +217,7 @@ const CheckPwInputContainer = styled.div`
 `;
 const CheckPwContainer = styled.div`
   /* border: 3px solid green; */
+  border-bottom: 1px solid gray;
   display: flex;
 
   align-items: center;
@@ -210,26 +229,38 @@ const PwValidation = styled.div`
   margin-bottom: 30px;
   font-size: 16px;
 `;
-const Address = styled.div`
-  border: 1px solid red;
-`;
-const AddressInputContainer = styled.div`
-  width: 464px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid red;
-`;
+const CurrentAddress = styled.div`
+  /* border: 1px solid red; */
 
-const AddressLabelContainer = styled.div`
-  border: 1px solid red;
-  display: flex;
+  font-size: 16px;
 `;
-const AddressContainer = styled.div`
-  border: 3px solid green;
-  border-top: 1px solid gray;
-  padding-top: 30px;
+const AddressLabelContainer = styled.div`
+  /* border: 1px solid blue; */
   display: flex;
   align-items: center;
+  margin-top: 30px;
+`;
+const AddressLabel = styled.label`
+  /* border: 1px solid red; */
+  width: 180px;
+  height: 33px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 70px;
+`;
+const AddressContainer = styled.div`
+  /* border: 3px solid green; */
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  padding-left: 250px;
+  padding-right: 220px;
+`;
+const AddContent = styled.div`
+  /* border: 1px solid red; */
+  padding-left: 250px;
+  padding-top: 10px;
+  color: gray;
 `;
 
 const AssignButtonContainer = styled.div`
