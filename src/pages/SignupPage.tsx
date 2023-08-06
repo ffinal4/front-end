@@ -293,6 +293,7 @@ const AddressContainer = styled.div`
 const AddressInputContainer = styled.div`
   width: 464px;
 `;
+
 const SecondLabel = styled.div`
   font-size: 20px;
   width: 200px;
