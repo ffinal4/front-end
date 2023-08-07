@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
-import ImageUpload from "../components/UploadPage/ImageUpload";
+import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
 
 interface EditForm {
   select: string;
@@ -32,8 +32,7 @@ const EditProfilePage = () => {
         </TitleContainer>
         <EditProfileForm>
           <ProfileImageContainer>
-            {/* <Label>프로필 사진</Label> */}
-            <ImageUpload />
+            <ProfileImageUpload />
           </ProfileImageContainer>
           <EmailContainer>
             <Label>이메일(아이디)</Label>
@@ -145,7 +144,9 @@ const EditProfileForm = styled.form`
   height: 1135px;
   margin: auto;
 `;
-const ProfileImageContainer = styled.div``;
+const ProfileImageContainer = styled.div`
+  /* border: 3px solid green; */
+`;
 const EmailContainer = styled.div`
   /* border: 3px solid green; */
   display: flex;
@@ -156,7 +157,7 @@ const EmailContainer = styled.div`
 const Label = styled.div`
   /* border: 1px solid red; */
   font-size: 20px;
-  width: 180px;
+  width: 150px;
   font-weight: 700;
   display: flex;
   margin-right: 70px;
@@ -174,10 +175,10 @@ const NickNameContainer = styled.div`
 `;
 const CommonLabel = styled.div`
   font-size: 20px;
-  width: 200px;
+  width: 150px;
   font-weight: 700;
   /* border: 1px solid red; */
-  margin-right: 50px;
+  margin-right: 70px;
 `;
 const NickNameInputContainer = styled.div`
   width: 656px;
@@ -242,7 +243,7 @@ const AddressLabelContainer = styled.div`
 `;
 const AddressLabel = styled.label`
   /* border: 1px solid red; */
-  width: 180px;
+  width: 150px;
   height: 33px;
   font-size: 20px;
   font-weight: bold;
@@ -253,13 +254,12 @@ const AddressContainer = styled.div`
   margin-top: 20px;
   display: flex;
   align-items: center;
-  padding-left: 250px;
-  padding-right: 220px;
+  padding-left: 220px;
+  padding-right: 250px;
 `;
 const AddContent = styled.div`
   /* border: 1px solid red; */
-  padding-left: 250px;
-  padding-top: 10px;
+  margin: 10px 0px 40px 220px;
   color: gray;
 `;
 
