@@ -66,19 +66,21 @@ const SignupPage = () => {
           </EmailInputContainer>
 
           <AtContainer>@</AtContainer>
-          <EmailSelect
-            {...register("select", { required: "필수입력 항목입니다." })}
-          >
-            <option value="">선택해주세요</option>
-            <option value="@naver.com">naver.com</option>
-            <option value="@hanmail.net">hanmail.net</option>
-            <option value="@daum.net">daum.net</option>
-            <option value="@gmail.com">gmail.com</option>
-            <option value="@nate.com">nate.com</option>
-            <option value="@hotmail.com">hotmail.com</option>
-            <option value="@outlook.com">outlook.com</option>
-            <option value="@icloud.com">icloud.com</option>
-          </EmailSelect>
+          <SelectContainer>
+            <EmailSelect
+              {...register("select", { required: "필수입력 항목입니다." })}
+            >
+              <option value="">선택해주세요</option>
+              <option value="@naver.com">naver.com</option>
+              <option value="@hanmail.net">hanmail.net</option>
+              <option value="@daum.net">daum.net</option>
+              <option value="@gmail.com">gmail.com</option>
+              <option value="@nate.com">nate.com</option>
+              <option value="@hotmail.com">hotmail.com</option>
+              <option value="@outlook.com">outlook.com</option>
+              <option value="@icloud.com">icloud.com</option>
+            </EmailSelect>
+          </SelectContainer>
         </EmailContainer>
         <ValidateMessage>{errors?.email?.message}</ValidateMessage>
         <PwContainer>
@@ -202,11 +204,12 @@ const SignUpForm = styled.form`
   /* border: 5px solid yellow; */
   border-top: 5px solid black;
   border-bottom: 5px solid black;
-  width: 1136px;
+  max-width: 1136px;
   height: 626px;
   margin: auto;
 `;
 const EmailInputContainer = styled.div`
+  /* border: 1px solid blue; */
   width: 272px;
 `;
 
@@ -230,8 +233,12 @@ const AtContainer = styled.div`
   /* border: 1px solid red; */
   padding: 0px 16px 0px 16px;
 `;
-const EmailSelect = styled.select`
+const SelectContainer = styled.div`
+  /* border: 1px solid blue; */
   width: 337px;
+`;
+const EmailSelect = styled.select`
+  width: 100%;
   height: 44px;
   padding: 10px;
   font-size: 16px;
