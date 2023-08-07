@@ -269,7 +269,7 @@ const CheckPwContainer = styled.div`
   border-bottom: 1px solid gray;
   display: flex;
 
-  align-items: center;
+  /* align-items: center; */
   /* margin-bottom: 30px; */
 `;
 const PwValidation = styled.div`
