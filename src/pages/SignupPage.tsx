@@ -144,9 +144,12 @@ const SignupPage = () => {
             주소찾기
           </StBasicButton>
         </AddressContainer>
-        <AddressContent>
-          입력한 주소는 나의 주거래 지역으로 표시됩니다.
-        </AddressContent>
+        <ContentContainer>
+          <AddressContent>
+            입력한 주소는 나의 주거래 지역으로 표시됩니다.
+          </AddressContent>
+        </ContentContainer>
+
         <NickNameContainer>
           <SecondLabel>닉네임</SecondLabel>
           <NickNameInputContainer>
@@ -311,14 +314,20 @@ const SecondLabel = styled.div`
 const NickNameInputContainer = styled.div`
   width: 464px;
 `;
+const ContentContainer = styled.div`
+  /* border: 1px solid blue; */
+  /* width: 465px; */
+  padding-left: 250px;
+`;
 const AddressContent = styled.div`
   /* border: 1px solid blue; */
-  width: 465px;
+  width: 100%;
   height: 24px;
-  margin-left: 250px;
+
   color: gray;
   margin-bottom: 30px;
   margin-top: 10px;
+  /* padding-left: 250px; */
 `;
 
 const NickNameContainer = styled.div`
