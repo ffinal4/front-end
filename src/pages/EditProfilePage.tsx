@@ -9,8 +9,10 @@ import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload
 interface EditForm {
   select: string;
   password: string;
+  newpassword: string;
   confirmPassword: string;
   nickname: string;
+  address: string;
 }
 
 const EditProfilePage = () => {
@@ -30,7 +32,25 @@ const EditProfilePage = () => {
             <SubTitle>개인정보 수정</SubTitle>
           </Title>
         </TitleContainer>
-        <EditProfileForm>
+        <EditProfileForm
+        // onSubmit={handleSubmit(async (data) => {
+        //   const newForm = {
+        //     email: `${data.email}${data.select}`,
+        //     password: data.password,
+        //     nickname: data.nickname,
+        //   };
+        //   try {
+        //     const res = await patchEditProfileApi(newForm);
+        //     if(res.status === 201) {
+        //       console.log("개인정보수정완료", res);
+        //       navigate("/login")
+        //     }
+        //   } catch(error){
+        //     console.log(error);
+        //     alert(JSON.stringify(error.response.data.data))
+        //   }
+        // })}
+        >
           <ProfileImageContainer>
             <ProfileImageUpload />
           </ProfileImageContainer>
@@ -55,6 +75,7 @@ const EditProfilePage = () => {
               <StBasicInput
                 type="password"
                 placeholder="현재 비밀번호를 입력해주세요."
+                {...register("password", {})}
               />
             </PwInputContainer>
           </PwContainer>
@@ -66,6 +87,20 @@ const EditProfilePage = () => {
                 <StBasicInput
                   type="password"
                   placeholder="새 비밀번호를 입력해주세요."
+                  {...register("newpassword", {
+                    required: "필수입력 항목입니다.",
+                    minLength: {
+                      value: 8,
+                      message:
+                        "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상",
+                    },
+                    pattern: {
+                      value:
+                        /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"/,
+                      message:
+                        "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
+                    },
+                  })}
                 />
                 <PwValidation>
                   * 영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의
@@ -77,6 +112,16 @@ const EditProfilePage = () => {
                 <StBasicInput
                   type="password"
                   placeholder="비밀번호를 확인해주세요."
+                  {...register("confirmPassword", {
+                    required: "필수입력 항목입니다.",
+                    validate: {
+                      check: (value) => {
+                        if (getValues("password") !== value) {
+                          return "비밀번호가 일치하지 않습니다.";
+                        }
+                      },
+                    },
+                  })}
                 />
                 <PwValidation>* 비밀번호가 일치하지 않습니다.</PwValidation>
               </CheckPwInputContainer>
@@ -90,6 +135,9 @@ const EditProfilePage = () => {
             <StBasicInput
               type="text"
               placeholder="수정할 주소를 입력해주세요."
+              {...register("address", {
+                required: "입력된 주소는 나의 주거래 지역으로 표시됩니다.",
+              })}
             />
             <StBasicButton
               buttonColor="#D9D9D9;"
@@ -187,7 +235,7 @@ const Content = styled.div`
   /* border: 1px solid blue; */
   width: 465px;
   height: 24px;
-  margin-left: 250px;
+  margin-left: 220px;
   color: red;
   margin-top: 10px;
   margin-bottom: 30px;
@@ -221,7 +269,7 @@ const CheckPwContainer = styled.div`
   border-bottom: 1px solid gray;
   display: flex;
 
-  align-items: center;
+  /* align-items: center; */
   /* margin-bottom: 30px; */
 `;
 const PwValidation = styled.div`

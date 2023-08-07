@@ -45,7 +45,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   font-size: 18px;
   border-bottom: 1px solid gray;
-  padding: 0 60px 0 60px;
+  padding: 0 160px 0 160px;
   /* border: 1px solid red; */
   margin: 0 auto;
 `;
