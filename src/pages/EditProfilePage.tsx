@@ -187,7 +187,7 @@ const Content = styled.div`
   /* border: 1px solid blue; */
   width: 465px;
   height: 24px;
-  margin-left: 250px;
+  margin-left: 220px;
   color: red;
   margin-top: 10px;
   margin-bottom: 30px;
