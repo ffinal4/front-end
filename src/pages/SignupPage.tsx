@@ -113,12 +113,10 @@ const SignupPage = () => {
                 required: "필수입력 항목입니다.",
                 minLength: {
                   value: 8,
-                  message:
-                    "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상",
+                  message: "비밀번호는 8자 이상이어야 합니다.",
                 },
                 pattern: {
-                  value:
-                    /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"/,
+                  value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
                   message:
                     "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
                 },
@@ -186,13 +184,13 @@ const SignupPage = () => {
           <NickNameInputContainer>
             <StBasicInput
               type="text"
-              placeholder="닉네임을 입력해주세요."
+              placeholder="한글, 영문, 숫자를 이용한 2~15자"
               {...register("nickname", {
                 required: "필수입력 항목입니다.",
                 minLength: { value: 2, message: "2자 이상 입력해주세요." },
                 maxLength: { value: 15, message: "15자 이하로 입력해주세요." },
                 pattern: {
-                  value: /^[A-za-z0-9가-힣]{3,10}$/,
+                  value: /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,15}$/,
                   message: "영문 대소문자, 글자 단위 한글, 숫자만 가능합니다.",
                 },
               })}
