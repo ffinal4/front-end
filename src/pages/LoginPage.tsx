@@ -1,25 +1,18 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
+import { StBasicInput } from "../styles/BasicInput";
 const LoginPage = () => {
   const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const emailOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-  const pwOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
+  const { register, handleSubmit } = useForm();
 
   return (
-    <div>
+    <LoginPageContainer>
       <LoginContainer>
-        <LogInFormContainer>
+        <LogInForm onSubmit={(data) => alert(JSON.stringify(data))}>
           <TitleContainer>
             <LogoContainer>
               <Logo src={eyeImage} />
@@ -28,18 +21,20 @@ const LoginPage = () => {
             <SubTitle>주머니 핍핑, 시작해볼까요?</SubTitle>
           </TitleContainer>
           <InputContainer>
-            <Input
-              type="email"
-              placeholder="아이디를 입력해주세요."
-              value={email}
-              onChange={emailOnchange}
-            />
-            <Input
-              type="password"
-              placeholder="비밀번호를 입력해주세요."
-              value={password}
-              onChange={pwOnchange}
-            />
+            <EmailInputContainer>
+              <StBasicInput
+                type="email"
+                placeholder="아이디를 입력해주세요."
+                {...register("email")}
+              />
+            </EmailInputContainer>
+            <PwInputContainer>
+              <StBasicInput
+                type="password"
+                placeholder="비밀번호를 입력해주세요."
+                {...register("password")}
+              />
+            </PwInputContainer>
           </InputContainer>
           <SecondContainer>
             <SearchContainer>
@@ -53,6 +48,7 @@ const LoginPage = () => {
           </SecondContainer>
           <ButtonContainer>
             <StBasicButton
+              // type="submit"
               buttonColor="#D9D9D9;"
               onClick={() => {
                 navigate("/");
@@ -71,11 +67,14 @@ const LoginPage = () => {
               회원가입
             </SignUpLink>
           </SignUpContainer>
-        </LogInFormContainer>
+        </LogInForm>
       </LoginContainer>
-      <FooterContainer>
+      <BoxConatainer>
         <FirstBoxContainer />
         <SecondBoxContainer />
+      </BoxConatainer>
+
+      <FooterContainer>
         <FirstFooter>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +85,7 @@ const LoginPage = () => {
           >
             <path d="M0 0L960 68L1920 0V327H0V0Z" fill="#ADADAD" />
           </svg>
-          {/* <SecondFooter>
+          <SecondFooter>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
@@ -102,12 +101,15 @@ const LoginPage = () => {
                 stroke-dasharray="20 20"
               />
             </svg>
-          </SecondFooter> */}
+          </SecondFooter>
         </FirstFooter>
       </FooterContainer>
-    </div>
+    </LoginPageContainer>
   );
 };
+const LoginPageContainer = styled.div`
+  position: relative;
+`;
 
 const LoginContainer = styled.div`
   z-index: 999;
@@ -122,7 +124,7 @@ const LoginContainer = styled.div`
     rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,
     rgb(255, 255, 255) 20px -20px 0px -3px, rgb(0, 0, 0) 20px -20px;
 `;
-const LogInFormContainer = styled.form`
+const LogInForm = styled.form`
   /* border: 1px solid green; */
   padding: 56px 96px 56px 96px;
   margin: auto;
@@ -136,47 +138,51 @@ const TitleContainer = styled.div`
   margin: 0 auto;
 `;
 const LogoContainer = styled.div`
-  height: 110px;
+  width: 66px;
+  height: 54px;
   /* border: 1px solid red; */
   margin: 0 auto;
-  margin-top: 60px;
+  margin-top: 56px;
 `;
 
 const Logo = styled.img`
+  /* border: 1px solid blue; */
   width: 100%;
-  height: 100px;
 `;
 
 const Title = styled.div`
   font-size: 32px;
+  /* border: 1px solid red; */
   font-weight: 800;
+  margin-top: 10px;
 `;
 const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 400;
+  /* border: 1px solid red; */
 `;
 const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  margin-top: 30px;
+  /* border: 1px solid red; */
+  margin-top: 14px;
+  margin-bottom: 12px;
 `;
-const Input = styled.input`
-  width: 100%;
-  height: 44px;
-  border: 1px solid black;
-  padding: 10px;
+const EmailInputContainer = styled.div`
+  /* border: 1px solid blue; */
   margin-bottom: 16px;
-  font-size: 16px;
 `;
-
+const PwInputContainer = styled.div`
+  /* border: 1px solid blue; */
+`;
 const SearchId = styled.span`
   /* border: 1px solid black; */
+  cursor: pointer;
+  font-size: 16px;
 `;
 const SearchPw = styled.span`
   /* border: 1px solid black; */
-  padding-left: 10px;
+  cursor: pointer;
+  padding-left: 16px;
+  font-size: 16px;
 `;
 const MaintainLogin = styled.span`
   /* border: 1px solid black; */
@@ -209,13 +215,13 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   /* border: 1px solid red; */
-  padding: 20px 0px 20px 0px;
+  margin-top: 30px;
 `;
 const SignUpContainer = styled.div`
+  margin-top: 40px;
   /* border: 1px solid green; */
   display: flex;
   justify-content: center;
-  padding: 10px 0px 10px 0px;
 `;
 
 const Content = styled.span`
@@ -223,19 +229,20 @@ const Content = styled.span`
 `;
 
 const SignUpLink = styled.div`
-  /* border: 1px solid red; */
   cursor: pointer;
   font-size: 16px;
   font-weight: 1000;
+  margin-left: 10px;
 `;
-
-const FooterContainer = styled.div`
-  /* position: relative; */
+const BoxConatainer = styled.div`
+  /* border: 5px solid red; */
+  /* width: 100%;
+  height: 900px; */
 `;
 const FirstBoxContainer = styled.div`
   width: 431.5px;
   height: 358.2px;
-  margin: -160px 690.9px 119.2px 212.6px;
+  margin: -350px 690.9px 119.2px 100px;
   transform: rotate(-8.96deg);
   border: solid 2px #000;
   background-color: #fff;
@@ -244,19 +251,26 @@ const FirstBoxContainer = styled.div`
 const SecondBoxContainer = styled.div`
   width: 389.6px;
   height: 401.1px;
-  margin: -170px 195.4px 104.9px 1200px;
+  margin: -320px 195.4px 104.9px 1000px;
   transform: rotate(-342.64deg);
   border: solid 2px #000;
   background-color: #fff;
   position: absolute;
 `;
-const FirstFooter = styled.div`
+const FooterContainer = styled.div`
+  position: relative;
   position: absolute;
+  top: 500px;
+  z-index: 999;
+`;
+const FirstFooter = styled.div`
+  position: relative;
   z-index: 999;
 `;
 const SecondFooter = styled.div`
-  /* position: absolute; */
-  /* z-index: 999; */
+  position: absolute;
+  z-index: 999;
+  bottom: 0;
 `;
 
 export default LoginPage;

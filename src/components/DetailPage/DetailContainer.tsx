@@ -1,22 +1,56 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { styled } from "styled-components";
 import Image from '../../assets/images/pocket.png'
+import Cute from '../../assets/images/ppapparo.jpg'
+import Song from '../../assets/images/song.jpg'
 import DetailInfo from './DetailInfo';
 
 const DetailContainer = () => {
+
+  const divRef = useRef<HTMLDivElement>(null);
+  const [currentImg, setCurrentImg] = useState<number>(0);
+  const imageWidth: number = 464;
+  const SlideRange: number = currentImg * imageWidth;
+
+  const slidePageBar : number[] = [1, 2, 3];
+
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.style.transition = "all 0.5s ease-in-out";
+      divRef.current.style.transform = `translateX(-${SlideRange}px)`;
+    }
+  }, [SlideRange]);
+
+  const moveToNextBtn = () => {
+    if (currentImg === 2) return;
+    setCurrentImg(currentImg + 1);
+  };
+
+  const moveToPrevBtn = () => {
+    if (currentImg === 0) return;
+    setCurrentImg(currentImg - 1);
+  };
+
   return (
     <LayoutContainer>
       <ImageOutContainer>
         <SlideBtnWrapper>
-          <SlideButton>◀</SlideButton>
-          <SlideButton>▶</SlideButton>
+          <SlideButton onClick={moveToPrevBtn}>◀</SlideButton>
+          <SlideButton onClick={moveToNextBtn}>▶</SlideButton>
         </SlideBtnWrapper>
+        <SlideWrapper ref={divRef}>
+          <ImageBox src={Image}/>
+          <ImageBox src={Cute}/>
+          <ImageBox src={Song}/>
+          {/* <EmptyBox src={Image}>사진등록</EmptyBox> */}
+        </SlideWrapper>
         <SlidePageBarWrapper>
-          <SlidePageBar height='10px' backgdcolor='#7D7D7D'></SlidePageBar>
-          <SlidePageBar height='8px' backgdcolor='#c7c7c7'></SlidePageBar>
-          <SlidePageBar height='8px' backgdcolor='#c7c7c7'></SlidePageBar>
+          {slidePageBar.map((item) =>
+            (currentImg + 1 === item)
+            ? <SlidePageBar height='10px' backgdcolor='#7D7D7D'></SlidePageBar>
+            : <SlidePageBar height='8px' backgdcolor='#c7c7c7'></SlidePageBar>
+          )}
         </SlidePageBarWrapper>
-        <ImageBox src={Image}>사진등록</ImageBox>
       </ImageOutContainer>
       <DetailInfo />
     </LayoutContainer>
@@ -26,6 +60,7 @@ const DetailContainer = () => {
 const LayoutContainer = styled.div`
     padding: 60px 0px 87px 0px;
     display: flex;
+    gap: 112px;
     width: 100%;
     @media screen and (max-width: 834px) {
       display: grid;
@@ -35,26 +70,35 @@ const LayoutContainer = styled.div`
     }
 `;
 
-const ImageBox = styled.div<{ src: string }>`
-    width: 100%;
-    height: 100%;
-    background-image: ${(props) => `url(${props.src})`};
-    background-size: cover;
-    background-color: #D9D9D9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+// const EmptyBox = styled.div<{ src: string }>`
+//     width: 100%;
+//     height: 100%;
+//     background-color: #D9D9D9;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// `;
+
+const SlideWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+
+const ImageBox = styled.img`
+  width: 464px;
+  height: 464px;
 `;
 
 const ImageOutContainer = styled.div`
-  width: 466px;
-  height: 466px;
+  width: 464px;
+  height: 464px;
   border: 4px solid;
-  margin: 0px 112px 0px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
 
   @media screen and (max-width: 834px) {
     margin: 0px;
@@ -62,7 +106,7 @@ const ImageOutContainer = styled.div`
 `;
 
 const SlideBtnWrapper = styled.div`
-    width: 100%;
+    width: 464px;
     display: flex;
     position: absolute;
     justify-content: space-between;

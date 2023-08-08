@@ -85,7 +85,6 @@ const MyPoketContainer = styled.div`
     border-left: 4px solid #000;
     border-right: 4px solid #000;
     border-bottom: 4px solid #000;
-    border-radius: 0px 0px 0px 95px;
     height: 673px;
     width: 356px;
     padding: 0px 0px 20px 20px;
@@ -95,7 +94,6 @@ const PoketInline = styled.div`
     width: 100%;
     height: 100%;
     padding: 35px;
-    border-radius: 0px 0px 0px 82px;
     border-left: 2px dashed #BFBFBF;
     border-bottom: 2px dashed #BFBFBF;
 `;

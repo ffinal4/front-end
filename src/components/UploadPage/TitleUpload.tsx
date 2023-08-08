@@ -46,12 +46,13 @@ const Wrapper = styled.div`
 const TitleInput = styled.input`
     display: inline-flex;
     height: 44px;
-    padding: 0px 505px 0px 20px;
+    padding: 0px 20px 0px 20px;
     margin: 0px 16px 0px 0px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     border: 1px solid;
+    width: 656px;
 `;
 
 const Text = styled.div<{ color: string }>`
