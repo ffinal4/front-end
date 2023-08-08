@@ -1,37 +1,43 @@
-import React from 'react';
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components'
 import CategorySelect from '../common/CategorySelect';
 
-const CategoryUpload : React.FC = () => {
+interface Props {
+    uploadData: object;
+    setUploadData: React.Dispatch<React.SetStateAction<object>>;
+};
 
-    type categoryType = {
-        id: string,
-        name: string,
-    };
+const CategoryUpload : React.FC<Props> = ({ setUploadData, uploadData }) => {
 
-    const  [category, setCategory] = useState<categoryType>({
-        id: "",
+    const  [categorySelect, setCategorySelect] = useState({
+        category: "",
         name: "카테고리 선택",
     });
+    const { category, name } = categorySelect;
     const [selectBar, setSelectBar] = useState<boolean>(false);
 
     const onClickDropDownHandelr = () => {
         setSelectBar(!selectBar);
     };
 
+    useEffect(() => {
+        if (category !== "") {
+            setUploadData({...uploadData, category});
+        };
+    }, [selectBar]);
+
   return (
     <LineContainer>
         <RequiredText>카테고리</RequiredText>
         <SelectBar>
-            <Text>{category.name}</Text>
+            <Text>{name}</Text>
             <ChoiceBox onClick={onClickDropDownHandelr}></ChoiceBox>
         </SelectBar>
         {(selectBar)
         && <SelectContainer>
             <CategorySelect
-                category={category}
-                setCategory={setCategory}
+                categorySelect={categorySelect}
+                setCategorySelect={setCategorySelect}
                 setSelectBar={setSelectBar}
             />
         </SelectContainer>

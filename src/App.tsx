@@ -12,6 +12,7 @@ import DetailPage from "./pages/DetailPage";
 import MyPocketPage from "./pages/MyPocketPage";
 import MyPage from "./pages/MyPage";
 import EditProfilePage from "./pages/EditProfilePage";
+import ChattingPage from "./pages/ChattingPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/chat" element={<ChattingPage />} />
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />} />
             <Route path="/signup" element={<SignupPage />} />

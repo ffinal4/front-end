@@ -1,13 +1,27 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { styled } from 'styled-components'
 
-const DetailUpload = () => {
+interface Props {
+    uploadData: object;
+    setUploadData: React.Dispatch<React.SetStateAction<object>>;
+};
 
-    const [detailInfo, setDetailInfo] = useState("");
+const DetailUpload :React.FC<Props> = ({ uploadData, setUploadData }) => {
 
-    const onChangeInfoHandler = (event: any) => {
-        setDetailInfo(event.target.value);
-        // console.log("d", detailInfo);
+    const [detailInfo, setDetailInfo] = useState({
+        content: "",
+    });
+    const { content } = detailInfo;
+
+    const memoizedCallback = useCallback((event : React.ChangeEvent<HTMLTextAreaElement>) => {
+        const {name, value} = event?.target;
+        setDetailInfo({
+            ...detailInfo,
+            [name]: value
+    })}, [detailInfo]);
+
+    const onBlurTextAreaHandler = () => {
+        setUploadData({...uploadData, content});
     };
 
   return (
@@ -18,12 +32,14 @@ const DetailUpload = () => {
             <DesciptionTextarea
                 typeof='text'
                 maxLength={2000}
-                value={detailInfo}
+                name='content'
+                value={content}
                 placeholder='구입 연도, 브랜드, 사용감, 하자 유무 등 교환을 원하는 사람들에게 필요한 정보를 꼭 포함해주세요! (최소 10자 이상)'
-                onChange={onChangeInfoHandler}
+                onChange={(event) => memoizedCallback(event)}
+                onBlur={onBlurTextAreaHandler}
             />
           </InputContainer>
-          <TextCount color={(detailInfo.length >= 2000) ? "red" : "#000"}>{detailInfo.length}/2000</TextCount>
+          <TextCount color={(content.length >= 2000) ? "red" : "#000"}>{content.length}/2000</TextCount>
         </Wrapper>
     </LineContainer>
   )

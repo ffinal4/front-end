@@ -1,27 +1,40 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { styled } from 'styled-components'
 import { StBasicButton } from '../../styles/BasicButton';
 
-const ConditionUpload = () => {
+interface Props {
+    uploadData: object;
+    setUploadData: React.Dispatch<React.SetStateAction<object>>;
+};
 
-    const [newProduct, setNewProduct] = useState(false);
-    const [usedProduct, setUsedProduct] = useState(false);
-    const [damaged, setDamaged] = useState(false);
+const ConditionUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
+
+    const [conditionProduct, setConditionProduct] = useState({
+        goodsCondition: "",
+        price: "",
+    });
+    const { goodsCondition, price } = conditionProduct;
 
     const onCheckNewCondition = () => {
-        setNewProduct(!newProduct);
-        setUsedProduct(false);
-        setDamaged(false);
+        setConditionProduct({...conditionProduct, goodsCondition: "상"})
     };
     const onCheckUsedCondition = () => {
-        setNewProduct(false);
-        setUsedProduct(!usedProduct);
-        setDamaged(false);
+
+        setConditionProduct({...conditionProduct, goodsCondition: "중"})
     };
     const onCheckDamagedCondition = () => {
-        setNewProduct(false);
-        setUsedProduct(false);
-        setDamaged(!damaged);
+        setConditionProduct({...conditionProduct, goodsCondition: "하"})
+    };
+
+    const memoizedCallback = useCallback((event : React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = event?.target;
+        setConditionProduct({
+            ...conditionProduct,
+            [name]: value
+    })}, [conditionProduct]);
+
+    const onBlurEventHandler = () => {
+        setUploadData({...uploadData, goodsCondition, price});
     };
 
   return (
@@ -30,17 +43,17 @@ const ConditionUpload = () => {
         <AllWrapper>
             <Wrapper>
                 <StBasicButton
-                    buttonColor={(newProduct) ? "#d6d6d6" : "white"}
+                    buttonColor={(goodsCondition === "상") ? "#d6d6d6" : "white"}
                     onClick={onCheckNewCondition}
                 >상
                 </StBasicButton>
                 <StBasicButton
-                    buttonColor={(usedProduct) ? "#d6d6d6" : "white"}
+                    buttonColor={(goodsCondition === "중") ? "#d6d6d6" : "white"}
                     onClick={onCheckUsedCondition}
                 >중
                 </StBasicButton>
                 <StBasicButton
-                    buttonColor={(damaged) ? "#d6d6d6" : "white"}
+                    buttonColor={(goodsCondition === "하") ? "#d6d6d6" : "white"}
                     onClick={onCheckDamagedCondition}
                 >하
                 </StBasicButton>
@@ -48,7 +61,11 @@ const ConditionUpload = () => {
             <PriceWrapper>
                 <PriceInput
                     type='text'
+                    name='price'
+                    value={price}
                     placeholder='현재 물건의 가치를 돈으로 환산했을 때 어느 정도 가격인지 입력해주세요. ex) 30000'
+                    onChange={(event) => memoizedCallback(event)}
+                    onBlur={onBlurEventHandler}
                 />
                 <Text>원</Text>
             </PriceWrapper>

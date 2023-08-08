@@ -1,4 +1,4 @@
-// import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { styled } from "styled-components";
 import ImageUpload from "../components/UploadPage/ImageUpload";
 import TitleUpload from "../components/UploadPage/TitleUpload";
@@ -12,6 +12,26 @@ import WantedUpload from "../components/UploadPage/WantedUpload";
 import { StBasicButton } from '../styles/BasicButton';
 
 const UploadPage = () => {
+
+  const [uploadData, setUploadData] = useState({});
+
+  // const objToFormData = (obj : any) => {
+  //   const formData = new FormData();
+  //   for (const key in obj) {
+  //     if (obj.hasOwnProperty(key)) {
+  //       formData.append(key, obj[key]);
+  //     }
+  //   }
+  //     return formData;
+  // };
+
+  // const formData = objToFormData(uploadData);
+
+  const onClickUploadHandler = () => {
+    // console.log("form", formData)
+    console.log("uploadData", uploadData);
+  };
+
   return (
     <PageLayout>
       <PageHeader>ADD TO MY POCKET</PageHeader>
@@ -21,16 +41,16 @@ const UploadPage = () => {
       </TitleWrapper>
       <PageContainer>
         <ImageUpload />
-        <TitleUpload />
-        <CategoryUpload />
-        <RegionUpload />
-        <ConditionUpload />
-        <MethodUpload />
-        <DetailUpload />
+        <TitleUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <CategoryUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <RegionUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <ConditionUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <MethodUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <DetailUpload setUploadData={setUploadData} uploadData={uploadData} />
         <TagUpload />
         <WantedUpload />
         <BtnWrapper>
-          <StBasicButton buttonColor="#D9D9D9">주머니에 추가</StBasicButton>
+          <StBasicButton buttonColor="#D9D9D9" onClick={onClickUploadHandler}>주머니에 추가</StBasicButton>
         </BtnWrapper>
       </PageContainer>
     </PageLayout>
