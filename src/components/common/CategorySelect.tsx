@@ -3,49 +3,49 @@ import { styled } from 'styled-components';
 import CategoryIcon from '../../assets/images/song.jpg'
 
 interface Props {
-  category: {
-    id: string,
+  categorySelect: {
+    category: string,
     name: string,
   };
   setSelectBar: Dispatch<SetStateAction<boolean>>;
-  setCategory: Dispatch<SetStateAction<{
-    id: string,
+  setCategorySelect: Dispatch<SetStateAction<{
+    category: string,
     name: string,
   }>>;
 };
 
-const CategorySelect : React.FC<Props> = ({ category, setSelectBar, setCategory }) => {
+const CategorySelect : React.FC<Props> = ({ categorySelect, setSelectBar, setCategorySelect }) => {
 
   interface Kind {
-    id: string;
+    category: string;
     name: string;
   };
 
   const categoryArray : Kind[] = [
-    {id: "WOMAN", name: "여성패션/잡화"},
-    {id: "MAN", name: "남성패션/잡화"},
-    {id: "FURNITURE", name: "가구/인테리어"},
-    {id: "HOBBY", name: "취미/게임/음반/굿즈"},
-    {id: "BOOK", name: "도서"},
-    {id: "BEAUTY", name: "뷰티/미용"},
-    {id: "BABY", name: "유아동/유아물품"},
-    {id: "KITCHEN", name: "생활주방용품"},
-    {id: "TICKET", name: "티켓/교환권"},
-    {id: "SPORTS", name: "스포츠/레저"},
-    {id: "PET", name: "반려동물용품"},
-    {id: "DIGITAL", name: "디지털기기"},
-    {id: "ELECTRONICS", name: "가전제품"},
-    {id: "ART", name: "예술/희귀/수집품"},
-    {id: "PLANT", name: "식물"},
-    {id: "FOOD", name: "가공식품"},
-    {id: "ETC", name: "기타물품"},
+    {category: "WOMAN", name: "여성패션/잡화"},
+    {category: "MAN", name: "남성패션/잡화"},
+    {category: "FURNITURE", name: "가구/인테리어"},
+    {category: "HOBBY", name: "취미/게임/음반/굿즈"},
+    {category: "BOOK", name: "도서"},
+    {category: "BEAUTY", name: "뷰티/미용"},
+    {category: "BABY", name: "유아동/유아물품"},
+    {category: "KITCHEN", name: "생활주방용품"},
+    {category: "TICKET", name: "티켓/교환권"},
+    {category: "SPORTS", name: "스포츠/레저"},
+    {category: "PET", name: "반려동물용품"},
+    {category: "DIGITAL", name: "디지털기기"},
+    {category: "ELECTRONICS", name: "가전제품"},
+    {category: "ART", name: "예술/희귀/수집품"},
+    {category: "PLANT", name: "식물"},
+    {category: "FOOD", name: "가공식품"},
+    {category: "ETC", name: "기타물품"},
   ];
 
-  const onClickChoiceHandelr = (item : {id : string, name : string}) => {
+  const onClickChoiceHandelr = (item : {category : string, name : string}) => {
     setSelectBar(false);
-    setCategory({
-      ...category,
-      id: item.id,
+    setCategorySelect({
+      ...categorySelect,
+      category: item.category,
       name: item.name,
     })
   };
@@ -57,7 +57,7 @@ const CategorySelect : React.FC<Props> = ({ category, setSelectBar, setCategory 
             {categoryArray.map((item) => {
               return (
               <CategoryKindWrapper
-                key={item.id}
+                key={item.category}
                 onClick={() => onClickChoiceHandelr(item)}
               >
                 <Icon src={CategoryIcon}/>
@@ -79,7 +79,7 @@ const CategoryContainer = styled.div`
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
-    user-select:none
+    user-select:none;
 `;
 
 const CategoryHeader = styled.div`

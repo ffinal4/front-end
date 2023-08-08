@@ -4,13 +4,8 @@ import CategorySelect from '../common/CategorySelect';
 
 const WantedUpload = () => {
 
-    type categoryType = {
-        id: string,
-        name: string,
-    };
-
-    const  [category, setCategory] = useState<categoryType>({
-        id: "",
+    const  [categorySelect, setCategorySelect] = useState({
+        category: "",
         name: "카테고리 선택",
     });
     const [selectBar, setSelectBar] = useState<boolean>(false);
@@ -30,14 +25,14 @@ const WantedUpload = () => {
         <RequiredText>받아요</RequiredText>
         <LastWrapper>
             <SelectBar style={{marginBottom: "30px"}}>
-                <Text>{category.name}</Text>
+                <Text>{categorySelect.name}</Text>
                 <ChoiceBox onClick={onClickDropDownHandelr}></ChoiceBox>
             </SelectBar>
             {(selectBar)
                 && <SelectContainer>
                     <CategorySelect
-                        category={category}
-                        setCategory={setCategory}
+                        categorySelect={categorySelect}
+                        setCategorySelect={setCategorySelect}
                         setSelectBar={setSelectBar}
                     />
                 </SelectContainer>

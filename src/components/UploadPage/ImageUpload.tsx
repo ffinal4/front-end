@@ -8,7 +8,7 @@ const ImageUpload = () => {
         default: { id: number; imageUrl: string };
         second: { id: number; imageUrl: string };
         third: { id: number; imageUrl: string };
-      };
+    };
 
     const [file, setFile] = useState<FileState>({
         default: {id: 1, imageUrl: ""},

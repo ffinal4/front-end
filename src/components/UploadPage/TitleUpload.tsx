@@ -1,9 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { styled } from 'styled-components'
 
-const TitleUpload = () => {
+interface Props {
+    uploadData: object;
+    setUploadData: React.Dispatch<React.SetStateAction<object>>;
+};
 
-    const [title, setTitle] = useState("");
+const TitleUpload : React.FC<Props> = ({ setUploadData, uploadData }) => {
+
+    const [titleInput, setTitleInput] = useState({
+        title: ""
+    });
+    const { title } = titleInput;
+
+    const memoizedCallback = useCallback((event : React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = event?.target;
+        setTitleInput({
+            ...titleInput,
+            [name]: value
+    })}, [titleInput]);
+
+    const onBlurEventHandler = () => {
+        setUploadData({...uploadData, title});
+    };
 
     return (
         <LineContainer>
@@ -12,12 +31,14 @@ const TitleUpload = () => {
                 <TitleInput
                     type='text'
                     maxLength={40}
-                    value={title}
+                    name='title'
+                    value={titleInput.title}
                     placeholder='제목을 입력해주세요.'
-                    onChange={(event) => setTitle(event.target.value)}
+                    onChange={(event) => memoizedCallback(event)}
+                    onBlur={onBlurEventHandler}
                 >
                 </TitleInput>
-                <Text color={(title.length >= 40) ? "red" : "#000"}>{title.length}/40</Text>
+                <Text color={(titleInput.title.length >= 40) ? "red" : "#000"}>{titleInput.title.length}/40</Text>
             </Wrapper>
         </LineContainer>
     )
