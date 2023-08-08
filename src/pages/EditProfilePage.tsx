@@ -1,20 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useForm } from "react-hook-form";
+import DaumPostcode from "react-daum-postcode";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
-import ImageUpload from "../components/UploadPage/ImageUpload";
+import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
 
 interface EditForm {
   select: string;
   password: string;
+  newpassword: string;
   confirmPassword: string;
   nickname: string;
+  address: string;
 }
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
+  const [address, setAddress] = useState(""); //주소
+  const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
+
+  const addressOnchange = (data: any) => {
+    setAddress(data);
+    console.log(data);
+  };
+
+  const handle = {
+    // 버튼 클릭 이벤트
+    clickButton: () => {
+      setOpenPostcode((current) => !current);
+    },
+
+    // 주소 선택 이벤트
+    selectAddress: (data: any) => {
+      setAddress(data.address);
+      setOpenPostcode(false);
+    },
+  };
+
   const {
     register,
     formState: { errors },
@@ -30,10 +54,27 @@ const EditProfilePage = () => {
             <SubTitle>개인정보 수정</SubTitle>
           </Title>
         </TitleContainer>
-        <EditProfileForm>
+        <EditProfileForm
+        // onSubmit={handleSubmit(async (data) => {
+        //   const newForm = {
+        //     email: `${data.email}${data.select}`,
+        //     password: data.password,
+        //     nickname: data.nickname,
+        //   };
+        //   try {
+        //     const res = await patchEditProfileApi(newForm);
+        //     if(res.status === 201) {
+        //       console.log("개인정보수정완료", res);
+        //       navigate("/login")
+        //     }
+        //   } catch(error){
+        //     console.log(error);
+        //     alert(JSON.stringify(error.response.data.data))
+        //   }
+        // })}
+        >
           <ProfileImageContainer>
-            {/* <Label>프로필 사진</Label> */}
-            <ImageUpload />
+            <ProfileImageUpload />
           </ProfileImageContainer>
           <EmailContainer>
             <Label>이메일(아이디)</Label>
@@ -56,6 +97,7 @@ const EditProfilePage = () => {
               <StBasicInput
                 type="password"
                 placeholder="현재 비밀번호를 입력해주세요."
+                {...register("password", {})}
               />
             </PwInputContainer>
           </PwContainer>
@@ -67,19 +109,40 @@ const EditProfilePage = () => {
                 <StBasicInput
                   type="password"
                   placeholder="새 비밀번호를 입력해주세요."
+                  {...register("newpassword", {
+                    required: "필수입력 항목입니다.",
+                    minLength: {
+                      value: 8,
+                      message:
+                        "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상",
+                    },
+                    pattern: {
+                      value:
+                        /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"/,
+                      message:
+                        "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
+                    },
+                  })}
                 />
-                <PwValidation>
-                  * 영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의
-                  비밀번호를 작성해주세요.
-                </PwValidation>
+                <PwValidation>{errors?.password?.message}</PwValidation>
               </NewInputContainer>
 
               <CheckPwInputContainer>
                 <StBasicInput
                   type="password"
                   placeholder="비밀번호를 확인해주세요."
+                  {...register("confirmPassword", {
+                    required: "필수입력 항목입니다.",
+                    validate: {
+                      check: (value) => {
+                        if (getValues("password") !== value) {
+                          return "비밀번호가 일치하지 않습니다.";
+                        }
+                      },
+                    },
+                  })}
                 />
-                <PwValidation>* 비밀번호가 일치하지 않습니다.</PwValidation>
+                <PwValidation>{errors?.confirmPassword?.message}</PwValidation>
               </CheckPwInputContainer>
             </SetPwInputContainer>
           </CheckPwContainer>
@@ -91,11 +154,21 @@ const EditProfilePage = () => {
             <StBasicInput
               type="text"
               placeholder="수정할 주소를 입력해주세요."
+              value={address}
+              onChange={addressOnchange}
             />
             <StBasicButton
               buttonColor="#D9D9D9;"
               style={{ marginLeft: "20px" }}
+              onClick={handle.clickButton}
             >
+              {openPostcode && (
+                <DaumPostcode
+                  onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
+                  autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                  defaultQuery="판교역로 235" // 팝업을 열때 기본적으로 입력되는 검색어
+                />
+              )}
               주소찾기
             </StBasicButton>
           </AddressContainer>
@@ -145,7 +218,9 @@ const EditProfileForm = styled.form`
   height: 1135px;
   margin: auto;
 `;
-const ProfileImageContainer = styled.div``;
+const ProfileImageContainer = styled.div`
+  /* border: 3px solid green; */
+`;
 const EmailContainer = styled.div`
   /* border: 3px solid green; */
   display: flex;
@@ -156,7 +231,7 @@ const EmailContainer = styled.div`
 const Label = styled.div`
   /* border: 1px solid red; */
   font-size: 20px;
-  width: 180px;
+  width: 150px;
   font-weight: 700;
   display: flex;
   margin-right: 70px;
@@ -174,10 +249,10 @@ const NickNameContainer = styled.div`
 `;
 const CommonLabel = styled.div`
   font-size: 20px;
-  width: 200px;
+  width: 150px;
   font-weight: 700;
   /* border: 1px solid red; */
-  margin-right: 50px;
+  margin-right: 70px;
 `;
 const NickNameInputContainer = styled.div`
   width: 656px;
@@ -186,7 +261,7 @@ const Content = styled.div`
   /* border: 1px solid blue; */
   width: 465px;
   height: 24px;
-  margin-left: 250px;
+  margin-left: 220px;
   color: red;
   margin-top: 10px;
   margin-bottom: 30px;
@@ -220,7 +295,7 @@ const CheckPwContainer = styled.div`
   border-bottom: 1px solid gray;
   display: flex;
 
-  align-items: center;
+  /* align-items: center; */
   /* margin-bottom: 30px; */
 `;
 const PwValidation = styled.div`
@@ -242,7 +317,7 @@ const AddressLabelContainer = styled.div`
 `;
 const AddressLabel = styled.label`
   /* border: 1px solid red; */
-  width: 180px;
+  width: 150px;
   height: 33px;
   font-size: 20px;
   font-weight: bold;
@@ -253,13 +328,12 @@ const AddressContainer = styled.div`
   margin-top: 20px;
   display: flex;
   align-items: center;
-  padding-left: 250px;
-  padding-right: 220px;
+  padding-left: 220px;
+  padding-right: 250px;
 `;
 const AddContent = styled.div`
   /* border: 1px solid red; */
-  padding-left: 250px;
-  padding-top: 10px;
+  margin: 10px 0px 40px 220px;
   color: gray;
 `;
 
