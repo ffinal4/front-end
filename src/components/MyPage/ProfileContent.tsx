@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components';
 import ppapparo from '../../assets/images/ppapparo.jpg'
 import Pocket from './Pocket';
+import noob from '../../assets/images/엎드린.png'
+import stand from '../../assets/images/선.png'
 
 const ProfileContent = () => {
 
@@ -35,7 +37,11 @@ const ProfileContent = () => {
                     </ContentLine>
                 </ContentInBox>
                 <ButtonBox>
-                    <Button onClick={onClickPocketHandler}/>
+                    <Button
+                        noob={noob}
+                        stand={stand}
+                        onClick={onClickPocketHandler}
+                    />
                 </ButtonBox>
             </LeftContentContainer>
             {(pocket) && <Pocket onClickPocketHandler={onClickPocketHandler}/>}
@@ -44,7 +50,8 @@ const ProfileContent = () => {
 };
 
 const LeftContainer = styled.div`
-    width: 752px;
+    width: 100%;
+    height: 204px;
 
     @media screen and (max-width: 1144px) {
         height: 100%;
@@ -114,11 +121,19 @@ const ButtonBox = styled.div`
     padding: 10px 0px 148px 0px;
 `;
 
-const Button = styled.div`
-    width: 36px;
-    height: 36px;
-    background-color: #D9D9D9;
+const Button = styled.div<{ noob : string, stand : string }>`
+    width: 100px;
+    height: 100px;
+    color: #000;
+    background-size: cover;
+    background-image: ${`url(${noob})`};
     cursor: pointer;
+
+    &:hover {
+        background-image: ${`url(${stand})`};
+        width: 110px;
+        height: 110px;
+    }
 `;
 
 export default ProfileContent;

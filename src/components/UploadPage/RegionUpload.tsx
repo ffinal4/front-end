@@ -8,13 +8,14 @@ const RegionUpload = () => {
         <RequiredText>주거래지역</RequiredText>
           <Wrapper style={{gap: "39px"}}>
             <Text>경기도 00시 00구 00동</Text>
-            <StBasicButton buttonColor="#D9D9D9">직접입력</StBasicButton>
+            {/* <StBasicButton buttonColor="#D9D9D9">직접입력</StBasicButton> */}
           </Wrapper>
     </LineContainer>
   )
 };
 
 const LineContainer = styled.div`
+    width: 100%;
     display: flex;
     padding: 30px 0px 30px 0px;
     border-bottom: 2px dotted #EAEAEA;
@@ -25,14 +26,18 @@ const RequiredText = styled.div`
     font-size: 20px;
     font-weight: 700;
     line-height: 150%;
-    width: 191px;
+    min-width: 191px;
 `;
 
 const Wrapper = styled.div`
+    width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 39px;
+
+    @media screen and (max-width: 843px) {
+        display: grid;
+    }
 `;
 
 const Text = styled.div`
