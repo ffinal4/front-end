@@ -7,13 +7,13 @@ const GiveInfo = () => {
   return (
         <InfoContainer>
             <InfoTextContainer>
-                <InfoTextTitle>스타벅스 교환권 30,000원</InfoTextTitle>
+                <InfoTextTitle>상품정보</InfoTextTitle>
                 <InfoTextContent>스타벅스 기프티콘 30,000원입니다.</InfoTextContent>
                 <InfoTextContent>스타벅스 기프티콘 많아서 기간내에 사용하기가 힘들것 같아서요.</InfoTextContent>
                 <InfoTextContent>같은 가격으로 아무 커피 프랜차이즈 기프티콘과 교환 원해요!</InfoTextContent>
                 <InfoTextContent style={{marginTop: "10px"}}>다른 금액 기프티콘들도 주머니 넣어뒀으니깐 주머니 보시고 찔러주세요!</InfoTextContent>
             </InfoTextContainer>
-            <MyPoketContainer>
+            {/* <MyPoketContainer>
                 <PoketInline>
                     <PoketInfoContainer>
                         <InfoTextTitle>000님의 주머니</InfoTextTitle>
@@ -44,23 +44,23 @@ const GiveInfo = () => {
                         </ButtonWrapper>
                     </PoketInfoContainer>
                 </PoketInline>
-            </MyPoketContainer>
+            </MyPoketContainer> */}
         </InfoContainer>
   )
 };
 
 const InfoContainer = styled.div`
     width: 100%;
-    height: 729px;
-    border-top: 4px solid #000;
-    border-bottom: 4px solid #000;
-    margin: 40px 0px 60px 0px;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #D9D9D9;
+    margin: 42px 0px 60px 0px;
     display: flex;
     justify-content: space-between;
+    padding: 60px 0px 100px 0px;
 `;
 
 const InfoTextContainer = styled.div`
-    padding: 60px 126px 0px 0px;
+    width: 100%;
 `;
 
 const InfoTextTitle = styled.div`
@@ -69,7 +69,7 @@ const InfoTextTitle = styled.div`
     font-size: 20px;
     font-weight: 700;
     line-height: 150%;
-    padding: 0px 0px 20px 0px;
+    padding: 0px 0px 40px 0px;
 `;
 
 const InfoTextContent = styled.div`
@@ -82,23 +82,24 @@ const InfoTextContent = styled.div`
 `;
 
 const MyPoketContainer = styled.div`
-    border-left: 4px solid #000;
-    border-right: 4px solid #000;
-    border-bottom: 4px solid #000;
-    height: 673px;
-    width: 356px;
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    height: 614px;
+    width: 384px;
     padding: 0px 0px 20px 20px;
 `;
 
 const PoketInline = styled.div`
     width: 100%;
     height: 100%;
-    padding: 35px;
+    padding: 40px 96px 74px 96px;
     border-left: 2px dashed #BFBFBF;
     border-bottom: 2px dashed #BFBFBF;
 `;
 
 const PoketInfoContainer = styled.div`
+    display: grid;
     padding: 0px;
     gap: 8px;
 `;
@@ -123,32 +124,28 @@ const Box = styled.div<{ width: string, height: string }>`
 
 const ImageContainer = styled.div`
     width: 100%;
-    height: 416px;
+    height: 290px;
     display: flex;
     flex-wrap: wrap;
-    padding: 30px 0px 0px 0px;
+    border-top: 2px solid #D9D9D9;
+    padding: 16px 0px 0px 0px;
     gap: 16px;
     overflow: hidden;
-
-    @media screen and (max-width: 1200px) {
-        display: grid;
-        justify-content: center;
-    }
 `;
 
 const ImageBox = styled.div<{ src: string }>`
-    width: 118px;
-    height: 118px;
+    width: 80px;
+    height: 80px;
     background-image: ${(props) => `url(${props.src})`};
     background-size: cover;
-    border: 1px solid;
+    /* border: 1px solid; */
 `;
 
 const ButtonWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 0px 0px 0px;
+    padding: 30px 0px 0px 0px;
 `;
 
 export default GiveInfo;

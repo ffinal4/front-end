@@ -34,6 +34,7 @@ const MethodUpload = () => {
 };
 
 const LineContainer = styled.div`
+    width: 100%;
     display: flex;
     padding: 30px 0px 30px 0px;
     border-bottom: 2px dotted #EAEAEA;
@@ -44,7 +45,7 @@ const RequiredText = styled.div`
     font-size: 20px;
     font-weight: 700;
     line-height: 150%;
-    width: 191px;
+    min-width: 191px;
 `;
 
 const Wrapper = styled.div`
@@ -52,6 +53,10 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 16px;
+
+    @media screen and (max-width: 843px) {
+        display: grid;
+    }
 `;
 
 export default MethodUpload;

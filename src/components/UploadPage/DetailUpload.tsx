@@ -30,6 +30,7 @@ const DetailUpload = () => {
 };
 
 const LineContainer = styled.div`
+    width: 100%;
     display: flex;
     padding: 30px 0px 30px 0px;
     border-bottom: 2px dotted #EAEAEA;
@@ -40,17 +41,17 @@ const RequiredText = styled.div`
     font-size: 20px;
     font-weight: 700;
     line-height: 150%;
-    width: 191px;
+    min-width: 191px;
 `;
 
 const Wrapper = styled.div`
+    width: 100%;
     display: grid;
-    justify-content: center;
     align-items: center;
 `;
 
 const InputContainer = styled.div`
-    width: 947px;
+    width: 100%;
     height: 199px;
     border: 1px solid;
     padding: 20px;
@@ -68,6 +69,7 @@ const DesciptionTextarea = styled.textarea`
 `;
 
 const TextCount = styled.div`
+    width: 100%;
     display: flex;
     justify-content: end;
     margin: 10px 0px 0px 0px;

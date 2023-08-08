@@ -33,25 +33,25 @@ const DetailContainer = () => {
 
   return (
     <LayoutContainer>
-      <ImageOutContainer>
-        <SlideBtnWrapper>
-          <SlideButton onClick={moveToPrevBtn}>◀</SlideButton>
-          <SlideButton onClick={moveToNextBtn}>▶</SlideButton>
-        </SlideBtnWrapper>
-        <SlideWrapper ref={divRef}>
-          <ImageBox src={Image}/>
-          <ImageBox src={Cute}/>
-          <ImageBox src={Song}/>
-          {/* <EmptyBox src={Image}>사진등록</EmptyBox> */}
-        </SlideWrapper>
-        <SlidePageBarWrapper>
-          {slidePageBar.map((item) =>
-            (currentImg + 1 === item)
-            ? <SlidePageBar height='10px' backgdcolor='#7D7D7D'></SlidePageBar>
-            : <SlidePageBar height='8px' backgdcolor='#c7c7c7'></SlidePageBar>
-          )}
-        </SlidePageBarWrapper>
-      </ImageOutContainer>
+        <ImageOutContainer>
+          <SlideBtnWrapper>
+            <SlideButton onClick={moveToPrevBtn}>◀</SlideButton>
+            <SlideButton onClick={moveToNextBtn}>▶</SlideButton>
+          </SlideBtnWrapper>
+          <SlideWrapper ref={divRef}>
+            <ImageBox src={Image}/>
+            <ImageBox src={Cute}/>
+            <ImageBox src={Song}/>
+            {/* <EmptyBox src={Image}>사진등록</EmptyBox> */}
+          </SlideWrapper>
+          <SlidePageBarWrapper>
+            {slidePageBar.map((item) =>
+              (currentImg + 1 === item)
+              ? <SlidePageBar height='10px' backgdcolor='#7D7D7D'></SlidePageBar>
+              : <SlidePageBar height='8px' backgdcolor='#c7c7c7'></SlidePageBar>
+            )}
+          </SlidePageBarWrapper>
+        </ImageOutContainer>
       <DetailInfo />
     </LayoutContainer>
   )
@@ -62,7 +62,7 @@ const LayoutContainer = styled.div`
     display: flex;
     gap: 112px;
     width: 100%;
-    @media screen and (max-width: 834px) {
+    @media screen and (max-width: 1136px) {
       display: grid;
       justify-content: center;
       align-items: center;
@@ -91,7 +91,7 @@ const ImageBox = styled.img`
 `;
 
 const ImageOutContainer = styled.div`
-  width: 464px;
+  min-width: 464px;
   height: 464px;
   border: 4px solid;
   display: flex;
@@ -100,13 +100,14 @@ const ImageOutContainer = styled.div`
   position: relative;
   overflow: hidden;
 
-  @media screen and (max-width: 834px) {
+  @media screen and (max-width: 1136px) {
     margin: 0px;
+    width: 464px;
   }
 `;
 
 const SlideBtnWrapper = styled.div`
-    width: 464px;
+    width: 100%;
     display: flex;
     position: absolute;
     justify-content: space-between;

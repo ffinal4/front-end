@@ -19,6 +19,7 @@ const TagUpload = () => {
 }
 
 const LastLineContainer = styled.div`
+    width: 100%;
     display: flex;
     padding: 30px 0px 60px 0px;
     border-bottom: 4px solid;
@@ -29,7 +30,7 @@ const RequiredText = styled.div`
     font-size: 20px;
     font-weight: 700;
     line-height: 150%;
-    width: 191px;
+    min-width: 191px;
 `;
 
 const Wrapper = styled.div`
@@ -40,7 +41,7 @@ const Wrapper = styled.div`
 
 const TagInput = styled.input`
     display: inline-flex;
-    width: 947px;
+    width: 100%;
     height: 44px;
     padding: 0px 0px 0px 20px;
     margin: 0px 0px 15px 0px;
@@ -51,6 +52,7 @@ const TagInput = styled.input`
 `;
 
 const Text = styled.div`
+    width: 100%;
     font-family: "Pretendard";
     font-size: 16px;
     font-weight: 400;

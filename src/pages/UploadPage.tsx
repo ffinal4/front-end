@@ -9,7 +9,7 @@ import MethodUpload from "../components/UploadPage/MethodUpload";
 import DetailUpload from "../components/UploadPage/DetailUpload";
 import TagUpload from "../components/UploadPage/TagUpload";
 import WantedUpload from "../components/UploadPage/WantedUpload";
-import UploadBtn from "../components/UploadPage/UploadBtn";
+import { StBasicButton } from '../styles/BasicButton';
 
 const UploadPage = () => {
   return (
@@ -29,7 +29,9 @@ const UploadPage = () => {
         <DetailUpload />
         <TagUpload />
         <WantedUpload />
-        <UploadBtn />
+        <BtnWrapper>
+          <StBasicButton buttonColor="#D9D9D9">주머니에 추가</StBasicButton>
+        </BtnWrapper>
       </PageContainer>
     </PageLayout>
   );
@@ -50,6 +52,10 @@ const PageHeader = styled.div`
 const PageContainer = styled.div`
   border-top: 4px solid;
   width: 100%;
+
+  @media screen and (max-width: 1136px) {
+        padding: 0px 20px 0px 20px;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -71,6 +77,13 @@ const PageSubtitle = styled.div`
   font-weight: 400;
   line-height: 150%;
   padding: 17px 0px 0px 0px;
+`;
+
+const BtnWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0px 0px 0px;
 `;
 
 export default UploadPage;

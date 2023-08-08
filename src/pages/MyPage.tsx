@@ -10,7 +10,6 @@ const MyPage = () => {
             <MyPageTitle>MY PAGE</MyPageTitle>
             <MyPageContentContainer>
                 <ProfileContent />
-                <PocketContent />
             </MyPageContentContainer>
         </LayoutContainer>
     </AllLayoutContainer>
