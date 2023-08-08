@@ -124,10 +124,7 @@ const EditProfilePage = () => {
                     },
                   })}
                 />
-                <PwValidation>
-                  * 영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의
-                  비밀번호를 작성해주세요.
-                </PwValidation>
+                <PwValidation>{errors?.password?.message}</PwValidation>
               </NewInputContainer>
 
               <CheckPwInputContainer>
@@ -145,7 +142,7 @@ const EditProfilePage = () => {
                     },
                   })}
                 />
-                <PwValidation>* 비밀번호가 일치하지 않습니다.</PwValidation>
+                <PwValidation>{errors?.confirmPassword?.message}</PwValidation>
               </CheckPwInputContainer>
             </SetPwInputContainer>
           </CheckPwContainer>

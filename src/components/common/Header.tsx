@@ -15,11 +15,19 @@ const Header = () => {
           <InputContainer>
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
-          <ButtonContainer>
+          <LinkContainer>
             <Button />
-            <Button />
-            <Button />
-          </ButtonContainer>
+            <LoginLink
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              로그인
+            </LoginLink>
+            <SignupLink onClick={() => navigate("/signup")}>
+              회원가입
+            </SignupLink>
+          </LinkContainer>
         </Container>
       </HeaderContainer>
     </HeaderLayout>
@@ -57,21 +65,33 @@ const LogoContainer = styled.div`
   width: 174px;
   height: 41px;
 `;
+
+const Button = styled.div`
+  width: 36px;
+  height: 36px;
+  background-color: #d9d9d9;
+  cursor: pointer;
+  margin-left: 20px;
+`;
+
 const LogoImage = styled.div`
   font-size: 30px;
   font-weight: bold;
   margin-left: 10px;
 `;
+
 const Container = styled.div`
   /* border: 1px solid green; */
   display: flex;
   align-items: center;
 `;
+
 const InputContainer = styled.div`
   border: 2px solid black;
   width: 340px;
   display: flex;
 `;
+
 const SearchInput = styled.input`
   border: 1px solid #d9d9d9;
   background-color: #d9d9d9;
@@ -80,14 +100,21 @@ const SearchInput = styled.input`
   font-size: 16px;
   padding: 10px;
 `;
-const ButtonContainer = styled.div`
+
+const LinkContainer = styled.div`
   /* border: 1px solid red; */
   display: flex;
+  align-items: center;
 `;
-const Button = styled.div`
-  width: 36px;
-  height: 36px;
-  background-color: #d9d9d9;
+
+const LoginLink = styled.div`
   cursor: pointer;
   margin-left: 20px;
+  font-size: 16px;
+`;
+
+const SignupLink = styled.div`
+  cursor: pointer;
+  margin-left: 20px;
+  font-size: 16px;
 `;
