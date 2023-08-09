@@ -10,7 +10,7 @@ import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload
 interface EditForm {
   select: string;
   password: string;
-  newpassword: string;
+  newPassword: string;
   confirmPassword: string;
   nickname: string;
   address: string;
@@ -83,11 +83,7 @@ const EditProfilePage = () => {
           <NickNameContainer>
             <CommonLabel>닉네임</CommonLabel>
             <NickNameInputContainer>
-              <StBasicInput
-                type="text"
-                placeholder="닉네임을 입력해주세요."
-                {...register("nickname", {})}
-              />
+              <StBasicInput type="text" placeholder="닉네임을 입력해주세요." />
             </NickNameInputContainer>
           </NickNameContainer>
           <Content>* 이미 사용중인 이메일입니다.</Content>
@@ -97,7 +93,6 @@ const EditProfilePage = () => {
               <StBasicInput
                 type="password"
                 placeholder="현재 비밀번호를 입력해주세요."
-                {...register("password", {})}
               />
             </PwInputContainer>
           </PwContainer>
@@ -109,22 +104,21 @@ const EditProfilePage = () => {
                 <StBasicInput
                   type="password"
                   placeholder="새 비밀번호를 입력해주세요."
-                  {...register("newpassword", {
+                  {...register("newPassword", {
                     required: "필수입력 항목입니다.",
                     minLength: {
                       value: 8,
-                      message:
-                        "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상",
+                      message: "비밀번호는 8자 이상이어야 합니다.",
                     },
                     pattern: {
                       value:
-                        /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"/,
+                        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
                       message:
                         "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
                     },
                   })}
                 />
-                <PwValidation>{errors?.password?.message}</PwValidation>
+                <PwValidation>{errors?.newPassword?.message}</PwValidation>
               </NewInputContainer>
 
               <CheckPwInputContainer>
