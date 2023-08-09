@@ -6,6 +6,7 @@ import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
+import KakaoApi from "../components/common/KakaoApi";
 
 interface EditForm {
   select: string;
@@ -20,24 +21,6 @@ const EditProfilePage = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
-
-  const addressOnchange = (data: any) => {
-    setAddress(data);
-    console.log(data);
-  };
-
-  const handle = {
-    // 버튼 클릭 이벤트
-    clickButton: () => {
-      setOpenPostcode((current) => !current);
-    },
-
-    // 주소 선택 이벤트
-    selectAddress: (data: any) => {
-      setAddress(data.address);
-      setOpenPostcode(false);
-    },
-  };
 
   const {
     register,
@@ -145,26 +128,12 @@ const EditProfilePage = () => {
             <CurrentAddress>서울시 강남구</CurrentAddress>
           </AddressLabelContainer>
           <AddressContainer>
-            <StBasicInput
-              type="text"
-              placeholder="수정할 주소를 입력해주세요."
-              value={address}
-              onChange={addressOnchange}
+            <KakaoApi
+              address={address}
+              setAddress={setAddress}
+              openPostcode={openPostcode}
+              setOpenPostcode={setOpenPostcode}
             />
-            <StBasicButton
-              buttonColor="#D9D9D9;"
-              style={{ marginLeft: "20px" }}
-              onClick={handle.clickButton}
-            >
-              {openPostcode && (
-                <DaumPostcode
-                  onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
-                  autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
-                  defaultQuery="판교역로 235" // 팝업을 열때 기본적으로 입력되는 검색어
-                />
-              )}
-              주소찾기
-            </StBasicButton>
           </AddressContainer>
           <AddContent>
             입력된 주소는 나의 주거래 지역으로 표시됩니다.
@@ -219,8 +188,8 @@ const EmailContainer = styled.div`
   /* border: 3px solid green; */
   display: flex;
   align-items: center;
-  margin-top: 44px;
-  margin-bottom: 44px;
+  margin-top: 33px;
+  margin-bottom: 33px;
 `;
 const Label = styled.div`
   /* border: 1px solid red; */
