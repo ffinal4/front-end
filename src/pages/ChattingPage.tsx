@@ -92,13 +92,11 @@ const PageContainer = styled.div`
     display: flex;
     background-color: #F0F0F0;
     padding: 138px 392px 0px 392px;
-    
+    position: relative;
 `;
 
 const ContainerWrapper = styled.div`
-    width: 100%;
-    height: 100%;
-    position: relative;
+    width: 100%; 
 `;
 
 const ListContainer = styled.div`
