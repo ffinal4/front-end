@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
+import { postSignupApi } from "../api/users";
 
 interface SignupForm {
   email: string;
@@ -41,23 +42,25 @@ const SignupPage = () => {
         <Title>READY TO PEEPO</Title>
       </TitleContainer>
       <SignUpForm
-      // onSubmit={handleSubmit(async (data) => {
-      //   const newForm = {
-      //     email: `${data.email}${data.select}`,
-      //     password: data.password,
-      //     nickname: data.nickname,
-      //   };
-      //   try {
-      //     const res = await postSignupApi(newForm);
-      //     if(res.status === 201) {
-      //       console.log("회원가입성공", res);
-      //       navigate("/login")
-      //     }
-      //   } catch(error){
-      //     console.log(error);
-      //     alert(JSON.stringify(error.response.data.data))
-      //   }
-      // })}
+        onSubmit={handleSubmit(async (data) => {
+          const newForm = {
+            email: `${data.email}${data.select}`,
+            password: data.password,
+            nickname: data.nickname,
+          };
+          console.log(newForm);
+
+          try {
+            const res = await postSignupApi(newForm);
+            if (res.status === 200) {
+              console.log("회원가입성공", res);
+              navigate("/login");
+            }
+          } catch (error) {
+            console.log(error);
+            // alert(JSON.stringify(error.response.data.data));
+          }
+        })}
       >
         <EmailContainer>
           <Label>이메일(아이디)</Label>
@@ -77,9 +80,7 @@ const SignupPage = () => {
 
           <AtContainer>@</AtContainer>
           <SelectContainer>
-            <EmailSelect
-              {...register("select", { required: "필수입력 항목입니다." })}
-            >
+            <EmailSelect {...register("select", { required: "필수입력 항목입니다." })}>
               <option value="">선택해주세요</option>
               <option value="@naver.com">naver.com</option>
               <option value="@hanmail.net">hanmail.net</option>
@@ -107,8 +108,7 @@ const SignupPage = () => {
                 },
                 pattern: {
                   value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
-                  message:
-                    "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
+                  message: "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
                 },
               })}
             />
@@ -134,9 +134,7 @@ const SignupPage = () => {
             />
           </CheckPwInputContainer>
         </CheckPwContainer>
-        <CheckPwValidateMessage>
-          {errors?.confirmPassword?.message}
-        </CheckPwValidateMessage>
+        <CheckPwValidateMessage>{errors?.confirmPassword?.message}</CheckPwValidateMessage>
         <AddressContainer>
           <Label>주소</Label>
           <AddressInputContainer>
@@ -149,9 +147,7 @@ const SignupPage = () => {
           </AddressInputContainer>
         </AddressContainer>
         <ContentContainer>
-          <AddressContent>
-            입력한 주소는 나의 주거래 지역으로 표시됩니다.
-          </AddressContent>
+          <AddressContent>입력한 주소는 나의 주거래 지역으로 표시됩니다.</AddressContent>
         </ContentContainer>
 
         <NickNameContainer>
@@ -184,11 +180,30 @@ const SignupPage = () => {
       </SignUpForm>
       <AssignButtonContainer>
         <StBasicButton
-          // type="submit"
+          type="submit"
           buttonColor="#D9D9D9;"
-          onClick={() => {
-            navigate("/login");
-          }}
+          // onClick={() => {
+          //   navigate("/login");
+          // }}
+          onClick={handleSubmit(async (data) => {
+            const newForm = {
+              email: `${data.email}${data.select}`,
+              password: data.password,
+              nickname: data.nickname,
+            };
+            console.log(newForm);
+
+            try {
+              const res = await postSignupApi(newForm);
+              if (res.status === 200) {
+                console.log("회원가입성공", res);
+                navigate("/login");
+              }
+            } catch (error) {
+              console.log(error);
+              // alert(JSON.stringify(error.response.data.data));
+            }
+          })}
         >
           회원가입
         </StBasicButton>

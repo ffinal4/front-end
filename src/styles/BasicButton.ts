@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const StBasicButton = styled.div<{ buttonColor: string }>`
+export const StBasicButton = styled.button<{ buttonColor: string }>`
   display: flex;
   padding: 10px 46px;
   font-family: "Pretendard";
