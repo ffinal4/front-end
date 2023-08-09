@@ -4,32 +4,51 @@ import Profile from '../assets/images/엎드린.png'
 import Profile2 from '../assets/images/선.png'
 import Image from '../assets/images/song.jpg'
 import Image2 from '../assets/images/ppapparo.jpg'
+import Chatting from '../components/ChattingPage/Chatting';
 
 const ChattingPage = () => {
 
-    const [chats, setChat] = useState<{id: Number, content: string}[]>([{
-        id: 1,
-        content: ""
-    }]);
-
     const [messageList, setMessageList] = useState([
-        {profile: Profile, name: "이승재", message: "TEAM 핍포 화이팅!", image: Image2, isOpen: false},
-        {profile: Profile2, name: "박준영", message: "", image: Image, isOpen: true},
-        {profile: Profile, name: "서명진", message: "안녕하세요", image: Image2, isOpen: false},
-        {profile: Profile2, name: "윤지숙", message: "디자이너 화이팅!", image: Image, isOpen: false},
-        {profile: Profile, name: "이지원A", message: "프론트엔드 화이팅!", image: Image2, isOpen: false},
-        {profile: Profile2, name: "이지원B", message: "백엔드 화이팅!", image: Image, isOpen: false},
-        {profile: Profile, name: "김지훈", message: "프로젝트 화이팅!", image: Image2, isOpen: false},
+        {profile: Profile, name: "이승재", message: "TEAM 핍포 화이팅!", image: Image2, myChat: "", isOpen: false},
+        {profile: Profile2, name: "박준영", message: "ㅎㅎㅎㅎㅎ", image: Image, myChat: "", isOpen: false},
+        {profile: Profile, name: "서명진", message: "안녕하세요", image: Image2, myChat: "", isOpen: false},
+        {profile: Profile2, name: "윤지숙", message: "디자이너 화이팅!", image: Image, myChat: "", isOpen: false},
+        {profile: Profile, name: "이지원A", message: "프론트엔드 화이팅!", image: Image2, myChat: "", isOpen: false},
+        {profile: Profile2, name: "이지원B", message: "백엔드 화이팅!", image: Image, myChat: "", isOpen: false},
+        {profile: Profile, name: "김지훈", message: "프로젝트 화이팅!", image: Image2, myChat: "", isOpen: false},
     ]);
+
+    const onClickOpenEventHandler = (name : string) => {
+        const updatedMessageList = messageList.map(message => {
+            if (message.name === name) {
+                if (message.isOpen) {
+                    return {
+                        ...message,
+                        isOpen: false,
+                    };
+                }
+                return {
+                    ...message,
+                    isOpen: true,
+                };
+            }
+            return {
+                ...message,
+                isOpen: false,
+            };
+        });
+        setMessageList(updatedMessageList);
+    };
 
   return (
     <PageContainer>
         <ContainerWrapper>
-            <ListContainer>
                 {messageList.map((item) => {
                     return (
-                    (item.isOpen)
-                    ? <ListCard backgroundColor='#FFF'>
+                        <ChatWrapper>
+                    {(item.isOpen)
+                    ? (<ListContainer>
+                    <ListCard backgroundColor='#FFF' key={item.name} onClick={() => onClickOpenEventHandler(item.name)}>
                         <MessageLeftWrapper>
                             <ProfileImage src={item.profile} />
                             <LastMessageWrapper>
@@ -39,7 +58,9 @@ const ChattingPage = () => {
                         </MessageLeftWrapper>
                         <ProductImages src={item.image}/>
                     </ListCard>
-                : <ListCard backgroundColor='#EAEAEA'>
+                    </ListContainer>)
+                : (<ListContainer>
+                <ListCard backgroundColor='#EAEAEA' key={item.name} onClick={() => onClickOpenEventHandler(item.name)}>
                     <MessageLeftWrapper>
                         <ProfileImage src={item.profile} />
                         <LastMessageWrapper>
@@ -49,29 +70,16 @@ const ChattingPage = () => {
                     </MessageLeftWrapper>
                     <ProductImages src={item.image}/>
                 </ListCard>
+                </ListContainer>)}
+                <ChattingContainer>
+                {(item.isOpen) && <Chatting item={item} messageList={messageList} setMessageList={setMessageList}/>}
+                </ChattingContainer>
+                </ChatWrapper>
                     )
-                })}
-            </ListContainer>
-            <ChattingContainer>
-                <ChattingWrapper>
-                    <OpponentChatLineContainer>
-                        <ChatProfile src={Profile2} />
-                        <OpponentChat>안녕하세요!</OpponentChat>
-                    </OpponentChatLineContainer>
-                    <MyChatLineContainer>
-                        <MyChat>안녕하세요!</MyChat>
-                        <ChatProfile src={Profile} />
-                    </MyChatLineContainer>
-                </ChattingWrapper>
-                <ChattingInputWrapper>
-                    <ChattingInput
-                        type="text"
-                        placeholder='내용을 입력해주세요.'
-                    />
-                    <Button />
-                </ChattingInputWrapper>
-            </ChattingContainer>
+                })
+                }
         </ContainerWrapper>
+        <BottomContainer />
     </PageContainer>
   )
 };
@@ -86,8 +94,7 @@ const PageContainer = styled.div`
 
 const ContainerWrapper = styled.div`
     width: 100%;
-    display: flex;
-    gap: 16px;
+    position: relative;
 `;
 
 const ListContainer = styled.div`
@@ -147,82 +154,23 @@ const ProductImages = styled.img`
     align-items: center;
 `;
 
+const ChatWrapper = styled.div`
+    width: 100%;
+`;
+
 const ChattingContainer = styled.div`
-    width: 560px;
-    height: 756px;
-    border: 1px solid #C3C3C3;
-    background-color: #FFF;
-    padding: 30px 0px;
-    display: grid;
-    justify-content: center;
+    top: 69px; 
+    right: 376px;
+    position: fixed;
 `;
 
-const ChattingWrapper = styled.div`
+const BottomContainer = styled.div`
     width: 100%;
-    height: 640px;
-`;
-
-const OpponentChatLineContainer = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: end;
-    padding: 0px 0px 40px 0px;
-`;
-
-const ChatProfile = styled.img`
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-`;
-
-const OpponentChat = styled.div`
-    display: flex;
-    width: 288px;
-    max-width: 464px;
-    padding: 16px 20px;
-    align-items: flex-start;
-    border-bottom: 2px solid #000;
-    background-color: #F0F0F0;
-    margin: 0px 10px 0px 20px;
-`;
-
-const MyChatLineContainer = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    padding: 0px 48px 40px 48px;
-`;
-
-const MyChat = styled.div`
-    display: flex;
-    width: 288px;
-    max-width: 464px;
-    padding: 16px 20px;
-    align-items: flex-start;
-    border-bottom: 2px solid #000;
-    margin: 0px 10px 0px 20px;
-`;
-
-const ChattingInputWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    width: 500px;
-    height: 44px;
-    border: 1px solid #000;
-`;
-
-const ChattingInput = styled.input`
-    width: 100%;
-    padding: 0px 20px;
-`;
-
-const Button = styled.button`
-    width: 24px;
-    height: 24px;
-    margin: 0px 20px 0px 0px;
+    height: 186px;
     background-color: #D9D9D9;
-    cursor: pointer;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 `;
 
 export default ChattingPage;

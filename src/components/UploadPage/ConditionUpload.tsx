@@ -19,7 +19,6 @@ const ConditionUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
         setConditionProduct({...conditionProduct, goodsCondition: "상"})
     };
     const onCheckUsedCondition = () => {
-
         setConditionProduct({...conditionProduct, goodsCondition: "중"})
     };
     const onCheckDamagedCondition = () => {
@@ -28,10 +27,16 @@ const ConditionUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
 
     const memoizedCallback = useCallback((event : React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event?.target;
+        const numValue = value.replace(/[^0-9]/g, '');
         setConditionProduct({
             ...conditionProduct,
-            [name]: value
+            [name]: numValue
     })}, [conditionProduct]);
+
+    const numericValue = parseFloat(price);
+    const formatted  = numericValue.toLocaleString();
+    // console.log("wow", formatted);
+    // console.log("price", price);
 
     const onBlurEventHandler = () => {
         setUploadData({...uploadData, goodsCondition, price});
@@ -43,17 +48,20 @@ const ConditionUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
         <AllWrapper>
             <Wrapper>
                 <StBasicButton
-                    buttonColor={(goodsCondition === "상") ? "#d6d6d6" : "white"}
+                    buttonColor={(goodsCondition === "상") ? "#575757" : "white"}
+                    style={{color: `${(goodsCondition === "상") ? "white" : "#000"}`}}
                     onClick={onCheckNewCondition}
                 >상
                 </StBasicButton>
                 <StBasicButton
-                    buttonColor={(goodsCondition === "중") ? "#d6d6d6" : "white"}
+                    buttonColor={(goodsCondition === "중") ? "#575757" : "white"}
+                    style={{color: `${(goodsCondition === "중") ? "white" : "#000"}`}}
                     onClick={onCheckUsedCondition}
                 >중
                 </StBasicButton>
                 <StBasicButton
-                    buttonColor={(goodsCondition === "하") ? "#d6d6d6" : "white"}
+                    buttonColor={(goodsCondition === "하") ? "#575757" : "white"}
+                    style={{color: `${(goodsCondition === "하") ? "white" : "#000"}`}}
                     onClick={onCheckDamagedCondition}
                 >하
                 </StBasicButton>
@@ -62,13 +70,14 @@ const ConditionUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
                 <PriceInput
                     type='text'
                     name='price'
-                    value={price}
-                    placeholder='현재 물건의 가치를 돈으로 환산했을 때 어느 정도 가격인지 입력해주세요. ex) 30000'
+                    value={(price) ? formatted : price}
+                    placeholder='100,000'
                     onChange={(event) => memoizedCallback(event)}
                     onBlur={onBlurEventHandler}
                 />
                 <Text>원</Text>
             </PriceWrapper>
+            <Text style={{color: "#808080"}}>*현재 물건의 가치를 돈으로 환산했을 때 어느 정도 가격인지 입력해주세요. ex) 30000</Text>
         </AllWrapper>
     </LineContainer>
   )
@@ -92,7 +101,6 @@ const RequiredText = styled.div`
 const AllWrapper = styled.div`
     width: 100%;
     display: grid;
-    gap: 40px;
 `;
 
 const Wrapper = styled.div`
@@ -111,17 +119,17 @@ const PriceWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 30px 0px 20px 0px;
 `;
 
 const PriceInput = styled.input`
-    width: 100%;
+    width: 176px;
     height: 44px;
     padding: 0px 20px 0px 20px;
     border: 1px solid #000;
 `;
 
 const Text = styled.div`
-    padding: 0px 264px 0px 0px;
     font-family: "Pretendard";
     font-size: 16px;
     font-weight: 400;
