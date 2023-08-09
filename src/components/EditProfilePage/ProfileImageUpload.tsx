@@ -20,9 +20,7 @@ const ProfileImageUpload = () => {
       <TextWrapper>
         <Text>* 상품 이미지는 112X112에 최적화되어 있습니다.</Text>
         <Text>- 이미지는 프로필 등록 시 원형으로 잘려서 등록됩니다.</Text>
-        <Text>
-          - 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다.
-        </Text>
+        <TextWrapper>- 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다.</TextWrapper>
       </TextWrapper>
     </LineContainer>
   );

@@ -6,7 +6,7 @@ export const StBasicButton = styled.div<{ buttonColor: string }>`
   font-family: "Pretendard";
   justify-content: center;
   align-items: center;
-  width: 177px;
+  width: 176px;
   height: 44px;
   border: 1px solid #000;
   background-color: ${(props) => props.buttonColor};
