@@ -21,12 +21,12 @@ const SignupPage = () => {
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
 
-  const handleCheckNickname = async (
-    nickname: string,
-    e: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    e.preventDefault();
-  };
+  // const handleCheckNickname = async (
+  //   nickname: string,
+  //   e: React.MouseEvent<HTMLButtonElement>
+  // ) => {
+  //   e.preventDefault();
+  // };
 
   const {
     register,

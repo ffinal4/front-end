@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import CategoryHeader from "./CategoryHeader";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Header = () => {
           </LinkContainer>
         </Container>
       </HeaderContainer>
+      <CategoryHeader />
     </HeaderLayout>
   );
 };
@@ -43,7 +45,7 @@ const HeaderLayout = styled.div`
   top: 0;
   left: 0;
   background-color: #fff;
-  /* border: 2px solid blue; */
+  border-bottom: 1px solid gray;
 `;
 const HeaderContainer = styled.div`
   max-width: 1920px;
