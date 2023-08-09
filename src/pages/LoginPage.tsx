@@ -52,16 +52,7 @@ const LoginPage = () => {
             </LoginStateContainer>
           </SecondContainer>
           <ButtonContainer>
-            <StBasicButton buttonColor="#D9D9D9;">
-              {/* <input
-                type="submit"
-                style={{
-                  border: "1px solid red",
-                  width: "400px",
-                  height: "44px",
-                  display: "none",
-                }}
-              /> */}
+            <StBasicButton buttonColor="#D9D9D9;" type="submit">
               로그인
             </StBasicButton>
           </ButtonContainer>
