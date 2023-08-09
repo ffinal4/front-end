@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import CategorySelect from "./CategorySelect";
 
-const CategoryHeader = () => {
+const Navbar = () => {
+  const [categorySelect, setCategorySelect] = useState({
+    category: "",
+    name: "카테고리 선택",
+  });
+  const [selectBar, setSelectBar] = useState<boolean>(false);
+
   return (
     <CategoryHeaderContainer>
-      <Button />
+      <Button
+        onClick={() => {
+          setSelectBar(!selectBar);
+        }}
+      />
+      {selectBar && (
+        <CategorySelect
+          categorySelect={categorySelect}
+          setCategorySelect={setCategorySelect}
+          setSelectBar={setSelectBar}
+        />
+      )}
       <MenuContainer>
         <Menu>물물교환</Menu>
         <Menu>포켓경매</Menu>
@@ -41,4 +59,4 @@ const Menu = styled.div`
   margin-right: 40px;
   cursor: pointer;
 `;
-export default CategoryHeader;
+export default Navbar;
