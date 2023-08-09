@@ -7,7 +7,7 @@ export const StMainLayout = styled.div`
   width: 100%;
   max-width: 1136px;
   margin: 0 auto;
-  padding: 80px 0 100px 0;
+  padding: 220px 0 100px 0;
 
   /* @media screen and (max-width: 1600px) {
     padding: 80px 200px 100px 200px;
