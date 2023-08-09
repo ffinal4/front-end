@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import DaumPostcode from "react-daum-postcode";
 import { styled } from "styled-components";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
+import { postSignupApi } from "../api/users";
 
 interface SignupForm {
   email: string;
@@ -35,29 +35,34 @@ const SignupPage = () => {
     formState: { errors },
   } = useForm<SignupForm>({ mode: "onBlur" });
 
+  const signupOnclick = async (data: any) => {
+    const newForm = {
+      email: `${data.email}${data.select}`,
+      password: data.password,
+      nickname: data.nickname,
+    };
+    console.log(data.password);
+    console.log(data.nickname);
+    // console.log(newForm);
+    try {
+      const res = await postSignupApi(newForm);
+      if (res.status === 200) {
+        console.log("회원가입성공", res);
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <SignUpPageContainer>
       <TitleContainer>
         <Title>READY TO PEEPO</Title>
       </TitleContainer>
       <SignUpForm
-      // onSubmit={handleSubmit(async (data) => {
-      //   const newForm = {
-      //     email: `${data.email}${data.select}`,
-      //     password: data.password,
-      //     nickname: data.nickname,
-      //   };
-      //   try {
-      //     const res = await postSignupApi(newForm);
-      //     if(res.status === 201) {
-      //       console.log("회원가입성공", res);
-      //       navigate("/login")
-      //     }
-      //   } catch(error){
-      //     console.log(error);
-      //     alert(JSON.stringify(error.response.data.data))
-      //   }
-      // })}
+        onSubmit={(data: any) => {
+          signupOnclick(data);
+        }}
       >
         <EmailContainer>
           <Label>이메일(아이디)</Label>
@@ -184,11 +189,27 @@ const SignupPage = () => {
       </SignUpForm>
       <AssignButtonContainer>
         <StBasicButton
-          // type="submit"
+          type="submit"
           buttonColor="#D9D9D9;"
-          onClick={() => {
-            navigate("/login");
-          }}
+          onClick={handleSubmit(async (data) => {
+            const newForm = {
+              email: `${data.email}${data.select}`,
+              password: data.password,
+              nickname: data.nickname,
+            };
+            console.log(newForm);
+
+            try {
+              const res = await postSignupApi(newForm);
+              if (res.status === 200) {
+                console.log("회원가입성공", res);
+                navigate("/login");
+              }
+            } catch (error) {
+              console.log(error);
+              // alert(JSON.stringify(error.response.data.data));
+            }
+          })}
         >
           회원가입
         </StBasicButton>
