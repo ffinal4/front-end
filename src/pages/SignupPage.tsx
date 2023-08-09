@@ -204,7 +204,7 @@ const TitleContainer = styled.div`
   /* border: 1px solid red; */
   width: 100%;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 160px;
 `;
 const Title = styled.div`
   font-size: 40px;

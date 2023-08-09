@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import CategoryHeader from "./CategoryHeader";
+import CategorySelect from "./CategorySelect";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const Header = () => {
       <HeaderContainer>
         <LogoContainer>
           <Button />
+          {/* <CategorySelect /> */}
           <LogoImage>PEEPPO</LogoImage>
         </LogoContainer>
         <Container>

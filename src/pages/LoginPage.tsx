@@ -7,12 +7,17 @@ import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
+  const onSubmit = (data: any) => console.log(data);
   return (
     <LoginPageContainer>
       <LoginContainer>
-        <LogInForm onSubmit={(data) => alert(JSON.stringify(data))}>
+        <LogInForm onSubmit={handleSubmit(onSubmit)}>
           <TitleContainer>
             <LogoContainer>
               <Logo src={eyeImage} />
@@ -47,13 +52,16 @@ const LoginPage = () => {
             </LoginStateContainer>
           </SecondContainer>
           <ButtonContainer>
-            <StBasicButton
-              // type="submit"
-              buttonColor="#D9D9D9;"
-              onClick={() => {
-                navigate("/");
-              }}
-            >
+            <StBasicButton buttonColor="#D9D9D9;">
+              {/* <input
+                type="submit"
+                style={{
+                  border: "1px solid red",
+                  width: "400px",
+                  height: "44px",
+                  display: "none",
+                }}
+              /> */}
               로그인
             </StBasicButton>
           </ButtonContainer>
@@ -108,6 +116,8 @@ const LoginPage = () => {
   );
 };
 const LoginPageContainer = styled.div`
+  /* border: 5px solid blue; */
+  width: 100%;
   position: relative;
 `;
 
