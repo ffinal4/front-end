@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useForm } from "react-hook-form";
+import DaumPostcode from "react-daum-postcode";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
+import KakaoApi from "../components/common/KakaoApi";
 
 interface EditForm {
   select: string;
   password: string;
-  newpassword: string;
+  newPassword: string;
   confirmPassword: string;
   nickname: string;
   address: string;
@@ -17,6 +19,9 @@ interface EditForm {
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
+  const [address, setAddress] = useState(""); //주소
+  const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
+
   const {
     register,
     formState: { errors },
@@ -61,11 +66,7 @@ const EditProfilePage = () => {
           <NickNameContainer>
             <CommonLabel>닉네임</CommonLabel>
             <NickNameInputContainer>
-              <StBasicInput
-                type="text"
-                placeholder="닉네임을 입력해주세요."
-                {...register("nickname", {})}
-              />
+              <StBasicInput type="text" placeholder="닉네임을 입력해주세요." />
             </NickNameInputContainer>
           </NickNameContainer>
           <Content>* 이미 사용중인 이메일입니다.</Content>
@@ -75,7 +76,6 @@ const EditProfilePage = () => {
               <StBasicInput
                 type="password"
                 placeholder="현재 비밀번호를 입력해주세요."
-                {...register("password", {})}
               />
             </PwInputContainer>
           </PwContainer>
@@ -87,25 +87,21 @@ const EditProfilePage = () => {
                 <StBasicInput
                   type="password"
                   placeholder="새 비밀번호를 입력해주세요."
-                  {...register("newpassword", {
+                  {...register("newPassword", {
                     required: "필수입력 항목입니다.",
                     minLength: {
                       value: 8,
-                      message:
-                        "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상",
+                      message: "비밀번호는 8자 이상이어야 합니다.",
                     },
                     pattern: {
                       value:
-                        /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"/,
+                        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
                       message:
                         "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
                     },
                   })}
                 />
-                <PwValidation>
-                  * 영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의
-                  비밀번호를 작성해주세요.
-                </PwValidation>
+                <PwValidation>{errors?.newPassword?.message}</PwValidation>
               </NewInputContainer>
 
               <CheckPwInputContainer>
@@ -123,7 +119,7 @@ const EditProfilePage = () => {
                     },
                   })}
                 />
-                <PwValidation>* 비밀번호가 일치하지 않습니다.</PwValidation>
+                <PwValidation>{errors?.confirmPassword?.message}</PwValidation>
               </CheckPwInputContainer>
             </SetPwInputContainer>
           </CheckPwContainer>
@@ -132,19 +128,12 @@ const EditProfilePage = () => {
             <CurrentAddress>서울시 강남구</CurrentAddress>
           </AddressLabelContainer>
           <AddressContainer>
-            <StBasicInput
-              type="text"
-              placeholder="수정할 주소를 입력해주세요."
-              {...register("address", {
-                required: "입력된 주소는 나의 주거래 지역으로 표시됩니다.",
-              })}
+            <KakaoApi
+              address={address}
+              setAddress={setAddress}
+              openPostcode={openPostcode}
+              setOpenPostcode={setOpenPostcode}
             />
-            <StBasicButton
-              buttonColor="#D9D9D9;"
-              style={{ marginLeft: "20px" }}
-            >
-              주소찾기
-            </StBasicButton>
           </AddressContainer>
           <AddContent>
             입력된 주소는 나의 주거래 지역으로 표시됩니다.
@@ -199,8 +188,8 @@ const EmailContainer = styled.div`
   /* border: 3px solid green; */
   display: flex;
   align-items: center;
-  margin-top: 44px;
-  margin-bottom: 44px;
+  margin-top: 33px;
+  margin-bottom: 33px;
 `;
 const Label = styled.div`
   /* border: 1px solid red; */

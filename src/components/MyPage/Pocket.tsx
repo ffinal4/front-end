@@ -13,7 +13,7 @@ const Pocket: FC<Props> = ({ onClickPocketHandler }) => {  // 지정한 타입�
     useEffect (() => {
         const interval = setInterval (() => {
             if (height < 610) {
-                setHeight((prevHeight) => prevHeight + 30);
+                setHeight((prevHeight) => prevHeight + 20);
             }
         }, 10);
         return () => {

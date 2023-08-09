@@ -64,20 +64,6 @@ const FeedbackInfo = () => {
                                 <CommentContainer>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</CommentContainer>
                             </FeedbackContentContainer>
                         </FeedbackBox>
-                        <FeedbackBox>
-                            <ImageBox src={Image}/>
-                            <FeedbackContentContainer>
-                                <AllViewText>피드백유저 이름</AllViewText>
-                                <CommentContainer>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</CommentContainer>
-                            </FeedbackContentContainer>
-                        </FeedbackBox>
-                        <FeedbackBox>
-                            <ImageBox src={Image}/>
-                            <FeedbackContentContainer>
-                                <AllViewText>피드백유저 이름</AllViewText>
-                                <CommentContainer>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</CommentContainer>
-                            </FeedbackContentContainer>
-                        </FeedbackBox>
                     </FeedbackContainer>
                 </InfoTextContainer>
             </InfoContainer>
@@ -93,10 +79,10 @@ const PointContainer = styled.div`
 
 const InfoContainer = styled.div`
     width: 100%;
-    height: 729px;
-    border-top: 4px solid #000;
-    border-bottom: 4px solid #000;
-    margin: 40px 0px 60px 0px;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #D9D9D9;
+    margin: 42px 0px 60px 0px;
+    padding: 0px 0px 93px 0px;
     display: grid;
 `;
 
@@ -181,8 +167,9 @@ const Box = styled.div<{ width: string, height: string }>`
 `;
 
 const ImageBox = styled.div<{ src: string }>`
-    width: 118px;
-    height: 118px;
+    min-width: 80px;
+    height: 80px;
+    border-radius: 100%;
     background-image: ${(props) => `url(${props.src})`};
     background-size: cover;
 `;

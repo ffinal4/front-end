@@ -118,7 +118,7 @@ const LoginContainer = styled.div`
   height: 652px;
   border: 1px solid black;
   margin: 0 auto;
-  margin-top: 120px;
+  margin-top: 280px;
   background-color: white;
   box-shadow: black 0px 0px 0px 2px inset,
     rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,

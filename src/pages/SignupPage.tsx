@@ -5,6 +5,7 @@ import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { StBasicInput } from "../styles/BasicInput";
+import KakaoApi from "../components/common/KakaoApi";
 
 interface SignupForm {
   email: string;
@@ -20,29 +21,18 @@ const SignupPage = () => {
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
 
-  const addressOnchange = (data: any) => {
-    setAddress(data);
-    console.log(data);
-  };
-
-  const handle = {
-    // 버튼 클릭 이벤트
-    clickButton: () => {
-      setOpenPostcode((current) => !current);
-    },
-
-    // 주소 선택 이벤트
-    selectAddress: (data: any) => {
-      setAddress(data.address);
-      setOpenPostcode(false);
-    },
-  };
+  // const handleCheckNickname = async (
+  //   nickname: string,
+  //   e: React.MouseEvent<HTMLButtonElement>
+  // ) => {
+  //   e.preventDefault();
+  // };
 
   const {
     register,
-    formState: { errors },
     handleSubmit,
     getValues,
+    formState: { errors },
   } = useForm<SignupForm>({ mode: "onBlur" });
 
   return (
@@ -113,12 +103,10 @@ const SignupPage = () => {
                 required: "필수입력 항목입니다.",
                 minLength: {
                   value: 8,
-                  message:
-                    "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상",
+                  message: "비밀번호는 8자 이상이어야 합니다.",
                 },
                 pattern: {
-                  value:
-                    /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"/,
+                  value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
                   message:
                     "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
                 },
@@ -152,28 +140,13 @@ const SignupPage = () => {
         <AddressContainer>
           <Label>주소</Label>
           <AddressInputContainer>
-            <StBasicInput
-              type="text"
-              placeholder="주소를 입력해주세요."
-              value={address}
-              onChange={addressOnchange}
+            <KakaoApi
+              address={address}
+              setAddress={setAddress}
+              openPostcode={openPostcode}
+              setOpenPostcode={setOpenPostcode}
             />
           </AddressInputContainer>
-
-          <StBasicButton
-            buttonColor="#D9D9D9;"
-            style={{ marginLeft: "20px" }}
-            onClick={handle.clickButton}
-          >
-            {openPostcode && (
-              <DaumPostcode
-                onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
-                autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
-                defaultQuery="판교역로 235" // 팝업을 열때 기본적으로 입력되는 검색어
-              />
-            )}
-            주소찾기
-          </StBasicButton>
         </AddressContainer>
         <ContentContainer>
           <AddressContent>
@@ -186,20 +159,24 @@ const SignupPage = () => {
           <NickNameInputContainer>
             <StBasicInput
               type="text"
-              placeholder="닉네임을 입력해주세요."
+              placeholder="한글, 영문, 숫자를 이용한 2~15자"
               {...register("nickname", {
                 required: "필수입력 항목입니다.",
                 minLength: { value: 2, message: "2자 이상 입력해주세요." },
                 maxLength: { value: 15, message: "15자 이하로 입력해주세요." },
                 pattern: {
-                  value: /^[A-za-z0-9가-힣]{3,10}$/,
+                  value: /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,15}$/,
                   message: "영문 대소문자, 글자 단위 한글, 숫자만 가능합니다.",
                 },
               })}
             />
           </NickNameInputContainer>
 
-          <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
+          <StBasicButton
+            buttonColor="#D9D9D9;"
+            style={{ marginLeft: "20px" }}
+            // onClick={((e) => handleCheckNickname(getValues("nickname")), e)}
+          >
             중복 확인
           </StBasicButton>
         </NickNameContainer>
@@ -332,7 +309,10 @@ const AddressContainer = styled.div`
   align-items: center;
 `;
 const AddressInputContainer = styled.div`
-  width: 464px;
+  width: 656px;
+  /* width: 100%; */
+  /* border: 1px solid red; */
+  display: flex;
 `;
 
 const SecondLabel = styled.div`
