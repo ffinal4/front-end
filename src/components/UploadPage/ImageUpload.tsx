@@ -133,11 +133,14 @@ const ImageUpload = () => {
                         onChange={onChangeFileHandler}
                     />
                 </div>}
-                <RemoveIcon
-                    src={removeIcon}
-                    alt=''
-                    onClick={onClickRemoveHandler}
-                />
+                <RemoveBtnWrapper>
+                    <RemoveIcon
+                        src={removeIcon}
+                        alt=''
+                        onClick={onClickRemoveHandler}
+                    />
+                    등록이미지 전체 삭제
+                </RemoveBtnWrapper>
             </ImageContainer>
             : <ImageContainer>
                 <InputLabel htmlFor='files'>
@@ -207,7 +210,6 @@ const ImageContainer = styled.div`
     width: 100%;
     gap: 16px;
     display: flex;
-    align-items: center;
 
     @media screen and (max-width: 843px) {
         display: grid;
@@ -285,14 +287,27 @@ const TextWrapper = styled.div`
     margin: 22px 0px 0px 0px;
 `;
 
+const RemoveBtnWrapper = styled.div`
+    gap: 10px;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    display: flex;
+    margin: 0px 0px 0px 173px;
+
+    @media screen and (max-width: 1136px) {
+        margin: 0px;
+    }
+`;
+
 const RemoveIcon = styled.img`
-    width: 36px;
-    height: 36px;
+    width: 24px;
+    height: 24px;
     border: 3px solid #000;
     border-radius: 5px;
     opacity: 0.7;
     cursor: pointer;
-    /* margin: 120px 0px 0px 0px; */
 `
 
 export default ImageUpload;

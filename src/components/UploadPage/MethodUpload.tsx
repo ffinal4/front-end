@@ -40,7 +40,8 @@ const MethodUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
         if (direct === false && parcel === false) {
             setMethodUpload({...methodUpload, method: [""]});
         }
-        setUploadData({...uploadData, method});
+        
+        setUploadData({...uploadData, method});   
     }, [methodButton]);
 
   return (
@@ -48,12 +49,14 @@ const MethodUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
         <RequiredText>교환방법</RequiredText>
         <Wrapper>
             <StBasicButton
-                buttonColor={(direct) ? "#d6d6d6" : "white"}
+                buttonColor={(direct) ? "#575757" : "white"}
+                style={{color: `${(direct) ? "white" : "#000"}`}}
                 onClick={onCheckDirectHandler}
             >직거래
             </StBasicButton>
             <StBasicButton
-                buttonColor={(parcel) ? "#d6d6d6" : "white"}
+                buttonColor={(parcel) ? "#575757" : "white"}
+                style={{color: `${(parcel) ? "white" : "#000"}`}}
                 onClick={onCheckParcelHandler}
             >택배
             </StBasicButton>

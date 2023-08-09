@@ -152,7 +152,7 @@ const TagInput = styled.input`
 
 const TitleInput = styled.input`
     display: inline-flex;
-    width: 100%;
+    width: 656px;
     height: 44px;
     padding: 0px 20px 0px 20px;
     margin: 0px 16px 30px 0px;
