@@ -41,6 +41,7 @@ const ChattingPage = () => {
     };
 
   return (
+    <div>
     <PageContainer>
         <ContainerWrapper>
                 {messageList.map((item) => {
@@ -78,9 +79,10 @@ const ChattingPage = () => {
                     )
                 })
                 }
-        </ContainerWrapper>
+        </ContainerWrapper>  
         <BottomContainer />
     </PageContainer>
+    </div>
   )
 };
 
@@ -89,11 +91,13 @@ const PageContainer = styled.div`
     height: 1080px;
     display: flex;
     background-color: #F0F0F0;
-    padding: 70px 392px 0px 392px;
+    padding: 138px 392px 0px 392px;
+    
 `;
 
 const ContainerWrapper = styled.div`
     width: 100%;
+    height: 100%;
     position: relative;
 `;
 
@@ -159,7 +163,7 @@ const ChatWrapper = styled.div`
 `;
 
 const ChattingContainer = styled.div`
-    top: 69px; 
+    top: 138px; 
     right: 376px;
     position: fixed;
 `;
@@ -167,10 +171,10 @@ const ChattingContainer = styled.div`
 const BottomContainer = styled.div`
     width: 100%;
     height: 186px;
-    background-color: #D9D9D9;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
+    background-color: #D9D9D9;
 `;
 
 export default ChattingPage;
