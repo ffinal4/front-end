@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import CategoryHeader from "./CategoryHeader";
+import Navbar from "./Navbar";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const Header = () => {
           </LinkContainer>
         </Container>
       </HeaderContainer>
-      <CategoryHeader />
+      <Navbar />
     </HeaderLayout>
   );
 };
