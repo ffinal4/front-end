@@ -23,10 +23,6 @@ const ProfileImageUpload = () => {
         <Text>
           - 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다.
         </Text>
-        <Text>
-          - 최대 지원 사이즈인 112X112으로 리사이즈 해서 올려주세요.(개당 이미지
-          최대 10M)
-        </Text>
       </TextWrapper>
     </LineContainer>
   );
@@ -87,7 +83,7 @@ const UploadInputBox = styled.input`
 const TextWrapper = styled.div`
   /* border: 1px solid black; */
   margin: 22px 0px 0px 0px;
-  padding-top: 150px;
+  padding-top: 170px;
 `;
 
 export default ProfileImageUpload;
