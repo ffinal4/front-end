@@ -120,7 +120,7 @@ const ChattingContainer = styled.div`
 
 const ChattingWrapper = styled.div`
     width: 100%;
-    height: 500px;
+    height: 642px;
     padding: 0px 48px;
     overflow-y: scroll;
 `;
@@ -140,7 +140,7 @@ const ChatProfile = styled.img`
 
 const OpponentChat = styled.div`
     display: flex;
-    width: 240px;
+    width: 260px;
     max-width: 464px;
     padding: 16px 20px;
     align-items: flex-start;
@@ -159,7 +159,7 @@ const MyChatLineContainer = styled.div`
 
 const MyChat = styled.div`
     display: flex;
-    width: 240px;
+    width: 260px;
     max-width: 464px;
     padding: 16px 20px;
     align-items: flex-start;
@@ -172,6 +172,7 @@ const ChattingInputWrapper = styled.div`
     align-items: center;
     width: 500px;
     height: 44px;
+    margin: 0px auto;
     border: 1px solid #000;
 `;
 

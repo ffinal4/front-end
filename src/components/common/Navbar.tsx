@@ -40,6 +40,7 @@ const CategoryHeaderContainer = styled.div`
   padding-left: 180px;
 `;
 const Button = styled.div`
+  position: relative;
   width: 36px;
   height: 36px;
   background-color: #d9d9d9;

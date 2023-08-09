@@ -5,8 +5,25 @@ import eyeImage from "../assets/images/eye.svg";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
+import { idText } from "typescript";
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const emailOnchange = (event: any) => {
+    setEmail(event.target.value);
+  };
+
+  const passwordOnchange = (event: any) => {
+    setPassword(event.target.value);
+  };
+  const loginOnclick = () => {
+    if (email === "" || password === "") {
+      alert("아이디나 비밀번호를 입력해주세요.");
+    }
+  };
+
   const {
     register,
     handleSubmit,
@@ -29,15 +46,17 @@ const LoginPage = () => {
             <EmailInputContainer>
               <StBasicInput
                 type="email"
+                value={email}
+                onChange={emailOnchange}
                 placeholder="아이디를 입력해주세요."
-                {...register("email")}
               />
             </EmailInputContainer>
             <PwInputContainer>
               <StBasicInput
                 type="password"
+                value={password}
+                onChange={passwordOnchange}
                 placeholder="비밀번호를 입력해주세요."
-                {...register("password")}
               />
             </PwInputContainer>
           </InputContainer>
@@ -52,7 +71,11 @@ const LoginPage = () => {
             </LoginStateContainer>
           </SecondContainer>
           <ButtonContainer>
-            <StBasicButton buttonColor="#D9D9D9;" type="submit">
+            <StBasicButton
+              buttonColor="#D9D9D9;"
+              type="submit"
+              onClick={loginOnclick}
+            >
               로그인
             </StBasicButton>
           </ButtonContainer>
