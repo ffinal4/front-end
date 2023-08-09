@@ -8,7 +8,7 @@ const ImageUpload = () => {
         default: { id: number; imageUrl: string };
         second: { id: number; imageUrl: string };
         third: { id: number; imageUrl: string };
-      };
+    };
 
     const [file, setFile] = useState<FileState>({
         default: {id: 1, imageUrl: ""},
@@ -26,7 +26,7 @@ const ImageUpload = () => {
             for (let i = 0; i < fileList.length; i++) {
                 const fileUrl = URL.createObjectURL(fileList[i]);
                 imageUrlLists.push(fileUrl);
-                // console.log(fileList);
+                console.log(fileList);
                 // console.log(fileUrl);
                 // console.log(imageUrlLists);
             };
@@ -178,7 +178,6 @@ const ImageUpload = () => {
                 <Text>* 상품 이미지는 640X640에 최적화되어 있습니다.</Text>
                 <Text>- 이미지는 상품 등록 시 정사각형으로 잘려서 등록됩니다.</Text>
                 <Text>- 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다.</Text>
-                <Text>- 최대 지원 사이즈인 640X640으로 리사이즈 해서 올려주세요.(개당 이미지 최대 10M)</Text>
             </TextWrapper>
         </ContentContainer>
     </LineContainer>
@@ -186,6 +185,7 @@ const ImageUpload = () => {
 }
 
 const LineContainer = styled.div`
+    width: 100%;
     display: flex;
     padding: 30px 0px 30px 0px;
     border-bottom: 2px dotted #EAEAEA;
@@ -200,14 +200,18 @@ const RequiredText = styled.div`
     font-size: 20px;
     font-weight: 700;
     line-height: 150%;
-    width: 191px;
+    min-width: 191px;
 `;
 
 const ImageContainer = styled.div`
     width: 100%;
     gap: 16px;
     display: flex;
-    align-items: end;
+    align-items: center;
+
+    @media screen and (max-width: 843px) {
+        display: grid;
+    }
 `;
 
 const ImageThumbnail = styled.img`
@@ -237,7 +241,6 @@ const ImageThumbnailContainer = styled.div`
     height: 176px;
     overflow: hidden;
     position: relative;
-    margin: 0px 16px 0px 0px;
     cursor: pointer;
 `;
 
@@ -248,7 +251,6 @@ const InputLabel = styled.label`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 16px 0px 0px;
     cursor: pointer;
 `;
 
@@ -271,6 +273,7 @@ const Text = styled.div`
     font-weight: 400;
     line-height: 150%;
     color: #717171;
+    width: 100%;
 `;
 
 const UploadInputBox = styled.input`
@@ -278,12 +281,15 @@ const UploadInputBox = styled.input`
 `;
 
 const TextWrapper = styled.div`
+    width: 100%;
     margin: 22px 0px 0px 0px;
 `;
 
 const RemoveIcon = styled.img`
     width: 36px;
     height: 36px;
+    border: 3px solid #000;
+    border-radius: 5px;
     opacity: 0.7;
     cursor: pointer;
     /* margin: 120px 0px 0px 0px; */

@@ -44,18 +44,21 @@ const DetailPage = () => {
   return (
     <PageLayout>
         <FilterContainer>
-            <FilterWrapper>
-                Filter
+            <FilterLeftWrapper>
+                <FilterWrapper>
+                    <ChoiceBox />
+                    Home
+                </FilterWrapper>
                 <ChoiceBox />
-            </FilterWrapper>
-            <FilterWrapper>
-                Category
+                <FilterWrapper>
+                    <ChoiceBox />
+                    Category
+                </FilterWrapper>
+            </FilterLeftWrapper>
+            <ModifyContainer>
                 <ChoiceBox />
-            </FilterWrapper>
-            <FilterWrapper>
-                Category
-                <ChoiceBox />
-            </FilterWrapper>
+                수정하기
+            </ModifyContainer>
         </FilterContainer>
         <PageContainer>
             <DetailContainer />
@@ -64,8 +67,8 @@ const DetailPage = () => {
             (giveTap === true && wantTap === false && feedbackTap === false)
             && <LayoutContainer>
                     <TapContainer>
-                        <TapClickButton>제가드려요</TapClickButton>
-                        <TapDefaultButton onClick={onClickWantHandler}>이걸원해요</TapDefaultButton>
+                        <TapClickButton>드려요</TapClickButton>
+                        <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
                         <TapDefaultButton onClick={onClickFeedbackHandler}>유저평가</TapDefaultButton>
                     </TapContainer>
                     <GiveInfo />
@@ -75,8 +78,8 @@ const DetailPage = () => {
             (giveTap === false && wantTap === true && feedbackTap === false)
             && <LayoutContainer>
                     <TapContainer>
-                        <TapDefaultButton onClick={onClickGiveHandler}>제가드려요</TapDefaultButton>
-                        <TapClickButton>이걸원해요</TapClickButton>
+                        <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
+                        <TapClickButton>받아요</TapClickButton>
                         <TapDefaultButton onClick={onClickFeedbackHandler}>유저평가</TapDefaultButton>
                     </TapContainer>
                     <WantedInfo />
@@ -86,8 +89,8 @@ const DetailPage = () => {
             (giveTap === false && wantTap === false && feedbackTap === true)
             && <LayoutContainer>
                     <TapContainer>
-                        <TapDefaultButton onClick={onClickGiveHandler}>제가드려요</TapDefaultButton>
-                        <TapDefaultButton onClick={onClickWantHandler}>이걸원해요</TapDefaultButton>
+                        <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
+                        <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
                         <TapClickButton>유저평가</TapClickButton>
                     </TapContainer>
                     <FeedbackInfo />
@@ -109,17 +112,30 @@ const PageLayout = styled.div`
 
 const FilterContainer = styled.div`
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
-    margin: 0px 56px 20px 0px;
+    margin: 0px 0px 20px 0px;
     gap: 20px;
     width: 100%;
 `;
 
+const FilterLeftWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+`;
+
 const FilterWrapper = styled.div`
     display: inline-flex;
-    padding: 10px 20px;
+    padding: 10px 60px 10px 10px;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
     align-items: center;
-    gap: 77px;
+    gap: 10px;
     border-bottom: 1px solid;
 `;
 
@@ -130,9 +146,24 @@ const ChoiceBox = styled.div`
     cursor: pointer;
 `;
 
+const ModifyContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%
+`;
+
 const PageContainer = styled.div`
     border-top: 4px solid;
     width: 100%;
+
+    @media screen and (max-width: 1136px) {
+        padding: 0px 20px 0px 20px;        
+    }
 `;
 
 const TapContainer = styled.div`
@@ -145,11 +176,12 @@ const TapClickButton = styled.div`
     display: flex;
     padding: 10px auto;
     font-family: "Pretendard";
+    font-weight: 700;
     justify-content: center;
     align-items: center;
     width: 177px;
     height: 44px;
-    border: 4px solid #000;
+    border: 2px solid #000;
     border-bottom: 4px solid #fff;
 `;
 
@@ -163,7 +195,7 @@ const TapDefaultButton = styled.div`
     width: 177px;
     height: 44px;
     border: 1px solid #000;
-    border-bottom: 4px solid #000;
+    border-bottom: 2px solid #000;
     cursor: pointer;
 `;
 

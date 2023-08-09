@@ -3,31 +3,35 @@ import { styled } from 'styled-components';
 import Image from '../../assets/images/pocket.png'
 
 const MyPickBar = () => {
+
+    const onClickScrollButton = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
   return (
     <PickBarContainer>
         <TitleContainer>
-            <Title>찜한물건</Title>
-            <CountWrapper>
-                <Box />
-                <Count>00</Count>
-            </CountWrapper>
+            <Title>최근본물건</Title>
         </TitleContainer>
         <PickImageContainer>
             <ImageBox src={Image}/>
             <ImageBox src={Image}/>
             <ImageBox src={Image}/>
+            <ImageBox src={Image}/>
         </PickImageContainer>
-        <TopMoveButton>TOP</TopMoveButton>
+        <TopMoveButton onClick={onClickScrollButton} id='scrollToTopButton'>TOP</TopMoveButton>
     </PickBarContainer>
   )
 };
 
 const PickBarContainer = styled.div`
     position: fixed;
-    top: 290px;
+    top: 224px;
     right: 8%;
     display: grid;
-    gap: 10px;
     z-index: 500;
     
     @media screen and (max-width: 1680px) {
@@ -43,7 +47,7 @@ const PickBarContainer = styled.div`
 const TitleContainer = styled.div`
     display: flex;
     width: 150px;
-    padding: 15px 40px;
+    padding: 15px 30px;
     flex-direction: column;
     align-items: center;
     border: 1px solid #000;
@@ -92,12 +96,11 @@ const Count = styled.div`
 
 const PickImageContainer = styled.div`
     width: 150px;
-    height: 418px;
     border: 1px solid #000;
-    padding: 16px;
-    gap: 16px;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+    display: grid;
+    justify-content: center;
     background-color: #fff;
     box-shadow: 3px 3px 5px 0px #a0a0a0;
 
@@ -108,6 +111,7 @@ const PickImageContainer = styled.div`
 
 const TopMoveButton = styled.div`
     display: inline-flex;
+    margin-top: 10px;
     padding: 16px 29px;
     justify-content: center;
     align-items: center;

@@ -1,18 +1,47 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import { StBasicButton } from '../../styles/BasicButton';
 
-const MethodUpload = () => {
+interface Props {
+    uploadData: object;
+    setUploadData: React.Dispatch<React.SetStateAction<object>>;
+};
 
-    const [direct, setDirect] = useState(false);
-    const [parcel, setParcel] = useState(false);
+const MethodUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
+
+    const [methodButton, setMethodButton] = useState({
+        direct: false,
+        parcel: false,
+    });
+    const [methodUpload, setMethodUpload] = useState<{ method : string[] }>({
+        method: [""],
+    });
+    const { direct, parcel } = methodButton;
+    const { method } = methodUpload;
 
     const onCheckDirectHandler = () => {
-        setDirect(!direct);
+        setMethodButton({...methodButton, direct: !direct});
     };
+    
     const onCheckParcelHandler = () => {
-        setParcel(!parcel);
+        setMethodButton({...methodButton, parcel: !parcel});
     };
+
+    useEffect(() => {
+        if (direct) {
+            setMethodUpload({...methodUpload, method: ["직거래"]});
+        };
+        if (parcel) {
+            setMethodUpload({...methodUpload, method: ["택배"]});
+        };
+        if (direct && parcel) {
+            setMethodUpload({...methodUpload, method: ["직거래", "택배"]});
+        };
+        if (direct === false && parcel === false) {
+            setMethodUpload({...methodUpload, method: [""]});
+        }
+        setUploadData({...uploadData, method});
+    }, [methodButton]);
 
   return (
     <LineContainer>
@@ -34,6 +63,7 @@ const MethodUpload = () => {
 };
 
 const LineContainer = styled.div`
+    width: 100%;
     display: flex;
     padding: 30px 0px 30px 0px;
     border-bottom: 2px dotted #EAEAEA;
@@ -44,7 +74,7 @@ const RequiredText = styled.div`
     font-size: 20px;
     font-weight: 700;
     line-height: 150%;
-    width: 191px;
+    min-width: 191px;
 `;
 
 const Wrapper = styled.div`
@@ -52,6 +82,10 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 16px;
+
+    @media screen and (max-width: 843px) {
+        display: grid;
+    }
 `;
 
 export default MethodUpload;
