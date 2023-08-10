@@ -6,4 +6,5 @@ export const StBasicInput = styled.input`
   padding: 10px 0px 10px 20px;
   font-size: 16px;
   border: 1px solid black;
+  border-radius: 5px;
 `;
