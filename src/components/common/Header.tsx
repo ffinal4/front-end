@@ -49,6 +49,7 @@ const HeaderLayout = styled.div`
   background-color: #fff;
   border-bottom: 1px solid #222020;
 `;
+
 const HeaderContainer = styled.div`
   max-width: 1920px;
   height: 70px;
