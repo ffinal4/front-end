@@ -13,6 +13,7 @@ import MyPocketPage from "./pages/MyPocketPage";
 import MyPage from "./pages/MyPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ChattingPage from "./pages/ChattingPage";
+import AuctionUploadPage from "./pages/AuctionUploadPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/detail" element={<DetailPage />} />
             <Route path="/myPocket" element={<MyPocketPage />} />
             <Route path="/editprofile" element={<EditProfilePage />} />
+            <Route path="/auctionupload" element={<AuctionUploadPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import logo from "../../assets/logo/logo.png";
+import title from "../../assets/logo/logo_title.png";
+import search from "../../assets/icon/search.png";
 import Navbar from "./Navbar";
 
 const Header = () => {
@@ -9,27 +12,26 @@ const Header = () => {
     <HeaderLayout>
       <HeaderContainer>
         <LogoContainer>
-          <Button />
-          <LogoImage>PEEPPO</LogoImage>
+          <Logo src={logo} />
+          <LogoTitle src={title} />
         </LogoContainer>
-        <Container>
-          <InputContainer>
-            <SearchInput type="search" placeholder="Search" />
-          </InputContainer>
-          <LinkContainer>
-            <Button />
-            <LoginLink
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              로그인
-            </LoginLink>
-            <SignupLink onClick={() => navigate("/signup")}>
-              회원가입
-            </SignupLink>
-          </LinkContainer>
-        </Container>
+        <InputContainer>
+          <SearchButton>
+            <img src={search} />
+          </SearchButton>
+          <SearchInput type="search" placeholder="Search" />
+        </InputContainer>
+        <LinkContainer>
+          <LoginLink
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            로그인
+          </LoginLink>
+          <Button />
+          <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
+        </LinkContainer>
       </HeaderContainer>
       <Navbar />
     </HeaderLayout>
@@ -45,7 +47,7 @@ const HeaderLayout = styled.div`
   top: 0;
   left: 0;
   background-color: #fff;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #222020;
 `;
 const HeaderContainer = styled.div`
   max-width: 1920px;
@@ -54,7 +56,7 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 18px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #d5d4d4;
   padding: 0 160px 0 160px;
   /* border: 1px solid red; */
   margin: 0 auto;
@@ -68,39 +70,42 @@ const LogoContainer = styled.div`
   height: 41px;
 `;
 
+const Logo = styled.img`
+  margin-right: 10px;
+`;
+
+const LogoTitle = styled.img``;
+
 const Button = styled.div`
-  width: 36px;
-  height: 36px;
-  background-color: #d9d9d9;
-  cursor: pointer;
+  width: 2px;
+  height: 16px;
+  background-color: #d8bda3;
+  border-radius: 2px;
   margin-left: 20px;
-`;
-
-const LogoImage = styled.div`
-  font-size: 30px;
-  font-weight: bold;
-  margin-left: 10px;
-`;
-
-const Container = styled.div`
-  /* border: 1px solid green; */
-  display: flex;
-  align-items: center;
+  font-weight: 400;
 `;
 
 const InputContainer = styled.div`
-  border: 2px solid black;
-  width: 340px;
+  width: 600px;
   display: flex;
+  align-items: center;
+  position: relative;
 `;
 
+const SearchButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  /* border: 1px solid red; */
+  margin-left: 20px;
+`;
 const SearchInput = styled.input`
-  border: 1px solid #d9d9d9;
-  background-color: #d9d9d9;
+  border: 1px solid #efefef;
+  border-radius: 10px;
+  background-color: #efefef;
   width: 100%;
   height: 44px;
   font-size: 16px;
-  padding: 10px;
+  padding-left: 50px;
 `;
 
 const LinkContainer = styled.div`
