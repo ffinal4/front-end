@@ -90,13 +90,9 @@ const LoginPage = () => {
           </ButtonContainer>
           <SignUpContainer>
             <Content>아직 핍포 회원이 아니신가요?</Content>
-            <SignUpLink
-              onClick={() => {
-                navigate("/signup");
-              }}
-            >
+            <SignupLink onClick={() => navigate("/signup")}>
               회원가입
-            </SignUpLink>
+            </SignupLink>
           </SignUpContainer>
         </LogInForm>
       </LoginContainer>
@@ -269,21 +265,17 @@ const Content = styled.span`
   /* border: 1px solid blue; */
 `;
 
-const SignUpLink = styled.div`
+const SignupLink = styled.button`
   cursor: pointer;
   font-size: 16px;
   font-weight: 1000;
   margin-left: 10px;
 `;
-const BoxConatainer = styled.div`
-  /* border: 5px solid red; */
-  /* width: 100%;
-  height: 900px; */
-`;
+
 const FirstBoxContainer = styled.div`
   width: 431.5px;
   height: 358.2px;
-  margin: -350px 690.9px 119.2px 100px;
+  margin: -380px 690.9px 119.2px 100px;
   transform: rotate(-8.96deg);
   border: solid 2px #000;
   background-color: #fff;
@@ -292,7 +284,7 @@ const FirstBoxContainer = styled.div`
 const SecondBoxContainer = styled.div`
   width: 389.6px;
   height: 401.1px;
-  margin: -320px 195.4px 104.9px 1000px;
+  margin: -380px 195.4px 104.9px 900px;
   transform: rotate(-342.64deg);
   border: solid 2px #000;
   background-color: #fff;
