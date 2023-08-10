@@ -22,6 +22,7 @@ const SignupPage = () => {
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [pwType, setpwType] = useState({ type: "password", visible: false });
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
   const onClickPasswordType = (event: any) => {
     event.preventDefault();
@@ -32,6 +33,12 @@ const SignupPage = () => {
         return { type: "password", visible: false };
       }
     });
+  };
+
+  const handleEmailChange = (event: any) => {
+    const emailValue = event.target.value;
+    const isValid = /^[a-zA-Z\d]{2,}$/.test(emailValue);
+    setIsEmailValid(isValid);
   };
 
   const {
@@ -76,6 +83,7 @@ const SignupPage = () => {
             <StBasicInput
               type="email"
               placeholder="이메일을 입력해주세요"
+              onFocus={handleEmailChange}
               {...register("email", {
                 required: "필수입력 항목입니다.",
                 pattern: {
