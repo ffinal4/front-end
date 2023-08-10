@@ -59,5 +59,6 @@ const Menu = styled.div`
   margin-left: 40px;
   margin-right: 40px;
   cursor: pointer;
+  font-weight: 400;
 `;
 export default Navbar;

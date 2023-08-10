@@ -93,9 +93,10 @@ const InputContainer = styled.div`
 `;
 
 const SearchButton = styled.button`
+  width: 24px;
+  height: 24px;
   cursor: pointer;
   position: absolute;
-  /* border: 1px solid red; */
   margin-left: 20px;
 `;
 const SearchInput = styled.input`
