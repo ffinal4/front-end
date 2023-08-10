@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
-import { idText } from "typescript";
 import { postLoginApi } from "../api/users";
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -19,33 +19,25 @@ const LoginPage = () => {
   const passwordOnchange = (event: any) => {
     setPassword(event.target.value);
   };
-  const loginOnclick = async (e: any) => {
-    e.preventDefault();
+
+  const loginOnclick = async (event: any) => {
+    event.preventDefault();
     if (email === "" || password === "") {
       alert("아이디나 비밀번호를 입력해주세요.");
     }
+    const body = { email: email, password: password };
     try {
-      const newForm = {
-        email: email,
-        password: password,
-      };
-      const res = await postLoginApi(newForm);
+      console.log(body);
+      const res = await postLoginApi(body);
       if (res.status === 200) {
-        console.log("로그인", res);
+        console.log("로그인성공", res);
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
-      // alert(JSON.stringify(error.response.data.data));
     }
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data: any) => console.log(data);
   return (
     <LoginPageContainer>
       <LoginContainer>
@@ -125,7 +117,6 @@ const LoginPage = () => {
 };
 const LoginPageContainer = styled.div`
   /* border: 5px solid blue; */
-  width: 100%;
   position: relative;
 `;
 
