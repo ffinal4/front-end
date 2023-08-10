@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
 import { postSignupApi } from "../api/users";
+import eyeImage from "../assets/images/eye.svg";
 
 interface SignupForm {
   email: string;
@@ -20,13 +21,18 @@ const SignupPage = () => {
 
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
+  const [pwType, setpwType] = useState({ type: "password", visible: false });
 
-  // const handleCheckNickname = async (
-  //   nickname: string,
-  //   e: React.MouseEvent<HTMLButtonElement>
-  // ) => {
-  //   e.preventDefault();
-  // };
+  const onClickPasswordType = (event: any) => {
+    event.preventDefault();
+    setpwType(() => {
+      if (!pwType.visible) {
+        return { type: "text", visible: true };
+      } else {
+        return { type: "password", visible: false };
+      }
+    });
+  };
 
   const {
     register,
@@ -101,8 +107,15 @@ const SignupPage = () => {
         <PwContainer>
           <Label>비밀번호</Label>
           <PwInputContainer>
+            <PwVisibleButton onClick={onClickPasswordType}>
+              {pwType.visible ? (
+                <PwImg src={eyeImage} />
+              ) : (
+                <PwImg src={eyeImage} />
+              )}
+            </PwVisibleButton>
             <StBasicInput
-              type="password"
+              type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("password", {
                 required: "필수입력 항목입니다.",
@@ -123,8 +136,16 @@ const SignupPage = () => {
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
           <CheckPwInputContainer>
+            <CheckPwVisibleButton onClick={onClickPasswordType}>
+              {pwType.visible ? (
+                <PwImg src={eyeImage} />
+              ) : (
+                <PwImg src={eyeImage} />
+              )}
+            </CheckPwVisibleButton>
+
             <StBasicInput
-              type="password"
+              type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("confirmPassword", {
                 required: "필수입력 항목입니다.",
@@ -296,6 +317,22 @@ const PwContainer = styled.div`
 const PwInputContainer = styled.div`
   /* border: 1px solid red; */
   width: 656px;
+  position: relative;
+`;
+
+const PwVisibleButton = styled.button`
+  /* border: 1px solid blue; */
+  cursor: pointer;
+  width: 36px;
+  height: 30px;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+`;
+const PwImg = styled.img`
+  /* border: 1px solid red; */
+  width: 36px;
+  height: 30px;
 `;
 const PwValidateMessage = styled.div`
   width: 656px;
@@ -306,6 +343,7 @@ const PwValidateMessage = styled.div`
 `;
 const CheckPwInputContainer = styled.div`
   width: 656px;
+  position: relative;
 `;
 
 const CheckPwContainer = styled.div`
@@ -313,6 +351,16 @@ const CheckPwContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+`;
+
+const CheckPwVisibleButton = styled.button`
+  cursor: pointer;
+  /* border: 1px solid red; */
+  position: absolute;
+  width: 36px;
+  height: 30px;
+  top: 8px;
+  right: 12px;
 `;
 const CheckPwValidateMessage = styled.div`
   width: 656px;
