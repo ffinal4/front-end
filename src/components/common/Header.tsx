@@ -112,18 +112,26 @@ const SearchInput = styled.input`
 
 const LinkContainer = styled.div`
   /* border: 1px solid red; */
+  /* width: 140px; */
   display: flex;
   align-items: center;
 `;
 
 const LoginLink = styled.div`
   cursor: pointer;
+  /* border: 1px solid blue; */
   margin-left: 20px;
   font-size: 16px;
+  /* width: 100%; */
+  height: 24px;
+  font-family: Pretendard;
 `;
 
 const SignupLink = styled.div`
   cursor: pointer;
+  /* border: 1px solid blue; */
   margin-left: 20px;
   font-size: 16px;
+  /* width: 100%; */
+  height: 24px;
 `;
