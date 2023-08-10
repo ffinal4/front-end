@@ -5,15 +5,15 @@ const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
-// 인터셉터 리스폰스 토큰 담기
+// // 인터셉터 리스폰스 토큰 담기
 instance.interceptors.response.use(
   (response) => {
     if (response.headers.accesstoken) {
       localStorage.setItem("accessToken", response.headers.accesstoken);
     }
 
-    if (response.headers.authorization) {
-      localStorage.setItem("refreshToken", response.headers.authorization);
+    if (response.headers.refreshtoken) {
+      localStorage.setItem("refreshToken", response.headers.refreshtoken);
     }
 
     return response;
@@ -46,7 +46,7 @@ instance.interceptors.response.use(
   }
 );
 
-// 인터셉터 리퀘스트 토큰 헤더에싣기
+// // 인터셉터 리퀘스트 토큰 헤더에싣기
 instance.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("accessToken");
