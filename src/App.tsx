@@ -14,6 +14,7 @@ import MyPage from "./pages/MyPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ChattingPage from "./pages/ChattingPage";
 import AuctionUploadPage from "./pages/AuctionUploadPage";
+import TradeRequestPage from "./pages/TradeRequestPage";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/myPocket" element={<MyPocketPage />} />
             <Route path="/editprofile" element={<EditProfilePage />} />
             <Route path="/auctionupload" element={<AuctionUploadPage />} />
+            <Route path="/traderequest" element={<TradeRequestPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
