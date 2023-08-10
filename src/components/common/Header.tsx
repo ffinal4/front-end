@@ -29,7 +29,7 @@ const Header = () => {
           >
             로그인
           </LoginLink>
-          <Button />
+          <BoxContainer />
           <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
         </LinkContainer>
       </HeaderContainer>
@@ -77,7 +77,7 @@ const Logo = styled.img`
 
 const LogoTitle = styled.img``;
 
-const Button = styled.div`
+export const BoxContainer = styled.div`
   width: 2px;
   height: 16px;
   background-color: #d8bda3;

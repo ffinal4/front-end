@@ -6,6 +6,7 @@ import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 import { postLoginApi } from "../api/users";
+import { BoxContainer } from "../components/common/Header";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ const LoginPage = () => {
           <SecondContainer>
             <SearchContainer>
               <SearchId>아이디찾기</SearchId>
+              <BoxContainer />
               <SearchPw>비밀번호 찾기</SearchPw>
             </SearchContainer>
             <LoginStateContainer>
@@ -98,10 +100,9 @@ const LoginPage = () => {
           </SignUpContainer>
         </LogInForm>
       </LoginContainer>
-      <BoxConatainer>
-        <FirstBoxContainer />
-        <SecondBoxContainer />
-      </BoxConatainer>
+
+      <FirstBoxContainer />
+      <SecondBoxContainer />
 
       <FooterContainer>
         <FirstFooter>
@@ -203,16 +204,29 @@ const EmailInputContainer = styled.div`
 const PwInputContainer = styled.div`
   /* border: 1px solid blue; */
 `;
-const SearchId = styled.span`
-  /* border: 1px solid black; */
-  cursor: pointer;
+
+const SearchContainer = styled.div`
+  /* border: 1px solid red; */
+  height: 24px;
+  display: flex;
+  align-items: center;
   font-size: 16px;
 `;
+
+const SearchId = styled.span`
+  /* border: 1px solid black; */
+  height: 24px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: Pretendard;
+`;
+
 const SearchPw = styled.span`
   /* border: 1px solid black; */
   cursor: pointer;
   padding-left: 16px;
   font-size: 16px;
+  height: 24px;
 `;
 const MaintainLogin = styled.span`
   /* border: 1px solid black; */
@@ -225,10 +239,7 @@ const SecondContainer = styled.div`
   margin: auto;
   justify-content: space-between;
 `;
-const SearchContainer = styled.div`
-  /* border: 1px solid red; */
-  width: 200px;
-`;
+
 const LoginStateContainer = styled.div`
   display: flex;
   align-items: center;
