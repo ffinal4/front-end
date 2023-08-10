@@ -7,4 +7,8 @@ export const StBasicInput = styled.input`
   font-size: 16px;
   border: 1px solid black;
   border-radius: 5px;
+  &:focus {
+    outline: none !important;
+    border-color: #ec0000;
+  }
 `;
