@@ -13,36 +13,35 @@ const MethodUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
         direct: false,
         parcel: false,
     });
-    const [methodUpload, setMethodUpload] = useState<{ method : string[] }>({
-        method: [""],
+    const [methodUpload, setMethodUpload] = useState<{ methods : string[] }>({
+        methods: [],
     });
     const { direct, parcel } = methodButton;
-    const { method } = methodUpload;
+    const { methods } = methodUpload;
 
     const onCheckDirectHandler = () => {
         setMethodButton({...methodButton, direct: !direct});
+        const isValue = methods.includes("직거래");
+        if (isValue) {
+            setMethodUpload({...methodUpload, methods: methods.filter(item => item !== "직거래")});
+        } else {
+            setMethodUpload({...methodUpload, methods: [...methodUpload.methods, "직거래"]});
+        };  
     };
     
     const onCheckParcelHandler = () => {
         setMethodButton({...methodButton, parcel: !parcel});
+        const isValue = methods.includes("택배");
+        if (isValue) {
+            setMethodUpload({...methodUpload, methods: methods.filter(item => item !== "택배")});
+        } else {
+            setMethodUpload({...methodUpload, methods: [...methodUpload.methods, "택배"]});
+        };
     };
 
-    useEffect(() => {
-        if (direct) {
-            setMethodUpload({...methodUpload, method: ["직거래"]});
-        };
-        if (parcel) {
-            setMethodUpload({...methodUpload, method: ["택배"]});
-        };
-        if (direct && parcel) {
-            setMethodUpload({...methodUpload, method: ["직거래", "택배"]});
-        };
-        if (direct === false && parcel === false) {
-            setMethodUpload({...methodUpload, method: [""]});
-        }
-        
-        setUploadData({...uploadData, method});   
-    }, [methodButton]);
+    useEffect(() => { 
+        setUploadData({...uploadData, methods});   
+    }, [methodUpload]);
 
   return (
     <LineContainer>
