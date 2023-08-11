@@ -10,6 +10,7 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <HeaderLayout>
+      <HeaderOutContainer>
       <HeaderContainer>
         <LogoContainer>
           <Logo src={logo} />
@@ -33,6 +34,7 @@ const Header = () => {
           <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
         </LinkContainer>
       </HeaderContainer>
+      </HeaderOutContainer>
       <Navbar />
     </HeaderLayout>
   );
@@ -50,17 +52,23 @@ const HeaderLayout = styled.div`
   border-bottom: 1px solid #222020;
 `;
 
+const HeaderOutContainer = styled.div`
+  width: 100%;
+  border-bottom: 1px solid #d5d4d4;
+`;
+
 const HeaderContainer = styled.div`
-  max-width: 1920px;
+  width: 1136px;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 18px;
-  border-bottom: 1px solid #d5d4d4;
-  padding: 0 160px 0 160px;
   /* border: 1px solid red; */
   margin: 0 auto;
+  @media screen and (max-width: 1136px) {
+    width: 100%;
+  }
 `;
 
 const LogoContainer = styled.div`
