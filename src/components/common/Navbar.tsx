@@ -37,23 +37,13 @@ const Navbar = () => {
   );
 };
 const CategoryHeaderContainer = styled.div`
-  width: 1920px;
+  max-width: 1920px;
   height: 70px;
   display: flex;
   align-items: center;
 `;
 
 const Wrapper = styled.div`
-  width: 1136px;
-  display: flex;
-  align-items: center;
-  margin: 0px auto;
-  @media screen and (max-width: 1136px) {
-    width: 100%;
-  }
-`;
-
-const CategoryOutContainer = styled.div`
   width: 1136px;
   display: flex;
   align-items: center;
