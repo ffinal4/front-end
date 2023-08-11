@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-import image from "../assets/images/ppapparo.jpg";
+import TradeRequestList from "../components/TradeRequestPage/TradeRequestList";
 
 const TradeRequestPage = () => {
   return (
@@ -18,20 +18,16 @@ const TradeRequestPage = () => {
           <TradeStateMenu>상태</TradeStateMenu>
           <ChatState />
         </MenuContainer>
-        <RequestContainer>
-          <RequestDate>2023.07.30</RequestDate>
-          <TradeRequestItem>
-            <RequestItemImgContainer>
-              <Image src={image} />
-              <ContentContainer>
-                <ItemTitle>
-                  스파이더맨 어크로스 더 유니버스 IMAX 포스터
-                </ItemTitle>
-                <User>바꾼사람이핍포</User>
-              </ContentContainer>
-            </RequestItemImgContainer>
-          </TradeRequestItem>
-        </RequestContainer>
+        <TradeRequestList />
+        <TradeRequestList />
+        <TradeRequestList />
+        <TradeRequestList />
+        <TradeRequestList />
+        <TradeRequestList />
+        <TradeRequestList />
+        <TradeRequestList />
+        <TradeRequestList />
+        <TradeRequestList />
       </TradeRequestListContainer>
     </div>
   );
@@ -69,7 +65,8 @@ const Filter = styled.div`
 `;
 
 const TradeRequestListContainer = styled.div`
-  border: 3px solid black;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
   margin-top: 20px;
   width: 1136px;
   height: 1194px;
@@ -93,7 +90,7 @@ const RequestDateMenu = styled.div`
 `;
 
 const TradeRequestItemMenu = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 478px;
   display: flex;
   align-items: center;
@@ -103,7 +100,7 @@ const TradeRequestItemMenu = styled.div`
 `;
 
 const MyItemMenu = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 112px;
   display: flex;
   align-items: center;
@@ -113,7 +110,7 @@ const MyItemMenu = styled.div`
 `;
 
 const TradeStateMenu = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 172px;
   display: flex;
   align-items: center;
@@ -127,56 +124,4 @@ const ChatState = styled.div`
   width: 192px;
 `;
 
-const RequestContainer = styled.div`
-  border: 1.5px solid green;
-  height: 112px;
-  display: flex;
-  align-items: center;
-`;
-
-const RequestItemImgContainer = styled.div`
-  border: 1px solid blue;
-  width: 80px;
-  height: 80px;
-  display: flex;
-`;
-
-const Image = styled.img`
-  border: 1px solid black;
-  width: 80px;
-  height: 80px;
-`;
-
-const ContentContainer = styled.div`
-  border: 3px solid green;
-`;
-const RequestDate = styled.div`
-  border: 1px solid red;
-  width: 174px;
-  height: 112px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const TradeRequestItem = styled.div`
-  border: 1px solid red;
-  width: 478px;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-`;
-
-const ItemTitle = styled.div`
-  border: 1px solid red;
-  width: 346px;
-  height: 24px;
-  display: flex;
-  border: 1px solid blue;
-`;
-
-const User = styled.div`
-  border: 1px solid blue;
-  width: 346px;
-`;
 export default TradeRequestPage;
