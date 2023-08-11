@@ -65,15 +65,15 @@ const Filter = styled.div`
 `;
 
 const TradeRequestListContainer = styled.div`
-  border-top: 5px solid black;
-  border-bottom: 5px solid black;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
   margin-top: 20px;
   width: 1136px;
-  height: 1194px;
+  height: 1198px;
 `;
 
 const MenuContainer = styled.div`
-  /* border: 1px solid green; */
+  border-bottom: 2px solid #efefef;
   background-color: #efefef;
   display: flex;
   height: 56px;

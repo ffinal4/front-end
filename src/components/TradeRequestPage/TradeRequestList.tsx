@@ -31,7 +31,7 @@ const TradeRequestList = () => {
   );
 };
 const RequestContainer = styled.div`
-  border-bottom: 1px solid #e1e1e1;
+  border-bottom: 2px solid #e1e1e1;
   height: 112px;
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 80px;
   height: 80px;
 `;
@@ -60,7 +60,7 @@ const ContentContainer = styled.div`
   margin-left: 16px;
 `;
 const RequestDate = styled.div`
-  border-right: 1px solid #e1e1e1;
+  border-right: 2px solid #e1e1e1;
   width: 174px;
   height: 112px;
   display: flex;
@@ -69,7 +69,7 @@ const RequestDate = styled.div`
 `;
 
 const TradeRequestItem = styled.div`
-  border-right: 1px solid #e1e1e1;
+  border-right: 2px solid #e1e1e1;
   width: 478px;
   padding: 16px;
 `;
@@ -88,7 +88,7 @@ const User = styled.div`
 `;
 
 const MyItemContainer = styled.div`
-  border-right: 1px solid #e1e1e1;
+  border-right: 2px solid #e1e1e1;
   width: 112px;
   height: 112px;
   display: flex;
@@ -97,7 +97,7 @@ const MyItemContainer = styled.div`
 `;
 
 const StateContainer = styled.div`
-  border-right: 1px solid #e1e1e1;
+  border-right: 2px solid #e1e1e1;
   width: 172px;
   height: 112px;
   display: flex;

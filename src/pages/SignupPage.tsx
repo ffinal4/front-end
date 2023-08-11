@@ -7,6 +7,8 @@ import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
 import { postSignupApi } from "../api/users";
 import eyeImage from "../assets/images/eye.svg";
+import openeye from "../assets/icon/openeye.png";
+import closeeye from "../assets/icon/closeeye.png";
 
 interface SignupForm {
   email: string;
@@ -116,9 +118,9 @@ const SignupPage = () => {
           <PwInputContainer>
             <PwVisibleButton onClick={onClickPasswordType}>
               {pwType.visible ? (
-                <PwImg src={eyeImage} />
+                <PwImg src={closeeye} />
               ) : (
-                <PwImg src={eyeImage} />
+                <PwImg src={openeye} />
               )}
             </PwVisibleButton>
             <StBasicInput
@@ -143,14 +145,6 @@ const SignupPage = () => {
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
           <CheckPwInputContainer>
-            {/* <CheckPwVisibleButton onClick={onClickPasswordType}>
-              {pwType.visible ? (
-                <PwImg src={eyeImage} />
-              ) : (
-                <PwImg src={eyeImage} />
-              )}
-            </CheckPwVisibleButton> */}
-
             <StBasicInput
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
@@ -338,8 +332,8 @@ const PwVisibleButton = styled.button`
 `;
 const PwImg = styled.img`
   /* border: 1px solid red; */
-  width: 36px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
 `;
 const PwValidateMessage = styled.div`
   width: 656px;

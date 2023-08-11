@@ -33,7 +33,7 @@ const KakaoApi = (props: any) => {
       />
 
       <StBasicButton
-        buttonColor="#D9D9D9;"
+        buttonColor="#FDD988"
         style={{ marginLeft: "20px" }}
         onClick={handle.clickButton}
       >
