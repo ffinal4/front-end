@@ -12,6 +12,7 @@ import WantedUpload from "../components/UploadPage/WantedUpload";
 import { StBasicButton } from '../styles/BasicButton';
 import { postUploadApi } from "../api/goods";
 import { useNavigate } from "react-router-dom";
+import RatingUpload from "../components/UploadPage/RatingUpload";
 
 const UploadPage = () => {
 
@@ -33,11 +34,13 @@ const UploadPage = () => {
     }
   };
 
-  const [uploadImages, setUploadImages] = useState<{images: string[]}>({
-    images: []
-  });
-  const [uploadPrice, setUploadPrice] = useState<{sellerPrice: {sellerPrice: string}}>({
+  // const [uploadImages, setUploadImages] = useState<{images: File[]}>({
+  //   images: []
+  // });
+  const [uploadImages,setUploadImages]= useState<File[]>([]);
+  const [uploadPrice, setUploadPrice] = useState<{sellerPrice: {rating: string, sellerPrice: string}}>({
     sellerPrice: {
+      rating: "NO",
       sellerPrice: ""
     }
   });
@@ -57,15 +60,37 @@ const UploadPage = () => {
     }
   });
 
+  const formData = new FormData();
+
   const onClickUploadHandler = async () => {
-    const formData = new FormData();
-    uploadImages.images.forEach(images => formData.append("images", images));
-    formData.append("data", new Blob([JSON.stringify(uploadData.data)], { type: "application/json" }));
-    formData.append("wanted", new Blob([JSON.stringify(uploadData.wanted)], { type: "application/json" }));
-    formData.append("sellerPrice", new Blob([JSON.stringify(uploadPrice.sellerPrice)], { type: "application/json" }));
+    
+    
+    // formData.append("data", uploadData)
+    
+    // formData.append("sellerPrice", new Blob([JSON.stringify(uploadPrice.sellerPrice)], { type: "application/json" }));
+    
     try {
-      const response = await postUploadApi(formData);
-      if (response.status === 200) {
+      console.log(uploadImages, uploadData);
+      const sliceImages = uploadImages.slice(0, 3);
+      // const formData = new FormData();
+      // const newData = JSON.stringify(uploadData.data);
+      // const newWanted = JSON.stringify(uploadData.wanted);
+      sliceImages.forEach((blobImage, index) => {
+        formData.append('images', blobImage, `image${index + 1}.jpg`);
+      });
+      // const upLoadData = [uploadData.data]
+      // const upLoadWanted = [uploadData.wanted]
+      // formData.append("images", uploadImages)
+      formData.append("data", new Blob([JSON.stringify(uploadData.data)],{ type: "application/json" }))
+      formData.append("wanted", new Blob([JSON.stringify(uploadData.wanted)],{ type: "application/json" }))      
+      // formData.append("data", JSON.stringify(uploadData.data));
+      // formData.append("wanted", JSON.stringify(uploadData.wanted));
+      formData.forEach(function(value, key) {
+        console.log(key + ': ' + value);
+      });
+
+      const res = await postUploadApi(formData);
+      if (res.status === 200) {
         alert("업로드 성공!");
         navigate('/');
       };
@@ -111,16 +136,13 @@ const UploadPage = () => {
       // .catch(error => {
       //   console.error("에러 발생:", error);
       // });
-    console.log("uploadImages", uploadImages);
-    console.log("uploadData", uploadData);
-    console.log("uploadPrice", uploadPrice);
   };
 
   return (
     <PageLayout>
       <PageHeader>ADD TO MY POCKET</PageHeader>
       <TitleWrapper>
-        <PageTitle>내 주머니에 추가</PageTitle>
+        <PageTitle>주머니에 추가</PageTitle>
         <PageSubtitle>* 필수항목</PageSubtitle>
       </TitleWrapper>
       <PageContainer>
@@ -128,10 +150,11 @@ const UploadPage = () => {
         <TitleUpload setUploadData={setUploadData} uploadData={uploadData} />
         <CategoryUpload setUploadData={setUploadData} uploadData={uploadData} />
         <RegionUpload setUploadData={setUploadData} uploadData={uploadData} />
-        <ConditionUpload setUploadData={setUploadData} uploadData={uploadData} setUploadPrice={setUploadPrice} uploadPrice={uploadPrice} />
+        <ConditionUpload setUploadData={setUploadData} uploadData={uploadData} />
         <MethodUpload setUploadData={setUploadData} uploadData={uploadData} />
         <DetailUpload setUploadData={setUploadData} uploadData={uploadData} />
         <TagUpload />
+        <RatingUpload setUploadPrice={setUploadPrice} uploadPrice={uploadPrice} />
         <WantedUpload setUploadData={setUploadData} uploadData={uploadData} />
         <BtnWrapper>
           <StBasicButton buttonColor="#D9D9D9" onClick={onClickUploadHandler}>주머니에 추가</StBasicButton>
