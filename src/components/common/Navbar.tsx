@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import category from "../../assets/icon/category.png";
 import CategorySelect from "./CategorySelect";
 
 const Navbar = () => {
@@ -11,18 +12,20 @@ const Navbar = () => {
 
   return (
     <CategoryHeaderContainer>
-      <Button
+      <CategoryContainer
         onClick={() => {
           setSelectBar(!selectBar);
         }}
-      />
-      {selectBar && (
-        <CategorySelect
-          categorySelect={categorySelect}
-          setCategorySelect={setCategorySelect}
-          setSelectBar={setSelectBar}
-        />
-      )}
+      >
+        <CategoryImg src={category} />
+        {selectBar && (
+          <CategorySelect
+            categorySelect={categorySelect}
+            setCategorySelect={setCategorySelect}
+            setSelectBar={setSelectBar}
+          />
+        )}
+      </CategoryContainer>
       <MenuContainer>
         <Menu>물물교환</Menu>
         <Menu>포켓경매</Menu>
@@ -37,20 +40,18 @@ const CategoryHeaderContainer = styled.div`
   /* border: 1px solid green; */
   display: flex;
   align-items: center;
-  padding-left: 180px;
+  padding-left: 160px;
 `;
-const Button = styled.div`
-  width: 36px;
-  height: 36px;
-  background-color: #d9d9d9;
+const CategoryContainer = styled.div`
   cursor: pointer;
 `;
 
+const CategoryImg = styled.img``;
 const MenuContainer = styled.div`
   /* border: 1px solid red; */
   display: flex;
   align-items: center;
-  margin-left: 100px;
+  margin-left: 60px;
 `;
 
 const Menu = styled.div`
@@ -58,5 +59,6 @@ const Menu = styled.div`
   margin-left: 40px;
   margin-right: 40px;
   cursor: pointer;
+  font-weight: 400;
 `;
 export default Navbar;

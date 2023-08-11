@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
 import { postSignupApi } from "../api/users";
+import eyeImage from "../assets/images/eye.svg";
 
 interface SignupForm {
   email: string;
@@ -20,13 +21,25 @@ const SignupPage = () => {
 
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
+  const [pwType, setpwType] = useState({ type: "password", visible: false });
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
-  // const handleCheckNickname = async (
-  //   nickname: string,
-  //   e: React.MouseEvent<HTMLButtonElement>
-  // ) => {
-  //   e.preventDefault();
-  // };
+  const onClickPasswordType = (event: any) => {
+    event.preventDefault();
+    setpwType(() => {
+      if (!pwType.visible) {
+        return { type: "text", visible: true };
+      } else {
+        return { type: "password", visible: false };
+      }
+    });
+  };
+
+  const handleEmailChange = (event: any) => {
+    const emailValue = event.target.value;
+    const isValid = /^[a-zA-Z\d]{2,}$/.test(emailValue);
+    setIsEmailValid(isValid);
+  };
 
   const {
     register,
@@ -70,6 +83,7 @@ const SignupPage = () => {
             <StBasicInput
               type="email"
               placeholder="이메일을 입력해주세요"
+              onFocus={handleEmailChange}
               {...register("email", {
                 required: "필수입력 항목입니다.",
                 pattern: {
@@ -82,7 +96,9 @@ const SignupPage = () => {
 
           <AtContainer>@</AtContainer>
           <SelectContainer>
-            <EmailSelect {...register("select", { required: "필수입력 항목입니다." })}>
+            <EmailSelect
+              {...register("select", { required: "필수입력 항목입니다." })}
+            >
               <option value="">선택해주세요</option>
               <option value="@naver.com">naver.com</option>
               <option value="@hanmail.net">hanmail.net</option>
@@ -99,8 +115,15 @@ const SignupPage = () => {
         <PwContainer>
           <Label>비밀번호</Label>
           <PwInputContainer>
+            <PwVisibleButton onClick={onClickPasswordType}>
+              {pwType.visible ? (
+                <PwImg src={eyeImage} />
+              ) : (
+                <PwImg src={eyeImage} />
+              )}
+            </PwVisibleButton>
             <StBasicInput
-              type="password"
+              type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("password", {
                 required: "필수입력 항목입니다.",
@@ -110,7 +133,8 @@ const SignupPage = () => {
                 },
                 pattern: {
                   value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
-                  message: "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
+                  message:
+                    "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
                 },
               })}
             />
@@ -120,8 +144,16 @@ const SignupPage = () => {
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
           <CheckPwInputContainer>
+            <CheckPwVisibleButton onClick={onClickPasswordType}>
+              {pwType.visible ? (
+                <PwImg src={eyeImage} />
+              ) : (
+                <PwImg src={eyeImage} />
+              )}
+            </CheckPwVisibleButton>
+
             <StBasicInput
-              type="password"
+              type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("confirmPassword", {
                 required: "필수입력 항목입니다.",
@@ -136,7 +168,9 @@ const SignupPage = () => {
             />
           </CheckPwInputContainer>
         </CheckPwContainer>
-        <CheckPwValidateMessage>{errors?.confirmPassword?.message}</CheckPwValidateMessage>
+        <CheckPwValidateMessage>
+          {errors?.confirmPassword?.message}
+        </CheckPwValidateMessage>
         <AddressContainer>
           <Label>주소</Label>
           <AddressInputContainer>
@@ -149,7 +183,9 @@ const SignupPage = () => {
           </AddressInputContainer>
         </AddressContainer>
         <ContentContainer>
-          <AddressContent>입력한 주소는 나의 주거래 지역으로 표시됩니다.</AddressContent>
+          <AddressContent>
+            입력한 주소는 나의 주거래 지역으로 표시됩니다.
+          </AddressContent>
         </ContentContainer>
 
         <NickNameContainer>
@@ -218,7 +254,6 @@ const TitleContainer = styled.div`
   /* border: 1px solid red; */
   width: 100%;
   margin: auto;
-  margin-top: 160px;
 `;
 const Title = styled.div`
   font-size: 40px;
@@ -290,6 +325,22 @@ const PwContainer = styled.div`
 const PwInputContainer = styled.div`
   /* border: 1px solid red; */
   width: 656px;
+  position: relative;
+`;
+
+const PwVisibleButton = styled.button`
+  /* border: 1px solid blue; */
+  cursor: pointer;
+  width: 36px;
+  height: 30px;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+`;
+const PwImg = styled.img`
+  /* border: 1px solid red; */
+  width: 36px;
+  height: 30px;
 `;
 const PwValidateMessage = styled.div`
   width: 656px;
@@ -300,6 +351,7 @@ const PwValidateMessage = styled.div`
 `;
 const CheckPwInputContainer = styled.div`
   width: 656px;
+  position: relative;
 `;
 
 const CheckPwContainer = styled.div`
@@ -307,6 +359,16 @@ const CheckPwContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+`;
+
+const CheckPwVisibleButton = styled.button`
+  cursor: pointer;
+  /* border: 1px solid red; */
+  position: absolute;
+  width: 36px;
+  height: 30px;
+  top: 8px;
+  right: 12px;
 `;
 const CheckPwValidateMessage = styled.div`
   width: 656px;
