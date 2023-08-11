@@ -39,7 +39,6 @@ const Navbar = () => {
 const CategoryHeaderContainer = styled.div`
   max-width: 1920px;
   height: 70px;
-  /* border: 1px solid green; */
   display: flex;
   align-items: center;
 `;
@@ -53,11 +52,13 @@ const Wrapper = styled.div`
     width: 100%;
   }
 `;
+
 const CategoryContainer = styled.div`
   cursor: pointer;
 `;
 
 const CategoryImg = styled.img``;
+
 const MenuContainer = styled.div`
   /* border: 1px solid red; */
   display: flex;

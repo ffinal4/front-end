@@ -10,31 +10,33 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <HeaderLayout>
-      <HeaderOutContainer>
-      <HeaderContainer>
-        <LogoContainer>
-          <Logo src={logo} />
-          <LogoTitle src={title} />
-        </LogoContainer>
-        <InputContainer>
-          <SearchButton>
-            <img src={search} />
-          </SearchButton>
-          <SearchInput type="search" placeholder="Search" />
-        </InputContainer>
-        <LinkContainer>
-          <LoginLink
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            로그인
-          </LoginLink>
-          <BoxContainer />
-          <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
-        </LinkContainer>
-      </HeaderContainer>
-      </HeaderOutContainer>
+      <HeaderoutContainer>
+        <HeaderContainer>
+          <LogoContainer>
+            <Logo src={logo} />
+            <LogoTitle src={title} />
+          </LogoContainer>
+          <InputContainer>
+            <SearchButton>
+              <img src={search} />
+            </SearchButton>
+            <SearchInput type="search" placeholder="Search" />
+          </InputContainer>
+          <LinkContainer>
+            <LoginLink
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              로그인
+            </LoginLink>
+            <BoxContainer />
+            <SignupLink onClick={() => navigate("/signup")}>
+              회원가입
+            </SignupLink>
+          </LinkContainer>
+        </HeaderContainer>
+      </HeaderoutContainer>
       <Navbar />
     </HeaderLayout>
   );
@@ -52,7 +54,7 @@ const HeaderLayout = styled.div`
   border-bottom: 1px solid #222020;
 `;
 
-const HeaderOutContainer = styled.div`
+const HeaderoutContainer = styled.div`
   width: 100%;
   border-bottom: 1px solid #d5d4d4;
 `;
@@ -64,7 +66,6 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 18px;
-  /* border: 1px solid red; */
   margin: 0 auto;
   @media screen and (max-width: 1136px) {
     width: 100%;
