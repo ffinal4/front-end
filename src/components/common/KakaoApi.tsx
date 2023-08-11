@@ -26,6 +26,7 @@ const KakaoApi = (props: any) => {
   return (
     <>
       <StBasicInput
+        borderColor="#ADADAD"
         type="text"
         placeholder="주소를 입력해주세요."
         value={address}

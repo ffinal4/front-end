@@ -83,6 +83,7 @@ const SignupPage = () => {
           <Label>이메일(아이디)</Label>
           <EmailInputContainer>
             <StBasicInput
+              borderColor="#ADADAD"
               type="email"
               placeholder="이메일을 입력해주세요"
               {...register("email", {
@@ -124,6 +125,7 @@ const SignupPage = () => {
               )}
             </PwVisibleButton>
             <StBasicInput
+              borderColor="#ADADAD"
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("password", {
@@ -146,6 +148,7 @@ const SignupPage = () => {
           <Label>비밀번호 확인</Label>
           <CheckPwInputContainer>
             <StBasicInput
+              borderColor="#ADADAD"
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("confirmPassword", {
@@ -185,6 +188,7 @@ const SignupPage = () => {
           <SecondLabel>닉네임</SecondLabel>
           <NickNameInputContainer>
             <StBasicInput
+              borderColor="#ADADAD"
               type="text"
               placeholder="한글, 영문, 숫자를 이용한 2~15자"
               {...register("nickname", {
@@ -295,6 +299,8 @@ const EmailSelect = styled.select`
   height: 44px;
   padding: 10px;
   font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #adadad;
 `;
 
 const ValidateMessage = styled.div`
