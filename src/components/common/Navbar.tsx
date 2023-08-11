@@ -12,41 +12,53 @@ const Navbar = () => {
 
   return (
     <CategoryHeaderContainer>
-      <CategoryContainer
-        onClick={() => {
-          setSelectBar(!selectBar);
-        }}
-      >
-        <CategoryImg src={category} />
-        {selectBar && (
-          <CategorySelect
-            categorySelect={categorySelect}
-            setCategorySelect={setCategorySelect}
-            setSelectBar={setSelectBar}
-          />
-        )}
-      </CategoryContainer>
-      <MenuContainer>
-        <Menu>물물교환</Menu>
-        <Menu>포켓경매</Menu>
-        <Menu>레이팅</Menu>
-      </MenuContainer>
+      <CategoryOutContainer>
+        <CategoryContainer
+          onClick={() => {
+            setSelectBar(!selectBar);
+          }}
+        >
+          <CategoryImg src={category} />
+          {selectBar && (
+            <CategorySelect
+              categorySelect={categorySelect}
+              setCategorySelect={setCategorySelect}
+              setSelectBar={setSelectBar}
+            />
+          )}
+        </CategoryContainer>
+        <MenuContainer>
+          <Menu>물물교환</Menu>
+          <Menu>포켓경매</Menu>
+          <Menu>레이팅</Menu>
+        </MenuContainer>
+      </CategoryOutContainer>
     </CategoryHeaderContainer>
   );
 };
 const CategoryHeaderContainer = styled.div`
-  max-width: 1920px;
+  width: 1920px;
   height: 70px;
-  /* border: 1px solid green; */
   display: flex;
   align-items: center;
-  padding-left: 160px;
 `;
+
+const CategoryOutContainer = styled.div`
+  width: 1136px;
+  display: flex;
+  align-items: center;
+  margin: 0px auto;
+  @media screen and (max-width: 1136px) {
+    width: 100%;
+  }
+`;
+
 const CategoryContainer = styled.div`
   cursor: pointer;
 `;
 
 const CategoryImg = styled.img``;
+
 const MenuContainer = styled.div`
   /* border: 1px solid red; */
   display: flex;
