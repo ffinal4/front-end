@@ -1,12 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { styled } from 'styled-components'
 
-interface Props {
-    uploadData: object;
-    setUploadData: React.Dispatch<React.SetStateAction<object>>;
-};
-
-const DetailUpload :React.FC<Props> = ({ uploadData, setUploadData }) => {
+const DetailUpload = ({ uploadData, setUploadData } : any) => {
 
     const [detailInfo, setDetailInfo] = useState({
         content: "",
@@ -21,7 +16,7 @@ const DetailUpload :React.FC<Props> = ({ uploadData, setUploadData }) => {
     })}, [detailInfo]);
 
     const onBlurTextAreaHandler = () => {
-        setUploadData({...uploadData, content});
+        setUploadData({...uploadData, data: {...uploadData.data, content: content}});
     };
 
   return (

@@ -1,12 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { styled } from 'styled-components'
 
-interface Props {
-    uploadData: object;
-    setUploadData: React.Dispatch<React.SetStateAction<object>>;
-};
-
-const TitleUpload : React.FC<Props> = ({ setUploadData, uploadData }) => {
+const TitleUpload = ({ setUploadData, uploadData } : any) => {
 
     const [titleInput, setTitleInput] = useState({
         title: ""
@@ -18,11 +13,9 @@ const TitleUpload : React.FC<Props> = ({ setUploadData, uploadData }) => {
         setTitleInput({
             ...titleInput,
             [name]: value
-    })}, [titleInput]);
-
-    const onBlurEventHandler = () => {
-        setUploadData({...uploadData, title});
-    };
+        });
+        setUploadData({...uploadData, data: {...uploadData.data, title: title}});
+    }, [titleInput]);
 
     return (
         <LineContainer>
@@ -35,7 +28,6 @@ const TitleUpload : React.FC<Props> = ({ setUploadData, uploadData }) => {
                     value={titleInput.title}
                     placeholder='제목을 입력해주세요.'
                     onChange={(event) => memoizedCallback(event)}
-                    onBlur={onBlurEventHandler}
                 >
                 </TitleInput>
                 <Text color={(titleInput.title.length >= 40) ? "red" : "#000"}>{titleInput.title.length}/40</Text>

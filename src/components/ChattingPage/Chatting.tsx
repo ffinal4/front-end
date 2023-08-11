@@ -110,7 +110,7 @@ const Chatting : React.FC<Props> = ({ item, messageList, setMessageList }) => {
 
 const ChattingContainer = styled.div`
     width: 560px;
-    height: 756px;
+    height: 720px;
     border: 1px solid #C3C3C3;
     background-color: #FFF;
     padding: 30px 0px;
@@ -120,7 +120,7 @@ const ChattingContainer = styled.div`
 
 const ChattingWrapper = styled.div`
     width: 100%;
-    height: 642px;
+    height: 606px;
     padding: 0px 48px;
     overflow-y: scroll;
 `;

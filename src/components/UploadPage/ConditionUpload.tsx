@@ -2,27 +2,30 @@ import React, { useCallback, useState } from 'react'
 import { styled } from 'styled-components'
 import { StBasicButton } from '../../styles/BasicButton';
 
-interface Props {
-    uploadData: object;
-    setUploadData: React.Dispatch<React.SetStateAction<object>>;
-};
-
-const ConditionUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
+const ConditionUpload = ({ uploadData, setUploadData, setUploadPrice, uploadPrice } : any) => {
 
     const [conditionProduct, setConditionProduct] = useState({
-        goodsCondition: "",
         price: "",
     });
-    const { goodsCondition, price } = conditionProduct;
+    const { price } = conditionProduct;
 
     const onCheckNewCondition = () => {
-        setConditionProduct({...conditionProduct, goodsCondition: "상"})
+        setUploadData({
+            ...uploadData,
+            data: {...uploadData.data, goodsCondition: "상"}
+        });
     };
     const onCheckUsedCondition = () => {
-        setConditionProduct({...conditionProduct, goodsCondition: "중"})
+        setUploadData({
+            ...uploadData,
+            data: {...uploadData.data, goodsCondition: "중"}
+        });
     };
     const onCheckDamagedCondition = () => {
-        setConditionProduct({...conditionProduct, goodsCondition: "하"})
+        setUploadData({
+            ...uploadData,
+            data: {...uploadData.data, goodsCondition: "하"}
+        });
     };
 
     const memoizedCallback = useCallback((event : React.ChangeEvent<HTMLInputElement>) => {
@@ -31,16 +34,14 @@ const ConditionUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
         setConditionProduct({
             ...conditionProduct,
             [name]: numValue
-    })}, [conditionProduct]);
+        })
+        setUploadPrice({...uploadPrice, sellerPrice: {...uploadPrice.sellerPrice, sellerPrice: price}});
+    }, [conditionProduct]);
 
     const numericValue = parseFloat(price);
     const formatted  = numericValue.toLocaleString();
     // console.log("wow", formatted);
     // console.log("price", price);
-
-    const onBlurEventHandler = () => {
-        setUploadData({...uploadData, goodsCondition, price});
-    };
 
   return (
     <LineContainer>
@@ -48,20 +49,20 @@ const ConditionUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
         <AllWrapper>
             <Wrapper>
                 <StBasicButton
-                    buttonColor={(goodsCondition === "상") ? "#575757" : "white"}
-                    style={{color: `${(goodsCondition === "상") ? "white" : "#000"}`}}
+                    buttonColor={(uploadData.data.goodsCondition === "상") ? "#575757" : "white"}
+                    style={{color: `${(uploadData.data.goodsCondition === "상") ? "white" : "#000"}`}}
                     onClick={onCheckNewCondition}
                 >상
                 </StBasicButton>
                 <StBasicButton
-                    buttonColor={(goodsCondition === "중") ? "#575757" : "white"}
-                    style={{color: `${(goodsCondition === "중") ? "white" : "#000"}`}}
+                    buttonColor={(uploadData.data.goodsCondition === "중") ? "#575757" : "white"}
+                    style={{color: `${(uploadData.data.goodsCondition === "중") ? "white" : "#000"}`}}
                     onClick={onCheckUsedCondition}
                 >중
                 </StBasicButton>
                 <StBasicButton
-                    buttonColor={(goodsCondition === "하") ? "#575757" : "white"}
-                    style={{color: `${(goodsCondition === "하") ? "white" : "#000"}`}}
+                    buttonColor={(uploadData.data.goodsCondition === "하") ? "#575757" : "white"}
+                    style={{color: `${(uploadData.data.goodsCondition === "하") ? "white" : "#000"}`}}
                     onClick={onCheckDamagedCondition}
                 >하
                 </StBasicButton>
@@ -73,7 +74,6 @@ const ConditionUpload : React.FC<Props> = ({ uploadData, setUploadData }) => {
                     value={(price) ? formatted : price}
                     placeholder='100,000'
                     onChange={(event) => memoizedCallback(event)}
-                    onBlur={onBlurEventHandler}
                 />
                 <Text>원</Text>
             </PriceWrapper>

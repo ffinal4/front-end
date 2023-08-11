@@ -41,69 +41,99 @@ const ChattingPage = () => {
     };
 
   return (
-    <div>
     <PageContainer>
         <ContainerWrapper>
-                {messageList.map((item) => {
-                    return (
-                        <ChatWrapper>
-                    {(item.isOpen)
-                    ? (<ListContainer>
-                    <ListCard backgroundColor='#FFF' key={item.name} onClick={() => onClickOpenEventHandler(item.name)}>
-                        <MessageLeftWrapper>
-                            <ProfileImage src={item.profile} />
-                            <LastMessageWrapper>
-                                <LastMessageTitle>{item.name}</LastMessageTitle>
-                                <LastMessageContent>{item.message}</LastMessageContent>
-                            </LastMessageWrapper>
-                        </MessageLeftWrapper>
-                        <ProductImages src={item.image}/>
-                    </ListCard>
-                    </ListContainer>)
-                : (<ListContainer>
-                <ListCard backgroundColor='#EAEAEA' key={item.name} onClick={() => onClickOpenEventHandler(item.name)}>
-                    <MessageLeftWrapper>
-                        <ProfileImage src={item.profile} />
-                        <LastMessageWrapper>
-                            <LastMessageTitle>{item.name}</LastMessageTitle>
-                            <LastMessageContent>{item.message}</LastMessageContent>
-                        </LastMessageWrapper>
-                    </MessageLeftWrapper>
-                    <ProductImages src={item.image}/>
-                </ListCard>
-                </ListContainer>)}
-                <ChattingContainer>
-                {(item.isOpen) && <Chatting item={item} messageList={messageList} setMessageList={setMessageList}/>}
-                </ChattingContainer>
-                </ChatWrapper>
+            {messageList.map((item) => {
+                return (
+                    <ListContainer>            
+                        {(item.isOpen)
+                        ? (
+                        <ListCard backgroundColor='#FFF' key={item.name} onClick={() => onClickOpenEventHandler(item.name)}>
+                            <MessageLeftWrapper>
+                                <ProfileImage src={item.profile} />
+                                <LastMessageWrapper>
+                                    <LastMessageTitle>{item.name}</LastMessageTitle>
+                                    <LastMessageContent>{item.message}</LastMessageContent>
+                                </LastMessageWrapper>
+                            </MessageLeftWrapper>
+                            <ProductImages src={item.image}/>
+                        </ListCard>
+                        )
+                        : (
+                        <ListCard backgroundColor='#EAEAEA' key={item.name} onClick={() => onClickOpenEventHandler(item.name)}>
+                            <MessageLeftWrapper>
+                                <ProfileImage src={item.profile} />
+                                <LastMessageWrapper>
+                                    <LastMessageTitle>{item.name}</LastMessageTitle>
+                                    <LastMessageContent>{item.message}</LastMessageContent>
+                                </LastMessageWrapper>
+                            </MessageLeftWrapper>
+                            <ProductImages src={item.image}/>
+                        </ListCard>
+                        )}
+                    <ChatWrapper>
+                        <ChattingContainer>
+                            {(item.isOpen) && <Chatting item={item} messageList={messageList} setMessageList={setMessageList}/>}
+                        </ChattingContainer>
+                    </ChatWrapper>
+                </ListContainer>
                     )
                 })
-                }
+                }      
         </ContainerWrapper>  
         <BottomContainer />
     </PageContainer>
-    </div>
   )
 };
 
 const PageContainer = styled.div`
     width: 100%;
-    height: 1080px;
+    height: 965px;
     display: flex;
     background-color: #F0F0F0;
     padding: 138px 392px 0px 392px;
     position: relative;
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #ffc596;
+        border-radius: 5px;
+        &:hover {
+            background-color: #f0b280;
+        }
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #fff1e3;
+    }
 `;
 
 const ContainerWrapper = styled.div`
-    width: 100%; 
+    width: 51%;
+    display: grid;
+    overflow: auto;
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #ffc596;
+        border-radius: 5px;
+        &:hover {
+            background-color: #f0b280;
+        }
+    }
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
 `;
 
 const ListContainer = styled.div`
     width: 560px;
+    height: 120px;
     border-left: 1px solid #C3C3C3;
     border-right: 1px solid #C3C3C3;
-    cursor: pointer;
 `;
 
 const ListCard = styled.div<{ backgroundColor : string }>`
@@ -114,7 +144,8 @@ const ListCard = styled.div<{ backgroundColor : string }>`
     align-items: center;
     background-color: ${(props) => props.backgroundColor};
     border-bottom: 1px solid #C3C3C3;
-    padding: 20px 18px 20px 20px;
+    padding: 20px 20px 20px 20px;
+    cursor: pointer;
 `;
 
 const ProfileImage = styled.div<{ src : string }>`
@@ -158,6 +189,7 @@ const ProductImages = styled.img`
 
 const ChatWrapper = styled.div`
     width: 100%;
+    height: 900px;
 `;
 
 const ChattingContainer = styled.div`
@@ -168,7 +200,7 @@ const ChattingContainer = styled.div`
 
 const BottomContainer = styled.div`
     width: 100%;
-    height: 186px;
+    height: 114px;
     position: absolute;
     bottom: 0;
     left: 0;

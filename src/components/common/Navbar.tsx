@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <CategoryHeaderContainer>
-      <CategoryOutContainer>
+      <Wrapper>
         <CategoryContainer
           onClick={() => {
             setSelectBar(!selectBar);
@@ -32,7 +32,7 @@ const Navbar = () => {
           <Menu>포켓경매</Menu>
           <Menu>레이팅</Menu>
         </MenuContainer>
-      </CategoryOutContainer>
+      </Wrapper>
     </CategoryHeaderContainer>
   );
 };
@@ -41,6 +41,16 @@ const CategoryHeaderContainer = styled.div`
   height: 70px;
   display: flex;
   align-items: center;
+`;
+
+const Wrapper = styled.div`
+  width: 1136px;
+  display: flex;
+  align-items: center;
+  margin: 0px auto;
+  @media screen and (max-width: 1136px) {
+    width: 100%;
+  }
 `;
 
 const CategoryOutContainer = styled.div`
