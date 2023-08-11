@@ -34,21 +34,21 @@ const TradeRequestPage = () => {
 };
 
 const Title = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-size: 40px;
   font-weight: 700;
   line-height: 110%;
 `;
 
 const Container = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 16px;
 `;
 const SubTitle = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
