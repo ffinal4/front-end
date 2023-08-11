@@ -35,11 +35,11 @@ const SignupPage = () => {
     });
   };
 
-  const handleEmailChange = (event: any) => {
-    const emailValue = event.target.value;
-    const isValid = /^[a-zA-Z\d]{2,}$/.test(emailValue);
-    setIsEmailValid(isValid);
-  };
+  // const handleEmailChange = (event: any) => {
+  //   const emailValue = event.target.value;
+  //   const isValid = /^[a-zA-Z\d]{2,}$/.test(emailValue);
+  //   setIsEmailValid(isValid);
+  // };
 
   const {
     register,
@@ -83,7 +83,6 @@ const SignupPage = () => {
             <StBasicInput
               type="email"
               placeholder="이메일을 입력해주세요"
-              onFocus={handleEmailChange}
               {...register("email", {
                 required: "필수입력 항목입니다.",
                 pattern: {
@@ -144,13 +143,13 @@ const SignupPage = () => {
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
           <CheckPwInputContainer>
-            <CheckPwVisibleButton onClick={onClickPasswordType}>
+            {/* <CheckPwVisibleButton onClick={onClickPasswordType}>
               {pwType.visible ? (
                 <PwImg src={eyeImage} />
               ) : (
                 <PwImg src={eyeImage} />
               )}
-            </CheckPwVisibleButton>
+            </CheckPwVisibleButton> */}
 
             <StBasicInput
               type={pwType.type}
