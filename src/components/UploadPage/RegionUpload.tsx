@@ -2,12 +2,7 @@ import React, { useState } from 'react'
 import { styled } from 'styled-components'
 import { StBasicButton } from '../../styles/BasicButton';
 
-interface Props {
-  uploadData: object;
-  setUploadData: React.Dispatch<React.SetStateAction<object>>;
-};
-
-const RegionUpload : React.FC<Props>= ({ uploadData, setUploadData }) => {
+const RegionUpload = ({ uploadData, setUploadData } : any) => {
 
   const [region, setRegion] = useState({
     location: "경기도 00시 00구 00동",

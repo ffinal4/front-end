@@ -2,12 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components'
 import CategorySelect from '../common/CategorySelect';
 
-interface Props {
-    uploadData: object;
-    setUploadData: React.Dispatch<React.SetStateAction<object>>;
-};
-
-const CategoryUpload : React.FC<Props> = ({ setUploadData, uploadData }) => {
+const CategoryUpload = ({ setUploadData, uploadData } : any) => {
 
     const  [categorySelect, setCategorySelect] = useState({
         category: "",
@@ -22,7 +17,7 @@ const CategoryUpload : React.FC<Props> = ({ setUploadData, uploadData }) => {
 
     useEffect(() => {
         if (category !== "") {
-            setUploadData({...uploadData, category});
+            setUploadData({...uploadData, data: {...uploadData.data, category: category}});
         };
     }, [selectBar]);
 

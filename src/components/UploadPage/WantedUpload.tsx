@@ -1,33 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import CategorySelect from '../common/CategorySelect';
 
-const WantedUpload = () => {
+const WantedUpload = ({ uploadData, setUploadData } : any) => {
 
     const  [categorySelect, setCategorySelect] = useState({
         category: "",
         name: "카테고리 선택",
     });
     const [selectBar, setSelectBar] = useState<boolean>(false);
+    const [info, setInfo] = useState({
+        title: "",
+        content: ""
+    });
+    const { category, name } = categorySelect;
+    const { title, content } = info;
 
     const onClickDropDownHandelr = () => {
         setSelectBar(!selectBar);
     };
 
-    const [info, setInfo] = useState("");
-
-    const onChangeTextInfoHandler = (event: any) => {
-        setInfo(event.target.value);
+    const onChangeTextInfoHandler = (event: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setInfo({
+            ...info,
+            [name]: value
+        });
     };
+
+    const onBlurEventHandler = () => {
+        setUploadData({...uploadData, wanted: {...uploadData.wanted, title: title, content: content}});
+    };
+
+    useEffect(() => {
+        if (category !== "") {
+            setUploadData({...uploadData, wanted: {...uploadData.wanted, category: category}});
+        };
+    }, [selectBar]);
 
   return (
     <LastLineContainer>
         <RequiredText>받아요</RequiredText>
         <LastWrapper>
-            <SelectBar style={{marginBottom: "30px"}}>
-                <Text>{categorySelect.name}</Text>
-                <ChoiceBox onClick={onClickDropDownHandelr}></ChoiceBox>
-            </SelectBar>
+            <SelecBarWrapper>
+                <SelectBar style={{marginBottom: "30px"}}>
+                    <Text>{name}</Text>
+                    <ChoiceBox onClick={onClickDropDownHandelr}></ChoiceBox>
+                </SelectBar>
+            </SelecBarWrapper>
             {(selectBar)
                 && <SelectContainer>
                     <CategorySelect
@@ -40,22 +60,28 @@ const WantedUpload = () => {
             <TitleInput
                     type='text'
                     maxLength={40}
+                    name='title'
+                    value={title}
                     placeholder='제목을 입력해주세요.'
+                    onChange={onChangeTextInfoHandler}
+                    onBlur={onBlurEventHandler}
                 >
             </TitleInput>
             <InputContainer>
                 <DesciptionTextarea
                     typeof='text'
                     maxLength={2000}
-                    value={info}
+                    name='content'
+                    value={content}
                     placeholder='구입 연도, 브랜드, 사용감, 하자 유무 등 교환을 원하는 사람들에게 필요한 정보를 꼭 포함해주세요! (최소 10자 이상)'
                     onChange={onChangeTextInfoHandler}
+                    onBlur={onBlurEventHandler}
                 />
             </InputContainer>
             <TextCount
                 style={{marginBottom: "30px"}}
-                color={(info.length >= 2000) ? "red" : "#000"}
-            >{info.length}/2000
+                color={(content.length >= 2000) ? "red" : "#000"}
+            >{content.length}/2000
             </TextCount>
             <TagInput
                 placeholder='태그를 입력해주세요.'
@@ -79,6 +105,10 @@ const RequiredText = styled.div`
     min-width: 191px;
 `;
 
+const SelecBarWrapper = styled.div`
+    width: 100%;
+`;
+
 const SelectBar = styled.div`
     display: inline-flex;
     height: 44px;
@@ -96,6 +126,7 @@ const SelectBar = styled.div`
 
 const LastWrapper = styled.div`
     width: 100%;
+    display: grid;
 `;
 
 const Text = styled.div`
