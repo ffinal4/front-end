@@ -47,8 +47,8 @@ const DetailContainer = () => {
           <SlidePageBarWrapper>
             {slidePageBar.map((item) =>
               (currentImg + 1 === item)
-              ? <SlidePageBar height='10px' backgdcolor='#7D7D7D'></SlidePageBar>
-              : <SlidePageBar height='8px' backgdcolor='#c7c7c7'></SlidePageBar>
+              ? <SlidePageBar backgdcolor='#c4c4c4'></SlidePageBar>
+              : <SlidePageBar backgdcolor='#5c5c5c'></SlidePageBar>
             )}
           </SlidePageBarWrapper>
         </ImageOutContainer>
@@ -141,9 +141,10 @@ const SlidePageBarWrapper = styled.div`
   gap: 8px;
 `;
 
-const SlidePageBar = styled.div<{ height: string, backgdcolor: string }>`
-  width: 24px;
-  height: ${(props) => props.height};
+const SlidePageBar = styled.div<{ backgdcolor: string }>`
+  width: 7px;
+  height: 7px;
+  border-radius: 100%;
   background-color: ${(props) => props.backgdcolor};
   opacity: 0.4;
 `;

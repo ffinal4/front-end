@@ -22,7 +22,7 @@ const LastLineContainer = styled.div`
     width: 100%;
     display: flex;
     padding: 30px 0px 60px 0px;
-    border-bottom: 4px solid;
+    border-bottom: 2px solid #EAEAEA;
 `;
 
 const RequiredText = styled.div`

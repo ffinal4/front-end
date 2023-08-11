@@ -4,6 +4,7 @@ import instance from ".";
 interface upLoadBody {
   formdata: {
     images: string[];
+    
     sellerPrice: {
       sellerPrice: string
     };

@@ -194,6 +194,7 @@ const TitleInput = styled.input`
 `;
 
 const SelectContainer = styled.div`
+    margin: 40px 0px 0px 0px;
     position: absolute;
 `;
 
