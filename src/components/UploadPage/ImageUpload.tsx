@@ -1,8 +1,9 @@
-import React, { ChangeEvent, MouseEventHandler, useState } from "react";
+import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import removeIcon from "../../assets/images/remove.png";
 
-const ImageUpload = () => {
+const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
+
   type FileState = {
     default: { id: number; imageUrl: string };
     second: { id: number; imageUrl: string };
@@ -64,6 +65,10 @@ const ImageUpload = () => {
       third: { ...file.third, imageUrl: "" },
     });
   };
+
+  useEffect(() => {
+      setUploadImages({...uploadImages, images: [] = imageUrlLists.slice(0,3)});
+  }, [file]);
 
   return (
     <LineContainer>
