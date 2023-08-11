@@ -22,8 +22,10 @@ const TradeRequestList = () => {
           </ImgContainer>
         </MyItemContainer>
         <StateContainer>교환진행중</StateContainer>
-        <button>채팅</button>
-        <button>완료</button>
+        <ButtonContainer>
+          <ChatButton>채팅</ChatButton>
+          <CompleteButton>완료</CompleteButton>
+        </ButtonContainer>
       </RequestContainer>
     </div>
   );
@@ -101,5 +103,27 @@ const StateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const ButtonContainer = styled.div`
+  /* border: 1px solid red; */
+
+  margin: auto;
+`;
+const ChatButton = styled.button`
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80px;
+  padding: 10px 0px;
+  margin-right: 16px;
+`;
+
+const CompleteButton = styled.button`
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80px;
+  padding: 10px 0px;
 `;
 export default TradeRequestList;
