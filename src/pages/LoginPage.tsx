@@ -57,6 +57,7 @@ const LoginPage = () => {
           <InputContainer>
             <EmailInputContainer>
               <StBasicInput
+                focusBorderColor="#222020"
                 borderColor="#222020"
                 type="email"
                 value={email}
@@ -66,6 +67,7 @@ const LoginPage = () => {
             </EmailInputContainer>
             <PwInputContainer>
               <StBasicInput
+                focusBorderColor="#222020"
                 borderColor="#222020"
                 type="password"
                 value={password}
