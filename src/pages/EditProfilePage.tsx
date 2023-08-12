@@ -5,8 +5,9 @@ import DaumPostcode from "react-daum-postcode";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
-import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
 import KakaoApi from "../components/common/KakaoApi";
+import { patchProfileEditApi } from "../api/users";
+import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
 
 interface EditForm {
   select: string;
@@ -14,12 +15,12 @@ interface EditForm {
   newPassword: string;
   confirmPassword: string;
   nickname: string;
-  address: string;
+  location: string;
 }
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
-  const [address, setAddress] = useState(""); //주소
+  const [location, setLocation] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
 
   const {
@@ -28,6 +29,25 @@ const EditProfilePage = () => {
     handleSubmit,
     getValues,
   } = useForm<EditForm>({ mode: "onBlur" });
+
+  const editprofileOnclick = async (data: any) => {
+    // const newForm = {
+    //   password: data.password,
+    //   nickname: data.nickname,
+    //   location: data.location,
+    //   // userImg: data.useImage;
+    // };
+    // try {
+    //   const res = await patchProfileEditApi(userId, newForm);
+    //   if (res.status === 201) {
+    //     console.log("개인정보수정완료", res);
+    //     navigate("/login");
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
+
   return (
     <div>
       <EditProfilePageContainer>
@@ -38,23 +58,9 @@ const EditProfilePage = () => {
           </Title>
         </TitleContainer>
         <EditProfileForm
-        // onSubmit={handleSubmit(async (data) => {
-        //   const newForm = {
-        //     email: `${data.email}${data.select}`,
-        //     password: data.password,
-        //     nickname: data.nickname,
-        //   };
-        //   try {
-        //     const res = await patchEditProfileApi(newForm);
-        //     if(res.status === 201) {
-        //       console.log("개인정보수정완료", res);
-        //       navigate("/login")
-        //     }
-        //   } catch(error){
-        //     console.log(error);
-        //     alert(JSON.stringify(error.response.data.data))
-        //   }
-        // })}
+          onSubmit={(data: any) => {
+            editprofileOnclick(data);
+          }}
         >
           <ProfileImageContainer>
             <ProfileImageUpload />
@@ -140,8 +146,8 @@ const EditProfilePage = () => {
           </AddressLabelContainer>
           <AddressContainer>
             <KakaoApi
-              address={address}
-              setAddress={setAddress}
+              location={location}
+              setLocation={setLocation}
               openPostcode={openPostcode}
               setOpenPostcode={setOpenPostcode}
             />

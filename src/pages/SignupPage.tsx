@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
 import { postSignupApi } from "../api/users";
-import eyeImage from "../assets/images/eye.svg";
 import openeye from "../assets/icon/openeye.png";
 import closeeye from "../assets/icon/closeeye.png";
 
@@ -24,7 +23,6 @@ const SignupPage = () => {
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [pwType, setpwType] = useState({ type: "password", visible: false });
-  const [isEmailValid, setIsEmailValid] = useState(false);
 
   const onClickPasswordType = (event: any) => {
     event.preventDefault();
@@ -36,12 +34,6 @@ const SignupPage = () => {
       }
     });
   };
-
-  // const handleEmailChange = (event: any) => {
-  //   const emailValue = event.target.value;
-  //   const isValid = /^[a-zA-Z\d]{2,}$/.test(emailValue);
-  //   setIsEmailValid(isValid);
-  // };
 
   const {
     register,
@@ -56,9 +48,6 @@ const SignupPage = () => {
       password: data.password,
       nickname: data.nickname,
     };
-    console.log(data.password);
-    console.log(data.nickname);
-    // console.log(newForm);
     try {
       const res = await postSignupApi(newForm);
       if (res.status === 200) {
@@ -69,6 +58,7 @@ const SignupPage = () => {
       console.log(error);
     }
   };
+
   return (
     <SignUpPageContainer>
       <TitleContainer>

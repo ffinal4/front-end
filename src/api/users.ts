@@ -21,3 +21,18 @@ export const postLoginApi = async (body: loginBody) => {
   const res = await instance.post("/api/users/login", body);
   return res;
 };
+
+// 개인정보수정
+interface profileEditBody {
+  nickname: string;
+  password: string;
+  location: string;
+  // userImg: string;
+}
+export const patchProfileEditApi = async (
+  userId: string,
+  body: profileEditBody
+) => {
+  const res = await instance.patch(`/api/users/${userId}`);
+  return res;
+};
