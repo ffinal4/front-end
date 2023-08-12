@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../assets/logo/logo.png";
@@ -13,6 +13,9 @@ const Header = () => {
   const navigate = useNavigate();
   const [isLogIn, setIsLogIn] = useState<boolean>(false);
 
+  // useEffect(() => {
+  //   let localStorage =
+  // });
   return (
     <HeaderLayout>
       <HeaderoutContainer>

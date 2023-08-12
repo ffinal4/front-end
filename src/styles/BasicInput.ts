@@ -1,6 +1,9 @@
 import { styled } from "styled-components";
 
-export const StBasicInput = styled.input<{ borderColor: string }>`
+export const StBasicInput = styled.input<{
+  borderColor: string;
+  focusBorderColor: string;
+}>`
   width: 100%;
   height: 44px;
   padding: 10px 0px 10px 20px;
@@ -9,6 +12,6 @@ export const StBasicInput = styled.input<{ borderColor: string }>`
   border-radius: 5px;
   &:focus {
     outline: none !important;
-    border-color: #ec0000;
+    border-color: ${(props) => props.focusBorderColor};
   }
 `;

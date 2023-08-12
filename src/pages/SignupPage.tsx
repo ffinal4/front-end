@@ -84,6 +84,7 @@ const SignupPage = () => {
           <EmailInputContainer>
             <StBasicInput
               borderColor="#ADADAD"
+              focusBorderColor="#EC0000"
               type="email"
               placeholder="이메일을 입력해주세요"
               {...register("email", {
@@ -126,6 +127,7 @@ const SignupPage = () => {
             </PwVisibleButton>
             <StBasicInput
               borderColor="#ADADAD"
+              focusBorderColor="#EC0000"
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("password", {
@@ -149,6 +151,7 @@ const SignupPage = () => {
           <CheckPwInputContainer>
             <StBasicInput
               borderColor="#ADADAD"
+              focusBorderColor="#EC0000"
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("confirmPassword", {
@@ -189,6 +192,7 @@ const SignupPage = () => {
           <NickNameInputContainer>
             <StBasicInput
               borderColor="#ADADAD"
+              focusBorderColor="#EC0000"
               type="text"
               placeholder="한글, 영문, 숫자를 이용한 2~15자"
               {...register("nickname", {

@@ -108,12 +108,11 @@ const LoginPage = () => {
       <SecondBoxConatiner>
         <img src={secondbox} />
       </SecondBoxConatiner>
+
       <FooterContainer>
         <FirstFooter>
           <FirstImg src={footer} />
-          <SecondFooter>
-            <img src={vector} />
-          </SecondFooter>
+          <SecondImg src={vector} />
         </FirstFooter>
       </FooterContainer>
     </LoginPageContainer>
@@ -123,7 +122,7 @@ const LoginPageContainer = styled.div`
   /* border: 5px solid blue; */
   background-color: #fcf6e9;
   position: relative;
-  /* padding-top: 100px; */
+  padding-top: 240px;
 `;
 
 const LoginContainer = styled.div`
@@ -133,7 +132,7 @@ const LoginContainer = styled.div`
   height: 652px;
   border: 1px solid black;
   margin: 0 auto;
-  margin-top: 240px;
+  /* margin-top: 240px; */
   background-color: white;
   box-shadow: black 0px 0px 0px 2px inset,
     rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,
@@ -261,28 +260,20 @@ const SignupLink = styled.button`
 `;
 
 const FirstBoxContainer = styled.div`
-  /* width: 431.5px;
-  height: 358.2px; */
   margin: -380px 690.9px 119.2px 100px;
   transform: rotate(-8.96deg);
-  /* border: solid 2px #000; */
-  /* background-color: #fff; */
   position: absolute;
 `;
 const SecondBoxConatiner = styled.div`
-  /* width: 389.6px;
-  height: 401.1px; */
   margin: -380px 195.4px 200px 1100px;
   transform: rotate(17.357deg);
-  /* border: solid 2px #000;
-  background-color: #fff; */
   position: absolute;
 `;
 const FooterContainer = styled.div`
-  width: 1920px;
   position: relative;
+  width: 100%;
   position: absolute;
-  top: 500px;
+  top: 800px;
   z-index: 999;
 `;
 const FirstFooter = styled.div`
@@ -294,12 +285,12 @@ const FirstFooter = styled.div`
 const FirstImg = styled.img`
   width: 100%;
 `;
-const SecondFooter = styled.div`
+const SecondImg = styled.img`
   position: absolute;
   width: 100%;
   z-index: 999;
   top: 0;
-  bottom: 0;
+  left: 0px;
 `;
 
 export default LoginPage;
