@@ -67,6 +67,7 @@ const EditProfilePage = () => {
             <CommonLabel>닉네임</CommonLabel>
             <NickNameInputContainer>
               <StBasicInput
+                focusBorderColor="#EC0000"
                 borderColor="#ADADAD"
                 type="text"
                 placeholder="닉네임을 입력해주세요."
@@ -78,6 +79,7 @@ const EditProfilePage = () => {
             <Label>현재 비밀번호</Label>
             <PwInputContainer>
               <StBasicInput
+                focusBorderColor="#EC0000"
                 borderColor="#ADADAD"
                 type="password"
                 placeholder="현재 비밀번호를 입력해주세요."
@@ -90,6 +92,7 @@ const EditProfilePage = () => {
             <SetPwInputContainer>
               <NewInputContainer>
                 <StBasicInput
+                  focusBorderColor="#EC0000"
                   borderColor="#ADADAD"
                   type="password"
                   placeholder="새 비밀번호를 입력해주세요."
@@ -112,6 +115,7 @@ const EditProfilePage = () => {
 
               <CheckPwInputContainer>
                 <StBasicInput
+                  focusBorderColor="#EC0000"
                   borderColor="#ADADAD"
                   type="password"
                   placeholder="비밀번호를 확인해주세요."
