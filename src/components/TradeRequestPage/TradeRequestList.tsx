@@ -1,8 +1,10 @@
 import React from "react";
 import { styled } from "styled-components";
 import image from "../../assets/images/ppapparo.jpg";
+import { useNavigate } from "react-router-dom";
 
 const TradeRequestList = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <RequestContainer>
@@ -23,7 +25,13 @@ const TradeRequestList = () => {
         </MyItemContainer>
         <StateContainer>교환진행중</StateContainer>
         <ButtonContainer>
-          <ChatButton>채팅</ChatButton>
+          <ChatButton
+            onClick={() => {
+              navigate("/chat");
+            }}
+          >
+            채팅
+          </ChatButton>
           <CompleteButton>완료</CompleteButton>
         </ButtonContainer>
       </RequestContainer>

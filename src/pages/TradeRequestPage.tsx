@@ -56,7 +56,8 @@ const SubTitle = styled.div`
 `;
 
 const Filter = styled.div`
-  border: 1px solid #222020;
+  border-bottom: 1px solid #222020;
+  cursor: pointer;
   width: 176px;
   height: 44px;
   display: flex;

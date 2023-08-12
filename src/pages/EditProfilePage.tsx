@@ -66,7 +66,11 @@ const EditProfilePage = () => {
           <NickNameContainer>
             <CommonLabel>닉네임</CommonLabel>
             <NickNameInputContainer>
-              <StBasicInput type="text" placeholder="닉네임을 입력해주세요." />
+              <StBasicInput
+                borderColor="#ADADAD"
+                type="text"
+                placeholder="닉네임을 입력해주세요."
+              />
             </NickNameInputContainer>
           </NickNameContainer>
           <Content>* 이미 사용중인 이메일입니다.</Content>
@@ -74,6 +78,7 @@ const EditProfilePage = () => {
             <Label>현재 비밀번호</Label>
             <PwInputContainer>
               <StBasicInput
+                borderColor="#ADADAD"
                 type="password"
                 placeholder="현재 비밀번호를 입력해주세요."
               />
@@ -85,6 +90,7 @@ const EditProfilePage = () => {
             <SetPwInputContainer>
               <NewInputContainer>
                 <StBasicInput
+                  borderColor="#ADADAD"
                   type="password"
                   placeholder="새 비밀번호를 입력해주세요."
                   {...register("newPassword", {
@@ -106,6 +112,7 @@ const EditProfilePage = () => {
 
               <CheckPwInputContainer>
                 <StBasicInput
+                  borderColor="#ADADAD"
                   type="password"
                   placeholder="비밀번호를 확인해주세요."
                   {...register("confirmPassword", {
@@ -161,7 +168,6 @@ const TitleContainer = styled.div`
   /* border: 1px solid red; */
   width: 100%;
   margin: auto;
-  margin-top: 160px;
 `;
 const Title = styled.div`
   font-size: 40px;

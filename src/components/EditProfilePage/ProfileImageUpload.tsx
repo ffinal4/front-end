@@ -20,7 +20,9 @@ const ProfileImageUpload = () => {
       <TextWrapper>
         <Text>* 상품 이미지는 112X112에 최적화되어 있습니다.</Text>
         <Text>- 이미지는 프로필 등록 시 원형으로 잘려서 등록됩니다.</Text>
-        <TextWrapper>- 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다.</TextWrapper>
+        <Text>
+          - 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다.
+        </Text>
       </TextWrapper>
     </LineContainer>
   );
@@ -28,7 +30,7 @@ const ProfileImageUpload = () => {
 
 const LineContainer = styled.div`
   display: flex;
-  padding: 30px 0px 30px 0px;
+  padding: 40px 0px 31px 0px;
   border-bottom: 1px solid gray;
 `;
 
@@ -80,8 +82,8 @@ const UploadInputBox = styled.input`
 
 const TextWrapper = styled.div`
   /* border: 1px solid black; */
-  margin: 22px 0px 0px 0px;
-  padding-top: 170px;
+  /* margin: 22px 0px 0px 0px; */
+  padding-top: 190px;
 `;
 
 export default ProfileImageUpload;
