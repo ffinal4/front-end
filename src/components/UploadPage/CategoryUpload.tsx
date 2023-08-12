@@ -45,7 +45,7 @@ const LineContainer = styled.div`
     width: 100%;
     display: flex;
     padding: 30px 0px 30px 0px;
-    border-bottom: 2px dotted #EAEAEA;
+    border-bottom: 2px solid #EAEAEA;
 `;
 
 const RequiredText = styled.div`
@@ -85,7 +85,7 @@ const ChoiceBox = styled.div`
 `;
 
 const SelectContainer = styled.div`
-    padding: 50px 0px 0px 192px;
+    padding: 40px 0px 0px 192px;
     position: absolute;
 `;
 

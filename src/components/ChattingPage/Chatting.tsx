@@ -121,7 +121,7 @@ const ChattingContainer = styled.div`
 const ChattingWrapper = styled.div`
     width: 100%;
     height: 606px;
-    padding: 0px 48px;
+    padding: 0px 35px;
     overflow-y: scroll;
 `;
 

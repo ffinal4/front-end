@@ -17,19 +17,35 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
   });
 
   const [imageUrlLists, setImageUrlLists] = useState<string[]>([]);
+  const [imagesBlobFile, setImagesBlobFile] = useState<File[]>([]);
 
+  const formData = new FormData();
   const onChangeFileHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    
+
+    console.log("fileList", event.target.files);
+    
     const fileList = event.target.files;
     // let imageUrlLists: string[] = [];
+    
 
     if (fileList && fileList.length > 0) {
       for (let i = 0; i < fileList.length; i++) {
+        const blobImage = fileList[i];
         const fileUrl = URL.createObjectURL(fileList[i]);
+        // uploadImages.images.push(blobImage);
+        // imagesBlobFile.push(blobImage);
+        uploadImages.push(blobImage);
+      
         imageUrlLists.push(fileUrl);
-        console.log(fileList);
+        
+        // console.log(fileList);
         // console.log(fileUrl);
-        // console.log(imageUrlLists);
+        // console.log("imageUrlLists", imageUrlLists);
       }
+      console.log("imageUrlLists", imageUrlLists);
+      console.log("uploadImages", uploadImages);
+
     }
     // const SliceFile = imageUrlLists.slice(0,3)
     // const ObjectFile = SliceFile.forEach((element, index) => { obj['key' + index] = element; });
@@ -46,7 +62,11 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
     const switchValues = (imageUrlLists: string[], index1: number, index2: number) => {
       [imageUrlLists[index1], imageUrlLists[index2]] = [imageUrlLists[index2], imageUrlLists[index1]];
     };
+    const switchFile = (uploadImages: string[], index1: number, index2: number) => {
+      [uploadImages[index1], uploadImages[index2]] = [uploadImages[index2], uploadImages[index1]];
+    };
 
+    switchFile(uploadImages, 0, id - 1);
     switchValues(imageUrlLists, 0, id - 1);
     setFile({
       ...file,
@@ -57,6 +77,7 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
   };
 
   const onClickRemoveHandler = () => {
+    setUploadImages([]);
     setImageUrlLists([]);
     setFile({
       ...file,
@@ -66,9 +87,9 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
     });
   };
 
-  useEffect(() => {
-      setUploadImages({...uploadImages, images: [] = imageUrlLists.slice(0,3)});
-  }, [file]);
+  // useEffect(() => {
+  //   uploadImages.push(imagesFile.slice(0,3));
+  // }, [imageUrlLists]);
 
   return (
     <LineContainer>
@@ -166,7 +187,7 @@ const LineContainer = styled.div`
   width: 100%;
   display: flex;
   padding: 30px 0px 30px 0px;
-  border-bottom: 2px dotted #eaeaea;
+  border-bottom: 2px solid #eaeaea;
 `;
 
 const ContentContainer = styled.div`

@@ -127,6 +127,10 @@ const ContainerWrapper = styled.div`
     ::-webkit-scrollbar-track {
         background-color: white;
     }
+
+    @media screen and (max-width: 1136px) {
+        width: 100%;
+    }
 `;
 
 const ListContainer = styled.div`

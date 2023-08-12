@@ -21,6 +21,26 @@ const CategorySelect : React.FC<Props> = ({ categorySelect, setSelectBar, setCat
     name: string;
   };
 
+  enum Category {
+    WOMAN = "여성패션/잡화",
+    MAN = "남성패션/잡화",
+    FURNITURE = "가구/인테리어",
+    HOBBY = "취미/게임/음반/굿즈",
+    BOOK = "도서",
+    BEAUTY = "뷰티/미용",
+    BABY = "유아동/유아물품",
+    KITCHEN = "생활주방용품",
+    TICKET = "티켓/교환권",
+    SPORTS = "스포츠/레저",
+    PET = "반려동물용품",
+    DIGITAL = "디지털기기",
+    ELECTRONICS = "가전제품",
+    ART = "예술/희귀/수집품",
+    PLANT = "식물",
+    FOOD = "가공식품",
+    ETC = "기타물품"
+  };
+
   const categoryArray : Kind[] = [
     {category: "WOMAN", name: "여성패션/잡화"},
     {category: "MAN", name: "남성패션/잡화"},
@@ -60,7 +80,6 @@ const CategorySelect : React.FC<Props> = ({ categorySelect, setSelectBar, setCat
                 key={item.category}
                 onClick={() => onClickChoiceHandelr(item)}
               >
-                <Icon src={CategoryIcon}/>
                 <Text >{item.name}</Text>
               </CategoryKindWrapper>
               )
@@ -76,6 +95,8 @@ const CategoryContainer = styled.div`
     position: absolute;
     box-shadow: 1px 1px 8px 0px #c7c7c7;
     background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -88,9 +109,10 @@ const CategoryHeader = styled.div`
     display: flex;
     align-items: center;
     padding: 20px;
-    background-color: #EDEDED;
+    background-color: #39373A;
+    color: #fff;
     font-family: "Pretendard";
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 150%;
 `;
@@ -105,23 +127,15 @@ const CategoryWrapper = styled.div`
 const CategoryKindWrapper = styled.div`
   display: flex;
   width: 200px;
-  padding: 20px 0px 20px 10px;
+  padding: 20px 0px 20px 20px;
   align-items: center;
   gap: 10px;
   cursor: pointer;
 
   &:hover {
     font-weight: 700;
-    background-color: #D9D9D9;
+    background-color: #EFEFEF;
   };
-`;
-
-const Icon = styled.img`
-  width: 24px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Text = styled.div`
