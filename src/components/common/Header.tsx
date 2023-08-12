@@ -16,6 +16,7 @@ const Header = () => {
   // useEffect(() => {
   //   let localStorage =
   // });
+
   return (
     <HeaderLayout>
       <HeaderoutContainer>
@@ -30,7 +31,7 @@ const Header = () => {
             </SearchButton>
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
-          {!isLogIn ? (
+          {isLogIn ? (
             <LinkContainer>
               <LoginLink
                 onClick={() => {
@@ -47,7 +48,12 @@ const Header = () => {
           ) : (
             <IconContainer>
               <Alarm src={alarm} />
-              <Mypage src={mypage} />
+              <Mypage
+                src={mypage}
+                onClick={() => {
+                  navigate("/mypage");
+                }}
+              />
               <Peeppo src={peeppo} />
             </IconContainer>
           )}
@@ -103,6 +109,7 @@ const Logo = styled.img`
 const LogoTitle = styled.img``;
 
 export const BoxContainer = styled.div`
+  border: 1px solid #ec8d49;
   width: 2px;
   height: 16px;
   background-color: #d8bda3;
