@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../assets/logo/logo.png";
 import title from "../../assets/logo/logo_title.png";
 import search from "../../assets/icon/search.png";
+import alarm from "../../assets/icon/alarm.png";
+import mypage from "../../assets/icon/mypage.png";
+import peeppo from "../../assets/icon/peeppo.png";
 import Navbar from "./Navbar";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isLogIn, setIsLogIn] = useState<boolean>(false);
+
   return (
     <HeaderLayout>
       <HeaderoutContainer>
@@ -22,19 +27,27 @@ const Header = () => {
             </SearchButton>
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
-          <LinkContainer>
-            <LoginLink
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              로그인
-            </LoginLink>
-            <BoxContainer />
-            <SignupLink onClick={() => navigate("/signup")}>
-              회원가입
-            </SignupLink>
-          </LinkContainer>
+          {!isLogIn ? (
+            <LinkContainer>
+              <LoginLink
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                로그인
+              </LoginLink>
+              <BoxContainer />
+              <SignupLink onClick={() => navigate("/signup")}>
+                회원가입
+              </SignupLink>
+            </LinkContainer>
+          ) : (
+            <IconContainer>
+              <Alarm src={alarm} />
+              <Mypage src={mypage} />
+              <Peeppo src={peeppo} />
+            </IconContainer>
+          )}
         </HeaderContainer>
       </HeaderoutContainer>
       <Navbar />
@@ -143,4 +156,27 @@ const SignupLink = styled.div`
   font-size: 16px;
   /* width: 100%; */
   height: 24px;
+`;
+
+const IconContainer = styled.div`
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+`;
+
+const Alarm = styled.img`
+  /* border: 1px solid blue; */
+  margin-right: 20px;
+  cursor: pointer;
+`;
+
+const Mypage = styled.img`
+  /* border: 1px solid blue; */
+  margin-right: 20px;
+  cursor: pointer;
+`;
+
+const Peeppo = styled.img`
+  /* border: 1px solid blue; */
+  cursor: pointer;
 `;
