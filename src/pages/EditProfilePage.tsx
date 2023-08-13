@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useForm } from "react-hook-form";
-import DaumPostcode from "react-daum-postcode";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
-import { patchProfileEditApi } from "../api/users";
 import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
 
 interface EditForm {

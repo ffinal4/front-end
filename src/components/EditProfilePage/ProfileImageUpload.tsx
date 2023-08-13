@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 
 const ProfileImageUpload = () => {
+  // const [uploadImage, setUploadImage] = useState<File>("");
   return (
     <LineContainer>
       <RequiredText>프로필 사진</RequiredText>
