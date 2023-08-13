@@ -28,7 +28,11 @@ const Header = () => {
     <HeaderLayout>
       <HeaderoutContainer>
         <HeaderContainer>
-          <LogoContainer>
+          <LogoContainer
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <Logo src={logo} />
             <LogoTitle src={title} />
           </LogoContainer>
@@ -102,7 +106,7 @@ const HeaderContainer = styled.div`
 `;
 
 const LogoContainer = styled.div`
-  /* border: 1px solid blue; */
+  cursor: pointer;
   display: flex;
   align-items: center;
   width: 174px;

@@ -278,14 +278,17 @@ const SignupLink = styled.button`
 const Box = styled.div`
   border: 1px solid red;
   width: 100%;
+  @media screen and (max-width: 834px) {
+    width: 834px;
+  }
 `;
 const FirstBoxContainer = styled.div`
-  margin: -380px 690.9px 119.2px 100px;
+  margin: -330px 690.9px 119.2px 100px;
   transform: rotate(-8.96deg);
   position: absolute;
 `;
 const SecondBoxConatiner = styled.div`
-  margin: -380px 195.4px 200px 1100px;
+  margin: -350px 195.4px 200px 1100px;
   transform: rotate(17.357deg);
   position: absolute;
 `;
