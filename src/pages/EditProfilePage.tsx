@@ -186,12 +186,14 @@ const TitleContainer = styled.div`
 const Title = styled.div`
   font-size: 40px;
   font-weight: 800;
+  font-family: "Lemon/Milk", sans-serif;
   /* margin-bottom: 30px; */
 `;
 const SubTitle = styled.div`
   font-size: 32px;
   margin-top: 16px;
   margin-bottom: 16px;
+  font-family: Pretendard;
 `;
 const EditProfileForm = styled.form`
   /* border: 1px solid black; */

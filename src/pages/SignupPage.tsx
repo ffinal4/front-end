@@ -252,6 +252,7 @@ const TitleContainer = styled.div`
   margin: auto;
 `;
 const Title = styled.div`
+  font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
   font-weight: 800;
   margin-bottom: 30px;
