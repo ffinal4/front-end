@@ -117,6 +117,9 @@ const EditProfilePage = () => {
                   })}
                 />
                 <PwValidation>{errors?.newPassword?.message}</PwValidation>
+                <PwContent>
+                  영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상
+                </PwContent>
               </NewInputContainer>
 
               <CheckPwInputContainer>
@@ -130,7 +133,7 @@ const EditProfilePage = () => {
                     validate: {
                       check: (value) => {
                         if (getValues("password") !== value) {
-                          return "비밀번호가 일치하지 않습니다.";
+                          return "* 비밀번호가 일치하지 않습니다.";
                         }
                       },
                     },
@@ -158,12 +161,15 @@ const EditProfilePage = () => {
         </EditProfileForm>
         <AssignButtonContainer>
           <StBasicButton
+            color="#FCFCFC"
+            fontWeight="400"
+            borderColor="#D5D4D4"
             buttonColor="#D9D9D9;"
             onClick={() => {
               navigate("/login");
             }}
           >
-            변경사항 저장
+            변경저장
           </StBasicButton>
         </AssignButtonContainer>
       </EditProfilePageContainer>
@@ -210,6 +216,7 @@ const EmailContainer = styled.div`
 const Label = styled.div`
   /* border: 1px solid red; */
   font-size: 20px;
+  font-family: Pretendard;
   width: 150px;
   font-weight: 700;
   display: flex;
@@ -217,6 +224,7 @@ const Label = styled.div`
 `;
 const Email = styled.div`
   /* border: 1px solid red; */
+  font-family: Pretendard;
 `;
 
 const NickNameContainer = styled.div`
@@ -232,12 +240,14 @@ const CommonLabel = styled.div`
   font-weight: 700;
   /* border: 1px solid red; */
   margin-right: 70px;
+  font-family: Pretendard;
 `;
 const NickNameInputContainer = styled.div`
   width: 656px;
 `;
 const Content = styled.div`
   /* border: 1px solid blue; */
+  font-family: Pretendard;
   width: 465px;
   height: 24px;
   margin-left: 220px;
@@ -268,6 +278,7 @@ const NewInputContainer = styled.div`
 `;
 const CheckPwInputContainer = styled.div`
   /* border: 1px solid green; */
+  margin-bottom: 30px;
 `;
 const CheckPwContainer = styled.div`
   /* border: 3px solid green; */
@@ -280,11 +291,21 @@ const CheckPwContainer = styled.div`
 const PwValidation = styled.div`
   color: red;
   margin-top: 10px;
-  margin-bottom: 30px;
+
   font-size: 16px;
 `;
+
+const PwContent = styled.div`
+  font-family: Pretendard;
+  margin-bottom: 30px;
+  color: #808080;
+  font-size: 16px;
+  font-weight: 400;
+`;
+
 const CurrentAddress = styled.div`
   /* border: 1px solid red; */
+  font-family: Pretendard;
 
   font-size: 16px;
 `;
@@ -299,6 +320,7 @@ const AddressLabel = styled.label`
   width: 150px;
   height: 33px;
   font-size: 20px;
+  font-family: Pretendard;
   font-weight: bold;
   margin-right: 70px;
 `;
@@ -312,6 +334,7 @@ const AddressContainer = styled.div`
 `;
 const AddContent = styled.div`
   /* border: 1px solid red; */
+  font-family: Pretendard;
   margin: 10px 0px 40px 220px;
   color: gray;
 `;
