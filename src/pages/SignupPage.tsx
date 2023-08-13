@@ -199,6 +199,7 @@ const SignupPage = () => {
 
           <StBasicButton
             color="#FCFCFC"
+            fontWeight="400"
             borderColor="#D5D4D4"
             buttonColor="#D9D9D9;"
             style={{ marginLeft: "20px" }}
@@ -211,9 +212,10 @@ const SignupPage = () => {
       <AssignButtonContainer>
         <StBasicButton
           color="#FCFCFC"
+          fontWeight="400"
           borderColor="#D5D4D4"
+          buttonColor="#D9D9D9"
           type="submit"
-          buttonColor="#D9D9D9;"
           onClick={handleSubmit(async (data) => {
             const newForm = {
               email: `${data.email}${data.select}`,
