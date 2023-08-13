@@ -14,7 +14,7 @@ export const StBasicButton = styled.button<{
   width: 176px;
   height: 44px;
   border-radius: 5px;
-  border-color: ${(props) => props.borderColor};
+  border: 1px solid ${(props) => props.borderColor};
   background-color: ${(props) => props.buttonColor};
   font-weight: ${(props) => props.fontWeight};
   cursor: pointer;

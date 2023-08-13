@@ -9,8 +9,8 @@ export const StBasicInput = styled.input<{
   padding: 10px 0px 10px 20px;
   font-family: Pretendard;
   font-size: 16px;
-  border: 1px solid ${(props) => props.borderColor};
   border-radius: 5px;
+  border: 1px solid ${(props) => props.borderColor};
   &:focus {
     outline: none !important;
     border-color: ${(props) => props.focusBorderColor};

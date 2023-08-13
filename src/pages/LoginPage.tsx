@@ -89,8 +89,8 @@ const LoginPage = () => {
           </SecondContainer>
           <ButtonContainer>
             <StBasicButton
+              borderColor="#000"
               buttonColor="#FFCA64;"
-              borderColor="#000;"
               fontWeight="700"
               type="submit"
               onClick={loginOnclick}
