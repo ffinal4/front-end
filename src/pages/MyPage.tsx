@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from 'styled-components';
 import ProfileContent from '../components/MyPage/ProfileContent';
-import PocketContent from '../components/MyPage/PocketContent';
+import MyPippo from '../components/MyPage/MyPippo';
 
 const MyPage = () => {
   return (
@@ -10,6 +10,7 @@ const MyPage = () => {
             <MyPageTitle>MY PAGE</MyPageTitle>
             <MyPageContentContainer>
                 <ProfileContent />
+                <MyPippo />
             </MyPageContentContainer>
         </LayoutContainer>
     </AllLayoutContainer>
@@ -26,7 +27,7 @@ const LayoutContainer = styled.div`
     width: 1144px;
     height: 1010px;
     margin: 0 auto;
-    padding: 84px 0px 100px 0px;
+    padding: 220px 0px 100px 0px;
 
     @media screen and (max-width: 1144px) {
         width: 100%;

@@ -47,7 +47,7 @@ const DetailContainer = () => {
           <SlidePageBarWrapper>
             {slidePageBar.map((item) =>
               (currentImg + 1 === item)
-              ? <SlidePageBar backgdcolor='#c4c4c4'></SlidePageBar>
+              ? <SlidePageBar backgdcolor='#fff'></SlidePageBar>
               : <SlidePageBar backgdcolor='#5c5c5c'></SlidePageBar>
             )}
           </SlidePageBarWrapper>

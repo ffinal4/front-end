@@ -1,27 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components';
 import Image from '../../assets/images/pocket.png'
 
-const PocketContent = () => {
+const MyPippo = () => {
+
+  const [point, setPoint] = useState(0);
+
+  useEffect(() => {
+    const interVal = setInterval(() => {
+      if (point < 84) {
+        setPoint(point + 1);
+      }
+    }, 15);
+    return () => clearInterval(interVal);
+  }, [point])
+
   return (
     <RightContainer>
       <TitleContainer>MY POCKET</TitleContainer>
       <RightContentContainer>
-        <RightImgWrapper>
-          <ImageCard src={Image} />
-          <ImageCard src={Image} />
-          <ImageCard src={Image} />
-          <ImageCard src={Image} />
-          <ImageCard src={Image} />
-          <ImageCard src={Image} />
-        </RightImgWrapper>
+        <PointText>나의 포인트</PointText>
+        <PointCount>{point}PP</PointCount>
       </RightContentContainer>
     </RightContainer>
   )
 };
 
 const RightContainer = styled.div`
-  width: 368px;
+  width: 176px;
 `;
 
 const TitleContainer = styled.div`
@@ -34,21 +40,38 @@ const TitleContainer = styled.div`
 `;
 
 const RightContentContainer = styled.div`
-  display: flex;
   width: 100%;
   height: 204px;
   align-items: center;
-  padding: 17px 20px 16px 20px;
+  padding: 60px 32px 60px 32px;
   border: 1px solid #000;
-  overflow: hidden;
 `;
 
-const RightImgWrapper = styled.div`
+const RightPointWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   width: 100%;
   height: 100%;
+`;
+
+const PointText = styled.div`
+  display: flex;
+  justify-content: center;
+  font-family: "Pretendard";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 150%;
+  margin: 0px 0px 10px 0px;
+`;
+
+const PointCount = styled.div`
+  display: flex;
+  justify-content: center;
+  font-family: "Lemon/Milk", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 110%;
 `;
 
 const ImageCard = styled.div<{ src: string }>`
@@ -60,4 +83,4 @@ const ImageCard = styled.div<{ src: string }>`
   cursor: pointer;
 `;
 
-export default PocketContent;
+export default MyPippo;
