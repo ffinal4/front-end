@@ -62,7 +62,7 @@ const SignupPage = () => {
   return (
     <SignUpPageContainer>
       <TitleContainer>
-        <Title>READY TO PEEPO</Title>
+        <Title>READY TO PEEPO?</Title>
       </TitleContainer>
       <SignUpForm
         onSubmit={(data: any) => {
@@ -198,9 +198,10 @@ const SignupPage = () => {
           </NickNameInputContainer>
 
           <StBasicButton
+            color="#FCFCFC"
+            borderColor="#D5D4D4"
             buttonColor="#D9D9D9;"
             style={{ marginLeft: "20px" }}
-            // onClick={((e) => handleCheckNickname(getValues("nickname")), e)}
           >
             중복 확인
           </StBasicButton>
@@ -209,6 +210,8 @@ const SignupPage = () => {
       </SignUpForm>
       <AssignButtonContainer>
         <StBasicButton
+          color="#FCFCFC"
+          borderColor="#D5D4D4"
           type="submit"
           buttonColor="#D9D9D9;"
           onClick={handleSubmit(async (data) => {
@@ -272,10 +275,10 @@ const EmailContainer = styled.div`
 `;
 const Label = styled.div`
   /* border: 1px solid red; */
+  font-family: Pretendard;
   font-size: 20px;
   width: 180px;
   font-weight: 700;
-
   display: flex;
   margin-right: 70px;
 `;
@@ -295,6 +298,7 @@ const EmailSelect = styled.select`
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #adadad;
+  font-family: Pretendard;
 `;
 
 const ValidateMessage = styled.div`
@@ -390,6 +394,7 @@ const SecondLabel = styled.div`
   font-weight: 700;
   /* border: 1px solid red; */
   margin-right: 50px;
+  font-family: Pretendard;
 `;
 const NickNameInputContainer = styled.div`
   width: 464px;
@@ -403,6 +408,7 @@ const AddressContent = styled.div`
   /* border: 1px solid blue; */
   width: 100%;
   height: 24px;
+  font-family: Pretendard;
 
   color: gray;
   margin-bottom: 30px;
