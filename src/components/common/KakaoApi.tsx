@@ -4,10 +4,10 @@ import { StBasicButton } from "../../styles/BasicButton";
 import { StBasicInput } from "../../styles/BasicInput";
 
 const KakaoApi = (props: any) => {
-  const { location, setLocation, openPostcode, setOpenPostcode } = props;
+  const { address, setAddress, openPostcode, setOpenPostcode } = props;
 
-  const locationOnchange = (data: any) => {
-    setLocation(data);
+  const addressOnchange = (data: any) => {
+    setAddress(data);
     console.log(data);
   };
   const handle = {
@@ -18,8 +18,8 @@ const KakaoApi = (props: any) => {
     },
 
     // 주소 선택 이벤트
-    selectLocation: (data: any) => {
-      setLocation(data.location);
+    selectAddress: (data: any) => {
+      setAddress(data.address);
       setOpenPostcode(false);
     },
   };
@@ -30,8 +30,8 @@ const KakaoApi = (props: any) => {
         borderColor="#ADADAD"
         type="text"
         placeholder="주소를 입력해주세요."
-        value={location}
-        onChange={locationOnchange}
+        value={address}
+        onChange={addressOnchange}
       />
 
       <StBasicButton
@@ -44,7 +44,7 @@ const KakaoApi = (props: any) => {
       >
         {openPostcode && (
           <DaumPostcode
-            onComplete={handle.selectLocation} // 값을 선택할 경우 실행되는 이벤트
+            onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
             autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
           />
         )}

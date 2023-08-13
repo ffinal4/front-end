@@ -18,7 +18,7 @@ interface EditForm {
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
-  const [location, setLocation] = useState(""); //주소
+  const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
 
   const {
@@ -147,8 +147,8 @@ const EditProfilePage = () => {
           </AddressLabelContainer>
           <AddressContainer>
             <KakaoApi
-              location={location}
-              setLocation={setLocation}
+              address={address}
+              setAddress={setAddress}
               openPostcode={openPostcode}
               setOpenPostcode={setOpenPostcode}
             />
