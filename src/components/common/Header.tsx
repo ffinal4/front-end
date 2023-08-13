@@ -13,9 +13,16 @@ const Header = () => {
   const navigate = useNavigate();
   const [isLogIn, setIsLogIn] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   let localStorage =
-  // });
+  useEffect(() => {
+    let insertedToken = localStorage.getItem("access_token");
+
+    if (insertedToken) {
+      setIsLogIn(true);
+    } else {
+      setIsLogIn(false);
+    }
+  }, [isLogIn]);
+  console.log(isLogIn);
 
   return (
     <HeaderLayout>
@@ -31,7 +38,7 @@ const Header = () => {
             </SearchButton>
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
-          {isLogIn ? (
+          {!isLogIn ? (
             <LinkContainer>
               <LoginLink
                 onClick={() => {
@@ -109,7 +116,6 @@ const Logo = styled.img`
 const LogoTitle = styled.img``;
 
 export const BoxContainer = styled.div`
-  border: 1px solid #ec8d49;
   width: 2px;
   height: 16px;
   background-color: #d8bda3;
@@ -143,8 +149,6 @@ const SearchInput = styled.input`
 `;
 
 const LinkContainer = styled.div`
-  /* border: 1px solid red; */
-  /* width: 140px; */
   display: flex;
   align-items: center;
 `;
@@ -154,18 +158,20 @@ const LoginLink = styled.div`
   /* border: 1px solid blue; */
   margin-left: 20px;
   font-size: 16px;
-  /* width: 100%; */
   height: 24px;
+  display: flex;
+  align-items: center;
   font-family: Pretendard;
 `;
 
 const SignupLink = styled.div`
   cursor: pointer;
-  /* border: 1px solid blue; */
   margin-left: 20px;
   font-size: 16px;
-  /* width: 100%; */
   height: 24px;
+  display: flex;
+  align-items: center;
+  font-family: Pretendard;
 `;
 
 const IconContainer = styled.div`

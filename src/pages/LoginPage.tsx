@@ -104,12 +104,14 @@ const LoginPage = () => {
           </SignUpContainer>
         </LogInForm>
       </LoginContainer>
-      <FirstBoxContainer>
-        <img src={firstbox} />
-      </FirstBoxContainer>
-      <SecondBoxConatiner>
-        <img src={secondbox} />
-      </SecondBoxConatiner>
+      <Box>
+        <FirstBoxContainer>
+          <img src={firstbox} />
+        </FirstBoxContainer>
+        <SecondBoxConatiner>
+          <img src={secondbox} />
+        </SecondBoxConatiner>
+      </Box>
 
       <FooterContainer>
         <FirstFooter>
@@ -171,15 +173,17 @@ const Title = styled.div`
   /* border: 1px solid red; */
   font-weight: 800;
   margin-top: 10px;
+  font-family: Pretendard;
 `;
 const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 400;
+  font-family: Pretendard;
   /* border: 1px solid red; */
 `;
 const InputContainer = styled.div`
   /* border: 1px solid red; */
-  margin-top: 14px;
+  margin-top: 30px;
   margin-bottom: 12px;
 `;
 const EmailInputContainer = styled.div`
@@ -204,6 +208,8 @@ const SearchId = styled.span`
   cursor: pointer;
   font-size: 16px;
   font-family: Pretendard;
+  display: flex;
+  align-items: center;
 `;
 
 const SearchPw = styled.span`
@@ -212,9 +218,13 @@ const SearchPw = styled.span`
   padding-left: 16px;
   font-size: 16px;
   height: 24px;
+  font-family: Pretendard;
+  display: flex;
+  align-items: center;
 `;
 const MaintainLogin = styled.span`
   /* border: 1px solid black; */
+  font-family: Pretendard;
 `;
 
 const SecondContainer = styled.div`
@@ -252,6 +262,7 @@ const SignUpContainer = styled.div`
 
 const Content = styled.span`
   /* border: 1px solid blue; */
+  font-family: Pretendard;
 `;
 
 const SignupLink = styled.button`
@@ -259,8 +270,13 @@ const SignupLink = styled.button`
   font-size: 16px;
   font-weight: 1000;
   margin-left: 10px;
+  font-family: Pretendard;
 `;
 
+const Box = styled.div`
+  border: 1px solid red;
+  width: 100%;
+`;
 const FirstBoxContainer = styled.div`
   margin: -380px 690.9px 119.2px 100px;
   transform: rotate(-8.96deg);
