@@ -1,9 +1,13 @@
-import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { styled } from "styled-components";
 import removeIcon from "../../assets/images/remove.png";
 
-const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
-
+const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
   type FileState = {
     default: { id: number; imageUrl: string };
     second: { id: number; imageUrl: string };
@@ -21,13 +25,10 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
 
   const formData = new FormData();
   const onChangeFileHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    
-
     console.log("fileList", event.target.files);
-    
+
     const fileList = event.target.files;
     // let imageUrlLists: string[] = [];
-    
 
     if (fileList && fileList.length > 0) {
       for (let i = 0; i < fileList.length; i++) {
@@ -36,16 +37,15 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
         // uploadImages.images.push(blobImage);
         // imagesBlobFile.push(blobImage);
         uploadImages.push(blobImage);
-      
+
         imageUrlLists.push(fileUrl);
-        
+
         // console.log(fileList);
         // console.log(fileUrl);
         // console.log("imageUrlLists", imageUrlLists);
       }
       console.log("imageUrlLists", imageUrlLists);
       console.log("uploadImages", uploadImages);
-
     }
     // const SliceFile = imageUrlLists.slice(0,3)
     // const ObjectFile = SliceFile.forEach((element, index) => { obj['key' + index] = element; });
@@ -59,11 +59,25 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
   };
 
   const onClickChangeHandler = (id: number) => {
-    const switchValues = (imageUrlLists: string[], index1: number, index2: number) => {
-      [imageUrlLists[index1], imageUrlLists[index2]] = [imageUrlLists[index2], imageUrlLists[index1]];
+    const switchValues = (
+      imageUrlLists: string[],
+      index1: number,
+      index2: number
+    ) => {
+      [imageUrlLists[index1], imageUrlLists[index2]] = [
+        imageUrlLists[index2],
+        imageUrlLists[index1],
+      ];
     };
-    const switchFile = (uploadImages: string[], index1: number, index2: number) => {
-      [uploadImages[index1], uploadImages[index2]] = [uploadImages[index2], uploadImages[index1]];
+    const switchFile = (
+      uploadImages: string[],
+      index1: number,
+      index2: number
+    ) => {
+      [uploadImages[index1], uploadImages[index2]] = [
+        uploadImages[index2],
+        uploadImages[index1],
+      ];
     };
 
     switchFile(uploadImages, 0, id - 1);
@@ -95,12 +109,20 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
     <LineContainer>
       <RequiredText>상품이미지</RequiredText>
       <ContentContainer>
-        {file.default.imageUrl || file.second.imageUrl || file.third.imageUrl ? (
+        {file.default.imageUrl ||
+        file.second.imageUrl ||
+        file.third.imageUrl ? (
           <ImageContainer>
             {file.default.imageUrl ? (
-              <ImageThumbnailContainer key={file.default.id} style={{ border: "6px solid #6B6B6B" }}>
+              <ImageThumbnailContainer
+                key={file.default.id}
+                style={{ border: "6px solid #6B6B6B" }}
+              >
                 <FirstImage>대표이미지</FirstImage>
-                <ImageThumbnail src={file.default.imageUrl} alt=""></ImageThumbnail>
+                <ImageThumbnail
+                  src={file.default.imageUrl}
+                  alt=""
+                ></ImageThumbnail>
               </ImageThumbnailContainer>
             ) : (
               <div>
@@ -110,12 +132,23 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
                     <Text style={{ color: "#717171" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
-                <UploadInputBox type="file" id="files" multiple onChange={onChangeFileHandler} />
+                <UploadInputBox
+                  type="file"
+                  id="files"
+                  multiple
+                  onChange={onChangeFileHandler}
+                />
               </div>
             )}
             {file.second.imageUrl ? (
-              <ImageThumbnailContainer key={file.second.id} onClick={() => onClickChangeHandler(file.second.id)}>
-                <ImageThumbnail src={file.second.imageUrl} alt=""></ImageThumbnail>
+              <ImageThumbnailContainer
+                key={file.second.id}
+                onClick={() => onClickChangeHandler(file.second.id)}
+              >
+                <ImageThumbnail
+                  src={file.second.imageUrl}
+                  alt=""
+                ></ImageThumbnail>
               </ImageThumbnailContainer>
             ) : (
               <div>
@@ -125,12 +158,23 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
                     <Text style={{ color: "#717171" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
-                <UploadInputBox type="file" id="files" multiple onChange={onChangeFileHandler} />
+                <UploadInputBox
+                  type="file"
+                  id="files"
+                  multiple
+                  onChange={onChangeFileHandler}
+                />
               </div>
             )}
             {file.third.imageUrl ? (
-              <ImageThumbnailContainer key={file.third.id} onClick={() => onClickChangeHandler(file.third.id)}>
-                <ImageThumbnail src={file.third.imageUrl} alt=""></ImageThumbnail>
+              <ImageThumbnailContainer
+                key={file.third.id}
+                onClick={() => onClickChangeHandler(file.third.id)}
+              >
+                <ImageThumbnail
+                  src={file.third.imageUrl}
+                  alt=""
+                ></ImageThumbnail>
               </ImageThumbnailContainer>
             ) : (
               <div>
@@ -140,11 +184,20 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
                     <Text style={{ color: "#717171" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
-                <UploadInputBox type="file" id="files" multiple onChange={onChangeFileHandler} />
+                <UploadInputBox
+                  type="file"
+                  id="files"
+                  multiple
+                  onChange={onChangeFileHandler}
+                />
               </div>
             )}
             <RemoveBtnWrapper>
-              <RemoveIcon src={removeIcon} alt="" onClick={onClickRemoveHandler} />
+              <RemoveIcon
+                src={removeIcon}
+                alt=""
+                onClick={onClickRemoveHandler}
+              />
               등록이미지 전체 삭제
             </RemoveBtnWrapper>
           </ImageContainer>
@@ -156,27 +209,44 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
                 <Text style={{ color: "#717171" }}>이미지등록</Text>
               </InputStyleWrapper>
             </InputLabel>
-            <UploadInputBox type="file" id="files" multiple onChange={onChangeFileHandler} />
+            <UploadInputBox
+              type="file"
+              id="files"
+              multiple
+              onChange={onChangeFileHandler}
+            />
             <InputLabel htmlFor="files">
               <InputStyleWrapper>
                 <InputStyleBox />
                 <Text style={{ color: "#717171" }}>이미지등록</Text>
               </InputStyleWrapper>
             </InputLabel>
-            <UploadInputBox type="file" id="files" multiple onChange={onChangeFileHandler} />
+            <UploadInputBox
+              type="file"
+              id="files"
+              multiple
+              onChange={onChangeFileHandler}
+            />
             <InputLabel htmlFor="files">
               <InputStyleWrapper>
                 <InputStyleBox />
                 <Text style={{ color: "#717171" }}>이미지등록</Text>
               </InputStyleWrapper>
             </InputLabel>
-            <UploadInputBox type="file" id="files" multiple onChange={onChangeFileHandler} />
+            <UploadInputBox
+              type="file"
+              id="files"
+              multiple
+              onChange={onChangeFileHandler}
+            />
           </ImageContainer>
         )}
         <TextWrapper>
           <Text>* 상품 이미지는 640X640에 최적화되어 있습니다.</Text>
           <Text>- 이미지는 상품 등록 시 정사각형으로 잘려서 등록됩니다.</Text>
-          <Text>- 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다.</Text>
+          <Text>
+            - 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다.
+          </Text>
         </TextWrapper>
       </ContentContainer>
     </LineContainer>
