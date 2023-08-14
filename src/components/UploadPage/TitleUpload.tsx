@@ -71,7 +71,9 @@ const TitleInput = styled.input`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border: 1px solid;
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
+    background-color: #FCFCFC;
 `;
 
 const Text = styled.div<{ color: string }>`

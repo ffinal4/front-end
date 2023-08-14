@@ -145,12 +145,12 @@ const ButtonWrapper = styled.div`
     padding: 30px 0px 0px 0px;
 `;
 
-const ImageBox = styled.div<{ src: string }>`
-    width: 80px;
-    height: 80px;
-    background-image: ${(props) => `url(${props.src})`};
-    background-size: cover;
-    /* border: 1px solid; */
-`;
+// const ImageBox = styled.div<{ src: string }>`
+//     width: 80px;
+//     height: 80px;
+//     background-image: ${(props) => `url(${props.src})`};
+//     background-size: cover;
+//     /* border: 1px solid; */
+// `;
 
 export default WantedInfo;

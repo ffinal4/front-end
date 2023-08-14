@@ -30,7 +30,7 @@ const MyPickBar = () => {
 const PickBarContainer = styled.div`
     position: fixed;
     top: 224px;
-    right: 8%;
+    right: 11%;
     display: grid;
     z-index: 500;
     
@@ -46,14 +46,12 @@ const PickBarContainer = styled.div`
 
 const TitleContainer = styled.div`
     display: flex;
-    width: 150px;
-    padding: 15px 30px;
+    width: 120px;
+    padding: 10px 20px;
     flex-direction: column;
     align-items: center;
-    border: 1px solid #000;
-    gap: 4px;
-    background-color: #fff;
-    box-shadow: 3px 3px 8px 0px #929292;
+    background-color: #39373A;
+    border-radius: 5px 5px 0px 0px;
 
     @media screen and (max-width: 1500px) {
         display: none;
@@ -65,44 +63,26 @@ const Title = styled.div`
     font-size: 16px;
     font-weight: 700;
     line-height: 150%;
+    color: #fff;
 `;
 
-const CountWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-`;
-
-const ImageBox = styled.div<{ src: string }>`
-    width: 118px;
-    height: 118px;
-    background-image: ${(props) => `url(${props.src})`};
-    background-size: cover;
+const ImageBox = styled.img`
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    object-fit: contain;
     cursor: pointer;
 `;
 
-const Box = styled.div`
-    width: 24px;
-    height: 24px;
-    background-color: #D9D9D9;
-`;
-
-const Count = styled.div`
-    font-family: "Pretendard";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 150%;
-`;
-
 const PickImageContainer = styled.div`
-    width: 150px;
-    border: 1px solid #000;
+    width: 120px;
+    height: 419px;
+    border: 1px solid #D5D4D4;
     padding: 20px;
     gap: 20px;
     display: grid;
     justify-content: center;
     background-color: #fff;
-    box-shadow: 3px 3px 5px 0px #a0a0a0;
 
     @media screen and (max-width: 1500px) {
         display: none;
@@ -116,13 +96,13 @@ const TopMoveButton = styled.div`
     justify-content: center;
     align-items: center;
     border: 1px solid #000;
+    border-radius: 5px;
+    color: #fff;
     font-family: "Lemon/Milk", sans-serif;
     font-size: 20px;
-    font-style: normal;
     font-weight: 400;
     line-height: normal;
-    background-color: #fff;
-    box-shadow: 3px 3px 8px 0px #929292;
+    background-color: #39373A;
     cursor: pointer;
 `;
 

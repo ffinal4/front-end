@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 import Image from '../../assets/images/pocket.png'
 import Cute from '../../assets/images/ppapparo.jpg'
 import Song from '../../assets/images/song.jpg'
+import ArrowLeft from '../../assets/images/arrowleft.png'
+import ArrowRight from '../../assets/images/arrowright.png'
 import DetailInfo from './DetailInfo';
 
 const DetailContainer = () => {
@@ -35,8 +37,12 @@ const DetailContainer = () => {
     <LayoutContainer>
         <ImageOutContainer>
           <SlideBtnWrapper>
-            <SlideButton onClick={moveToPrevBtn}>◀</SlideButton>
-            <SlideButton onClick={moveToNextBtn}>▶</SlideButton>
+            <SlideButton onClick={moveToPrevBtn}>
+              <img src={ArrowLeft} alt=''/>
+            </SlideButton>
+            <SlideButton onClick={moveToNextBtn}>
+              <img src={ArrowRight} alt=''/>
+            </SlideButton>
           </SlideBtnWrapper>
           <SlideWrapper ref={divRef}>
             <ImageBox src={Image}/>
@@ -48,7 +54,7 @@ const DetailContainer = () => {
             {slidePageBar.map((item) =>
               (currentImg + 1 === item)
               ? <SlidePageBar backgdcolor='#fff'></SlidePageBar>
-              : <SlidePageBar backgdcolor='#5c5c5c'></SlidePageBar>
+              : <SlidePageBar backgdcolor='#9e9e9e'></SlidePageBar>
             )}
           </SlidePageBarWrapper>
         </ImageOutContainer>
@@ -88,12 +94,14 @@ const SlideWrapper = styled.div`
 const ImageBox = styled.img`
   width: 464px;
   height: 464px;
+  object-fit: contain;
 `;
 
 const ImageOutContainer = styled.div`
   min-width: 464px;
   height: 464px;
   border: 4px solid;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,16 +123,15 @@ const SlideBtnWrapper = styled.div`
 `;
 
 const SlideButton = styled.div`
-    width: 42px;
-    height: 42px;
-    background-color: #969696;
+    width: 48px;
+    height: 48px;
+    background-color: #222020;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     z-index: 200;
     opacity: 0.2;
-    box-shadow: 2px 2px 15px 0px #6e6e6e;
     cursor: pointer;
 
     &:hover {
@@ -138,15 +145,15 @@ const SlidePageBarWrapper = styled.div`
   align-items: end;
   position: absolute;
   bottom: 20px;
-  gap: 8px;
+  gap: 16px;
 `;
 
 const SlidePageBar = styled.div<{ backgdcolor: string }>`
-  width: 7px;
-  height: 7px;
+  width: 10px;
+  height: 10px;
   border-radius: 100%;
   background-color: ${(props) => props.backgdcolor};
-  opacity: 0.4;
+  opacity: 0.8;
 `;
 
 export default DetailContainer;

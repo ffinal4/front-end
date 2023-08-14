@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components';
 import ItemCard from '../common/ItemCard';
+import ArrowLeft from '../../assets/images/arrowleft.png'
+import ArrowRight from '../../assets/images/arrowright.png'
 
 const RecommendCard = () => {
 
@@ -34,8 +36,12 @@ const RecommendCard = () => {
         </HeadLineContainer>
         <RecommendList>
             <SlideBtnWrapper>
-                <SlideButton onClick={moveToPrevSlide}>◀</SlideButton>
-                <SlideButton onClick={moveToNextSlide}>▶</SlideButton>
+                <SlideButton onClick={moveToPrevSlide}>
+                    <img src={ArrowLeft} alt=''/>
+                </SlideButton>
+                <SlideButton onClick={moveToNextSlide}>
+                    <img src={ArrowRight} alt=''/>
+                </SlideButton>
             </SlideBtnWrapper>
             <CardListContainer ref={slideRef}>
                 <CardContainer>
@@ -216,16 +222,15 @@ const SlideBtnWrapper = styled.div`
 `;
 
 const SlideButton = styled.div`
-    width: 42px;
-    height: 42px;
-    background-color: #969696;
+    width: 48px;
+    height: 48px;
+    background-color: #222020;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     z-index: 200;
     opacity: 0.2;
-    box-shadow: 3px 3px 15px 0px #6e6e6e;
     cursor: pointer;
 
     &:hover {

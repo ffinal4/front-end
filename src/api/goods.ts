@@ -29,3 +29,8 @@ export const postUploadApi = async (body: any) => {
   });
   return res;
 };
+
+// 물품 상세 페이지
+export const getDetailPageApi = async (goodsId : any) => {
+  const res = await instance.get(`/api/goods/${goodsId}`);
+};
