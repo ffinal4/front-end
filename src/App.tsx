@@ -30,8 +30,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/chat" element={<ChattingPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route element={<MainLayout />}>
-            <Route path="/" element={<MainPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/tradelist" element={<TradeListPage />} />
