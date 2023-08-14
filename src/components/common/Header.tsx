@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../assets/logo/logo.png";
 import title from "../../assets/logo/logo_title.png";
 import search from "../../assets/icon/search.png";
+import alarm from "../../assets/icon/alarm.png";
+import mypage from "../../assets/icon/mypage.png";
+import peeppo from "../../assets/icon/peeppo.png";
 import Navbar from "./Navbar";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isLogIn, setIsLogIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    let insertedToken = localStorage.getItem("accessToken");
+    console.log(insertedToken, "토큰");
+
+    if (insertedToken) {
+      setIsLogIn(true);
+    } else {
+      setIsLogIn(false);
+    }
+  }, [isLogIn]);
+
   return (
     <HeaderLayout>
       <HeaderoutContainer>
         <HeaderContainer>
-          <LogoContainer>
+          <LogoContainer
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <Logo src={logo} />
             <LogoTitle src={title} />
           </LogoContainer>
@@ -22,19 +42,37 @@ const Header = () => {
             </SearchButton>
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
-          <LinkContainer>
-            <LoginLink
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              로그인
-            </LoginLink>
-            <BoxContainer />
-            <SignupLink onClick={() => navigate("/signup")}>
-              회원가입
-            </SignupLink>
-          </LinkContainer>
+          {isLogIn ? (
+            <IconContainer>
+              <Alarm src={alarm} />
+              <Mypage
+                src={mypage}
+                onClick={() => {
+                  navigate("/mypage");
+                }}
+              />
+              <Peeppo
+                src={peeppo}
+                onClick={() => {
+                  navigate("/myPocket");
+                }}
+              />
+            </IconContainer>
+          ) : (
+            <LinkContainer>
+              <LoginLink
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                로그인
+              </LoginLink>
+              <BoxContainer />
+              <SignupLink onClick={() => navigate("/signup")}>
+                회원가입
+              </SignupLink>
+            </LinkContainer>
+          )}
         </HeaderContainer>
       </HeaderoutContainer>
       <Navbar />
@@ -73,7 +111,7 @@ const HeaderContainer = styled.div`
 `;
 
 const LogoContainer = styled.div`
-  /* border: 1px solid blue; */
+  cursor: pointer;
   display: flex;
   align-items: center;
   width: 174px;
@@ -120,8 +158,6 @@ const SearchInput = styled.input`
 `;
 
 const LinkContainer = styled.div`
-  /* border: 1px solid red; */
-  /* width: 140px; */
   display: flex;
   align-items: center;
 `;
@@ -131,16 +167,41 @@ const LoginLink = styled.div`
   /* border: 1px solid blue; */
   margin-left: 20px;
   font-size: 16px;
-  /* width: 100%; */
   height: 24px;
+  display: flex;
+  align-items: center;
   font-family: Pretendard;
 `;
 
 const SignupLink = styled.div`
   cursor: pointer;
-  /* border: 1px solid blue; */
   margin-left: 20px;
   font-size: 16px;
-  /* width: 100%; */
   height: 24px;
+  display: flex;
+  align-items: center;
+  font-family: Pretendard;
+`;
+
+const IconContainer = styled.div`
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+`;
+
+const Alarm = styled.img`
+  /* border: 1px solid blue; */
+  margin-right: 20px;
+  cursor: pointer;
+`;
+
+const Mypage = styled.img`
+  /* border: 1px solid blue; */
+  margin-right: 20px;
+  cursor: pointer;
+`;
+
+const Peeppo = styled.img`
+  /* border: 1px solid blue; */
+  cursor: pointer;
 `;

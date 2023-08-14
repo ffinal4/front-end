@@ -9,13 +9,12 @@ import MethodUpload from "../components/UploadPage/MethodUpload";
 import DetailUpload from "../components/UploadPage/DetailUpload";
 import TagUpload from "../components/UploadPage/TagUpload";
 import WantedUpload from "../components/UploadPage/WantedUpload";
-import { StBasicButton } from '../styles/BasicButton';
+import { StBasicButton } from "../styles/BasicButton";
 import { postUploadApi } from "../api/goods";
 import { useNavigate } from "react-router-dom";
 import RatingUpload from "../components/UploadPage/RatingUpload";
 
 const UploadPage = () => {
-
   const navigate = useNavigate();
 
   type uploadBodyData = {
@@ -29,10 +28,10 @@ const UploadPage = () => {
       location: string,
     },
     wanted: {
-      title: string,
-      content: string,
-      category: string
-    }
+      title: string;
+      content: string;
+      category: string;
+    };
   };
 
   // const [uploadImages, setUploadImages] = useState<{images: File[]}>({
@@ -53,18 +52,16 @@ const UploadPage = () => {
       title: "",
       content: "",
       category: "",
-    }
+    },
   });
 
   const formData = new FormData();
 
   const onClickUploadHandler = async () => {
-    
-    
     // formData.append("data", uploadData)
-    
+
     // formData.append("sellerPrice", new Blob([JSON.stringify(uploadPrice.sellerPrice)], { type: "application/json" }));
-    
+
     try {
       console.log(uploadImages, uploadData);
       const sliceImages = uploadImages.slice(0, 3);
@@ -72,66 +69,76 @@ const UploadPage = () => {
       // const newData = JSON.stringify(uploadData.data);
       // const newWanted = JSON.stringify(uploadData.wanted);
       sliceImages.forEach((blobImage, index) => {
-        formData.append('images', blobImage, `image${index + 1}.jpg`);
+        formData.append("images", blobImage, `image${index + 1}.jpg`);
       });
       // const upLoadData = [uploadData.data]
       // const upLoadWanted = [uploadData.wanted]
       // formData.append("images", uploadImages)
-      formData.append("data", new Blob([JSON.stringify(uploadData.data)],{ type: "application/json" }))
-      formData.append("wanted", new Blob([JSON.stringify(uploadData.wanted)],{ type: "application/json" }))      
+      formData.append(
+        "data",
+        new Blob([JSON.stringify(uploadData.data)], {
+          type: "application/json",
+        })
+      );
+      formData.append(
+        "wanted",
+        new Blob([JSON.stringify(uploadData.wanted)], {
+          type: "application/json",
+        })
+      );
       // formData.append("data", JSON.stringify(uploadData.data));
       // formData.append("wanted", JSON.stringify(uploadData.wanted));
-      formData.forEach(function(value, key) {
-        console.log(key + ': ' + value);
+      formData.forEach(function (value, key) {
+        console.log(key + ": " + value);
       });
 
       const res = await postUploadApi(formData);
       if (res.status === 200) {
         alert("업로드 성공!");
-        navigate('/');
-      };
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
-    };
-      //     // JSON 데이터
-      // const jsonData = {
-      //   data: {
-      //     title: "노트북1",
-      //     content: "content",
-      //     tradeType: "직거래",
-      //     category: "DIGITAL",
-      //     goodsCondition: "상",
-      //     location: "test"
-      //   },
-      //   wanted: {
-      //     title: "원하는 물품",
-      //     content: "내용",
-      //     category: "digital"
-      //   }
-      // };
+    }
+    //     // JSON 데이터
+    // const jsonData = {
+    //   data: {
+    //     title: "노트북1",
+    //     content: "content",
+    //     tradeType: "직거래",
+    //     category: "DIGITAL",
+    //     goodsCondition: "상",
+    //     location: "test"
+    //   },
+    //   wanted: {
+    //     title: "원하는 물품",
+    //     content: "내용",
+    //     category: "digital"
+    //   }
+    // };
 
-      // // FormData 생성
-      // const formData = new FormData();
+    // // FormData 생성
+    // const formData = new FormData();
 
-      // // 이미지 파일 추가
-      // formData.append("images", imageFile);
+    // // 이미지 파일 추가
+    // formData.append("images", imageFile);
 
-      // // JSON 데이터를 문자열로 변환하여 FormData에 추가
-      // formData.append("data", new Blob([JSON.stringify(jsonData.data)], { type: "application/json" }));
-      // formData.append("wanted", new Blob([JSON.stringify(jsonData.wanted)], { type: "application/json" }));
+    // // JSON 데이터를 문자열로 변환하여 FormData에 추가
+    // formData.append("data", new Blob([JSON.stringify(jsonData.data)], { type: "application/json" }));
+    // formData.append("wanted", new Blob([JSON.stringify(jsonData.wanted)], { type: "application/json" }));
 
-      // // 요청 보내기
-      // axios.post(url, formData, {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data" // Content-Type 설정
-      //   }
-      // })
-      // .then(response => {
-      //   console.log("응답 받음:", response.data);
-      // })
-      // .catch(error => {
-      //   console.error("에러 발생:", error);
-      // });
+    // // 요청 보내기
+    // axios.post(url, formData, {
+    //   headers: {
+    //     "Content-Type": "multipart/form-data" // Content-Type 설정
+    //   }
+    // })
+    // .then(response => {
+    //   console.log("응답 받음:", response.data);
+    // })
+    // .catch(error => {
+    //   console.error("에러 발생:", error);
+    // });
   };
 
   return (
@@ -142,18 +149,26 @@ const UploadPage = () => {
         <PageSubtitle>* 필수항목</PageSubtitle>
       </TitleWrapper>
       <PageContainer>
-        <ImageUpload setUploadImages={setUploadImages} uploadImages={uploadImages} />
+        <ImageUpload
+          setUploadImages={setUploadImages}
+          uploadImages={uploadImages}
+        />
         <TitleUpload setUploadData={setUploadData} uploadData={uploadData} />
         <CategoryUpload setUploadData={setUploadData} uploadData={uploadData} />
         <RegionUpload setUploadData={setUploadData} uploadData={uploadData} />
-        <ConditionUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <ConditionUpload
+          setUploadData={setUploadData}
+          uploadData={uploadData}
+        />
         <MethodUpload setUploadData={setUploadData} uploadData={uploadData} />
         <DetailUpload setUploadData={setUploadData} uploadData={uploadData} />
         <TagUpload />
         <RatingUpload setUploadData={setUploadData} uploadData={uploadData} />
         <WantedUpload setUploadData={setUploadData} uploadData={uploadData} />
         <BtnWrapper>
-          <StBasicButton buttonColor="#D9D9D9" onClick={onClickUploadHandler}>주머니에 추가</StBasicButton>
+          <StBasicButton buttonColor="#D9D9D9" onClick={onClickUploadHandler}>
+            주머니에 추가
+          </StBasicButton>
         </BtnWrapper>
       </PageContainer>
     </PageLayout>
@@ -177,7 +192,7 @@ const PageContainer = styled.div`
   width: 100%;
 
   @media screen and (max-width: 1136px) {
-        padding: 0px 20px 0px 20px;
+    padding: 0px 20px 0px 20px;
   }
 `;
 
@@ -203,10 +218,10 @@ const PageSubtitle = styled.div`
 `;
 
 const BtnWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0px 0px 0px;
 `;
 
 export default UploadPage;

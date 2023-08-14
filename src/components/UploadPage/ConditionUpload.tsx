@@ -1,33 +1,34 @@
-import React, { useCallback, useState } from 'react'
-import { styled } from 'styled-components'
-import { StBasicButton } from '../../styles/BasicButton';
+import React, { useCallback, useState } from "react";
+import { styled } from "styled-components";
+import { StBasicButton } from "../../styles/BasicButton";
 
-const ConditionUpload = ({ uploadData, setUploadData, setUploadPrice, uploadPrice } : any) => {
+const ConditionUpload = ({
+  uploadData,
+  setUploadData,
+  setUploadPrice,
+  uploadPrice,
+}: any) => {
+  const onCheckNewCondition = () => {
+    setUploadData({
+      ...uploadData,
+      data: { ...uploadData.data, goodsCondition: "상" },
+    });
+  };
+  const onCheckUsedCondition = () => {
+    setUploadData({
+      ...uploadData,
+      data: { ...uploadData.data, goodsCondition: "중" },
+    });
+  };
+  const onCheckDamagedCondition = () => {
+    setUploadData({
+      ...uploadData,
+      data: { ...uploadData.data, goodsCondition: "하" },
+    });
+  };
 
-    
-
-    const onCheckNewCondition = () => {
-        setUploadData({
-            ...uploadData,
-            data: {...uploadData.data, goodsCondition: "상"}
-        });
-    };
-    const onCheckUsedCondition = () => {
-        setUploadData({
-            ...uploadData,
-            data: {...uploadData.data, goodsCondition: "중"}
-        });
-    };
-    const onCheckDamagedCondition = () => {
-        setUploadData({
-            ...uploadData,
-            data: {...uploadData.data, goodsCondition: "하"}
-        });
-    };
-
-    
-    // console.log("wow", formatted);
-    // console.log("price", price);
+  // console.log("wow", formatted);
+  // console.log("price", price);
 
   return (
     <LineContainer>
@@ -55,38 +56,38 @@ const ConditionUpload = ({ uploadData, setUploadData, setUploadPrice, uploadPric
             </Wrapper>
         </AllWrapper>
     </LineContainer>
-  )
+  );
 };
 
 const LineContainer = styled.div`
-    width: 100%;
-    display: flex;
-    padding: 30px 0px 30px 0px;
-    border-bottom: 2px solid #EAEAEA;
+  width: 100%;
+  display: flex;
+  padding: 30px 0px 30px 0px;
+  border-bottom: 2px solid #eaeaea;
 `;
 
 const RequiredText = styled.div`
-    font-family: "Pretendard";
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 150%;
-    min-width: 191px;
+  font-family: "Pretendard";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 150%;
+  min-width: 191px;
 `;
 
 const AllWrapper = styled.div`
-    width: 100%;
-    display: grid;
+  width: 100%;
+  display: grid;
 `;
 
 const Wrapper = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 
-    @media screen and (max-width: 843px) {
-        display: grid;
-    }
+  @media screen and (max-width: 843px) {
+    display: grid;
+  }
 `;
 
 export default ConditionUpload;
