@@ -15,10 +15,15 @@ import EditProfilePage from "./pages/EditProfilePage";
 import ChattingPage from "./pages/ChattingPage";
 import AuctionUploadPage from "./pages/AuctionUploadPage";
 import TradeRequestPage from "./pages/TradeRequestPage";
+import { QueryClient } from "react-query";
+import { QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <div className="App">
+      <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -30,7 +35,7 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/tradelist" element={<TradeListPage />} />
-            <Route path="/detail" element={<DetailPage />} />
+            <Route path="/detail/:goodsId" element={<DetailPage />} />
             <Route path="/myPocket" element={<MyPocketPage />} />
             <Route path="/editprofile" element={<EditProfilePage />} />
             <Route path="/auctionupload" element={<AuctionUploadPage />} />
@@ -38,6 +43,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </QueryClientProvider>
     </div>
   );
 }

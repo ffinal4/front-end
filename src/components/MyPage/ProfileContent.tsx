@@ -50,10 +50,10 @@ const ProfileContent = () => {
 };
 
 const LeftContainer = styled.div`
-    width: 100%;
+    width: 944px;
     height: 204px;
 
-    @media screen and (max-width: 1144px) {
+    @media screen and (max-width: 1136px) {
         height: 100%;
     }
 `;
