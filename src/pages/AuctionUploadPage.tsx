@@ -227,9 +227,17 @@ const BidLimitWarpper = styled.div`
 `;
 
 const BidLimitInput = styled.input`
+<<<<<<< HEAD
   height: 44px;
   padding: 0px 20px;
   border: 1px solid #000;
+=======
+    height: 44px;
+    padding: 0px 20px;
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
+    background-color: #FCFCFC;
+>>>>>>> 1f2d893df0334c6e73af46534f088a77fae78932
 `;
 
 const LastLineContainer = styled.div`

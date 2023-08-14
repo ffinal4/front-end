@@ -62,7 +62,7 @@ const WantedUpload = ({ uploadData, setUploadData } : any) => {
                     maxLength={40}
                     name='title'
                     value={title}
-                    placeholder='제목을 입력해주세요.'
+                    placeholder='교환 받고 싶은 물건의 이름을 입력해주세요.'
                     onChange={onChangeTextInfoHandler}
                     onBlur={onBlurEventHandler}
                 >
@@ -178,7 +178,9 @@ const TagInput = styled.input`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border: 1px solid;
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
+    background-color: #FCFCFC;
 `;
 
 const TitleInput = styled.input`
@@ -190,7 +192,9 @@ const TitleInput = styled.input`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border: 1px solid;
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
+    background-color: #FCFCFC;
 `;
 
 const SelectContainer = styled.div`

@@ -6,7 +6,7 @@ interface upLoadBody {
     images: string[];
     
     sellerPrice: {
-      sellerPrice: string
+      sellerPrice: string;
     };
     data: {
       title: string;
@@ -25,7 +25,12 @@ interface upLoadBody {
 }
 export const postUploadApi = async (body: any) => {
   const res = await instance.post("/api/goods", body, {
-    headers: { "Content-Type": "multipart/form-data" }
+    headers: { "Content-Type": "multipart/form-data" },
   });
   return res;
+};
+
+// 물품 상세 페이지
+export const getDetailPageApi = async (goodsId : any) => {
+  const res = await instance.get(`/api/goods/${goodsId}`);
 };

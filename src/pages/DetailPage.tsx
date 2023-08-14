@@ -3,97 +3,87 @@ import { styled } from 'styled-components';
 import DetailContainer from '../components/DetailPage/DetailContainer';
 import GiveInfo from '../components/DetailPage/GiveInfo';
 import WantedInfo from '../components/DetailPage/WantedInfo';
-import FeedbackInfo from '../components/DetailPage/FeedbackInfo';
+import BidInfo from '../components/DetailPage/BidInfo';
 import RecommendCard from '../components/DetailPage/RecommendCard';
 import MyPickBar from '../components/common/MyPickBar';
+import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getDetailPageApi } from '../api/goods';
 
 const DetailPage = () => {
 
+    // const { goodsId } : any = useParams;
+    // const { data, isLoading, isError, error } = useQuery(["DetailData", goodsId], () => getDetailPageApi(goodsId));
+    // console.log("data", data);
+
     const [detailTap, setDetailTap] = useState({
-        giveTap: true,
+        bid: true,
+        giveTap: false,
         wantTap: false,
-        feedbackTap: false,
     });
 
-    const { giveTap, wantTap, feedbackTap} = detailTap;
+    const { bid, giveTap, wantTap} = detailTap;
 
+    const onClickBidHandler = () => {
+        setDetailTap({
+            bid: true,
+            giveTap: false,
+            wantTap: false,
+        });
+    };
+    
     const onClickGiveHandler = () => {
         setDetailTap({
+            bid: false,
             giveTap: true,
-            wantTap: false,
-            feedbackTap: false,
+            wantTap: false, 
         });
     };
 
     const onClickWantHandler = () => {
         setDetailTap({
+            bid: false,
             giveTap: false,
             wantTap: true,
-            feedbackTap: false,
-        });
-    };
-
-    const onClickFeedbackHandler = () => {
-        setDetailTap({
-            giveTap: false,
-            wantTap: false,
-            feedbackTap: true,
         });
     };
 
   return (
     <PageLayout>
-        <FilterContainer>
-            <FilterLeftWrapper>
-                <FilterWrapper>
-                    <ChoiceBox />
-                    Home
-                </FilterWrapper>
-                <ChoiceBox />
-                <FilterWrapper>
-                    <ChoiceBox />
-                    Category
-                </FilterWrapper>
-            </FilterLeftWrapper>
-            <ModifyContainer>
-                <ChoiceBox />
-                수정하기
-            </ModifyContainer>
-        </FilterContainer>
         <PageContainer>
             <DetailContainer />
             <InfoContainer>
             {
-            (giveTap === true && wantTap === false && feedbackTap === false)
+            (bid === true && giveTap === false && wantTap === false)
             && <LayoutContainer>
                     <TapContainer>
+                        <TapClickButton>입찰 현황</TapClickButton>
+                        <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
+                        <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
+                    </TapContainer>
+                    <BidInfo />
+                </LayoutContainer> 
+            }
+            {
+            (bid === false && giveTap === true && wantTap === false)
+            && <LayoutContainer>
+                    <TapContainer>
+                        <TapDefaultButton onClick={onClickBidHandler}>입찰 현황</TapDefaultButton>
                         <TapClickButton>드려요</TapClickButton>
                         <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
-                        <TapDefaultButton onClick={onClickFeedbackHandler}>유저평가</TapDefaultButton>
                     </TapContainer>
                     <GiveInfo />
                 </LayoutContainer> 
             }
             {
-            (giveTap === false && wantTap === true && feedbackTap === false)
+            (bid === false && giveTap === false && wantTap === true)
             && <LayoutContainer>
                     <TapContainer>
+                        <TapDefaultButton onClick={onClickBidHandler}>입찰 현황</TapDefaultButton>
                         <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
                         <TapClickButton>받아요</TapClickButton>
-                        <TapDefaultButton onClick={onClickFeedbackHandler}>유저평가</TapDefaultButton>
                     </TapContainer>
                     <WantedInfo />
-                </LayoutContainer> 
-            }
-            {
-            (giveTap === false && wantTap === false && feedbackTap === true)
-            && <LayoutContainer>
-                    <TapContainer>
-                        <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
-                        <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
-                        <TapClickButton>유저평가</TapClickButton>
-                    </TapContainer>
-                    <FeedbackInfo />
                 </LayoutContainer> 
             }
             </InfoContainer>
@@ -113,7 +103,7 @@ const PageLayout = styled.div`
 const FilterContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     margin: 0px 0px 20px 0px;
     gap: 20px;
@@ -154,11 +144,10 @@ const ModifyContainer = styled.div`
     font-family: "Pretendard";
     font-size: 16px;
     font-weight: 400;
-    line-height: 150%
+    line-height: 150%;
 `;
 
 const PageContainer = styled.div`
-    border-top: 4px solid;
     width: 100%;
 
     @media screen and (max-width: 1136px) {
@@ -183,6 +172,7 @@ const TapClickButton = styled.div`
     height: 44px;
     border: 2px solid #000;
     border-bottom: 4px solid #fff;
+    border-radius: 5px 5px 0px 0px;
 `;
 
 const TapDefaultButton = styled.div`
@@ -191,11 +181,12 @@ const TapDefaultButton = styled.div`
     font-family: "Pretendard";
     justify-content: center;
     align-items: center;
-    background-color: #D9D9D9;
+    background-color: #EFEFEF;
     width: 177px;
     height: 44px;
     border: 1px solid #000;
     border-bottom: 2px solid #000;
+    border-radius: 5px 5px 0px 0px;
     cursor: pointer;
 `;
 

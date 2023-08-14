@@ -7,7 +7,7 @@ export const StBasicButton = styled.button<{
   fontWeight: string;
 }>`
   display: flex;
-  padding: 10px 46px;
+  padding: 10px 0px;
   font-family: "Pretendard";
   font-size: 16px;
   justify-content: center;

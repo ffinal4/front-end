@@ -116,11 +116,11 @@ const TextWrapper = styled.div`
     gap: 7px; 
 `;
 
-const Box = styled.div<{ width: string, height: string }>`
-    width: ${(props) => props.width};
-    height: ${(props) => props.height};
-    background-color: #D9D9D9;
-`;
+// const Box = styled.div<{ width: string, height: string }>`
+//     width: ${(props) => props.width};
+//     height: ${(props) => props.height};
+//     background-color: #D9D9D9;
+// `;
 
 const ImageContainer = styled.div`
     width: 100%;
