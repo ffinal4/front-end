@@ -93,7 +93,7 @@ const ImageUpload = ({ setUploadImages, uploadImages } : any) => {
 
   return (
     <LineContainer>
-      <RequiredText>상품이미지</RequiredText>
+      <RequiredText>상품이미지*</RequiredText>
       <ContentContainer>
         {file.default.imageUrl || file.second.imageUrl || file.third.imageUrl ? (
           <ImageContainer>

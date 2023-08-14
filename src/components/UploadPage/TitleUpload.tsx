@@ -19,7 +19,7 @@ const TitleUpload = ({ setUploadData, uploadData } : any) => {
 
     return (
         <LineContainer>
-            <RequiredText>제목</RequiredText>
+            <RequiredText>제목*</RequiredText>
             <Wrapper>
                 <TitleInput
                     type='text'

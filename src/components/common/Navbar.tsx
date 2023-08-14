@@ -34,7 +34,7 @@ const Navbar = () => {
         <MenuContainer>
           <Menu>물물교환</Menu>
           <Menu>포켓경매</Menu>
-          <Menu onClick={() => navigate('/rating')}>레이팅</Menu>
+          <Menu onClick={() => navigate('/ratingstart')}>레이팅</Menu>
         </MenuContainer>
       </Wrapper>
     </CategoryHeaderContainer>

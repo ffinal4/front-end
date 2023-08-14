@@ -32,50 +32,29 @@ const ConditionUpload = ({
 
   return (
     <LineContainer>
-      <RequiredText>물건상태</RequiredText>
-      <AllWrapper>
-        <Wrapper>
-          <StBasicButton
-            buttonColor={
-              uploadData.data.goodsCondition === "상" ? "#575757" : "white"
-            }
-            style={{
-              color: `${
-                uploadData.data.goodsCondition === "상" ? "white" : "#000"
-              }`,
-            }}
-            onClick={onCheckNewCondition}
-          >
-            상
-          </StBasicButton>
-          <StBasicButton
-            buttonColor={
-              uploadData.data.goodsCondition === "중" ? "#575757" : "white"
-            }
-            style={{
-              color: `${
-                uploadData.data.goodsCondition === "중" ? "white" : "#000"
-              }`,
-            }}
-            onClick={onCheckUsedCondition}
-          >
-            중
-          </StBasicButton>
-          <StBasicButton
-            buttonColor={
-              uploadData.data.goodsCondition === "하" ? "#575757" : "white"
-            }
-            style={{
-              color: `${
-                uploadData.data.goodsCondition === "하" ? "white" : "#000"
-              }`,
-            }}
-            onClick={onCheckDamagedCondition}
-          >
-            하
-          </StBasicButton>
-        </Wrapper>
-      </AllWrapper>
+        <RequiredText>물건상태*</RequiredText>
+        <AllWrapper>
+            <Wrapper>
+                <StBasicButton
+                    buttonColor={(uploadData.data.goodsCondition === "상") ? "#575757" : "white"}
+                    style={{color: `${(uploadData.data.goodsCondition === "상") ? "white" : "#000"}`}}
+                    onClick={onCheckNewCondition}
+                >상
+                </StBasicButton>
+                <StBasicButton
+                    buttonColor={(uploadData.data.goodsCondition === "중") ? "#575757" : "white"}
+                    style={{color: `${(uploadData.data.goodsCondition === "중") ? "white" : "#000"}`}}
+                    onClick={onCheckUsedCondition}
+                >중
+                </StBasicButton>
+                <StBasicButton
+                    buttonColor={(uploadData.data.goodsCondition === "하") ? "#575757" : "white"}
+                    style={{color: `${(uploadData.data.goodsCondition === "하") ? "white" : "#000"}`}}
+                    onClick={onCheckDamagedCondition}
+                >하
+                </StBasicButton>
+            </Wrapper>
+        </AllWrapper>
     </LineContainer>
   );
 };

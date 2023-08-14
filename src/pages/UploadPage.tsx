@@ -19,13 +19,14 @@ const UploadPage = () => {
 
   type uploadBodyData = {
     data: {
-      title: string;
-      content: string;
-      tradeType: string;
-      category: string;
-      goodsCondition: string;
-      location: string;
-    };
+      title: string,
+      content: string,
+      tradeType: string,
+      category: string,
+      goodsCondition: string,
+      sellerPrice: string
+      location: string,
+    },
     wanted: {
       title: string;
       content: string;
@@ -36,15 +37,7 @@ const UploadPage = () => {
   // const [uploadImages, setUploadImages] = useState<{images: File[]}>({
   //   images: []
   // });
-  const [uploadImages, setUploadImages] = useState<File[]>([]);
-  const [uploadPrice, setUploadPrice] = useState<{
-    sellerPrice: { rating: string; sellerPrice: string };
-  }>({
-    sellerPrice: {
-      rating: "NO",
-      sellerPrice: "",
-    },
-  });
+  const [uploadImages,setUploadImages]= useState<File[]>([]);
   const [uploadData, setUploadData] = useState<uploadBodyData>({
     data: {
       title: "",
@@ -52,6 +45,7 @@ const UploadPage = () => {
       tradeType: "",
       category: "",
       goodsCondition: "",
+      sellerPrice: "",
       location: "경기도 00시 00구 00동",
     },
     wanted: {
@@ -169,10 +163,7 @@ const UploadPage = () => {
         <MethodUpload setUploadData={setUploadData} uploadData={uploadData} />
         <DetailUpload setUploadData={setUploadData} uploadData={uploadData} />
         <TagUpload />
-        <RatingUpload
-          setUploadPrice={setUploadPrice}
-          uploadPrice={uploadPrice}
-        />
+        <RatingUpload setUploadData={setUploadData} uploadData={uploadData} />
         <WantedUpload setUploadData={setUploadData} uploadData={uploadData} />
         <BtnWrapper>
           <StBasicButton buttonColor="#D9D9D9" onClick={onClickUploadHandler}>

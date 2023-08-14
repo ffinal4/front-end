@@ -24,46 +24,27 @@ const MethodUpload = ({ uploadData, setUploadData }: any) => {
 
   return (
     <LineContainer>
-      <RequiredText>교환방법</RequiredText>
-      <Wrapper>
-        <StBasicButton
-          buttonColor={
-            uploadData.data.tradeType === "직거래" ? "#575757" : "white"
-          }
-          style={{
-            color: `${
-              uploadData.data.tradeType === "직거래" ? "white" : "#000"
-            }`,
-          }}
-          onClick={onCheckDirectHandler}
-        >
-          직거래
-        </StBasicButton>
-        <StBasicButton
-          buttonColor={
-            uploadData.data.tradeType === "택배" ? "#575757" : "white"
-          }
-          style={{
-            color: `${uploadData.data.tradeType === "택배" ? "white" : "#000"}`,
-          }}
-          onClick={onCheckParcelHandler}
-        >
-          택배
-        </StBasicButton>
-        <StBasicButton
-          buttonColor={
-            uploadData.data.tradeType === "상관없음" ? "#575757" : "white"
-          }
-          style={{
-            color: `${
-              uploadData.data.tradeType === "상관없음" ? "white" : "#000"
-            }`,
-          }}
-          onClick={onCheckNoMatterHandler}
-        >
-          상관없음
-        </StBasicButton>
-      </Wrapper>
+        <RequiredText>교환방법*</RequiredText>
+        <Wrapper>
+            <StBasicButton
+                buttonColor={(uploadData.data.tradeType === "직거래") ? "#575757" : "white"}
+                style={{color: `${(uploadData.data.tradeType === "직거래") ? "white" : "#000"}`}}
+                onClick={onCheckDirectHandler}
+            >직거래
+            </StBasicButton>
+            <StBasicButton
+                buttonColor={(uploadData.data.tradeType === "택배") ? "#575757" : "white"}
+                style={{color: `${(uploadData.data.tradeType === "택배") ? "white" : "#000"}`}}
+                onClick={onCheckParcelHandler}
+            >택배
+            </StBasicButton>
+            <StBasicButton
+                buttonColor={(uploadData.data.tradeType === "상관없음") ? "#575757" : "white"}
+                style={{color: `${(uploadData.data.tradeType === "상관없음") ? "white" : "#000"}`}}
+                onClick={onCheckNoMatterHandler}
+            >상관없음
+            </StBasicButton>
+        </Wrapper>
     </LineContainer>
   );
 };
