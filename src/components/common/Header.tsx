@@ -15,7 +15,6 @@ const Header = () => {
 
   useEffect(() => {
     let insertedToken = localStorage.getItem("accessToken");
-    console.log(insertedToken, "토큰");
 
     if (insertedToken) {
       setIsLogIn(true);

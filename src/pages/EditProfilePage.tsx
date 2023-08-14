@@ -65,9 +65,6 @@ const EditProfilePage = () => {
             event.preventDefault();
             editprofileOnclick(getValues());
           }}
-          // onSubmit={(data: EditForm, userId: string) => {
-          //   editprofileOnclick(data, userId);
-          // }}
         >
           <ProfileImageContainer>
             <ProfileImageUpload
