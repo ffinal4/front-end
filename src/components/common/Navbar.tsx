@@ -72,6 +72,7 @@ const MenuContainer = styled.div`
 
 const Menu = styled.div`
   /* border: 1px solid green; */
+  font-family: Pretendard;
   margin-left: 40px;
   margin-right: 40px;
   cursor: pointer;
