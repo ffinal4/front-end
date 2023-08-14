@@ -70,7 +70,7 @@ const TradeRequestListContainer = styled.div`
   border-bottom: 4px solid black;
   margin-top: 20px;
   width: 1136px;
-  height: 1198px;
+  height: 1194px;
 `;
 
 const MenuContainer = styled.div`

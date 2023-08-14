@@ -108,14 +108,11 @@ const LoginPage = () => {
         </LogInForm>
       </LoginContainer>
       <Box>
-        <FirstBoxContainer>
-          <img src={firstbox} />
-        </FirstBoxContainer>
-        <SecondBoxConatiner>
+        <img src={firstbox} />
+        <SecondDiv>
           <img src={secondbox} />
-        </SecondBoxConatiner>
+        </SecondDiv>
       </Box>
-
       <FooterContainer>
         <FirstFooter>
           <FirstImg src={footer} />
@@ -126,7 +123,6 @@ const LoginPage = () => {
   );
 };
 const LoginPageContainer = styled.div`
-  /* border: 5px solid blue; */
   background-color: #fcf6e9;
   position: relative;
   padding-top: 240px;
@@ -139,56 +135,54 @@ const LoginContainer = styled.div`
   height: 652px;
   border: 1px solid black;
   margin: 0 auto;
-  /* margin-top: 240px; */
   background-color: white;
   box-shadow: black 0px 0px 0px 2px inset,
     rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,
     rgb(255, 255, 255) 20px -20px 0px -3px, rgb(0, 0, 0) 20px -20px;
 `;
+
 const LogInForm = styled.form`
-  /* border: 1px solid green; */
   padding: 56px 96px 56px 96px;
   margin: auto;
 `;
+
 const TitleContainer = styled.div`
-  /* border: 1px solid blue; */
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
 `;
+
 const LogoContainer = styled.div`
   width: 66px;
   height: 54px;
-  /* border: 1px solid red; */
   margin: 0 auto;
   margin-top: 56px;
 `;
 
 const Logo = styled.img`
-  /* border: 1px solid blue; */
   width: 100%;
 `;
 
 const Title = styled.div`
   font-size: 32px;
-  /* border: 1px solid red; */
   font-weight: 800;
   margin-top: 10px;
   font-family: Pretendard;
 `;
+
 const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 400;
   font-family: Pretendard;
-  /* border: 1px solid red; */
 `;
+
 const InputContainer = styled.div`
-  /* border: 1px solid red; */
   margin-top: 30px;
   margin-bottom: 12px;
 `;
+
 const EmailInputContainer = styled.div`
   /* border: 1px solid blue; */
   margin-bottom: 16px;
@@ -277,29 +271,29 @@ const SignupLink = styled.button`
 `;
 
 const Box = styled.div`
-  border: 1px solid red;
   width: 100%;
-  @media screen and (max-width: 834px) {
-    width: 834px;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  gap: 680px;
+
+  @media screen and (max-width: 1300px) {
+    gap: 0px;
+    display: flex;
+    justify-content: space-between;
   }
 `;
-const FirstBoxContainer = styled.div`
-  margin: -330px 690.9px 119.2px 100px;
-  transform: rotate(-8.96deg);
-  position: absolute;
-`;
-const SecondBoxConatiner = styled.div`
-  margin: -350px 195.4px 200px 1100px;
-  transform: rotate(17.357deg);
-  position: absolute;
-`;
+
 const FooterContainer = styled.div`
   position: relative;
   width: 100%;
   position: absolute;
-  top: 800px;
+  top: 830px;
+  background-color: #ffca64;
   z-index: 999;
 `;
+
 const FirstFooter = styled.div`
   position: relative;
   width: 100%;
@@ -313,8 +307,18 @@ const SecondImg = styled.img`
   position: absolute;
   width: 100%;
   z-index: 999;
-  top: 0;
+  top: 0px;
   left: 0px;
+`;
+
+const SecondDiv = styled.div`
+  position: relative;
+  z-index: 999;
+
+  @media screen and (max-width: 1300px) {
+    position: relative;
+    z-index: 777;
+  }
 `;
 
 export default LoginPage;

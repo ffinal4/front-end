@@ -14,7 +14,8 @@ const Header = () => {
   const [isLogIn, setIsLogIn] = useState<boolean>(false);
 
   useEffect(() => {
-    let insertedToken = localStorage.getItem("access_token");
+    let insertedToken = localStorage.getItem("accessToken");
+    console.log(insertedToken, "토큰");
 
     if (insertedToken) {
       setIsLogIn(true);
@@ -22,7 +23,6 @@ const Header = () => {
       setIsLogIn(false);
     }
   }, [isLogIn]);
-  console.log(isLogIn);
 
   return (
     <HeaderLayout>
@@ -42,7 +42,23 @@ const Header = () => {
             </SearchButton>
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
-          {!isLogIn ? (
+          {isLogIn ? (
+            <IconContainer>
+              <Alarm src={alarm} />
+              <Mypage
+                src={mypage}
+                onClick={() => {
+                  navigate("/mypage");
+                }}
+              />
+              <Peeppo
+                src={peeppo}
+                onClick={() => {
+                  navigate("/myPocket");
+                }}
+              />
+            </IconContainer>
+          ) : (
             <LinkContainer>
               <LoginLink
                 onClick={() => {
@@ -56,17 +72,6 @@ const Header = () => {
                 회원가입
               </SignupLink>
             </LinkContainer>
-          ) : (
-            <IconContainer>
-              <Alarm src={alarm} />
-              <Mypage
-                src={mypage}
-                onClick={() => {
-                  navigate("/mypage");
-                }}
-              />
-              <Peeppo src={peeppo} />
-            </IconContainer>
           )}
         </HeaderContainer>
       </HeaderoutContainer>

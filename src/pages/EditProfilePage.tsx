@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
 import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
+import { patchProfileEditApi } from "../api/users";
 
 interface EditForm {
   select: string;
@@ -13,37 +14,41 @@ interface EditForm {
   newPassword: string;
   confirmPassword: string;
   nickname: string;
-  location: string;
+  uploadImage: string;
+  address: string;
 }
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
+  const [uploadImage, setUploadImage] = useState(null);
 
   const {
     register,
-    formState: { errors },
     handleSubmit,
     getValues,
+    formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
 
-  const editprofileOnclick = async (data: any) => {
-    // const newForm = {
-    //   password: data.password,
-    //   nickname: data.nickname,
-    //   location: data.location,
-    //   // userImg: data.useImage;
-    // };
-    // try {
-    //   const res = await patchProfileEditApi(userId, newForm);
-    //   if (res.status === 201) {
-    //     console.log("개인정보수정완료", res);
-    //     navigate("/login");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  //변경사항 저장 통신
+  const editprofileOnclick = async (data: EditForm) => {
+    const userId = "";
+    const newForm = {
+      nickname: data.nickname,
+      password: data.newPassword,
+      location: data.address,
+      userImg: data.uploadImage,
+    };
+    try {
+      const res = await patchProfileEditApi(userId, newForm);
+      if (res.status === 201) {
+        console.log("개인정보수정완료", res);
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -56,12 +61,19 @@ const EditProfilePage = () => {
           </Title>
         </TitleContainer>
         <EditProfileForm
-          onSubmit={(data: any) => {
-            editprofileOnclick(data);
+          onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            editprofileOnclick(getValues());
           }}
+          // onSubmit={(data: EditForm, userId: string) => {
+          //   editprofileOnclick(data, userId);
+          // }}
         >
           <ProfileImageContainer>
-            <ProfileImageUpload />
+            <ProfileImageUpload
+              uploadImage={uploadImage}
+              setUploadImage={setUploadImage}
+            />
           </ProfileImageContainer>
           <EmailContainer>
             <Label>이메일(아이디)</Label>
@@ -130,7 +142,7 @@ const EditProfilePage = () => {
                     required: "필수입력 항목입니다.",
                     validate: {
                       check: (value) => {
-                        if (getValues("password") !== value) {
+                        if (getValues("newPassword") !== value) {
                           return "* 비밀번호가 일치하지 않습니다.";
                         }
                       },
@@ -163,9 +175,25 @@ const EditProfilePage = () => {
             fontWeight="400"
             borderColor="#D5D4D4"
             buttonColor="#D9D9D9;"
-            onClick={() => {
-              navigate("/login");
-            }}
+            type="submit"
+            onClick={handleSubmit(async (data: EditForm) => {
+              const userId = "";
+              const newForm = {
+                nickname: data.nickname,
+                password: data.password,
+                location: data.address,
+                userImg: data.uploadImage,
+              };
+              try {
+                const res = await patchProfileEditApi(userId, newForm);
+                if (res.status === 201) {
+                  console.log("개인정보수정완료", res);
+                  navigate("/login");
+                }
+              } catch (error) {
+                console.log(error);
+              }
+            })}
           >
             변경저장
           </StBasicButton>

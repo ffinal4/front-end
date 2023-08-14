@@ -27,12 +27,12 @@ interface profileEditBody {
   nickname: string;
   password: string;
   location: string;
-  // userImg: string;
+  userImg: string;
 }
 export const patchProfileEditApi = async (
   userId: string,
   body: profileEditBody
 ) => {
-  const res = await instance.patch(`/api/users/${userId}`);
+  const res = await instance.patch(`/api/users/${userId}`, body);
   return res;
 };
