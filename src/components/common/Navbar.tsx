@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import category from "../../assets/icon/category.png";
 import CategorySelect from "./CategorySelect";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
   const [categorySelect, setCategorySelect] = useState({
     category: "",
     name: "카테고리 선택",
@@ -30,7 +34,7 @@ const Navbar = () => {
         <MenuContainer>
           <Menu>물물교환</Menu>
           <Menu>포켓경매</Menu>
-          <Menu>레이팅</Menu>
+          <Menu onClick={() => navigate('/rating')}>레이팅</Menu>
         </MenuContainer>
       </Wrapper>
     </CategoryHeaderContainer>

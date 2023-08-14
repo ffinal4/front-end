@@ -15,6 +15,7 @@ import EditProfilePage from "./pages/EditProfilePage";
 import ChattingPage from "./pages/ChattingPage";
 import AuctionUploadPage from "./pages/AuctionUploadPage";
 import TradeRequestPage from "./pages/TradeRequestPage";
+import RatingPage from "./pages/RatingPage";
 import { QueryClient } from "react-query";
 import { QueryClientProvider } from "react-query";
 
