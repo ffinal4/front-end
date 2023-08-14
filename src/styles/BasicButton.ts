@@ -1,10 +1,7 @@
 import { styled } from "styled-components";
 
 export const StBasicButton = styled.button<{
-  color: string;
-  borderColor: string;
   buttonColor: string;
-  fontWeight: string;
 }>`
   display: flex;
   padding: 10px 0px;
@@ -15,9 +12,6 @@ export const StBasicButton = styled.button<{
   width: 176px;
   height: 44px;
   border-radius: 5px;
-  color: ${(props) => props.color};
-  border: 1px solid ${(props) => props.borderColor};
   background-color: ${(props) => props.buttonColor};
-  font-weight: ${(props) => props.fontWeight};
   cursor: pointer;
 `;

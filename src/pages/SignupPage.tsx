@@ -197,13 +197,7 @@ const SignupPage = () => {
             />
           </NickNameInputContainer>
 
-          <StBasicButton
-            color="#FCFCFC"
-            fontWeight="400"
-            borderColor="#D5D4D4"
-            buttonColor="#D9D9D9;"
-            style={{ marginLeft: "20px" }}
-          >
+          <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
             중복 확인
           </StBasicButton>
         </NickNameContainer>
@@ -211,9 +205,6 @@ const SignupPage = () => {
       </SignUpForm>
       <AssignButtonContainer>
         <StBasicButton
-          color="#FCFCFC"
-          fontWeight="400"
-          borderColor="#D5D4D4"
           buttonColor="#D9D9D9"
           type="submit"
           onClick={handleSubmit(async (data) => {

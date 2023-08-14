@@ -175,13 +175,7 @@ const UploadPage = () => {
         />
         <WantedUpload setUploadData={setUploadData} uploadData={uploadData} />
         <BtnWrapper>
-          <StBasicButton
-            color="white"
-            fontWeight="400"
-            borderColor="#D9D9D9"
-            buttonColor="#D9D9D9"
-            onClick={onClickUploadHandler}
-          >
+          <StBasicButton buttonColor="#D9D9D9" onClick={onClickUploadHandler}>
             주머니에 추가
           </StBasicButton>
         </BtnWrapper>

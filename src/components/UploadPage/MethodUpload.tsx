@@ -27,9 +27,6 @@ const MethodUpload = ({ uploadData, setUploadData }: any) => {
       <RequiredText>교환방법</RequiredText>
       <Wrapper>
         <StBasicButton
-          color="white"
-          borderColor="#717171"
-          fontWeight="400"
           buttonColor={
             uploadData.data.tradeType === "직거래" ? "#575757" : "white"
           }
@@ -43,9 +40,6 @@ const MethodUpload = ({ uploadData, setUploadData }: any) => {
           직거래
         </StBasicButton>
         <StBasicButton
-          color="white"
-          borderColor="#717171"
-          fontWeight="400"
           buttonColor={
             uploadData.data.tradeType === "택배" ? "#575757" : "white"
           }
@@ -57,9 +51,6 @@ const MethodUpload = ({ uploadData, setUploadData }: any) => {
           택배
         </StBasicButton>
         <StBasicButton
-          color="white"
-          borderColor="#717171"
-          fontWeight="400"
           buttonColor={
             uploadData.data.tradeType === "상관없음" ? "#575757" : "white"
           }

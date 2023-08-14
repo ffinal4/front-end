@@ -171,9 +171,6 @@ const EditProfilePage = () => {
         </EditProfileForm>
         <AssignButtonContainer>
           <StBasicButton
-            color="#FCFCFC"
-            fontWeight="400"
-            borderColor="#D5D4D4"
             buttonColor="#D9D9D9;"
             type="submit"
             onClick={handleSubmit(async (data: EditForm) => {

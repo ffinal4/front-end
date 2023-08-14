@@ -36,9 +36,6 @@ const ConditionUpload = ({
       <AllWrapper>
         <Wrapper>
           <StBasicButton
-            color="white"
-            borderColor="#717171"
-            fontWeight="400"
             buttonColor={
               uploadData.data.goodsCondition === "상" ? "#575757" : "white"
             }
@@ -52,9 +49,6 @@ const ConditionUpload = ({
             상
           </StBasicButton>
           <StBasicButton
-            color="white"
-            borderColor="#717171"
-            fontWeight="400"
             buttonColor={
               uploadData.data.goodsCondition === "중" ? "#575757" : "white"
             }
@@ -68,9 +62,6 @@ const ConditionUpload = ({
             중
           </StBasicButton>
           <StBasicButton
-            color="white"
-            borderColor="#717171"
-            fontWeight="400"
             buttonColor={
               uploadData.data.goodsCondition === "하" ? "#575757" : "white"
             }

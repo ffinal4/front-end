@@ -54,9 +54,6 @@ const AuctionUploadPage = () => {
           <FirstWrapper>
             <ButtonWrapper>
               <StBasicButton
-                color="black"
-                borderColor="#717171"
-                fontWeight="400"
                 buttonColor={productBid.time === "12hour" ? "#575757" : "white"}
                 style={{
                   color: `${
@@ -68,9 +65,6 @@ const AuctionUploadPage = () => {
                 12시간
               </StBasicButton>
               <StBasicButton
-                color="black"
-                borderColor="#717171"
-                fontWeight="400"
                 buttonColor={productBid.time === "1day" ? "#575757" : "white"}
                 style={{
                   color: `${productBid.time === "1day" ? "white" : "#000000"}`,
@@ -80,9 +74,6 @@ const AuctionUploadPage = () => {
                 1일
               </StBasicButton>
               <StBasicButton
-                color="black"
-                borderColor="#717171"
-                fontWeight="400"
                 buttonColor={productBid.time === "3day" ? "#575757" : "white"}
                 style={{
                   color: `${productBid.time === "3day" ? "white" : "#000000"}`,
@@ -113,9 +104,6 @@ const AuctionUploadPage = () => {
                   return (
                     <div key={item}>
                       <StBasicButton
-                        color="black"
-                        borderColor="#717171"
-                        fontWeight="400"
                         buttonColor="white"
                         onClick={() => onClickAddPriceHandler(item)}
                       >
@@ -227,17 +215,11 @@ const BidLimitWarpper = styled.div`
 `;
 
 const BidLimitInput = styled.input`
-<<<<<<< HEAD
   height: 44px;
   padding: 0px 20px;
-  border: 1px solid #000;
-=======
-    height: 44px;
-    padding: 0px 20px;
-    border: 1px solid #ADADAD;
-    border-radius: 5px;
-    background-color: #FCFCFC;
->>>>>>> 1f2d893df0334c6e73af46534f088a77fae78932
+  border: 1px solid #adadad;
+  border-radius: 5px;
+  background-color: #fcfcfc;
 `;
 
 const LastLineContainer = styled.div`
