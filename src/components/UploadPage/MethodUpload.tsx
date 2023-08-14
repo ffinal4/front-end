@@ -16,7 +16,7 @@ const MethodUpload = ({ uploadData, setUploadData } : any) => {
 
   return (
     <LineContainer>
-        <RequiredText>교환방법</RequiredText>
+        <RequiredText>교환방법*</RequiredText>
         <Wrapper>
             <StBasicButton
                 buttonColor={(uploadData.data.tradeType === "직거래") ? "#575757" : "white"}

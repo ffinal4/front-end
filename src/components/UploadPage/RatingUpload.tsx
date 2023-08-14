@@ -1,27 +1,25 @@
 import React, { useState, useCallback } from 'react'
 import { styled } from 'styled-components';
 
-const RatingUpload = ({ setUploadPrice, uploadPrice } : any) => {
+const RatingUpload = ({ setUploadData, uploadData } : any) => {
 
-    const [ratingCheck, setRatingCheck] = useState<{rating : any}>({
+    const [ratingCheck, setRatingCheck] = useState<{rating : string}>({
         rating: "NO"
     });
-    const { rating } = ratingCheck;
-
     const [conditionProduct, setConditionProduct] = useState({
         price: "",
     });
+    
+    const { rating } = ratingCheck;
     const { price } = conditionProduct;
 
     const onCheckYesRatingHandler = () => {
         setRatingCheck({...ratingCheck, rating: "YES"});
-        setUploadPrice({...uploadPrice, sellerPrice: {...uploadPrice.sellerPrice, rating: "YES"}});
-        console.log("YES", uploadPrice);
+        console.log("YES", uploadData);
     };
     const onCheckNoRatingHandler = () => {
         setRatingCheck({...ratingCheck, rating: "NO"});
-        setUploadPrice({...uploadPrice, sellerPrice: {...uploadPrice.sellerPrice, rating: "NO"}});
-        console.log("NO", uploadPrice);
+        console.log("NO", uploadData);
     };
 
     const memoizedCallback = useCallback((event : React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +29,7 @@ const RatingUpload = ({ setUploadPrice, uploadPrice } : any) => {
             ...conditionProduct,
             [name]: numValue
         })
-        setUploadPrice({...uploadPrice, sellerPrice: {...uploadPrice.sellerPrice, sellerPrice: price}});
+        setUploadData({...uploadData, data: {...uploadData.data, sellerPrice: price}});
     }, [conditionProduct]);
 
     const numericValue = parseFloat(price);
@@ -43,8 +41,11 @@ const RatingUpload = ({ setUploadPrice, uploadPrice } : any) => {
         <AllWrapper>
             <RatingCheckWrapper>
                 <CheckWrapper>
-                    <EmptyCircle onClick={onCheckYesRatingHandler}>
-                        {(rating === "YES") && <FullCircle style={{backgroundColor: "#000"}}/>}
+                    <EmptyCircle 
+                        style={(rating === "YES") ? {border: "2px solid #FFCA64"} : {border: "2px solid #D5D4D4"}}
+                        onClick={onCheckYesRatingHandler}
+                    >
+                        {(rating === "YES") && <FullCircle style={{backgroundColor: "#FFCA64"}}/>}
                     </EmptyCircle>
                     YES
                 </CheckWrapper>
@@ -152,7 +153,9 @@ const PriceInput = styled.input`
     width: 176px;
     height: 44px;
     padding: 0px 00px 0px 20px;
-    border: 1px solid #000;
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
+    background-color: #FCFCFC;
 `;
 
 const Text = styled.div`

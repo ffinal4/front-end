@@ -23,7 +23,7 @@ const CategoryUpload = ({ setUploadData, uploadData } : any) => {
 
   return (
     <LineContainer>
-        <RequiredText>카테고리</RequiredText>
+        <RequiredText>카테고리*</RequiredText>
         <SelectBar>
             <Text>{name}</Text>
             <ChoiceBox onClick={onClickDropDownHandelr}></ChoiceBox>

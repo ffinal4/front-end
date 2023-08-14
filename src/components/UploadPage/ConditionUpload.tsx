@@ -31,7 +31,7 @@ const ConditionUpload = ({ uploadData, setUploadData, setUploadPrice, uploadPric
 
   return (
     <LineContainer>
-        <RequiredText>물건상태</RequiredText>
+        <RequiredText>물건상태*</RequiredText>
         <AllWrapper>
             <Wrapper>
                 <StBasicButton

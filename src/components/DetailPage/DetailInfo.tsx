@@ -8,7 +8,6 @@ import Siren from '../../assets/icon/siren.png'
 import Group from '../../assets/icon/group.png'
 
 const DetailInfo = () => {
-
     const [conditional, setConditional] = useState({
       chatting: false,
       users: true,
