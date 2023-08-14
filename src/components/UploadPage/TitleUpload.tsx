@@ -40,7 +40,7 @@ const LineContainer = styled.div`
     width: 100%;
     display: flex;
     padding: 30px 0px 30px 0px;
-    border-bottom: 2px dotted #EAEAEA;
+    border-bottom: 2px solid #EAEAEA;
 `;
 
 const RequiredText = styled.div`
@@ -71,7 +71,9 @@ const TitleInput = styled.input`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border: 1px solid;
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
+    background-color: #FCFCFC;
 `;
 
 const Text = styled.div<{ color: string }>`
