@@ -15,6 +15,7 @@ import EditProfilePage from "./pages/EditProfilePage";
 import ChattingPage from "./pages/ChattingPage";
 import AuctionUploadPage from "./pages/AuctionUploadPage";
 import TradeRequestPage from "./pages/TradeRequestPage";
+import RatingPage from "./pages/RatingPage";
 import { QueryClient } from "react-query";
 import { QueryClientProvider } from "react-query";
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/chat" element={<ChattingPage />} />
+          <Route path="/rating" element={<RatingPage />} />
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />} />
             <Route path="/signup" element={<SignupPage />} />
