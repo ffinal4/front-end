@@ -109,6 +109,7 @@ const EditProfilePage = () => {
                 type="text"
                 placeholder="닉네임을 입력해주세요."
                 value={nickname}
+                // onChange={nicknameOnchange}
                 {...register("nickname", { required: true })}
                 // onBlur={handleNicknameBlur}
               />
