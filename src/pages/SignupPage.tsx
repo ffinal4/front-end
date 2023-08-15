@@ -15,6 +15,7 @@ interface SignupForm {
   password: string;
   confirmPassword: string;
   nickname: string;
+  address: string;
 }
 
 const SignupPage = () => {
@@ -47,9 +48,14 @@ const SignupPage = () => {
       email: `${data.email}${data.select}`,
       password: data.password,
       nickname: data.nickname,
+      location: data.address,
+    };
+    const allForm = {
+      ...newForm,
+      location: address,
     };
     try {
-      const res = await postSignupApi(newForm);
+      const res = await postSignupApi(allForm);
       if (res.status === 200) {
         console.log("회원가입성공", res);
         navigate("/login");
@@ -213,17 +219,19 @@ const SignupPage = () => {
               password: data.password,
               nickname: data.nickname,
             };
-            console.log(newForm);
+            const allForm = {
+              ...newForm,
+              location: address,
+            };
 
             try {
-              const res = await postSignupApi(newForm);
+              const res = await postSignupApi(allForm);
               if (res.status === 200) {
                 console.log("회원가입성공", res);
                 navigate("/login");
               }
             } catch (error) {
               console.log(error);
-              // alert(JSON.stringify(error.response.data.data));
             }
           })}
         >
@@ -403,7 +411,6 @@ const AddressContent = styled.div`
   width: 100%;
   height: 24px;
   font-family: Pretendard;
-
   color: gray;
   margin-bottom: 30px;
   margin-top: 10px;

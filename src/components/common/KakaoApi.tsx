@@ -6,9 +6,9 @@ import { StBasicInput } from "../../styles/BasicInput";
 const KakaoApi = (props: any) => {
   const { address, setAddress, openPostcode, setOpenPostcode } = props;
 
-  const addressOnchange = (data: any) => {
-    setAddress(data);
-    console.log(data);
+  const addressOnchange = (event: any) => {
+    setAddress(event.target.value);
+    console.log(event.target.value);
   };
   const handle = {
     // 버튼 클릭 이벤트

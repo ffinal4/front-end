@@ -32,7 +32,8 @@ const EditProfilePage = () => {
   } = useForm<EditForm>({ mode: "onBlur" });
 
   //닉네임 중복 확인 통신
-  const checkNicknameAvailability = async (nickname: any) => {
+  const checkNicknameAvailability = async (event: any, nickname: any) => {
+    event.preventDefault();
     try {
       const res = await postNicknameApi(nickname);
       return res.data.isAvailable;
@@ -95,10 +96,18 @@ const EditProfilePage = () => {
                 type="text"
                 placeholder="닉네임을 입력해주세요."
                 {...register("nickname", { required: true })}
-                onBlur={checkNicknameAvailability}
+                // onBlur={checkNicknameAvailability}
               />
             </NickNameInputContainer>
+            <StBasicButton
+              buttonColor="#FDD988"
+              style={{ marginLeft: "20px" }}
+              // onClick={checkNicknameAvailability}
+            >
+              중복확인
+            </StBasicButton>
           </NickNameContainer>
+
           {errors.nickname && <Content>* 이미 사용중인 닉네임입니다.</Content>}
           <PwContainer>
             <Label>현재 비밀번호</Label>
@@ -278,7 +287,7 @@ const CommonLabel = styled.div`
   font-family: Pretendard;
 `;
 const NickNameInputContainer = styled.div`
-  width: 656px;
+  width: 464px;
 `;
 const Content = styled.div`
   /* border: 1px solid blue; */
