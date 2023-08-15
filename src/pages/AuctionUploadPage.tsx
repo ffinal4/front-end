@@ -20,17 +20,21 @@ const AuctionUploadPage = () => {
   const locateLimit = limit.toLocaleString();
 
   const onClickTwelveHourHandler = () => {
-    setProductBid({ ...productBid, time: "12hour" });
+    setProductBid({ ...productBid, time: "30분" });
   };
   const onClickOneDayHandler = () => {
-    setProductBid({ ...productBid, time: "1day" });
+    setProductBid({ ...productBid, time: "1시간" });
   };
   const onClickThreeDayHandler = () => {
-    setProductBid({ ...productBid, time: "3day" });
+    setProductBid({ ...productBid, time: "3시간" });
   };
 
   const onClickAddPriceHandler = (item: number) => {
     setProductBid({ ...productBid, limit: parseInt(limit) + item });
+  };
+
+  const onClickRemovePriceHandler = () => {
+    setProductBid({...productBid, limit: 0});
   };
   console.log("productBid", productBid);
 
@@ -53,27 +57,27 @@ const AuctionUploadPage = () => {
           <RequiredText>경매기간</RequiredText>
           <FirstWrapper>
             <ButtonWrapper>
-              <StBasicButton
-                buttonColor={productBid.time === "12hour" ? "#575757" : "white"}
-                style={{color: `${productBid.time === "12hour" ? "white" : "#000000"}`}}
+              <Button
+                buttonColor={productBid.time === "30분" ? "#575757" : "white"}
+                style={{color: `${productBid.time === "30분" ? "white" : "#000000"}`}}
                 onClick={onClickTwelveHourHandler}
               >
-                12시간
-              </StBasicButton>
-              <StBasicButton
-                buttonColor={productBid.time === "1day" ? "#575757" : "white"}
-                style={{color: `${productBid.time === "1day" ? "white" : "#000000"}`}}
+                30분
+              </Button>
+              <Button
+                buttonColor={productBid.time === "1시간" ? "#575757" : "white"}
+                style={{color: `${productBid.time === "1시간" ? "white" : "#000000"}`}}
                 onClick={onClickOneDayHandler}
               >
-                1일
-              </StBasicButton>
-              <StBasicButton
-                buttonColor={productBid.time === "3day" ? "#575757" : "white"}
-                style={{color: `${productBid.time === "3day" ? "white" : "#000000"}`}}
+                1시간
+              </Button>
+              <Button
+                buttonColor={productBid.time === "3시간" ? "#575757" : "white"}
+                style={{color: `${productBid.time === "3시간" ? "white" : "#000000"}`}}
                 onClick={onClickThreeDayHandler}
               >
-                3일
-              </StBasicButton>
+                3시간
+              </Button>
             </ButtonWrapper>
             <Text>
               * 경매기간은 경매 시작을 기점으로 카운트다운되며 수정 할 수
@@ -86,21 +90,27 @@ const AuctionUploadPage = () => {
           <RequiredText>입찰 제한</RequiredText>
           <LineWrapper>
             <BidLimitWarpper>
-              <BidLimitInput
-                type="text"
-                value={limit !== 0 ? locateLimit : ""}
-                placeholder="입력한 가치 이상의 물건만 입찰됩니다."
-              />
+              <InputWrapper>
+                <BidLimitInput
+                  type="text"
+                  value={limit !== 0 ? locateLimit : ""}
+                  placeholder="입력한 가치 이상의 물건만 입찰됩니다."
+                />
+                <RemoveBtn onClick={onClickRemovePriceHandler}>
+                  <IconBox />
+                  전체지우기
+                </RemoveBtn>
+              </InputWrapper>
               <ButtonWrapper>
                 {bidPrice.map((item) => {
                   return (
                     <div key={item}>
-                      <StBasicButton
-                        buttonColor="white"
+                      <Button
+                        buttonColor="#FDEAC2"
                         onClick={() => onClickAddPriceHandler(item)}
                       >
                         {item.toLocaleString()}
-                      </StBasicButton>
+                      </Button>
                     </div>
                   );
                 })}
@@ -204,9 +214,11 @@ const LineWrapper = styled.div`
 const BidLimitWarpper = styled.div`
   display: grid;
   gap: 30px;
+  width: 100%;
 `;
 
 const BidLimitInput = styled.input`
+  width: 100%;
   height: 44px;
   padding: 0px 20px;
   border: 1px solid #adadad;
@@ -219,6 +231,35 @@ const LastLineContainer = styled.div`
   padding: 30px 0px;
   display: flex;
   border-bottom: 4px solid #181818;
+`;
+
+const Button = styled(StBasicButton)`
+  border: 1px solid #222020;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+const RemoveBtn = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #ADADAD;
+  min-width: 101px;
+  cursor: pointer;
+`;
+
+const IconBox = styled.div`
+  width: 24px;
+  height: 24px;
+  background-color: #D9D9D9;
 `;
 
 export default AuctionUploadPage;

@@ -3,15 +3,8 @@ import { styled } from 'styled-components';
 import ppapparo from '../../assets/images/ppapparo.jpg'
 import Pocket from './Pocket';
 import noob from '../../assets/images/엎드린.png'
-import stand from '../../assets/images/선.png'
 
 const ProfileContent = () => {
-
-    const [pocket, setPocket] = useState(false);
-
-    const onClickPocketHandler = () => {
-        setPocket(!pocket)
-    };
     
     return (
         <LeftContainer>
@@ -37,14 +30,10 @@ const ProfileContent = () => {
                     </ContentLine>
                 </ContentInBox>
                 <ButtonBox>
-                    <Button
-                        noob={noob}
-                        stand={stand}
-                        onClick={onClickPocketHandler}
-                    />
+                    <Button noob={noob} />
                 </ButtonBox>
             </LeftContentContainer>
-            {(pocket) && <Pocket onClickPocketHandler={onClickPocketHandler}/>}
+            <Pocket />
         </LeftContainer>
     )
 };
@@ -121,19 +110,13 @@ const ButtonBox = styled.div`
     padding: 10px 0px 148px 0px;
 `;
 
-const Button = styled.div<{ noob : string, stand : string }>`
+const Button = styled.div<{ noob : string }>`
     width: 100px;
     height: 100px;
     color: #000;
     background-size: cover;
     background-image: ${`url(${noob})`};
     cursor: pointer;
-
-    &:hover {
-        background-image: ${`url(${stand})`};
-        width: 110px;
-        height: 110px;
-    }
 `;
 
 export default ProfileContent;
