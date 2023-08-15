@@ -3,10 +3,52 @@ import { styled } from "styled-components";
 import image from "../../assets/images/ppapparo.jpg";
 import { useNavigate } from "react-router-dom";
 import RequestRejectModal from "./RequestRejectModal";
+import { StBasicButton } from "../../styles/BasicButton";
 
 const TradeRequestList = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
+
+  const [a, setA] = useState({
+    request: "교환요청",
+  });
+
+  const { request } = a;
+
+  const stateButton = () => {
+    if (request === "교환요청") {
+      <ButtonContainer>
+        <AcceptButton>수락</AcceptButton>
+        <RejectButton onClick={rejectModalClick}>거절</RejectButton>
+        {rejectModalOpen && (
+          <RequestRejectModal
+            rejectModalOpen={rejectModalOpen}
+            setRejectModalOpen={setRejectModalOpen}
+          />
+        )}
+      </ButtonContainer>;
+    }
+
+    if (request === "교환진행중") {
+      <ButtonContainer>
+        <AcceptButton>채팅</AcceptButton>
+        <RejectButton onClick={rejectModalClick}>완료</RejectButton>
+      </ButtonContainer>;
+    }
+
+    if (request === "교환취소") {
+      <ButtonContainer>
+        <StBasicButton buttonColor="">삭제</StBasicButton>
+      </ButtonContainer>;
+    }
+
+    if (request === "교환완료") {
+      <ButtonContainer>
+        <StBasicButton buttonColor="">자세히보기</StBasicButton>
+      </ButtonContainer>;
+    }
+    return null;
+  };
 
   const rejectModalClick = () => {
     setRejectModalOpen(!rejectModalOpen);
@@ -30,21 +72,12 @@ const TradeRequestList = () => {
             <Image src={image} />
           </ImgContainer>
         </MyItemContainer>
-        <StateContainer>교환요청</StateContainer>
-        <ButtonContainer>
-          <AcceptButton>수락</AcceptButton>
-          <RejectButton onClick={rejectModalClick}>거절</RejectButton>
-          {rejectModalOpen && (
-            <RequestRejectModal
-              rejectModalOpen={rejectModalOpen}
-              setRejectModalOpen={setRejectModalOpen}
-            />
-          )}
-        </ButtonContainer>
+        <StateContainer>{stateButton()}</StateContainer>
       </RequestContainer>
     </div>
   );
 };
+
 const RequestContainer = styled.div`
   border-bottom: 2px solid #e1e1e1;
   height: 112px;
