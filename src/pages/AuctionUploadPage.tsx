@@ -55,29 +55,21 @@ const AuctionUploadPage = () => {
             <ButtonWrapper>
               <StBasicButton
                 buttonColor={productBid.time === "12hour" ? "#575757" : "white"}
-                style={{
-                  color: `${
-                    productBid.time === "12hour" ? "white" : "#000000"
-                  }`,
-                }}
+                style={{color: `${productBid.time === "12hour" ? "white" : "#000000"}`}}
                 onClick={onClickTwelveHourHandler}
               >
                 12시간
               </StBasicButton>
               <StBasicButton
                 buttonColor={productBid.time === "1day" ? "#575757" : "white"}
-                style={{
-                  color: `${productBid.time === "1day" ? "white" : "#000000"}`,
-                }}
+                style={{color: `${productBid.time === "1day" ? "white" : "#000000"}`}}
                 onClick={onClickOneDayHandler}
               >
                 1일
               </StBasicButton>
               <StBasicButton
                 buttonColor={productBid.time === "3day" ? "#575757" : "white"}
-                style={{
-                  color: `${productBid.time === "3day" ? "white" : "#000000"}`,
-                }}
+                style={{color: `${productBid.time === "3day" ? "white" : "#000000"}`}}
                 onClick={onClickThreeDayHandler}
               >
                 3일
