@@ -11,17 +11,9 @@ import Navbar from "./Navbar";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isLogIn, setIsLogIn] = useState<boolean>(false);
+  const insertedToken: string | null = localStorage.getItem("accessToken");
 
-  useEffect(() => {
-    let insertedToken = localStorage.getItem("accessToken");
-
-    if (insertedToken) {
-      setIsLogIn(true);
-    } else {
-      setIsLogIn(false);
-    }
-  }, [isLogIn]);
+  useEffect(() => {}, [insertedToken]);
 
   return (
     <HeaderLayout>
@@ -41,7 +33,7 @@ const Header = () => {
             </SearchButton>
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
-          {isLogIn ? (
+          {insertedToken ? (
             <IconContainer>
               <Alarm src={alarm} />
               <Mypage
