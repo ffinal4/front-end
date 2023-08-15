@@ -23,7 +23,7 @@ const EditProfilePage = () => {
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [uploadImage, setUploadImage] = useState(null);
-  const [nickname, setNickname] = useState("");
+  // const [nickname, setNickname] = useState("");
 
   const {
     register,
@@ -33,15 +33,14 @@ const EditProfilePage = () => {
     formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
 
-  //야기서 또 닉네임 부분을 통신해야하는가?
-  // const checkNicknameAvailability = (nickname: string) => {
-  //   try {
-  //     const res = await patchProfileEditApi(nickname);
-  //     return res.data.isAvailable;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const checkNicknameAvailability = (nickname: string) => {
+    try {
+      const res = await patchProfileEditApi(nickname);
+      return res.data.isAvailable;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // const handleNicknameBlur = async () => {
   //   if (nickname) {
@@ -51,9 +50,9 @@ const EditProfilePage = () => {
   //     }
   //   }
   // };
+
   //변경사항 저장 통신
   const editprofileOnclick = async (data: EditForm) => {
-    console.log("비밀번호 변경", data.currentPassword, data.newPassword);
     const userId = "";
     const newForm = {
       nickname: data.nickname,
@@ -71,9 +70,6 @@ const EditProfilePage = () => {
       console.log(error);
     }
   };
-
-  // const newPassword = watch("newPassword");
-  // const confirmPassword = watch("confirmPassword");
 
   return (
     <div>
@@ -108,10 +104,8 @@ const EditProfilePage = () => {
                 borderColor="#ADADAD"
                 type="text"
                 placeholder="닉네임을 입력해주세요."
-                value={nickname}
-                // onChange={nicknameOnchange}
                 {...register("nickname", { required: true })}
-                // onBlur={handleNicknameBlur}
+                onBlur={checkNicknameAvailability}
               />
             </NickNameInputContainer>
           </NickNameContainer>
