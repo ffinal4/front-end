@@ -33,7 +33,7 @@ const TradeRequestPage = () => {
   );
 };
 
-const Title = styled.div`
+export const Title = styled.div`
   /* border: 1px solid red; */
   font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
@@ -41,13 +41,13 @@ const Title = styled.div`
   line-height: 110%;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
-const SubTitle = styled.div`
+export const SubTitle = styled.div`
   /* border: 1px solid red; */
   font-family: Pretendard;
   font-size: 20px;
@@ -55,7 +55,7 @@ const SubTitle = styled.div`
   line-height: 150%;
 `;
 
-const Filter = styled.div`
+export const Filter = styled.div`
   border-bottom: 1px solid #222020;
   cursor: pointer;
   width: 176px;
@@ -65,7 +65,7 @@ const Filter = styled.div`
   padding: 10px 10px 10px 20px;
 `;
 
-const TradeRequestListContainer = styled.div`
+export const TradeRequestListContainer = styled.div`
   border-top: 4px solid black;
   border-bottom: 4px solid black;
   margin-top: 20px;
@@ -73,14 +73,14 @@ const TradeRequestListContainer = styled.div`
   height: 1194px;
 `;
 
-const MenuContainer = styled.div`
+export const MenuContainer = styled.div`
   border-bottom: 2px solid #e1e1e1;
   background-color: #efefef;
   display: flex;
   height: 56px;
 `;
 
-const RequestDateMenu = styled.div`
+export const RequestDateMenu = styled.div`
   /* border: 1px solid blue; */
   width: 174px;
   display: flex;
@@ -91,7 +91,7 @@ const RequestDateMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const TradeRequestItemMenu = styled.div`
+export const TradeRequestItemMenu = styled.div`
   /* border: 1px solid blue; */
   width: 478px;
   display: flex;
@@ -102,7 +102,7 @@ const TradeRequestItemMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const MyItemMenu = styled.div`
+export const MyItemMenu = styled.div`
   /* border: 1px solid blue; */
   width: 112px;
   display: flex;
@@ -113,7 +113,7 @@ const MyItemMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const TradeStateMenu = styled.div`
+export const TradeStateMenu = styled.div`
   /* border: 1px solid blue; */
   width: 172px;
   display: flex;
@@ -124,7 +124,7 @@ const TradeStateMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const ChatState = styled.div`
+export const ChatState = styled.div`
   /* border: 1px solid blue; */
   width: 192px;
 `;
