@@ -12,7 +12,7 @@ import {
   TradeRequestListContainer,
   TradeStateMenu,
 } from "./TradeRequestPage";
-import AuctionList from "../components/MainPage/AuctionList";
+import MyAutionList from "../components/MyAuctionCheckPage/MyAutionList";
 
 const MyAuctionCheckPage = () => {
   return (
@@ -30,7 +30,16 @@ const MyAuctionCheckPage = () => {
           <TradeStateMenu>상태</TradeStateMenu>
           <ChatState />
         </MenuContainer>
-        {/* <AuctionList /> */}
+        <MyAutionList />
+        <MyAutionList />
+        <MyAutionList />
+        <MyAutionList />
+        <MyAutionList />
+        <MyAutionList />
+        <MyAutionList />
+        <MyAutionList />
+        <MyAutionList />
+        <MyAutionList />
       </TradeRequestListContainer>
     </div>
   );

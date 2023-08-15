@@ -14,11 +14,11 @@ import {
   TradeRequestItem,
   User,
 } from "../TradeRequestPage/TradeRequestList";
-import image from "../../assets/images/arrowleft.png";
+import image from "../../assets/images/closedEyes.png";
 import RequestRejectModal from "../TradeRequestPage/RequestRejectModal";
 import { StBasicButton } from "../../styles/BasicButton";
 
-const AutionList = () => {
+const MyAutionList = () => {
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
 
   const [a, setA] = useState({
@@ -41,7 +41,7 @@ const AutionList = () => {
       </ButtonContainer>;
     }
 
-    if (request === "교환진행중") {
+    if (request === "경매진행중") {
       <ButtonContainer>
         <AcceptButton>채팅</AcceptButton>
         <RejectButton onClick={rejectModalClick}>완료</RejectButton>
@@ -88,4 +88,4 @@ const AutionList = () => {
   );
 };
 
-export default AutionList;
+export default MyAutionList;
