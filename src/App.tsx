@@ -19,6 +19,7 @@ import StartRatingPage from "./pages/StartRatingPage";
 import { QueryClient } from "react-query";
 import { QueryClientProvider } from "react-query";
 import RatingPage from "./pages/RatingPage";
+import MyAuctionCheckPage from "./pages/MyAuctionCheckPage";
 
 const queryClient = new QueryClient();
 
@@ -26,27 +27,28 @@ function App() {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/chat" element={<ChattingPage />} />
-          <Route path="/ratingstart" element={<StartRatingPage />} />
-          <Route path="/rating" element={<RatingPage />} />
-          <Route path="/" element={<MainPage />} />
-          <Route element={<MainLayout />}>
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/upload" element={<UploadPage />} />
-            <Route path="/tradelist" element={<TradeListPage />} />
-            <Route path="/detail/:goodsId" element={<DetailPage />} />
-            <Route path="/myPocket" element={<MyPocketPage />} />
-            <Route path="/editprofile" element={<EditProfilePage />} />
-            <Route path="/auctionupload" element={<AuctionUploadPage />} />
-            <Route path="/traderequest" element={<TradeRequestPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/chat" element={<ChattingPage />} />
+            <Route path="/ratingstart" element={<StartRatingPage />} />
+            <Route path="/rating" element={<RatingPage />} />
+            <Route path="/" element={<MainPage />} />
+            <Route element={<MainLayout />}>
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/upload" element={<UploadPage />} />
+              <Route path="/tradelist" element={<TradeListPage />} />
+              <Route path="/detail/:goodsId" element={<DetailPage />} />
+              <Route path="/myPocket" element={<MyPocketPage />} />
+              <Route path="/editprofile" element={<EditProfilePage />} />
+              <Route path="/auctionupload" element={<AuctionUploadPage />} />
+              <Route path="/traderequest" element={<TradeRequestPage />} />
+              <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </QueryClientProvider>
     </div>
   );

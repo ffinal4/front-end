@@ -78,27 +78,27 @@ const TradeRequestList = () => {
   );
 };
 
-const RequestContainer = styled.div`
+export const RequestContainer = styled.div`
   border-bottom: 2px solid #e1e1e1;
   height: 112px;
   display: flex;
   align-items: center;
 `;
 
-const ImgContainer = styled.div`
+export const ImgContainer = styled.div`
   /* border: 1px solid blue; */
   width: 80px;
   height: 80px;
   display: flex;
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   /* border: 1px solid black; */
   width: 80px;
   height: 80px;
 `;
 
-const ContentContainer = styled.div`
+export const ContentContainer = styled.div`
   width: 346px;
   /* border: 1px solid green; */
   display: flex;
@@ -107,7 +107,7 @@ const ContentContainer = styled.div`
   flex-direction: column;
   margin-left: 16px;
 `;
-const RequestDate = styled.div`
+export const RequestDate = styled.div`
   border-right: 2px solid #e1e1e1;
   width: 174px;
   height: 112px;
@@ -119,13 +119,13 @@ const RequestDate = styled.div`
   font-size: 16px;
 `;
 
-const TradeRequestItem = styled.div`
+export const TradeRequestItem = styled.div`
   border-right: 2px solid #e1e1e1;
   width: 478px;
   padding: 16px;
 `;
 
-const ItemTitle = styled.div`
+export const ItemTitle = styled.div`
   width: 346px;
   height: 24px;
   display: flex;
@@ -135,7 +135,7 @@ const ItemTitle = styled.div`
   /* border: 1px solid blue; */
 `;
 
-const User = styled.div`
+export const User = styled.div`
   /* border: 1px solid blue; */
 
   width: 346px;
@@ -145,7 +145,7 @@ const User = styled.div`
   color: #767676;
 `;
 
-const MyItemContainer = styled.div`
+export const MyItemContainer = styled.div`
   border-right: 2px solid #e1e1e1;
   width: 112px;
   height: 112px;
@@ -154,7 +154,7 @@ const MyItemContainer = styled.div`
   justify-content: center;
 `;
 
-const StateContainer = styled.div`
+export const StateContainer = styled.div`
   border-right: 2px solid #e1e1e1;
   width: 172px;
   height: 112px;
@@ -166,12 +166,12 @@ const StateContainer = styled.div`
   font-weight: 400;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   /* border: 1px solid red; */
 
   margin: auto;
 `;
-const AcceptButton = styled.button`
+export const AcceptButton = styled.button`
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
@@ -180,7 +180,7 @@ const AcceptButton = styled.button`
   margin-right: 16px;
 `;
 
-const RejectButton = styled.button`
+export const RejectButton = styled.button`
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
