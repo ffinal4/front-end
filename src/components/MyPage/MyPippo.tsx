@@ -11,7 +11,7 @@ const MyPippo = () => {
       if (point < 84) {
         setPoint(point + 1);
       }
-    }, 15);
+    }, 10);
     return () => clearInterval(interVal);
   }, [point])
 
@@ -45,14 +45,6 @@ const RightContentContainer = styled.div`
   align-items: center;
   padding: 60px 32px 60px 32px;
   border: 1px solid #000;
-`;
-
-const RightPointWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 100%;
-  height: 100%;
 `;
 
 const PointText = styled.div`

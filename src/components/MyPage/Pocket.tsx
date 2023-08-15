@@ -1,34 +1,13 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-// import { PocketProps } from './ProfileContent';
 
-interface Props {
-    onClickPocketHandler(): void
-}                                 // props의 타입을 interface로 지정
-
-const Pocket: FC<Props> = ({ onClickPocketHandler }) => {  // 지정한 타입을 FC를 이용해 불러옴
+const Pocket = () => {
 
     const navigate = useNavigate();
 
-    const [height, setHeight] = useState(0);
-
-    useEffect (() => {
-        const interval = setInterval (() => {
-            if (height < 480) {
-                setHeight((prevHeight) => prevHeight + 20);
-            }
-        }, 10);
-        return () => {
-            clearInterval(interval);
-        };
-    }, [height]);
-
   return (
-    <LayoutContainer height={height}>
-        <CloseBtnContainer>
-            <CloseButton onClick={onClickPocketHandler}>X</CloseButton>
-        </CloseBtnContainer>
+    <LayoutContainer>
         <PocketContainer>
         <svg xmlns="http://www.w3.org/2000/svg" width="1915" height="2" viewBox="0 0 1915 2" fill="none">
             <path d="M0 1H1915" stroke="black" stroke-width="2" stroke-dasharray="40 40"/>
@@ -85,36 +64,12 @@ const Pocket: FC<Props> = ({ onClickPocketHandler }) => {  // 지정한 타입�
   )
 };
 
-const LayoutContainer = styled.div<{ height: number }>`
+const LayoutContainer = styled.div`
     position: absolute;
     left: 0;
     bottom: 0;
-    height: ${(props) => props.height}px;
+    height: 445px;
     width: 100%;
-`;
-
-const CloseBtnContainer = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    padding: 0px 0px 10px 0px;
-`;
-
-const CloseButton = styled.div`
-    border-radius: 100%;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #b8b8b8;
-    font-weight: 700;
-    opacity: 0.3;
-    cursor: pointer;
-
-    &:hover {
-        opacity: 0.5;
-    }
 `;
 
 const PocketContainer = styled.div`

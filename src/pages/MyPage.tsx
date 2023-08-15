@@ -2,8 +2,13 @@ import React from 'react'
 import { styled } from 'styled-components';
 import ProfileContent from '../components/MyPage/ProfileContent';
 import MyPippo from '../components/MyPage/MyPippo';
+import { useQueries } from 'react-query';
+import { getMypageApi } from '../api/users';
 
 const MyPage = () => {
+
+    // const { isLoading, error, data } = useQueries("myPageData", getMypageApi);
+
   return (
     <AllLayoutContainer>
         <LayoutContainer>
