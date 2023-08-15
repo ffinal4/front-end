@@ -6,7 +6,8 @@ import { useForm } from "react-hook-form";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
 import { postSignupApi } from "../api/users";
-import eyeImage from "../assets/images/eye.svg";
+import openeye from "../assets/icon/openeye.png";
+import closeeye from "../assets/icon/closeeye.png";
 
 interface SignupForm {
   email: string;
@@ -22,7 +23,6 @@ const SignupPage = () => {
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [pwType, setpwType] = useState({ type: "password", visible: false });
-  const [isEmailValid, setIsEmailValid] = useState(false);
 
   const onClickPasswordType = (event: any) => {
     event.preventDefault();
@@ -34,12 +34,6 @@ const SignupPage = () => {
       }
     });
   };
-
-  // const handleEmailChange = (event: any) => {
-  //   const emailValue = event.target.value;
-  //   const isValid = /^[a-zA-Z\d]{2,}$/.test(emailValue);
-  //   setIsEmailValid(isValid);
-  // };
 
   const {
     register,
@@ -54,9 +48,6 @@ const SignupPage = () => {
       password: data.password,
       nickname: data.nickname,
     };
-    console.log(data.password);
-    console.log(data.nickname);
-    // console.log(newForm);
     try {
       const res = await postSignupApi(newForm);
       if (res.status === 200) {
@@ -67,10 +58,11 @@ const SignupPage = () => {
       console.log(error);
     }
   };
+
   return (
     <SignUpPageContainer>
       <TitleContainer>
-        <Title>READY TO PEEPO</Title>
+        <Title>READY TO PEEPO?</Title>
       </TitleContainer>
       <SignUpForm
         onSubmit={(data: any) => {
@@ -81,6 +73,8 @@ const SignupPage = () => {
           <Label>이메일(아이디)</Label>
           <EmailInputContainer>
             <StBasicInput
+              borderColor="#ADADAD"
+              focusBorderColor="#EC0000"
               type="email"
               placeholder="이메일을 입력해주세요"
               {...register("email", {
@@ -116,12 +110,14 @@ const SignupPage = () => {
           <PwInputContainer>
             <PwVisibleButton onClick={onClickPasswordType}>
               {pwType.visible ? (
-                <PwImg src={eyeImage} />
+                <PwImg src={closeeye} />
               ) : (
-                <PwImg src={eyeImage} />
+                <PwImg src={openeye} />
               )}
             </PwVisibleButton>
             <StBasicInput
+              borderColor="#ADADAD"
+              focusBorderColor="#EC0000"
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("password", {
@@ -143,15 +139,9 @@ const SignupPage = () => {
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
           <CheckPwInputContainer>
-            {/* <CheckPwVisibleButton onClick={onClickPasswordType}>
-              {pwType.visible ? (
-                <PwImg src={eyeImage} />
-              ) : (
-                <PwImg src={eyeImage} />
-              )}
-            </CheckPwVisibleButton> */}
-
             <StBasicInput
+              borderColor="#ADADAD"
+              focusBorderColor="#EC0000"
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("confirmPassword", {
@@ -191,6 +181,8 @@ const SignupPage = () => {
           <SecondLabel>닉네임</SecondLabel>
           <NickNameInputContainer>
             <StBasicInput
+              borderColor="#ADADAD"
+              focusBorderColor="#EC0000"
               type="text"
               placeholder="한글, 영문, 숫자를 이용한 2~15자"
               {...register("nickname", {
@@ -205,11 +197,7 @@ const SignupPage = () => {
             />
           </NickNameInputContainer>
 
-          <StBasicButton
-            buttonColor="#D9D9D9;"
-            style={{ marginLeft: "20px" }}
-            // onClick={((e) => handleCheckNickname(getValues("nickname")), e)}
-          >
+          <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
             중복 확인
           </StBasicButton>
         </NickNameContainer>
@@ -217,8 +205,8 @@ const SignupPage = () => {
       </SignUpForm>
       <AssignButtonContainer>
         <StBasicButton
+          buttonColor="#D9D9D9"
           type="submit"
-          buttonColor="#D9D9D9;"
           onClick={handleSubmit(async (data) => {
             const newForm = {
               email: `${data.email}${data.select}`,
@@ -255,6 +243,7 @@ const TitleContainer = styled.div`
   margin: auto;
 `;
 const Title = styled.div`
+  font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
   font-weight: 800;
   margin-bottom: 30px;
@@ -280,10 +269,10 @@ const EmailContainer = styled.div`
 `;
 const Label = styled.div`
   /* border: 1px solid red; */
+  font-family: Pretendard;
   font-size: 20px;
   width: 180px;
   font-weight: 700;
-
   display: flex;
   margin-right: 70px;
 `;
@@ -301,6 +290,9 @@ const EmailSelect = styled.select`
   height: 44px;
   padding: 10px;
   font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #adadad;
+  font-family: Pretendard;
 `;
 
 const ValidateMessage = styled.div`
@@ -338,8 +330,8 @@ const PwVisibleButton = styled.button`
 `;
 const PwImg = styled.img`
   /* border: 1px solid red; */
-  width: 36px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
 `;
 const PwValidateMessage = styled.div`
   width: 656px;
@@ -396,6 +388,7 @@ const SecondLabel = styled.div`
   font-weight: 700;
   /* border: 1px solid red; */
   margin-right: 50px;
+  font-family: Pretendard;
 `;
 const NickNameInputContainer = styled.div`
   width: 464px;
@@ -409,6 +402,7 @@ const AddressContent = styled.div`
   /* border: 1px solid blue; */
   width: 100%;
   height: 24px;
+  font-family: Pretendard;
 
   color: gray;
   margin-bottom: 30px;

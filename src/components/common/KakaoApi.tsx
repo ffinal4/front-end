@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { styled } from "styled-components";
+import React from "react";
 import DaumPostcode from "react-daum-postcode";
 import { StBasicButton } from "../../styles/BasicButton";
 import { StBasicInput } from "../../styles/BasicInput";
@@ -13,7 +12,8 @@ const KakaoApi = (props: any) => {
   };
   const handle = {
     // 버튼 클릭 이벤트
-    clickButton: () => {
+    clickButton: (event: any) => {
+      event.preventDefault();
       setOpenPostcode((current: any) => !current);
     },
 
@@ -26,6 +26,8 @@ const KakaoApi = (props: any) => {
   return (
     <>
       <StBasicInput
+        focusBorderColor="#ADADAD"
+        borderColor="#ADADAD"
         type="text"
         placeholder="주소를 입력해주세요."
         value={address}
@@ -33,7 +35,7 @@ const KakaoApi = (props: any) => {
       />
 
       <StBasicButton
-        buttonColor="#D9D9D9;"
+        buttonColor="#FDD988"
         style={{ marginLeft: "20px" }}
         onClick={handle.clickButton}
       >
