@@ -2,12 +2,8 @@ import React, { useCallback, useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../../styles/BasicButton";
 
-const ConditionUpload = ({
-  uploadData,
-  setUploadData,
-  setUploadPrice,
-  uploadPrice,
-}: any) => {
+const ConditionUpload = ({ uploadData, setUploadData } : any) => {
+    
   const onCheckNewCondition = () => {
     setUploadData({
       ...uploadData,
