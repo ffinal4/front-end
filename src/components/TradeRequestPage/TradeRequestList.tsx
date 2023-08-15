@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import image from "../../assets/images/ppapparo.jpg";
 import { useNavigate } from "react-router-dom";
+import RequestRejectModal from "./RequestRejectModal";
 
 const TradeRequestList = () => {
   const navigate = useNavigate();
+  const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
+
+  const rejectModalClick = () => {
+    setRejectModalOpen(!rejectModalOpen);
+  };
+
   return (
     <div>
       <RequestContainer>
@@ -23,16 +30,16 @@ const TradeRequestList = () => {
             <Image src={image} />
           </ImgContainer>
         </MyItemContainer>
-        <StateContainer>교환진행중</StateContainer>
+        <StateContainer>교환요청</StateContainer>
         <ButtonContainer>
-          <ChatButton
-            onClick={() => {
-              navigate("/chat");
-            }}
-          >
-            채팅
-          </ChatButton>
-          <CompleteButton>완료</CompleteButton>
+          <AcceptButton>수락</AcceptButton>
+          <RejectButton onClick={rejectModalClick}>거절</RejectButton>
+          {rejectModalOpen && (
+            <RequestRejectModal
+              rejectModalOpen={rejectModalOpen}
+              setRejectModalOpen={setRejectModalOpen}
+            />
+          )}
         </ButtonContainer>
       </RequestContainer>
     </div>
@@ -74,6 +81,9 @@ const RequestDate = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
 `;
 
 const TradeRequestItem = styled.div`
@@ -86,13 +96,20 @@ const ItemTitle = styled.div`
   width: 346px;
   height: 24px;
   display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Pretendard;
   /* border: 1px solid blue; */
 `;
 
 const User = styled.div`
   /* border: 1px solid blue; */
+
   width: 346px;
   margin-top: 4px;
+  font-weight: 400;
+  font-family: Pretendard;
+  color: #767676;
 `;
 
 const MyItemContainer = styled.div`
@@ -111,6 +128,9 @@ const StateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px;
+  font-family: Pretendard;
+  font-weight: 400;
 `;
 
 const ButtonContainer = styled.div`
@@ -118,7 +138,7 @@ const ButtonContainer = styled.div`
 
   margin: auto;
 `;
-const ChatButton = styled.button`
+const AcceptButton = styled.button`
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
@@ -127,7 +147,7 @@ const ChatButton = styled.button`
   margin-right: 16px;
 `;
 
-const CompleteButton = styled.button`
+const RejectButton = styled.button`
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
