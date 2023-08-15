@@ -4,34 +4,23 @@ import eyeImage from "../assets/images/eye.svg";
 import HorizontalLine from "../components/common/HorizontalLine";
 import FilterButton from "../components/common/FilterButton";
 import ItemCard from "../components/common/ItemCard";
+import Paging from "../components/common/Paging/Paging";
+import { StTitle } from "../styles/TitleFont";
+import ItemCardList from "../components/common/ItemCardList";
 
 const TradeListPage = () => {
   return (
     <TradeListPageContainer>
       <TitleContainer>
         <TitleImage src={eyeImage} />
-        <TitleText>Peeping Pockets</TitleText>
+        <TitleText marginBottom="0" textAlign="center">
+          INSIDE POCKET
+        </TitleText>
       </TitleContainer>
       <HorizontalLine />
       <FilterButton />
-      <ItemCardContainer>
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-      </ItemCardContainer>
+      <ItemCardList />
+      <Paging />
     </TradeListPageContainer>
   );
 };
@@ -52,28 +41,8 @@ const TitleImage = styled.img`
   margin-bottom: 16px;
 `;
 
-const TitleText = styled.div`
-  color: #181818;
-  font-family: "Lemon/Milk", sans-serif;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 110%;
+const TitleText = styled(StTitle)`
+  color: var(--orange-orange-100, #ec8d49);
 `;
-
-const ItemCardContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px 16px;
-`;
-
-// const ItemCardContainer = styled.div`
-//   width: 100%;
-//   display: grid;
-//   grid-gap: 30px 16px;
-//   grid-template-columns: repeat(4, 1fr);
-// `;
 
 export default TradeListPage;

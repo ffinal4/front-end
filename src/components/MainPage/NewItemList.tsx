@@ -3,8 +3,11 @@ import { styled } from "styled-components";
 import { StSubTitle, StTitle } from "../../styles/TitleFont";
 import ItemCard from "../common/ItemCard";
 import { StBasicButton } from "../../styles/BasicButton";
+import { useNavigate } from "react-router-dom";
 
 const NewItemList = () => {
+  const navigate = useNavigate();
+
   return (
     <NewItemListContainer>
       <StTitle marginBottom="16px" textAlign="center">
@@ -22,7 +25,14 @@ const NewItemList = () => {
         <ItemCard />
         <ItemCard />
         <ItemCard />
-        <MoreBtn buttonColor="var(--yellow-yellow-100, #FFCA64);">더보기</MoreBtn>
+        <MoreBtn
+          buttonColor="var(--yellow-yellow-100, #FFCA64);"
+          onClick={() => {
+            navigate("/tradeList");
+          }}
+        >
+          더보기
+        </MoreBtn>
       </CardContainer>
     </NewItemListContainer>
   );
