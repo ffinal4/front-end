@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
 import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
-import { patchProfileEditApi } from "../api/users";
+import { patchProfileEditApi, postNicknameApi } from "../api/users";
 
 interface EditForm {
   select: string;
@@ -23,33 +23,23 @@ const EditProfilePage = () => {
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [uploadImage, setUploadImage] = useState(null);
-  // const [nickname, setNickname] = useState("");
 
   const {
     register,
     handleSubmit,
     getValues,
-    setValue,
     formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
 
-  const checkNicknameAvailability = (nickname: string) => {
+  //닉네임 중복 확인 통신
+  const checkNicknameAvailability = async (nickname: any) => {
     try {
-      const res = await patchProfileEditApi(nickname);
+      const res = await postNicknameApi(nickname);
       return res.data.isAvailable;
     } catch (error) {
       console.log(error);
     }
   };
-
-  // const handleNicknameBlur = async () => {
-  //   if (nickname) {
-  //     const isAvailable = await checkNicknameAvailability(nickname);
-  //     if (!isAvailable) {
-  //       setValue("nickname", "");
-  //     }
-  //   }
-  // };
 
   //변경사항 저장 통신
   const editprofileOnclick = async (data: EditForm) => {
@@ -109,7 +99,7 @@ const EditProfilePage = () => {
               />
             </NickNameInputContainer>
           </NickNameContainer>
-          {errors.nickname && <Content>* 이미 사용중인 이메일입니다.</Content>}
+          {errors.nickname && <Content>* 이미 사용중인 닉네임입니다.</Content>}
           <PwContainer>
             <Label>현재 비밀번호</Label>
             <PwInputContainer>
