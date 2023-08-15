@@ -35,6 +35,7 @@ const TradeRequestPage = () => {
 
 const Title = styled.div`
   /* border: 1px solid red; */
+  font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 110%;
@@ -45,7 +46,6 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 16px;
 `;
 const SubTitle = styled.div`
   /* border: 1px solid red; */
@@ -74,7 +74,7 @@ const TradeRequestListContainer = styled.div`
 `;
 
 const MenuContainer = styled.div`
-  border-bottom: 2px solid #efefef;
+  border-bottom: 2px solid #e1e1e1;
   background-color: #efefef;
   display: flex;
   height: 56px;
@@ -88,6 +88,7 @@ const RequestDateMenu = styled.div`
   justify-content: center;
   font-size: 16px;
   font-weight: 700;
+  font-family: Pretendard;
 `;
 
 const TradeRequestItemMenu = styled.div`
@@ -98,6 +99,7 @@ const TradeRequestItemMenu = styled.div`
   justify-content: center;
   font-size: 16px;
   font-weight: 700;
+  font-family: Pretendard;
 `;
 
 const MyItemMenu = styled.div`
@@ -108,6 +110,7 @@ const MyItemMenu = styled.div`
   justify-content: center;
   font-size: 16px;
   font-weight: 700;
+  font-family: Pretendard;
 `;
 
 const TradeStateMenu = styled.div`
@@ -118,6 +121,7 @@ const TradeStateMenu = styled.div`
   justify-content: center;
   font-size: 16px;
   font-weight: 700;
+  font-family: Pretendard;
 `;
 
 const ChatState = styled.div`
