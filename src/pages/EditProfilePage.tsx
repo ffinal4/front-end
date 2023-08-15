@@ -10,7 +10,7 @@ import { patchProfileEditApi } from "../api/users";
 
 interface EditForm {
   select: string;
-  password: string;
+  currentPassword: string;
   newPassword: string;
   confirmPassword: string;
   nickname: string;
@@ -23,16 +23,37 @@ const EditProfilePage = () => {
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [uploadImage, setUploadImage] = useState(null);
+  const [nickname, setNickname] = useState("");
 
   const {
     register,
     handleSubmit,
     getValues,
+    setValue,
     formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
 
+  //야기서 또 닉네임 부분을 통신해야하는가?
+  // const checkNicknameAvailability = (nickname: string) => {
+  //   try {
+  //     const res = await patchProfileEditApi(nickname);
+  //     return res.data.isAvailable;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // const handleNicknameBlur = async () => {
+  //   if (nickname) {
+  //     const isAvailable = await checkNicknameAvailability(nickname);
+  //     if (!isAvailable) {
+  //       setValue("nickname", "");
+  //     }
+  //   }
+  // };
   //변경사항 저장 통신
   const editprofileOnclick = async (data: EditForm) => {
+    console.log("비밀번호 변경", data.currentPassword, data.newPassword);
     const userId = "";
     const newForm = {
       nickname: data.nickname,
@@ -50,6 +71,9 @@ const EditProfilePage = () => {
       console.log(error);
     }
   };
+
+  // const newPassword = watch("newPassword");
+  // const confirmPassword = watch("confirmPassword");
 
   return (
     <div>
@@ -84,10 +108,14 @@ const EditProfilePage = () => {
                 borderColor="#ADADAD"
                 type="text"
                 placeholder="닉네임을 입력해주세요."
+                value={nickname}
+                // onChange={nicknameOnchange}
+                {...register("nickname", { required: true })}
+                // onBlur={handleNicknameBlur}
               />
             </NickNameInputContainer>
           </NickNameContainer>
-          <Content>* 이미 사용중인 이메일입니다.</Content>
+          {errors.nickname && <Content>* 이미 사용중인 이메일입니다.</Content>}
           <PwContainer>
             <Label>현재 비밀번호</Label>
             <PwInputContainer>
@@ -96,6 +124,7 @@ const EditProfilePage = () => {
                 borderColor="#ADADAD"
                 type="password"
                 placeholder="현재 비밀번호를 입력해주세요."
+                {...register("currentPassword")}
               />
             </PwInputContainer>
           </PwContainer>
@@ -174,7 +203,7 @@ const EditProfilePage = () => {
               const userId = "";
               const newForm = {
                 nickname: data.nickname,
-                password: data.password,
+                password: data.newPassword,
                 location: data.address,
                 userImg: data.uploadImage,
               };
