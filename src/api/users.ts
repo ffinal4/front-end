@@ -22,6 +22,15 @@ export const postLoginApi = async (body: loginBody) => {
   return res;
 };
 
+// 닉네임 중복 확인
+interface checkNicknameBody {
+  nickname: string;
+}
+export const postNicknameApi = async (body: checkNicknameBody) => {
+  const res = await instance.post("/api/users/email", body);
+  return res;
+};
+
 // 개인정보수정
 interface profileEditBody {
   nickname: string;
