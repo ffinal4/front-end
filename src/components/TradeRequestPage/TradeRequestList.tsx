@@ -9,11 +9,11 @@ const TradeRequestList = () => {
   // const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
 
-  const [a, setA] = useState({
+  const [requestState, setRequestState] = useState({
     request: "교환요청",
   });
 
-  const { request } = a;
+  const { request } = requestState;
 
   const stateButton = () => {
     if (request === "교환요청") {
@@ -79,28 +79,26 @@ const TradeRequestList = () => {
 };
 
 export const RequestContainer = styled.div`
-  border-bottom: 2px solid #e1e1e1;
-  height: 112px;
+  border-bottom: 1px solid #222020;
+  height: 113px;
   display: flex;
   align-items: center;
 `;
 
 export const ImgContainer = styled.div`
-  /* border: 1px solid blue; */
   width: 80px;
   height: 80px;
   display: flex;
 `;
 
 export const Image = styled.img`
-  /* border: 1px solid black; */
   width: 80px;
   height: 80px;
+  border-radius: 5px;
 `;
 
 export const ContentContainer = styled.div`
   width: 346px;
-  /* border: 1px solid green; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,7 +106,7 @@ export const ContentContainer = styled.div`
   margin-left: 16px;
 `;
 export const RequestDate = styled.div`
-  border-right: 2px solid #e1e1e1;
+  border-right: 2px solid #efefef;
   width: 174px;
   height: 112px;
   display: flex;
@@ -120,7 +118,7 @@ export const RequestDate = styled.div`
 `;
 
 export const TradeRequestItem = styled.div`
-  border-right: 2px solid #e1e1e1;
+  border-right: 2px solid #efefef;
   width: 478px;
   padding: 16px;
 `;
@@ -132,12 +130,9 @@ export const ItemTitle = styled.div`
   font-size: 16px;
   font-weight: 700;
   font-family: Pretendard;
-  /* border: 1px solid blue; */
 `;
 
 export const User = styled.div`
-  /* border: 1px solid blue; */
-
   width: 346px;
   margin-top: 4px;
   font-weight: 400;
@@ -146,7 +141,7 @@ export const User = styled.div`
 `;
 
 export const MyItemContainer = styled.div`
-  border-right: 2px solid #e1e1e1;
+  border-right: 2px solid #efefef;
   width: 112px;
   height: 112px;
   display: flex;
@@ -155,7 +150,7 @@ export const MyItemContainer = styled.div`
 `;
 
 export const StateContainer = styled.div`
-  border-right: 2px solid #e1e1e1;
+  border-right: 2px solid #efefef;
   width: 172px;
   height: 112px;
   display: flex;

@@ -1,20 +1,26 @@
 import React from "react";
 import { styled } from "styled-components";
 import { StCardPicture } from "../../styles/CardPicture";
+import { useNavigate } from "react-router-dom";
 
-const ItemCard = () => {
+const ItemCard = ({ item }: any) => {
+  const navigate = useNavigate();
+
   return (
     <ItemCardContainer>
-      <StCardPicture image={"none"} />
+      <StCardPicture
+        image={item?.image}
+        onClick={() => {
+          navigate(`/detail/${item.goodsId}`);
+        }}
+      />
       <AddressContent>
         <AddressBtn />
-        경기도 용인시 기흥구
+        {item?.location}
       </AddressContent>
-      <ItemTitle>물건 이름</ItemTitle>
-      <UserName>사용자 이름</UserName>
-      <ItemContent>
-        동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 동해물과우하사 우리나라 만세 동해물과
-      </ItemContent>
+      <ItemTitle>{item?.title}</ItemTitle>
+      <UserName>{item?.nickname}</UserName>
+      <ItemContent>{item?.content}</ItemContent>
     </ItemCardContainer>
   );
 };

@@ -10,7 +10,9 @@ import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
 
 const TradeListPage = () => {
-  const { isLoading, error, data } = useQuery("tradeListPageData", getGoodsApi);
+  const { isLoading, error, data } = useQuery("tradeListPageData", getGoodsApi, {
+    refetchOnWindowFocus: false,
+  });
   if (isLoading) return <div>Loading...</div>;
   console.log("물물교환페이지데이터", data);
   if (error) {
@@ -27,7 +29,7 @@ const TradeListPage = () => {
       </TitleContainer>
       <HorizontalLine />
       <FilterButton />
-      <ItemCardList />
+      <ItemCardList data={data?.data.content} />
       <Paging />
     </TradeListPageContainer>
   );
