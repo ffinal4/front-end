@@ -9,11 +9,11 @@ const TradeRequestList = () => {
   // const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
 
-  const [a, setA] = useState({
+  const [requestState, setRequestState] = useState({
     request: "교환요청",
   });
 
-  const { request } = a;
+  const { request } = requestState;
 
   const stateButton = () => {
     if (request === "교환요청") {
