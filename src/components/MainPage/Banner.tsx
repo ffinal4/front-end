@@ -10,7 +10,7 @@ const Banner = () => {
     <BannerContainer>
       <FirstBg>
         <ContentContainer>
-          <StTitle marginBottom={"20px"} textAlign="left">
+          <StTitle marginbottom={"20px"} textalign="left">
             LET’s peeping pockets!
           </StTitle>
           <ExplainContainer>
