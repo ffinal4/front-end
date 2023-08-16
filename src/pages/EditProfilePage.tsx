@@ -22,7 +22,9 @@ const EditProfilePage = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
-  const [uploadImage, setUploadImage] = useState(null);
+  const [uploadImage, setUploadImage] = useState("");
+  const [isAvailable, setIsAvailable] = useState(false);
+  const [nicknameError, setNicknameError] = useState<string | null>(null); //닉네임 에러메시지
 
   const {
     watch,
@@ -40,41 +42,46 @@ const EditProfilePage = () => {
     const formData = getValues();
     const newNick = formData.nickname;
     const nickData = { nickname: newNick };
-    event.preventDefault();
     console.log(nickData, "nick");
     try {
       const res = await postNicknameApi(nickData);
       console.log(res);
       if (res.status === 200) {
-        console.log("시용가능한 닉네임 입니다.", res);
+        setIsAvailable(true);
+        setNicknameError(null);
+        console.log("사용가능한 닉네임 입니다.", res);
       }
     } catch (error) {
+      setIsAvailable(false);
+      setNicknameError("중복된 닉네임 입니다.");
       console.log("중복된 닉네임 입니다.", error);
     }
   };
 
   //변경사항 저장 통신
   const editprofileOnclick = handleSubmit(async (data: EditForm) => {
-    const userId = "";
-    const newForm = {
+    const formData = new FormData();
+    const request = {
       nickname: data.nickname,
       password: data.newPassword,
-      userImg: data.uploadImage,
+      location: data.address,
     };
-    const allForm = {
-      ...newForm,
-      location: address,
-    };
-    console.log(newForm);
+    console.log(request);
+    formData.append(
+      "request",
+      new Blob([JSON.stringify(request)], { type: "application/json" })
+    );
+    formData.append("image", uploadImage);
+
     try {
-      const res = await patchProfileEditApi(userId, allForm);
+      const res = await patchProfileEditApi(formData);
 
       if (res.status === 201) {
         console.log("개인정보수정완료", res);
         navigate("/login");
       }
     } catch (error) {
-      console.log(error);
+      console.log("개인정보수정실패", error);
     }
   });
 
@@ -117,8 +124,8 @@ const EditProfilePage = () => {
               중복확인
             </StBasicButton>
           </NickNameContainer>
-
-          {errors.nickname && <Content>* 이미 사용중인 닉네임입니다.</Content>}
+          {nicknameError && <Content>* 중복된 닉네임입니다.</Content>}
+          {isAvailable && <Content>* 사용 가능한 닉네임입니다.</Content>}
           <PwContainer>
             <Label>현재 비밀번호</Label>
             <PwInputContainer>

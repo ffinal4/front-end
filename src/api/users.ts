@@ -33,7 +33,7 @@ interface checkNicknameBody {
   nickname: string;
 }
 export const postNicknameApi = async (body: checkNicknameBody) => {
-  const res = await instance.post("/api/users/email", body);
+  const res = await instance.post("/api/users/nickname", body);
   return res;
 };
 
@@ -44,11 +44,13 @@ interface profileEditBody {
   location: string;
   userImg: string;
 }
-export const patchProfileEditApi = async (
-  userId: string,
-  body: profileEditBody
-) => {
-  const res = await instance.patch(`/api/users/${userId}`, body);
+export const patchProfileEditApi = async (body: any) => {
+  const res = await instance.patch("/api/users/mypage", body, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
   return res;
 };
 
