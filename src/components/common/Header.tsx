@@ -8,12 +8,22 @@ import alarm from "../../assets/icon/alarm.png";
 import mypage from "../../assets/icon/mypage.png";
 import peeppo from "../../assets/icon/peeppo.png";
 import Navbar from "./Navbar";
+import { useMutation } from "react-query";
+import { deleteLogoutApi } from "../../api/users";
 
 const Header = () => {
   const navigate = useNavigate();
   const insertedToken: string | null = localStorage.getItem("accessToken");
 
   useEffect(() => {}, [insertedToken]);
+
+  const logoutMutation = useMutation(deleteLogoutApi, {
+    onSuccess: () => {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      navigate("/");
+    },
+  });
 
   return (
     <HeaderLayout>
@@ -50,7 +60,7 @@ const Header = () => {
                   }}
                 />
               </IconContainer>
-              <Logout>로그아웃</Logout>
+              <Logout onClick={() => logoutMutation.mutate()}>로그아웃</Logout>
             </AllIconContainer>
           ) : (
             <LinkContainer>
