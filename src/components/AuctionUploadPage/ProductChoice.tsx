@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
+import AuctionCard from './AuctionCard';
 
 const ProductChoice = () => {
+
+    const [checkBox, setCheckBox] = useState(false);
+
   return (
     <div>
         <UploadContainer>
             <RequiredText>경매품 선택</RequiredText>
+            <MyPoketContainer>
+                <AuctionCard checkBox={checkBox} setCheckBox={setCheckBox} />
+                <AuctionCard />
+                <AuctionCard />
+                <AuctionCard />
+                <AuctionCard />
+                <AuctionCard />
+                <AuctionCard />
+                <AuctionCard />
+                <AuctionCard />
+                <AuctionCard />
+            </MyPoketContainer> 
         </UploadContainer>
         <UploadContainer>
             <RequiredText>물건 정보</RequiredText>
@@ -39,7 +55,22 @@ const MyPoketContainer = styled.div`
     height: 600px;
     display: flex;
     flex-wrap: wrap;
-    overflow: scroll;
+    overflow: auto;
+    gap: 16px;
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #ffc596;
+        border-radius: 5px;
+        &:hover {
+            background-color: #f0b280;
+        }
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #fff1e3;
+    }
 `;
 
 const LineWrapper = styled.div`

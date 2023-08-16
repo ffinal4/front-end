@@ -3,10 +3,52 @@ import { styled } from "styled-components";
 import image from "../../assets/images/ppapparo.jpg";
 import { useNavigate } from "react-router-dom";
 import RequestRejectModal from "./RequestRejectModal";
+import { StBasicButton } from "../../styles/BasicButton";
 
 const TradeRequestList = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
+
+  const [requestState, setRequestState] = useState({
+    request: "교환요청",
+  });
+
+  const { request } = requestState;
+
+  const stateButton = () => {
+    if (request === "교환요청") {
+      <ButtonContainer>
+        <AcceptButton>수락</AcceptButton>
+        <RejectButton onClick={rejectModalClick}>거절</RejectButton>
+        {rejectModalOpen && (
+          <RequestRejectModal
+            rejectModalOpen={rejectModalOpen}
+            setRejectModalOpen={setRejectModalOpen}
+          />
+        )}
+      </ButtonContainer>;
+    }
+
+    if (request === "교환진행중") {
+      <ButtonContainer>
+        <AcceptButton>채팅</AcceptButton>
+        <RejectButton onClick={rejectModalClick}>완료</RejectButton>
+      </ButtonContainer>;
+    }
+
+    if (request === "교환취소") {
+      <ButtonContainer>
+        <StBasicButton buttonColor="">삭제</StBasicButton>
+      </ButtonContainer>;
+    }
+
+    if (request === "교환완료") {
+      <ButtonContainer>
+        <StBasicButton buttonColor="">자세히보기</StBasicButton>
+      </ButtonContainer>;
+    }
+    return null;
+  };
 
   const rejectModalClick = () => {
     setRejectModalOpen(!rejectModalOpen);
@@ -30,52 +72,41 @@ const TradeRequestList = () => {
             <Image src={image} />
           </ImgContainer>
         </MyItemContainer>
-        <StateContainer>교환요청</StateContainer>
-        <ButtonContainer>
-          <AcceptButton>수락</AcceptButton>
-          <RejectButton onClick={rejectModalClick}>거절</RejectButton>
-          {rejectModalOpen && (
-            <RequestRejectModal
-              rejectModalOpen={rejectModalOpen}
-              setRejectModalOpen={setRejectModalOpen}
-            />
-          )}
-        </ButtonContainer>
+        <StateContainer>{stateButton()}</StateContainer>
       </RequestContainer>
     </div>
   );
 };
-const RequestContainer = styled.div`
-  border-bottom: 2px solid #e1e1e1;
-  height: 112px;
+
+export const RequestContainer = styled.div`
+  border-bottom: 1px solid #222020;
+  height: 113px;
   display: flex;
   align-items: center;
 `;
 
-const ImgContainer = styled.div`
-  /* border: 1px solid blue; */
+export const ImgContainer = styled.div`
   width: 80px;
   height: 80px;
   display: flex;
 `;
 
-const Image = styled.img`
-  /* border: 1px solid black; */
+export const Image = styled.img`
   width: 80px;
   height: 80px;
+  border-radius: 5px;
 `;
 
-const ContentContainer = styled.div`
+export const ContentContainer = styled.div`
   width: 346px;
-  /* border: 1px solid green; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   margin-left: 16px;
 `;
-const RequestDate = styled.div`
-  border-right: 2px solid #e1e1e1;
+export const RequestDate = styled.div`
+  border-right: 2px solid #efefef;
   width: 174px;
   height: 112px;
   display: flex;
@@ -86,25 +117,22 @@ const RequestDate = styled.div`
   font-size: 16px;
 `;
 
-const TradeRequestItem = styled.div`
-  border-right: 2px solid #e1e1e1;
+export const TradeRequestItem = styled.div`
+  border-right: 2px solid #efefef;
   width: 478px;
   padding: 16px;
 `;
 
-const ItemTitle = styled.div`
+export const ItemTitle = styled.div`
   width: 346px;
   height: 24px;
   display: flex;
   font-size: 16px;
   font-weight: 700;
   font-family: Pretendard;
-  /* border: 1px solid blue; */
 `;
 
-const User = styled.div`
-  /* border: 1px solid blue; */
-
+export const User = styled.div`
   width: 346px;
   margin-top: 4px;
   font-weight: 400;
@@ -112,8 +140,8 @@ const User = styled.div`
   color: #767676;
 `;
 
-const MyItemContainer = styled.div`
-  border-right: 2px solid #e1e1e1;
+export const MyItemContainer = styled.div`
+  border-right: 2px solid #efefef;
   width: 112px;
   height: 112px;
   display: flex;
@@ -121,8 +149,8 @@ const MyItemContainer = styled.div`
   justify-content: center;
 `;
 
-const StateContainer = styled.div`
-  border-right: 2px solid #e1e1e1;
+export const StateContainer = styled.div`
+  border-right: 2px solid #efefef;
   width: 172px;
   height: 112px;
   display: flex;
@@ -133,12 +161,12 @@ const StateContainer = styled.div`
   font-weight: 400;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   /* border: 1px solid red; */
 
   margin: auto;
 `;
-const AcceptButton = styled.button`
+export const AcceptButton = styled.button`
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
@@ -147,7 +175,7 @@ const AcceptButton = styled.button`
   margin-right: 16px;
 `;
 
-const RejectButton = styled.button`
+export const RejectButton = styled.button`
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;

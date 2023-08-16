@@ -15,6 +15,7 @@ interface SignupForm {
   password: string;
   confirmPassword: string;
   nickname: string;
+  address: string;
 }
 
 const SignupPage = () => {
@@ -36,20 +37,27 @@ const SignupPage = () => {
   };
 
   const {
+    watch,
     register,
     handleSubmit,
     getValues,
     formState: { errors },
   } = useForm<SignupForm>({ mode: "onBlur" });
+  // console.log(watch());
 
-  const signupOnclick = async (data: any) => {
+  const signupOnclick = handleSubmit(async (data) => {
     const newForm = {
       email: `${data.email}${data.select}`,
       password: data.password,
       nickname: data.nickname,
     };
+    const allForm = {
+      ...newForm,
+      location: address,
+    };
+
     try {
-      const res = await postSignupApi(newForm);
+      const res = await postSignupApi(allForm);
       if (res.status === 200) {
         console.log("회원가입성공", res);
         navigate("/login");
@@ -57,18 +65,14 @@ const SignupPage = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  });
 
   return (
     <SignUpPageContainer>
       <TitleContainer>
         <Title>READY TO PEEPO?</Title>
       </TitleContainer>
-      <SignUpForm
-        onSubmit={(data: any) => {
-          signupOnclick(data);
-        }}
-      >
+      <SignUpContainer>
         <EmailContainer>
           <Label>이메일(아이디)</Label>
           <EmailInputContainer>
@@ -202,31 +206,9 @@ const SignupPage = () => {
           </StBasicButton>
         </NickNameContainer>
         <ValidateMessage>{errors?.nickname?.message}</ValidateMessage>
-      </SignUpForm>
+      </SignUpContainer>
       <AssignButtonContainer>
-        <StBasicButton
-          buttonColor="#D9D9D9"
-          type="submit"
-          onClick={handleSubmit(async (data) => {
-            const newForm = {
-              email: `${data.email}${data.select}`,
-              password: data.password,
-              nickname: data.nickname,
-            };
-            console.log(newForm);
-
-            try {
-              const res = await postSignupApi(newForm);
-              if (res.status === 200) {
-                console.log("회원가입성공", res);
-                navigate("/login");
-              }
-            } catch (error) {
-              console.log(error);
-              // alert(JSON.stringify(error.response.data.data));
-            }
-          })}
-        >
+        <StBasicButton buttonColor="#D9D9D9" onClick={signupOnclick}>
           회원가입
         </StBasicButton>
       </AssignButtonContainer>
@@ -248,8 +230,7 @@ const Title = styled.div`
   font-weight: 800;
   margin-bottom: 30px;
 `;
-const SignUpForm = styled.form`
-  /* border: 5px solid yellow; */
+const SignUpContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   max-width: 1136px;
@@ -403,7 +384,6 @@ const AddressContent = styled.div`
   width: 100%;
   height: 24px;
   font-family: Pretendard;
-
   color: gray;
   margin-bottom: 30px;
   margin-top: 10px;
@@ -422,7 +402,7 @@ const AssignButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   /* border: 1px solid red; */
-  padding: 20px 0px 20px 0px;
+  margin-top: 40px;
 `;
 
 export default SignupPage;

@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import arrow from "../assets/icon/arrow.png";
 import TradeRequestList from "../components/TradeRequestPage/TradeRequestList";
 
 const TradeRequestPage = () => {
@@ -8,7 +9,10 @@ const TradeRequestPage = () => {
       <Title>TRADING REQUEST</Title>
       <Container>
         <SubTitle>교환요청리스트</SubTitle>
-        <Filter>Filter</Filter>
+        <Filter>
+          필터
+          <ArrowImg src={arrow} />
+        </Filter>
       </Container>
       <TradeRequestListContainer>
         <MenuContainer>
@@ -33,29 +37,26 @@ const TradeRequestPage = () => {
   );
 };
 
-const Title = styled.div`
-  /* border: 1px solid red; */
+export const Title = styled.div`
   font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 110%;
 `;
 
-const Container = styled.div`
-  /* border: 1px solid red; */
+export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
-const SubTitle = styled.div`
-  /* border: 1px solid red; */
+export const SubTitle = styled.div`
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
   line-height: 150%;
 `;
 
-const Filter = styled.div`
+export const Filter = styled.div`
   border-bottom: 1px solid #222020;
   cursor: pointer;
   width: 176px;
@@ -63,24 +64,29 @@ const Filter = styled.div`
   display: flex;
   align-items: center;
   padding: 10px 10px 10px 20px;
+  justify-content: space-between;
 `;
 
-const TradeRequestListContainer = styled.div`
+export const ArrowImg = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+export const TradeRequestListContainer = styled.div`
   border-top: 4px solid black;
   border-bottom: 4px solid black;
   margin-top: 20px;
   width: 1136px;
-  height: 1194px;
+  height: 1192px;
 `;
 
-const MenuContainer = styled.div`
-  border-bottom: 2px solid #e1e1e1;
-  background-color: #efefef;
+export const MenuContainer = styled.div`
+  border-bottom: 2px solid #222020;
+  background-color: #fdd988;
   display: flex;
-  height: 56px;
+  height: 54px;
 `;
 
-const RequestDateMenu = styled.div`
+export const RequestDateMenu = styled.div`
   /* border: 1px solid blue; */
   width: 174px;
   display: flex;
@@ -91,7 +97,7 @@ const RequestDateMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const TradeRequestItemMenu = styled.div`
+export const TradeRequestItemMenu = styled.div`
   /* border: 1px solid blue; */
   width: 478px;
   display: flex;
@@ -102,7 +108,7 @@ const TradeRequestItemMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const MyItemMenu = styled.div`
+export const MyItemMenu = styled.div`
   /* border: 1px solid blue; */
   width: 112px;
   display: flex;
@@ -113,7 +119,7 @@ const MyItemMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const TradeStateMenu = styled.div`
+export const TradeStateMenu = styled.div`
   /* border: 1px solid blue; */
   width: 172px;
   display: flex;
@@ -124,7 +130,7 @@ const TradeStateMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const ChatState = styled.div`
+export const ChatState = styled.div`
   /* border: 1px solid blue; */
   width: 192px;
 `;

@@ -32,10 +32,22 @@ const EditProfilePage = () => {
   } = useForm<EditForm>({ mode: "onBlur" });
 
   //닉네임 중복 확인 통신
-  const checkNicknameAvailability = async (nickname: any) => {
+  const checkNicknameAvailability = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    const formData = getValues();
+    const newNick = formData.nickname;
+    const nickData = { nickname: newNick };
+    const newData = JSON.stringify(nickData);
+    event.preventDefault();
+    console.log(newData, "nick");
     try {
-      const res = await postNicknameApi(nickname);
-      return res.data.isAvailable;
+      const res = await postNicknameApi(nickData);
+
+      console.log(res);
+      if (res.status === 200) {
+        console.log("닉네임", res);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -47,11 +59,16 @@ const EditProfilePage = () => {
     const newForm = {
       nickname: data.nickname,
       password: data.newPassword,
-      location: data.address,
       userImg: data.uploadImage,
     };
+    const allForm = {
+      ...newForm,
+      location: address,
+    };
+    console.log(newForm);
     try {
-      const res = await patchProfileEditApi(userId, newForm);
+      const res = await patchProfileEditApi(userId, allForm);
+
       if (res.status === 201) {
         console.log("개인정보수정완료", res);
         navigate("/login");
@@ -71,9 +88,8 @@ const EditProfilePage = () => {
           </Title>
         </TitleContainer>
         <EditProfileForm
-          onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            editprofileOnclick(getValues());
+          onSubmit={(data: any) => {
+            editprofileOnclick(data);
           }}
         >
           <ProfileImageContainer>
@@ -94,11 +110,19 @@ const EditProfilePage = () => {
                 borderColor="#ADADAD"
                 type="text"
                 placeholder="닉네임을 입력해주세요."
-                {...register("nickname", { required: true })}
-                onBlur={checkNicknameAvailability}
+                {...register("nickname")}
+                // onBlur={checkNicknameAvailability}
               />
             </NickNameInputContainer>
+            <StBasicButton
+              buttonColor="#FDD988"
+              style={{ marginLeft: "20px" }}
+              onClick={(event) => checkNicknameAvailability(event)}
+            >
+              중복확인
+            </StBasicButton>
           </NickNameContainer>
+
           {errors.nickname && <Content>* 이미 사용중인 닉네임입니다.</Content>}
           <PwContainer>
             <Label>현재 비밀번호</Label>
@@ -188,11 +212,14 @@ const EditProfilePage = () => {
               const newForm = {
                 nickname: data.nickname,
                 password: data.newPassword,
-                location: data.address,
                 userImg: data.uploadImage,
               };
+              const allForm = {
+                ...newForm,
+                location: address,
+              };
               try {
-                const res = await patchProfileEditApi(userId, newForm);
+                const res = await patchProfileEditApi(userId, allForm);
                 if (res.status === 201) {
                   console.log("개인정보수정완료", res);
                   navigate("/login");
@@ -278,7 +305,7 @@ const CommonLabel = styled.div`
   font-family: Pretendard;
 `;
 const NickNameInputContainer = styled.div`
-  width: 656px;
+  width: 464px;
 `;
 const Content = styled.div`
   /* border: 1px solid blue; */
