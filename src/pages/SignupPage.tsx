@@ -43,7 +43,7 @@ const SignupPage = () => {
     getValues,
     formState: { errors },
   } = useForm<SignupForm>({ mode: "onBlur" });
-  console.log(watch());
+  // console.log(watch());
 
   const signupOnclick = handleSubmit(async (data) => {
     const newForm = {
