@@ -95,7 +95,9 @@ const SignupPage = () => {
 
           <AtContainer>@</AtContainer>
           <SelectContainer>
-            <EmailSelect {...register("select", { required: "필수입력 항목입니다." })}>
+            <EmailSelect
+              {...register("select", { required: "필수입력 항목입니다." })}
+            >
               <option value="">선택해주세요</option>
               <option value="@naver.com">naver.com</option>
               <option value="@hanmail.net">hanmail.net</option>
@@ -113,7 +115,11 @@ const SignupPage = () => {
           <Label>비밀번호</Label>
           <PwInputContainer>
             <PwVisibleButton onClick={onClickPasswordType}>
-              {pwType.visible ? <PwImg src={closeeye} /> : <PwImg src={openeye} />}
+              {pwType.visible ? (
+                <PwImg src={closeeye} />
+              ) : (
+                <PwImg src={openeye} />
+              )}
             </PwVisibleButton>
             <StBasicInput
               borderColor="#ADADAD"
@@ -127,8 +133,9 @@ const SignupPage = () => {
                   message: "비밀번호는 8자 이상이어야 합니다.",
                 },
                 pattern: {
-                  value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
-                  message: "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
+                  value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,15}$/,
+                  message:
+                    "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
                 },
               })}
             />
@@ -156,7 +163,9 @@ const SignupPage = () => {
             />
           </CheckPwInputContainer>
         </CheckPwContainer>
-        <CheckPwValidateMessage>{errors?.confirmPassword?.message}</CheckPwValidateMessage>
+        <CheckPwValidateMessage>
+          {errors?.confirmPassword?.message}
+        </CheckPwValidateMessage>
         <AddressContainer>
           <Label>주소</Label>
           <AddressInputContainer>
@@ -169,7 +178,9 @@ const SignupPage = () => {
           </AddressInputContainer>
         </AddressContainer>
         <ContentContainer>
-          <AddressContent>입력한 주소는 나의 주거래 지역으로 표시됩니다.</AddressContent>
+          <AddressContent>
+            입력한 주소는 나의 주거래 지역으로 표시됩니다.
+          </AddressContent>
         </ContentContainer>
 
         <NickNameContainer>
