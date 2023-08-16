@@ -23,7 +23,7 @@ const TradeListPage = () => {
     <TradeListPageContainer>
       <TitleContainer>
         <TitleImage src={eyeImage} />
-        <TitleText marginBottom="0" textAlign="center">
+        <TitleText marginbottom="0" textalign="center">
           INSIDE POCKET
         </TitleText>
       </TitleContainer>
