@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import arrow from "../assets/icon/arrow.png";
 import TradeRequestList from "../components/TradeRequestPage/TradeRequestList";
 
 const TradeRequestPage = () => {
@@ -8,7 +9,10 @@ const TradeRequestPage = () => {
       <Title>TRADING REQUEST</Title>
       <Container>
         <SubTitle>교환요청리스트</SubTitle>
-        <Filter>필터</Filter>
+        <Filter>
+          필터
+          <ArrowImg src={arrow} />
+        </Filter>
       </Container>
       <TradeRequestListContainer>
         <MenuContainer>
@@ -60,8 +64,13 @@ export const Filter = styled.div`
   display: flex;
   align-items: center;
   padding: 10px 10px 10px 20px;
+  justify-content: space-between;
 `;
 
+export const ArrowImg = styled.img`
+  width: 24px;
+  height: 24px;
+`;
 export const TradeRequestListContainer = styled.div`
   border-top: 4px solid black;
   border-bottom: 4px solid black;
