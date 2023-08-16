@@ -9,7 +9,7 @@ import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload
 import { patchProfileEditApi, postNicknameApi } from "../api/users";
 
 interface EditForm {
-  select: string;
+  password: string;
   currentPassword: string;
   newPassword: string;
   confirmPassword: string;
@@ -24,8 +24,10 @@ const EditProfilePage = () => {
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [uploadImage, setUploadImage] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
-  const [nicknameError, setNicknameError] = useState<string | null>(null); //닉네임 에러메시지
-
+  const [nicknameError, setNicknameError] = useState<string | null>(null);
+  const [uploadData, setUploadData] = useState({
+    data: { nickname: "" },
+  });
   const {
     watch,
     register,

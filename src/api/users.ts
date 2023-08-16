@@ -32,6 +32,7 @@ export const deleteLogoutApi = async () => {
 interface checkNicknameBody {
   nickname: string;
 }
+
 export const postNicknameApi = async (body: checkNicknameBody) => {
   const res = await instance.post("/api/users/nickname", body);
   return res;
