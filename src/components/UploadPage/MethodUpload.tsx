@@ -26,24 +26,24 @@ const MethodUpload = ({ uploadData, setUploadData }: any) => {
     <LineContainer>
         <RequiredText>교환방법*</RequiredText>
         <Wrapper>
-            <StBasicButton
-                buttonColor={(uploadData.data.tradeType === "직거래") ? "#575757" : "white"}
-                style={{color: `${(uploadData.data.tradeType === "직거래") ? "white" : "#000"}`}}
+            <Button
+                buttonColor={(uploadData.data.tradeType === "직거래") ? "#FFCA64" : ""}
+                style={{fontWeight: `${(uploadData.data.tradeType === "직거래") && "700"}`}}
                 onClick={onCheckDirectHandler}
             >직거래
-            </StBasicButton>
-            <StBasicButton
-                buttonColor={(uploadData.data.tradeType === "택배") ? "#575757" : "white"}
-                style={{color: `${(uploadData.data.tradeType === "택배") ? "white" : "#000"}`}}
+            </Button>
+            <Button
+                buttonColor={(uploadData.data.tradeType === "택배") ? "#FFCA64" : ""}
+                style={{fontWeight: `${(uploadData.data.tradeType === "택배") && "700"}`}}
                 onClick={onCheckParcelHandler}
             >택배
-            </StBasicButton>
-            <StBasicButton
-                buttonColor={(uploadData.data.tradeType === "상관없음") ? "#575757" : "white"}
-                style={{color: `${(uploadData.data.tradeType === "상관없음") ? "white" : "#000"}`}}
+            </Button>
+            <Button
+                buttonColor={(uploadData.data.tradeType === "상관없음") ? "#FFCA64" : ""}
+                style={{fontWeight: `${(uploadData.data.tradeType === "상관없음") && "700"}`}}
                 onClick={onCheckNoMatterHandler}
             >상관없음
-            </StBasicButton>
+            </Button>
         </Wrapper>
     </LineContainer>
   );
@@ -73,6 +73,11 @@ const Wrapper = styled.div`
   @media screen and (max-width: 843px) {
     display: grid;
   }
+`;
+
+const Button = styled(StBasicButton)`
+  border: 1px solid #222020;
+  color: #222020;
 `;
 
 export default MethodUpload;
