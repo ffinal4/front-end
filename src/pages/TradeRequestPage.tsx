@@ -8,7 +8,7 @@ const TradeRequestPage = () => {
       <Title>TRADING REQUEST</Title>
       <Container>
         <SubTitle>교환요청리스트</SubTitle>
-        <Filter>Filter</Filter>
+        <Filter>필터</Filter>
       </Container>
       <TradeRequestListContainer>
         <MenuContainer>
@@ -34,7 +34,6 @@ const TradeRequestPage = () => {
 };
 
 export const Title = styled.div`
-  /* border: 1px solid red; */
   font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
   font-weight: 700;
@@ -42,13 +41,11 @@ export const Title = styled.div`
 `;
 
 export const Container = styled.div`
-  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 export const SubTitle = styled.div`
-  /* border: 1px solid red; */
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
@@ -70,14 +67,14 @@ export const TradeRequestListContainer = styled.div`
   border-bottom: 4px solid black;
   margin-top: 20px;
   width: 1136px;
-  height: 1194px;
+  height: 1192px;
 `;
 
 export const MenuContainer = styled.div`
-  border-bottom: 2px solid #e1e1e1;
-  background-color: #efefef;
+  border-bottom: 2px solid #222020;
+  background-color: #fdd988;
   display: flex;
-  height: 56px;
+  height: 54px;
 `;
 
 export const RequestDateMenu = styled.div`
