@@ -22,6 +22,12 @@ export const postLoginApi = async (body: loginBody) => {
   return res;
 };
 
+// 로그아웃
+export const deleteLogoutApi = async () => {
+  const res = await instance.delete("/api/users/logout");
+  return res;
+};
+
 // 닉네임 중복 확인
 interface checkNicknameBody {
   nickname: string;
@@ -47,7 +53,7 @@ export const patchProfileEditApi = async (
 };
 
 // 마이페이지
-export const getMypageApi = async (userId : any) => {
+export const getMypageApi = async (userId: any) => {
   const res = await instance.get(`/api/users/${userId}`);
   return res;
 };

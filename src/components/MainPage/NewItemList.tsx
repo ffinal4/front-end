@@ -10,10 +10,10 @@ const NewItemList = () => {
 
   return (
     <NewItemListContainer>
-      <StTitle marginBottom="16px" textAlign="center">
+      <StTitle marginbottom="16px" textalign="center">
         NEW IN PEEPPO!
       </StTitle>
-      <StSubTitle marginBottom="30px" textAlign="center">
+      <StSubTitle marginbottom="30px" textalign="center">
         주머니에 새로 등록된 물건들이에요.
       </StSubTitle>
       <CardContainer>
