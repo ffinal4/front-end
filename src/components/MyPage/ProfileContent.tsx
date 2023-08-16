@@ -4,7 +4,11 @@ import ppapparo from '../../assets/images/ppapparo.jpg'
 import Pocket from './Pocket';
 import noob from '../../assets/images/엎드린.png'
 
-const ProfileContent = () => {
+const ProfileContent = ({ data } : any) => {
+
+    const [passwordHide, setPasswordHide] = useState(true);
+
+    const passwordData = data.data.password.replace(/./g,'*');
     
     return (
         <LeftContainer>
@@ -14,23 +18,23 @@ const ProfileContent = () => {
                 <ContentInBox>
                     <ContentLine>
                         <TypeContainer>이메일(아이디)</TypeContainer>
-                        <TextContainer>peeppo@gmail.com</TextContainer>
+                        <TextContainer>{data.data.email}</TextContainer>
                     </ContentLine>
                     <ContentLine>
                         <TypeContainer>닉네임</TypeContainer>
-                        <TextContainer>핍포</TextContainer>
+                        <TextContainer>{data.data.nickname}</TextContainer>
                     </ContentLine>
                     <ContentLine>
                         <TypeContainer>비밀번호</TypeContainer>
-                        <TextContainer>**********</TextContainer>
+                        <TextContainer>{(passwordHide) ? passwordData : data.data.password}</TextContainer>
                     </ContentLine>
                     <ContentLine>
                         <TypeContainer>주거래지역</TypeContainer>
-                        <TextContainer>경기도 수원시 영통구</TextContainer>
+                        <TextContainer>{data.data.location}</TextContainer>
                     </ContentLine>
                 </ContentInBox>
                 <ButtonBox>
-                    <Button noob={noob} />
+                    <Button noob={noob} onClick={() => setPasswordHide(!passwordHide)} />
                 </ButtonBox>
             </LeftContentContainer>
             <Pocket />
@@ -62,10 +66,11 @@ const LeftContentContainer = styled.div`
     align-items: center;
     padding: 30px 20px 30px 40px;
     border: 1px solid #000;
+    position: relative;
 `;
 
 const ImageContainer = styled.div<{ src: string }>`
-    width: 113px;
+    min-width: 113px;
     height: 113px;
     display: flex;
     justify-content: center;
@@ -107,12 +112,14 @@ const TextContainer = styled.div`
 `;
 
 const ButtonBox = styled.div`
-    padding: 10px 0px 148px 0px;
+    top: 0;
+    right: 0;
+    position: absolute;
 `;
 
 const Button = styled.div<{ noob : string }>`
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     color: #000;
     background-size: cover;
     background-image: ${`url(${noob})`};

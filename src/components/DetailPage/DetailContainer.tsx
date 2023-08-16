@@ -7,14 +7,17 @@ import ArrowLeft from '../../assets/images/arrowleft.png'
 import ArrowRight from '../../assets/images/arrowright.png'
 import DetailInfo from './DetailInfo';
 
-const DetailContainer = () => {
+const DetailContainer = ({ data } : any) => {
 
+  const arrImages : string[] = data.data.info.images;
+  
   const divRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
   const imageWidth: number = 464;
   const SlideRange: number = currentImg * imageWidth;
 
-  const slidePageBar : number[] = [1, 2, 3];
+  
+  // const slidePageBar : number[] = arrImages;
 
   useEffect(() => {
     if (divRef.current) {
@@ -24,7 +27,7 @@ const DetailContainer = () => {
   }, [SlideRange]);
 
   const moveToNextBtn = () => {
-    if (currentImg === 2) return;
+    if (currentImg === (arrImages.length - 1)) return;
     setCurrentImg(currentImg + 1);
   };
 
@@ -45,20 +48,21 @@ const DetailContainer = () => {
             </SlideButton>
           </SlideBtnWrapper>
           <SlideWrapper ref={divRef}>
-            <ImageBox src={Image}/>
-            <ImageBox src={Cute}/>
-            <ImageBox src={Song}/>
+            {arrImages.map((item) => <ImageBox src={item}/>)}
+            {/* <ImageBox src={arrImages[0]}/>
+            <ImageBox src={arrImages[1]}/>
+            <ImageBox src={arrImages[2]}/> */}
             {/* <EmptyBox src={Image}>사진등록</EmptyBox> */}
           </SlideWrapper>
           <SlidePageBarWrapper>
-            {slidePageBar.map((item) =>
-              (currentImg + 1 === item)
+            {arrImages.map((item) =>
+              (currentImg === arrImages.indexOf(item))
               ? <SlidePageBar backgdcolor='#fff'></SlidePageBar>
               : <SlidePageBar backgdcolor='#9e9e9e'></SlidePageBar>
             )}
           </SlidePageBarWrapper>
         </ImageOutContainer>
-      <DetailInfo />
+      <DetailInfo data={data} />
     </LayoutContainer>
   )
 };
@@ -91,10 +95,11 @@ const SlideWrapper = styled.div`
   height: 100%;
 `;
 
-const ImageBox = styled.img`
-  width: 464px;
+const ImageBox = styled.div<{ src : string }>`
+  min-width: 464px;
   height: 464px;
-  object-fit: contain;
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: cover;
 `;
 
 const ImageOutContainer = styled.div`
@@ -142,6 +147,7 @@ const SlideButton = styled.div`
 
 const SlidePageBarWrapper = styled.div`
   display: flex;
+  justify-content: center;
   align-items: end;
   position: absolute;
   bottom: 20px;

@@ -3,15 +3,15 @@ import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
 import Image from '../../assets/images/pocket.png'
 
-const GiveInfo = () => {
+const GiveInfo = ({ data } : any) => {
   return (
         <InfoContainer>
             <InfoTextContainer>
-                <InfoTextTitle>상품정보</InfoTextTitle>
-                <InfoTextContent>스타벅스 기프티콘 30,000원입니다.</InfoTextContent>
-                <InfoTextContent>스타벅스 기프티콘 많아서 기간내에 사용하기가 힘들것 같아서요.</InfoTextContent>
+                <InfoTextTitle>{data.data.info.title}</InfoTextTitle>
+                <InfoTextContent>{data.data.info.content}</InfoTextContent>
+                {/* <InfoTextContent>스타벅스 기프티콘 많아서 기간내에 사용하기가 힘들것 같아서요.</InfoTextContent>
                 <InfoTextContent>같은 가격으로 아무 커피 프랜차이즈 기프티콘과 교환 원해요!</InfoTextContent>
-                <InfoTextContent style={{marginTop: "10px"}}>다른 금액 기프티콘들도 주머니 넣어뒀으니깐 주머니 보시고 찔러주세요!</InfoTextContent>
+                <InfoTextContent style={{marginTop: "10px"}}>다른 금액 기프티콘들도 주머니 넣어뒀으니깐 주머니 보시고 찔러주세요!</InfoTextContent> */}
             </InfoTextContainer>
             {/* <MyPoketContainer>
                 <PoketInline>

@@ -1,28 +1,28 @@
 import React from 'react'
 import { styled } from 'styled-components';
 
-const RatingInfo = () => {
+const RatingInfo = ({ data } : any) => {
   return (
     <InfoContainer>
         <TitleContainer>
-            이케아 LISABO 리사보 의자
+            {data.data.info.title}
         </TitleContainer>
         <ContentWrapper>
             <ContentLineContainer>
                 <Text style={{color: "#ADADAD"}}>카테고리</Text>
-                <Text style={{color: "#39373A"}}>가구/인테리어</Text>
+                <Text style={{color: "#39373A"}}>{data.data.info.category}</Text>
             </ContentLineContainer>
             <ContentLineContainer>
                 <Text style={{color: "#ADADAD"}}>상품상태</Text>
-                <Text style={{color: "#39373A"}}>상</Text>
+                <Text style={{color: "#39373A"}}>{data.data.info.goodsCondition}</Text>
             </ContentLineContainer>
             <ContentLineContainer>
                 <Text style={{color: "#ADADAD"}}>거래지역</Text>
-                <Text style={{color: "#39373A"}}>수원시 영통구 매탄3동</Text>
+                <Text style={{color: "#39373A"}}>{data.data.info.location}</Text>
             </ContentLineContainer>
             <ContentLineContainer>
                 <Text style={{color: "#ADADAD"}}>거래방법</Text>
-                <Text style={{color: "#39373A"}}>상관없음</Text>
+                <Text style={{color: "#39373A"}}>{data.data.info.tradeType}</Text>
             </ContentLineContainer>
             <ContentLineContainer>
                 <Text style={{color: "#ADADAD"}}>상품태그</Text>

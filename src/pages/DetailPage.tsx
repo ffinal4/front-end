@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components';
 import DetailContainer from '../components/DetailPage/DetailContainer';
 import GiveInfo from '../components/DetailPage/GiveInfo';
@@ -12,9 +12,11 @@ import { getDetailPageApi } from '../api/goods';
 
 const DetailPage = () => {
 
-    // const { goodsId } : any = useParams;
-    // const { data, isLoading, isError, error } = useQuery(["DetailData", goodsId], () => getDetailPageApi(goodsId));
-    // console.log("data", data);
+    const { goodsId } : any = useParams();
+    const { data, isLoading, error } : any = useQuery(["DetailData", goodsId], () => getDetailPageApi(goodsId), {
+        refetchOnWindowFocus: false,
+      });
+    console.log("data", data);
 
     const [detailTap, setDetailTap] = useState({
         bid: true,
@@ -48,10 +50,13 @@ const DetailPage = () => {
         });
     };
 
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
   return (
     <PageLayout>
         <PageContainer>
-            <DetailContainer />
+            <DetailContainer data={data} />
             <InfoContainer>
             {
             (bid === true && giveTap === false && wantTap === false)
@@ -72,7 +77,7 @@ const DetailPage = () => {
                         <TapClickButton>드려요</TapClickButton>
                         <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
                     </TapContainer>
-                    <GiveInfo />
+                    <GiveInfo data={data} />
                 </LayoutContainer> 
             }
             {
@@ -83,7 +88,7 @@ const DetailPage = () => {
                         <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
                         <TapClickButton>받아요</TapClickButton>
                     </TapContainer>
-                    <WantedInfo />
+                    <WantedInfo data={data} />
                 </LayoutContainer> 
             }
             </InfoContainer>

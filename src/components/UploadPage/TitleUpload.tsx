@@ -14,8 +14,11 @@ const TitleUpload = ({ setUploadData, uploadData } : any) => {
             ...titleInput,
             [name]: value
         });
-        setUploadData({...uploadData, data: {...uploadData.data, title: title}});
     }, [titleInput]);
+
+    const onBlurInputHandler = () => {
+        setUploadData({...uploadData, data: {...uploadData.data, title: title}});
+    };
 
     return (
         <LineContainer>
@@ -28,6 +31,7 @@ const TitleUpload = ({ setUploadData, uploadData } : any) => {
                     value={titleInput.title}
                     placeholder='제목을 입력해주세요.'
                     onChange={(event) => memoizedCallback(event)}
+                    onBlur={onBlurInputHandler}
                 >
                 </TitleInput>
                 <Text color={(titleInput.title.length >= 40) ? "red" : "#000"}>{titleInput.title.length}/40</Text>

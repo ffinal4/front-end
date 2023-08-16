@@ -9,16 +9,13 @@ export const getGoodsApi = async () => {
 interface upLoadBody {
   formdata: {
     images: string[];
-
-    sellerPrice: {
-      sellerPrice: string;
-    };
     data: {
       title: string;
       content: string;
       tradeType: string;
       category: string;
       goodsCondition: string;
+      sellerPrice: string;
       location: string;
     };
     wanted: {
