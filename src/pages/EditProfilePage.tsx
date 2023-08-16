@@ -25,11 +25,13 @@ const EditProfilePage = () => {
   const [uploadImage, setUploadImage] = useState(null);
 
   const {
+    watch,
     register,
     handleSubmit,
     getValues,
     formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
+  console.log(watch());
 
   //닉네임 중복 확인 통신
   const checkNicknameAvailability = async (
@@ -38,23 +40,21 @@ const EditProfilePage = () => {
     const formData = getValues();
     const newNick = formData.nickname;
     const nickData = { nickname: newNick };
-    const newData = JSON.stringify(nickData);
     event.preventDefault();
-    console.log(newData, "nick");
+    console.log(nickData, "nick");
     try {
       const res = await postNicknameApi(nickData);
-
       console.log(res);
       if (res.status === 200) {
-        console.log("닉네임", res);
+        console.log("시용가능한 닉네임 입니다.", res);
       }
     } catch (error) {
-      console.log(error);
+      console.log("중복된 닉네임 입니다.", error);
     }
   };
 
   //변경사항 저장 통신
-  const editprofileOnclick = async (data: EditForm) => {
+  const editprofileOnclick = handleSubmit(async (data: EditForm) => {
     const userId = "";
     const newForm = {
       nickname: data.nickname,
@@ -76,7 +76,7 @@ const EditProfilePage = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  });
 
   return (
     <div>
@@ -87,11 +87,7 @@ const EditProfilePage = () => {
             <SubTitle>개인정보 수정</SubTitle>
           </Title>
         </TitleContainer>
-        <EditProfileForm
-          onSubmit={(data: any) => {
-            editprofileOnclick(data);
-          }}
-        >
+        <EditProfileContainer>
           <ProfileImageContainer>
             <ProfileImageUpload
               uploadImage={uploadImage}
@@ -111,7 +107,6 @@ const EditProfilePage = () => {
                 type="text"
                 placeholder="닉네임을 입력해주세요."
                 {...register("nickname")}
-                // onBlur={checkNicknameAvailability}
               />
             </NickNameInputContainer>
             <StBasicButton
@@ -202,33 +197,9 @@ const EditProfilePage = () => {
           <AddContent>
             입력된 주소는 나의 주거래 지역으로 표시됩니다.
           </AddContent>
-        </EditProfileForm>
+        </EditProfileContainer>
         <AssignButtonContainer>
-          <StBasicButton
-            buttonColor="#D9D9D9;"
-            type="submit"
-            onClick={handleSubmit(async (data: EditForm) => {
-              const userId = "";
-              const newForm = {
-                nickname: data.nickname,
-                password: data.newPassword,
-                userImg: data.uploadImage,
-              };
-              const allForm = {
-                ...newForm,
-                location: address,
-              };
-              try {
-                const res = await patchProfileEditApi(userId, allForm);
-                if (res.status === 201) {
-                  console.log("개인정보수정완료", res);
-                  navigate("/login");
-                }
-              } catch (error) {
-                console.log(error);
-              }
-            })}
-          >
+          <StBasicButton buttonColor="#D9D9D9;" onClick={editprofileOnclick}>
             변경저장
           </StBasicButton>
         </AssignButtonContainer>
@@ -257,8 +228,7 @@ const SubTitle = styled.div`
   margin-bottom: 16px;
   font-family: Pretendard;
 `;
-const EditProfileForm = styled.form`
-  /* border: 1px solid black; */
+const EditProfileContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   width: 100%;
