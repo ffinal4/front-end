@@ -9,7 +9,7 @@ import DetailInfo from './DetailInfo';
 
 const DetailContainer = ({ data } : any) => {
 
-  const arrImages = data.data.info.images
+  const arrImages : string[] = data.data.info.images;
   
   const divRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
@@ -17,7 +17,7 @@ const DetailContainer = ({ data } : any) => {
   const SlideRange: number = currentImg * imageWidth;
 
   
-  const slidePageBar : number[] = arrImages;
+  // const slidePageBar : number[] = arrImages;
 
   useEffect(() => {
     if (divRef.current) {
@@ -27,7 +27,7 @@ const DetailContainer = ({ data } : any) => {
   }, [SlideRange]);
 
   const moveToNextBtn = () => {
-    if (currentImg === 2) return;
+    if (currentImg === (arrImages.length - 1)) return;
     setCurrentImg(currentImg + 1);
   };
 
@@ -48,14 +48,15 @@ const DetailContainer = ({ data } : any) => {
             </SlideButton>
           </SlideBtnWrapper>
           <SlideWrapper ref={divRef}>
-            <ImageBox src={arrImages[0]}/>
+            {arrImages.map((item) => <ImageBox src={item}/>)}
+            {/* <ImageBox src={arrImages[0]}/>
             <ImageBox src={arrImages[1]}/>
-            <ImageBox src={arrImages[2]}/>
+            <ImageBox src={arrImages[2]}/> */}
             {/* <EmptyBox src={Image}>사진등록</EmptyBox> */}
           </SlideWrapper>
           <SlidePageBarWrapper>
-            {slidePageBar.map((item) =>
-              (currentImg + 1 === item)
+            {arrImages.map((item) =>
+              (currentImg === arrImages.indexOf(item))
               ? <SlidePageBar backgdcolor='#fff'></SlidePageBar>
               : <SlidePageBar backgdcolor='#9e9e9e'></SlidePageBar>
             )}

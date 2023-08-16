@@ -140,21 +140,21 @@ const DetailInfo = ({ data } : any) => {
         *상대방이 교환신청을 수락하여 채팅이 가능해요!
       </ColorText>
       <ButtonWrapper>
-        <StBasicButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>
+        <StButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>
           교환신청
-        </StBasicButton>
-        <StBasicButton buttonColor="#FFCA64">찜하기</StBasicButton>
+        </StButton>
+        <StButton buttonColor="#FFCA64">찜하기</StButton>
         {chatting ? (
-          <StBasicButton buttonColor="#FFCA64" onClick={onClickChatting}>
+          <StButton buttonColor="#FFCA64" onClick={onClickChatting}>
             채팅하기
-          </StBasicButton>
+          </StButton>
         ) : (
-          <StBasicButton
+          <StButton
             buttonColor="#D5D4D4"
             style={{ color: "#fff", cursor: "default" }}
           >
             채팅하기
-          </StBasicButton>
+          </StButton>
         )}
       </ButtonWrapper>
     </InfoContainer>
@@ -276,6 +276,11 @@ const ModalBtnDisabled = styled.div`
   border-bottom: 1px solid #d5d4d4;
   border-left: 1px solid #d5d4d4;
   border-right: 1px solid #d5d4d4;
+`;
+
+const StButton = styled(StBasicButton)`
+  border: 1px solid #222020;
+  color: #222020;
 `;
 
 export default DetailInfo;

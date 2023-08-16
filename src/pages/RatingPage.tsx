@@ -9,8 +9,14 @@ import CloseEyes from '../assets/images/closedEyes.png';
 import RatingDetailInfo from '../components/RatingPage/RatingDetailInfo';
 import SuccessRating from '../components/RatingPage/SuccessRating';
 import FailedModal from '../components/RatingPage/FailedModal';
+import { useQuery } from 'react-query';
+import { getRatingStartApi, postRatingSubmitApi } from '../api/rating';
 
 const RatingPage = () => {
+
+    const { isLoading, data, error } : any = useQuery("ratingStart", getRatingStartApi);
+    
+    console.log(data, "data");
 
     type Game = {
         price: any,
@@ -36,9 +42,29 @@ const RatingPage = () => {
         setAddPrice({...addPrice, detailInfo: !detailInfo});
     };
 
-    const onClickFailedHandler = () => {
-        setAddPrice({...addPrice, gameover: !gameover});
+    // const onClickFailedHandler = () => {
+    //     setAddPrice({...addPrice, gameover: !gameover});
+    // };
+
+    const onClickSubmitHandler = async () => {
+        try {
+            const priceData = {
+                goodsId: data.data.info.goodsId,
+                ratingPrice: price,
+            };
+            const res = await postRatingSubmitApi(priceData);
+            if (res.status === 200) {
+                alert("결과는?");
+            };
+        } catch {
+            if (error) {
+                alert("error");
+            }
+        };
     };
+
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
   return (
     <MainLayoutContainer>
@@ -48,7 +74,7 @@ const RatingPage = () => {
                     <PocketImage src={PocketRight}/>
                 </PocketTopIconContainer>
                 <DetailInfoWrapper>
-                    <ImageContainer src={PocketRight}>
+                    <ImageContainer src={data.data.info.imageUrl}>
                         <AnswerCountContainer>
                             정답횟수
                             <AnswerCount>123</AnswerCount>
@@ -56,8 +82,8 @@ const RatingPage = () => {
                         <LikeBtn>♡</LikeBtn>
                     </ImageContainer>
                     {(detailInfo)
-                        ? <RatingDetailInfo />
-                        : <RatingInfo />
+                        ? <RatingDetailInfo data={data} />
+                        : <RatingInfo data={data} />
                     }
                         {(detailInfo)
                             ? <DetailBtnWrapper onClick={onClickDetailInfoHandler}>
@@ -70,12 +96,12 @@ const RatingPage = () => {
                             </DetailBtnWrapper>
                         }
                 </DetailInfoWrapper>
-                <SuccessContainer>
+                {/* <SuccessContainer>
                     <TitleContainer>
                         <Title>AMAZING</Title>
                     </TitleContainer>
                     <SuccessRating />
-                </SuccessContainer>
+                </SuccessContainer> */}
                 <PriceInput
                     type='text'
                     value={(price !== 0) ? price.toLocaleString() : ""}
@@ -98,7 +124,7 @@ const RatingPage = () => {
                     <StBasicButton
                         buttonColor='#FFCA64'
                         style={{color: "#39373A", border: "2px solid #39373A", fontWeight: "700"}}
-                        onClick={onClickFailedHandler}
+                        onClick={onClickSubmitHandler}
                     >제출</StBasicButton>
                 </BottomBtnWrapper>
                 <PocketBottomIconContainer>

@@ -2,20 +2,24 @@ import React from 'react'
 import { styled } from 'styled-components';
 import ProfileContent from '../components/MyPage/ProfileContent';
 import MyPippo from '../components/MyPage/MyPippo';
-import { useQueries } from 'react-query';
+import { useQuery } from 'react-query';
 import { getMypageApi } from '../api/users';
 
 const MyPage = () => {
-
-    // const { isLoading, error, data } = useQueries("myPageData", getMypageApi);
+    const { isLoading, error, data } : any = useQuery("myPageData", getMypageApi, {
+        refetchOnWindowFocus: false,
+      });
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+    console.log("myPage", data);
 
   return (
     <AllLayoutContainer>
         <LayoutContainer>
             <MyPageTitle>MY PAGE</MyPageTitle>
             <MyPageContentContainer>
-                <ProfileContent />
-                <MyPippo />
+                <ProfileContent data={data} />
+                <MyPippo data={data} />
             </MyPageContentContainer>
         </LayoutContainer>
     </AllLayoutContainer>
