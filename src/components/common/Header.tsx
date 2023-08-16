@@ -34,21 +34,24 @@ const Header = () => {
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
           {insertedToken ? (
-            <IconContainer>
-              <Alarm src={alarm} />
-              <Mypage
-                src={mypage}
-                onClick={() => {
-                  navigate("/mypage");
-                }}
-              />
-              <Peeppo
-                src={peeppo}
-                onClick={() => {
-                  navigate("/myPocket");
-                }}
-              />
-            </IconContainer>
+            <AllIconContainer>
+              <IconContainer>
+                <Alarm src={alarm} />
+                <Mypage
+                  src={mypage}
+                  onClick={() => {
+                    navigate("/mypage");
+                  }}
+                />
+                <Peeppo
+                  src={peeppo}
+                  onClick={() => {
+                    navigate("/myPocket");
+                  }}
+                />
+              </IconContainer>
+              <Logout>로그아웃</Logout>
+            </AllIconContainer>
           ) : (
             <LinkContainer>
               <LoginLink
@@ -110,10 +113,15 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.img`
+  width: 38px;
+  height: 38px;
   margin-right: 10px;
 `;
 
-const LogoTitle = styled.img``;
+const LogoTitle = styled.img`
+  width: 120px;
+  height: 24px;
+`;
 
 export const BoxContainer = styled.div`
   width: 2px;
@@ -174,6 +182,10 @@ const SignupLink = styled.div`
   font-family: Pretendard;
 `;
 
+const AllIconContainer = styled.div`
+  display: flex;
+  font-family: Pretendard;
+`;
 const IconContainer = styled.div`
   /* border: 1px solid red; */
   display: flex;
@@ -182,17 +194,32 @@ const IconContainer = styled.div`
 
 const Alarm = styled.img`
   /* border: 1px solid blue; */
+  width: 24px;
+  height: 24px;
   margin-right: 20px;
   cursor: pointer;
 `;
 
 const Mypage = styled.img`
   /* border: 1px solid blue; */
+  width: 24px;
+  height: 24px;
   margin-right: 20px;
   cursor: pointer;
 `;
 
 const Peeppo = styled.img`
   /* border: 1px solid blue; */
+  width: 24px;
+  height: 24px;
   cursor: pointer;
+`;
+
+const Logout = styled.div`
+  cursor: pointer;
+  display: flex;
+  margin-left: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
 `;
