@@ -44,11 +44,13 @@ interface profileEditBody {
   location: string;
   userImg: string;
 }
-export const patchProfileEditApi = async (
-  userId: string,
-  body: profileEditBody
-) => {
-  const res = await instance.patch(`/api/users/${userId}`, body);
+export const patchProfileEditApi = async (body: any) => {
+  const res = await instance.patch("/api/users/mypage", body, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
   return res;
 };
 
