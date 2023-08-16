@@ -2,25 +2,12 @@ import React from "react";
 import { styled } from "styled-components";
 import ItemCard from "./ItemCard";
 
-const ItemCardList = () => {
+const ItemCardList = ({ data }: any) => {
   return (
     <ItemCardContainer>
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
+      {data.map((item: any) => {
+        return <ItemCard key={item.goodsId} item={item} />;
+      })}
     </ItemCardContainer>
   );
 };
