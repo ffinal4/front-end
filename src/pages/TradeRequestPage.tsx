@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import arrow from "../assets/icon/arrow.png";
 import TradeRequestList from "../components/TradeRequestPage/TradeRequestList";
+import FilterDropdownMenu from "../components/TradeRequestPage/FilterDropdownMenu";
 
 const TradeRequestPage = () => {
+  const [filterOpen, setFilterOpen] = useState(false);
+
+  const [dropdownMenu, setDropdownMenu] = useState("필터");
+
   return (
     <div>
       <Title>TRADING REQUEST</Title>
       <Container>
         <SubTitle>교환요청리스트</SubTitle>
-        <Filter>
-          필터
-          <ArrowImg src={arrow} />
-        </Filter>
+        <FilterContainer>
+          <Filter
+            onClick={() => {
+              setFilterOpen(!filterOpen);
+            }}
+          >
+            {dropdownMenu}
+            <ArrowImg src={arrow} />
+          </Filter>
+          {filterOpen && (
+            <FilterDropdownMenu
+              filterOpen={filterOpen}
+              setFilterOpen={setFilterOpen}
+              dropdownMenu={dropdownMenu}
+              setDropdownMenu={setDropdownMenu}
+            />
+          )}
+        </FilterContainer>
       </Container>
       <TradeRequestListContainer>
         <MenuContainer>
@@ -55,7 +74,9 @@ export const SubTitle = styled.div`
   font-weight: 700;
   line-height: 150%;
 `;
-
+const FilterContainer = styled.div`
+  /* border: 1px solid red; */
+`;
 export const Filter = styled.div`
   border-bottom: 1px solid #222020;
   cursor: pointer;
@@ -65,6 +86,7 @@ export const Filter = styled.div`
   align-items: center;
   padding: 10px 10px 10px 20px;
   justify-content: space-between;
+  position: relative;
 `;
 
 export const ArrowImg = styled.img`
