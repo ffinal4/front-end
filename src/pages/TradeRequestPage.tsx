@@ -101,7 +101,7 @@ export const TradeRequestListContainer = styled.div`
 
 export const MenuContainer = styled.div`
   border-bottom: 2px solid #222020;
-  background-color: #58abf7;
+  background-color: #fdd988;
   display: flex;
   height: 54px;
 `;
