@@ -33,7 +33,7 @@ const Navbar = () => {
         <MenuContainer>
           <Menu
             onClick={() => {
-              navigate("/tradelist");
+              navigate("/tradeList");
             }}
           >
             물물교환

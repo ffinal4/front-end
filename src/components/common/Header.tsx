@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../assets/logo/logo.png";
@@ -16,7 +16,6 @@ import { deleteLogoutApi } from "../../api/users";
 const Header = () => {
   const navigate = useNavigate();
   const insertedToken: string | null = localStorage.getItem("accessToken");
-  const [isLogggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {}, [insertedToken]);
 
