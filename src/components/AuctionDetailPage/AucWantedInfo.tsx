@@ -1,16 +1,15 @@
 import React from 'react'
 import { styled } from 'styled-components';
 
-const AucWantedInfo = () => {
+const AucWantedInfo = ({ data } : any) => {
     return (
         <InfoContainer>
             <InfoTextContainer>
                 <TextTitleContainer>
-                    <InfoTextTitle>aaa</InfoTextTitle>
-                    <InfoTextContent style={{color: "#A4A4A4"}}>aaa</InfoTextContent>
+                    <InfoTextTitle>{data.data.info.goodsResponseDto.title}</InfoTextTitle>
+                    <InfoTextContent style={{color: "#A4A4A4"}}>{data.data.info.goodsResponseDto.content}</InfoTextContent>
                 </TextTitleContainer>
-                <InfoTextContent>aaa</InfoTextContent>
-                {/* <InfoTextContent>다른 금액 기프티콘들도 주머니 넣어뒀으니까 주머니 보시고 찔러주세요!</InfoTextContent> */}
+                <InfoTextContent>{data.data.info.goodsResponseDto.content}</InfoTextContent>
             </InfoTextContainer>
         </InfoContainer>
 )

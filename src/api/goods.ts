@@ -50,7 +50,7 @@ export const getDetailPageApi = async (goodsId: any) => {
   return res;
 };
 
-// 경매물품등록 내 주머니 물품조회
+// 경매 물품 등록 내 주머니 물품조회
 export const getAuctionUploadApi = async () => {
   const res = await instance.get("/api/goods/mypocket");
   return res;
@@ -59,5 +59,11 @@ export const getAuctionUploadApi = async () => {
 // 경매 등록 페이지
 export const postAuctionUploadApi = async (body: any, goodsId: any) => {
   const res = await instance.post(`/api/auction/${goodsId}`, body);
+  return res;
+};
+
+// 경매 물품 상세 페이지
+export const getAuctionDetailApi = async (auctionId: any) => {
+  const res = await instance.get(`/api/auction/${auctionId}`);
   return res;
 };

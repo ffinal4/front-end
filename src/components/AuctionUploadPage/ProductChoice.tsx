@@ -38,10 +38,17 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data } : any) => {
         <UploadContainer style={{display: "grid"}}>
             <SeeButtonWrapper>
                 <RequiredText>물건 정보</RequiredText>
-                <LineWrapper onClick={onClickSeeHandler}>
-                    물건 정보 보기
-                    <ChoiceBox />
-                </LineWrapper>
+                {((seeInfo && findedData)
+                    ? <LineWrapper onClick={onClickSeeHandler}>
+                        물건 정보 접기
+                        <ChoiceBox />
+                    </LineWrapper>
+                    : <LineWrapper onClick={onClickSeeHandler}>
+                        물건 정보 보기
+                        <ChoiceBox />
+                    </LineWrapper>
+                )}
+                
             </SeeButtonWrapper>
             <InfoWrapper>
             {(seeInfo && findedData) && <AucUploadDetail findedData={findedData} />}
