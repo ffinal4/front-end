@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../assets/logo/logo.png";
 import title from "../../assets/logo/logo_title.png";
+import loginLogo from "../../assets/logo/loginlogo.png";
+import loginLTitle from "../../assets/logo/login_title.png";
 import search from "../../assets/icon/search.png";
 import alarm from "../../assets/icon/alarm.png";
 import mypage from "../../assets/icon/mypage.png";
@@ -14,6 +16,7 @@ import { deleteLogoutApi } from "../../api/users";
 const Header = () => {
   const navigate = useNavigate();
   const insertedToken: string | null = localStorage.getItem("accessToken");
+  const [isLogggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {}, [insertedToken]);
 
@@ -34,8 +37,17 @@ const Header = () => {
               navigate("/");
             }}
           >
-            <Logo src={logo} />
-            <LogoTitle src={title} />
+            {insertedToken ? (
+              <>
+                <Logo src={loginLogo} />
+                <LogoTitle src={loginLTitle} />
+              </>
+            ) : (
+              <>
+                <Logo src={logo} />
+                <LogoTitle src={title} />
+              </>
+            )}
           </LogoContainer>
           <InputContainer>
             <SearchButton>
