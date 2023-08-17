@@ -294,7 +294,7 @@ const CommonLabel = styled.div`
 const NickNameInputContainer = styled.div`
   width: 464px;
 `;
-const Content = styled.div`
+export const Content = styled.div`
   /* border: 1px solid blue; */
   font-family: Pretendard;
   width: 465px;

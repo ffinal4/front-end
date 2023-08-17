@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
-import { postSignupApi } from "../api/users";
+import { postNicknameApi, postSignupApi } from "../api/users";
 import openeye from "../assets/icon/openeye.png";
 import closeeye from "../assets/icon/closeeye.png";
 
@@ -24,6 +24,8 @@ const SignupPage = () => {
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [pwType, setpwType] = useState({ type: "password", visible: false });
+  const [isAvailable, setIsAvailable] = useState(false);
+  const [nicknameError, setNicknameError] = useState<string | null>(null);
 
   const onClickPasswordType = (event: any) => {
     event.preventDefault();
@@ -34,6 +36,29 @@ const SignupPage = () => {
         return { type: "password", visible: false };
       }
     });
+  };
+
+  //닉네임 중복 확인 통신
+  const checkNicknameAvailability = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    const formData = getValues();
+    const newNick = formData.nickname;
+    const nickData = { nickname: newNick };
+    console.log(nickData, "nick");
+    try {
+      const res = await postNicknameApi(nickData);
+      console.log(res);
+      if (res.status === 200) {
+        setIsAvailable(true);
+        setNicknameError(null);
+        console.log("사용가능한 닉네임 입니다.", res);
+      }
+    } catch (error) {
+      setIsAvailable(false);
+      setNicknameError("중복된 닉네임 입니다.");
+      console.log("중복된 닉네임 입니다.", error);
+    }
   };
 
   const {
@@ -84,7 +109,6 @@ const SignupPage = () => {
               type="email"
               placeholder="이메일을 입력해주세요"
               {...register("email", {
-                required: "필수입력 항목입니다.",
                 pattern: {
                   value: /^[a-zA-Z\d]{2,}$/,
                   message: "이미 사용중인 이메일입니다.",
@@ -127,7 +151,6 @@ const SignupPage = () => {
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("password", {
-                required: "필수입력 항목입니다.",
                 minLength: {
                   value: 8,
                   message: "비밀번호는 8자 이상이어야 합니다.",
@@ -157,7 +180,6 @@ const SignupPage = () => {
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("confirmPassword", {
-                required: "필수입력 항목입니다.",
                 validate: {
                   check: (value) => {
                     if (getValues("password") !== value) {
@@ -213,9 +235,13 @@ const SignupPage = () => {
             />
           </NickNameInputContainer>
 
-          <StButton buttonColor="#FDD988;">중복 확인</StButton>
+          <StButton buttonColor="#FDD988;" onClick={checkNicknameAvailability}>
+            중복 확인
+          </StButton>
         </NickNameContainer>
-        <ValidateMessage>{errors?.nickname?.message}</ValidateMessage>
+        {/* <ValidateMessage>{errors?.nickname?.message}</ValidateMessage> */}
+        {nicknameError && <Content>* 중복된 닉네임입니다.</Content>}
+        {isAvailable && <Content>* 사용 가능한 닉네임입니다.</Content>}
       </SignUpContainer>
       <AssignButtonContainer>
         <StBasicButton
@@ -296,6 +322,14 @@ const ValidateMessage = styled.div`
   margin-top: 10px;
   font-family: Pretendard;
   font-size: 16px;
+`;
+
+const Content = styled.div`
+  padding-left: 250px;
+  font-family: Pretendard;
+  font-size: 16px;
+  color: red;
+  margin-top: 10px;
 `;
 
 const PwContainer = styled.div`
