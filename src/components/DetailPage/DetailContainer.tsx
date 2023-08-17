@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { styled } from "styled-components";
-import Image from '../../assets/images/pocket.png'
-import Cute from '../../assets/images/ppapparo.jpg'
-import Song from '../../assets/images/song.jpg'
 import ArrowLeft from '../../assets/images/arrowleft.png'
 import ArrowRight from '../../assets/images/arrowright.png'
 import DetailInfo from './DetailInfo';

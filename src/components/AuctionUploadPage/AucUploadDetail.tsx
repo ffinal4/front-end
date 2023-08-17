@@ -1,23 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components';
-import DetailContainer from '../components/DetailPage/DetailContainer';
-import GiveInfo from '../components/DetailPage/GiveInfo';
-import WantedInfo from '../components/DetailPage/WantedInfo';
-import BidInfo from '../components/DetailPage/BidInfo';
-import RecommendCard from '../components/DetailPage/RecommendCard';
-import MyPickBar from '../components/common/MyPickBar';
-import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { getDetailPageApi } from '../api/goods';
+import AucDetail from './AucDetail';
 
-const DetailPage = () => {
-
-    const { goodsId } : any = useParams();
-    const { data, isLoading, error } : any = useQuery(["DetailData", goodsId], () => getDetailPageApi(goodsId), {
-        refetchOnWindowFocus: false,
-      });
-    console.log("data", data);
-
+const AucUploadDetail = ({ findedData } : any) => {
     const [detailTap, setDetailTap] = useState({
         giveTap: true,
         wantTap: false,
@@ -38,13 +23,10 @@ const DetailPage = () => {
         });
     };
 
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
-
   return (
     <PageLayout>
         <PageContainer>
-            <DetailContainer data={data} />
+            <AucDetail findedData={findedData} />
             <InfoContainer>
             {
             (giveTap === true && wantTap === false)
@@ -53,7 +35,12 @@ const DetailPage = () => {
                         <TapClickButton>드려요</TapClickButton>
                         <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
                     </TapContainer>
-                    <GiveInfo data={data} />
+                    <InfoNextContainer>
+                        <InfoTextContainer>
+                            <InfoTextTitle>{findedData.title}</InfoTextTitle>
+                            <InfoTextContent>{findedData.content}</InfoTextContent>
+                        </InfoTextContainer>
+                    </InfoNextContainer>
                 </LayoutContainer> 
             }
             {
@@ -63,13 +50,19 @@ const DetailPage = () => {
                         <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
                         <TapClickButton>받아요</TapClickButton>
                     </TapContainer>
-                    <WantedInfo data={data} />
+                    <InfoNextContainer>
+                        <InfoTextContainer>
+                            <TextTitleContainer>
+                                <InfoTextTitle>{findedData.title}</InfoTextTitle>
+                                <InfoTextContent style={{color: "#A4A4A4"}}>{findedData.category}</InfoTextContent>
+                            </TextTitleContainer>
+                            <InfoTextContent>{findedData.content}</InfoTextContent>
+                        </InfoTextContainer>
+                    </InfoNextContainer>
                 </LayoutContainer> 
             }
             </InfoContainer>
         </PageContainer>
-        <RecommendCard />
-        <MyPickBar />
     </PageLayout>
   )
 }
@@ -77,7 +70,6 @@ const DetailPage = () => {
 const PageLayout = styled.div`
     width: 100%;
     height: 100%;
-    padding: 0px 0px 60px 0px;
 `;
 
 const PageContainer = styled.div`
@@ -124,7 +116,6 @@ const TapDefaultButton = styled.div`
 `;
 
 const LayoutContainer = styled.div`
-    padding: 60px 0px 87px 0px;
     display: grid;
     width: 100%;
 `;
@@ -133,4 +124,40 @@ const InfoContainer = styled.div`
     width: 100%;
 `;
 
-export default DetailPage
+const InfoNextContainer = styled.div`
+    width: 100%;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #D9D9D9;
+    margin: 42px 0px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 0px 100px 0px;
+`;
+
+const InfoTextContainer = styled.div`
+    width: 100%;
+`;
+
+const InfoTextTitle = styled.div`
+    width: 100%;
+    font-family: "Pretendard";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 150%;
+`;
+
+const TextTitleContainer = styled.div`
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+`;
+
+const InfoTextContent = styled.div`
+    width: 100%;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+`;
+
+export default AucUploadDetail;

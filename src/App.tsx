@@ -20,6 +20,7 @@ import { QueryClient } from "react-query";
 import { QueryClientProvider } from "react-query";
 import RatingPage from "./pages/RatingPage";
 import MyAuctionCheckPage from "./pages/MyAuctionCheckPage";
+import AuctionDetailPage from "./pages/AuctionDetailPage";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ function App() {
               <Route path="/auctionupload" element={<AuctionUploadPage />} />
               <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
+              <Route path="/auctiondetail/:goodsId" element={<AuctionDetailPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

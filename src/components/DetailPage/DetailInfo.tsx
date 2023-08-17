@@ -9,7 +9,15 @@ import Group from "../../assets/icon/group.png";
 import { Category } from "../common/enum"
 
 const DetailInfo = ({ data } : any) => {
-  const categorys = data.data.info.category
+  const categorys = data.data.info.category;
+  const createdDate = data.data.info.createdAt;
+  const splitDate = createdDate.split("T")[0];
+  const dateAt = splitDate.split("-")[2];
+  const receivedDate = new Date(splitDate);
+  const newDate = new Date();
+  // const a = newDate - receivedDate;
+
+  console.log(receivedDate, " createdDate");
   
   // if (categorys === "WOMAN")
   // {let categoryData = Category.WOMAN;}
@@ -65,7 +73,7 @@ const DetailInfo = ({ data } : any) => {
           </TextWrapper>
           <TextWrapper>
             <SmallBox src={Time} />
-            <ColorText color="#ADADAD">10일 전</ColorText>
+            <ColorText color="#ADADAD">일 전</ColorText>
           </TextWrapper>
         </BoxWrapper>
       </UserNameContainer>
