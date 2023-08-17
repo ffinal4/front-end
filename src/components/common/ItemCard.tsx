@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { StCardPicture } from "../../styles/CardPicture";
 import { useNavigate } from "react-router-dom";
 import locationImage from "../../assets/icon/location.png";
-import heart from "../../assets/icon/heart.svg";
+import CardZzimBtn from "./ZzimBtn";
 
 const ItemCard = ({ item }: any) => {
   const navigate = useNavigate();
@@ -20,32 +20,13 @@ const ItemCard = ({ item }: any) => {
         <AddressImage src={locationImage} />
         {item?.location}
       </AddressContent>
-      <ZzimBtnContainer>
-        <ZzimBtn src={heart} />
-      </ZzimBtnContainer>
+      <CardZzimBtn />
       <ItemTitle>{item?.title}</ItemTitle>
       <UserName>{item?.nickname}</UserName>
       <ItemContent>{item?.content}</ItemContent>
     </ItemCardContainer>
   );
 };
-
-const ZzimBtn = styled.img`
-  width: 100%;
-`;
-
-const ZzimBtnContainer = styled.div`
-  background: var(--black-white-white, #fcfcfc);
-  width: 48px;
-  height: 48px;
-  border-radius: 10px 0px;
-  position: absolute;
-  top: 226px;
-  right: 0;
-  z-index: 99;
-  padding: 10px;
-  cursor: pointer;
-`;
 
 const AddressContent = styled.div`
   border-radius: 10px 10px 0px 0px;
