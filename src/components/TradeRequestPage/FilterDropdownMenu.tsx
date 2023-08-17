@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 
 const FilterDropdownMenu = (props: any) => {
-  const { filterOpen, setFilterOpen, dropdownMenu, setDropdownMenu } = props;
+  const { filterOpen, setFilterOpen, setDropdownMenu } = props;
 
   const requestStateOnclick = (event: any) => {
     setDropdownMenu(event.target.innerHTML);

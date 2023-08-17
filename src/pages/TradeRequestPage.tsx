@@ -27,7 +27,6 @@ const TradeRequestPage = () => {
             <FilterDropdownMenu
               filterOpen={filterOpen}
               setFilterOpen={setFilterOpen}
-              dropdownMenu={dropdownMenu}
               setDropdownMenu={setDropdownMenu}
             />
           )}
