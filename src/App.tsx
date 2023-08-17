@@ -20,6 +20,7 @@ import { QueryClient } from "react-query";
 import { QueryClientProvider } from "react-query";
 import RatingPage from "./pages/RatingPage";
 import MyAuctionCheckPage from "./pages/MyAuctionCheckPage";
+import ZzimListPage from "./pages/ZzimListPage";
 
 const queryClient = new QueryClient();
 
@@ -36,16 +37,17 @@ function App() {
             <Route path="/ratingstart" element={<StartRatingPage />} />
             <Route path="/rating" element={<RatingPage />} />
             <Route path="/" element={<MainPage />} />
+            <Route path="/mypocket" element={<MyPocketPage />} />
             <Route element={<MainLayout />}>
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/upload" element={<UploadPage />} />
               <Route path="/tradelist" element={<TradeListPage />} />
               <Route path="/detail/:goodsId" element={<DetailPage />} />
-              <Route path="/myPocket" element={<MyPocketPage />} />
               <Route path="/editprofile" element={<EditProfilePage />} />
               <Route path="/auctionupload" element={<AuctionUploadPage />} />
               <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
+              <Route path="/zzimlist" element={<ZzimListPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -5,6 +5,12 @@ export const getGoodsApi = async () => {
   const res = await instance.get(`/api/goods?page=1&size=20&sortBy=createdAt&isAsc=false`);
   return res;
 };
+
+// 내주머니 전체조회
+export const getMyPocketApi = async () => {
+  const res = await instance.get("/api/goods/1/pocket?page=1&size=8&sortBy=createdAt&isAsc=false");
+  return res;
+};
 // 물품 등록
 interface upLoadBody {
   formdata: {
