@@ -3,11 +3,22 @@ import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 import Check from '../../assets/icon/check.png'
 
-const AuctionCard = ({ checkBox, setCheckBox } : any) => {
+const AuctionCard = ({ checkBox, setCheckBox, item, myPocketGoods, setMyPocketGoods } : any) => {
+
+    const onClickCheckHandler = (item : any) => {
+        if (checkBox === item.goodsId) {
+            setCheckBox(null);
+        } else {
+            setCheckBox(item.goodsId);
+        };
+        return setMyPocketGoods({...myPocketGoods, goodsId: item.goodsId});
+    };
+    // console.log(checkBox, "checkBox");
+
   return (
-    <CardContainer>
-        <CardImgContainer onClick={() => setCheckBox(!checkBox)}>
-            {(checkBox)
+    <CardContainer onClick={() => onClickCheckHandler(item)}>
+        <CardImgContainer src={item?.images[0]} onClick={() => setCheckBox(!checkBox)}>
+            {(checkBox === item.goodsId)
                 && <div>
                     <CheckOutContainer />
                     <CheckContainer>
@@ -19,10 +30,10 @@ const AuctionCard = ({ checkBox, setCheckBox } : any) => {
             <CardLocationContainer />
             <LocatinoWrapper>
                 <LocationIcon src={Location} alt=''/>
-                <LocationText>경기도 용인시 기흥구</LocationText>
+                <LocationText>{item?.location}</LocationText>
             </LocatinoWrapper>
         </CardImgContainer>
-        <TitleContainer>물건이름</TitleContainer>
+        <TitleContainer>{item?.title}</TitleContainer>
     </CardContainer>
   )
 };
@@ -33,11 +44,12 @@ const CardContainer = styled.div`
     cursor: pointer;
 `;
 
-const CardImgContainer = styled.div`
+const CardImgContainer = styled.div<{ src : string }>`
     width: 272px;
     height: 272px;
     border-radius: 10px;
-    background-color: #D5D4D4;
+    background-image: ${(props) => `url(${props.src})`};
+    background-size: cover;
     position: relative;
 `;
 
