@@ -42,11 +42,10 @@ const DetailInfo = ({ data } : any) => {
 
   const [conditional, setConditional] = useState({
     chatting: false,
-    users: true,
     modal: false,
     auction: false,
   });
-  const { chatting, users, modal, auction } = conditional;
+  const { chatting, modal, auction } = conditional;
 
   const onClickAcceptHandler = () => {
     setConditional({ ...conditional, chatting: true });
@@ -86,7 +85,7 @@ const DetailInfo = ({ data } : any) => {
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
         <TextWrapper>
-          {users ? (
+          {(data.data.info.checkSameUser) ? (
             <TextWrapper
               style={{ cursor: "pointer" }}
               onClick={onClickMenuOpenHandler}
@@ -152,7 +151,13 @@ const DetailInfo = ({ data } : any) => {
         <StButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>
           교환신청
         </StButton>
-        <StButton buttonColor="#FFCA64">찜하기</StButton>
+        {(data.data.info.checkSameUser)
+          ? <StButton
+            buttonColor="#D5D4D4"
+            style={{ color: "#fff", cursor: "default" }}
+          >찜하기</StButton>
+          : <StButton buttonColor="#FFCA64">찜하기</StButton>
+        }
         {chatting ? (
           <StButton buttonColor="#FFCA64" onClick={onClickChatting}>
             채팅하기

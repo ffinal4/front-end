@@ -6,13 +6,16 @@ import AucDetailImage from '../components/AuctionDetailPage/AucDetailImage';
 import AucGiveInfo from '../components/AuctionDetailPage/AucGiveInfo';
 import AucWantedInfo from '../components/AuctionDetailPage/AucWantedInfo';
 import AucBidInfo from '../components/AuctionDetailPage/AucBidInfo';
+import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getAuctionDetailApi } from '../api/goods';
 
 const AuctionDetailPage = () => {
-    // const { goodsId } : any = useParams();
-    // const { data, isLoading, error } : any = useQuery(["DetailData", goodsId], () => getDetailPageApi(goodsId), {
-    //     refetchOnWindowFocus: false,
-    //   });
-    // console.log("data", data);
+    const { auctionId } : any = useParams();
+    const { data, isLoading, error } : any = useQuery(["AuctionDetailData", auctionId], () => getAuctionDetailApi(auctionId), {
+        refetchOnWindowFocus: false,
+      });
+    console.log("data", data);
 
     const [detailTap, setDetailTap] = useState({
         bid: true,
@@ -46,13 +49,13 @@ const AuctionDetailPage = () => {
         });
     };
 
-    // if (isLoading) return <p>Loading...</p>;
-    // if (error) return <p>Error: {error.message}</p>;
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
   return (
     <PageLayout>
         <PageContainer>
-            <AucDetailImage />
+            <AucDetailImage data={data} />
             <InfoContainer>
             {
             (bid === true && giveTap === false && wantTap === false)
@@ -62,7 +65,7 @@ const AuctionDetailPage = () => {
                         <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
                         <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
                     </TapContainer>
-                    <AucBidInfo />
+                    <AucBidInfo data={data} />
                 </LayoutContainer> 
             }
             {
@@ -73,7 +76,7 @@ const AuctionDetailPage = () => {
                         <TapClickButton>드려요</TapClickButton>
                         <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
                     </TapContainer>
-                    <AucGiveInfo />
+                    <AucGiveInfo data={data} />
                 </LayoutContainer> 
             }
             {
@@ -84,7 +87,7 @@ const AuctionDetailPage = () => {
                         <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
                         <TapClickButton>받아요</TapClickButton>
                     </TapContainer>
-                    <AucWantedInfo />
+                    <AucWantedInfo data={data} />
                 </LayoutContainer> 
             }
             </InfoContainer>

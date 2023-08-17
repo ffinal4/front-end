@@ -5,15 +5,14 @@ import ArrowRight from '../../assets/images/arrowright.png'
 import Pocket from '../../assets/images/pocket.png'
 import DetailContent from './DetailContent';
 
-const AucDetailImage = () => {
+const AucDetailImage = ({ data } : any) => {
+
+    const imagesArr = data.data.info.goodsResponseDto.images;
   
     const divRef = useRef<HTMLDivElement>(null);
     const [currentImg, setCurrentImg] = useState<number>(0);
     const imageWidth: number = 464;
     const SlideRange: number = currentImg * imageWidth;
-  
-    
-    const slidePageBar : number[] = [1, 2, 3];
   
     useEffect(() => {
       if (divRef.current) {
@@ -23,7 +22,7 @@ const AucDetailImage = () => {
     }, [SlideRange]);
   
     const moveToNextBtn = () => {
-      if (currentImg === (2)) return;
+      if (currentImg === (imagesArr.length - 1)) return;
       setCurrentImg(currentImg + 1);
     };
   
@@ -44,20 +43,19 @@ const AucDetailImage = () => {
               </SlideButton>
             </SlideBtnWrapper>
             <SlideWrapper ref={divRef}>
-              <ImageBox src={Pocket}/>
-              <ImageBox src={Pocket}/>
-              <ImageBox src={Pocket}/>
-              {/* <EmptyBox src={Image}>사진등록</EmptyBox> */}
+              {imagesArr.map((item : string) => {
+                return <ImageBox src={item}/>
+              })}
             </SlideWrapper>
             <SlidePageBarWrapper>
-              {slidePageBar.map((item) =>
-                (currentImg + 1 === item)
+              {imagesArr.map((item : string) =>
+                (currentImg === imagesArr.indexOf(item))
                 ? <SlidePageBar backgdcolor='#fff'></SlidePageBar>
                 : <SlidePageBar backgdcolor='#9e9e9e'></SlidePageBar>
               )}
             </SlidePageBarWrapper>
           </ImageOutContainer>
-        <DetailContent />
+        <DetailContent data={data} />
       </LayoutContainer>
     )
   };

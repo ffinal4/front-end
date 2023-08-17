@@ -3,7 +3,6 @@ import { styled } from 'styled-components';
 import DetailContainer from '../components/DetailPage/DetailContainer';
 import GiveInfo from '../components/DetailPage/GiveInfo';
 import WantedInfo from '../components/DetailPage/WantedInfo';
-import BidInfo from '../components/DetailPage/BidInfo';
 import RecommendCard from '../components/DetailPage/RecommendCard';
 import MyPickBar from '../components/common/MyPickBar';
 import { useParams } from 'react-router-dom';

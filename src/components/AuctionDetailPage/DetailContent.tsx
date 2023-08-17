@@ -7,7 +7,10 @@ import Group from '../../assets/icon/group.png'
 import Siren from '../../assets/icon/siren.png'
 import { StBasicButton } from '../../styles/BasicButton';
 
-const DetailContent = () => {
+const DetailContent = ({ data } : any) => {
+
+    const newData = data.data.info.goodsResponseDto;
+
     const [conditional, setConditional] = useState({
         chatting: false,
         users: true,
@@ -50,7 +53,7 @@ const DetailContent = () => {
                 style={{ border: "none", paddingTop: "16px", position: "relative" }}
             >
                 <TextWrapper>
-                    <ColorText color="#39373A">사용자김핍포</ColorText>
+                    <ColorText color="#39373A">{newData.nickname}</ColorText>
                     <SmallBox src={Layer} style={{ cursor: "pointer" }} />
                 </TextWrapper>
                 <TextWrapper>
@@ -94,23 +97,27 @@ const DetailContent = () => {
             <TextContainer>
                 <TextLine>
                     <ColorText color="#717171">카테고리</ColorText>
-                    <ColorText color="#222020">aaa</ColorText>
+                    <ColorText color="#222020">{newData.category}</ColorText>
                 </TextLine>
                 <TextLine>
                     <ColorText color="#717171">상품상태</ColorText>
-                    <ColorText color="#222020">aaa</ColorText>
+                    <ColorText color="#222020">{newData.goodsCondition}</ColorText>
                 </TextLine>
                 <TextLine>
                     <ColorText color="#717171">거래지역</ColorText>
-                    <ColorText color="#222020">aaa</ColorText>
+                    <ColorText color="#222020">{newData.location}</ColorText>
                 </TextLine>
                 <TextLine>
                     <ColorText color="#717171">거래방법</ColorText>
-                    <ColorText color="#222020">aaa</ColorText>
+                    <ColorText color="#222020">{newData.tradeType}</ColorText>
                 </TextLine>
                 <TextLine>
                     <ColorText color="#717171">상품태그</ColorText>
                     <ColorText color="#222020">#스타벅스 #기프티콘 #교환권</ColorText>
+                </TextLine>
+                <TextLine>
+                    <ColorText color="#717171">하한가</ColorText>
+                    <ColorText color="#222020">{newData.tradeType}PP</ColorText>
                 </TextLine>
             </TextContainer>
             <ColorText color="#717171">
