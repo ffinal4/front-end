@@ -92,6 +92,7 @@ export const ArrowImg = styled.img`
   width: 24px;
   height: 24px;
 `;
+
 export const TradeRequestListContainer = styled.div`
   border-top: 4px solid black;
   border-bottom: 4px solid black;
@@ -100,7 +101,7 @@ export const TradeRequestListContainer = styled.div`
   height: 1192px;
 `;
 
-export const MenuContainer = styled.div`
+const MenuContainer = styled.div`
   border-bottom: 2px solid #222020;
   background-color: #fdd988;
   display: flex;
