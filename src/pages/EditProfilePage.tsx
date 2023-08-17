@@ -25,9 +25,7 @@ const EditProfilePage = () => {
   const [uploadImage, setUploadImage] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
-  const [uploadData, setUploadData] = useState({
-    data: { nickname: "" },
-  });
+
   const {
     watch,
     register,
@@ -64,19 +62,20 @@ const EditProfilePage = () => {
   const editprofileOnclick = handleSubmit(async (data: EditForm) => {
     const formData = new FormData();
     const request = {
-      data: {
-        nickname: data.nickname,
-        password: data.newPassword,
-        location: data.address,
-      }
+      nickname: data.nickname,
+      password: data.newPassword,
     };
-    console.log(request);
-    formData.append(
-      "data",
-      new Blob([JSON.stringify(request.data)], { type: "application/json" })
-    );
-    formData.append("images", uploadImage);
+    const allRequest = {
+      data: {
+        ...request,
+        location: address,
+      },
+    };
 
+    console.log(request);
+
+    formData.append("data", JSON.stringify(allRequest));
+    formData.append("images", JSON.stringify(uploadImage));
 
     try {
       const res = await patchProfileEditApi(formData);
