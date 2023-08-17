@@ -49,7 +49,7 @@ function App() {
               <Route path="/auctionupload" element={<AuctionUploadPage />} />
               <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
-              <Route path="/auctiondetail/:goodsId" element={<AuctionDetailPage />} />
+              <Route path="/auctiondetail/:auctionId" element={<AuctionDetailPage />} />
               <Route path="/zzimlist" element={<ZzimListPage />} />
               <Route path="/auctionlist" element={<AuctionListPage />} />
             </Route>

@@ -57,7 +57,7 @@ export const patchProfileEditApi = async (body: any) => {
 
 // 마이페이지
 export const getMypageApi = async () => {
-  const res = await instance.get(`/api/users/4`);
+  const res = await instance.get(`/api/users/mypage`);
   return res;
 };
 

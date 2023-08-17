@@ -13,9 +13,6 @@ const DetailContainer = ({ data } : any) => {
   const imageWidth: number = 464;
   const SlideRange: number = currentImg * imageWidth;
 
-  
-  // const slidePageBar : number[] = arrImages;
-
   useEffect(() => {
     if (divRef.current) {
       divRef.current.style.transition = "all 0.5s ease-in-out";
@@ -46,10 +43,6 @@ const DetailContainer = ({ data } : any) => {
           </SlideBtnWrapper>
           <SlideWrapper ref={divRef}>
             {arrImages.map((item) => <ImageBox src={item}/>)}
-            {/* <ImageBox src={arrImages[0]}/>
-            <ImageBox src={arrImages[1]}/>
-            <ImageBox src={arrImages[2]}/> */}
-            {/* <EmptyBox src={Image}>사진등록</EmptyBox> */}
           </SlideWrapper>
           <SlidePageBarWrapper>
             {arrImages.map((item) =>
