@@ -135,12 +135,18 @@ const SignupPage = () => {
                 pattern: {
                   value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,15}$/,
                   message:
-                    "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
+                    "- 영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
                 },
               })}
             />
           </PwInputContainer>
         </PwContainer>
+        <ContentContainer>
+          <PwContent>
+            - 영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를
+            작성해주세요.
+          </PwContent>
+        </ContentContainer>
         <PwValidateMessage>{errors?.password?.message}</PwValidateMessage>
         <CheckPwContainer>
           <Label>비밀번호 확인</Label>
@@ -179,10 +185,9 @@ const SignupPage = () => {
         </AddressContainer>
         <ContentContainer>
           <AddressContent>
-            입력한 주소는 나의 주거래 지역으로 표시됩니다.
+            - 입력된 주소는 나의 주거래 지역으로 표시됩니다.
           </AddressContent>
         </ContentContainer>
-
         <NickNameContainer>
           <SecondLabel>닉네임</SecondLabel>
           <NickNameInputContainer>
@@ -217,41 +222,39 @@ const SignupPage = () => {
     </SignUpPageContainer>
   );
 };
-const SignUpPageContainer = styled.div`
-  /* border: 1px solid blue; */
-  /* width: 100%; */
-`;
+const SignUpPageContainer = styled.div``;
+
 const TitleContainer = styled.div`
-  /* border: 1px solid red; */
   width: 100%;
   margin: auto;
 `;
+
 const Title = styled.div`
   font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
   font-weight: 800;
   margin-bottom: 30px;
 `;
+
 const SignUpContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   max-width: 1136px;
-  height: 626px;
+  height: 720px;
   margin: auto;
 `;
+
 const EmailInputContainer = styled.div`
-  /* border: 1px solid blue; */
   width: 272px;
 `;
 
 const EmailContainer = styled.div`
-  /* border: 3px solid green; */
   display: flex;
   align-items: center;
   margin-top: 44px;
 `;
+
 const Label = styled.div`
-  /* border: 1px solid red; */
   font-family: Pretendard;
   font-size: 20px;
   width: 180px;
@@ -261,13 +264,13 @@ const Label = styled.div`
 `;
 
 const AtContainer = styled.div`
-  /* border: 1px solid red; */
   padding: 0px 16px 0px 16px;
 `;
+
 const SelectContainer = styled.div`
-  /* border: 1px solid blue; */
   width: 337px;
 `;
+
 const EmailSelect = styled.select`
   width: 100%;
   height: 44px;
@@ -279,49 +282,52 @@ const EmailSelect = styled.select`
 `;
 
 const ValidateMessage = styled.div`
-  /* border: 1px solid blue; */
   width: 465px;
   height: 24px;
   margin-left: 250px;
   color: red;
   margin-top: 10px;
+  font-family: Pretendard;
+  font-size: 16px;
 `;
 
 const PwContainer = styled.div`
-  /* border: 3px solid green; */
-  border-top: 1px solid gray;
+  border-top: 1px solid #adadad;
   display: flex;
   align-items: center;
   padding-top: 30px;
   margin-top: 30px;
   margin-bottom: 10px;
 `;
+
 const PwInputContainer = styled.div`
-  /* border: 1px solid red; */
   width: 656px;
   position: relative;
 `;
 
-const PwVisibleButton = styled.button`
-  /* border: 1px solid blue; */
+const PwVisibleButton = styled.div`
   cursor: pointer;
-  width: 36px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   position: absolute;
-  top: 8px;
+  top: 10px;
   right: 12px;
 `;
+
 const PwImg = styled.img`
-  /* border: 1px solid red; */
   width: 24px;
   height: 24px;
 `;
+
 const PwValidateMessage = styled.div`
   width: 656px;
   height: 24px;
   margin-left: 250px;
   color: red;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-family: Pretendard;
+  font-size: 16px;
 `;
 const CheckPwInputContainer = styled.div`
   width: 656px;
@@ -329,39 +335,29 @@ const CheckPwInputContainer = styled.div`
 `;
 
 const CheckPwContainer = styled.div`
-  /* border: 3px solid green; */
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 `;
 
-const CheckPwVisibleButton = styled.button`
-  cursor: pointer;
-  /* border: 1px solid red; */
-  position: absolute;
-  width: 36px;
-  height: 30px;
-  top: 8px;
-  right: 12px;
-`;
 const CheckPwValidateMessage = styled.div`
   width: 656px;
   height: 24px;
   margin-left: 250px;
   color: red;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  font-family: Pretendard;
+  font-size: 16px;
 `;
 const AddressContainer = styled.div`
-  /* border: 3px solid green; */
-  border-top: 1px solid gray;
+  border-top: 1px solid #adadad;
   padding-top: 30px;
   display: flex;
   align-items: center;
 `;
+
 const AddressInputContainer = styled.div`
   width: 656px;
-  /* width: 100%; */
-  /* border: 1px solid red; */
   display: flex;
 `;
 
@@ -369,41 +365,43 @@ const SecondLabel = styled.div`
   font-size: 20px;
   width: 200px;
   font-weight: 700;
-  /* border: 1px solid red; */
   margin-right: 50px;
   font-family: Pretendard;
 `;
+
 const NickNameInputContainer = styled.div`
   width: 464px;
 `;
+
 const ContentContainer = styled.div`
-  /* border: 1px solid blue; */
-  /* width: 465px; */
   padding-left: 250px;
 `;
+
+const PwContent = styled.div`
+  font-family: Pretendard;
+  color: #adadad;
+`;
+
 const AddressContent = styled.div`
-  /* border: 1px solid blue; */
   width: 100%;
   height: 24px;
   font-family: Pretendard;
-  color: gray;
-  margin-bottom: 30px;
+  color: #adadad;
   margin-top: 10px;
-  /* padding-left: 250px; */
+  margin-bottom: 30px;
 `;
 
 const NickNameContainer = styled.div`
-  /* border: 3px solid green; */
-  border-top: 1px solid gray;
+  border-top: 1px solid #adadad;
   padding-top: 30px;
   display: flex;
   align-items: center;
 `;
+
 const AssignButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border: 1px solid red; */
   margin-top: 40px;
 `;
 
