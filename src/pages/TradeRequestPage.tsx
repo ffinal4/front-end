@@ -6,7 +6,6 @@ import FilterDropdownMenu from "../components/TradeRequestPage/FilterDropdownMen
 
 const TradeRequestPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
-
   const [dropdownMenu, setDropdownMenu] = useState("필터");
 
   return (
@@ -73,7 +72,7 @@ export const SubTitle = styled.div`
   font-weight: 700;
   line-height: 150%;
 `;
-const FilterContainer = styled.div`
+export const FilterContainer = styled.div`
   /* border: 1px solid red; */
 `;
 export const Filter = styled.div`
@@ -102,7 +101,7 @@ export const TradeRequestListContainer = styled.div`
 
 export const MenuContainer = styled.div`
   border-bottom: 2px solid #222020;
-  background-color: #fdd988;
+  background-color: #58abf7;
   display: flex;
   height: 54px;
 `;
