@@ -13,7 +13,8 @@ const DetailUpload = ({ uploadData, setUploadData } : any) => {
         setDetailInfo({
             ...detailInfo,
             [name]: value
-    })}, [detailInfo]);
+        });
+    }, [detailInfo]);
 
     const onBlurTextAreaHandler = () => {
         setUploadData({...uploadData, data: {...uploadData.data, content: content}});

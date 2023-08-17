@@ -6,8 +6,39 @@ import Time from "../../assets/icon/time.png";
 import Layer from "../../assets/icon/layer_6.png";
 import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
+import { Category } from "../common/enum"
 
-const DetailInfo = () => {
+const DetailInfo = ({ data } : any) => {
+  const categorys = data.data.info.category;
+  const createdDate = data.data.info.createdAt;
+  const splitDate = createdDate.split("T")[0];
+  const dateAt = splitDate.split("-")[2];
+  const receivedDate = new Date(splitDate);
+  const newDate = new Date();
+  // const a = newDate - receivedDate;
+
+  console.log(receivedDate, " createdDate");
+  
+  // if (categorys === "WOMAN")
+  // {let categoryData = Category.WOMAN;}
+  // else if (categorys === "MAN") {let categoryData = Category.MAN;} 
+  // else if (categorys === "FURNITURE") {let categoryData = Category.FURNITURE;}
+  // else if (categorys === "HOBBY") {let categoryData = Category.HOBBY;}
+  // else if (categorys === "BOOK") {let categoryData = Category.BOOK;}
+  // else if (categorys === "BEAUTY") {let categoryData = Category.BEAUTY;}
+  // else if (categorys === "BABY") {let categoryData = Category.BABY;}
+  // else if (categorys === "KITCHEN") {let categoryData = Category.KITCHEN;}
+  // else if (categorys === "TICKET") {let categoryData = Category.TICKET;}
+  // else if (categorys === "SPORTS") {let categoryData = Category.SPORTS;}
+  // else if (categorys === "PET") {let categoryData = Category.PET;}
+  // else if (categorys === "DIGITAL") {let categoryData = Category.DIGITAL;}
+  // else if (categorys === "ELECTRONICS") {let categoryData = Category.ELECTRONICS;}
+  // else if (categorys === "ART") {let categoryData = Category.ART;}
+  // else if (categorys === "PLANT") {let categoryData = Category.PLANT;}
+  // else if (categorys === "FOOD") {let categoryData = Category.FOOD;}
+  // else {let categoryData = Category.ETC;};
+  // const categoryData = Category.categorys;
+
   const [conditional, setConditional] = useState({
     chatting: false,
     users: true,
@@ -31,7 +62,7 @@ const DetailInfo = () => {
   return (
     <InfoContainer>
       <InfoTitle>
-        스타벅스 블랙퍼스트 500g 홀빈 원두커피 블렌더 코스트코
+        {data.data.info.title}
       </InfoTitle>
       <UserNameContainer>
         <ColorText color="#ADADAD">10,000PP</ColorText>
@@ -42,7 +73,7 @@ const DetailInfo = () => {
           </TextWrapper>
           <TextWrapper>
             <SmallBox src={Time} />
-            <ColorText color="#ADADAD">10일 전</ColorText>
+            <ColorText color="#ADADAD">일 전</ColorText>
           </TextWrapper>
         </BoxWrapper>
       </UserNameContainer>
@@ -94,19 +125,19 @@ const DetailInfo = () => {
       <TextContainer>
         <TextLine>
           <ColorText color="#717171">카테고리</ColorText>
-          <ColorText color="#222020">기프티콘</ColorText>
+          <ColorText color="#222020">{categorys}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품상태</ColorText>
-          <ColorText color="#222020">상</ColorText>
+          <ColorText color="#222020">{data.data.info.goodsCondition}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">거래지역</ColorText>
-          <ColorText color="#222020">수원시 영통구 매탄3동</ColorText>
+          <ColorText color="#222020">{data.data.info.location}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">거래방법</ColorText>
-          <ColorText color="#222020">직거래</ColorText>
+          <ColorText color="#222020">{data.data.info.tradeType}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품태그</ColorText>
@@ -117,21 +148,21 @@ const DetailInfo = () => {
         *상대방이 교환신청을 수락하여 채팅이 가능해요!
       </ColorText>
       <ButtonWrapper>
-        <StBasicButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>
+        <StButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>
           교환신청
-        </StBasicButton>
-        <StBasicButton buttonColor="#FFCA64">찜하기</StBasicButton>
+        </StButton>
+        <StButton buttonColor="#FFCA64">찜하기</StButton>
         {chatting ? (
-          <StBasicButton buttonColor="#FFCA64" onClick={onClickChatting}>
+          <StButton buttonColor="#FFCA64" onClick={onClickChatting}>
             채팅하기
-          </StBasicButton>
+          </StButton>
         ) : (
-          <StBasicButton
+          <StButton
             buttonColor="#D5D4D4"
             style={{ color: "#fff", cursor: "default" }}
           >
             채팅하기
-          </StBasicButton>
+          </StButton>
         )}
       </ButtonWrapper>
     </InfoContainer>
@@ -253,6 +284,11 @@ const ModalBtnDisabled = styled.div`
   border-bottom: 1px solid #d5d4d4;
   border-left: 1px solid #d5d4d4;
   border-right: 1px solid #d5d4d4;
+`;
+
+const StButton = styled(StBasicButton)`
+  border: 1px solid #222020;
+  color: #222020;
 `;
 
 export default DetailInfo;

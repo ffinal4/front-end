@@ -6,7 +6,7 @@ import RequestRejectModal from "./RequestRejectModal";
 import { StBasicButton } from "../../styles/BasicButton";
 
 const TradeRequestList = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
 
   const [requestState, setRequestState] = useState({
@@ -15,38 +15,67 @@ const TradeRequestList = () => {
 
   const { request } = requestState;
 
+  const requestAcceptOnclick = () => {
+    setRequestState({ ...requestState, request: "교환진행중" });
+  };
+
+  const completeOnclick = () => {
+    setRequestState({ ...requestState, request: "교환완료" });
+  };
   const stateButton = () => {
     if (request === "교환요청") {
-      <ButtonContainer>
-        <AcceptButton>수락</AcceptButton>
-        <RejectButton onClick={rejectModalClick}>거절</RejectButton>
-        {rejectModalOpen && (
-          <RequestRejectModal
-            rejectModalOpen={rejectModalOpen}
-            setRejectModalOpen={setRejectModalOpen}
-          />
-        )}
-      </ButtonContainer>;
+      return (
+        <ButtonContainer>
+          <StAcceptButton buttonColor="#39373A" onClick={requestAcceptOnclick}>
+            수락
+          </StAcceptButton>
+          <StButton buttonColor="white" onClick={rejectModalClick}>
+            거절
+          </StButton>
+          {rejectModalOpen && (
+            <RequestRejectModal
+              rejectModalOpen={rejectModalOpen}
+              setRejectModalOpen={setRejectModalOpen}
+            />
+          )}
+        </ButtonContainer>
+      );
     }
 
     if (request === "교환진행중") {
-      <ButtonContainer>
-        <AcceptButton>채팅</AcceptButton>
-        <RejectButton onClick={rejectModalClick}>완료</RejectButton>
-      </ButtonContainer>;
+      return (
+        <ButtonContainer>
+          <StButton
+            buttonColor="#FFCA64"
+            onClick={() => {
+              navigate("/chat");
+            }}
+          >
+            채팅
+          </StButton>
+          <StButton buttonColor="#FCF6E9" onClick={completeOnclick}>
+            완료
+          </StButton>
+        </ButtonContainer>
+      );
     }
 
     if (request === "교환취소") {
-      <ButtonContainer>
-        <StBasicButton buttonColor="">삭제</StBasicButton>
-      </ButtonContainer>;
+      return (
+        <ButtonContainer>
+          <StBasicButton buttonColor="">삭제</StBasicButton>
+        </ButtonContainer>
+      );
     }
 
     if (request === "교환완료") {
-      <ButtonContainer>
-        <StBasicButton buttonColor="">자세히보기</StBasicButton>
-      </ButtonContainer>;
+      return (
+        <ButtonContainer>
+          <StBasicButton buttonColor="">자세히보기</StBasicButton>
+        </ButtonContainer>
+      );
     }
+
     return null;
   };
 
@@ -72,11 +101,24 @@ const TradeRequestList = () => {
             <Image src={image} />
           </ImgContainer>
         </MyItemContainer>
+        <RequestState>교환요청</RequestState>
         <StateContainer>{stateButton()}</StateContainer>
       </RequestContainer>
     </div>
   );
 };
+
+const StAcceptButton = styled(StBasicButton)`
+  border: 1px solid #222020;
+  width: 80px;
+  color: white;
+`;
+
+const StButton = styled(StBasicButton)`
+  border: 1px solid #222020;
+  width: 80px;
+  color: #222020;
+`;
 
 export const RequestContainer = styled.div`
   border-bottom: 1px solid #222020;
@@ -150,23 +192,33 @@ export const MyItemContainer = styled.div`
 `;
 
 export const StateContainer = styled.div`
-  border-right: 2px solid #efefef;
-  width: 172px;
-  height: 112px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
   font-family: Pretendard;
   font-weight: 400;
+  width: 192px;
+  margin: auto;
+`;
+
+const RequestState = styled.div`
+  border-right: 2px solid #efefef;
+  width: 172px;
+  height: 112px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ButtonContainer = styled.div`
-  /* border: 1px solid red; */
-
+  display: flex;
   margin: auto;
+  gap: 16px;
 `;
 export const AcceptButton = styled.button`
+  background-color: #39373a;
+  color: white;
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
@@ -182,4 +234,5 @@ export const RejectButton = styled.button`
   width: 80px;
   padding: 10px 0px;
 `;
+
 export default TradeRequestList;

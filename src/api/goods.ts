@@ -2,7 +2,9 @@ import instance from ".";
 
 // 물물교환 전체 조회
 export const getGoodsApi = async () => {
-  const res = await instance.get(`/api/goods?page=1&size=20&sortBy=createdAt&isAsc=false`);
+  const res = await instance.get(
+    `/api/goods?page=1&size=20&sortBy=createdAt&isAsc=false`
+  );
   return res;
 };
 
@@ -15,16 +17,14 @@ export const getMyPocketApi = async () => {
 interface upLoadBody {
   formdata: {
     images: string[];
-
-    sellerPrice: {
-      sellerPrice: string;
-    };
     data: {
       title: string;
       content: string;
+
       tradeType: string;
       category: string;
       goodsCondition: string;
+      sellerPrice: string;
       location: string;
     };
     wanted: {
@@ -44,5 +44,17 @@ export const postUploadApi = async (body: any) => {
 // 물품 상세 페이지
 export const getDetailPageApi = async (goodsId: any) => {
   const res = await instance.get(`/api/goods/${goodsId}`);
+  return res;
+};
+
+// 경매물품등록 내 주머니 물품조회
+export const getAuctionUploadApi = async () => {
+  const res = await instance.get("/api/goods/mypocket");
+  return res;
+};
+
+// 경매 등록 페이지
+export const postAuctionUploadApi = async (body : any, goodsId : any) => {
+  const res = await instance.post(`/api/auction/${goodsId}`, body);
   return res;
 };

@@ -53,10 +53,10 @@ instance.interceptors.request.use(
     const refreshToken = localStorage.getItem("refreshToken");
 
     if (accessToken) {
-      config.headers["accesstoken"] = accessToken;
+      config.headers["accessToken"] = accessToken;
     }
     if (refreshToken) {
-      config.headers["authorization"] = refreshToken;
+      config.headers["refreshToken"] = refreshToken;
     }
 
     return config;

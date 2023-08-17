@@ -3,17 +3,30 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../assets/logo/logo.png";
 import title from "../../assets/logo/logo_title.png";
+import loginLogo from "../../assets/logo/loginlogo.png";
+import loginLTitle from "../../assets/logo/login_title.png";
 import search from "../../assets/icon/search.png";
 import alarm from "../../assets/icon/alarm.png";
 import mypage from "../../assets/icon/mypage.png";
 import peeppo from "../../assets/icon/peeppo.png";
 import Navbar from "./Navbar";
+import { useMutation } from "react-query";
+import { deleteLogoutApi } from "../../api/users";
 
 const Header = () => {
   const navigate = useNavigate();
   const insertedToken: string | null = localStorage.getItem("accessToken");
+  const [isLogggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {}, [insertedToken]);
+
+  const logoutMutation = useMutation(deleteLogoutApi, {
+    onSuccess: () => {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      navigate("/");
+    },
+  });
 
   return (
     <HeaderLayout>
@@ -24,8 +37,17 @@ const Header = () => {
               navigate("/");
             }}
           >
-            <Logo src={logo} />
-            <LogoTitle src={title} />
+            {insertedToken ? (
+              <>
+                <Logo src={loginLogo} />
+                <LogoTitle src={loginLTitle} />
+              </>
+            ) : (
+              <>
+                <Logo src={logo} />
+                <LogoTitle src={title} />
+              </>
+            )}
           </LogoContainer>
           <InputContainer>
             <SearchButton>
@@ -34,21 +56,24 @@ const Header = () => {
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
           {insertedToken ? (
-            <IconContainer>
-              <Alarm src={alarm} />
-              <Mypage
-                src={mypage}
-                onClick={() => {
-                  navigate("/mypage");
-                }}
-              />
-              <Peeppo
-                src={peeppo}
-                onClick={() => {
-                  navigate("/myPocket");
-                }}
-              />
-            </IconContainer>
+            <AllIconContainer>
+              <IconContainer>
+                <Alarm src={alarm} />
+                <Mypage
+                  src={mypage}
+                  onClick={() => {
+                    navigate("/mypage");
+                  }}
+                />
+                <Peeppo
+                  src={peeppo}
+                  onClick={() => {
+                    navigate("/myPocket");
+                  }}
+                />
+              </IconContainer>
+              <Logout onClick={() => logoutMutation.mutate()}>로그아웃</Logout>
+            </AllIconContainer>
           ) : (
             <LinkContainer>
               <LoginLink
@@ -110,10 +135,15 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.img`
+  width: 38px;
+  height: 38px;
   margin-right: 10px;
 `;
 
-const LogoTitle = styled.img``;
+const LogoTitle = styled.img`
+  width: 120px;
+  height: 24px;
+`;
 
 export const BoxContainer = styled.div`
   width: 2px;
@@ -174,6 +204,10 @@ const SignupLink = styled.div`
   font-family: Pretendard;
 `;
 
+const AllIconContainer = styled.div`
+  display: flex;
+  font-family: Pretendard;
+`;
 const IconContainer = styled.div`
   /* border: 1px solid red; */
   display: flex;
@@ -182,17 +216,32 @@ const IconContainer = styled.div`
 
 const Alarm = styled.img`
   /* border: 1px solid blue; */
+  width: 24px;
+  height: 24px;
   margin-right: 20px;
   cursor: pointer;
 `;
 
 const Mypage = styled.img`
   /* border: 1px solid blue; */
+  width: 24px;
+  height: 24px;
   margin-right: 20px;
   cursor: pointer;
 `;
 
 const Peeppo = styled.img`
   /* border: 1px solid blue; */
+  width: 24px;
+  height: 24px;
   cursor: pointer;
+`;
+
+const Logout = styled.div`
+  cursor: pointer;
+  display: flex;
+  margin-left: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
 `;

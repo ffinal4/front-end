@@ -31,24 +31,24 @@ const ConditionUpload = ({ uploadData, setUploadData } : any) => {
         <RequiredText>물건상태*</RequiredText>
         <AllWrapper>
             <Wrapper>
-                <StBasicButton
-                    buttonColor={(uploadData.data.goodsCondition === "상") ? "#575757" : "white"}
-                    style={{color: `${(uploadData.data.goodsCondition === "상") ? "white" : "#000"}`}}
+                <Button
+                    buttonColor={(uploadData.data.goodsCondition === "상") ? "#FFCA64" : ""}
+                    style={{fontWeight: `${(uploadData.data.goodsCondition === "상") && "700"}`}}
                     onClick={onCheckNewCondition}
                 >상
-                </StBasicButton>
-                <StBasicButton
-                    buttonColor={(uploadData.data.goodsCondition === "중") ? "#575757" : "white"}
-                    style={{color: `${(uploadData.data.goodsCondition === "중") ? "white" : "#000"}`}}
+                </Button>
+                <Button
+                    buttonColor={(uploadData.data.goodsCondition === "중") ? "#FFCA64" : ""}
+                    style={{fontWeight: `${(uploadData.data.goodsCondition === "중") && "700"}`}}
                     onClick={onCheckUsedCondition}
                 >중
-                </StBasicButton>
-                <StBasicButton
-                    buttonColor={(uploadData.data.goodsCondition === "하") ? "#575757" : "white"}
-                    style={{color: `${(uploadData.data.goodsCondition === "하") ? "white" : "#000"}`}}
+                </Button>
+                <Button
+                    buttonColor={(uploadData.data.goodsCondition === "하") ? "#FFCA64" : ""}
+                    style={{fontWeight: `${(uploadData.data.goodsCondition === "하") && "700"}`}}
                     onClick={onCheckDamagedCondition}
                 >하
-                </StBasicButton>
+                </Button>
             </Wrapper>
         </AllWrapper>
     </LineContainer>
@@ -84,6 +84,11 @@ const Wrapper = styled.div`
   @media screen and (max-width: 843px) {
     display: grid;
   }
+`;
+
+const Button = styled(StBasicButton)`
+  border: 1px solid #222020;
+  color: #222020;
 `;
 
 export default ConditionUpload;

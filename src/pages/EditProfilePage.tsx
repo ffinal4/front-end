@@ -9,7 +9,7 @@ import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload
 import { patchProfileEditApi, postNicknameApi } from "../api/users";
 
 interface EditForm {
-  select: string;
+  password: string;
   currentPassword: string;
   newPassword: string;
   confirmPassword: string;
@@ -22,14 +22,20 @@ const EditProfilePage = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
-  const [uploadImage, setUploadImage] = useState(null);
-
+  const [uploadImage, setUploadImage] = useState("");
+  const [isAvailable, setIsAvailable] = useState(false);
+  const [nicknameError, setNicknameError] = useState<string | null>(null);
+  const [uploadData, setUploadData] = useState({
+    data: { nickname: "" },
+  });
   const {
+    watch,
     register,
     handleSubmit,
     getValues,
     formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
+  console.log(watch());
 
   //닉네임 중복 확인 통신
   const checkNicknameAvailability = async (
@@ -38,45 +44,51 @@ const EditProfilePage = () => {
     const formData = getValues();
     const newNick = formData.nickname;
     const nickData = { nickname: newNick };
-    const newData = JSON.stringify(nickData);
-    event.preventDefault();
-    console.log(newData, "nick");
+    console.log(nickData, "nick");
     try {
       const res = await postNicknameApi(nickData);
-
       console.log(res);
       if (res.status === 200) {
-        console.log("닉네임", res);
+        setIsAvailable(true);
+        setNicknameError(null);
+        console.log("사용가능한 닉네임 입니다.", res);
       }
     } catch (error) {
-      console.log(error);
+      setIsAvailable(false);
+      setNicknameError("중복된 닉네임 입니다.");
+      console.log("중복된 닉네임 입니다.", error);
     }
   };
 
   //변경사항 저장 통신
-  const editprofileOnclick = async (data: EditForm) => {
-    const userId = "";
-    const newForm = {
-      nickname: data.nickname,
-      password: data.newPassword,
-      userImg: data.uploadImage,
+  const editprofileOnclick = handleSubmit(async (data: EditForm) => {
+    const formData = new FormData();
+    const request = {
+      data: {
+        nickname: data.nickname,
+        password: data.newPassword,
+        location: data.address,
+      }
     };
-    const allForm = {
-      ...newForm,
-      location: address,
-    };
-    console.log(newForm);
+    console.log(request);
+    formData.append(
+      "data",
+      new Blob([JSON.stringify(request.data)], { type: "application/json" })
+    );
+    formData.append("images", uploadImage);
+
+
     try {
-      const res = await patchProfileEditApi(userId, allForm);
+      const res = await patchProfileEditApi(formData);
 
       if (res.status === 201) {
         console.log("개인정보수정완료", res);
         navigate("/login");
       }
     } catch (error) {
-      console.log(error);
+      console.log("개인정보수정실패", error);
     }
-  };
+  });
 
   return (
     <div>
@@ -87,11 +99,7 @@ const EditProfilePage = () => {
             <SubTitle>개인정보 수정</SubTitle>
           </Title>
         </TitleContainer>
-        <EditProfileForm
-          onSubmit={(data: any) => {
-            editprofileOnclick(data);
-          }}
-        >
+        <EditProfileContainer>
           <ProfileImageContainer>
             <ProfileImageUpload
               uploadImage={uploadImage}
@@ -111,7 +119,6 @@ const EditProfilePage = () => {
                 type="text"
                 placeholder="닉네임을 입력해주세요."
                 {...register("nickname")}
-                // onBlur={checkNicknameAvailability}
               />
             </NickNameInputContainer>
             <StBasicButton
@@ -122,8 +129,8 @@ const EditProfilePage = () => {
               중복확인
             </StBasicButton>
           </NickNameContainer>
-
-          {errors.nickname && <Content>* 이미 사용중인 닉네임입니다.</Content>}
+          {nicknameError && <Content>* 중복된 닉네임입니다.</Content>}
+          {isAvailable && <Content>* 사용 가능한 닉네임입니다.</Content>}
           <PwContainer>
             <Label>현재 비밀번호</Label>
             <PwInputContainer>
@@ -202,33 +209,9 @@ const EditProfilePage = () => {
           <AddContent>
             입력된 주소는 나의 주거래 지역으로 표시됩니다.
           </AddContent>
-        </EditProfileForm>
+        </EditProfileContainer>
         <AssignButtonContainer>
-          <StBasicButton
-            buttonColor="#D9D9D9;"
-            type="submit"
-            onClick={handleSubmit(async (data: EditForm) => {
-              const userId = "";
-              const newForm = {
-                nickname: data.nickname,
-                password: data.newPassword,
-                userImg: data.uploadImage,
-              };
-              const allForm = {
-                ...newForm,
-                location: address,
-              };
-              try {
-                const res = await patchProfileEditApi(userId, allForm);
-                if (res.status === 201) {
-                  console.log("개인정보수정완료", res);
-                  navigate("/login");
-                }
-              } catch (error) {
-                console.log(error);
-              }
-            })}
-          >
+          <StBasicButton buttonColor="#D9D9D9;" onClick={editprofileOnclick}>
             변경저장
           </StBasicButton>
         </AssignButtonContainer>
@@ -257,8 +240,7 @@ const SubTitle = styled.div`
   margin-bottom: 16px;
   font-family: Pretendard;
 `;
-const EditProfileForm = styled.form`
-  /* border: 1px solid black; */
+const EditProfileContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   width: 100%;

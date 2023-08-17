@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components';
 import Image from '../../assets/images/pocket.png'
 
-const MyPippo = () => {
+const MyPippo = ({ data } : any) => {
 
   const [point, setPoint] = useState(0);
 

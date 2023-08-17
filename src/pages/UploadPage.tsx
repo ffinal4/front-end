@@ -166,9 +166,9 @@ const UploadPage = () => {
         <RatingUpload setUploadData={setUploadData} uploadData={uploadData} />
         <WantedUpload setUploadData={setUploadData} uploadData={uploadData} />
         <BtnWrapper>
-          <StBasicButton buttonColor="#D9D9D9" onClick={onClickUploadHandler}>
+          <Button buttonColor="#FFCA64" onClick={onClickUploadHandler}>
             주머니에 추가
-          </StBasicButton>
+          </Button>
         </BtnWrapper>
       </PageContainer>
     </PageLayout>
@@ -222,6 +222,11 @@ const BtnWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 30px 0px 0px 0px;
+`;
+
+const Button = styled(StBasicButton)`
+  border: 2px solid #222020;
+  font-weight: 700;
 `;
 
 export default UploadPage;

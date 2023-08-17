@@ -21,7 +21,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
   });
 
   const [imageUrlLists, setImageUrlLists] = useState<string[]>([]);
-  const [imagesBlobFile, setImagesBlobFile] = useState<File[]>([]);
+  // const [imagesBlobFile, setImagesBlobFile] = useState<File[]>([]);
 
   const formData = new FormData();
   const onChangeFileHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,25 +59,15 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
   };
 
   const onClickChangeHandler = (id: number) => {
-    const switchValues = (
-      imageUrlLists: string[],
-      index1: number,
-      index2: number
-    ) => {
-      [imageUrlLists[index1], imageUrlLists[index2]] = [
-        imageUrlLists[index2],
-        imageUrlLists[index1],
-      ];
+    const switchValues = (imageUrlLists: string[], index1: number, index2: number) => {
+      [imageUrlLists[index1], imageUrlLists[index2]] = [imageUrlLists[index2], imageUrlLists[index1],];
     };
     const switchFile = (
       uploadImages: string[],
       index1: number,
       index2: number
     ) => {
-      [uploadImages[index1], uploadImages[index2]] = [
-        uploadImages[index2],
-        uploadImages[index1],
-      ];
+      [uploadImages[index1], uploadImages[index2]] = [uploadImages[index2], uploadImages[index1],];
     };
 
     switchFile(uploadImages, 0, id - 1);
@@ -88,6 +78,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
       second: { ...file.second, imageUrl: imageUrlLists[1] },
       third: { ...file.third, imageUrl: imageUrlLists[2] },
     });
+    console.log(uploadImages, "uploadImages");
   };
 
   const onClickRemoveHandler = () => {

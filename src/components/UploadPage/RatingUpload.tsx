@@ -6,7 +6,7 @@ const RatingUpload = ({ setUploadData, uploadData } : any) => {
     const [ratingCheck, setRatingCheck] = useState<{rating : string}>({
         rating: "NO"
     });
-    const [conditionProduct, setConditionProduct] = useState({
+    const [conditionProduct, setConditionProduct] = useState<{price : any}>({
         price: "",
     });
     
@@ -28,12 +28,17 @@ const RatingUpload = ({ setUploadData, uploadData } : any) => {
         setConditionProduct({
             ...conditionProduct,
             [name]: numValue
-        })
-        setUploadData({...uploadData, data: {...uploadData.data, sellerPrice: price}});
+        });
+        console.log("price", price);
     }, [conditionProduct]);
 
     const numericValue = parseFloat(price);
     const formatted  = numericValue.toLocaleString();
+
+    const onBlurChangeHandler = () => {
+        setUploadData({...uploadData, data: {...uploadData.data, sellerPrice: price}});
+        console.log("ddd", uploadData);
+    };
 
   return (
     <LineContainer>
@@ -71,6 +76,7 @@ const RatingUpload = ({ setUploadData, uploadData } : any) => {
                         value={(price) ? formatted : price}
                         placeholder='100,000'
                         onChange={(event) => memoizedCallback(event)}
+                        onBlur={onBlurChangeHandler}
                     />
                     <Text>원</Text>
                 </PriceWrapper>

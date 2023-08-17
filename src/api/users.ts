@@ -22,12 +22,19 @@ export const postLoginApi = async (body: loginBody) => {
   return res;
 };
 
+// 로그아웃
+export const deleteLogoutApi = async () => {
+  const res = await instance.delete("/api/users/logout");
+  return res;
+};
+
 // 닉네임 중복 확인
 interface checkNicknameBody {
   nickname: string;
 }
+
 export const postNicknameApi = async (body: checkNicknameBody) => {
-  const res = await instance.post("/api/users/email", body);
+  const res = await instance.post("/api/users/nickname", body);
   return res;
 };
 
@@ -38,16 +45,18 @@ interface profileEditBody {
   location: string;
   userImg: string;
 }
-export const patchProfileEditApi = async (
-  userId: string,
-  body: profileEditBody
-) => {
-  const res = await instance.patch(`/api/users/${userId}`, body);
+export const patchProfileEditApi = async (body: any) => {
+  const res = await instance.patch("/api/users/mypage", body, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
   return res;
 };
 
 // 마이페이지
-export const getMypageApi = async (userId : any) => {
-  const res = await instance.get(`/api/users/${userId}`);
+export const getMypageApi = async () => {
+  const res = await instance.get(`/api/users/4`);
   return res;
 };
