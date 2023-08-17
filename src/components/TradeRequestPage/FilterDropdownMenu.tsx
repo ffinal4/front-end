@@ -35,6 +35,7 @@ export const RequestState = styled.div`
   height: 44px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 10px 10px 10px 20px;
+  font-family: Pretendard;
 `;
 export default FilterDropdownMenu;

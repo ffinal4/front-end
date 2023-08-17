@@ -85,6 +85,7 @@ export const Filter = styled.div`
   padding: 10px 10px 10px 20px;
   justify-content: space-between;
   position: relative;
+  font-family: Pretendard;
 `;
 
 export const ArrowImg = styled.img`
