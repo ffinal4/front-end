@@ -74,13 +74,13 @@ const EditProfilePage = () => {
 
     console.log(request);
 
-    formData.append("data", JSON.stringify(allRequest));
-    formData.append("images", JSON.stringify(uploadImage));
+    formData.append("data", new Blob([JSON.stringify(allRequest.data)], {type: "application/json"}));
+    formData.append("image", new Blob([JSON.stringify(uploadImage)], {type: "multipart/form-data"}));
 
     try {
       const res = await patchProfileEditApi(formData);
 
-      if (res.status === 201) {
+      if (res.status === 200) {
         console.log("개인정보수정완료", res);
         navigate("/login");
       }
