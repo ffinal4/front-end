@@ -60,3 +60,9 @@ export const getMypageApi = async () => {
   const res = await instance.get(`/api/users/mypage`);
   return res;
 };
+
+// 찜한 상품 전체 조회
+export const getZzimPageApi = async () => {
+  const res = await instance.get("/api/users/wishlist");
+  return res;
+};

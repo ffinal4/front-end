@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  AcceptButton,
   ButtonContainer,
   ContentContainer,
   Image,
@@ -10,57 +9,89 @@ import {
   RejectButton,
   RequestContainer,
   RequestDate,
+  RequestState,
+  StAcceptButton,
+  StButton,
   StateContainer,
   TradeRequestItem,
   User,
 } from "../TradeRequestPage/TradeRequestList";
-import image from "../../assets/images/closedEyes.png";
+import image from "../../assets/images/kangaroowhy.png";
 import RequestRejectModal from "../TradeRequestPage/RequestRejectModal";
 import { StBasicButton } from "../../styles/BasicButton";
+import { useNavigate } from "react-router-dom";
 
 const MyAutionList = () => {
+  const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
-
-  const [a, setA] = useState({
+  const [requestState, setRequestState] = useState({
     request: "교환요청",
   });
 
-  const { request } = a;
+  const { request } = requestState;
+
+  const requestAcceptOnclick = () => {
+    setRequestState({ ...requestState, request: "경매진행중" });
+  };
+
+  const completeOnclick = () => {
+    setRequestState({ ...requestState, request: "경매완료" });
+  };
 
   const stateButton = () => {
     if (request === "교환요청") {
-      <ButtonContainer>
-        <AcceptButton>수락</AcceptButton>
-        <RejectButton onClick={rejectModalClick}>거절</RejectButton>
-        {rejectModalOpen && (
-          <RequestRejectModal
-            rejectModalOpen={rejectModalOpen}
-            setRejectModalOpen={setRejectModalOpen}
-          />
-        )}
-      </ButtonContainer>;
+      return (
+        <ButtonContainer>
+          <StAcceptButton buttonColor="#39373A" onClick={requestAcceptOnclick}>
+            수락
+          </StAcceptButton>
+          <StButton buttonColor="white" onClick={rejectModalClick}>
+            거절
+          </StButton>
+          {rejectModalOpen && (
+            <RequestRejectModal
+              rejectModalOpen={rejectModalOpen}
+              setRejectModalOpen={setRejectModalOpen}
+            />
+          )}
+        </ButtonContainer>
+      );
     }
 
     if (request === "경매진행중") {
-      <ButtonContainer>
-        <AcceptButton>채팅</AcceptButton>
-        <RejectButton onClick={rejectModalClick}>완료</RejectButton>
-      </ButtonContainer>;
+      return (
+        <ButtonContainer>
+          <StButton
+            buttonColor="#58ABF7"
+            onClick={() => {
+              navigate("/chat");
+            }}
+          >
+            채팅
+          </StButton>
+          <RejectButton onClick={completeOnclick}>완료</RejectButton>
+        </ButtonContainer>
+      );
     }
 
-    if (request === "교환취소") {
-      <ButtonContainer>
-        <StBasicButton buttonColor="">삭제</StBasicButton>
-      </ButtonContainer>;
+    if (request === "경매취소") {
+      return (
+        <ButtonContainer>
+          <StBasicButton buttonColor="">삭제</StBasicButton>
+        </ButtonContainer>
+      );
     }
 
-    if (request === "교환완료") {
-      <ButtonContainer>
-        <StBasicButton buttonColor="">자세히보기</StBasicButton>
-      </ButtonContainer>;
+    if (request === "경매완료") {
+      return (
+        <ButtonContainer>
+          <StBasicButton buttonColor="">자세히보기</StBasicButton>
+        </ButtonContainer>
+      );
     }
     return null;
   };
+
   const rejectModalClick = () => {
     setRejectModalOpen(!rejectModalOpen);
   };
@@ -82,6 +113,7 @@ const MyAutionList = () => {
             <Image src={image} />
           </ImgContainer>
         </MyItemContainer>
+        <RequestState>경매전</RequestState>
         <StateContainer>{stateButton()}</StateContainer>
       </RequestContainer>
     </div>
