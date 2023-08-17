@@ -197,9 +197,14 @@ const SignupPage = () => {
               type="text"
               placeholder="한글, 영문, 숫자를 이용한 2~15자"
               {...register("nickname", {
-                required: "필수입력 항목입니다.",
-                minLength: { value: 2, message: "2자 이상 입력해주세요." },
-                maxLength: { value: 15, message: "15자 이하로 입력해주세요." },
+                minLength: {
+                  value: 2,
+                  message: "2자 이상 15자 이하로 입력해주세요.",
+                },
+                maxLength: {
+                  value: 15,
+                  message: "2자 이상 15자 이하로 입력해주세요.",
+                },
                 pattern: {
                   value: /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,15}$/,
                   message: "영문 대소문자, 글자 단위 한글, 숫자만 가능합니다.",
@@ -208,14 +213,16 @@ const SignupPage = () => {
             />
           </NickNameInputContainer>
 
-          <StBasicButton buttonColor="#D9D9D9;" style={{ marginLeft: "20px" }}>
-            중복 확인
-          </StBasicButton>
+          <StButton buttonColor="#FDD988;">중복 확인</StButton>
         </NickNameContainer>
         <ValidateMessage>{errors?.nickname?.message}</ValidateMessage>
       </SignUpContainer>
       <AssignButtonContainer>
-        <StBasicButton buttonColor="#D9D9D9" onClick={signupOnclick}>
+        <StBasicButton
+          buttonColor="#D9D9D9"
+          style={{ color: "white" }}
+          onClick={signupOnclick}
+        >
           회원가입
         </StBasicButton>
       </AssignButtonContainer>
@@ -371,6 +378,11 @@ const SecondLabel = styled.div`
 
 const NickNameInputContainer = styled.div`
   width: 464px;
+`;
+
+const StButton = styled(StBasicButton)`
+  margin-left: 20px;
+  border: 1px solid #222020;
 `;
 
 const ContentContainer = styled.div`
