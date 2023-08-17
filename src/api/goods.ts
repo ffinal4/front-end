@@ -2,7 +2,9 @@ import instance from ".";
 
 // 물물교환 전체 조회
 export const getGoodsApi = async () => {
-  const res = await instance.get(`/api/goods?page=1&size=20&sortBy=createdAt&isAsc=false`);
+  const res = await instance.get(
+    `/api/goods?page=1&size=20&sortBy=createdAt&isAsc=false`
+  );
   return res;
 };
 // 물품 등록
@@ -12,6 +14,7 @@ interface upLoadBody {
     data: {
       title: string;
       content: string;
+
       tradeType: string;
       category: string;
       goodsCondition: string;
