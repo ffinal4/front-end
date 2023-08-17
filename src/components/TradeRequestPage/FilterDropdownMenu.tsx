@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 
 const FilterDropdownMenu = (props: any) => {
@@ -20,7 +20,7 @@ const FilterDropdownMenu = (props: any) => {
   );
 };
 
-const FilterDropdownContainer = styled.div`
+export const FilterDropdownContainer = styled.div`
   width: 176px;
   background-color: white;
   border-bottom: 1px solid black;
@@ -29,7 +29,7 @@ const FilterDropdownContainer = styled.div`
   flex-direction: column;
 `;
 
-const RequestState = styled.div`
+export const RequestState = styled.div`
   border-bottom: 1px solid gray;
   cursor: pointer;
   height: 44px;
