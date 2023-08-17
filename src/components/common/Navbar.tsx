@@ -5,7 +5,6 @@ import CategorySelect from "./CategorySelect";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-
   const navigate = useNavigate();
 
   const [categorySelect, setCategorySelect] = useState({
@@ -32,9 +31,21 @@ const Navbar = () => {
           )}
         </CategoryContainer>
         <MenuContainer>
-          <Menu>물물교환</Menu>
-          <Menu>포켓경매</Menu>
-          <Menu onClick={() => navigate('/ratingstart')}>레이팅</Menu>
+          <Menu
+            onClick={() => {
+              navigate("/tradelist");
+            }}
+          >
+            물물교환
+          </Menu>
+          <Menu
+            onClick={() => {
+              navigate("/auctionlist");
+            }}
+          >
+            포켓경매
+          </Menu>
+          <Menu onClick={() => navigate("/ratingstart")}>레이팅</Menu>
         </MenuContainer>
       </Wrapper>
     </CategoryHeaderContainer>
