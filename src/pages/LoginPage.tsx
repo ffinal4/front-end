@@ -88,13 +88,13 @@ const LoginPage = () => {
             </LoginStateContainer>
           </SecondContainer>
           <ButtonContainer>
-            <StBasicButton
+            <StButton
               buttonColor="#FFCA64;"
               type="submit"
               onClick={loginOnclick}
             >
               로그인
-            </StBasicButton>
+            </StButton>
           </ButtonContainer>
           <SignUpContainer>
             <Content>아직 핍포 회원이 아니신가요?</Content>
@@ -181,15 +181,11 @@ const InputContainer = styled.div`
 `;
 
 const EmailInputContainer = styled.div`
-  /* border: 1px solid blue; */
   margin-bottom: 16px;
 `;
-const PwInputContainer = styled.div`
-  /* border: 1px solid blue; */
-`;
+const PwInputContainer = styled.div``;
 
 const SearchContainer = styled.div`
-  /* border: 1px solid red; */
   height: 24px;
   display: flex;
   align-items: center;
@@ -197,7 +193,6 @@ const SearchContainer = styled.div`
 `;
 
 const SearchId = styled.span`
-  /* border: 1px solid black; */
   height: 24px;
   cursor: pointer;
   font-size: 16px;
@@ -207,7 +202,6 @@ const SearchId = styled.span`
 `;
 
 const SearchPw = styled.span`
-  /* border: 1px solid black; */
   cursor: pointer;
   padding-left: 16px;
   font-size: 16px;
@@ -217,12 +211,10 @@ const SearchPw = styled.span`
   align-items: center;
 `;
 const MaintainLogin = styled.span`
-  /* border: 1px solid black; */
   font-family: Pretendard;
 `;
 
 const SecondContainer = styled.div`
-  /* border: 1px solid blue; */
   display: flex;
   width: 100%;
   margin: auto;
@@ -234,28 +226,35 @@ const LoginStateContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+const StButton = styled(StBasicButton)`
+  border: 1px solid #222020;
+  color: #222020;
+  font-family: Pretendard;
+  font-weight: 700;
+`;
+
 const CheckInput = styled.input`
   border: 1px solid black;
   width: 20px;
   height: 20px;
   margin-left: 10px;
+  accent-color: #ffca64;
 `;
+
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border: 1px solid red; */
   margin-top: 30px;
 `;
 const SignUpContainer = styled.div`
   margin-top: 40px;
-  /* border: 1px solid green; */
   display: flex;
   justify-content: center;
 `;
 
 const Content = styled.span`
-  /* border: 1px solid blue; */
   font-family: Pretendard;
 `;
 
