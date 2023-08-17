@@ -4,8 +4,18 @@ import { StTitle } from "../styles/TitleFont";
 import eyeImage from "../assets/images/eye.svg";
 import HorizontalLine from "../components/common/HorizontalLine";
 import dotLine from ".././assets/images/vector.png";
+import { getZzimPageApi } from "../api/users";
+import { useQuery } from "react-query";
 
 const ZzimListPage = () => {
+  const { isLoading, error, data } = useQuery("ZzimListPageData", getZzimPageApi, {
+    refetchOnWindowFocus: false,
+  });
+  if (isLoading) return <div>Loading...</div>;
+  console.log("물물교환페이지데이터", data);
+  if (error) {
+    console.log(error);
+  }
   return (
     <div>
       <TitleContainer>

@@ -5,7 +5,7 @@ import ItemCard from "../common/ItemCard";
 import { StBasicButton } from "../../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 
-const NewItemList = () => {
+const NewItemList = ({ data }: any) => {
   const navigate = useNavigate();
 
   return (
@@ -17,14 +17,9 @@ const NewItemList = () => {
         주머니에 새로 등록된 물건들이에요.
       </StSubTitle>
       <CardContainer>
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
+        {data.map((item: any) => {
+          return <ItemCard item={item} />;
+        })}
         <MoreBtn
           buttonColor="var(--yellow-yellow-100, #FFCA64);"
           onClick={() => {

@@ -1,10 +1,13 @@
 import instance from ".";
 
+// 메인페이지(랜딩페이지) 전체조회
+export const getMainPageApi = async () => {
+  const res = await instance.get(`/api/home`);
+  return res;
+};
 // 물물교환 전체 조회
 export const getGoodsApi = async () => {
-  const res = await instance.get(
-    `/api/goods?page=1&size=20&sortBy=createdAt&isAsc=false`
-  );
+  const res = await instance.get(`/api/goods?page=1&size=20&sortBy=createdAt&isAsc=false`);
   return res;
 };
 
@@ -54,7 +57,7 @@ export const getAuctionUploadApi = async () => {
 };
 
 // 경매 등록 페이지
-export const postAuctionUploadApi = async (body : any, goodsId : any) => {
+export const postAuctionUploadApi = async (body: any, goodsId: any) => {
   const res = await instance.post(`/api/auction/${goodsId}`, body);
   return res;
 };
