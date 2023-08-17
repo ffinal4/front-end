@@ -157,6 +157,7 @@ const AuctionUploadPage = () => {
               };
             } catch {
               if (error) {
+                alert(`경매물품 등록에 필요한 포인트가 부족합니다.`)
                 console.log(error);
               };
             };

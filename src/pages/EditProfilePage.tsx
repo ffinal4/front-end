@@ -76,15 +76,11 @@ const EditProfilePage = () => {
 
     formData.append(
       "data",
-      new Blob([JSON.stringify(allRequest.data)], {
-        type: "application/json",
-      })
+      new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
     );
     formData.append(
       "image",
-      new Blob([JSON.stringify(uploadImage)], {
-        type: "multipart/form-data",
-      })
+      new Blob([JSON.stringify(uploadImage)], { type: "multipart/form-data" })
     );
 
     try {
