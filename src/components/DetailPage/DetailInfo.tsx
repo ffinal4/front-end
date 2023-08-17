@@ -13,11 +13,12 @@ const DetailInfo = ({ data } : any) => {
   const createdDate = data.data.info.createdAt;
   const splitDate = createdDate.split("T")[0];
   const dateAt = splitDate.split("-")[2];
-  const receivedDate = new Date(splitDate);
+  // const receivedDate = new Date(splitDate);
   const newDate = new Date();
-  // const a = newDate - receivedDate;
+  const dateData = newDate.getDate();
+  const result = dateData - dateAt;
 
-  console.log(receivedDate, " createdDate");
+  // console.log(receivedDate, " createdDate");
   
   // if (categorys === "WOMAN")
   // {let categoryData = Category.WOMAN;}
@@ -73,7 +74,7 @@ const DetailInfo = ({ data } : any) => {
           </TextWrapper>
           <TextWrapper>
             <SmallBox src={Time} />
-            <ColorText color="#ADADAD">일 전</ColorText>
+            <ColorText color="#ADADAD">{result}일 전</ColorText>
           </TextWrapper>
         </BoxWrapper>
       </UserNameContainer>
@@ -81,7 +82,7 @@ const DetailInfo = ({ data } : any) => {
         style={{ border: "none", paddingTop: "16px", position: "relative" }}
       >
         <TextWrapper>
-          <ColorText color="#39373A">사용자김핍포</ColorText>
+          <ColorText color="#39373A">{data.data.info.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
         <TextWrapper>

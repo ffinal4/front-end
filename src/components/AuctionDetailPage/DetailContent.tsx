@@ -117,12 +117,12 @@ const DetailContent = () => {
                 *상대방이 교환신청을 수락하여 채팅이 가능해요!
             </ColorText>
             <ButtonWrapper>
-                <StButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>
-                    교환신청
+                <StButton buttonColor="#58ABF7" onClick={onClickAcceptHandler}>
+                    입찰하기
                 </StButton>
-                <StButton buttonColor="#FFCA64">찜하기</StButton>
+                <StButton buttonColor="#58ABF7">찜하기</StButton>
                 {chatting ? (
-                    <StButton buttonColor="#FFCA64" onClick={onClickChatting}>
+                    <StButton buttonColor="#58ABF7" onClick={onClickChatting}>
                         채팅하기
                     </StButton>
                 ) : (
@@ -257,7 +257,7 @@ const ModalBtnDisabled = styled.div`
 
 const StButton = styled(StBasicButton)`
       border: 1px solid #222020;
-      color: #222020;
+      color: #FCFCFC;
     `;
 
 export default DetailContent;
