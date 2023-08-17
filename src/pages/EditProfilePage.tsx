@@ -64,16 +64,19 @@ const EditProfilePage = () => {
   const editprofileOnclick = handleSubmit(async (data: EditForm) => {
     const formData = new FormData();
     const request = {
-      nickname: data.nickname,
-      password: data.newPassword,
-      location: data.address,
+      data: {
+        nickname: data.nickname,
+        password: data.newPassword,
+        location: data.address,
+      }
     };
     console.log(request);
     formData.append(
-      "request",
-      new Blob([JSON.stringify(request)], { type: "application/json" })
+      "data",
+      new Blob([JSON.stringify(request.data)], { type: "application/json" })
     );
-    formData.append("image", uploadImage);
+    formData.append("images", uploadImage);
+
 
     try {
       const res = await patchProfileEditApi(formData);

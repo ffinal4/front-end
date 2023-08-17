@@ -2,41 +2,58 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../styles/BasicButton";
 import ProductChoice from "../components/AuctionUploadPage/ProductChoice";
+import { useQuery } from "react-query";
+import { getAuctionUploadApi, postAuctionUploadApi } from "../api/goods";
+import { useNavigate } from "react-router-dom";
 
 const AuctionUploadPage = () => {
+
+  const navigate = useNavigate();
+
+  const { isLoading, error, data } : any = useQuery("AuctionMyPocket", getAuctionUploadApi, {
+    refetchOnWindowFocus: false,
+  });
+
+  console.log(data, "data");
+
+  const [myPocketGoods, setMyPocketGoods] = useState<{goodsId: string | number}>({
+    goodsId: "",
+  });
+
   type ProductType = {
-    time: string;
-    product: string;
-    limit: any;
+    endTime: string;
+    lowPrice: any;
   };
 
   const [productBid, setProductBid] = useState<ProductType>({
-    time: "",
-    product: "",
-    limit: 0,
+    endTime: "",
+    lowPrice: 0,
   });
-  const { limit } = productBid;
+  const { endTime, lowPrice } = productBid;
   const bidPrice: number[] = [1000, 5000, 10000, 50000];
-  const locateLimit = limit.toLocaleString();
+  const locateLimit = lowPrice.toLocaleString();
 
   const onClickTwelveHourHandler = () => {
-    setProductBid({ ...productBid, time: "30분" });
+    setProductBid({ ...productBid, endTime: "30분" });
   };
   const onClickOneDayHandler = () => {
-    setProductBid({ ...productBid, time: "1시간" });
+    setProductBid({ ...productBid, endTime: "1시간" });
   };
   const onClickThreeDayHandler = () => {
-    setProductBid({ ...productBid, time: "3시간" });
+    setProductBid({ ...productBid, endTime: "3시간" });
   };
 
   const onClickAddPriceHandler = (item: number) => {
-    setProductBid({ ...productBid, limit: parseInt(limit) + item });
+    setProductBid({ ...productBid, lowPrice: parseInt(lowPrice) + item });
   };
 
   const onClickRemovePriceHandler = () => {
-    setProductBid({...productBid, limit: 0});
+    setProductBid({...productBid, lowPrice: 0});
   };
   console.log("productBid", productBid);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <PageLayoutContainer>
@@ -58,22 +75,22 @@ const AuctionUploadPage = () => {
           <FirstWrapper>
             <ButtonWrapper>
               <Button
-                buttonColor={productBid.time === "30분" ? "#575757" : "white"}
-                style={{color: `${productBid.time === "30분" ? "white" : "#000000"}`}}
+                buttonColor={endTime === "30분" ? "#575757" : "white"}
+                style={{color: `${endTime === "30분" ? "white" : "#000000"}`}}
                 onClick={onClickTwelveHourHandler}
               >
                 30분
               </Button>
               <Button
-                buttonColor={productBid.time === "1시간" ? "#575757" : "white"}
-                style={{color: `${productBid.time === "1시간" ? "white" : "#000000"}`}}
+                buttonColor={endTime === "1시간" ? "#575757" : "white"}
+                style={{color: `${endTime === "1시간" ? "white" : "#000000"}`}}
                 onClick={onClickOneDayHandler}
               >
                 1시간
               </Button>
               <Button
-                buttonColor={productBid.time === "3시간" ? "#575757" : "white"}
-                style={{color: `${productBid.time === "3시간" ? "white" : "#000000"}`}}
+                buttonColor={endTime === "3시간" ? "#575757" : "white"}
+                style={{color: `${endTime === "3시간" ? "white" : "#000000"}`}}
                 onClick={onClickThreeDayHandler}
               >
                 3시간
@@ -85,7 +102,11 @@ const AuctionUploadPage = () => {
             </Text>
           </FirstWrapper>
         </PeriodUploadContainer>
-        <ProductChoice />
+        <ProductChoice
+          myPocketGoods={myPocketGoods}
+          setMyPocketGoods={setMyPocketGoods}
+          data={data}
+        />
         <LastLineContainer>
           <RequiredText>입찰 제한</RequiredText>
           <LineWrapper>
@@ -93,7 +114,7 @@ const AuctionUploadPage = () => {
               <InputWrapper>
                 <BidLimitInput
                   type="text"
-                  value={limit !== 0 ? locateLimit : ""}
+                  value={(lowPrice !== 0) ? locateLimit : ""}
                   placeholder="입력한 가치 이상의 물건만 입찰됩니다."
                 />
                 <RemoveBtn onClick={onClickRemovePriceHandler}>
@@ -119,6 +140,29 @@ const AuctionUploadPage = () => {
           </LineWrapper>
         </LastLineContainer>
       </AuctionUploadContainer>
+      <BottomBtnWrapper>
+        <Button
+          buttonColor="#FCFCFC"
+          onClick={async () => {
+            const newBid = {
+              ...productBid,
+              lowPrice: String(lowPrice),
+            };
+            // const jsonBid = JSON.stringify(newBid);
+            try {
+              const res = await postAuctionUploadApi(newBid, myPocketGoods.goodsId);
+              if (res.status === 200) {
+                alert("경매물품 등록에 성공했습니다!");
+                navigate('/');
+              };
+            } catch {
+              if (error) {
+                console.log(error);
+              };
+            };
+          }}
+        > 경매 시작</Button>
+      </BottomBtnWrapper>
     </PageLayoutContainer>
   );
 };
@@ -260,6 +304,12 @@ const IconBox = styled.div`
   width: 24px;
   height: 24px;
   background-color: #D9D9D9;
+`;
+
+const BottomBtnWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 export default AuctionUploadPage;

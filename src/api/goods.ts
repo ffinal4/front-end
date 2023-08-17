@@ -40,3 +40,15 @@ export const getDetailPageApi = async (goodsId: any) => {
   const res = await instance.get(`/api/goods/${goodsId}`);
   return res;
 };
+
+// 경매물품등록 내 주머니 물품조회
+export const getAuctionUploadApi = async () => {
+  const res = await instance.get("/api/goods/mypocket");
+  return res;
+};
+
+// 경매 등록 페이지
+export const postAuctionUploadApi = async (body : any, goodsId : any) => {
+  const res = await instance.post(`/api/auction/${goodsId}`, body);
+  return res;
+};

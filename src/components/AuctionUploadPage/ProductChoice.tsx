@@ -1,34 +1,51 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
 import AuctionCard from './AuctionCard';
+import AucUploadDetail from './AucUploadDetail';
 
-const ProductChoice = () => {
+const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data } : any) => {
 
-    const [checkBox, setCheckBox] = useState(false);
+    const myPocketData = data.data.info;
+    const [checkBox, setCheckBox] = useState<number | null>(null);
+    const [findedData, setFindedData] = useState<any>();
+    const [seeInfo, setSeeInfo] = useState<boolean>(false);
+    
+
+    const onClickSeeHandler = () => {
+        setFindedData(myPocketData.find((item : any) => item.goodsId === checkBox));
+        setSeeInfo(!seeInfo);
+    };
+
+    // console.log(findedData, "findedData");
 
   return (
     <div>
         <UploadContainer>
             <RequiredText>경매품 선택</RequiredText>
             <MyPoketContainer>
-                <AuctionCard checkBox={checkBox} setCheckBox={setCheckBox} />
-                <AuctionCard />
-                <AuctionCard />
-                <AuctionCard />
-                <AuctionCard />
-                <AuctionCard />
-                <AuctionCard />
-                <AuctionCard />
-                <AuctionCard />
-                <AuctionCard />
+                {myPocketData.map((item : any) => {
+                    return (<AuctionCard
+                        key={item.goodsId}
+                        item={item}
+                        checkBox={checkBox}
+                        setCheckBox={setCheckBox}
+                        setMyPocketGoods={setMyPocketGoods}
+                        myPocketGoods={myPocketGoods}
+                    />)
+                })}
             </MyPoketContainer> 
         </UploadContainer>
-        <UploadContainer>
-            <RequiredText>물건 정보</RequiredText>
-            <LineWrapper>
-                물건 정보 보기
-                <ChoiceBox />
-            </LineWrapper>
+        <UploadContainer style={{display: "grid"}}>
+            <SeeButtonWrapper>
+                <RequiredText>물건 정보</RequiredText>
+                <LineWrapper onClick={onClickSeeHandler}>
+                    물건 정보 보기
+                    <ChoiceBox />
+                </LineWrapper>
+            </SeeButtonWrapper>
+            <InfoWrapper>
+            {(seeInfo && findedData) && <AucUploadDetail findedData={findedData} />}
+            </InfoWrapper>
         </UploadContainer>
     </div>
   )
@@ -52,7 +69,7 @@ const RequiredText = styled.div`
 
 const MyPoketContainer = styled.div`
     width: 100%;
-    height: 600px;
+    max-height: 600px;
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
@@ -79,13 +96,22 @@ const LineWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 `;
 
 const ChoiceBox = styled.div`
     width: 24px;
     height: 24px;
     background-color: #D9D9D9;
-    cursor: pointer;
+`;
+
+const SeeButtonWrapper = styled.div`
+    display: flex;
+    width: 100%;
+`;
+
+const InfoWrapper = styled.div`
+    width: 1136px;
 `;
 
 export default ProductChoice;

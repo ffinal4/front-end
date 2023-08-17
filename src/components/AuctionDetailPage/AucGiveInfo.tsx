@@ -1,14 +1,15 @@
 import React from 'react'
 import { styled } from 'styled-components';
-import { StBasicButton } from '../../styles/BasicButton';
-import Image from '../../assets/images/pocket.png'
 
-const GiveInfo = ({ data } : any) => {
-  return (
+const AucGiveInfo = () => {
+    return (
         <InfoContainer>
             <InfoTextContainer>
-                <InfoTextTitle>{data.data.info.title}</InfoTextTitle>
-                <InfoTextContent>{data.data.info.content}</InfoTextContent>
+                <InfoTextTitle>aaa</InfoTextTitle>
+                <InfoTextContent>aaa</InfoTextContent>
+                {/* <InfoTextContent>스타벅스 기프티콘 많아서 기간내에 사용하기가 힘들것 같아서요.</InfoTextContent>
+                <InfoTextContent>같은 가격으로 아무 커피 프랜차이즈 기프티콘과 교환 원해요!</InfoTextContent>
+                <InfoTextContent style={{marginTop: "10px"}}>다른 금액 기프티콘들도 주머니 넣어뒀으니깐 주머니 보시고 찔러주세요!</InfoTextContent> */}
             </InfoTextContainer>
         </InfoContainer>
   )
@@ -46,4 +47,4 @@ const InfoTextContent = styled.div`
     line-height: 150%;
 `;
 
-export default GiveInfo;
+export default AucGiveInfo;
