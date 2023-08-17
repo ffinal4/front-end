@@ -239,7 +239,9 @@ const CheckInput = styled.input`
   width: 20px;
   height: 20px;
   margin-left: 10px;
+  accent-color: #ffca64;
 `;
+
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
