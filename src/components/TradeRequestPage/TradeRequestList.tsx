@@ -108,13 +108,13 @@ const TradeRequestList = () => {
   );
 };
 
-const StAcceptButton = styled(StBasicButton)`
+export const StAcceptButton = styled(StBasicButton)`
   border: 1px solid #222020;
   width: 80px;
   color: white;
 `;
 
-const StButton = styled(StBasicButton)`
+export const StButton = styled(StBasicButton)`
   border: 1px solid #222020;
   width: 80px;
   color: #222020;
@@ -202,7 +202,7 @@ export const StateContainer = styled.div`
   margin: auto;
 `;
 
-const RequestState = styled.div`
+export const RequestState = styled.div`
   border-right: 2px solid #efefef;
   width: 172px;
   height: 112px;

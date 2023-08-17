@@ -1,18 +1,18 @@
 import React, { useState } from "react";
+import { styled } from "styled-components";
 import {
   ArrowImg,
   ChatState,
   Container,
   Filter,
   FilterContainer,
-  MenuContainer,
   MyItemMenu,
   RequestDateMenu,
   SubTitle,
   Title,
   TradeRequestItemMenu,
-  TradeRequestListContainer,
   TradeStateMenu,
+  TradeRequestListContainer,
 } from "./TradeRequestPage";
 import arrow from "../assets/icon/arrow.png";
 import MyAutionList from "../components/MyAuctionCheckPage/MyAutionList";
@@ -67,5 +67,12 @@ const MyAuctionCheckPage = () => {
     </div>
   );
 };
+
+const MenuContainer = styled.div`
+  border-bottom: 2px solid #222020;
+  background-color: #58abf7;
+  display: flex;
+  height: 54px;
+`;
 
 export default MyAuctionCheckPage;
