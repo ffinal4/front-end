@@ -63,6 +63,7 @@ const EditProfilePage = () => {
     const formData = new FormData();
     const request = {
       nickname: data.nickname,
+      originPassword: data.currentPassword,
       password: data.newPassword,
     };
     const allRequest = {
@@ -148,7 +149,7 @@ const EditProfilePage = () => {
               />
             </PwInputContainer>
           </PwContainer>
-          <Content>* 비밀번호가 일치하지 않습니다.</Content>
+          <Content>{errors?.currentPassword?.message}</Content>
           <CheckPwContainer>
             <Label>비밀번호 재설정</Label>
             <SetPwInputContainer>
