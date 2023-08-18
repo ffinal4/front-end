@@ -5,7 +5,7 @@ import ItemCard from "./ItemCard";
 const ItemCardList = ({ data }: any) => {
   return (
     <ItemCardContainer>
-      {data.map((item: any) => {
+      {data?.map((item: any) => {
         return <ItemCard key={item.goodsId} item={item} />;
       })}
     </ItemCardContainer>
