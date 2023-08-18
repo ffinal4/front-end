@@ -24,6 +24,7 @@ import AuctionDetailPage from "./pages/AuctionDetailPage";
 import ZzimListPage from "./pages/ZzimListPage";
 import AuctionListPage from "./pages/AuctionListPage";
 import Footer from "./components/common/Footer";
+import UserPocketPage from "./pages/UserPocketPage";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ function App() {
             <Route path="/rating" element={<RatingPage />} />
             <Route path="/" element={<MainPage />} />
             <Route path="/mypocket" element={<MyPocketPage />} />
+            <Route path="/userpocket/:nickname" element={<UserPocketPage />} />
             <Route element={<MainLayout />}>
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/upload" element={<UploadPage />} />

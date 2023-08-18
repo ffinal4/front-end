@@ -6,6 +6,8 @@ import HorizontalLine from "../components/common/HorizontalLine";
 import dotLine from ".././assets/images/vector.png";
 import { getZzimPageApi } from "../api/users";
 import { useQuery } from "react-query";
+import ItemCardList from "../components/common/ItemCardList";
+import Paging from "../components/common/Paging/Paging";
 
 const ZzimListPage = () => {
   const { isLoading, error, data } = useQuery("ZzimListPageData", getZzimPageApi, {
@@ -26,6 +28,8 @@ const ZzimListPage = () => {
       </TitleContainer>
       <HorizontalLine />
       <DotLine src={dotLine} />
+      <ItemCardList data={data?.data.info} />
+      <Paging />
     </div>
   );
 };
