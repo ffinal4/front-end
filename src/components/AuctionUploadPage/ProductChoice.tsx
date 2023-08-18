@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
-import AuctionCard from './AuctionCard';
+import AucUploadCard from './AucUploadCard';
 import AucUploadDetail from './AucUploadDetail';
 
 const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data } : any) => {
@@ -24,7 +24,7 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data } : any) => {
             <RequiredText>경매품 선택</RequiredText>
             <MyPoketContainer>
                 {myPocketData.map((item : any) => {
-                    return (<AuctionCard
+                    return (<AucUploadCard
                         key={item.goodsId}
                         item={item}
                         checkBox={checkBox}

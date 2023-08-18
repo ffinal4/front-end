@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../assets/logo/logo.png";
@@ -10,22 +10,29 @@ import alarm from "../../assets/icon/alarm.png";
 import mypage from "../../assets/icon/mypage.png";
 import peeppo from "../../assets/icon/peeppo.png";
 import Navbar from "./Navbar";
-import { useMutation } from "react-query";
-import { deleteLogoutApi } from "../../api/users";
+import { postLogoutApi } from "../../api/users";
 
 const Header = () => {
   const navigate = useNavigate();
   const insertedToken: string | null = localStorage.getItem("accessToken");
-
   useEffect(() => {}, [insertedToken]);
 
-  const logoutMutation = useMutation(deleteLogoutApi, {
-    onSuccess: () => {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-      navigate("/");
-    },
-  });
+  const logoutOnclick = async () => {
+    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
+
+    const logoutData = {
+      accessToken,
+      refreshToken,
+    };
+
+    try {
+      const res = await postLogoutApi(logoutData);
+      console.log(res);
+    } catch (error) {
+      console.log("로그아웃실패", error);
+    }
+  };
 
   return (
     <HeaderLayout>
@@ -71,7 +78,7 @@ const Header = () => {
                   }}
                 />
               </IconContainer>
-              <Logout onClick={() => logoutMutation.mutate()}>로그아웃</Logout>
+              <Logout onClick={logoutOnclick}>로그아웃</Logout>
             </AllIconContainer>
           ) : (
             <LinkContainer>

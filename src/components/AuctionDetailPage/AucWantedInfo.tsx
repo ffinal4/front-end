@@ -2,14 +2,17 @@ import React from 'react'
 import { styled } from 'styled-components';
 
 const AucWantedInfo = ({ data } : any) => {
+
+    const wantedData = data.data.info.goodsResponseDto.wantedGoods;
+
     return (
         <InfoContainer>
             <InfoTextContainer>
                 <TextTitleContainer>
-                    <InfoTextTitle>{data.data.info.goodsResponseDto.title}</InfoTextTitle>
-                    <InfoTextContent style={{color: "#A4A4A4"}}>{data.data.info.goodsResponseDto.content}</InfoTextContent>
+                    <InfoTextTitle>{wantedData.title}</InfoTextTitle>
+                    <InfoTextContent style={{color: "#A4A4A4"}}>{wantedData.category}</InfoTextContent>
                 </TextTitleContainer>
-                <InfoTextContent>{data.data.info.goodsResponseDto.content}</InfoTextContent>
+                <InfoTextContent>{wantedData.content}</InfoTextContent>
             </InfoTextContainer>
         </InfoContainer>
 )

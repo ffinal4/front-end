@@ -8,31 +8,32 @@ const AucBidCard = () => {
             <CardImgContainer>
                 <CardLocationContainer />
                 <LocatinoWrapper>
-                    <LocationIcon src={Location} alt=''/>
+                    <LocationIcon src={Location} alt='' />
                     <LocationText>경기도 용인시 기흥구</LocationText>
                 </LocatinoWrapper>
+                <SellerChoice>SELLER'S PICK</SellerChoice>
             </CardImgContainer>
             <TitleContainer>물건이름</TitleContainer>
-            <ContentContainer>유저레이팅</ContentContainer>
+            <ContentContainer>110,000PP</ContentContainer>
         </CardContainer>
-      )
-    };
-    
-    const CardContainer = styled.div`
+    )
+};
+
+const CardContainer = styled.div`
         width: 272px;
         height: 333px;
         cursor: pointer;
     `;
-    
-    const CardImgContainer = styled.div`
+
+const CardImgContainer = styled.div`
         width: 272px;
         height: 272px;
         border-radius: 10px;
         background-color: #D5D4D4;
         position: relative;
     `;
-    
-    const CardLocationContainer = styled.div`
+
+const CardLocationContainer = styled.div`
         width: 100%;
         height: 44px;
         border-radius: 10px 10px 0px 0px;
@@ -43,8 +44,8 @@ const AucBidCard = () => {
         align-items: center;
         
     `;
-    
-    const LocatinoWrapper = styled.div`
+
+const LocatinoWrapper = styled.div`
         display: flex;
         align-items: center;
         gap: 4px;
@@ -53,21 +54,21 @@ const AucBidCard = () => {
         position: absolute;
         z-index: 20;
     `;
-    
-    const LocationText = styled.div`
+
+const LocationText = styled.div`
         color: #fff;
         font-family: "Pretendard";
         font-size: 16px;
         font-weight: 400;
         line-height: 150%;
     `;
-    
-    const LocationIcon = styled.img`
+
+const LocationIcon = styled.img`
         width: 18px;
         height: 18px;
     `;
-    
-    const TitleContainer = styled.div`
+
+const TitleContainer = styled.div`
         width: 100%;
         font-family: "Pretendard";
         font-size: 20px;
@@ -75,13 +76,30 @@ const AucBidCard = () => {
         line-height: 150%;
         padding: 10px 0px 0px 0px;
     `;
-    
-    const ContentContainer = styled.div`
+
+const ContentContainer = styled.div`
         font-family: "Pretendard";
         font-size: 14px;
         font-weight: 400;
         line-height: 150%;
         color: #ADADAD;
     `;
+
+const SellerChoice = styled.div`
+    background-color: #58ABF7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    font-family: "Lemon/Milk", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    color: #FCFCFC;
+    bottom: 0;
+    position: absolute;
+    border-radius: 0px 0px 10px 10px;
+`;
 
 export default AucBidCard;
