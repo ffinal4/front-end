@@ -218,7 +218,13 @@ const EditProfilePage = () => {
         <AssignButtonContainer>
           <StButton
             buttonColor={nicknameChecked ? "#FDD988" : "#D5D4D4"}
+            style={{
+              color: nicknameChecked ? "black" : "white",
+              border: nicknameChecked ? "1px solid black" : "none",
+              fontWeight: nicknameChecked ? "700" : "400",
+            }}
             onClick={editprofileOnclick}
+            disabled={!nicknameChecked}
           >
             변경사항저장
           </StButton>
@@ -396,7 +402,6 @@ const StButton = styled(StBasicButton)`
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 700;
-  border: 1px solid black;
 `;
 
 export default EditProfilePage;
