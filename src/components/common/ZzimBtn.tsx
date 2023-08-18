@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import zzim from "../../assets/icon/zzim.png";
 import nozzim from "../../assets/icon/nozzim.png";
 import { styled } from "styled-components";
+import { useMutation, useQueryClient } from "react-query";
+import { postZzimApi } from "../../api/goods";
 
 const CardZzimBtn = () => {
+  const queryClient = useQueryClient();
   const [isZzim, setIsZzim] = useState(false);
-
+  // const zzimMutate = useMutation(()=> postZzimApi())
   const zzimBtnhandleClick = () => {
     setIsZzim(!isZzim);
   };
