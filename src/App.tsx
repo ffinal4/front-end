@@ -23,6 +23,7 @@ import MyAuctionCheckPage from "./pages/MyAuctionCheckPage";
 import AuctionDetailPage from "./pages/AuctionDetailPage";
 import ZzimListPage from "./pages/ZzimListPage";
 import AuctionListPage from "./pages/AuctionListPage";
+import Footer from "./components/common/Footer";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ function App() {
               <Route path="/auctionlist" element={<AuctionListPage />} />
             </Route>
           </Routes>
+          <Footer />
         </BrowserRouter>
       </QueryClientProvider>
     </div>
