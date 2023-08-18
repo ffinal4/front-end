@@ -23,7 +23,6 @@ const MainPage = () => {
       <NewItemList data={data?.data.info.goodsListResponseDto} />
       <AuctionList data={data?.data.info.auctionResponseDto} />
       <HowToTrade />
-      <Footer />
     </MainPageContainer>
   );
 };
