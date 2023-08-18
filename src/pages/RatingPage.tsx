@@ -11,6 +11,7 @@ import SuccessRating from '../components/RatingPage/SuccessRating';
 import FailedModal from '../components/RatingPage/FailedModal';
 import { useQuery } from 'react-query';
 import { getRatingStartApi, postRatingSubmitApi } from '../api/rating';
+import Remove from '../assets/icon/remove.png'
 
 const RatingPage = () => {
 
@@ -102,12 +103,23 @@ const RatingPage = () => {
                     </TitleContainer>
                     <SuccessRating />
                 </SuccessContainer> */}
-                <PriceInput
-                    type='text'
-                    value={(price !== 0) ? price.toLocaleString() : ""}
-                    placeholder='주머니의 주인은 이 물건이 얼마 정도의 가치가 있다고 생각했을까요?'
-                    // onChange={}
-                />
+                <PriceInputWrapper>
+                    <PriceInput
+                        type='text'
+                        value={(price !== 0) ? price.toLocaleString() : ""}
+                        placeholder='주머니의 주인은 이 물건이 얼마 정도의 가치가 있다고 생각했을까요?'
+                        // onChange={}
+                    >
+                    </PriceInput>
+                    {(price !== 0)
+                        && <RemovePriceWrapper onClick={() => setAddPrice({
+                            ...addPrice,
+                            price: 0,
+                        })} >
+                            <RemoveBtn src={Remove} />  
+                        </RemovePriceWrapper>
+                    }
+                </PriceInputWrapper>
                 <ButtonWrapper>
                     {ratingPrice.map((item) => {
                         return (
@@ -268,7 +280,7 @@ const AnswerCount = styled.div`
     color: #EC8D49;
 `;
 
-const PriceInput = styled.input`
+const PriceInputWrapper = styled.div`
     display: flex;
     width: 100%;
     height: 44px;
@@ -277,6 +289,27 @@ const PriceInput = styled.input`
     border-radius: 5px;
     border: 1px solid #ADADAD;
     background-color: #FCFCFC;
+    position: relative;
+`;
+
+const PriceInput = styled.input`
+    width: 100%;
+    background-color: #FCFCFC;
+`;
+
+const RemovePriceWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+`;
+
+const RemoveBtn = styled.img`
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 `;
 
 const ButtonWrapper = styled.div`

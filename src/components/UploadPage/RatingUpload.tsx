@@ -19,6 +19,8 @@ const RatingUpload = ({ setUploadData, uploadData } : any) => {
     };
     const onCheckNoRatingHandler = () => {
         setRatingCheck({...ratingCheck, rating: "NO"});
+        setConditionProduct({...conditionProduct, price: ""});
+        setUploadData({...uploadData, data: {...uploadData.data, sellerPrice: ""}});
         console.log("NO", uploadData);
     };
 

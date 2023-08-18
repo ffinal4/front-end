@@ -6,25 +6,26 @@ import Layer from '../../assets/icon/layer_6.png'
 import Group from '../../assets/icon/group.png'
 import Siren from '../../assets/icon/siren.png'
 import { StBasicButton } from '../../styles/BasicButton';
+import BidModal from './BidModal';
 
 const DetailContent = ({ data } : any) => {
 
     const newData = data.data.info.goodsResponseDto;
+    // console.log("newData", newData);
 
     const [conditional, setConditional] = useState({
-        chatting: false,
-        users: true,
+        bid: false,
         modal: false,
         auction: false,
     });
-    const { chatting, users, modal, auction } = conditional;
+    const { bid, modal, auction } = conditional;
 
-    const onClickAcceptHandler = () => {
-        setConditional({ ...conditional, chatting: true });
+    const onClickBidHandler = () => {
+        setConditional({ ...conditional, bid: true });
     };
 
     const onClickChatting = () => {
-        setConditional({ ...conditional, chatting: false });
+        setConditional({ ...conditional, bid: false });
     };
 
     const onClickMenuOpenHandler = () => {
@@ -52,12 +53,12 @@ const DetailContent = ({ data } : any) => {
             <UserNameContainer
                 style={{ border: "none", paddingTop: "16px", position: "relative" }}
             >
-                <TextWrapper>
+                <TextWrapper style={{gap: "8px"}}>
                     <ColorText color="#39373A">{newData.nickname}</ColorText>
                     <SmallBox src={Layer} style={{ cursor: "pointer" }} />
                 </TextWrapper>
                 <TextWrapper>
-                    {users ? (
+                    {(data.data.info.checkSameUser) ? (
                         <TextWrapper
                             style={{ cursor: "pointer" }}
                             onClick={onClickMenuOpenHandler}
@@ -124,11 +125,21 @@ const DetailContent = ({ data } : any) => {
                 *상대방이 교환신청을 수락하여 채팅이 가능해요!
             </ColorText>
             <ButtonWrapper>
-                <StButton buttonColor="#58ABF7" onClick={onClickAcceptHandler}>
-                    입찰하기
-                </StButton>
-                <StButton buttonColor="#58ABF7">찜하기</StButton>
-                {chatting ? (
+                {(data.data.info.checkSameUser)
+                    ? <StButton
+                        buttonColor="#D5D4D4"
+                        style={{ color: "#fff", cursor: "default" }}
+                    >입찰하기</StButton>
+                    : <StButton buttonColor="#58ABF7" onClick={onClickBidHandler}>입찰하기</StButton>
+                }
+                {(data.data.info.checkSameUser)
+                    ? <StButton
+                        buttonColor="#D5D4D4"
+                        style={{ color: "#fff", cursor: "default" }}
+                    >찜하기</StButton>
+                    : <StButton buttonColor="#58ABF7">찜하기</StButton>
+                }
+                {bid ? (
                     <StButton buttonColor="#58ABF7" onClick={onClickChatting}>
                         채팅하기
                     </StButton>
@@ -141,6 +152,7 @@ const DetailContent = ({ data } : any) => {
                     </StButton>
                 )}
             </ButtonWrapper>
+            {(bid) && <BidModal conditional={conditional} setConditional={setConditional} />}
         </InfoContainer>
     );
 };
@@ -187,7 +199,7 @@ const TextWrapper = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 4px;
     `;
 
 const SmallBox = styled.img`
