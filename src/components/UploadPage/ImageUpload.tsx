@@ -1,11 +1,7 @@
-import React, {
-  ChangeEvent,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import React, { ChangeEvent,useState } from "react";
 import { styled } from "styled-components";
 import removeIcon from "../../assets/images/remove.png";
+import Camera from '../../assets/icon/camera.png'
 
 const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
   type FileState = {
@@ -119,7 +115,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
               <div>
                 <InputLabel htmlFor="files">
                   <InputStyleWrapper>
-                    <InputStyleBox />
+                    <InputStyleBox src={Camera}/>
                     <Text style={{ color: "#717171" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
@@ -145,7 +141,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
               <div>
                 <InputLabel htmlFor="files">
                   <InputStyleWrapper>
-                    <InputStyleBox />
+                    <InputStyleBox src={Camera}/>
                     <Text style={{ color: "#717171" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
@@ -171,7 +167,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
               <div>
                 <InputLabel htmlFor="files">
                   <InputStyleWrapper>
-                    <InputStyleBox />
+                    <InputStyleBox src={Camera} />
                     <Text style={{ color: "#717171" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
@@ -196,7 +192,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
           <ImageContainer>
             <InputLabel htmlFor="files">
               <InputStyleWrapper>
-                <InputStyleBox />
+                <InputStyleBox src={Camera} />
                 <Text style={{ color: "#717171" }}>이미지등록</Text>
               </InputStyleWrapper>
             </InputLabel>
@@ -208,7 +204,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
             />
             <InputLabel htmlFor="files">
               <InputStyleWrapper>
-                <InputStyleBox />
+                <InputStyleBox src={Camera} />
                 <Text style={{ color: "#717171" }}>이미지등록</Text>
               </InputStyleWrapper>
             </InputLabel>
@@ -220,7 +216,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
             />
             <InputLabel htmlFor="files">
               <InputStyleWrapper>
-                <InputStyleBox />
+                <InputStyleBox src={Camera} />
                 <Text style={{ color: "#717171" }}>이미지등록</Text>
               </InputStyleWrapper>
             </InputLabel>
@@ -319,11 +315,11 @@ const InputStyleWrapper = styled.div`
   align-items: center;
 `;
 
-const InputStyleBox = styled.div`
+const InputStyleBox = styled.img`
   width: 48px;
   height: 48px;
-  margin: 0px auto 13px auto;
-  background-color: #acacac;
+  object-fit: contain;
+  margin: 0px auto;
 `;
 
 const Text = styled.div`

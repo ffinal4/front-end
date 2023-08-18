@@ -16,6 +16,7 @@ import RatingUpload from "../components/UploadPage/RatingUpload";
 
 const UploadPage = () => {
   const navigate = useNavigate();
+  const locationData = localStorage.getItem("location");
 
   type uploadBodyData = {
     data: {
@@ -34,9 +35,6 @@ const UploadPage = () => {
     };
   };
 
-  // const [uploadImages, setUploadImages] = useState<{images: File[]}>({
-  //   images: []
-  // });
   const [uploadImages,setUploadImages]= useState<File[]>([]);
   const [uploadData, setUploadData] = useState<uploadBodyData>({
     data: {
@@ -46,7 +44,7 @@ const UploadPage = () => {
       category: "",
       goodsCondition: "",
       sellerPrice: "",
-      location: "경기도 00시 00구 00동",
+      location: `${locationData}`,
     },
     wanted: {
       title: "",
@@ -155,7 +153,7 @@ const UploadPage = () => {
         />
         <TitleUpload setUploadData={setUploadData} uploadData={uploadData} />
         <CategoryUpload setUploadData={setUploadData} uploadData={uploadData} />
-        <RegionUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <RegionUpload locationData={locationData} />
         <ConditionUpload
           setUploadData={setUploadData}
           uploadData={uploadData}

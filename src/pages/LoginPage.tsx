@@ -35,6 +35,7 @@ const LoginPage = () => {
       console.log(body);
       const res = await postLoginApi(body);
       if (res.status === 200) {
+        localStorage.setItem("location", res.data);
         console.log("로그인성공", res);
         navigate("/");
       }

@@ -94,7 +94,7 @@ const ImageBox = styled.div<{ src: string }>`
   `;
 
 const ImageOutContainer = styled.div`
-    max-width: 464px;
+    min-width: 464px;
     height: 464px;
     border: 4px solid;
     border-radius: 10px;

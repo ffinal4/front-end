@@ -13,6 +13,6 @@ interface RatingPrice {
 };
 
 export const postRatingSubmitApi = async (body : RatingPrice) => {
-    const res = await instance.post("/api/ratings");
+    const res = await instance.post("/api/ratings", body);
     return res;
 };
