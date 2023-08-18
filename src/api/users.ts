@@ -22,9 +22,13 @@ export const postLoginApi = async (body: loginBody) => {
   return res;
 };
 
+interface logoutBody {
+  accessToken: null | string;
+  refreshToken: null | string;
+}
 // 로그아웃
-export const deleteLogoutApi = async () => {
-  const res = await instance.delete("/api/users/logout");
+export const postLogoutApi = async (body: logoutBody) => {
+  const res = await instance.post("/api/users/logout", body);
   return res;
 };
 
