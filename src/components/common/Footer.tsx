@@ -1,14 +1,13 @@
 import React from "react";
 import { styled } from "styled-components";
 import Mascot from "../../assets/logo/logo.png";
-import Logo from "../../assets/logo/logo_title.png";
+import Logo from "../../assets/logo/LOGO_Full.png";
 
 const Footer = () => {
   return (
     <FooterContainer>
       <ContentContainer>
         <LogoContainer>
-          <LogoMascot src={Mascot} />
           <LogoTitle src={Logo} />
         </LogoContainer>
         <MemberContainer>

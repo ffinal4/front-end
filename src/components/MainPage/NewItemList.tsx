@@ -17,7 +17,7 @@ const NewItemList = ({ data }: any) => {
         주머니에 새로 등록된 물건들이에요.
       </StSubTitle>
       <CardContainer>
-        {data.map((item: any) => {
+        {data?.map((item: any) => {
           return <ItemCard item={item} />;
         })}
         <MoreBtn
@@ -36,7 +36,6 @@ const NewItemList = ({ data }: any) => {
 const NewItemListContainer = styled.div`
   max-width: 1136px;
   margin: 0 auto;
-  margin-bottom: 280px;
 `;
 
 const CardContainer = styled.div`
