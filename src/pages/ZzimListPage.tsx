@@ -12,7 +12,7 @@ const ZzimListPage = () => {
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <div>Loading...</div>;
-  console.log("물물교환페이지데이터", data);
+  console.log("찜 리스트페이지데이터", data);
   if (error) {
     console.log(error);
   }

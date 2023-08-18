@@ -147,7 +147,7 @@ const LogoTitle = styled.img`
 export const BoxContainer = styled.div`
   width: 2px;
   height: 16px;
-  background-color: #d8bda3;
+  background-color: #f9b482;
   border-radius: 2px;
   margin-left: 20px;
   font-weight: 400;

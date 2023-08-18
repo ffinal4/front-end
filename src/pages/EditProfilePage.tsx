@@ -25,15 +25,14 @@ const EditProfilePage = () => {
   const [uploadImage, setUploadImage] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
+  const [nicknameChecked, setNicknameChecked] = useState(false);
 
   const {
-    watch,
     register,
     handleSubmit,
     getValues,
     formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
-  console.log(watch());
 
   //닉네임 중복 확인 통신
   const checkNicknameAvailability = async (
@@ -47,6 +46,7 @@ const EditProfilePage = () => {
       const res = await postNicknameApi(nickData);
       console.log(res);
       if (res.status === 200) {
+        setNicknameChecked(true);
         setIsAvailable(true);
         setNicknameError(null);
         console.log("사용가능한 닉네임 입니다.", res);
@@ -72,10 +72,16 @@ const EditProfilePage = () => {
       },
     };
 
-    console.log(request);
+    console.log(allRequest);
 
-    formData.append("data", new Blob([JSON.stringify(allRequest.data)], {type: "application/json"}));
-    formData.append("image", new Blob([JSON.stringify(uploadImage)], {type: "multipart/form-data"}));
+    formData.append(
+      "data",
+      new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
+    );
+    formData.append(
+      "image",
+      new Blob([JSON.stringify(uploadImage)], { type: "multipart/form-data" })
+    );
 
     try {
       const res = await patchProfileEditApi(formData);
@@ -122,7 +128,7 @@ const EditProfilePage = () => {
             </NickNameInputContainer>
             <StBasicButton
               buttonColor="#FDD988"
-              style={{ marginLeft: "20px" }}
+              style={{ marginLeft: "20px", border: "1px solid black" }}
               onClick={(event) => checkNicknameAvailability(event)}
             >
               중복확인
@@ -156,7 +162,7 @@ const EditProfilePage = () => {
                     required: "필수입력 항목입니다.",
                     minLength: {
                       value: 8,
-                      message: "비밀번호는 8자 이상이어야 합니다.",
+                      message: "* 비밀번호는 8자 이상 15자 이하여야 합니다.",
                     },
                     pattern: {
                       value:
@@ -210,35 +216,44 @@ const EditProfilePage = () => {
           </AddContent>
         </EditProfileContainer>
         <AssignButtonContainer>
-          <StBasicButton buttonColor="#D9D9D9;" onClick={editprofileOnclick}>
-            변경저장
-          </StBasicButton>
+          <StButton
+            buttonColor={nicknameChecked ? "#FDD988" : "#D5D4D4"}
+            style={{
+              color: nicknameChecked ? "black" : "white",
+              border: nicknameChecked ? "1px solid black" : "none",
+              fontWeight: nicknameChecked ? "700" : "400",
+            }}
+            onClick={editprofileOnclick}
+            disabled={!nicknameChecked}
+          >
+            변경사항저장
+          </StButton>
         </AssignButtonContainer>
       </EditProfilePageContainer>
     </div>
   );
 };
 
-const EditProfilePageContainer = styled.div`
-  /* border: 1px solid blue; */
-`;
+const EditProfilePageContainer = styled.div``;
+
 const TitleContainer = styled.div`
-  /* border: 1px solid red; */
   width: 100%;
   margin: auto;
 `;
+
 const Title = styled.div`
   font-size: 40px;
   font-weight: 800;
   font-family: "Lemon/Milk", sans-serif;
-  /* margin-bottom: 30px; */
 `;
+
 const SubTitle = styled.div`
   font-size: 32px;
   margin-top: 16px;
   margin-bottom: 16px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
+
 const EditProfileContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
@@ -246,51 +261,51 @@ const EditProfileContainer = styled.div`
   height: 1135px;
   margin: auto;
 `;
-const ProfileImageContainer = styled.div`
-  /* border: 3px solid green; */
-`;
+const ProfileImageContainer = styled.div``;
+
 const EmailContainer = styled.div`
-  /* border: 3px solid green; */
   display: flex;
   align-items: center;
   margin-top: 33px;
   margin-bottom: 33px;
 `;
+
 const Label = styled.div`
-  /* border: 1px solid red; */
   font-size: 20px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   width: 150px;
   font-weight: 700;
   display: flex;
   margin-right: 70px;
 `;
+
 const Email = styled.div`
-  /* border: 1px solid red; */
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 const NickNameContainer = styled.div`
-  /* border: 3px solid green; */
   border-top: 1px solid gray;
   padding-top: 30px;
   display: flex;
   align-items: center;
 `;
+
 const CommonLabel = styled.div`
   font-size: 20px;
   width: 150px;
   font-weight: 700;
-  /* border: 1px solid red; */
   margin-right: 70px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
+
 const NickNameInputContainer = styled.div`
   width: 464px;
 `;
-const Content = styled.div`
-  /* border: 1px solid blue; */
-  font-family: Pretendard;
+
+export const Content = styled.div`
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 400;
   width: 465px;
   height: 24px;
   margin-left: 220px;
@@ -300,84 +315,78 @@ const Content = styled.div`
 `;
 
 const PwContainer = styled.div`
-  /* border: 3px solid green; */
   border-top: 1px solid gray;
   display: flex;
   align-items: center;
   padding-top: 30px;
   margin-top: 30px;
-  /* margin-bottom: 30px; */
 `;
+
 const PwInputContainer = styled.div`
-  /* border: 1px solid red; */
   width: 656px;
 `;
+
 const SetPwInputContainer = styled.div`
-  /* border: 1px solid red; */
   width: 656px;
 `;
-const NewInputContainer = styled.div`
-  /* border: 1px solid green; */
-`;
+
+const NewInputContainer = styled.div``;
+
 const CheckPwInputContainer = styled.div`
-  /* border: 1px solid green; */
   margin-bottom: 30px;
 `;
+
 const CheckPwContainer = styled.div`
-  /* border: 3px solid green; */
   border-bottom: 1px solid gray;
   display: flex;
-
-  /* align-items: center; */
-  /* margin-bottom: 30px; */
 `;
+
 const PwValidation = styled.div`
   color: red;
   margin-top: 10px;
-
+  font-family: "Pretendard";
   font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 10px;
 `;
 
 const PwContent = styled.div`
-  font-family: Pretendard;
-  margin-bottom: 30px;
-  color: #808080;
+  font-family: "Pretendard";
   font-size: 16px;
   font-weight: 400;
+  margin-bottom: 30px;
+  color: #808080;
 `;
 
 const CurrentAddress = styled.div`
-  /* border: 1px solid red; */
-  font-family: Pretendard;
-
+  font-family: "Pretendard";
   font-size: 16px;
 `;
 const AddressLabelContainer = styled.div`
-  /* border: 1px solid blue; */
   display: flex;
   align-items: center;
   margin-top: 30px;
 `;
+
 const AddressLabel = styled.label`
-  /* border: 1px solid red; */
   width: 150px;
   height: 33px;
   font-size: 20px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   font-weight: bold;
   margin-right: 70px;
 `;
+
 const AddressContainer = styled.div`
-  /* border: 3px solid green; */
   margin-top: 20px;
   display: flex;
   align-items: center;
   padding-left: 220px;
   padding-right: 250px;
 `;
+
 const AddContent = styled.div`
-  /* border: 1px solid red; */
-  font-family: Pretendard;
+  font-family: "Pretendard";
   margin: 10px 0px 40px 220px;
   color: gray;
 `;
@@ -386,8 +395,13 @@ const AssignButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border: 1px solid red; */
-  padding: 20px 0px 20px 0px;
+  padding: 60px 0px 20px 0px;
+`;
+
+const StButton = styled(StBasicButton)`
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 700;
 `;
 
 export default EditProfilePage;

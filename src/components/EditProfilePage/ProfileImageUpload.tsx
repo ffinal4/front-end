@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { styled } from "styled-components";
 import removeIcon from "../../assets/images/remove.png";
+import camera from "../../assets/icon/camera.png";
 
 const ProfileImageUpload = (props: any) => {
   const { uploadImage, setUploadImage } = props;
@@ -28,7 +29,7 @@ const ProfileImageUpload = (props: any) => {
           </UploadImageContainer>
         ) : (
           <InputLabel htmlFor="files">
-            <InputStyleBox />
+            <CameraImg src={camera} />
             <Text style={{ color: "#717171" }}>이미지등록</Text>
             <UploadInputBox
               type="file"
@@ -98,9 +99,7 @@ const InputLabel = styled.label`
   align-items: center;
   cursor: pointer;
 `;
-// const ProfileImageContainer = styled.div`
-//   border: 1px solid red;
-// `;
+
 const InputStyleWrapper = styled.div`
   display: grid;
   justify-content: center;
@@ -115,7 +114,6 @@ const RemoveBtnWrapper = styled.div`
   line-height: 150%;
   display: flex;
   justify-content: end;
-  /* border: 1px solid red; */
   width: 100%;
   height: 24px;
 
@@ -141,11 +139,10 @@ const UploadImageContainer = styled.div`
   cursor: pointer;
 `;
 
-const InputStyleBox = styled.div`
+const CameraImg = styled.img`
   width: 48px;
   height: 48px;
-  margin: 0px auto 13px auto;
-  background-color: #acacac;
+  margin: 0px auto 1px auto;
 `;
 
 const Text = styled.div`

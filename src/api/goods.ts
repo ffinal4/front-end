@@ -67,3 +67,12 @@ export const getAuctionDetailApi = async (auctionId: any) => {
   const res = await instance.get(`/api/auction/${auctionId}`);
   return res;
 };
+
+// 물품 찜 추가, 삭제
+interface zzimBody {
+  goodsId: number;
+}
+export const postZzimApi = async (body: zzimBody) => {
+  const res = await instance.post("/api/scrap", body);
+  return res;
+};

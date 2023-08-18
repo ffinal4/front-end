@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from "styled-components";
 import DaumPostcode from "react-daum-postcode";
 import { StBasicButton } from "../../styles/BasicButton";
 import { StBasicInput } from "../../styles/BasicInput";
@@ -34,11 +35,7 @@ const KakaoApi = (props: any) => {
         onChange={addressOnchange}
       />
 
-      <StBasicButton
-        buttonColor="#FDD988"
-        style={{ marginLeft: "20px" }}
-        onClick={handle.clickButton}
-      >
+      <StButton buttonColor="#FDD988" onClick={handle.clickButton}>
         {openPostcode && (
           <DaumPostcode
             onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
@@ -46,9 +43,13 @@ const KakaoApi = (props: any) => {
           />
         )}
         주소찾기
-      </StBasicButton>
+      </StButton>
     </>
   );
 };
 
+const StButton = styled(StBasicButton)`
+  margin-left: 20px;
+  border: 1px solid black;
+`;
 export default KakaoApi;
