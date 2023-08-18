@@ -33,6 +33,8 @@ const Header = () => {
     try {
       const res = await postLogoutApi(logoutData);
       console.log(res);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
       setIsLoggedIn(false);
     } catch (error) {
       console.log("로그아웃실패", error);
