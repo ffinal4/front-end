@@ -63,6 +63,7 @@ const UploadPage = () => {
     // formData.append("sellerPrice", new Blob([JSON.stringify(uploadPrice.sellerPrice)], { type: "application/json" }));
     if ((uploadData.data.ratingCheck === true && uploadData.data.sellerPrice === "")) {
       alert("레이팅 가격을 입력해주세요.");
+      console.log(uploadImages, uploadData);
     } else {
       try {
         console.log(uploadImages, uploadData);
