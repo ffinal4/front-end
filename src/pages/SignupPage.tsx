@@ -26,6 +26,7 @@ const SignupPage = () => {
   const [pwType, setpwType] = useState({ type: "password", visible: false });
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
+  const [nicknameChecked, setNicknameChecked] = useState(false);
 
   const onClickPasswordType = (event: any) => {
     event.preventDefault();
@@ -50,6 +51,7 @@ const SignupPage = () => {
       const res = await postNicknameApi(nickData);
       console.log(res);
       if (res.status === 200) {
+        setNicknameChecked(true);
         setIsAvailable(true);
         setNicknameError(null);
         console.log("사용가능한 닉네임 입니다.", res);
@@ -62,13 +64,11 @@ const SignupPage = () => {
   };
 
   const {
-    watch,
     register,
     handleSubmit,
     getValues,
     formState: { errors },
   } = useForm<SignupForm>({ mode: "onBlur" });
-  // console.log(watch());
 
   const signupOnclick = handleSubmit(async (data) => {
     const newForm = {
@@ -245,9 +245,14 @@ const SignupPage = () => {
       </SignUpContainer>
       <AssignButtonContainer>
         <StBasicButton
-          buttonColor="#D9D9D9"
-          style={{ color: "white" }}
+          buttonColor={nicknameChecked ? "#FDD988" : "#D5D4D4"}
+          style={{
+            color: nicknameChecked ? "black" : "white",
+            border: nicknameChecked ? "1px solid black" : "none",
+            fontWeight: nicknameChecked ? "700" : "400",
+          }}
           onClick={signupOnclick}
+          disabled={!nicknameChecked}
         >
           회원가입
         </StBasicButton>
