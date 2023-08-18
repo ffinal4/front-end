@@ -30,6 +30,7 @@ const AllLayoutContainer = styled.div`
     width: 100%;
     height: 1010px;
     position: relative;
+    background-color: #FCF6E9;
 `;
 
 const LayoutContainer = styled.div`

@@ -61,8 +61,6 @@ const AucDetailImage = ({ data }: any) => {
   return (
     <LayoutContainer>
       <ImageOutContainer>
-        <TimerContainer>
-          <BidTimer src={RedTimer}/>
           {(newLeftTime.days <= 0
             && bidTimeHours <= 0
             && bidTimeMinutes <= 0
@@ -70,11 +68,13 @@ const AucDetailImage = ({ data }: any) => {
             ? <FinishContainer>
               <FinishText>경매종료</FinishText>
             </FinishContainer>
-            : <TimerText>
-              마감까지 00 : 0{bidTimeHours} : {(bidTimeMinutes < 10) ? `0${bidTimeMinutes}` : bidTimeMinutes} : {(bidTimeSeconds < 10) ? `0${bidTimeSeconds}` : bidTimeSeconds}
-            </TimerText>
+            : <TimerContainer>
+              <BidTimer src={RedTimer}/>
+              <TimerText>
+                마감까지 00 : 0{bidTimeHours} : {(bidTimeMinutes < 10) ? `0${bidTimeMinutes}` : bidTimeMinutes} : {(bidTimeSeconds < 10) ? `0${bidTimeSeconds}` : bidTimeSeconds}
+              </TimerText>
+            </TimerContainer>
           }
-        </TimerContainer>
         <SlideBtnWrapper>
           <SlideButton onClick={moveToPrevBtn}>
             <img src={ArrowLeft} alt='' />
@@ -148,7 +148,7 @@ const SlideBtnWrapper = styled.div`
       display: flex;
       position: absolute;
       justify-content: space-between;
-      z-index: 200;
+      z-index: 1000;
   `;
 
 const SlideButton = styled.div`
@@ -176,6 +176,7 @@ const SlidePageBarWrapper = styled.div`
     position: absolute;
     bottom: 20px;
     gap: 16px;
+    z-index: 999;
   `;
 
 const SlidePageBar = styled.div<{ backgdcolor: string }>`
@@ -224,6 +225,7 @@ const FinishContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 `;
 
 const FinishText = styled.div`

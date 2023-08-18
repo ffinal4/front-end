@@ -1,6 +1,11 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import Exchange from '../../assets/icon/exchange.png'
+import Auction from '../../assets/icon/auction.png'
+import MyPocket from '../../assets/icon/layer_6.png'
+import Like from '../../assets/icon/blacklike.png'
+import MyChat from '../../assets/icon/profile.png'
 
 const Pocket = () => {
 
@@ -9,15 +14,15 @@ const Pocket = () => {
   return (
     <LayoutContainer>
         <PocketContainer>
-        <svg xmlns="http://www.w3.org/2000/svg" width="1915" height="2" viewBox="0 0 1915 2" fill="none">
-            <path d="M0 1H1915" stroke="black" strokeWidth="2" strokeDasharray="40 40"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1917" height="2" viewBox="0 0 1917 2" fill="none">
+            <path d="M1 1H1916" stroke="#39373A" strokeWidth="2" strokeLinecap="round" strokeDasharray="20 20"/>
         </svg>
             <PocketInline>
                 <BoxContainer>
                     <OutBox>
                         <Wrapper>
                             <InBoxWrapper>
-                                <InBox />
+                                <InBox src={Exchange}/>
                             </InBoxWrapper>
                             <Text>교환 요청</Text>
                         </Wrapper>
@@ -25,7 +30,7 @@ const Pocket = () => {
                     <OutBox>
                         <Wrapper>
                             <InBoxWrapper>
-                                <InBox />
+                                <InBox src={Auction}/>
                             </InBoxWrapper>
                             <Text>경매 현황</Text>
                         </Wrapper>
@@ -33,7 +38,7 @@ const Pocket = () => {
                     <OutBox>
                         <Wrapper>
                             <InBoxWrapper>
-                                <InBox />
+                                <InBox src={MyPocket}/>
                             </InBoxWrapper>
                             <Text>내 주머니</Text>
                         </Wrapper>
@@ -41,7 +46,7 @@ const Pocket = () => {
                     <OutBox>
                         <Wrapper>
                             <InBoxWrapper>
-                                <InBox />
+                                <InBox src={Like}/>
                             </InBoxWrapper>
                             <Text>찜한 목록</Text>
                         </Wrapper>
@@ -49,16 +54,17 @@ const Pocket = () => {
                     <OutBox onClick={() => {navigate("/chat")}}>
                         <Wrapper>
                             <InBoxWrapper>
-                                <InBox />
+                                <InBox src={MyChat}/>
                             </InBoxWrapper>
                             <Text>내 채팅</Text>
                         </Wrapper>
                     </OutBox>
                 </BoxContainer>
+                <ResignWrapper>
+                    <Resign>핍포 탈퇴하기</Resign>
+                </ResignWrapper>
             </PocketInline>
-            <ResignWrapper>
-                <Resign>핍포 탈퇴하기</Resign>
-            </ResignWrapper>
+            
         </PocketContainer>
     </LayoutContainer>
   )
@@ -70,6 +76,7 @@ const LayoutContainer = styled.div`
     bottom: 0;
     height: 445px;
     width: 100%;
+    background-color: #FFCA64;
 `;
 
 const PocketContainer = styled.div`
@@ -78,6 +85,7 @@ const PocketContainer = styled.div`
     background-color: #fff;
     overflow: hidden;
     padding: 20px 0px 0px 0px;
+    background-color: #FFCA64;
 `;
 
 const PocketInline = styled.div`
@@ -85,6 +93,7 @@ const PocketInline = styled.div`
     padding: 60px 0px 100px 0px;
     display: grid;
     justify-content: center;
+    background-color: #FFCA64;
 `;
 
 const BoxContainer = styled.div`
@@ -97,10 +106,11 @@ const BoxContainer = styled.div`
 const OutBox = styled.div`
     width: 176px;
     height: 176px;
-    border: 1px solid #000;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #FCFCFC;
     cursor: pointer;
 `;
 
@@ -118,10 +128,10 @@ const InBoxWrapper = styled.div`
     padding: 0px 0px 10px 0px;
 `;
 
-const InBox = styled.div`
-    width: 48px;
-    height: 48px;
-    background-color: #D9D9D9;
+const InBox = styled.img`
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
 `;
 
 const Text = styled.div`
@@ -134,18 +144,18 @@ const Text = styled.div`
 
 const ResignWrapper = styled.div`
     width: 100%;
-    padding: 0px 392px;
+    padding: 80px 0px 0px 0px;
 `;
 
 const Resign = styled.div`
-    width: 110px;
+    width: 87px;
     display: flex;
     justify-content: center;
     font-family: "Pretendard";
     font-size: 16px;
     font-weight: 400;
     line-height: 150%;
-    color: #7A7A7A;
+    color: #39373A;
     border-bottom: 1px solid #7A7A7A;
     cursor: pointer;
 `;

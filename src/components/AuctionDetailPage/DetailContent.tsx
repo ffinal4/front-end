@@ -116,9 +116,9 @@ const DetailContent = ({ data } : any) => {
                     <ColorText color="#717171">상품태그</ColorText>
                     <ColorText color="#222020">#스타벅스 #기프티콘 #교환권</ColorText>
                 </TextLine>
-                <TextLine>
+                <TextLine style={{gap: "54px"}}>
                     <ColorText color="#717171">하한가</ColorText>
-                    <ColorText color="#222020">{newData.tradeType}PP</ColorText>
+                    <ColorText color="#222020">{data.data.info.bidCount}PP</ColorText>
                 </TextLine>
             </TextContainer>
             <ColorText color="#717171">
