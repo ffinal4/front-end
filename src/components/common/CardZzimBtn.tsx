@@ -4,8 +4,9 @@ import nozzim from "../../assets/icon/nozzim.png";
 import { styled } from "styled-components";
 import { useMutation, useQueryClient } from "react-query";
 import { postZzimApi } from "../../api/goods";
+import { StBasicButton } from "../../styles/BasicButton";
 
-const CardZzimBtn = ({ checkZzim, goodsId }: any) => {
+const CardZzimBtn = ({ checkZzim, goodsId, isCard, buttonColor, fontColor }: any) => {
   const queryClient = useQueryClient();
   const [isZzim, setIsZzim] = useState(false);
   const zzimMutate = useMutation(() => postZzimApi({ goodsId: goodsId }), {
@@ -23,9 +24,17 @@ const CardZzimBtn = ({ checkZzim, goodsId }: any) => {
   }, []);
 
   return (
-    <ZzimBtnContainer>
-      <ZzimBtn src={isZzim ? zzim : nozzim} onClick={zzimBtnhandleClick} />
-    </ZzimBtnContainer>
+    <div>
+      {isCard ? (
+        <ZzimBtnContainer>
+          <ZzimBtn src={isZzim ? zzim : nozzim} onClick={zzimBtnhandleClick} />
+        </ZzimBtnContainer>
+      ) : (
+        <StButton buttonColor={buttonColor} onClick={zzimBtnhandleClick} fontcolor={fontColor}>
+          {isZzim ? "찜삭제" : "찜하기"}
+        </StButton>
+      )}
+    </div>
   );
 };
 
@@ -44,6 +53,12 @@ const ZzimBtnContainer = styled.div`
   z-index: 99;
   padding: 6px;
   cursor: pointer;
+`;
+
+const StButton = styled(StBasicButton)<{ fontcolor: any }>`
+  border: 1px solid #222020;
+  color: #222020;
+  color: ${(props) => props.fontcolor};
 `;
 
 export default CardZzimBtn;

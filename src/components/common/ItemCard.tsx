@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { StCardPicture } from "../../styles/CardPicture";
 import { useNavigate } from "react-router-dom";
 import locationImage from "../../assets/icon/location.png";
-import CardZzimBtn from "./ZzimBtn";
+import CardZzimBtn from "./CardZzimBtn";
 
 const ItemCard = ({ item }: any) => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const ItemCard = ({ item }: any) => {
         <AddressImage src={locationImage} />
         {item?.location}
       </AddressContent>
-      <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} />
+      <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} />
       <ItemTitle>{item?.title}</ItemTitle>
       <UserName>{item?.nickname}</UserName>
       <ItemContent>{item?.content}</ItemContent>
