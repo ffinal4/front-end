@@ -1,15 +1,9 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import Exchange from '../../assets/icon/exchange.png'
-import Auction from '../../assets/icon/auction.png'
-import MyPocket from '../../assets/icon/layer_6.png'
-import Like from '../../assets/icon/blacklike.png'
-import MyChat from '../../assets/icon/profile.png'
 
 const Pocket = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <LayoutContainer>
@@ -67,7 +61,7 @@ const Pocket = () => {
             
         </PocketContainer>
     </LayoutContainer>
-  )
+  );
 };
 
 const LayoutContainer = styled.div`
@@ -97,10 +91,10 @@ const PocketInline = styled.div`
 `;
 
 const BoxContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
 `;
 
 const OutBox = styled.div`
@@ -115,17 +109,17 @@ const OutBox = styled.div`
 `;
 
 const Wrapper = styled.div`
-    display: grid;
-    justify-content: center;
-    align-items: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 `;
 
 const InBoxWrapper = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 0px 10px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 0px 10px 0px;
 `;
 
 const InBox = styled.img`
@@ -135,11 +129,11 @@ const InBox = styled.img`
 `;
 
 const Text = styled.div`
-    width: 100%;
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 150%;
+  width: 100%;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 150%;
 `;
 
 const ResignWrapper = styled.div`
