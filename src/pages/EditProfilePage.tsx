@@ -128,7 +128,7 @@ const EditProfilePage = () => {
             </NickNameInputContainer>
             <StBasicButton
               buttonColor="#FDD988"
-              style={{ marginLeft: "20px" }}
+              style={{ marginLeft: "20px", border: "1px solid black" }}
               onClick={(event) => checkNicknameAvailability(event)}
             >
               중복확인
@@ -162,7 +162,7 @@ const EditProfilePage = () => {
                     required: "필수입력 항목입니다.",
                     minLength: {
                       value: 8,
-                      message: "비밀번호는 8자 이상이어야 합니다.",
+                      message: "* 비밀번호는 8자 이상이어야 합니다.",
                     },
                     pattern: {
                       value:
@@ -295,8 +295,9 @@ const NickNameInputContainer = styled.div`
   width: 464px;
 `;
 export const Content = styled.div`
-  /* border: 1px solid blue; */
-  font-family: Pretendard;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 400;
   width: 465px;
   height: 24px;
   margin-left: 220px;
@@ -340,16 +341,18 @@ const CheckPwContainer = styled.div`
 const PwValidation = styled.div`
   color: red;
   margin-top: 10px;
-
+  font-family: "Pretendard";
   font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 10px;
 `;
 
 const PwContent = styled.div`
-  font-family: Pretendard;
-  margin-bottom: 30px;
-  color: #808080;
+  font-family: "Pretendard";
   font-size: 16px;
   font-weight: 400;
+  margin-bottom: 30px;
+  color: #808080;
 `;
 
 const CurrentAddress = styled.div`
