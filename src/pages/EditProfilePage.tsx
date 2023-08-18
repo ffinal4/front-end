@@ -25,15 +25,14 @@ const EditProfilePage = () => {
   const [uploadImage, setUploadImage] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
+  const [nicknameChecked, setNicknameChecked] = useState(false);
 
   const {
-    watch,
     register,
     handleSubmit,
     getValues,
     formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
-  console.log(watch());
 
   //닉네임 중복 확인 통신
   const checkNicknameAvailability = async (
@@ -47,6 +46,7 @@ const EditProfilePage = () => {
       const res = await postNicknameApi(nickData);
       console.log(res);
       if (res.status === 200) {
+        setNicknameChecked(true);
         setIsAvailable(true);
         setNicknameError(null);
         console.log("사용가능한 닉네임 입니다.", res);
@@ -216,7 +216,10 @@ const EditProfilePage = () => {
           </AddContent>
         </EditProfileContainer>
         <AssignButtonContainer>
-          <StButton buttonColor="#FDD988;" onClick={editprofileOnclick}>
+          <StButton
+            buttonColor={nicknameChecked ? "#FDD988" : "#D5D4D4"}
+            onClick={editprofileOnclick}
+          >
             변경사항저장
           </StButton>
         </AssignButtonContainer>
