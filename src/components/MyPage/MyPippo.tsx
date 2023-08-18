@@ -8,7 +8,7 @@ const MyPippo = ({ data } : any) => {
 
   useEffect(() => {
     const interVal = setInterval(() => {
-      if (point < (data.data.userPoint)) {
+      if (point < (data.data.info.userPoint)) {
         setPoint(point + 10);
       }
     }, 10);

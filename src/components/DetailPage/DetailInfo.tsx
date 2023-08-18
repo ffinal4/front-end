@@ -80,7 +80,7 @@ const DetailInfo = ({ data } : any) => {
       <UserNameContainer
         style={{ border: "none", paddingTop: "16px", position: "relative" }}
       >
-        <TextWrapper>
+        <TextWrapper style={{gap: "8px"}}>
           <ColorText color="#39373A">{data.data.info.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
@@ -148,9 +148,13 @@ const DetailInfo = ({ data } : any) => {
         *상대방이 교환신청을 수락하여 채팅이 가능해요!
       </ColorText>
       <ButtonWrapper>
-        <StButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>
-          교환신청
-        </StButton>
+        {(data.data.info.checkSameUser)
+          ? <StButton
+            buttonColor="#D5D4D4"
+            style={{ color: "#fff", cursor: "default" }}
+          >교환신청</StButton>
+          : <StButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>교환신청</StButton>
+        }
         {(data.data.info.checkSameUser)
           ? <StButton
             buttonColor="#D5D4D4"
@@ -217,7 +221,7 @@ const TextWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
 `;
 
 const SmallBox = styled.img`

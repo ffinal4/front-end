@@ -10,7 +10,7 @@ const Pocket = () => {
     <LayoutContainer>
         <PocketContainer>
         <svg xmlns="http://www.w3.org/2000/svg" width="1915" height="2" viewBox="0 0 1915 2" fill="none">
-            <path d="M0 1H1915" stroke="black" stroke-width="2" stroke-dasharray="40 40"/>
+            <path d="M0 1H1915" stroke="black" strokeWidth="2" strokeDasharray="40 40"/>
         </svg>
             <PocketInline>
                 <BoxContainer>
