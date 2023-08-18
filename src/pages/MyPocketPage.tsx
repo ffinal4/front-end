@@ -8,8 +8,10 @@ import ItemCardList from "../components/common/ItemCardList";
 import Paging from "../components/common/Paging/Paging";
 import { useQuery } from "react-query";
 import { getMyPocketApi } from "../api/goods";
+import { useNavigate } from "react-router-dom";
 
 const MyPocketPage = () => {
+  const navigate = useNavigate();
   const { isLoading, error, data } = useQuery("myPocketData", getMyPocketApi, {
     refetchOnWindowFocus: false,
   });
@@ -27,11 +29,19 @@ const MyPocketPage = () => {
         <SubTitle>내 주머니</SubTitle>
       </TitleContainer>
       <MiddleContainer>
-        <UploadBtn>주머니에 추가</UploadBtn>
+        <UploadBtn
+          onClick={() => {
+            navigate("/upload");
+          }}
+        >
+          주머니에 추가
+        </UploadBtn>
       </MiddleContainer>
       <HorizontalLine />
       <DotLine src={dotLine} />
-      <ItemCardList data={data?.data.info} />
+      <CardListContainer>
+        <ItemCardList data={data?.data.info.goodsListResponseDto} />
+      </CardListContainer>
       <Paging />
     </MyPocketPageContainer>
   );
@@ -40,6 +50,7 @@ const MyPocketPage = () => {
 const MyPocketPageContainer = styled.div`
   padding-top: 240px;
   width: 100%;
+  padding-bottom: 100px;
 `;
 
 const TitleContainer = styled.div`
@@ -87,5 +98,9 @@ const DotLine = styled.img`
   margin-top: 20px;
   margin-bottom: 80px;
 `;
-
+const CardListContainer = styled.div`
+  width: 100%;
+  max-width: 1136px;
+  margin: 0 auto;
+`;
 export default MyPocketPage;

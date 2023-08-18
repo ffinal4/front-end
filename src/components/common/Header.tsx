@@ -15,7 +15,11 @@ import { postLogoutApi } from "../../api/users";
 const Header = () => {
   const navigate = useNavigate();
   const insertedToken: string | null = localStorage.getItem("accessToken");
-  useEffect(() => {}, [insertedToken]);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsLoggedIn(!!insertedToken);
+  }, [insertedToken]);
 
   const logoutOnclick = async () => {
     const accessToken = localStorage.getItem("accessToken");
@@ -29,6 +33,10 @@ const Header = () => {
     try {
       const res = await postLogoutApi(logoutData);
       console.log(res);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      setIsLoggedIn(false);
+      navigate("/");
     } catch (error) {
       console.log("로그아웃실패", error);
     }
@@ -43,7 +51,7 @@ const Header = () => {
               navigate("/");
             }}
           >
-            {insertedToken ? (
+            {isLoggedIn ? (
               <>
                 <Logo src={loginLogo} />
                 <LogoTitle src={loginLTitle} />
@@ -61,7 +69,7 @@ const Header = () => {
             </SearchButton>
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
-          {insertedToken ? (
+          {isLoggedIn ? (
             <AllIconContainer>
               <IconContainer>
                 <Alarm src={alarm} />
@@ -90,9 +98,7 @@ const Header = () => {
                 로그인
               </LoginLink>
               <BoxContainer />
-              <SignupLink onClick={() => navigate("/signup")}>
-                회원가입
-              </SignupLink>
+              <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
             </LinkContainer>
           )}
         </HeaderContainer>
@@ -191,7 +197,6 @@ const LinkContainer = styled.div`
 
 const LoginLink = styled.div`
   cursor: pointer;
-  /* border: 1px solid blue; */
   margin-left: 20px;
   font-size: 16px;
   height: 24px;
@@ -215,13 +220,11 @@ const AllIconContainer = styled.div`
   font-family: Pretendard;
 `;
 const IconContainer = styled.div`
-  /* border: 1px solid red; */
   display: flex;
   align-items: center;
 `;
 
 const Alarm = styled.img`
-  /* border: 1px solid blue; */
   width: 24px;
   height: 24px;
   margin-right: 20px;
@@ -229,7 +232,6 @@ const Alarm = styled.img`
 `;
 
 const Mypage = styled.img`
-  /* border: 1px solid blue; */
   width: 24px;
   height: 24px;
   margin-right: 20px;
@@ -237,7 +239,6 @@ const Mypage = styled.img`
 `;
 
 const Peeppo = styled.img`
-  /* border: 1px solid blue; */
   width: 24px;
   height: 24px;
   cursor: pointer;
