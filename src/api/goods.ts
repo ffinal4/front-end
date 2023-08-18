@@ -73,6 +73,6 @@ interface zzimBody {
   goodsId: number;
 }
 export const postZzimApi = async (body: zzimBody) => {
-  const res = await instance.post("/api/scrap", body);
+  const res = await instance.post("/api/dibs", body);
   return res;
 };

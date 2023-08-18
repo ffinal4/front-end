@@ -3,16 +3,26 @@ import { styled } from "styled-components";
 import { StCardPicture } from "../../styles/CardPicture";
 import locationImage from "../../assets/icon/location.png";
 import BidDeadLine from "./BidDeadLine";
+import { useNavigate } from "react-router-dom";
 
 const PopularAucionCard = ({ bgColor, fontColor, hoverColor, data }: any) => {
+  const navigate = useNavigate();
+
   return (
-    <PopularAuctionCardContainer bgcolor={bgColor} fontcolor={fontColor} hovercolor={hoverColor}>
+    <PopularAuctionCardContainer
+      bgcolor={bgColor}
+      fontcolor={fontColor}
+      hovercolor={hoverColor}
+      onClick={() => {
+        navigate(`/auctiondetail/${data.auctionId}`);
+      }}
+    >
       <FirstSectionContainer bgcolor={bgColor}>
         <Triangle />
         <BidContentContainer fontcolor={fontColor}>
           <BidTitle>현재 입찰 수</BidTitle>
           <BidCount>{data?.bidCount}</BidCount>
-          <BidDeadLine deadline={"2023-08-20T03:17:19.713286"} />
+          <BidDeadLine deadline={data?.auctionEndTime} />
         </BidContentContainer>
         <CardPicture image={data?.image}>
           <AddressContent>

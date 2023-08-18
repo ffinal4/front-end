@@ -8,6 +8,7 @@ import { StBasicButton } from "../../styles/BasicButton";
 
 const AuctionList = ({ data }: any) => {
   const navigate = useNavigate();
+
   return (
     <AuctionListContainer>
       <StTitle marginbottom="16px" textalign="left">
@@ -23,7 +24,7 @@ const AuctionList = ({ data }: any) => {
         <MarginContainer>
           <PopularAucionCard data={data[1]} bgColor={"#39373A"} fontColor={"#fcfcfc"} hoverColor={"#ADADAD"} />
         </MarginContainer>
-        <PopularAucionCard bgColor={"#FFCA64"} fontColor={"#222020"} hoverColor={"#39373A"} />
+        <PopularAucionCard data={data[2]} bgColor={"#FFCA64"} fontColor={"#222020"} hoverColor={"#39373A"} />
         <MoreBtn
           buttonColor="var(--yellow-yellow-100, #FFCA64);"
           onClick={() => {
