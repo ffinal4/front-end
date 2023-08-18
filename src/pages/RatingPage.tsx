@@ -15,7 +15,9 @@ import Remove from '../assets/icon/remove.png'
 
 const RatingPage = () => {
 
-    const { isLoading, data, error } : any = useQuery("ratingStart", getRatingStartApi);
+    const { isLoading, data, error } : any = useQuery("ratingStart", getRatingStartApi, {
+        refetchOnWindowFocus: false,
+    });
     
     console.log(data, "data");
 
@@ -23,14 +25,18 @@ const RatingPage = () => {
         price: any,
         detailInfo: boolean,
         gameover: boolean,
+        success: boolean,
     }
 
     const [addPrice, setAddPrice] = useState<Game>({
         price: 0,
         detailInfo: false,
         gameover: false,
+        success: false,
     });
-    const { price, detailInfo, gameover } = addPrice;
+    const { price, detailInfo, gameover, success } = addPrice;
+
+    const [resData, setResData] = useState();
 
     const ratingPrice: number[] = [1000, 5000, 10000, 50000];
 
@@ -55,11 +61,18 @@ const RatingPage = () => {
             };
             const res = await postRatingSubmitApi(priceData);
             if (res.status === 200) {
-                alert("결과는?");
+                const info = res.data.info;
+                if (res.data.info.currentPoint === 2) {
+                    setAddPrice({...addPrice, gameover: true});
+                } else {
+                    setAddPrice({...addPrice, success: true});
+                };
+                setResData(info);
+                console.log("결과는", res.data.info);
             };
         } catch {
             if (error) {
-                alert("error");
+                alert("에러가 발생했습니다.");
             }
         };
     };
@@ -78,7 +91,7 @@ const RatingPage = () => {
                     <ImageContainer src={data.data.info.imageUrl}>
                         <AnswerCountContainer>
                             정답횟수
-                            <AnswerCount>123</AnswerCount>
+                            <AnswerCount>{data.data.info.score}</AnswerCount>
                         </AnswerCountContainer>
                         <LikeBtn>♡</LikeBtn>
                     </ImageContainer>
@@ -97,12 +110,14 @@ const RatingPage = () => {
                             </DetailBtnWrapper>
                         }
                 </DetailInfoWrapper>
-                {/* <SuccessContainer>
-                    <TitleContainer>
-                        <Title>AMAZING</Title>
-                    </TitleContainer>
-                    <SuccessRating />
-                </SuccessContainer> */}
+                {(success)
+                    && <SuccessContainer>
+                        <TitleContainer>
+                            <Title>AMAZING</Title>
+                        </TitleContainer>
+                        <SuccessRating resData={resData} />
+                    </SuccessContainer>
+                }
                 <PriceInputWrapper>
                     <PriceInput
                         type='text'
@@ -144,7 +159,7 @@ const RatingPage = () => {
                 </PocketBottomIconContainer>
                 {(gameover)
                 && <FaildContainer>
-                    <FailedModal setAddPrice={setAddPrice} addPrice={addPrice}/>
+                    <FailedModal resData={resData} setAddPrice={setAddPrice} addPrice={addPrice}/>
                 </FaildContainer>
                 }
             </RatingContainer>

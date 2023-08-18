@@ -2,20 +2,13 @@ import React, { useState } from 'react'
 import { styled } from 'styled-components'
 import { StBasicButton } from '../../styles/BasicButton';
 
-const RegionUpload = ({ uploadData, setUploadData } : any) => {
-
-  const [region, setRegion] = useState({
-    location: "경기도 00시 00구 00동",
-  });
-  const { location } = region;
-
-  // setUploadData({...uploadData, location});
+const RegionUpload = ({ locationData } : any) => {
 
   return (
     <LineContainer>
         <RequiredText>주거래지역</RequiredText>
           <Wrapper style={{gap: "39px"}}>
-            <Text>{location}</Text>
+            <Text>{locationData}</Text>
             {/* <StBasicButton buttonColor="#D9D9D9">직접입력</StBasicButton> */}
           </Wrapper>
     </LineContainer>

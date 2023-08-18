@@ -19,15 +19,17 @@ const MyPippo = ({ data } : any) => {
     <RightContainer>
       <TitleContainer>MY POCKET</TitleContainer>
       <RightContentContainer>
-        <PointText>나의 포인트</PointText>
-        <PointCount>{point}PP</PointCount>
+        <InContainer>
+          <PointCount>{point}P</PointCount>
+          <PointText>나의 포인트</PointText>
+        </InContainer>
       </RightContentContainer>
     </RightContainer>
   )
 };
 
 const RightContainer = styled.div`
-  width: 176px;
+  min-width: 176px;
 `;
 
 const TitleContainer = styled.div`
@@ -40,11 +42,17 @@ const TitleContainer = styled.div`
 `;
 
 const RightContentContainer = styled.div`
-  width: 100%;
+  min-width: 176px;
   height: 204px;
-  align-items: center;
-  padding: 60px 32px 60px 32px;
-  border: 1px solid #000;
+  padding: 16px 15px 0px 15px;
+  border: 1px solid #D5D4D4;
+  background-color: #FCFCFC;
+`;
+
+const InContainer = styled.div`
+  min-width: 146px;
+  border: 1px solid #D5D4D4;
+  padding: 44px 31px 42px 31px;
 `;
 
 const PointText = styled.div`
@@ -54,7 +62,6 @@ const PointText = styled.div`
   font-size: 20px;
   font-weight: 700;
   line-height: 150%;
-  margin: 0px 0px 10px 0px;
 `;
 
 const PointCount = styled.div`

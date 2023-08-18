@@ -16,6 +16,12 @@ export const getMyPocketApi = async () => {
   const res = await instance.get("/api/goods/pocket?page=1&size=8&sortBy=createdAt&isAsc=false");
   return res;
 };
+
+// 다른유저 주머니 전체조회
+export const getUserPocketApi = async (nickname: any) => {
+  const res = await instance.get(`/api/goods/pocket/${nickname}?page=1&size=5&sortBy=createdAt&isAsc=false`);
+  return res;
+};
 // 물품 등록
 interface upLoadBody {
   formdata: {

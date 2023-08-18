@@ -8,8 +8,10 @@ import Siren from "../../assets/icon/siren.png";
 import { StBasicButton } from "../../styles/BasicButton";
 import BidModal from "./BidModal";
 import CardZzimBtn from "../common/CardZzimBtn";
+import { useNavigate } from "react-router-dom";
 
 const DetailContent = ({ data }: any) => {
+  const navigate = useNavigate();
   const newData = data.data.info.goodsResponseDto;
   // console.log("newData", newData);
 
@@ -49,7 +51,17 @@ const DetailContent = ({ data }: any) => {
         </BoxWrapper>
       </UserNameContainer>
       <UserNameContainer style={{ border: "none", paddingTop: "16px", position: "relative" }}>
-        <TextWrapper style={{ gap: "8px" }}>
+        <TextWrapper
+          style={{ gap: "8px" }}
+          // onClick={() => {
+          //   if (data.data.info.checkSameUser) {
+          //     navigate("/mypocket");
+          //   } else {
+          //     navigate(`/userpocket/${newData.nickname}`);
+          //   }
+          // }}
+          // 경매물품 올라오면 핸들러함수 달 예정
+        >
           <ColorText color="#39373A">{newData.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>

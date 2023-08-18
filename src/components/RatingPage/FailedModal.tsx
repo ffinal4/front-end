@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
 import { useNavigate } from 'react-router-dom';
 
-const FailedModal = ({ addPrice, setAddPrice } : any) => {
+const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
 
     const navigate = useNavigate();
 

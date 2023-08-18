@@ -3,24 +3,25 @@ import { styled } from 'styled-components';
 
 const RatingUpload = ({ setUploadData, uploadData } : any) => {
 
-    const [ratingCheck, setRatingCheck] = useState<{rating : string}>({
-        rating: "NO"
+    const [ratingChecks, setRatingChecks] = useState<{ratingCheck : boolean}>({
+        ratingCheck: false
     });
     const [conditionProduct, setConditionProduct] = useState<{price : any}>({
         price: "",
     });
     
-    const { rating } = ratingCheck;
+    const { ratingCheck } = ratingChecks;
     const { price } = conditionProduct;
 
     const onCheckYesRatingHandler = () => {
-        setRatingCheck({...ratingCheck, rating: "YES"});
+        setRatingChecks({...ratingChecks, ratingCheck: true});
+        setUploadData({...uploadData, data: {...uploadData.data, ratingCheck: true}});
         console.log("YES", uploadData);
     };
     const onCheckNoRatingHandler = () => {
-        setRatingCheck({...ratingCheck, rating: "NO"});
+        setRatingChecks({...ratingChecks, ratingCheck: false});
         setConditionProduct({...conditionProduct, price: ""});
-        setUploadData({...uploadData, data: {...uploadData.data, sellerPrice: ""}});
+        setUploadData({...uploadData, data: {...uploadData.data, ratingCheck: false, sellerPrice: ""}});
         console.log("NO", uploadData);
     };
 
@@ -49,16 +50,16 @@ const RatingUpload = ({ setUploadData, uploadData } : any) => {
             <RatingCheckWrapper>
                 <CheckWrapper>
                     <EmptyCircle 
-                        style={(rating === "YES") ? {border: "2px solid #FFCA64"} : {border: "2px solid #D5D4D4"}}
+                        style={(ratingCheck) ? {border: "2px solid #FFCA64"} : {border: "2px solid #D5D4D4"}}
                         onClick={onCheckYesRatingHandler}
                     >
-                        {(rating === "YES") && <FullCircle style={{backgroundColor: "#FFCA64"}}/>}
+                        {(ratingCheck) && <FullCircle style={{backgroundColor: "#FFCA64"}}/>}
                     </EmptyCircle>
                     YES
                 </CheckWrapper>
                 <CheckWrapper>
                     <EmptyCircle onClick={onCheckNoRatingHandler}>
-                        {(rating === "NO") && <FullCircle />}
+                        {(ratingCheck === false) && <FullCircle />}
                     </EmptyCircle>
                     NO
                 </CheckWrapper>
@@ -69,7 +70,7 @@ const RatingUpload = ({ setUploadData, uploadData } : any) => {
                 <Text style={{color: "#808080"}}>- 10명이 레이팅을 완료하게되면 내가 생각하는 물건의 가치와 유저들이 평가한 가치의 평균가가 물건의 점수로 레이팅됩니다.</Text>
             </TextWrapper>
             {
-            (rating === "YES")
+            (ratingCheck)
             && <Wrapper>
                 <PriceWrapper>
                     <PriceInput
