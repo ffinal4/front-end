@@ -2,6 +2,8 @@ import React from "react";
 import { styled } from "styled-components";
 import { StCardPicture } from "../../styles/CardPicture";
 import { useNavigate } from "react-router-dom";
+import locationImage from "../../assets/icon/location.png";
+import CardZzimBtn from "./ZzimBtn";
 
 const ItemCard = ({ item }: any) => {
   const navigate = useNavigate();
@@ -15,9 +17,10 @@ const ItemCard = ({ item }: any) => {
         }}
       />
       <AddressContent>
-        <AddressBtn />
+        <AddressImage src={locationImage} />
         {item?.location}
       </AddressContent>
+      <CardZzimBtn />
       <ItemTitle>{item?.title}</ItemTitle>
       <UserName>{item?.nickname}</UserName>
       <ItemContent>{item?.content}</ItemContent>
@@ -26,10 +29,15 @@ const ItemCard = ({ item }: any) => {
 };
 
 const AddressContent = styled.div`
-  top: 10px;
-  left: 10px;
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+  background-color: rgba(34, 32, 32, 0.2);
+  padding: 10px;
+  top: 0px;
+  left: 0px;
   position: absolute;
-  font-family: Pretendard;
+  color: var(--black-white-white, #fcfcfc);
+  font-family: "Pretendard";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -38,10 +46,9 @@ const AddressContent = styled.div`
   align-items: center;
 `;
 
-const AddressBtn = styled.div`
+const AddressImage = styled.img`
   width: 24px;
   height: 24px;
-  background-color: #636363;
   margin-right: 10px;
 `;
 const ItemCardContainer = styled.div`

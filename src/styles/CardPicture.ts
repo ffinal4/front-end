@@ -7,5 +7,6 @@ export const StCardPicture = styled.div<{ image: string }>`
   background-size: cover;
   background-image: url(${(props) => props.image});
   background-color: #d9d9d9;
+  border-radius: 10px;
   cursor: pointer;
 `;
