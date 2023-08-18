@@ -1,6 +1,11 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import Exchange from '../../assets/icon/exchange.png'
+import Auction from '../../assets/icon/auction.png'
+import MyPocket from '../../assets/icon/layer_6.png'
+import Like from '../../assets/icon/blacklike.png'
+import MyChat from '../../assets/icon/profile.png'
 
 const Pocket = () => {
   const navigate = useNavigate();
