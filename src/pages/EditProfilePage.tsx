@@ -216,35 +216,35 @@ const EditProfilePage = () => {
           </AddContent>
         </EditProfileContainer>
         <AssignButtonContainer>
-          <StBasicButton buttonColor="#D9D9D9;" onClick={editprofileOnclick}>
-            변경저장
-          </StBasicButton>
+          <StButton buttonColor="#FDD988;" onClick={editprofileOnclick}>
+            변경사항저장
+          </StButton>
         </AssignButtonContainer>
       </EditProfilePageContainer>
     </div>
   );
 };
 
-const EditProfilePageContainer = styled.div`
-  /* border: 1px solid blue; */
-`;
+const EditProfilePageContainer = styled.div``;
+
 const TitleContainer = styled.div`
-  /* border: 1px solid red; */
   width: 100%;
   margin: auto;
 `;
+
 const Title = styled.div`
   font-size: 40px;
   font-weight: 800;
   font-family: "Lemon/Milk", sans-serif;
-  /* margin-bottom: 30px; */
 `;
+
 const SubTitle = styled.div`
   font-size: 32px;
   margin-top: 16px;
   margin-bottom: 16px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
+
 const EditProfileContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
@@ -252,48 +252,47 @@ const EditProfileContainer = styled.div`
   height: 1135px;
   margin: auto;
 `;
-const ProfileImageContainer = styled.div`
-  /* border: 3px solid green; */
-`;
+const ProfileImageContainer = styled.div``;
+
 const EmailContainer = styled.div`
-  /* border: 3px solid green; */
   display: flex;
   align-items: center;
   margin-top: 33px;
   margin-bottom: 33px;
 `;
+
 const Label = styled.div`
-  /* border: 1px solid red; */
   font-size: 20px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   width: 150px;
   font-weight: 700;
   display: flex;
   margin-right: 70px;
 `;
+
 const Email = styled.div`
-  /* border: 1px solid red; */
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 const NickNameContainer = styled.div`
-  /* border: 3px solid green; */
   border-top: 1px solid gray;
   padding-top: 30px;
   display: flex;
   align-items: center;
 `;
+
 const CommonLabel = styled.div`
   font-size: 20px;
   width: 150px;
   font-weight: 700;
-  /* border: 1px solid red; */
   margin-right: 70px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
+
 const NickNameInputContainer = styled.div`
   width: 464px;
 `;
+
 export const Content = styled.div`
   font-family: "Pretendard";
   font-size: 16px;
@@ -307,37 +306,32 @@ export const Content = styled.div`
 `;
 
 const PwContainer = styled.div`
-  /* border: 3px solid green; */
   border-top: 1px solid gray;
   display: flex;
   align-items: center;
   padding-top: 30px;
   margin-top: 30px;
-  /* margin-bottom: 30px; */
 `;
+
 const PwInputContainer = styled.div`
-  /* border: 1px solid red; */
   width: 656px;
 `;
+
 const SetPwInputContainer = styled.div`
-  /* border: 1px solid red; */
   width: 656px;
 `;
-const NewInputContainer = styled.div`
-  /* border: 1px solid green; */
-`;
+
+const NewInputContainer = styled.div``;
+
 const CheckPwInputContainer = styled.div`
-  /* border: 1px solid green; */
   margin-bottom: 30px;
 `;
+
 const CheckPwContainer = styled.div`
-  /* border: 3px solid green; */
   border-bottom: 1px solid gray;
   display: flex;
-
-  /* align-items: center; */
-  /* margin-bottom: 30px; */
 `;
+
 const PwValidation = styled.div`
   color: red;
   margin-top: 10px;
@@ -356,37 +350,34 @@ const PwContent = styled.div`
 `;
 
 const CurrentAddress = styled.div`
-  /* border: 1px solid red; */
-  font-family: Pretendard;
-
+  font-family: "Pretendard";
   font-size: 16px;
 `;
 const AddressLabelContainer = styled.div`
-  /* border: 1px solid blue; */
   display: flex;
   align-items: center;
   margin-top: 30px;
 `;
+
 const AddressLabel = styled.label`
-  /* border: 1px solid red; */
   width: 150px;
   height: 33px;
   font-size: 20px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   font-weight: bold;
   margin-right: 70px;
 `;
+
 const AddressContainer = styled.div`
-  /* border: 3px solid green; */
   margin-top: 20px;
   display: flex;
   align-items: center;
   padding-left: 220px;
   padding-right: 250px;
 `;
+
 const AddContent = styled.div`
-  /* border: 1px solid red; */
-  font-family: Pretendard;
+  font-family: "Pretendard";
   margin: 10px 0px 40px 220px;
   color: gray;
 `;
@@ -395,8 +386,14 @@ const AssignButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border: 1px solid red; */
   padding: 20px 0px 20px 0px;
+`;
+
+const StButton = styled(StBasicButton)`
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid black;
 `;
 
 export default EditProfilePage;
