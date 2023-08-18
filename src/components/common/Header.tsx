@@ -36,6 +36,7 @@ const Header = () => {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       setIsLoggedIn(false);
+      navigate("/");
     } catch (error) {
       console.log("로그아웃실패", error);
     }
@@ -97,9 +98,7 @@ const Header = () => {
                 로그인
               </LoginLink>
               <BoxContainer />
-              <SignupLink onClick={() => navigate("/signup")}>
-                회원가입
-              </SignupLink>
+              <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
             </LinkContainer>
           )}
         </HeaderContainer>
