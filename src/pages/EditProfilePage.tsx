@@ -226,7 +226,7 @@ const EditProfilePage = () => {
             onClick={editprofileOnclick}
             disabled={!nicknameChecked}
           >
-            변경사항저장
+            변경사항 저장
           </StButton>
         </AssignButtonContainer>
       </EditProfilePageContainer>
