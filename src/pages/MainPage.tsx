@@ -21,7 +21,7 @@ const MainPage = () => {
     <MainPageContainer>
       <Banner />
       <NewItemList data={data?.data.info.goodsListResponseDto} />
-      <AuctionList />
+      <AuctionList data={data?.data.info.auctionResponseDto} />
       <HowToTrade />
       <Footer />
     </MainPageContainer>

@@ -6,7 +6,7 @@ import { StSubTitle, StTitle } from "../../styles/TitleFont";
 import PopularAucionCard from "./PopularAuctionCard";
 import { StBasicButton } from "../../styles/BasicButton";
 
-const AuctionList = () => {
+const AuctionList = ({ data }: any) => {
   const navigate = useNavigate();
   return (
     <AuctionListContainer>
@@ -18,10 +18,10 @@ const AuctionList = () => {
       </StSubTitle>
       <CardContainer>
         <MarginContainer>
-          <PopularAucionCard bgColor={"#EC8D49"} fontColor={"#fcfcfc"} hoverColor={"#FBD8BF"} />
+          <PopularAucionCard data={data[0]} bgColor={"#EC8D49"} fontColor={"#fcfcfc"} hoverColor={"#FBD8BF"} />
         </MarginContainer>
         <MarginContainer>
-          <PopularAucionCard bgColor={"#39373A"} fontColor={"#fcfcfc"} hoverColor={"#ADADAD"} />
+          <PopularAucionCard data={data[1]} bgColor={"#39373A"} fontColor={"#fcfcfc"} hoverColor={"#ADADAD"} />
         </MarginContainer>
         <PopularAucionCard bgColor={"#FFCA64"} fontColor={"#222020"} hoverColor={"#39373A"} />
         <MoreBtn

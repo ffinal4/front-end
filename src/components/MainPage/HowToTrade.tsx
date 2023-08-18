@@ -3,10 +3,12 @@ import { styled } from "styled-components";
 import leftArrow from "../../assets/images/LeftArrow.svg";
 import rightArrow from "../../assets/images/RightArrow.svg";
 import SlideContent from "./SlideContent";
+import mascotImage from "../../assets/images/howtomascot.svg";
 
 const HowToTrade = () => {
   return (
     <HowToTradeContainer>
+      <MascotImage src={mascotImage} />
       <TitleContainer>
         <Title>HOW TO TRADE SAFELY?</Title>
         <SubTitleContainer>
@@ -28,6 +30,14 @@ const HowToTradeContainer = styled.div`
   background: var(--orange-orange-100, #ec8d49);
   padding-top: 60px;
   margin-bottom: 303px;
+  position: relative;
+`;
+
+const MascotImage = styled.img`
+  width: 25%;
+  position: absolute;
+  bottom: 0;
+  left: 70px;
 `;
 
 const TitleContainer = styled.div`

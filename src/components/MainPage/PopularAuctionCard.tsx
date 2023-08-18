@@ -2,31 +2,29 @@ import React from "react";
 import { styled } from "styled-components";
 import { StCardPicture } from "../../styles/CardPicture";
 import locationImage from "../../assets/icon/location.png";
+import BidDeadLine from "./BidDeadLine";
 
-const PopularAucionCard = ({ bgColor, fontColor, hoverColor }: any) => {
+const PopularAucionCard = ({ bgColor, fontColor, hoverColor, data }: any) => {
   return (
     <PopularAuctionCardContainer bgcolor={bgColor} fontcolor={fontColor} hovercolor={hoverColor}>
       <FirstSectionContainer bgcolor={bgColor}>
         <Triangle />
         <BidContentContainer fontcolor={fontColor}>
           <BidTitle>현재 입찰 수</BidTitle>
-          <BidCount>24</BidCount>
-          <BidDeadline>입찰 마감까지 00:30:12</BidDeadline>
+          <BidCount>{data?.bidCount}</BidCount>
+          <BidDeadLine deadline={"2023-08-20T03:17:19.713286"} />
         </BidContentContainer>
-        <CardPicture image="">
+        <CardPicture image={data?.image}>
           <AddressContent>
             <AddressImage src={locationImage} />
-            주소임 ㅋㅋ
+            {data?.location}
           </AddressContent>
         </CardPicture>
       </FirstSectionContainer>
       <SecondSectionContainer>
-        <ItemTitle>제목</ItemTitle>
+        <ItemTitle>{data?.title}</ItemTitle>
         <UserName>피핍포인트</UserName>
-        <ItemContent>
-          ㅇ너ㅣㅁ러ㅏㅣ넘이ㅇㄹㅇㄹ ㅇㄹㅇㄹ ㅇㄹㅇ
-          ㅏ러ㅏㅣㄴㅁ어ㅏㅣ라ㅣㄴㅁ어라ㅣㅣ어ㅏㅣㄴㅇ멀ㄹㅇㄴㅁ라ㅣ넘아ㅣ러ㅣㅏㄴ멍라ㅣㅓ니ㅏㅇ러ㅏㄴㅇㄹ마
-        </ItemContent>
+        <ItemContent>{data?.content}</ItemContent>
       </SecondSectionContainer>
     </PopularAuctionCardContainer>
   );
@@ -73,13 +71,7 @@ const BidCount = styled.div`
   line-height: 110%; /* 66px */
   margin-bottom: 20px;
 `;
-const BidDeadline = styled.div`
-  font-family: "Pretendard";
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 30px */
-`;
+
 const SecondSectionContainer = styled.div`
   width: 100%;
   padding: 58px 48px 40px 48px;
@@ -145,10 +137,10 @@ const PopularAuctionCardContainer = styled.div<{ bgcolor: string; fontcolor: str
   width: 368px;
   height: 100%;
   margin-bottom: 80px;
+  cursor: pointer;
   overflow: hidden;
   &:hover ${SecondSectionContainer} {
     background-color: ${(props) => props.bgcolor};
-    transition: 0.2s;
   }
 
   &:hover ${ItemTitle} {
