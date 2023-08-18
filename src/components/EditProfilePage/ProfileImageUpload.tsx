@@ -114,7 +114,6 @@ const RemoveBtnWrapper = styled.div`
   line-height: 150%;
   display: flex;
   justify-content: end;
-  /* border: 1px solid red; */
   width: 100%;
   height: 24px;
 
@@ -143,7 +142,7 @@ const UploadImageContainer = styled.div`
 const CameraImg = styled.img`
   width: 48px;
   height: 48px;
-  margin: 0px auto 13px auto;
+  margin: 0px auto 1px auto;
 `;
 
 const Text = styled.div`

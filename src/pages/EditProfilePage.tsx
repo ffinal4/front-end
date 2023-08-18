@@ -162,7 +162,7 @@ const EditProfilePage = () => {
                     required: "필수입력 항목입니다.",
                     minLength: {
                       value: 8,
-                      message: "* 비밀번호는 8자 이상이어야 합니다.",
+                      message: "* 비밀번호는 8자 이상 15자 이하여야 합니다.",
                     },
                     pattern: {
                       value:
@@ -386,7 +386,7 @@ const AssignButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 20px 0px 20px 0px;
+  padding: 60px 0px 20px 0px;
 `;
 
 const StButton = styled(StBasicButton)`
