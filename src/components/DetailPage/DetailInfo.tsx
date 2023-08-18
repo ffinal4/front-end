@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StBasicButton } from "../../styles/BasicButton";
 import { styled } from "styled-components";
 import Like from "../../assets/icon/like.png";
@@ -6,9 +6,12 @@ import Time from "../../assets/icon/time.png";
 import Layer from "../../assets/icon/layer_6.png";
 import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
-import { Category } from "../common/enum"
+import { Category } from "../common/enum";
+import { useMutation } from "react-query";
+import { postZzimApi } from "../../api/goods";
+import CardZzimBtn from "../common/CardZzimBtn";
 
-const DetailInfo = ({ data } : any) => {
+const DetailInfo = ({ data }: any) => {
   const categorys = data.data.info.category;
   const createdDate = data.data.info.createdAt;
   const splitDate = createdDate.split("T")[0];
@@ -19,10 +22,10 @@ const DetailInfo = ({ data } : any) => {
   const result = dateData - dateAt;
 
   // console.log(receivedDate, " createdDate");
-  
+
   // if (categorys === "WOMAN")
   // {let categoryData = Category.WOMAN;}
-  // else if (categorys === "MAN") {let categoryData = Category.MAN;} 
+  // else if (categorys === "MAN") {let categoryData = Category.MAN;}
   // else if (categorys === "FURNITURE") {let categoryData = Category.FURNITURE;}
   // else if (categorys === "HOBBY") {let categoryData = Category.HOBBY;}
   // else if (categorys === "BOOK") {let categoryData = Category.BOOK;}
@@ -61,9 +64,7 @@ const DetailInfo = ({ data } : any) => {
 
   return (
     <InfoContainer>
-      <InfoTitle>
-        {data.data.info.title}
-      </InfoTitle>
+      <InfoTitle>{data.data.info.title}</InfoTitle>
       <UserNameContainer>
         <ColorText color="#ADADAD">10,000PP</ColorText>
         <BoxWrapper>
@@ -77,19 +78,14 @@ const DetailInfo = ({ data } : any) => {
           </TextWrapper>
         </BoxWrapper>
       </UserNameContainer>
-      <UserNameContainer
-        style={{ border: "none", paddingTop: "16px", position: "relative" }}
-      >
-        <TextWrapper style={{gap: "8px"}}>
+      <UserNameContainer style={{ border: "none", paddingTop: "16px", position: "relative" }}>
+        <TextWrapper style={{ gap: "8px" }}>
           <ColorText color="#39373A">{data.data.info.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
         <TextWrapper>
-          {(data.data.info.checkSameUser) ? (
-            <TextWrapper
-              style={{ cursor: "pointer" }}
-              onClick={onClickMenuOpenHandler}
-            >
+          {data.data.info.checkSameUser ? (
+            <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
               <SmallBox src={Group} />
             </TextWrapper>
           ) : (
@@ -110,14 +106,8 @@ const DetailInfo = ({ data } : any) => {
               </ModalBtn>
               <ModalBtn>거래완료</ModalBtn>
               <ModalBtn>게시글 수정</ModalBtn>
-              {auction ? (
-                <ModalBtn>레이팅 요청</ModalBtn>
-              ) : (
-                <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>
-              )}
-              <ModalBtn style={{ borderRadius: "0px 0px 5px 5px" }}>
-                삭제
-              </ModalBtn>
+              {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
+              <ModalBtn style={{ borderRadius: "0px 0px 5px 5px" }}>삭제</ModalBtn>
             </ModalBtnWrapper>
           )}
         </TextWrapper>
@@ -144,33 +134,36 @@ const DetailInfo = ({ data } : any) => {
           <ColorText color="#222020">#스타벅스 #기프티콘 #교환권</ColorText>
         </TextLine>
       </TextContainer>
-      <ColorText color="#717171">
-        *상대방이 교환신청을 수락하여 채팅이 가능해요!
-      </ColorText>
+      <ColorText color="#717171">*상대방이 교환신청을 수락하여 채팅이 가능해요!</ColorText>
       <ButtonWrapper>
-        {(data.data.info.checkSameUser)
-          ? <StButton
-            buttonColor="#D5D4D4"
-            style={{ color: "#fff", cursor: "default" }}
-          >교환신청</StButton>
-          : <StButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>교환신청</StButton>
-        }
-        {(data.data.info.checkSameUser)
-          ? <StButton
-            buttonColor="#D5D4D4"
-            style={{ color: "#fff", cursor: "default" }}
-          >찜하기</StButton>
-          : <StButton buttonColor="#FFCA64">찜하기</StButton>
-        }
+        {data.data.info.checkSameUser ? (
+          <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
+            교환신청
+          </StButton>
+        ) : (
+          <StButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>
+            교환신청
+          </StButton>
+        )}
+        {data.data.info.checkSameUser ? (
+          <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
+            찜하기
+          </StButton>
+        ) : (
+          <CardZzimBtn
+            checkZzim={data.data.info.checkDibs}
+            goodsId={data.data.info.goodsId}
+            isCard={false}
+            buttonColor="#FFCA64"
+            fontColor="#222020"
+          />
+        )}
         {chatting ? (
           <StButton buttonColor="#FFCA64" onClick={onClickChatting}>
             채팅하기
           </StButton>
         ) : (
-          <StButton
-            buttonColor="#D5D4D4"
-            style={{ color: "#fff", cursor: "default" }}
-          >
+          <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
             채팅하기
           </StButton>
         )}
