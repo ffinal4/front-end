@@ -10,8 +10,10 @@ import { Category } from "../common/enum";
 import { useMutation } from "react-query";
 import { postZzimApi } from "../../api/goods";
 import CardZzimBtn from "../common/CardZzimBtn";
+import { useNavigate } from "react-router-dom";
 
 const DetailInfo = ({ data }: any) => {
+  const navigate = useNavigate();
   const categorys = data.data.info.category;
   const createdDate = data.data.info.createdAt;
   const splitDate = createdDate.split("T")[0];
@@ -79,7 +81,16 @@ const DetailInfo = ({ data }: any) => {
         </BoxWrapper>
       </UserNameContainer>
       <UserNameContainer style={{ border: "none", paddingTop: "16px", position: "relative" }}>
-        <TextWrapper style={{ gap: "8px" }}>
+        <TextWrapper
+          style={{ gap: "8px" }}
+          onClick={() => {
+            if (data.data.info.checkSameUser) {
+              navigate("/mypocket");
+            } else {
+              navigate(`/userpocket/${data.data.info.nickname}`);
+            }
+          }}
+        >
           <ColorText color="#39373A">{data.data.info.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
@@ -215,6 +226,7 @@ const TextWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 4px;
+  cursor: pointer;
 `;
 
 const SmallBox = styled.img`

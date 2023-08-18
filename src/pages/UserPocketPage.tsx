@@ -5,16 +5,22 @@ import { StTitle } from "../styles/TitleFont";
 import dotLine from ".././assets/images/vector.png";
 import Paging from "../components/common/Paging/Paging";
 import UserInfo from "../components/UserPocketPage/UserInfo";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { getUserPocketApi } from "../api/goods";
+import { useParams } from "react-router-dom";
+import ItemCardList from "../components/common/ItemCardList";
 
 const UserPocketPage = () => {
-  const zzimMutate = useMutation(() => getUserPocketApi(), {
-    onSuccess: (res) => {
-      console.log("다른유저데이터성공!", res);
-      setIsZzim(!isZzim);
-    },
+  const { nickname } = useParams();
+
+  const { isLoading, error, data } = useQuery(["myPocketData", nickname], () => getUserPocketApi(nickname), {
+    refetchOnWindowFocus: false,
   });
+  if (isLoading) return <div>Loading...</div>;
+  console.log("남의포켓데이터", data);
+  if (error) {
+    console.log(error);
+  }
   return (
     <UserPocketContainer>
       <TitleContainer>
@@ -22,10 +28,12 @@ const UserPocketPage = () => {
         <StTitle marginbottom="80px" textalign="center">
           PEEPPING POCKET
         </StTitle>
-        <UserInfo />
+        <UserInfo data={data?.data} />
       </TitleContainer>
       <DotLine src={dotLine} />
-      <CardListContainer>{/* <ItemCardList data={} /> */}</CardListContainer>
+      <CardListContainer>
+        <ItemCardList data={data?.data.info.goodsListResponseDto} />
+      </CardListContainer>
       <Paging />
     </UserPocketContainer>
   );

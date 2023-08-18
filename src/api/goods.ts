@@ -18,7 +18,7 @@ export const getMyPocketApi = async () => {
 };
 
 // 다른유저 주머니 전체조회
-export const getUserPocketApi = async (nickname: string) => {
+export const getUserPocketApi = async (nickname: any) => {
   const res = await instance.get(`/api/goods/pocket/${nickname}?page=1&size=5&sortBy=createdAt&isAsc=false`);
   return res;
 };

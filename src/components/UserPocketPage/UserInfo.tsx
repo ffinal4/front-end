@@ -1,13 +1,13 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const UserInfo = () => {
+const UserInfo = ({ data }: any) => {
   return (
     <UserInfoContainer>
       <UserImage />
       <InfoContainer>
-        <UserName>유저네임김핍포</UserName>
-        <UserLocation>동구 수성구 황금동</UserLocation>
+        <UserName>{data.info.nickName}</UserName>
+        <UserLocation>{data.info.location}</UserLocation>
       </InfoContainer>
     </UserInfoContainer>
   );
