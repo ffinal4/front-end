@@ -22,11 +22,12 @@ export const postLoginApi = async (body: loginBody) => {
   return res;
 };
 
+// 로그아웃
 interface logoutBody {
   accessToken: null | string;
   refreshToken: null | string;
 }
-// 로그아웃
+
 export const postLogoutApi = async (body: logoutBody) => {
   const res = await instance.post("/api/users/logout", body);
   return res;
