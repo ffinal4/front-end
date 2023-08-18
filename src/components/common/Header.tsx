@@ -98,7 +98,9 @@ const Header = () => {
                 로그인
               </LoginLink>
               <BoxContainer />
-              <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
+              <SignupLink onClick={() => navigate("/signup")}>
+                회원가입
+              </SignupLink>
             </LinkContainer>
           )}
         </HeaderContainer>
