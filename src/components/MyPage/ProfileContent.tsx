@@ -1,16 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components';
-import ppapparo from '../../assets/images/ppapparo.jpg'
 import Pocket from './Pocket';
-import noob from '../../assets/images/엎드린.png'
+import Setting from '../../assets/icon/setting.png'
+import { useNavigate } from 'react-router';
+import MyChat from '../../assets/icon/profile.png'
 
 const ProfileContent = ({ data } : any) => {
+
+    const navigate = useNavigate();
     
     return (
         <LeftContainer>
             <TitleContainer>PROFILE</TitleContainer>
             <LeftContentContainer>
-                <ImageContainer src={data.data.info.image} />
+                <ImageContainer src={(data.data.info.image === null) ? MyChat : data.data.info.image}/>
                 <ContentInBox>
                     <ContentLine>
                         <TypeContainer>이메일(아이디)</TypeContainer>
@@ -26,7 +29,7 @@ const ProfileContent = ({ data } : any) => {
                     </ContentLine>
                 </ContentInBox>
                 <ButtonBox>
-                    <Button noob={noob} />
+                    <Button src={Setting} onClick={() => navigate('/editprofile')} />
                 </ButtonBox>
             </LeftContentContainer>
             <Pocket />
@@ -57,8 +60,9 @@ const LeftContentContainer = styled.div`
     height: 204px;
     align-items: center;
     padding: 30px 20px 30px 40px;
-    border: 1px solid #000;
+    border: 1px solid #D5D4D4;
     position: relative;
+    background-color: #FCFCFC;
 `;
 
 const ImageContainer = styled.div<{ src: string }>`
@@ -104,17 +108,16 @@ const TextContainer = styled.div`
 `;
 
 const ButtonBox = styled.div`
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 20px;
     position: absolute;
 `;
 
-const Button = styled.div<{ noob : string }>`
-    width: 60px;
-    height: 60px;
+const Button = styled.img`
+    width: 24px;
+    height: 24px;
     color: #000;
-    background-size: cover;
-    background-image: ${`url(${noob})`};
+    object-fit: contain;
     cursor: pointer;
 `;
 
