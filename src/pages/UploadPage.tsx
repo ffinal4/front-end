@@ -25,6 +25,7 @@ const UploadPage = () => {
       tradeType: string,
       category: string,
       goodsCondition: string,
+      ratingCheck: boolean,
       sellerPrice: string
       location: string,
     },
@@ -43,6 +44,7 @@ const UploadPage = () => {
       tradeType: "",
       category: "",
       goodsCondition: "",
+      ratingCheck: false,
       sellerPrice: "",
       location: `${locationData}`,
     },
@@ -59,45 +61,49 @@ const UploadPage = () => {
     // formData.append("data", uploadData)
 
     // formData.append("sellerPrice", new Blob([JSON.stringify(uploadPrice.sellerPrice)], { type: "application/json" }));
-
-    try {
-      console.log(uploadImages, uploadData);
-      const sliceImages = uploadImages.slice(0, 3);
-      // const formData = new FormData();
-      // const newData = JSON.stringify(uploadData.data);
-      // const newWanted = JSON.stringify(uploadData.wanted);
-      sliceImages.forEach((blobImage, index) => {
-        formData.append("images", blobImage, `image${index + 1}.jpg`);
-      });
-      // const upLoadData = [uploadData.data]
-      // const upLoadWanted = [uploadData.wanted]
-      // formData.append("images", uploadImages)
-      formData.append(
-        "data",
-        new Blob([JSON.stringify(uploadData.data)], {
-          type: "application/json",
-        })
-      );
-      formData.append(
-        "wanted",
-        new Blob([JSON.stringify(uploadData.wanted)], {
-          type: "application/json",
-        })
-      );
-      // formData.append("data", JSON.stringify(uploadData.data));
-      // formData.append("wanted", JSON.stringify(uploadData.wanted));
-      formData.forEach(function (value, key) {
-        console.log(key + ": " + value);
-      });
-
-      const res = await postUploadApi(formData);
-      if (res.status === 200) {
-        alert("업로드 성공!");
-        navigate("/");
+    if ((uploadData.data.ratingCheck === true && uploadData.data.sellerPrice === "")) {
+      alert("레이팅 가격을 입력해주세요.");
+    } else {
+      try {
+        console.log(uploadImages, uploadData);
+        const sliceImages = uploadImages.slice(0, 3);
+        // const formData = new FormData();
+        // const newData = JSON.stringify(uploadData.data);
+        // const newWanted = JSON.stringify(uploadData.wanted);
+        sliceImages.forEach((blobImage, index) => {
+          formData.append("images", blobImage, `image${index + 1}.jpg`);
+        });
+        // const upLoadData = [uploadData.data]
+        // const upLoadWanted = [uploadData.wanted]
+        // formData.append("images", uploadImages)
+        formData.append(
+          "data",
+          new Blob([JSON.stringify(uploadData.data)], {
+            type: "application/json",
+          })
+        );
+        formData.append(
+          "wanted",
+          new Blob([JSON.stringify(uploadData.wanted)], {
+            type: "application/json",
+          })
+        );
+        // formData.append("data", JSON.stringify(uploadData.data));
+        // formData.append("wanted", JSON.stringify(uploadData.wanted));
+        formData.forEach(function (value, key) {
+          console.log(key + ": " + value);
+        });
+  
+        const res = await postUploadApi(formData);
+        if (res.status === 200) {
+          alert("업로드 성공!");
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    };
+    
     //     // JSON 데이터
     // const jsonData = {
     //   data: {
