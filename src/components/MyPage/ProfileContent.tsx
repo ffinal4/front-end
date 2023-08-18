@@ -5,36 +5,28 @@ import Pocket from './Pocket';
 import noob from '../../assets/images/엎드린.png'
 
 const ProfileContent = ({ data } : any) => {
-
-    const [passwordHide, setPasswordHide] = useState(true);
-
-    const passwordData = data.data.password.replace(/./g,'*');
     
     return (
         <LeftContainer>
             <TitleContainer>PROFILE</TitleContainer>
             <LeftContentContainer>
-                <ImageContainer src={ppapparo} />
+                <ImageContainer src={data.data.info.image} />
                 <ContentInBox>
                     <ContentLine>
                         <TypeContainer>이메일(아이디)</TypeContainer>
-                        <TextContainer>{data.data.email}</TextContainer>
+                        <TextContainer>{data.data.info.email}</TextContainer>
                     </ContentLine>
                     <ContentLine>
                         <TypeContainer>닉네임</TypeContainer>
-                        <TextContainer>{data.data.nickname}</TextContainer>
-                    </ContentLine>
-                    <ContentLine>
-                        <TypeContainer>비밀번호</TypeContainer>
-                        <TextContainer>{(passwordHide) ? passwordData : data.data.password}</TextContainer>
+                        <TextContainer>{data.data.info.nickname}</TextContainer>
                     </ContentLine>
                     <ContentLine>
                         <TypeContainer>주거래지역</TypeContainer>
-                        <TextContainer>{data.data.location}</TextContainer>
+                        <TextContainer>{data.data.info.location}</TextContainer>
                     </ContentLine>
                 </ContentInBox>
                 <ButtonBox>
-                    <Button noob={noob} onClick={() => setPasswordHide(!passwordHide)} />
+                    <Button noob={noob} />
                 </ButtonBox>
             </LeftContentContainer>
             <Pocket />
