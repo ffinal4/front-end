@@ -34,7 +34,7 @@ const Pocket = () => {
                             <Text>경매 현황</Text>
                         </Wrapper>
                     </OutBox>
-                    <OutBox>
+                    <OutBox onClick={() => navigate("/myPocket")}>
                         <Wrapper>
                             <InBoxWrapper>
                                 <InBox src={MyPocket}/>

@@ -3,7 +3,12 @@ import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 import Check from '../../assets/icon/check.png'
 
-const AucUploadCard = ({ checkBox, setCheckBox, item, myPocketGoods, setMyPocketGoods } : any) => {
+const AucUploadCard = ({
+    checkBox,
+    setCheckBox,
+    item,
+    myPocketGoods,
+    setMyPocketGoods } : any) => {
 
     const onClickCheckHandler = (item : any) => {
         if (checkBox === item.goodsId) {
