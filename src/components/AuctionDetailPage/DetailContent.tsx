@@ -36,7 +36,7 @@ const DetailContent = ({ data }: any) => {
 
   return (
     <InfoContainer>
-      <InfoTitle>aaa</InfoTitle>
+      <InfoTitle>{newData.title}</InfoTitle>
       <UserNameContainer>
         <ColorText color="#ADADAD">10,000PP</ColorText>
         <BoxWrapper>

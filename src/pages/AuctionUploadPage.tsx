@@ -7,16 +7,15 @@ import { getAuctionUploadApi, postAuctionUploadApi } from "../api/goods";
 import { useNavigate } from "react-router-dom";
 
 const AuctionUploadPage = () => {
-
   const navigate = useNavigate();
 
-  const { isLoading, error, data } : any = useQuery("AuctionMyPocket", getAuctionUploadApi, {
+  const { isLoading, error, data }: any = useQuery("AuctionMyPocket", getAuctionUploadApi, {
     refetchOnWindowFocus: false,
   });
 
   console.log(data, "data");
 
-  const [myPocketGoods, setMyPocketGoods] = useState<{goodsId: string | number}>({
+  const [myPocketGoods, setMyPocketGoods] = useState<{ goodsId: string | number }>({
     goodsId: "",
   });
 
@@ -48,7 +47,7 @@ const AuctionUploadPage = () => {
   };
 
   const onClickRemovePriceHandler = () => {
-    setProductBid({...productBid, lowPrice: 0});
+    setProductBid({ ...productBid, lowPrice: 0 });
   };
   console.log("productBid", productBid);
 
@@ -60,14 +59,8 @@ const AuctionUploadPage = () => {
       <PageTitleContainer>START TO BID</PageTitleContainer>
       <KoreanTitle>경매 시작하기</KoreanTitle>
       <TextWrapper>
-        <Text>
-          * 드려요, 보세요 정보는 기존 물건을 주머니에 등록할 때 정보와 동일하게
-          보여집니다.
-        </Text>
-        <Text>
-          * 경매 등록 시 10포인트가 차감되며 입찰자가 없을 경우 글을 수정하거나
-          삭제할 수 있습니다.
-        </Text>
+        <Text>* 드려요, 보세요 정보는 기존 물건을 주머니에 등록할 때 정보와 동일하게 보여집니다.</Text>
+        <Text>* 경매 등록 시 10포인트가 차감되며 입찰자가 없을 경우 글을 수정하거나 삭제할 수 있습니다.</Text>
       </TextWrapper>
       <AuctionUploadContainer>
         <PeriodUploadContainer>
@@ -76,37 +69,30 @@ const AuctionUploadPage = () => {
             <ButtonWrapper>
               <Button
                 buttonColor={endTime === "30분" ? "#575757" : "white"}
-                style={{color: `${endTime === "30분" ? "white" : "#000000"}`}}
+                style={{ color: `${endTime === "30분" ? "white" : "#000000"}` }}
                 onClick={onClickTwelveHourHandler}
               >
                 30분
               </Button>
               <Button
                 buttonColor={endTime === "1시간" ? "#575757" : "white"}
-                style={{color: `${endTime === "1시간" ? "white" : "#000000"}`}}
+                style={{ color: `${endTime === "1시간" ? "white" : "#000000"}` }}
                 onClick={onClickOneDayHandler}
               >
                 1시간
               </Button>
               <Button
                 buttonColor={endTime === "3시간" ? "#575757" : "white"}
-                style={{color: `${endTime === "3시간" ? "white" : "#000000"}`}}
+                style={{ color: `${endTime === "3시간" ? "white" : "#000000"}` }}
                 onClick={onClickThreeDayHandler}
               >
                 3시간
               </Button>
             </ButtonWrapper>
-            <Text>
-              * 경매기간은 경매 시작을 기점으로 카운트다운되며 수정 할 수
-              없습니다.
-            </Text>
+            <Text>* 경매기간은 경매 시작을 기점으로 카운트다운되며 수정 할 수 없습니다.</Text>
           </FirstWrapper>
         </PeriodUploadContainer>
-        <ProductChoice
-          myPocketGoods={myPocketGoods}
-          setMyPocketGoods={setMyPocketGoods}
-          data={data}
-        />
+        <ProductChoice myPocketGoods={myPocketGoods} setMyPocketGoods={setMyPocketGoods} data={data} />
         <LastLineContainer>
           <RequiredText>입찰 제한</RequiredText>
           <LineWrapper>
@@ -114,7 +100,7 @@ const AuctionUploadPage = () => {
               <InputWrapper>
                 <BidLimitInput
                   type="text"
-                  value={(lowPrice !== 0) ? locateLimit : ""}
+                  value={lowPrice !== 0 ? locateLimit : ""}
                   placeholder="입력한 가치 이상의 물건만 입찰됩니다."
                 />
                 <RemoveBtn onClick={onClickRemovePriceHandler}>
@@ -126,10 +112,7 @@ const AuctionUploadPage = () => {
                 {bidPrice.map((item) => {
                   return (
                     <div key={item}>
-                      <Button
-                        buttonColor="#FDEAC2"
-                        onClick={() => onClickAddPriceHandler(item)}
-                      >
+                      <Button buttonColor="#FDEAC2" onClick={() => onClickAddPriceHandler(item)}>
                         {item.toLocaleString()}
                       </Button>
                     </div>
@@ -153,16 +136,17 @@ const AuctionUploadPage = () => {
               const res = await postAuctionUploadApi(newBid, myPocketGoods.goodsId);
               if (res.status === 200) {
                 alert("경매물품 등록에 성공했습니다!");
-                navigate('/');
-              };
-            } catch {
-              if (error) {
-                alert(`경매물품 등록에 필요한 포인트가 부족합니다.`)
-                console.log(error);
-              };
-            };
+                navigate("/");
+              }
+            } catch (error) {
+              alert(`경매물품 등록에 필요한 포인트가 부족합니다.`);
+              console.log(error);
+            }
           }}
-        > 경매 시작</Button>
+        >
+          {" "}
+          경매 시작
+        </Button>
       </BottomBtnWrapper>
     </PageLayoutContainer>
   );
@@ -296,7 +280,7 @@ const RemoveBtn = styled.div`
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
-  color: #ADADAD;
+  color: #adadad;
   min-width: 101px;
   cursor: pointer;
 `;
@@ -304,7 +288,7 @@ const RemoveBtn = styled.div`
 const IconBox = styled.div`
   width: 24px;
   height: 24px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 `;
 
 const BottomBtnWrapper = styled.div`
