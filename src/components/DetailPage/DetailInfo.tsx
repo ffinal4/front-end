@@ -8,7 +8,7 @@ import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
 import { Category } from "../common/enum";
 import { useMutation } from "react-query";
-import { postZzimApi } from "../../api/goods";
+import { deleteGoodsApi, postZzimApi } from "../../api/goods";
 import CardZzimBtn from "../common/CardZzimBtn";
 import { useNavigate } from "react-router-dom";
 
@@ -22,6 +22,14 @@ const DetailInfo = ({ data }: any) => {
   const newDate = new Date();
   const dateData = newDate.getDate();
   const result = dateData - dateAt;
+
+  const deleteMutate = useMutation(() => deleteGoodsApi(data.data.info.goodsId), {
+    onSuccess: (res) => {
+      console.log("삭제성공!", res);
+      alert("게시글이 삭제되었습니다.");
+      navigate("/");
+    },
+  });
 
   // console.log(receivedDate, " createdDate");
 
@@ -118,7 +126,14 @@ const DetailInfo = ({ data }: any) => {
               <ModalBtn>거래완료</ModalBtn>
               <ModalBtn>게시글 수정</ModalBtn>
               {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
-              <ModalBtn style={{ borderRadius: "0px 0px 5px 5px" }}>삭제</ModalBtn>
+              <ModalBtn
+                style={{ borderRadius: "0px 0px 5px 5px" }}
+                onClick={() => {
+                  deleteMutate.mutate();
+                }}
+              >
+                삭제
+              </ModalBtn>
             </ModalBtnWrapper>
           )}
         </TextWrapper>

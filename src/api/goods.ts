@@ -49,6 +49,11 @@ export const postUploadApi = async (body: any) => {
   });
   return res;
 };
+// 물품 삭제
+export const deleteGoodsApi = async (goodsId: number) => {
+  const res = await instance.delete(`/api/goods/${goodsId}`);
+  return res;
+};
 
 // 물품 상세 페이지
 export const getDetailPageApi = async (goodsId: any) => {

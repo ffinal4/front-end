@@ -9,7 +9,7 @@ import { useQuery } from "react-query";
 import { getMainPageApi } from "../api/goods";
 
 const MainPage = () => {
-  const { isLoading, error, data } = useQuery("ZzimListPageData", getMainPageApi, {
+  const { isLoading, error, data } = useQuery("getMaintPageData", getMainPageApi, {
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <div>Loading...</div>;

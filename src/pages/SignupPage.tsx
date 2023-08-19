@@ -110,8 +110,8 @@ const SignupPage = () => {
               placeholder="이메일을 입력해주세요"
               {...register("email", {
                 pattern: {
-                  value: /^[a-zA-Z\d]{10,30}$/,
-                  message: "이미 사용중인 이메일입니다.",
+                  value: /^[a-zA-Z\d]{3,}$/,
+                  message: "3자 이상 입력해주세요. ",
                 },
               })}
             />
