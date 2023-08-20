@@ -35,6 +35,7 @@ const Header = () => {
       console.log(res);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+      localStorage.removeItem("location");
       setIsLoggedIn(false);
       navigate("/");
     } catch (error) {

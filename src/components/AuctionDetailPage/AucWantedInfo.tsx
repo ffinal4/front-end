@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components';
+import { ValueToEnum } from '../../utils/EnumCategory';
 
 const AucWantedInfo = ({ data } : any) => {
 
@@ -10,7 +11,7 @@ const AucWantedInfo = ({ data } : any) => {
             <InfoTextContainer>
                 <TextTitleContainer>
                     <InfoTextTitle>{wantedData.title}</InfoTextTitle>
-                    <InfoTextContent style={{color: "#A4A4A4"}}>{wantedData.category}</InfoTextContent>
+                    <InfoTextContent style={{color: "#A4A4A4"}}>{ValueToEnum(wantedData.category)}</InfoTextContent>
                 </TextTitleContainer>
                 <InfoTextContent>{wantedData.content}</InfoTextContent>
             </InfoTextContainer>

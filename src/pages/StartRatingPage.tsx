@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { StBasicButton } from '../styles/BasicButton';
 import Kangaroo from '../assets/images/kangaroowhy.png'
 import { useNavigate } from 'react-router-dom';
+import Manual from '../components/RatingPage/Manual';
 
 const StartRatingPage = () => {
 
@@ -30,11 +31,7 @@ const StartRatingPage = () => {
                     onClick={() => navigate('/rating')}
                 >시작하기</StBasicButton>
                 <BottomWrapper>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9 16C12.866 16 16 12.866 16 9C16 5.13401 12.866 2 9 2C5.13401 2 2 5.13401 2 9C2 12.866 5.13401 16 9 16ZM9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18Z" fill="#EC8D49"/>
-                        <path d="M8.375 10.1465C8.37012 8.99902 8.65332 8.64258 9.17578 8.30078C9.61035 8.01758 9.94238 7.77344 9.94727 7.37305C9.94238 7.01172 9.6543 6.76758 9.29297 6.76758C8.90723 6.76758 8.58008 7.05078 8.57031 7.4707H6.85156C6.87109 5.97168 7.97461 5.33203 9.30273 5.33203C10.7676 5.33203 11.8418 5.98633 11.8418 7.27539C11.8418 8.11035 11.3877 8.60352 10.7188 8.99414C10.2158 9.29688 9.95703 9.5752 9.95703 10.1465V10.3027H8.375V10.1465ZM8.23828 11.6602C8.2334 11.1426 8.66309 10.7227 9.18555 10.7227C9.68359 10.7227 10.1279 11.1426 10.1328 11.6602C10.1279 12.1875 9.68359 12.6074 9.18555 12.6074C8.66309 12.6074 8.2334 12.1875 8.23828 11.6602Z" fill="#EC8D49"/>
-                    </svg>
-                    <BottomText>포인트는 어디에 쓰나요?</BottomText>
+                    <Manual />
                 </BottomWrapper>
                 <ImageContainer src={Kangaroo}/>
             </RatingReadyContainer>
@@ -118,16 +115,8 @@ const BottomWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 7px;
-    padding: 86px 0px 0px 0px;
-    cursor: pointer;
-`;
-
-const BottomText = styled.div`
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
-    color: #39373A;
+    padding: 66px 0px 0px 0px;
+    width: 200px;
 `;
 
 const ImageContainer = styled.div<{ src : string }>`

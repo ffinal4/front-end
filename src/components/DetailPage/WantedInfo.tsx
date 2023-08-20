@@ -1,7 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components';
-import { StBasicButton } from '../../styles/BasicButton';
-import Image from '../../assets/images/pocket.png'
+import { ValueToEnum } from '../../utils/EnumCategory';
 
 const WantedInfo = ({ data } : any) => {
     return (
@@ -9,7 +8,7 @@ const WantedInfo = ({ data } : any) => {
                 <InfoTextContainer>
                     <TextTitleContainer>
                         <InfoTextTitle>{data.data.info.wantedGoods.title}</InfoTextTitle>
-                        <InfoTextContent style={{color: "#A4A4A4"}}>{data.data.info.wantedGoods.category}</InfoTextContent>
+                        <InfoTextContent style={{color: "#A4A4A4"}}>{ValueToEnum(data.data.info.wantedGoods.category)}</InfoTextContent>
                     </TextTitleContainer>
                     <InfoTextContent>{data.data.info.wantedGoods.content}</InfoTextContent>
                 </InfoTextContainer>

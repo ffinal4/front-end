@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components';
+import { ValueToEnum } from '../../utils/EnumCategory';
 
 const RatingInfo = ({ data } : any) => {
   return (
@@ -10,7 +11,7 @@ const RatingInfo = ({ data } : any) => {
         <ContentWrapper>
             <ContentLineContainer>
                 <Text style={{color: "#ADADAD"}}>카테고리</Text>
-                <Text style={{color: "#39373A"}}>{data.data.info.category}</Text>
+                <Text style={{color: "#39373A"}}>{ValueToEnum(data.data.info.category)}</Text>
             </ContentLineContainer>
             <ContentLineContainer>
                 <Text style={{color: "#ADADAD"}}>상품상태</Text>

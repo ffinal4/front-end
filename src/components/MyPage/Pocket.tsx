@@ -83,8 +83,8 @@ const Pocket = () => {
 const LayoutContainer = styled.div`
   position: absolute;
   left: 0;
-  bottom: 0;
-  height: 445px;
+  bottom: 0px;
+  height: 565px;
   width: 100%;
   background-color: #ffca64;
 `;

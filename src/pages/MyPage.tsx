@@ -28,14 +28,14 @@ const MyPage = () => {
 
 const AllLayoutContainer = styled.div`
     width: 100%;
-    height: 1010px;
+    height: 100vh;
     position: relative;
     background-color: #FCF6E9;
 `;
 
 const LayoutContainer = styled.div`
     width: 1144px;
-    height: 1010px;
+    height: 100vh;
     margin: 0 auto;
     padding: 220px 0px 100px 0px;
 
