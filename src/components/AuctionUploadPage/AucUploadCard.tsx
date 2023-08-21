@@ -39,6 +39,7 @@ const AucUploadCard = ({
             </LocatinoWrapper>
         </CardImgContainer>
         <TitleContainer>{item?.title}</TitleContainer>
+        <ContentContainer>{item?.title}</ContentContainer>
     </CardContainer>
   )
 };

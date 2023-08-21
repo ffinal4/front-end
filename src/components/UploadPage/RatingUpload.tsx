@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { styled } from 'styled-components';
 
-const RatingUpload = ({ setUploadData, uploadData } : any) => {
+const RatingUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
 
     const [ratingChecks, setRatingChecks] = useState<{ratingCheck : boolean}>({
         ratingCheck: false
@@ -45,7 +45,12 @@ const RatingUpload = ({ setUploadData, uploadData } : any) => {
 
   return (
     <LineContainer>
-        <RequiredText>레이팅 여부</RequiredText>
+        <RequiredText
+            style={{color: `${(failedUpload
+                    && uploadData.data.ratingCheck === true
+                    && uploadData.data.sellerPrice === "")
+                && "#DF3737"}`}}
+        >레이팅 여부</RequiredText>
         <AllWrapper>
             <RatingCheckWrapper>
                 <CheckWrapper>
@@ -83,7 +88,14 @@ const RatingUpload = ({ setUploadData, uploadData } : any) => {
                     />
                     <Text>원</Text>
                 </PriceWrapper>
-                <Text style={{color: "#808080"}}>*현재 물건의 가치를 돈으로 환산했을 때 어느 정도 가격인지 입력해주세요. ex) 30000</Text>
+                <Text 
+                    style={{color: `${(failedUpload
+                            && uploadData.data.ratingCheck === true
+                            && uploadData.data.sellerPrice === "")
+                        ? "#DF3737"
+                        : "#39373A"
+                    }`}}
+                >*현재 물건의 가치를 돈으로 환산했을 때 어느 정도 가격인지 입력해주세요. ex) 30000</Text>
             </Wrapper>
             }
         </AllWrapper>

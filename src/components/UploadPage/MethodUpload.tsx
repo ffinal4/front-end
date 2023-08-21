@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../../styles/BasicButton";
 
-const MethodUpload = ({ uploadData, setUploadData }: any) => {
+const MethodUpload = ({ uploadData, setUploadData, failedUpload }: any) => {
   const onCheckDirectHandler = () => {
     setUploadData({
       ...uploadData,
@@ -24,27 +24,34 @@ const MethodUpload = ({ uploadData, setUploadData }: any) => {
 
   return (
     <LineContainer>
-        <RequiredText>교환방법*</RequiredText>
-        <Wrapper>
-            <Button
-                buttonColor={(uploadData.data.tradeType === "직거래") ? "#FFCA64" : ""}
-                style={{fontWeight: `${(uploadData.data.tradeType === "직거래") && "700"}`}}
-                onClick={onCheckDirectHandler}
-            >직거래
-            </Button>
-            <Button
-                buttonColor={(uploadData.data.tradeType === "택배") ? "#FFCA64" : ""}
-                style={{fontWeight: `${(uploadData.data.tradeType === "택배") && "700"}`}}
-                onClick={onCheckParcelHandler}
-            >택배
-            </Button>
-            <Button
-                buttonColor={(uploadData.data.tradeType === "상관없음") ? "#FFCA64" : ""}
-                style={{fontWeight: `${(uploadData.data.tradeType === "상관없음") && "700"}`}}
-                onClick={onCheckNoMatterHandler}
-            >상관없음
-            </Button>
-        </Wrapper>
+        <RequiredText
+          style={{color: `${(failedUpload && uploadData.data.tradeType === "") && "#DF3737"}`}}
+        >교환방법*</RequiredText>
+        <AllWrapper>
+          <Wrapper>
+              <Button
+                  buttonColor={(uploadData.data.tradeType === "직거래") ? "#FFCA64" : ""}
+                  style={{fontWeight: `${(uploadData.data.tradeType === "직거래") && "700"}`}}
+                  onClick={onCheckDirectHandler}
+              >직거래
+              </Button>
+              <Button
+                  buttonColor={(uploadData.data.tradeType === "택배") ? "#FFCA64" : ""}
+                  style={{fontWeight: `${(uploadData.data.tradeType === "택배") && "700"}`}}
+                  onClick={onCheckParcelHandler}
+              >택배
+              </Button>
+              <Button
+                  buttonColor={(uploadData.data.tradeType === "상관없음") ? "#FFCA64" : ""}
+                  style={{fontWeight: `${(uploadData.data.tradeType === "상관없음") && "700"}`}}
+                  onClick={onCheckNoMatterHandler}
+              >상관없음
+              </Button>
+          </Wrapper>
+          {(failedUpload && uploadData.data.tradeType === "")
+            && <Text>* 교환 방법을 선택해 주세요.</Text>
+          }
+        </AllWrapper>
     </LineContainer>
   );
 };
@@ -64,9 +71,14 @@ const RequiredText = styled.div`
   min-width: 191px;
 `;
 
+const AllWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  gap: 10px;
+`;
+
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 16px;
 
@@ -78,6 +90,14 @@ const Wrapper = styled.div`
 const Button = styled(StBasicButton)`
   border: 1px solid #222020;
   color: #222020;
+`;
+
+const Text = styled.div`
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    color: #DF3737;
 `;
 
 export default MethodUpload;

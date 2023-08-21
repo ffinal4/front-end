@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../../styles/BasicButton";
 
-const ConditionUpload = ({ uploadData, setUploadData } : any) => {
+const ConditionUpload = ({ uploadData, setUploadData, failedUpload } : any) => {
     
   const onCheckNewCondition = () => {
     setUploadData({
@@ -28,7 +28,9 @@ const ConditionUpload = ({ uploadData, setUploadData } : any) => {
 
   return (
     <LineContainer>
-        <RequiredText>물건상태*</RequiredText>
+        <RequiredText
+          style={{color: `${(failedUpload && uploadData.data.goodsCondition === "") && "#DF3737"}`}}
+        >물건상태*</RequiredText>
         <AllWrapper>
             <Wrapper>
                 <Button
@@ -50,6 +52,9 @@ const ConditionUpload = ({ uploadData, setUploadData } : any) => {
                 >하
                 </Button>
             </Wrapper>
+            {(failedUpload && uploadData.data.goodsCondition === "")
+              && <Text>* 물건의 상태를 선택해 주세요.</Text>
+            }
         </AllWrapper>
     </LineContainer>
   );
@@ -73,6 +78,7 @@ const RequiredText = styled.div`
 const AllWrapper = styled.div`
   width: 100%;
   display: grid;
+  gap: 10px;
 `;
 
 const Wrapper = styled.div`
@@ -89,6 +95,14 @@ const Wrapper = styled.div`
 const Button = styled(StBasicButton)`
   border: 1px solid #222020;
   color: #222020;
+`;
+
+const Text = styled.div`
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    color: #DF3737;
 `;
 
 export default ConditionUpload;

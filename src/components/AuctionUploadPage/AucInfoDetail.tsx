@@ -6,6 +6,7 @@ import Time from "../../assets/icon/time.png";
 import Layer from "../../assets/icon/layer_6.png";
 import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
+import { ValueToEnum } from '../../utils/EnumCategory';
 
 const AucInfoDetail = ({ findedData }: any) => {
 
@@ -25,7 +26,7 @@ const AucInfoDetail = ({ findedData }: any) => {
             <TextContainer>
                 <TextLine>
                     <ColorText color="#717171">카테고리</ColorText>
-                    <ColorText color="#222020">{findedData.category}</ColorText>
+                    <ColorText color="#222020">{ValueToEnum(findedData.category)}</ColorText>
                 </TextLine>
                 <TextLine>
                     <ColorText color="#717171">상품상태</ColorText>

@@ -36,6 +36,7 @@ const UploadPage = () => {
     };
   };
 
+  const [failedUpload, setFailedUpload] = useState(false);
   const [uploadImages,setUploadImages]= useState<File[]>([]);
   const [uploadData, setUploadData] = useState<uploadBodyData>({
     data: {
@@ -58,11 +59,23 @@ const UploadPage = () => {
   const formData = new FormData();
 
   const onClickUploadHandler = async () => {
+
+    if (
+      uploadImages.length === 0
+      ||uploadData.data.title === ""
+      || uploadData.data.content === ""
+      || uploadData.data.tradeType === ""
+      || uploadData.data.category === ""
+      || uploadData.data.goodsCondition === ""
+      || uploadData.wanted.title === ""
+      || uploadData.wanted.content === ""
+      || uploadData.wanted.category === ""
+    ) {setFailedUpload(true);} else {setFailedUpload(false);};
     // formData.append("data", uploadData)
 
     // formData.append("sellerPrice", new Blob([JSON.stringify(uploadPrice.sellerPrice)], { type: "application/json" }));
     if ((uploadData.data.ratingCheck === true && uploadData.data.sellerPrice === "")) {
-      alert("레이팅 가격을 입력해주세요.");
+      setFailedUpload(true);
       console.log(uploadImages, uploadData);
     } else {
       try {
@@ -104,46 +117,6 @@ const UploadPage = () => {
         console.log(error);
       }
     };
-    
-    //     // JSON 데이터
-    // const jsonData = {
-    //   data: {
-    //     title: "노트북1",
-    //     content: "content",
-    //     tradeType: "직거래",
-    //     category: "DIGITAL",
-    //     goodsCondition: "상",
-    //     location: "test"
-    //   },
-    //   wanted: {
-    //     title: "원하는 물품",
-    //     content: "내용",
-    //     category: "digital"
-    //   }
-    // };
-
-    // // FormData 생성
-    // const formData = new FormData();
-
-    // // 이미지 파일 추가
-    // formData.append("images", imageFile);
-
-    // // JSON 데이터를 문자열로 변환하여 FormData에 추가
-    // formData.append("data", new Blob([JSON.stringify(jsonData.data)], { type: "application/json" }));
-    // formData.append("wanted", new Blob([JSON.stringify(jsonData.wanted)], { type: "application/json" }));
-
-    // // 요청 보내기
-    // axios.post(url, formData, {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data" // Content-Type 설정
-    //   }
-    // })
-    // .then(response => {
-    //   console.log("응답 받음:", response.data);
-    // })
-    // .catch(error => {
-    //   console.error("에러 발생:", error);
-    // });
   };
 
   return (
@@ -157,23 +130,26 @@ const UploadPage = () => {
         <ImageUpload
           setUploadImages={setUploadImages}
           uploadImages={uploadImages}
+          failedUpload={failedUpload}
         />
-        <TitleUpload setUploadData={setUploadData} uploadData={uploadData} />
-        <CategoryUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <TitleUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
+        <CategoryUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
         <RegionUpload locationData={locationData} />
         <ConditionUpload
           setUploadData={setUploadData}
           uploadData={uploadData}
+          failedUpload={failedUpload}
         />
-        <MethodUpload setUploadData={setUploadData} uploadData={uploadData} />
-        <DetailUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <MethodUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
+        <DetailUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
         <TagUpload />
-        <RatingUpload setUploadData={setUploadData} uploadData={uploadData} />
-        <WantedUpload setUploadData={setUploadData} uploadData={uploadData} />
+        <RatingUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
+        <WantedUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
         <BtnWrapper>
           <Button buttonColor="#FFCA64" onClick={onClickUploadHandler}>
             주머니에 추가
           </Button>
+          {(failedUpload) && <FailedText>입력 내용을 다시 한 번 확인해 주세요.</FailedText>}
         </BtnWrapper>
       </PageContainer>
     </PageLayout>
@@ -223,15 +199,26 @@ const PageSubtitle = styled.div`
 `;
 
 const BtnWrapper = styled.div`
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   margin: 30px 0px 0px 0px;
+  gap: 10px;
 `;
 
 const Button = styled(StBasicButton)`
   border: 2px solid #222020;
   font-weight: 700;
+  margin: 0px auto;
+`;
+
+const FailedText = styled.div`
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #DF3737;
+  margin: 0px auto;
 `;
 
 export default UploadPage;

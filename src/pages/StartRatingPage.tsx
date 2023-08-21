@@ -74,7 +74,6 @@ const RatingReadyContainer = styled.div`
     background-color: #FCFCFC;
     padding: 192px 93px 109px 93px;
     border-radius: 20px;
-    border: 1px solid #222020;
     position: relative;
 `;
 
