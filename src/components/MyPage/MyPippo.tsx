@@ -17,7 +17,6 @@ const MyPippo = ({ data } : any) => {
 
   return (
     <RightContainer>
-      <TitleContainer>MY POCKET</TitleContainer>
       <RightContentContainer>
         <InContainer>
           <PointCount>{point}P</PointCount>
@@ -42,7 +41,7 @@ const TitleContainer = styled.div`
 `;
 
 const RightContentContainer = styled.div`
-  min-width: 176px;
+  min-width: 272px;
   height: 204px;
   padding: 16px 15px 0px 15px;
   border: 1px solid #D5D4D4;
@@ -50,9 +49,10 @@ const RightContentContainer = styled.div`
 `;
 
 const InContainer = styled.div`
-  min-width: 146px;
+  min-width: 100%;
+  height: 100%;
   border: 1px solid #D5D4D4;
-  padding: 44px 31px 42px 31px;
+  padding: 43px 56px 56px 42px;
 `;
 
 const PointText = styled.div`
