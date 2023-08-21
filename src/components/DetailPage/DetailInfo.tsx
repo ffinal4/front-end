@@ -6,7 +6,6 @@ import Time from "../../assets/icon/time.png";
 import Layer from "../../assets/icon/layer_6.png";
 import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
-import { Category } from "../common/enum";
 import { useMutation } from "react-query";
 import { deleteGoodsApi, postZzimApi } from "../../api/goods";
 import CardZzimBtn from "../common/CardZzimBtn";

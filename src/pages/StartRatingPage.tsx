@@ -4,6 +4,7 @@ import { StBasicButton } from '../styles/BasicButton';
 import Kangaroo from '../assets/images/kangaroowhy.png'
 import { useNavigate } from 'react-router-dom';
 import Manual from '../components/RatingPage/Manual';
+import RakingSystem from '../components/StartRationPage/RakingSystem';
 
 const StartRatingPage = () => {
 
@@ -36,6 +37,7 @@ const StartRatingPage = () => {
                 <ImageContainer src={Kangaroo}/>
             </RatingReadyContainer>
         </MainLayout>
+        <RakingSystem />
     </MainLayoutContainer>
   )
 };
@@ -43,7 +45,7 @@ const StartRatingPage = () => {
 const MainLayoutContainer = styled.div`
     width: 100%;
     height: 963px;
-    background-color: #F8F3EF;
+    background-color: #FCFCFC;
 `;
 
 const MainLayout = styled.div`
