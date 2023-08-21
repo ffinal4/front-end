@@ -6,11 +6,11 @@ import Time from "../../assets/icon/time.png";
 import Layer from "../../assets/icon/layer_6.png";
 import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
-import { Category } from "../common/enum";
 import { useMutation } from "react-query";
 import { deleteGoodsApi, postZzimApi } from "../../api/goods";
 import CardZzimBtn from "../common/CardZzimBtn";
 import { useNavigate } from "react-router-dom";
+import { ValueToEnum } from "../../utils/EnumCategory";
 
 const DetailInfo = ({ data }: any) => {
   const navigate = useNavigate();
@@ -141,7 +141,7 @@ const DetailInfo = ({ data }: any) => {
       <TextContainer>
         <TextLine>
           <ColorText color="#717171">카테고리</ColorText>
-          <ColorText color="#222020">{categorys}</ColorText>
+          <ColorText color="#222020">{ValueToEnum(categorys)}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품상태</ColorText>

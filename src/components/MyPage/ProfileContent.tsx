@@ -42,7 +42,7 @@ const LeftContainer = styled.div`
     height: 204px;
 
     @media screen and (max-width: 1136px) {
-        height: 100%;
+        width: 100%;
     }
 `;
 

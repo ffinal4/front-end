@@ -9,6 +9,7 @@ import { StBasicButton } from "../../styles/BasicButton";
 import BidModal from "./BidModal";
 import CardZzimBtn from "../common/CardZzimBtn";
 import { useNavigate } from "react-router-dom";
+import { ValueToEnum } from "../../utils/EnumCategory";
 
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
@@ -97,7 +98,7 @@ const DetailContent = ({ data }: any) => {
       <TextContainer>
         <TextLine>
           <ColorText color="#717171">카테고리</ColorText>
-          <ColorText color="#222020">{newData.category}</ColorText>
+          <ColorText color="#222020">{ValueToEnum(newData.category)}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품상태</ColorText>

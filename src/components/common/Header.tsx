@@ -7,7 +7,7 @@ import loginLogo from "../../assets/logo/loginlogo.png";
 import loginLTitle from "../../assets/logo/login_title.png";
 import search from "../../assets/icon/search.png";
 import alarm from "../../assets/icon/alarm.png";
-import mypage from "../../assets/icon/mypage.png";
+import mypage from "../../assets/icon/profile.png";
 import peeppo from "../../assets/icon/peeppo.png";
 import Navbar from "./Navbar";
 import { postLogoutApi } from "../../api/users";
@@ -35,6 +35,7 @@ const Header = () => {
       console.log(res);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+      localStorage.removeItem("location");
       setIsLoggedIn(false);
       navigate("/");
     } catch (error) {
