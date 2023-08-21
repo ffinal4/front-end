@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components';
 import AucDetail from './AucDetail';
+import { ValueToEnum } from '../../utils/EnumCategory';
 
 const AucUploadDetail = ({ findedData } : any) => {
     const [detailTap, setDetailTap] = useState({
@@ -54,7 +55,7 @@ const AucUploadDetail = ({ findedData } : any) => {
                         <InfoTextContainer>
                             <TextTitleContainer>
                                 <InfoTextTitle>{findedData.title}</InfoTextTitle>
-                                <InfoTextContent style={{color: "#A4A4A4"}}>{findedData.category}</InfoTextContent>
+                                <InfoTextContent style={{color: "#A4A4A4"}}>{ValueToEnum(findedData.category)}</InfoTextContent>
                             </TextTitleContainer>
                             <InfoTextContent>{findedData.content}</InfoTextContent>
                         </InfoTextContainer>

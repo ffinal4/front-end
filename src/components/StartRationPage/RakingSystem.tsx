@@ -4,35 +4,30 @@ import Image from '../../assets/icon/profile.png'
 
 const RakingSystem = () => {
 
-    const divRef = useRef<HTMLDivElement>(null);
-    const [refCurrent, setRefCurrent] = useState(0);
-    const [custominterval, setCustomInterval] = useState(2000);
-    const pageWidth = 1920;
-    const slideWidth = pageWidth * refCurrent;
+    // const divRef = useRef<HTMLDivElement>(null);
+    // const [refCurrent, setRefCurrent] = useState(0);
+    // const pageWidth = 1920;
+    // const numberOfSlides = 100;
+    // const slideWidth = refCurrent * (pageWidth / numberOfSlides);
 
-    setInterval(() => 
-        setRefCurrent(index => index + 1), custominterval
-        
-    );
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //     setRefCurrent((index) => (index + 1) % numberOfSlides);
+    //     }, 100);
 
-    useEffect(() => {
-        
-        if (divRef.current) {
-            divRef.current.style.transition = "all 2s ease";
-            divRef.current.style.transform = `translateX(-${slideWidth}px)`
-        };
-        if (refCurrent === 2) {
-            setRefCurrent(0);
-            // transition 효과를 정지 시킨다.
-            if (divRef.current) {
-                divRef.current.style.transition = "";
-            };
-        };
-    }, [refCurrent]);
+    //     return () => clearInterval(intervalId);
+    // }, []);
+
+    // useEffect(() => {
+    //     if (divRef.current) {
+    //     divRef.current.style.transition = 'all 2s';
+    //     divRef.current.style.transform = `translateX(-${refCurrent * (100 / numberOfSlides)}%)`;
+    //     }
+    // }, [refCurrent, numberOfSlides]);
 
   return (
     <AllContainer>
-        <RakingWrapper ref={divRef}>
+        <RakingWrapper>
             <RakingContainer style={{border: "4px solid #EC8D49"}}>
                 <RakingNumber>1</RakingNumber>
                 <ProfileImg src={Image} />
@@ -63,7 +58,7 @@ const RakingSystem = () => {
                 <Nickname style={{color: "#ADADAD"}}>운동하러가는지훈님</Nickname>
                 <SuccessPoint style={{color: "#ADADAD"}}>5</SuccessPoint>
             </RakingContainer>
-            <RakingContainer style={{border: "4px solid #EC8D49"}}>
+            {/* <RakingContainer style={{border: "4px solid #EC8D49"}}>
                 <RakingNumber>1</RakingNumber>
                 <ProfileImg src={Image} />
                 <Nickname>구스구스덕게임을하고싶은지원A님</Nickname>
@@ -92,14 +87,14 @@ const RakingSystem = () => {
                 <ProfileImg src={Image} />
                 <Nickname style={{color: "#ADADAD"}}>운동하러가는지훈님</Nickname>
                 <SuccessPoint style={{color: "#ADADAD"}}>5</SuccessPoint>
-            </RakingContainer>
+            </RakingContainer> */}
         </RakingWrapper>
     </AllContainer>
   )
 };
 
 const AllContainer = styled.div`
-    width: 1903px;
+    width: screen;
     height: 140px;
     background-color: #EFEFEF; 
     position: relative;
@@ -107,9 +102,8 @@ const AllContainer = styled.div`
 `;
 
 const RakingWrapper = styled.div`
-    width: 100%;
     height: 100%;
-    padding: 30px 8px;
+    padding: 30px ;
     display: flex;
     gap: 16px;
 `;

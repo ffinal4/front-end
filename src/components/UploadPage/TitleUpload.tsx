@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { styled } from 'styled-components'
 
-const TitleUpload = ({ setUploadData, uploadData } : any) => {
+const TitleUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
 
     const [titleInput, setTitleInput] = useState({
         title: ""
@@ -22,7 +22,10 @@ const TitleUpload = ({ setUploadData, uploadData } : any) => {
 
     return (
         <LineContainer>
-            <RequiredText>제목*</RequiredText>
+            <RequiredText
+                style={{color: `${(failedUpload && uploadData.data.title === "") && "#DF3737"}`}}
+            >제목*</RequiredText>
+            <OutWrapper>
             <Wrapper>
                 <TitleInput
                     type='text'
@@ -36,6 +39,10 @@ const TitleUpload = ({ setUploadData, uploadData } : any) => {
                 </TitleInput>
                 <Text color={(titleInput.title.length >= 40) ? "red" : "#000"}>{titleInput.title.length}/40</Text>
             </Wrapper>
+            {(failedUpload && uploadData.data.title === "")
+                && <Text color={"#DF3737"}>* 제목을 입력해주세요.</Text>
+            }
+            </OutWrapper>
         </LineContainer>
     )
 };
@@ -93,6 +100,12 @@ const Text = styled.div<{ color: string }>`
         justify-content: end;
         width: 100%;
     }
+`;
+
+const OutWrapper = styled.div`
+    display: grid;
+    gap: 10px;
+    width: 100%;
 `;
 
 export default TitleUpload;

@@ -37,20 +37,8 @@ const DetailContent = ({ data }: any) => {
 
   return (
     <InfoContainer>
-      <InfoTitle>aaa</InfoTitle>
-      <UserNameContainer>
-        <ColorText color="#ADADAD">10,000PP</ColorText>
-        <BoxWrapper>
-          <TextWrapper>
-            <SmallBox src={Like} />
-            <ColorText color="#ADADAD">12</ColorText>
-          </TextWrapper>
-          <TextWrapper>
-            <SmallBox src={Time} />
-            <ColorText color="#ADADAD">10일 전</ColorText>
-          </TextWrapper>
-        </BoxWrapper>
-      </UserNameContainer>
+      <InfoTitle>{newData.title}</InfoTitle>
+      <UserNameContainer></UserNameContainer>
       <UserNameContainer style={{ border: "none", paddingTop: "16px", position: "relative" }}>
         <TextWrapper
           style={{ gap: "8px" }}
@@ -66,7 +54,16 @@ const DetailContent = ({ data }: any) => {
           <ColorText color="#39373A">{newData.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
-        <TextWrapper>
+        <BoxWrapper>
+          <TextWrapper>
+            <SmallBox src={Like} />
+            <ColorText color="#ADADAD">12</ColorText>
+          </TextWrapper>
+          <TextWrapper>
+            <SmallBox src={Time} />
+            <ColorText color="#ADADAD">10일 전</ColorText>
+          </TextWrapper>
+          <TextWrapper>
           {data.data.info.checkSameUser ? (
             <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
               <SmallBox src={Group} />
@@ -94,6 +91,7 @@ const DetailContent = ({ data }: any) => {
             </ModalBtnWrapper>
           )}
         </TextWrapper>
+        </BoxWrapper>
       </UserNameContainer>
       <TextContainer>
         <TextLine>
@@ -116,7 +114,7 @@ const DetailContent = ({ data }: any) => {
           <ColorText color="#717171">상품태그</ColorText>
           <ColorText color="#222020">#스타벅스 #기프티콘 #교환권</ColorText>
         </TextLine>
-        <TextLine>
+        <TextLine style={{gap: "54px"}}>
           <ColorText color="#717171">하한가</ColorText>
           <ColorText color="#222020">{newData.tradeType}PP</ColorText>
         </TextLine>

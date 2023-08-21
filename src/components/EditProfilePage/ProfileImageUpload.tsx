@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { styled } from "styled-components";
-import removeIcon from "../../assets/images/remove.png";
+import removeIcon from "../../assets/icon/trash.png";
 import camera from "../../assets/icon/camera.png";
 
 const ProfileImageUpload = (props: any) => {

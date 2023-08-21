@@ -28,6 +28,8 @@ export const ValueToEnum = (serverValue : string) => {
       return Category.FURNITURE;
     case "HOBBY":
       return Category.HOBBY;
+    case "BOOK":
+      return Category.BOOK;
     case "BEAUTY":
       return Category.BEAUTY;
     case "BABY":

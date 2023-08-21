@@ -61,7 +61,7 @@ const ModalBackgroundBox = styled.div`
     top: 0;
     left: 0;
     opacity: 0.25;
-    z-index: 888;
+    z-index: 1000;
 `;
 
 const ModalContainer = styled.div`
@@ -72,7 +72,7 @@ const ModalContainer = styled.div`
     position: absolute;
     top: 220px;
     left: 25%;
-    z-index: 999;
+    z-index: 1003;
     padding: 40px 30px;
 `;
 

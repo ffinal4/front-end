@@ -44,16 +44,9 @@ const RecommendCard = () => {
                 </SlideButton>
             </SlideBtnWrapper>
             <CardListContainer ref={slideRef}>
-                <CardContainer>
-                    <CardImage>
-                        <LikeButton>♥</LikeButton>
-                    </CardImage>
-                    <ContentContainer>
-                        <TitleText>물건이름</TitleText>
-                        <UserInfo>사용자정보</UserInfo>
-                    </ContentContainer>
-                    <Content>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</Content>
-                </CardContainer>
+                <ImageCard>
+                    <ItemCard />
+                </ImageCard>
                 <ImageCard>
                     <ItemCard />
                 </ImageCard>

@@ -1,9 +1,9 @@
 import React, { ChangeEvent,useState } from "react";
 import { styled } from "styled-components";
-import removeIcon from "../../assets/images/remove.png";
+import removeIcon from "../../assets/icon/trash.png";
 import Camera from '../../assets/icon/camera.png'
 
-const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
+const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
   type FileState = {
     default: { id: number; imageUrl: string };
     second: { id: number; imageUrl: string };
@@ -94,7 +94,9 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
 
   return (
     <LineContainer>
-      <RequiredText>상품이미지*</RequiredText>
+      <RequiredText
+        style={{color: `${(failedUpload && uploadImages.length === 0) && "#DF3737"}`}}
+      >상품이미지*</RequiredText>
       <ContentContainer>
         {file.default.imageUrl ||
         file.second.imageUrl ||
@@ -103,7 +105,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
             {file.default.imageUrl ? (
               <ImageThumbnailContainer
                 key={file.default.id}
-                style={{ border: "6px solid #6B6B6B" }}
+                style={{ border: "6px solid #EC8D49" }}
               >
                 <FirstImage>대표이미지</FirstImage>
                 <ImageThumbnail
@@ -185,7 +187,7 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
                 alt=""
                 onClick={onClickRemoveHandler}
               />
-              등록이미지 전체 삭제
+              이미지 전체 삭제
             </RemoveBtnWrapper>
           </ImageContainer>
         ) : (
@@ -229,6 +231,11 @@ const ImageUpload = ({ setUploadImages, uploadImages }: any) => {
           </ImageContainer>
         )}
         <TextWrapper>
+          {(failedUpload && uploadImages.length === 0)
+            && <Text style={{color: "#DF3737", paddingBottom: "10px"}}>
+              * 상품 이미지는 최소 1개 이상 필수로 등록되어야 합니다.
+            </Text>
+          }
           <Text>* 상품 이미지는 640X640에 최적화되어 있습니다.</Text>
           <Text>- 이미지는 상품 등록 시 정사각형으로 잘려서 등록됩니다.</Text>
           <Text>
@@ -287,7 +294,7 @@ const FirstImage = styled.div`
   font-size: 14px;
   font-weight: 400;
   line-height: 150%;
-  background-color: #6b6b6b;
+  background-color: #EC8D49;
   color: #fff;
 `;
 
@@ -348,6 +355,8 @@ const RemoveBtnWrapper = styled.div`
   line-height: 150%;
   display: flex;
   margin: 0px 0px 0px 173px;
+  color: #222020;
+  cursor: pointer;
 
   @media screen and (max-width: 1136px) {
     margin: 0px;
@@ -357,10 +366,8 @@ const RemoveBtnWrapper = styled.div`
 const RemoveIcon = styled.img`
   width: 24px;
   height: 24px;
-  border: 3px solid #000;
-  border-radius: 5px;
+  object-fit: contain;
   opacity: 0.7;
-  cursor: pointer;
 `;
 
 export default ImageUpload;
