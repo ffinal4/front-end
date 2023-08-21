@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { ValueToEnum } from "../../utils/EnumCategory";
 
 const DetailContent = ({ data }: any) => {
+  
   const navigate = useNavigate();
   const newData = data.data.info.goodsResponseDto;
   // console.log("newData", newData);

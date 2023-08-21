@@ -11,7 +11,6 @@ const ProfileContent = ({ data } : any) => {
     
     return (
         <LeftContainer>
-            <TitleContainer>PROFILE</TitleContainer>
             <LeftContentContainer>
                 <ImageContainer src={(data.data.info.image === null) ? MyChat : data.data.info.image}/>
                 <ContentInBox>
@@ -91,7 +90,7 @@ const ContentLine = styled.div`
 const TypeContainer = styled.div`
     font-family: "Pretendard";
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 400;
     line-height: 150%;
     width: 192px;
 
@@ -103,7 +102,7 @@ const TypeContainer = styled.div`
 const TextContainer = styled.div`
     font-family: "Pretendard";
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 150%;
 `;
 

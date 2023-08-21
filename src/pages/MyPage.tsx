@@ -4,6 +4,7 @@ import ProfileContent from '../components/MyPage/ProfileContent';
 import MyPippo from '../components/MyPage/MyPippo';
 import { useQuery } from 'react-query';
 import { getMypageApi } from '../api/users';
+import Background from '../assets/images/mypagebg.png'
 
 const MyPage = () => {
     const { isLoading, error, data } : any = useQuery("myPageData", getMypageApi, {
@@ -15,6 +16,7 @@ const MyPage = () => {
 
   return (
     <AllLayoutContainer>
+        <LayoutImage src={Background}/>
         <LayoutContainer>
             <MyPageTitle>MY PAGE</MyPageTitle>
             <MyPageContentContainer>
@@ -31,6 +33,15 @@ const AllLayoutContainer = styled.div`
     height: 100vh;
     position: relative;
     background-color: #FCF6E9;
+`;
+
+const LayoutImage = styled.img`
+    width: 100%;
+    height: 327px;
+    object-fit: contain;
+    position: absolute;
+    top: 170px;
+    left: 0;
 `;
 
 const LayoutContainer = styled.div`

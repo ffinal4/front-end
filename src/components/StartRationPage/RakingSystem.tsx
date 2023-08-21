@@ -4,30 +4,35 @@ import Image from '../../assets/icon/profile.png'
 
 const RakingSystem = () => {
 
-    // const divRef = useRef<HTMLDivElement>(null);
-    // const [refCurrent, setRefCurrent] = useState(0);
-    // const pageWidth = 1920;
-    // const numberOfSlides = 100;
-    // const slideWidth = refCurrent * (pageWidth / numberOfSlides);
+    const divRef = useRef<HTMLDivElement>(null);
+    const [refCurrent, setRefCurrent] = useState(0);
+    const numberOfSlides = 210;
 
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //     setRefCurrent((index) => (index + 1) % numberOfSlides);
-    //     }, 100);
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+        setRefCurrent((index) => (index + 0.2) % numberOfSlides);
+        }, 100);
 
-    //     return () => clearInterval(intervalId);
-    // }, []);
+        return () => clearInterval(intervalId);
+    }, []);
 
-    // useEffect(() => {
-    //     if (divRef.current) {
-    //     divRef.current.style.transition = 'all 2s';
-    //     divRef.current.style.transform = `translateX(-${refCurrent * (100 / numberOfSlides)}%)`;
-    //     }
-    // }, [refCurrent, numberOfSlides]);
+    useEffect(() => {
+        if (divRef.current) {
+            if (refCurrent === 0) {
+                divRef.current.style.transition = 'none';
+                divRef.current.style.opacity = '0';
+            } else {
+                divRef.current.style.opacity = '1';
+            divRef.current.style.transition = 'transform 0.1s ease-in-out';
+            divRef.current.style.transform = `translateX(-${refCurrent * (210 / numberOfSlides)}%)`;
+            };
+        };
+    }, [refCurrent, numberOfSlides]);
 
   return (
     <AllContainer>
-        <RakingWrapper>
+        <RakingWrapper ref={divRef}>
+            <EmptyContainer />
             <RakingContainer style={{border: "4px solid #EC8D49"}}>
                 <RakingNumber>1</RakingNumber>
                 <ProfileImg src={Image} />
@@ -58,6 +63,7 @@ const RakingSystem = () => {
                 <Nickname style={{color: "#ADADAD"}}>운동하러가는지훈님</Nickname>
                 <SuccessPoint style={{color: "#ADADAD"}}>5</SuccessPoint>
             </RakingContainer>
+            <EmptyContainer />
             {/* <RakingContainer style={{border: "4px solid #EC8D49"}}>
                 <RakingNumber>1</RakingNumber>
                 <ProfileImg src={Image} />
@@ -106,6 +112,10 @@ const RakingWrapper = styled.div`
     padding: 30px ;
     display: flex;
     gap: 16px;
+`;
+
+const EmptyContainer = styled.div`
+    min-width: 1920px;
 `;
 
 const RakingContainer = styled.div`
