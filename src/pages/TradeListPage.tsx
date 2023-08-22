@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import HorizontalLine from "../components/common/HorizontalLine";
@@ -8,9 +8,12 @@ import { StTitle } from "../styles/TitleFont";
 import ItemCardList from "../components/common/ItemCardList";
 import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
+import { pagination } from "../store/pagination";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 
 const TradeListPage = () => {
-  const { isLoading, error, data } = useQuery("tradeListPageData", getGoodsApi, {
+  const currentPage = useRecoilValue(pagination);
+  const { isLoading, error, data } = useQuery(["tradeListPageData", currentPage], () => getGoodsApi(currentPage), {
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <div>Loading...</div>;
