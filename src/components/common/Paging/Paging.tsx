@@ -15,6 +15,7 @@ const Paging = () => {
   }, []);
   const handlePageChange = (page: number) => {
     setPage(page);
+    window.scrollTo(0, 0);
   };
 
   return (
