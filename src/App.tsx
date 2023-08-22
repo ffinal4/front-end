@@ -26,42 +26,45 @@ import AuctionListPage from "./pages/AuctionListPage";
 import Footer from "./components/common/Footer";
 import UserPocketPage from "./pages/UserPocketPage";
 import ScrollTop from "./utils/ScrollTop";
+import { RecoilRoot } from "recoil";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <div className="App">
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <ScrollTop />
-          <Header />
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/chat" element={<ChattingPage />} />
-            <Route path="/ratingstart" element={<StartRatingPage />} />
-            <Route path="/rating" element={<RatingPage />} />
-            <Route path="/" element={<MainPage />} />
-            <Route path="/mypocket" element={<MyPocketPage />} />
-            <Route path="/userpocket/:nickname" element={<UserPocketPage />} />
-            <Route element={<MainLayout />}>
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="/upload" element={<UploadPage />} />
-              <Route path="/tradelist" element={<TradeListPage />} />
-              <Route path="/detail/:goodsId" element={<DetailPage />} />
-              <Route path="/editprofile" element={<EditProfilePage />} />
-              <Route path="/auctionupload" element={<AuctionUploadPage />} />
-              <Route path="/traderequest" element={<TradeRequestPage />} />
-              <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
-              <Route path="/auctiondetail/:auctionId" element={<AuctionDetailPage />} />
-              <Route path="/zzimlist" element={<ZzimListPage />} />
-              <Route path="/auctionlist" element={<AuctionListPage />} />
-            </Route>
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </QueryClientProvider>
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <ScrollTop />
+            <Header />
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/mypage" element={<MyPage />} />
+              <Route path="/chat" element={<ChattingPage />} />
+              <Route path="/ratingstart" element={<StartRatingPage />} />
+              <Route path="/rating" element={<RatingPage />} />
+              <Route path="/" element={<MainPage />} />
+              <Route path="/mypocket" element={<MyPocketPage />} />
+              <Route path="/userpocket/:nickname" element={<UserPocketPage />} />
+              <Route element={<MainLayout />}>
+                <Route path="/signup" element={<SignupPage />} />
+                <Route path="/upload" element={<UploadPage />} />
+                <Route path="/tradelist" element={<TradeListPage />} />
+                <Route path="/detail/:goodsId" element={<DetailPage />} />
+                <Route path="/editprofile" element={<EditProfilePage />} />
+                <Route path="/auctionupload" element={<AuctionUploadPage />} />
+                <Route path="/traderequest" element={<TradeRequestPage />} />
+                <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
+                <Route path="/auctiondetail/:auctionId" element={<AuctionDetailPage />} />
+                <Route path="/zzimlist" element={<ZzimListPage />} />
+                <Route path="/auctionlist" element={<AuctionListPage />} />
+              </Route>
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </RecoilRoot>
     </div>
   );
 }

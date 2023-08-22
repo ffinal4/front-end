@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Pagination from "react-js-pagination";
 import "../Paging/paging.css";
+import { useRecoilState } from "recoil";
+import { pagination } from "../../../store/pagination";
 
 const Paging = () => {
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useRecoilState<number>(pagination);
 
   const handlePageChange = (page: number) => {
     setPage(page);
