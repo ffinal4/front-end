@@ -28,29 +28,6 @@ const ItemCard = ({ item }: any) => {
   );
 };
 
-const AddressContent = styled.div`
-  border-radius: 10px 10px 0px 0px;
-  width: 100%;
-  background-color: rgba(34, 32, 32, 0.2);
-  padding: 10px;
-  top: 0px;
-  left: 0px;
-  position: absolute;
-  color: var(--black-white-white, #fcfcfc);
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  display: flex;
-  align-items: center;
-`;
-
-const AddressImage = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-`;
 const ItemCardContainer = styled.div`
   position: relative;
   width: 272px;

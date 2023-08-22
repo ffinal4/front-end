@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import zzim from "../../assets/icon/zzim.png";
+import auctionzzim from "../../assets/icon/auctionzzim.png";
 import nozzim from "../../assets/icon/nozzim.png";
 import { styled } from "styled-components";
 import { useMutation, useQueryClient } from "react-query";
 import { postZzimApi } from "../../api/goods";
 import { StBasicButton } from "../../styles/BasicButton";
 
-const CardZzimBtn = ({ checkZzim, goodsId, isCard, buttonColor, fontColor }: any) => {
+const CardZzimBtn = ({ checkZzim, goodsId, isCard, isAuction, buttonColor, fontColor }: any) => {
   const queryClient = useQueryClient();
   const [isZzim, setIsZzim] = useState(false);
   const zzimMutate = useMutation(() => postZzimApi({ goodsId: goodsId }), {
@@ -27,7 +28,11 @@ const CardZzimBtn = ({ checkZzim, goodsId, isCard, buttonColor, fontColor }: any
     <div>
       {isCard ? (
         <ZzimBtnContainer>
-          <ZzimBtn src={isZzim ? zzim : nozzim} onClick={zzimBtnhandleClick} />
+          {isAuction ? (
+            <ZzimBtn src={isZzim ? auctionzzim : nozzim} onClick={zzimBtnhandleClick} />
+          ) : (
+            <ZzimBtn src={isZzim ? zzim : nozzim} onClick={zzimBtnhandleClick} />
+          )}
         </ZzimBtnContainer>
       ) : (
         <StButton buttonColor={buttonColor} onClick={zzimBtnhandleClick} fontcolor={fontColor}>

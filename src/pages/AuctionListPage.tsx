@@ -8,6 +8,8 @@ import { getAuctionListApi } from "../api/acution";
 import AuctionCard from "../components/common/AuctionCard";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
+import FilterButton from "../components/common/FilterButton";
+import Paging from "../components/common/Paging/Paging";
 
 const AuctionListPage = () => {
   const navigate = useNavigate();
@@ -30,21 +32,23 @@ const AuctionListPage = () => {
         <TitleText marginbottom="0" textalign="center">
           POCKET AUCTION
         </TitleText>
+        <StButton
+          buttonColor="#58ABF7"
+          onClick={() => {
+            navigate("/auctionupload");
+          }}
+        >
+          경매 물품 올리기
+        </StButton>
       </TitleContainer>
-      <StButton
-        buttonColor="#58ABF7"
-        onClick={() => {
-          navigate("/auctionupload");
-        }}
-      >
-        경매 물품 올리기
-      </StButton>
       <HorizontalLine />
+      <FilterButton />
       <CardContainer>
         {data?.data.info.content.map((item: any) => {
           return <AuctionCard item={item} key={item.auctionid} />;
         })}
       </CardContainer>
+      <Paging />
     </AuctionListPageContainer>
   );
 };
@@ -60,10 +64,13 @@ const StButton = styled(StBasicButton)`
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 24px */
-  margin: 0 0 19px auto;
+  margin-top: 40px;
 `;
 const CardContainer = styled.div`
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  gap: 40px 16px;
 `;
 
 const ImageContainer = styled.div`
