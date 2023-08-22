@@ -19,7 +19,11 @@ const Pocket = () => {
         <PocketInline>
           <BoxContainer>
             <OutBox>
-              <Wrapper>
+              <Wrapper
+                onClick={() => {
+                  navigate("/traderequest");
+                }}
+              >
                 <InBoxWrapper>
                   <InBox src={Exchange} />
                 </InBoxWrapper>

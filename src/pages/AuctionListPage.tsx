@@ -6,8 +6,11 @@ import smallMastcot from "../assets/icon/peeppo.png";
 import { useQuery } from "react-query";
 import { getAuctionListApi } from "../api/acution";
 import AuctionCard from "../components/common/AuctionCard";
+import { StBasicButton } from "../styles/BasicButton";
+import { useNavigate } from "react-router-dom";
 
 const AuctionListPage = () => {
+  const navigate = useNavigate();
   const { isLoading, error, data } = useQuery("auctionListPageData", getAuctionListApi, {
     refetchOnWindowFocus: false,
   });
@@ -17,7 +20,7 @@ const AuctionListPage = () => {
     console.log(error);
   }
   return (
-    <div>
+    <AuctionListPageContainer>
       <TitleContainer>
         <ImageContainer>
           <TitleImage src={smallMastcot} />
@@ -25,19 +28,40 @@ const AuctionListPage = () => {
           <TitleImage src={smallMastcot} />
         </ImageContainer>
         <TitleText marginbottom="0" textalign="center">
-          INSIDE POCKET
+          POCKET AUCTION
         </TitleText>
       </TitleContainer>
+      <StButton
+        buttonColor="#58ABF7"
+        onClick={() => {
+          navigate("/auctionupload");
+        }}
+      >
+        경매 물품 올리기
+      </StButton>
       <HorizontalLine />
       <CardContainer>
         {data?.data.info.content.map((item: any) => {
           return <AuctionCard item={item} key={item.auctionid} />;
         })}
       </CardContainer>
-    </div>
+    </AuctionListPageContainer>
   );
 };
 
+const AuctionListPageContainer = styled.div`
+  width: 100%;
+`;
+
+const StButton = styled(StBasicButton)`
+  border: 1px solid var(--black-white-black, #222020);
+  color: var(--black-white-white, #fcfcfc);
+  /* KOR/Kor B 16 */
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+  margin: 0 0 19px auto;
+`;
 const CardContainer = styled.div`
   display: flex;
 `;

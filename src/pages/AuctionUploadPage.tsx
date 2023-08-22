@@ -5,20 +5,19 @@ import ProductChoice from "../components/AuctionUploadPage/ProductChoice";
 import { useQuery } from "react-query";
 import { getAuctionUploadApi, postAuctionUploadApi } from "../api/goods";
 import { useNavigate } from "react-router-dom";
-import Remove from '../assets/icon/remove.png'
+import Remove from "../assets/icon/remove.png";
 
 const AuctionUploadPage = () => {
-
   const navigate = useNavigate();
 
-  const { isLoading, error, data } : any = useQuery("AuctionMyPocket", getAuctionUploadApi, {
+  const { isLoading, error, data }: any = useQuery("AuctionMyPocket", getAuctionUploadApi, {
     refetchOnWindowFocus: false,
   });
 
   console.log("경매물품등록내주머니데이터", data);
 
   const [failed, setFailed] = useState(false);
-  const [myPocketGoods, setMyPocketGoods] = useState<{goodsId: string | number}>({
+  const [myPocketGoods, setMyPocketGoods] = useState<{ goodsId: string | number }>({
     goodsId: "",
   });
 
@@ -50,7 +49,7 @@ const AuctionUploadPage = () => {
   };
 
   const onClickRemovePriceHandler = () => {
-    setProductBid({...productBid, lowPrice: 0});
+    setProductBid({ ...productBid, lowPrice: 0 });
   };
   console.log("productBid", productBid);
 
@@ -62,94 +61,61 @@ const AuctionUploadPage = () => {
       <PageTitleContainer>START TO BID</PageTitleContainer>
       <KoreanTitle>경매 시작하기</KoreanTitle>
       <TextWrapper>
-        <Text>
-          * 드려요, 보세요 정보는 기존 물건을 주머니에 등록할 때 정보와 동일하게
-          보여집니다.
-        </Text>
-        <Text>
-          * 경매 등록 시 10포인트가 차감되며 입찰자가 없을 경우 글을 수정하거나
-          삭제할 수 있습니다.
-        </Text>
+        <Text>* 드려요, 보세요 정보는 기존 물건을 주머니에 등록할 때 정보와 동일하게 보여집니다.</Text>
+        <Text>* 경매 등록 시 10포인트가 차감되며 입찰자가 없을 경우 글을 수정하거나 삭제할 수 있습니다.</Text>
       </TextWrapper>
       <AuctionUploadContainer>
         <PeriodUploadContainer>
-          <RequiredText
-            style={{color: `${(failed && endTime === "") && "#DF3737"}`}}
-          >경매기간*</RequiredText>
+          <RequiredText style={{ color: `${failed && endTime === "" && "#DF3737"}` }}>경매기간*</RequiredText>
           <FirstWrapper>
             <ButtonWrapper>
-              <Button
-                buttonColor={endTime === "30분" ? "#9ACBF9" : "white"}
-                onClick={onClickTwelveHourHandler}
-              >
+              <Button buttonColor={endTime === "30분" ? "#9ACBF9" : "white"} onClick={onClickTwelveHourHandler}>
                 30분
               </Button>
-              <Button
-                buttonColor={endTime === "1시간" ? "#9ACBF9" : "white"}
-                onClick={onClickOneDayHandler}
-              >
+              <Button buttonColor={endTime === "1시간" ? "#9ACBF9" : "white"} onClick={onClickOneDayHandler}>
                 1시간
               </Button>
-              <Button
-                buttonColor={endTime === "3시간" ? "#9ACBF9" : "white"}
-                onClick={onClickThreeDayHandler}
-              >
+              <Button buttonColor={endTime === "3시간" ? "#9ACBF9" : "white"} onClick={onClickThreeDayHandler}>
                 3시간
               </Button>
             </ButtonWrapper>
-            {(failed && endTime === "")
-              && <Text style={{color: "#DF3737", paddingTop: "10px"}}>
-                * 경매기간을 선택해주세요.
-              </Text>
-            }
-            <Text>
-              * 경매기간은 경매 시작을 기점으로 카운트다운되며 수정 할 수
-              없습니다.
-            </Text>
+            {failed && endTime === "" && (
+              <Text style={{ color: "#DF3737", paddingTop: "10px" }}>* 경매기간을 선택해주세요.</Text>
+            )}
+            <Text>* 경매기간은 경매 시작을 기점으로 카운트다운되며 수정 할 수 없습니다.</Text>
           </FirstWrapper>
         </PeriodUploadContainer>
-        <ProductChoice
-          myPocketGoods={myPocketGoods}
-          setMyPocketGoods={setMyPocketGoods}
-          failed={failed}
-          data={data}
-        />
+        <ProductChoice myPocketGoods={myPocketGoods} setMyPocketGoods={setMyPocketGoods} failed={failed} data={data} />
         <LastLineContainer>
-          <RequiredText
-            style={{color: `${(failed && lowPrice === ("" || 0)) && "#DF3737"}`}}
-          >입찰 제한*</RequiredText>
+          <RequiredText style={{ color: `${failed && lowPrice === ("" || 0) && "#DF3737"}` }}>입찰 제한*</RequiredText>
           <LineWrapper>
             <BidLimitWarpper>
               <InputWrapper>
                 <BidLimitInput
                   type="text"
-                  value={(lowPrice !== 0) ? locateLimit : ""}
+                  value={lowPrice !== 0 ? locateLimit : ""}
                   placeholder="입력한 가치 이상의 물건만 입찰됩니다."
                 />
-                {(lowPrice !== ( "" || 0 ))
-                  && <RemoveBtn onClick={onClickRemovePriceHandler}>
+                {lowPrice !== ("" || 0) && (
+                  <RemoveBtn onClick={onClickRemovePriceHandler}>
                     <IconBox src={Remove} />
-                  </RemoveBtn>}
+                  </RemoveBtn>
+                )}
               </InputWrapper>
               <ButtonWrapper>
                 {bidPrice.map((item) => {
                   return (
                     <div key={item}>
-                      <PriceBtn
-                        buttonColor="#CBE4FB"
-                        onClick={() => onClickAddPriceHandler(item)}
-                      >
+                      <PriceBtn buttonColor="#CBE4FB" onClick={() => onClickAddPriceHandler(item)}>
                         {item.toLocaleString()}
                       </PriceBtn>
                     </div>
                   );
                 })}
               </ButtonWrapper>
-              {(failed && lowPrice === ("" || 0))
-                && <Text style={{color: "#DF3737"}}>
-                  * 최소 1,000 이상의 값을 입력해 주세요.
-                </Text>
-              }
+              {failed && lowPrice === ("" || 0) && (
+                <Text style={{ color: "#DF3737" }}>* 최소 1,000 이상의 값을 입력해 주세요.</Text>
+              )}
             </BidLimitWarpper>
           </LineWrapper>
         </LastLineContainer>
@@ -157,39 +123,37 @@ const AuctionUploadPage = () => {
       <BottomBtnWrapper>
         <Button
           buttonColor="#58ABF7"
-          style={{color: "#FCFCFC", margin: "0px auto"}}
+          style={{ color: "#FCFCFC", margin: "0px auto" }}
           onClick={async () => {
             const newBid = {
               ...productBid,
               lowPrice: String(lowPrice),
             };
-            if (endTime === ""
-              || lowPrice === ""
-              || lowPrice === 0
-              || myPocketGoods.goodsId === "") {
+            if (endTime === "" || lowPrice === "" || lowPrice === 0 || myPocketGoods.goodsId === "") {
               setFailed(true);
             } else {
               try {
                 const res = await postAuctionUploadApi(newBid, myPocketGoods.goodsId);
                 if (res.status === 200) {
                   alert("경매물품 등록에 성공했습니다!");
-                  navigate('/');
-                };
+                  navigate("/");
+                }
               } catch {
                 if (error) {
-                  alert(`경매물품 등록에 필요한 포인트가 부족합니다.`)
+                  alert(`경매물품 등록에 필요한 포인트가 부족합니다.`);
                   console.log(error);
-                };
-              };
-            };
+                }
+              }
+            }
             // const jsonBid = JSON.stringify(newBid);
           }}
-        > 경매 시작</Button>
-        {(failed)
-          && <Text style={{color: "#DF3737", margin: "0px auto"}}>
-            * 최소 1,000 이상의 값을 입력해 주세요.
-          </Text>
-        }
+        >
+          {" "}
+          경매 시작
+        </Button>
+        {failed && (
+          <Text style={{ color: "#DF3737", margin: "0px auto" }}>* 최소 1,000 이상의 값을 입력해 주세요.</Text>
+        )}
       </BottomBtnWrapper>
     </PageLayoutContainer>
   );
@@ -325,7 +289,7 @@ const RemoveBtn = styled.div`
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
-  color: #ADADAD;
+  color: #adadad;
   cursor: pointer;
 `;
 
@@ -347,7 +311,7 @@ const PriceBtn = styled(StBasicButton)`
   color: #222020;
 
   &:active {
-    background-color: #58ABF7;
+    background-color: #58abf7;
   }
 `;
 

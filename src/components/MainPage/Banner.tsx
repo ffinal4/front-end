@@ -4,11 +4,11 @@ import { StBasicButton } from "../../styles/BasicButton";
 import samllPocketImage from "../../assets/images/smallPocket.svg";
 import MasCotImage from "../../assets/images/mascot1.svg";
 import { StTitle } from "../../styles/TitleFont";
-
+import bannerBackground from "../../assets/images/banner2.png";
 const Banner = () => {
   return (
     <BannerContainer>
-      <FirstBg>
+      <FirstBg background={bannerBackground}>
         <ContentContainer>
           <StTitle marginbottom={"20px"} textalign="left">
             LET’s peeping pockets!
@@ -23,7 +23,7 @@ const Banner = () => {
           <MascotImage src={MasCotImage} />
         </ContentContainer>
       </FirstBg>
-      <SecondBg />
+      {/* <SecondBg /> */}
     </BannerContainer>
   );
 };
@@ -35,10 +35,13 @@ const BannerContainer = styled.div`
   margin-bottom: 200px;
 `;
 
-const FirstBg = styled.div`
+const FirstBg = styled.div<{ background: string }>`
   width: 100%;
-  height: 422px;
-  background-color: #ffca64;
+  height: 508px;
+  background-size: 100% 508px;
+  background-repeat: no-repeat;
+  background-image: url(${(props) => props.background});
+  /* background-color: #ffca64; */
   @media screen and (max-width: 1136px) {
     padding: 0 20px 0 20px;
   }
@@ -60,13 +63,6 @@ const Explain = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 27px */
-`;
-const SecondBg = styled.div`
-  width: 0;
-  height: 0;
-  border-top: 86px solid #ffca64;
-  border-right: 50vw solid transparent;
-  border-left: 50vw solid transparent;
 `;
 
 const MainStBasicButton = styled(StBasicButton)`
