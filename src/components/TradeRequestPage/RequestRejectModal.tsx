@@ -29,13 +29,12 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
       <SubContent>한 번 거절한 물건은 다시 교환 신청 할 수 없어요.</SubContent>
       <ButtonContainer>
         <StRejectButton buttonColor="#FFCA64">거절하기</StRejectButton>
-        {/* <RejectButton>거절하기</RejectButton> */}
       </ButtonContainer>
     </ModalContent>
   );
 };
 
-const ModalContent = styled.div`
+export const ModalContent = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -48,11 +47,11 @@ const ModalContent = styled.div`
   border-radius: 10px;
 `;
 
-const CancelButtonContainer = styled.div`
+export const CancelButtonContainer = styled.div`
   display: flex;
   justify-content: end;
 `;
-const Title = styled.div`
+export const Title = styled.div`
   font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
   font-weight: 700;
@@ -63,7 +62,7 @@ const Title = styled.div`
   padding-bottom: 20px;
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   color: #000;
   text-align: center;
   font-family: "Pretendard";
@@ -74,7 +73,7 @@ const Content = styled.div`
   padding-top: 30px;
 `;
 
-const SubContent = styled.div`
+export const SubContent = styled.div`
   color: #595959;
   text-align: center;
   font-family: "Pretendard";
@@ -85,13 +84,13 @@ const SubContent = styled.div`
   margin-top: 6px;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;
 `;
 
-const StRejectButton = styled(StBasicButton)`
+export const StRejectButton = styled(StBasicButton)`
   cursor: pointer;
   border: 2px solid black;
   border-radius: 5px;
@@ -99,7 +98,7 @@ const StRejectButton = styled(StBasicButton)`
   font-weight: 700;
 `;
 
-const CancelImg = styled.img`
+export const CancelImg = styled.img`
   cursor: pointer;
 `;
 

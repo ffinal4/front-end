@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import image from "../../assets/images/ppapparo.jpg";
 import { useNavigate } from "react-router-dom";
-import RequestRejectModal from "./RequestRejectModal";
 import { StBasicButton } from "../../styles/BasicButton";
+import image from "../../assets/images/ppapparo.jpg";
+import RequestRejectModal from "./RequestRejectModal";
+import TradeCompleteModal from "./TradeCompleteModal";
 
 const TradeRequestList = () => {
   const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
+  const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
 
   const [requestState, setRequestState] = useState({
     request: "교환요청",
@@ -22,6 +25,7 @@ const TradeRequestList = () => {
   const completeOnclick = () => {
     setRequestState({ ...requestState, request: "교환완료" });
   };
+
   const stateButton = () => {
     if (request === "교환요청") {
       return (
@@ -53,9 +57,15 @@ const TradeRequestList = () => {
           >
             채팅
           </StButton>
-          <StButton buttonColor="#FCF6E9" onClick={completeOnclick}>
+          <StButton buttonColor="#FCF6E9" onClick={completeModalClick}>
             완료
           </StButton>
+          {completeModalOpen && (
+            <TradeCompleteModal
+              completeModalOpen={completeModalOpen}
+              setCompleteModalOpen={setCompleteModalOpen}
+            />
+          )}
         </ButtonContainer>
       );
     }
@@ -63,7 +73,9 @@ const TradeRequestList = () => {
     if (request === "교환취소") {
       return (
         <ButtonContainer>
-          <StBasicButton buttonColor="">삭제</StBasicButton>
+          <StBasicButton buttonColor="" onClick={deleteModalClick}>
+            내역삭제
+          </StBasicButton>
         </ButtonContainer>
       );
     }
@@ -81,6 +93,14 @@ const TradeRequestList = () => {
 
   const rejectModalClick = () => {
     setRejectModalOpen(!rejectModalOpen);
+  };
+
+  const completeModalClick = () => {
+    setCompleteModalOpen(!completeModalOpen);
+  };
+
+  const deleteModalClick = () => {
+    setDeleteModalOpen(!deleteModalOpen);
   };
 
   return (
