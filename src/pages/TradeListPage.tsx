@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import HorizontalLine from "../components/common/HorizontalLine";
@@ -9,10 +9,15 @@ import ItemCardList from "../components/common/ItemCardList";
 import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
 import { pagination } from "../store/pagination";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 const TradeListPage = () => {
-  const currentPage = useRecoilValue(pagination);
+  const [currentPage, setCurrentPage] = useRecoilState(pagination);
+  useEffect(() => {
+    return () => {
+      setCurrentPage(1);
+    };
+  }, []);
   const { isLoading, error, data } = useQuery(["tradeListPageData", currentPage], () => getGoodsApi(currentPage), {
     refetchOnWindowFocus: false,
   });
