@@ -16,13 +16,13 @@ const ItemCard = ({ item }: any) => {
           navigate(`/detail/${item.goodsId}`);
         }}
       />
-      <AddressContent>
+      {/* <AddressContent>
         <AddressImage src={locationImage} />
         {item?.location}
-      </AddressContent>
+      </AddressContent> */}
       <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} />
       <ItemTitle>{item?.title}</ItemTitle>
-      <UserName>{item?.nickname}</UserName>
+      <UserName> {item?.location}</UserName>
       <ItemContent>{item?.content}</ItemContent>
     </ItemCardContainer>
   );
@@ -54,7 +54,7 @@ const AddressImage = styled.img`
 const ItemCardContainer = styled.div`
   position: relative;
   width: 272px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   line-height: 150%;
   font-style: normal;
 `;
@@ -64,14 +64,17 @@ const ItemTitle = styled.div`
   /* KOR/Kor B 20 */
   font-size: 20px;
   font-weight: 700;
-  margin-top: 16px;
+  margin-top: 10px;
 `;
 
 const UserName = styled.div`
-  color: #757575;
+  color: var(--black-white-gray-60, #adadad);
   /* KOR/Kor R 14 */
+  font-family: "Pretendard";
   font-size: 14px;
+  font-style: normal;
   font-weight: 400;
+  line-height: 150%; /* 21px */
 `;
 
 const ItemContent = styled.div`
@@ -84,6 +87,7 @@ const ItemContent = styled.div`
   height: 48px;
   font-size: 16px;
   font-weight: 400;
-  margin-top: 10px;
+  margin-top: 6px;
+  margin-bottom: 5px;
 `;
 export default ItemCard;
