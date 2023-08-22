@@ -21,7 +21,7 @@ const NewItemList = ({ data }: any) => {
           return <ItemCard item={item} />;
         })}
         <MoreBtn
-          buttonColor="var(--yellow-yellow-100, #FFCA64);"
+          buttonColor="var(--yellow-yellow-100, #FFCA64)"
           onClick={() => {
             navigate("/tradeList");
           }}
