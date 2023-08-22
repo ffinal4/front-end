@@ -75,10 +75,11 @@ const Pocket = () => {
               </Wrapper>
             </OutBox>
           </BoxContainer>
-          <ResignWrapper>
+          
+        </PocketInline>
+        <ResignWrapper>
             <Resign>핍포 탈퇴하기</Resign>
           </ResignWrapper>
-        </PocketInline>
       </PocketContainer>
     </LayoutContainer>
   );
@@ -87,8 +88,7 @@ const Pocket = () => {
 const LayoutContainer = styled.div`
   position: absolute;
   left: 0;
-  bottom: 0;
-  height: 445px;
+  height: 442px;
   width: 100%;
   background-color: #ffca64;
 `;
@@ -98,7 +98,7 @@ const PocketContainer = styled.div`
   border-top: 4px solid #000;
   background-color: #fff;
   overflow: hidden;
-  padding: 20px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
   background-color: #ffca64;
 `;
 
@@ -158,7 +158,7 @@ const Text = styled.div`
 
 const ResignWrapper = styled.div`
   width: 100%;
-  padding: 80px 0px 0px 0px;
+  padding: 0px 392px 0px 392px;
 `;
 
 const Resign = styled.div`

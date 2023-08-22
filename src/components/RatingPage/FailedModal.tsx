@@ -11,10 +11,10 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
 
     useEffect(() => {
         const interVal = setInterval(() => {
-            if (getPoint < 20) {
+            if (getPoint < resData.totalPoint) {
                 setGetPoint(getPoint + 1);
             };
-        }, 30);
+        }, 40);
         return () => clearInterval(interVal);
     }, [getPoint]);
 
@@ -27,11 +27,11 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
             <LeftContainer>
                 <LineContainer>
                     <SmallText>예측가</SmallText>
-                    <SmallText>10,000</SmallText>
+                    <SmallText>{resData.ratingPrice}</SmallText>
                 </LineContainer>
                 <LineContainer>
                     <BigText>정답</BigText>
-                    <BigText style={{color: "#EC8D49"}}>12,000</BigText>
+                    <BigText style={{color: "#EC8D49"}}>{resData.sellerPrice}</BigText>
                 </LineContainer>
             </LeftContainer>
             <RightContainer>

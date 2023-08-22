@@ -17,16 +17,16 @@ const SuccessRating = ({ resData } : any) => {
         <LeftWrapper>
             <LeftLineContainer>
                 <Text style={{color: "#39373A"}}>예측가</Text>
-                <Text style={{color: "#EC8D49"}}>10,000</Text>
+                <Text style={{color: "#EC8D49"}}>{resData.ratingPrice}</Text>
             </LeftLineContainer>
             <LeftLineContainer>
                 <Text style={{color: "#39373A"}}>정답</Text>
-                <Text style={{color: "#EC8D49"}}>10,000</Text>
+                <Text style={{color: "#EC8D49"}}>{resData.sellerPrice}</Text>
             </LeftLineContainer>
         </LeftWrapper>
         <PointContainer>
             <PointText>누적 포인트</PointText>
-            <LemonText ref={pointRef}>+10</LemonText>
+            <LemonText ref={pointRef}>+{resData.currentPoint}</LemonText>
         </PointContainer>
     </SuccessContainer>
   )

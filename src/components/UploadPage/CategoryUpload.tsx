@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components'
 import CategorySelect from '../common/CategorySelect';
 
-const CategoryUpload = ({ setUploadData, uploadData } : any) => {
+const CategoryUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
 
     const  [categorySelect, setCategorySelect] = useState({
         category: "",
@@ -23,20 +23,29 @@ const CategoryUpload = ({ setUploadData, uploadData } : any) => {
 
   return (
     <LineContainer>
-        <RequiredText>카테고리*</RequiredText>
-        <SelectBar>
-            <Text>{name}</Text>
-            <ChoiceBox onClick={onClickDropDownHandelr}></ChoiceBox>
-        </SelectBar>
-        {(selectBar)
-        && <SelectContainer>
-            <CategorySelect
-                categorySelect={categorySelect}
-                setCategorySelect={setCategorySelect}
-                setSelectBar={setSelectBar}
-            />
-        </SelectContainer>
-        }
+        <RequiredText
+            style={{color: `${(failedUpload && uploadData.data.category === "") && "#DF3737"}`}}
+        >카테고리*</RequiredText>
+        <RightWrapper>
+            <SelectBar>
+                <Text>{name}</Text>
+                <ChoiceBox onClick={onClickDropDownHandelr}></ChoiceBox>
+            </SelectBar>
+            {(selectBar)
+            && <SelectContainer>
+                <CategorySelect
+                    categorySelect={categorySelect}
+                    setCategorySelect={setCategorySelect}
+                    setSelectBar={setSelectBar}
+                />
+            </SelectContainer>
+            }
+            {(failedUpload && uploadData.data.category === "")
+                && <Text style={{color: "#DF3737"}}>
+                    * 카테고리를 선택해 주세요.
+                </Text>
+            }
+        </RightWrapper>
     </LineContainer>
   )
 };
@@ -58,12 +67,12 @@ const RequiredText = styled.div`
 
 const SelectBar = styled.div`
     display: inline-flex;
+    width: 176px;
     height: 44px;
-    padding: 0px 20px;
+    padding: 0px 10px;
     border-bottom: 1px solid;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 122px;
 
     @media screen and (max-width: 843px) {
         gap: 20px;
@@ -87,6 +96,12 @@ const ChoiceBox = styled.div`
 const SelectContainer = styled.div`
     padding: 40px 0px 0px 192px;
     position: absolute;
+`;
+
+const RightWrapper = styled.div`
+    width: 100%;
+    display: grid;
+    gap: 10px;
 `;
 
 export default CategoryUpload;

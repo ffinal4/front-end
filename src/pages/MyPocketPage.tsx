@@ -26,17 +26,18 @@ const MyPocketPage = () => {
         <StTitle marginbottom="16px" textalign="center">
           MY POCKET
         </StTitle>
-        <SubTitle>내 주머니</SubTitle>
-      </TitleContainer>
-      <MiddleContainer>
+        <SubTitle>내 주머니에 등록한 물건들은 자동으로 물물교환 페이지에 업로드됩니다.</SubTitle>
+        <MiddleContainer>
         <UploadBtn
           onClick={() => {
             navigate("/upload");
           }}
         >
-          주머니에 추가
+          주머니에 물건 넣기
         </UploadBtn>
       </MiddleContainer>
+      </TitleContainer>
+      
       <HorizontalLine />
       <DotLine src={dotLine} />
       <CardListContainer>
@@ -51,6 +52,7 @@ const MyPocketPageContainer = styled.div`
   padding-top: 240px;
   width: 100%;
   padding-bottom: 100px;
+  background-color: #FFCA64;
 `;
 
 const TitleContainer = styled.div`
@@ -58,19 +60,20 @@ const TitleContainer = styled.div`
 `;
 
 const SubTitle = styled.div`
-  color: #000;
+  color: #222020;
   text-align: center;
   font-family: "Pretendard";
-  font-size: 32px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 150%; /* 48px */
 `;
 
 const MiddleContainer = styled.div`
-  max-width: 1136px;
   width: 100%;
-  height: 46px;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0px 0px 0px;
 `;
 
 const UploadBtn = styled.div`

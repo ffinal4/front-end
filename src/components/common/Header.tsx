@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../assets/logo/logo.png";
 import title from "../../assets/logo/logo_title.png";
 import loginLogo from "../../assets/logo/loginlogo.png";
 import loginLTitle from "../../assets/logo/login_title.png";
+import blueLogo from "../../assets/logo/bluepeeppo.png";
+import blueTitle from "../../assets/logo/bluetitle.png";
 import search from "../../assets/icon/search.png";
 import alarm from "../../assets/icon/alarm.png";
-import mypage from "../../assets/icon/mypage.png";
+import mypage from "../../assets/icon/profile.png";
 import peeppo from "../../assets/icon/peeppo.png";
 import Navbar from "./Navbar";
 import { postLogoutApi } from "../../api/users";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { auctionId }: any = useParams();
+
   const insertedToken: string | null = localStorage.getItem("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
@@ -35,10 +41,60 @@ const Header = () => {
       console.log(res);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+      localStorage.removeItem("location");
       setIsLoggedIn(false);
       navigate("/");
     } catch (error) {
       console.log("로그아웃실패", error);
+    }
+  };
+
+  const getLogoImage = () => {
+    if (
+      location.pathname === "/login" ||
+      location.pathname === "/signup" ||
+      location.pathname === "/rating" ||
+      location.pathname === "/mypage" ||
+      location.pathname === "/chat" ||
+      location.pathname === "/ratingstart" ||
+      location.pathname === "/myPocket" ||
+      location.pathname === "/userpocket/:nickname" ||
+      location.pathname === "/upload" ||
+      location.pathname === "editprofile" ||
+      location.pathname === "traderequest" ||
+      location.pathname === "zzimlist"
+    ) {
+      return (
+        <>
+          <Logo src={logo} />
+          <LogoTitle src={title} />
+        </>
+      );
+    }
+    if (
+      location.pathname === "/" ||
+      location.pathname === "/tradeList" ||
+      location.pathname === "/detail/:goodsId"
+    ) {
+      return (
+        <>
+          <Logo src={loginLogo} />
+          <LogoTitle src={loginLTitle} />
+        </>
+      );
+    }
+    if (
+      location.pathname === "/acutionupload" ||
+      location.pathname === "/auctioncheck" ||
+      location.pathname === "/auctionlist" ||
+      location.pathname === `/auctiondetail/${auctionId}`
+    ) {
+      return (
+        <>
+          <Logo src={blueLogo} />
+          <LogoTitle src={blueTitle} />
+        </>
+      );
     }
   };
 
@@ -52,10 +108,7 @@ const Header = () => {
             }}
           >
             {isLoggedIn ? (
-              <>
-                <Logo src={loginLogo} />
-                <LogoTitle src={loginLTitle} />
-              </>
+              getLogoImage()
             ) : (
               <>
                 <Logo src={logo} />

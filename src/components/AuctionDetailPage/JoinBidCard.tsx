@@ -3,45 +3,45 @@ import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 import Check from '../../assets/icon/check.png'
 
-const AucUploadCard = ({
+const JoinBidCard = ({
     checkBox,
     setCheckBox,
     item,
     myPocketGoods,
-    setMyPocketGoods } : any) => {
+    setMyPocketGoods }: any) => {
 
-    const onClickCheckHandler = (item : any) => {
+    const onClickCheckHandler = (item: any) => {
         if (checkBox === item.goodsId) {
             setCheckBox(null);
         } else {
             setCheckBox(item.goodsId);
         };
-        return setMyPocketGoods({...myPocketGoods, goodsId: item.goodsId});
+        return setMyPocketGoods({ ...myPocketGoods, goodsId: myPocketGoods.goodsId.push(item.goodsId) });
     };
     // console.log(checkBox, "checkBox");
 
-  return (
-    <CardContainer onClick={() => onClickCheckHandler(item)}>
-        <CardImgContainer src={item?.images[0]} onClick={() => setCheckBox(!checkBox)}>
-            {(checkBox === item.goodsId)
-                && <div>
-                    <CheckOutContainer />
-                    <CheckContainer>
-                        <CheckBox>
-                            <CheckImage src={Check}/>
-                        </CheckBox>
-                    </CheckContainer>
-                </div>}
-            <CardLocationContainer />
-            <LocatinoWrapper>
-                <LocationIcon src={Location} alt=''/>
-                <LocationText>{item?.location}</LocationText>
-            </LocatinoWrapper>
-        </CardImgContainer>
-        <TitleContainer>{item?.title}</TitleContainer>
-        <ContentContainer>{item?.title}</ContentContainer>
-    </CardContainer>
-  )
+    return (
+        <CardContainer onClick={() => onClickCheckHandler(item)}>
+            <CardImgContainer src={item?.images[0]} onClick={() => setCheckBox(!checkBox)}>
+                {(checkBox === item.goodsId)
+                    && <div>
+                        <CheckOutContainer />
+                        <CheckContainer>
+                            <CheckBox>
+                                <CheckImage src={Check} />
+                            </CheckBox>
+                        </CheckContainer>
+                    </div>}
+                <CardLocationContainer />
+                <LocatinoWrapper>
+                    <LocationIcon src={Location} alt='' />
+                    <LocationText>{item?.location}</LocationText>
+                </LocatinoWrapper>
+            </CardImgContainer>
+            <TitleContainer>{item?.title}</TitleContainer>
+            <ContentContainer>{item?.title}</ContentContainer>
+        </CardContainer>
+    )
 };
 
 const CardContainer = styled.div`
@@ -50,7 +50,7 @@ const CardContainer = styled.div`
     cursor: pointer;
 `;
 
-const CardImgContainer = styled.div<{ src : string }>`
+const CardImgContainer = styled.div<{ src: string }>`
     width: 272px;
     height: 272px;
     border-radius: 10px;
@@ -153,4 +153,4 @@ const CheckImage = styled.img`
     height: 48px;
 `;
 
-export default AucUploadCard;
+export default JoinBidCard;

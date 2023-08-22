@@ -65,7 +65,8 @@ const Wrapper = styled.div`
 const InputContainer = styled.div`
     width: 100%;
     height: 199px;
-    border: 1px solid;
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
     padding: 20px;
 `;
 

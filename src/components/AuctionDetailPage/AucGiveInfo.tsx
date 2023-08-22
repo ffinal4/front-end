@@ -5,7 +5,8 @@ const AucGiveInfo = ({ data } : any) => {
     return (
         <InfoContainer>
             <InfoTextContainer>
-                <InfoTextTitle>{data.data.info.goodsResponseDto.title}</InfoTextTitle>
+                <InfoTextTitle>상품정보</InfoTextTitle>
+                <InfoTextContent style={{marginBottom: "20px"}}>{data.data.info.goodsResponseDto.title}</InfoTextContent>
                 <InfoTextContent>{data.data.info.goodsResponseDto.content}</InfoTextContent>
             </InfoTextContainer>
         </InfoContainer>

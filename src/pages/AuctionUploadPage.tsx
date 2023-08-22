@@ -5,6 +5,7 @@ import ProductChoice from "../components/AuctionUploadPage/ProductChoice";
 import { useQuery } from "react-query";
 import { getAuctionUploadApi, postAuctionUploadApi } from "../api/goods";
 import { useNavigate } from "react-router-dom";
+import Remove from "../assets/icon/remove.png";
 
 const AuctionUploadPage = () => {
   const navigate = useNavigate();
@@ -13,8 +14,9 @@ const AuctionUploadPage = () => {
     refetchOnWindowFocus: false,
   });
 
-  console.log(data, "data");
+  console.log("경매물품등록내주머니데이터", data);
 
+  const [failed, setFailed] = useState(false);
   const [myPocketGoods, setMyPocketGoods] = useState<{ goodsId: string | number }>({
     goodsId: "",
   });
@@ -64,37 +66,28 @@ const AuctionUploadPage = () => {
       </TextWrapper>
       <AuctionUploadContainer>
         <PeriodUploadContainer>
-          <RequiredText>경매기간</RequiredText>
+          <RequiredText style={{ color: `${failed && endTime === "" && "#DF3737"}` }}>경매기간*</RequiredText>
           <FirstWrapper>
             <ButtonWrapper>
-              <Button
-                buttonColor={endTime === "30분" ? "#575757" : "white"}
-                style={{ color: `${endTime === "30분" ? "white" : "#000000"}` }}
-                onClick={onClickTwelveHourHandler}
-              >
+              <Button buttonColor={endTime === "30분" ? "#9ACBF9" : "white"} onClick={onClickTwelveHourHandler}>
                 30분
               </Button>
-              <Button
-                buttonColor={endTime === "1시간" ? "#575757" : "white"}
-                style={{ color: `${endTime === "1시간" ? "white" : "#000000"}` }}
-                onClick={onClickOneDayHandler}
-              >
+              <Button buttonColor={endTime === "1시간" ? "#9ACBF9" : "white"} onClick={onClickOneDayHandler}>
                 1시간
               </Button>
-              <Button
-                buttonColor={endTime === "3시간" ? "#575757" : "white"}
-                style={{ color: `${endTime === "3시간" ? "white" : "#000000"}` }}
-                onClick={onClickThreeDayHandler}
-              >
+              <Button buttonColor={endTime === "3시간" ? "#9ACBF9" : "white"} onClick={onClickThreeDayHandler}>
                 3시간
               </Button>
             </ButtonWrapper>
+            {failed && endTime === "" && (
+              <Text style={{ color: "#DF3737", paddingTop: "10px" }}>* 경매기간을 선택해주세요.</Text>
+            )}
             <Text>* 경매기간은 경매 시작을 기점으로 카운트다운되며 수정 할 수 없습니다.</Text>
           </FirstWrapper>
         </PeriodUploadContainer>
-        <ProductChoice myPocketGoods={myPocketGoods} setMyPocketGoods={setMyPocketGoods} data={data} />
+        <ProductChoice myPocketGoods={myPocketGoods} setMyPocketGoods={setMyPocketGoods} failed={failed} data={data} />
         <LastLineContainer>
-          <RequiredText>입찰 제한</RequiredText>
+          <RequiredText style={{ color: `${failed && lowPrice === ("" || 0) && "#DF3737"}` }}>입찰 제한*</RequiredText>
           <LineWrapper>
             <BidLimitWarpper>
               <InputWrapper>
@@ -103,50 +96,64 @@ const AuctionUploadPage = () => {
                   value={lowPrice !== 0 ? locateLimit : ""}
                   placeholder="입력한 가치 이상의 물건만 입찰됩니다."
                 />
-                <RemoveBtn onClick={onClickRemovePriceHandler}>
-                  <IconBox />
-                  전체지우기
-                </RemoveBtn>
+                {lowPrice !== ("" || 0) && (
+                  <RemoveBtn onClick={onClickRemovePriceHandler}>
+                    <IconBox src={Remove} />
+                  </RemoveBtn>
+                )}
               </InputWrapper>
               <ButtonWrapper>
                 {bidPrice.map((item) => {
                   return (
                     <div key={item}>
-                      <Button buttonColor="#FDEAC2" onClick={() => onClickAddPriceHandler(item)}>
+                      <PriceBtn buttonColor="#CBE4FB" onClick={() => onClickAddPriceHandler(item)}>
                         {item.toLocaleString()}
-                      </Button>
+                      </PriceBtn>
                     </div>
                   );
                 })}
               </ButtonWrapper>
+              {failed && lowPrice === ("" || 0) && (
+                <Text style={{ color: "#DF3737" }}>* 최소 1,000 이상의 값을 입력해 주세요.</Text>
+              )}
             </BidLimitWarpper>
           </LineWrapper>
         </LastLineContainer>
       </AuctionUploadContainer>
       <BottomBtnWrapper>
         <Button
-          buttonColor="#FCFCFC"
+          buttonColor="#58ABF7"
+          style={{ color: "#FCFCFC", margin: "0px auto" }}
           onClick={async () => {
             const newBid = {
               ...productBid,
               lowPrice: String(lowPrice),
             };
-            // const jsonBid = JSON.stringify(newBid);
-            try {
-              const res = await postAuctionUploadApi(newBid, myPocketGoods.goodsId);
-              if (res.status === 200) {
-                alert("경매물품 등록에 성공했습니다!");
-                navigate("/");
+            if (endTime === "" || lowPrice === "" || lowPrice === 0 || myPocketGoods.goodsId === "") {
+              setFailed(true);
+            } else {
+              try {
+                const res = await postAuctionUploadApi(newBid, myPocketGoods.goodsId);
+                if (res.status === 200) {
+                  alert("경매물품 등록에 성공했습니다!");
+                  navigate("/");
+                }
+              } catch {
+                if (error) {
+                  alert(`경매물품 등록에 필요한 포인트가 부족합니다.`);
+                  console.log(error);
+                }
               }
-            } catch (error) {
-              alert(`경매물품 등록에 필요한 포인트가 부족합니다.`);
-              console.log(error);
             }
+            // const jsonBid = JSON.stringify(newBid);
           }}
         >
           {" "}
           경매 시작
         </Button>
+        {failed && (
+          <Text style={{ color: "#DF3737", margin: "0px auto" }}>* 최소 1,000 이상의 값을 입력해 주세요.</Text>
+        )}
       </BottomBtnWrapper>
     </PageLayoutContainer>
   );
@@ -222,7 +229,7 @@ const RequiredText = styled.div`
 const FirstWrapper = styled.div`
   width: 100%;
   display: grid;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -243,15 +250,12 @@ const LineWrapper = styled.div`
 const BidLimitWarpper = styled.div`
   display: grid;
   gap: 30px;
-  width: 100%;
 `;
 
 const BidLimitInput = styled.input`
   width: 100%;
   height: 44px;
   padding: 0px 20px;
-  border: 1px solid #adadad;
-  border-radius: 5px;
   background-color: #fcfcfc;
 `;
 
@@ -264,12 +268,17 @@ const LastLineContainer = styled.div`
 
 const Button = styled(StBasicButton)`
   border: 1px solid #222020;
+  color: #222020;
 `;
 
 const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  border: 1px solid #adadad;
+  border-radius: 5px;
+  background-color: #fcfcfc;
+  padding: 0px 20px 0px 0px;
 `;
 
 const RemoveBtn = styled.div`
@@ -281,20 +290,29 @@ const RemoveBtn = styled.div`
   font-weight: 400;
   line-height: 150%;
   color: #adadad;
-  min-width: 101px;
   cursor: pointer;
 `;
 
-const IconBox = styled.div`
+const IconBox = styled.img`
   width: 24px;
   height: 24px;
-  background-color: #d9d9d9;
+  object-fit: contain;
 `;
 
 const BottomBtnWrapper = styled.div`
   width: 100%;
-  display: flex;
+  display: grid;
   justify-content: center;
+  gap: 10px;
+`;
+
+const PriceBtn = styled(StBasicButton)`
+  border: 1px solid #222020;
+  color: #222020;
+
+  &:active {
+    background-color: #58abf7;
+  }
 `;
 
 export default AuctionUploadPage;

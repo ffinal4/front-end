@@ -1,16 +1,28 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
-import AucUploadCard from '../AuctionUploadPage/AucUploadCard';
+import JoinBidCard from '../AuctionDetailPage/JoinBidCard';
 import Paging from '../common/Paging/Paging';
 import Close from '../../assets/icon/remove.png'
+import { useQuery } from 'react-query';
+import { getMyPocketApi } from '../../api/goods';
 
 const BidModal = ({ conditional, setConditional } : any) => {
 
-    const [myPocketGoods, setMyPocketGoods] = useState<{goodsId: string | number}>({
-        goodsId: "",
+    // const { isLoading, data, error } : any = useQuery("bidPickData", getMyPocketApi, {
+    //     refetchOnWindowFocus: false,
+    // });
+    // const newData = data.data.info.goodsListResponseDto;
+
+    // console.log("내주머니입찰데이터", data);
+
+    const [myPocketGoods, setMyPocketGoods] = useState<{goodsId: string | number[]}>({
+        goodsId: [],
       });
     const [checkBox, setCheckBox] = useState<number | null>(null);
+
+    // if (isLoading) return <p>Loading...</p>;
+    // if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
@@ -40,12 +52,18 @@ const BidModal = ({ conditional, setConditional } : any) => {
                 </ButtonWrapper>
             </Wrapper>
             <PocketListContainer>
-                {/* <AucUploadCard
-                    checkBox={checkBox}
-                    setCheckBox={setCheckBox}
-                    setMyPocketGoods={setMyPocketGoods}
-                    myPocketGoods={myPocketGoods}
-                /> */}
+                {/* {(data.data.info.goodsListResponseDto) && (data.data.info.goodsListResponseDto.map((item : any) => {
+                    return (
+                        <JoinBidCard
+                            key={item.goodsId}
+                            checkBox={checkBox}
+                            setCheckBox={setCheckBox}
+                            setMyPocketGoods={setMyPocketGoods}
+                            myPocketGoods={myPocketGoods}
+                            item={item}
+                        />
+                    )
+                }))} */}
             </PocketListContainer>
             <Paging />
         </ModalContainer>
@@ -61,7 +79,7 @@ const ModalBackgroundBox = styled.div`
     top: 0;
     left: 0;
     opacity: 0.25;
-    z-index: 888;
+    z-index: 1000;
 `;
 
 const ModalContainer = styled.div`
@@ -72,7 +90,7 @@ const ModalContainer = styled.div`
     position: absolute;
     top: 220px;
     left: 25%;
-    z-index: 999;
+    z-index: 1003;
     padding: 40px 30px;
 `;
 

@@ -14,7 +14,7 @@ const Footer = () => {
           <Position>FRONTEND</Position>
           <Name>박준영</Name>
           <Name>서명진</Name>
-          <Name>이승재</Name>
+          <Name onClick={() => window.open("https://github.com/seungjaelee2684")}>이승재</Name>
         </MemberContainer>
         <MemberContainer>
           <Position>BACKEND</Position>

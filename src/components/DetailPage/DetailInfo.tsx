@@ -6,11 +6,11 @@ import Time from "../../assets/icon/time.png";
 import Layer from "../../assets/icon/layer_6.png";
 import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
-import { Category } from "../common/enum";
 import { useMutation } from "react-query";
 import { deleteGoodsApi, postZzimApi } from "../../api/goods";
 import CardZzimBtn from "../common/CardZzimBtn";
 import { useNavigate } from "react-router-dom";
+import { ValueToEnum } from "../../utils/EnumCategory";
 
 const DetailInfo = ({ data }: any) => {
   const navigate = useNavigate();
@@ -75,19 +75,7 @@ const DetailInfo = ({ data }: any) => {
   return (
     <InfoContainer>
       <InfoTitle>{data.data.info.title}</InfoTitle>
-      <UserNameContainer>
-        <ColorText color="#ADADAD">10,000PP</ColorText>
-        <BoxWrapper>
-          <TextWrapper>
-            <SmallBox src={Like} />
-            <ColorText color="#ADADAD">12</ColorText>
-          </TextWrapper>
-          <TextWrapper>
-            <SmallBox src={Time} />
-            <ColorText color="#ADADAD">{result}일 전</ColorText>
-          </TextWrapper>
-        </BoxWrapper>
-      </UserNameContainer>
+      <UserNameContainer></UserNameContainer>
       <UserNameContainer style={{ border: "none", paddingTop: "16px", position: "relative" }}>
         <TextWrapper
           style={{ gap: "8px" }}
@@ -102,7 +90,16 @@ const DetailInfo = ({ data }: any) => {
           <ColorText color="#39373A">{data.data.info.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
-        <TextWrapper>
+        <BoxWrapper>
+          <TextWrapper>
+            <SmallBox src={Like} />
+            <ColorText color="#ADADAD">12</ColorText>
+          </TextWrapper>
+          <TextWrapper>
+            <SmallBox src={Time} />
+            <ColorText color="#ADADAD">{result}일 전</ColorText>
+          </TextWrapper>
+          <TextWrapper>
           {data.data.info.checkSameUser ? (
             <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
               <SmallBox src={Group} />
@@ -137,11 +134,12 @@ const DetailInfo = ({ data }: any) => {
             </ModalBtnWrapper>
           )}
         </TextWrapper>
+        </BoxWrapper>
       </UserNameContainer>
       <TextContainer>
         <TextLine>
           <ColorText color="#717171">카테고리</ColorText>
-          <ColorText color="#222020">{categorys}</ColorText>
+          <ColorText color="#222020">{ValueToEnum(categorys)}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품상태</ColorText>
@@ -211,7 +209,7 @@ const InfoTitle = styled.div`
   font-size: 32px;
   font-weight: 800;
   line-height: 150%;
-  padding: 0px 0px 10px 0px;
+  max-height: 96px;
 `;
 
 const UserNameContainer = styled.div`

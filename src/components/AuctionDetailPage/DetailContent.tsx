@@ -9,6 +9,7 @@ import { StBasicButton } from "../../styles/BasicButton";
 import BidModal from "./BidModal";
 import CardZzimBtn from "../common/CardZzimBtn";
 import { useNavigate } from "react-router-dom";
+import { ValueToEnum } from "../../utils/EnumCategory";
 
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
@@ -37,19 +38,7 @@ const DetailContent = ({ data }: any) => {
   return (
     <InfoContainer>
       <InfoTitle>{newData.title}</InfoTitle>
-      <UserNameContainer>
-        <ColorText color="#ADADAD">10,000PP</ColorText>
-        <BoxWrapper>
-          <TextWrapper>
-            <SmallBox src={Like} />
-            <ColorText color="#ADADAD">12</ColorText>
-          </TextWrapper>
-          <TextWrapper>
-            <SmallBox src={Time} />
-            <ColorText color="#ADADAD">10일 전</ColorText>
-          </TextWrapper>
-        </BoxWrapper>
-      </UserNameContainer>
+      <UserNameContainer></UserNameContainer>
       <UserNameContainer style={{ border: "none", paddingTop: "16px", position: "relative" }}>
         <TextWrapper
           style={{ gap: "8px" }}
@@ -65,39 +54,49 @@ const DetailContent = ({ data }: any) => {
           <ColorText color="#39373A">{newData.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
-        <TextWrapper>
-          {data.data.info.checkSameUser ? (
-            <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
-              <SmallBox src={Group} />
-            </TextWrapper>
-          ) : (
-            <TextWrapper style={{ cursor: "pointer" }}>
-              <SmallBox src={Siren} />
-              <ColorText color="#ADADAD">신고하기</ColorText>
-            </TextWrapper>
-          )}
-          {modal && (
-            <ModalBtnWrapper>
-              <ModalBtn
-                style={{
-                  borderTop: "1px solid #D5D4D4",
-                  borderRadius: "5px 5px 0px 0px",
-                }}
-              >
-                예약중
-              </ModalBtn>
-              <ModalBtn>거래완료</ModalBtn>
-              <ModalBtn>게시글 수정</ModalBtn>
-              {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
-              <ModalBtn style={{ borderRadius: "0px 0px 5px 5px" }}>삭제</ModalBtn>
-            </ModalBtnWrapper>
-          )}
-        </TextWrapper>
+        <BoxWrapper>
+          <TextWrapper>
+            <SmallBox src={Like} />
+            <ColorText color="#ADADAD">12</ColorText>
+          </TextWrapper>
+          <TextWrapper>
+            <SmallBox src={Time} />
+            <ColorText color="#ADADAD">10일 전</ColorText>
+          </TextWrapper>
+          <TextWrapper>
+            {data.data.info.checkSameUser ? (
+              <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
+                <SmallBox src={Group} />
+              </TextWrapper>
+            ) : (
+              <TextWrapper style={{ cursor: "pointer" }}>
+                <SmallBox src={Siren} />
+                <ColorText color="#ADADAD">신고하기</ColorText>
+              </TextWrapper>
+            )}
+            {modal && (
+              <ModalBtnWrapper>
+                <ModalBtn
+                  style={{
+                    borderTop: "1px solid #D5D4D4",
+                    borderRadius: "5px 5px 0px 0px",
+                  }}
+                >
+                  예약중
+                </ModalBtn>
+                <ModalBtn>거래완료</ModalBtn>
+                <ModalBtn>게시글 수정</ModalBtn>
+                {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
+                <ModalBtn style={{ borderRadius: "0px 0px 5px 5px" }}>삭제</ModalBtn>
+              </ModalBtnWrapper>
+            )}
+          </TextWrapper>
+        </BoxWrapper>
       </UserNameContainer>
       <TextContainer>
         <TextLine>
           <ColorText color="#717171">카테고리</ColorText>
-          <ColorText color="#222020">{newData.category}</ColorText>
+          <ColorText color="#222020">{ValueToEnum(newData.category)}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품상태</ColorText>
@@ -115,7 +114,7 @@ const DetailContent = ({ data }: any) => {
           <ColorText color="#717171">상품태그</ColorText>
           <ColorText color="#222020">#스타벅스 #기프티콘 #교환권</ColorText>
         </TextLine>
-        <TextLine>
+        <TextLine style={{ gap: "54px" }}>
           <ColorText color="#717171">하한가</ColorText>
           <ColorText color="#222020">{newData.tradeType}PP</ColorText>
         </TextLine>
