@@ -9,7 +9,6 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data } : any) => {
     const [checkBox, setCheckBox] = useState<number | null>(null);
     const [findedData, setFindedData] = useState<any>();
     const [seeInfo, setSeeInfo] = useState<boolean>(false);
-    
 
     const onClickSeeHandler = () => {
         setFindedData(myPocketData.find((item : any) => item.goodsId === checkBox));
@@ -31,6 +30,9 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data } : any) => {
                         setCheckBox={setCheckBox}
                         setMyPocketGoods={setMyPocketGoods}
                         myPocketGoods={myPocketGoods}
+                        myPocketData={myPocketData}
+                        setFindedData={setFindedData}
+                        setSeeInfo={setSeeInfo}
                     />)
                 })}
             </MyPoketContainer> 
@@ -48,7 +50,6 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data } : any) => {
                         <ChoiceBox />
                     </LineWrapper>
                 )}
-                
             </SeeButtonWrapper>
             <InfoWrapper>
             {(seeInfo && findedData) && <AucUploadDetail findedData={findedData} />}

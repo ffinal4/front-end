@@ -6,11 +6,14 @@ import ArrowRight from '../../assets/images/arrowright.png'
 
 const AucDetail = ({ findedData } : any) => {
     const arrImages: string[] = findedData.images;
+    console.log(arrImages);
 
     const divRef = useRef<HTMLDivElement>(null);
     const [currentImg, setCurrentImg] = useState<number>(0);
     const imageWidth: number = 464;
     const SlideRange: number = currentImg * imageWidth;
+
+    useEffect(() => {}, [findedData]);
 
     useEffect(() => {
         if (divRef.current) {
@@ -95,6 +98,7 @@ const ImageBox = styled.div<{ src: string }>`
 
 const ImageOutContainer = styled.div`
     min-width: 464px;
+    max-width: 464px;
     height: 464px;
     border: 4px solid;
     border-radius: 10px;
