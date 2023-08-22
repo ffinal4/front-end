@@ -1,5 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
+import remove from "../../assets/icon/remove.png";
+import { StBasicButton } from "../../styles/BasicButton";
 
 interface RequestRejectModalProps {
   rejectModalOpen: boolean;
@@ -13,7 +15,8 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
   return (
     <ModalContent>
       <CancelButtonContainer>
-        <CancelButton
+        <CancelImg
+          src={remove}
           onClick={() => {
             setRejectModalOpen(false);
           }}
@@ -25,13 +28,13 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
 
       <SubContent>한 번 거절한 물건은 다시 교환 신청 할 수 없어요.</SubContent>
       <ButtonContainer>
-        <RejectButton>거절하기</RejectButton>
+        <StRejectButton buttonColor="#FFCA64">거절하기</StRejectButton>
       </ButtonContainer>
     </ModalContent>
   );
 };
 
-const ModalContent = styled.div`
+export const ModalContent = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -41,27 +44,28 @@ const ModalContent = styled.div`
   background-color: rgb(255, 255, 255);
   padding: 24px;
   border: 1px solid black;
+  border-radius: 10px;
 `;
 
-const CancelButtonContainer = styled.div`
+export const CancelButtonContainer = styled.div`
   display: flex;
   justify-content: end;
 `;
-const Title = styled.div`
+export const Title = styled.div`
   font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 110%;
   text-align: center;
-  border-bottom: 4px solid black;
+  border-bottom: 2px solid #d5d4d4;
 
   padding-bottom: 20px;
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   color: #000;
   text-align: center;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -69,10 +73,10 @@ const Content = styled.div`
   padding-top: 30px;
 `;
 
-const SubContent = styled.div`
+export const SubContent = styled.div`
   color: #595959;
   text-align: center;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -80,30 +84,22 @@ const SubContent = styled.div`
   margin-top: 6px;
 `;
 
-const ButtonContainer = styled.div`
-  /* border: 1px solid red; */
+export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;
 `;
-const RejectButton = styled.div`
+
+export const StRejectButton = styled(StBasicButton)`
   cursor: pointer;
-  border: 1px solid black;
-  width: 176px;
-  height: 44px;
-  padding: 10px 0px;
-  gap: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: 2px solid black;
   border-radius: 5px;
+  font-family: "Pretendard";
+  font-weight: 700;
 `;
 
-const CancelButton = styled.div`
+export const CancelImg = styled.img`
   cursor: pointer;
-  width: 24px;
-  height: 24px;
-  background: #d9d9d9;
-  display: flex;
 `;
+
 export default RequestRejectModal;
