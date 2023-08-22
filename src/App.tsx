@@ -25,6 +25,7 @@ import ZzimListPage from "./pages/ZzimListPage";
 import AuctionListPage from "./pages/AuctionListPage";
 import Footer from "./components/common/Footer";
 import UserPocketPage from "./pages/UserPocketPage";
+import ScrollTop from "./utils/ScrollTop";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ function App() {
     <div className="App">
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+          <ScrollTop />
           <Header />
           <Routes>
             <Route path="/login" element={<LoginPage />} />
