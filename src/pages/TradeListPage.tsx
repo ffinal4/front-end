@@ -9,15 +9,10 @@ import ItemCardList from "../components/common/ItemCardList";
 import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
 import { pagination } from "../store/pagination";
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 
 const TradeListPage = () => {
-  const [currentPage, setCurrentPage] = useRecoilState(pagination);
-  useEffect(() => {
-    return () => {
-      setCurrentPage(1);
-    };
-  }, []);
+  const currentPage = useRecoilValue(pagination);
   const { isLoading, error, data } = useQuery(["tradeListPageData", currentPage], () => getGoodsApi(currentPage), {
     refetchOnWindowFocus: false,
   });
