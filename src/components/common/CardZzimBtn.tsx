@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import zzim from "../../assets/icon/zzim.png";
+import auctionzzim from "../../assets/icon/auctionzzim.png";
 import nozzim from "../../assets/icon/nozzim.png";
 import { styled } from "styled-components";
 import { useMutation, useQueryClient } from "react-query";
@@ -27,7 +28,11 @@ const CardZzimBtn = ({ checkZzim, goodsId, isCard, isAuction, buttonColor, fontC
     <div>
       {isCard ? (
         <ZzimBtnContainer>
-          <ZzimBtn src={isZzim ? zzim : nozzim} onClick={zzimBtnhandleClick} />
+          {isAuction ? (
+            <ZzimBtn src={isZzim ? auctionzzim : nozzim} onClick={zzimBtnhandleClick} />
+          ) : (
+            <ZzimBtn src={isZzim ? zzim : nozzim} onClick={zzimBtnhandleClick} />
+          )}
         </ZzimBtnContainer>
       ) : (
         <StButton buttonColor={buttonColor} onClick={zzimBtnhandleClick} fontcolor={fontColor}>

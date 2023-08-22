@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 
-const BidDeadLine = ({ deadline }: any) => {
+const BidDeadLine = ({ deadline, isMainPage }: any) => {
   const calculateTimeLeft = () => {
     const now = new Date().getTime();
     const timeLeft = new Date(deadline).getTime() - now;
@@ -34,11 +34,19 @@ const BidDeadLine = ({ deadline }: any) => {
   return (
     <div>
       {timeLeft.expired ? (
-        <TimeContent>마감되었습니다.</TimeContent>
+        <div>{isMainPage ? <TimeContent>마감되었습니다.</TimeContent> : <EndContainer>경매종료</EndContainer>}</div>
       ) : (
-        <TimeContent>
-          입찰 마감까지 {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}
-        </TimeContent>
+        <div>
+          {isMainPage ? (
+            <TimeContent>
+              입찰 마감까지 {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}
+            </TimeContent>
+          ) : (
+            <AuctionCardContent>
+              마감까지 {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}
+            </AuctionCardContent>
+          )}
+        </div>
       )}
     </div>
   );
@@ -51,4 +59,34 @@ const TimeContent = styled.div`
   line-height: 150%; /* 30px */
 `;
 
+const AuctionCardContent = styled.div`
+  color: var(--black-white-black, #222020);
+  /* KOR/Kor B 16 */
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+`;
+
+const EndContainer = styled.div`
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 272px;
+  height: 272px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black-white-white, #fcfcfc);
+  text-align: center;
+  /* KOR/Kor B 20 */
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 30px */
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
 export default BidDeadLine;

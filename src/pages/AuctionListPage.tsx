@@ -9,6 +9,7 @@ import AuctionCard from "../components/common/AuctionCard";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import FilterButton from "../components/common/FilterButton";
+import Paging from "../components/common/Paging/Paging";
 
 const AuctionListPage = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ const AuctionListPage = () => {
           return <AuctionCard item={item} key={item.auctionid} />;
         })}
       </CardContainer>
+      <Paging />
     </AuctionListPageContainer>
   );
 };

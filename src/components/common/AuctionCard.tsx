@@ -5,6 +5,7 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import CardZzimBtn from "./CardZzimBtn";
 import eyeImage from "../../assets/images/eye.svg";
+import BidDeadLine from "../MainPage/BidDeadLine";
 
 const AuctionCard = ({ item }: any) => {
   const navigate = useNavigate();
@@ -15,12 +16,14 @@ const AuctionCard = ({ item }: any) => {
         onClick={() => {
           navigate(`/auctiondetail/${item.auctionId}`);
         }}
-      />
+      >
+        <BidDeadLine deadline={item?.auctionEndTime} />
+      </StCardPicture>
       <AddressContent>
         <AddressImage src={eyeImage} />
         {item?.auctionStatus === null ? "입찰을 기다리는 중..." : `${item?.auctionStatus}명이 입찰중`}
       </AddressContent>
-      <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} />
+      <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} isAuction={true} />
       <ItemTitle>{item?.title}</ItemTitle>
       <UserName> {item?.location}</UserName>
       <ItemContent>{item?.content}</ItemContent>
@@ -92,4 +95,6 @@ const AddressImage = styled.img`
   height: 15px;
   margin-right: 10px;
 `;
+
+const DeadLineContainer = styled.div``;
 export default AuctionCard;
