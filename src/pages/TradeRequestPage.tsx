@@ -3,13 +3,14 @@ import { styled } from "styled-components";
 import arrow from "../assets/icon/arrow.png";
 import TradeRequestList from "../components/TradeRequestPage/TradeRequestList";
 import FilterDropdownMenu from "../components/TradeRequestPage/FilterDropdownMenu";
+import TradeRequestCard from "../components/TradeRequestPage/TradeRequestCard";
 
 const TradeRequestPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [dropdownMenu, setDropdownMenu] = useState("필터");
 
   return (
-    <div>
+    <TradeRequestPageContainer>
       <Title>TRADING REQUEST</Title>
       <Container>
         <SubTitle>교환요청리스트</SubTitle>
@@ -39,6 +40,16 @@ const TradeRequestPage = () => {
           <TradeStateMenu>상태</TradeStateMenu>
           <ChatState />
         </MenuContainer>
+        <CardContainer>
+          <TradeRequestCard />
+          <TradeRequestCard />
+          <TradeRequestCard />
+          <TradeRequestCard />
+          <TradeRequestCard />
+          <TradeRequestCard />
+        </CardContainer>
+
+        {/* <TradeRequestList />
         <TradeRequestList />
         <TradeRequestList />
         <TradeRequestList />
@@ -47,12 +58,15 @@ const TradeRequestPage = () => {
         <TradeRequestList />
         <TradeRequestList />
         <TradeRequestList />
-        <TradeRequestList />
-        <TradeRequestList />
+        <TradeRequestList /> */}
       </TradeRequestListContainer>
-    </div>
+    </TradeRequestPageContainer>
   );
 };
+
+const TradeRequestPageContainer = styled.div`
+  width: 100%;
+`;
 
 export const Title = styled.div`
   font-family: "Lemon/Milk", sans-serif;
@@ -73,7 +87,7 @@ export const SubTitle = styled.div`
   line-height: 150%;
 `;
 export const FilterContainer = styled.div`
-  /* border: 1px solid red; */
+  z-index: 999;
 `;
 export const Filter = styled.div`
   border-bottom: 1px solid #222020;
@@ -97,7 +111,7 @@ export const TradeRequestListContainer = styled.div`
   border-top: 4px solid black;
   border-bottom: 4px solid black;
   margin-top: 20px;
-  width: 1136px;
+  max-width: 1136px;
   height: 1192px;
 `;
 
@@ -109,7 +123,6 @@ const MenuContainer = styled.div`
 `;
 
 export const RequestDateMenu = styled.div`
-  /* border: 1px solid blue; */
   width: 174px;
   display: flex;
   align-items: center;
@@ -120,7 +133,6 @@ export const RequestDateMenu = styled.div`
 `;
 
 export const TradeRequestItemMenu = styled.div`
-  /* border: 1px solid blue; */
   width: 478px;
   display: flex;
   align-items: center;
@@ -131,7 +143,6 @@ export const TradeRequestItemMenu = styled.div`
 `;
 
 export const MyItemMenu = styled.div`
-  /* border: 1px solid blue; */
   width: 112px;
   display: flex;
   align-items: center;
@@ -142,7 +153,6 @@ export const MyItemMenu = styled.div`
 `;
 
 export const TradeStateMenu = styled.div`
-  /* border: 1px solid blue; */
   width: 172px;
   display: flex;
   align-items: center;
@@ -152,8 +162,16 @@ export const TradeStateMenu = styled.div`
   font-family: Pretendard;
 `;
 
+const CardContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 40px;
+  /* overflow-y: scroll; */
+`;
+
 export const ChatState = styled.div`
-  /* border: 1px solid blue; */
   width: 192px;
 `;
 
