@@ -236,6 +236,7 @@ export const ButtonContainer = styled.div`
   margin: auto;
   gap: 16px;
 `;
+
 export const AcceptButton = styled.button`
   background-color: #39373a;
   color: white;
