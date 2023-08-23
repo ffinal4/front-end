@@ -88,7 +88,7 @@ const Header = () => {
       location.pathname === "/acutionupload" ||
       location.pathname === "/auctioncheck" ||
       location.pathname === "/auctionlist" ||
-      location.pathname === `/auctiondetail/${auctionId}`
+      location.pathname === "/auctiondetail/:auctionId"
     ) {
       return (
         <>

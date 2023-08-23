@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import arrow from "../assets/icon/arrow.png";
-import TradeRequestList from "../components/TradeRequestPage/TradeRequestList";
+import orangedot from "../assets/icon/orangedot.png";
+import yellowdot from "../assets/icon/yellowdot.png";
 import FilterDropdownMenu from "../components/TradeRequestPage/FilterDropdownMenu";
 import TradeRequestCard from "../components/TradeRequestPage/TradeRequestCard";
 
@@ -13,52 +14,49 @@ const TradeRequestPage = () => {
     <TradeRequestPageContainer>
       <Title>TRADING REQUEST</Title>
       <Container>
-        <SubTitle>교환요청리스트</SubTitle>
-        <FilterContainer>
-          <Filter
-            onClick={() => {
-              setFilterOpen(!filterOpen);
-            }}
-          >
-            {dropdownMenu}
-            <ArrowImg src={arrow} />
-          </Filter>
-          {filterOpen && (
-            <FilterDropdownMenu
-              filterOpen={filterOpen}
-              setFilterOpen={setFilterOpen}
-              setDropdownMenu={setDropdownMenu}
-            />
-          )}
-        </FilterContainer>
+        <SubTitle>교환요청</SubTitle>
       </Container>
       <TradeRequestListContainer>
-        <MenuContainer>
-          <RequestDateMenu>요청일자</RequestDateMenu>
-          <TradeRequestItemMenu>교환 요청 물품</TradeRequestItemMenu>
-          <MyItemMenu>내 물건</MyItemMenu>
-          <TradeStateMenu>상태</TradeStateMenu>
-          <ChatState />
-        </MenuContainer>
-        <CardContainer>
-          <TradeRequestCard />
-          <TradeRequestCard />
-          <TradeRequestCard />
-          <TradeRequestCard />
-          <TradeRequestCard />
-          <TradeRequestCard />
-        </CardContainer>
-
-        {/* <TradeRequestList />
-        <TradeRequestList />
-        <TradeRequestList />
-        <TradeRequestList />
-        <TradeRequestList />
-        <TradeRequestList />
-        <TradeRequestList />
-        <TradeRequestList />
-        <TradeRequestList />
-        <TradeRequestList /> */}
+        <AllStateContainer>
+          <RequestStateContainer>
+            <RequestStateNumber>
+              <DotImg src={orangedot} />
+              교환요청 10
+            </RequestStateNumber>
+            <RequestIngNumber>
+              <DotImg src={yellowdot} />
+              교환진행중 10
+            </RequestIngNumber>
+          </RequestStateContainer>
+          <FilterContainer>
+            <Filter
+              onClick={() => {
+                setFilterOpen(!filterOpen);
+              }}
+            >
+              {dropdownMenu}
+              <ArrowImg src={arrow} />
+            </Filter>
+            {filterOpen && (
+              <FilterDropdownMenu
+                filterOpen={filterOpen}
+                setFilterOpen={setFilterOpen}
+                setDropdownMenu={setDropdownMenu}
+              />
+            )}
+          </FilterContainer>
+          <CardContainer>
+            <TradeRequestCard />
+            <TradeRequestCard />
+            <TradeRequestCard />
+            <TradeRequestCard />
+            <TradeRequestCard />
+            <TradeRequestCard />
+            <TradeRequestCard />
+            <TradeRequestCard />
+            <TradeRequestCard />
+          </CardContainer>
+        </AllStateContainer>
       </TradeRequestListContainer>
     </TradeRequestPageContainer>
   );
@@ -75,20 +73,20 @@ export const Title = styled.div`
   line-height: 110%;
 `;
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+export const Container = styled.div``;
+
 export const SubTitle = styled.div`
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
   line-height: 150%;
+  margin-bottom: 40px;
+  margin-top: 6px;
 `;
 export const FilterContainer = styled.div`
-  z-index: 999;
+  z-index: 800;
 `;
+
 export const Filter = styled.div`
   border-bottom: 1px solid #222020;
   cursor: pointer;
@@ -108,18 +106,11 @@ export const ArrowImg = styled.img`
 `;
 
 export const TradeRequestListContainer = styled.div`
-  border-top: 4px solid black;
-  border-bottom: 4px solid black;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
   margin-top: 20px;
   max-width: 1136px;
-  height: 1192px;
-`;
-
-const MenuContainer = styled.div`
-  border-bottom: 2px solid #222020;
-  background-color: #fdd988;
-  display: flex;
-  height: 54px;
+  height: 1764px;
 `;
 
 export const RequestDateMenu = styled.div`
@@ -162,17 +153,50 @@ export const TradeStateMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const CardContainer = styled.div`
+const AllStateContainer = styled.div`
+  /* border: 1px solid black; */
   width: 100%;
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
-  margin-top: 40px;
-  /* overflow-y: scroll; */
+  margin-top: 30px;
 `;
 
 export const ChatState = styled.div`
   width: 192px;
 `;
 
+const RequestStateContainer = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+`;
+
+const RequestStateNumber = styled.div`
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 400;
+`;
+
+const RequestIngNumber = styled.div`
+  display: flex;
+  align-items: center;
+  font-family: "Pretendard";
+  font-size: 16px;
+`;
+const DotImg = styled.img`
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+`;
 export default TradeRequestPage;
