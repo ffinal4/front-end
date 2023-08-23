@@ -50,6 +50,8 @@ const MyAutionList = () => {
           </StButton>
           {rejectModalOpen && (
             <RequestRejectModal
+              requestState={requestState}
+              setRequestState={setRequestState}
               rejectModalOpen={rejectModalOpen}
               setRejectModalOpen={setRejectModalOpen}
             />
