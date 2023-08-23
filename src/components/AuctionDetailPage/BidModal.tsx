@@ -9,20 +9,20 @@ import { getMyPocketApi } from '../../api/goods';
 
 const BidModal = ({ conditional, setConditional } : any) => {
 
-    // const { isLoading, data, error } : any = useQuery("bidPickData", getMyPocketApi, {
-    //     refetchOnWindowFocus: false,
-    // });
+    const { isLoading, data, error } : any = useQuery("bidPickData", getMyPocketApi, {
+        refetchOnWindowFocus: false,
+    });
     // const newData = data.data.info.goodsListResponseDto;
 
-    // console.log("내주머니입찰데이터", data);
+    console.log("내주머니입찰데이터", data);
 
     const [myPocketGoods, setMyPocketGoods] = useState<{goodsId: string | number[]}>({
         goodsId: [],
       });
     const [checkBox, setCheckBox] = useState<number | null>(null);
 
-    // if (isLoading) return <p>Loading...</p>;
-    // if (error) return <p>Error: {error.message}</p>;
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
@@ -52,7 +52,7 @@ const BidModal = ({ conditional, setConditional } : any) => {
                 </ButtonWrapper>
             </Wrapper>
             <PocketListContainer>
-                {/* {(data.data.info.goodsListResponseDto) && (data.data.info.goodsListResponseDto.map((item : any) => {
+                {(data?.data.info.goodsListResponseDto.map((item : any) => {
                     return (
                         <JoinBidCard
                             key={item.goodsId}
@@ -63,7 +63,7 @@ const BidModal = ({ conditional, setConditional } : any) => {
                             item={item}
                         />
                     )
-                }))} */}
+                }))}
             </PocketListContainer>
             <Paging />
         </ModalContainer>
