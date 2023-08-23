@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { StBasicButton } from "../../styles/BasicButton";
 import image from "../../assets/images/ppapparo.jpg";
 import RequestRejectModal from "./RequestRejectModal";
-import TradeCompleteModal from "./TradeCompleteModal";
 
 const TradeRequestList = () => {
   const navigate = useNavigate();
@@ -38,6 +37,8 @@ const TradeRequestList = () => {
           </StButton>
           {rejectModalOpen && (
             <RequestRejectModal
+              requestState={requestState}
+              setRequestState={setRequestState}
               rejectModalOpen={rejectModalOpen}
               setRejectModalOpen={setRejectModalOpen}
             />
@@ -60,12 +61,12 @@ const TradeRequestList = () => {
           <StButton buttonColor="#FCF6E9" onClick={completeModalClick}>
             완료
           </StButton>
-          {completeModalOpen && (
+          {/* {completeModalOpen && (
             <TradeCompleteModal
               completeModalOpen={completeModalOpen}
               setCompleteModalOpen={setCompleteModalOpen}
             />
-          )}
+          )} */}
         </ButtonContainer>
       );
     }
