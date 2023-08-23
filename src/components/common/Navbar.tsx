@@ -13,6 +13,10 @@ const Navbar = () => {
   });
   const [selectBar, setSelectBar] = useState<boolean>(false);
 
+  const tradeListOnclick = () => {
+    navigate("/tradeList");
+  };
+
   return (
     <CategoryHeaderContainer>
       <Wrapper>
@@ -31,13 +35,7 @@ const Navbar = () => {
           )}
         </CategoryContainer>
         <MenuContainer>
-          <Menu
-            onClick={() => {
-              navigate("/tradeList");
-            }}
-          >
-            물물교환
-          </Menu>
+          <Menu onClick={tradeListOnclick}>물물교환</Menu>
           <Menu
             onClick={() => {
               navigate("/auctionlist");
@@ -75,18 +73,16 @@ const CategoryContainer = styled.div`
 const CategoryImg = styled.img``;
 
 const MenuContainer = styled.div`
-  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   margin-left: 60px;
 `;
 
 const Menu = styled.div`
-  /* border: 1px solid green; */
-  font-family: Pretendard;
+  cursor: pointer;
+  font-family: "Pretendard";
   margin-left: 40px;
   margin-right: 40px;
-  cursor: pointer;
   font-weight: 400;
 `;
 export default Navbar;
