@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { ValueToEnum } from "../../utils/EnumCategory";
 
 const DetailContent = ({ data }: any) => {
-  
   const navigate = useNavigate();
   const newData = data.data.info.goodsResponseDto;
   // console.log("newData", newData);
@@ -65,33 +64,33 @@ const DetailContent = ({ data }: any) => {
             <ColorText color="#ADADAD">10일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
-          {data.data.info.checkSameUser ? (
-            <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
-              <SmallBox src={Group} />
-            </TextWrapper>
-          ) : (
-            <TextWrapper style={{ cursor: "pointer" }}>
-              <SmallBox src={Siren} />
-              <ColorText color="#ADADAD">신고하기</ColorText>
-            </TextWrapper>
-          )}
-          {modal && (
-            <ModalBtnWrapper>
-              <ModalBtn
-                style={{
-                  borderTop: "1px solid #D5D4D4",
-                  borderRadius: "5px 5px 0px 0px",
-                }}
-              >
-                예약중
-              </ModalBtn>
-              <ModalBtn>거래완료</ModalBtn>
-              <ModalBtn>게시글 수정</ModalBtn>
-              {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
-              <ModalBtn style={{ borderRadius: "0px 0px 5px 5px" }}>삭제</ModalBtn>
-            </ModalBtnWrapper>
-          )}
-        </TextWrapper>
+            {data.data.info.checkSameUser ? (
+              <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
+                <SmallBox src={Group} />
+              </TextWrapper>
+            ) : (
+              <TextWrapper style={{ cursor: "pointer" }}>
+                <SmallBox src={Siren} />
+                <ColorText color="#ADADAD">신고하기</ColorText>
+              </TextWrapper>
+            )}
+            {modal && (
+              <ModalBtnWrapper>
+                <ModalBtn
+                  style={{
+                    borderTop: "1px solid #D5D4D4",
+                    borderRadius: "5px 5px 0px 0px",
+                  }}
+                >
+                  예약중
+                </ModalBtn>
+                <ModalBtn>거래완료</ModalBtn>
+                <ModalBtn>게시글 수정</ModalBtn>
+                {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
+                <ModalBtn style={{ borderRadius: "0px 0px 5px 5px" }}>삭제</ModalBtn>
+              </ModalBtnWrapper>
+            )}
+          </TextWrapper>
         </BoxWrapper>
       </UserNameContainer>
       <TextContainer>
@@ -115,7 +114,7 @@ const DetailContent = ({ data }: any) => {
           <ColorText color="#717171">상품태그</ColorText>
           <ColorText color="#222020">#스타벅스 #기프티콘 #교환권</ColorText>
         </TextLine>
-        <TextLine style={{gap: "54px"}}>
+        <TextLine style={{ gap: "54px" }}>
           <ColorText color="#717171">하한가</ColorText>
           <ColorText color="#222020">{newData.tradeType}PP</ColorText>
         </TextLine>

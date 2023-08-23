@@ -16,45 +16,22 @@ const ItemCard = ({ item }: any) => {
           navigate(`/detail/${item.goodsId}`);
         }}
       />
-      <AddressContent>
+      {/* <AddressContent>
         <AddressImage src={locationImage} />
         {item?.location}
-      </AddressContent>
+      </AddressContent> */}
       <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} />
       <ItemTitle>{item?.title}</ItemTitle>
-      <UserName>{item?.nickname}</UserName>
+      <UserName> {item?.location}</UserName>
       <ItemContent>{item?.content}</ItemContent>
     </ItemCardContainer>
   );
 };
 
-const AddressContent = styled.div`
-  border-radius: 10px 10px 0px 0px;
-  width: 100%;
-  background-color: rgba(34, 32, 32, 0.2);
-  padding: 10px;
-  top: 0px;
-  left: 0px;
-  position: absolute;
-  color: var(--black-white-white, #fcfcfc);
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  display: flex;
-  align-items: center;
-`;
-
-const AddressImage = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-`;
 const ItemCardContainer = styled.div`
   position: relative;
   width: 272px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   line-height: 150%;
   font-style: normal;
 `;
@@ -64,14 +41,17 @@ const ItemTitle = styled.div`
   /* KOR/Kor B 20 */
   font-size: 20px;
   font-weight: 700;
-  margin-top: 16px;
+  margin-top: 10px;
 `;
 
 const UserName = styled.div`
-  color: #757575;
+  color: var(--black-white-gray-60, #adadad);
   /* KOR/Kor R 14 */
+  font-family: "Pretendard";
   font-size: 14px;
+  font-style: normal;
   font-weight: 400;
+  line-height: 150%; /* 21px */
 `;
 
 const ItemContent = styled.div`
@@ -84,6 +64,7 @@ const ItemContent = styled.div`
   height: 48px;
   font-size: 16px;
   font-weight: 400;
-  margin-top: 10px;
+  margin-top: 6px;
+  margin-bottom: 5px;
 `;
 export default ItemCard;

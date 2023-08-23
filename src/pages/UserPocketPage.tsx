@@ -12,7 +12,6 @@ import ItemCardList from "../components/common/ItemCardList";
 
 const UserPocketPage = () => {
   const { nickname } = useParams();
-
   const { isLoading, error, data } = useQuery(["myPocketData", nickname], () => getUserPocketApi(nickname), {
     refetchOnWindowFocus: false,
   });
