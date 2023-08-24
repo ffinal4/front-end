@@ -9,20 +9,20 @@ import { getMyPocketApi } from '../../api/goods';
 
 const BidModal = ({ conditional, setConditional } : any) => {
 
-    const { isLoading, data, error } : any = useQuery("bidPickData", getMyPocketApi, {
+    const { isError, isLoading, data, error } : any = useQuery("bidPickData", getMyPocketApi, {
         refetchOnWindowFocus: false,
     });
-    // const newData = data.data.info.goodsListResponseDto;
+    const newData = data?.data.info.goodsListResponseDto;
 
-    console.log("내주머니입찰데이터", data);
+    console.log("내주머니입찰데이터", newData);
 
     const [myPocketGoods, setMyPocketGoods] = useState<{goodsId: string | number[]}>({
         goodsId: [],
-      });
+    });
     const [checkBox, setCheckBox] = useState<number | null>(null);
 
     if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div>

@@ -8,22 +8,22 @@ const JoinBidCard = ({
     setCheckBox,
     item,
     myPocketGoods,
-    setMyPocketGoods }: any) => {
+    setMyPocketGoods } : any) => {
 
-    const onClickCheckHandler = (item: any) => {
+    const onClickCheckHandler = (item : any) => {
         if (checkBox === item.goodsId) {
-            setCheckBox(null);
+            setCheckBox([]);
         } else {
             setCheckBox(item.goodsId);
         };
-        return setMyPocketGoods({ ...myPocketGoods, goodsId: myPocketGoods.goodsId.push(item.goodsId) });
+        return setMyPocketGoods(myPocketGoods.goodsId.push(item.goodsId));
     };
     // console.log(checkBox, "checkBox");
 
     return (
         <CardContainer onClick={() => onClickCheckHandler(item)}>
-            <CardImgContainer src={item?.images[0]} onClick={() => setCheckBox(!checkBox)}>
-                {(checkBox === item.goodsId)
+            <CardImgContainer src={item?.image} onClick={() => setCheckBox(!checkBox)}>
+                {(checkBox === item?.goodsId)
                     && <div>
                         <CheckOutContainer />
                         <CheckContainer>
@@ -39,7 +39,7 @@ const JoinBidCard = ({
                 </LocatinoWrapper>
             </CardImgContainer>
             <TitleContainer>{item?.title}</TitleContainer>
-            <ContentContainer>{item?.title}</ContentContainer>
+            <ContentContainer>{item?.ratingPrice}</ContentContainer>
         </CardContainer>
     )
 };
