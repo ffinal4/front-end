@@ -10,6 +10,7 @@ import traderequest from "../../assets/icon/traderequest.png";
 import tradeing from "../../assets/icon/tradeingrequst.png";
 import tradecomplete from "../../assets/icon/tradecomplete.png";
 import RequestStateButton from "./RequestStateButton";
+import { StRequestState } from "../../styles/RequestStateBox";
 
 const TradeRequestCard = () => {
   const [requestState, setRequestState] = useState({ request: "교환요청" });
@@ -18,34 +19,34 @@ const TradeRequestCard = () => {
   const tradeRequestState = () => {
     if (request === "교환요청") {
       return (
-        <TradeRequestState>
+        <StRequestState backgroundcolor="#FCF0E8">
           <DotImg src={orangedot} />
           교환요청
-        </TradeRequestState>
+        </StRequestState>
       );
     }
     if (request === "교환진행중") {
       return (
-        <TradeRequestIng>
+        <StRequestState backgroundcolor="#FCF6E9">
           <DotImg src={yellowdot} />
           교환진행중
-        </TradeRequestIng>
+        </StRequestState>
       );
     }
     if (request === "교환취소") {
       return (
-        <TradeRequestCancel>
+        <StRequestState backgroundcolor="rgba(223, 55, 55, 0.10)">
           <DotImg src={reddot} />
           교환취소
-        </TradeRequestCancel>
+        </StRequestState>
       );
     }
     if (request === "교환완료") {
       return (
-        <TradeRequestComplete>
+        <StRequestState backgroundcolor="#EFEFEF">
           <DotImg src={greendot} />
           교환완료
-        </TradeRequestComplete>
+        </StRequestState>
       );
     }
   };
@@ -104,18 +105,18 @@ const TradeRequestCard = () => {
     </CardContainer>
   );
 };
-const TradeImgContainer = styled.div`
+export const TradeImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-const TradeImg = styled.img`
+export const TradeImg = styled.img`
   width: 328px;
   height: 43px;
 
   margin-top: 30px;
 `;
-const CardContainer = styled.div`
+export const CardContainer = styled.div`
   width: 368px;
   height: 520px;
   border-radius: 10px;
@@ -124,11 +125,11 @@ const CardContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
 `;
 
-const Date = styled.div`
+export const Date = styled.div`
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 700;
@@ -136,73 +137,13 @@ const Date = styled.div`
   margin: 10px 0px 0px 20px;
 `;
 
-const DotImg = styled.img`
+export const DotImg = styled.img`
   width: 8px;
   height: 8px;
   margin-right: 6px;
 `;
 
-const TradeRequestState = styled.div`
-  width: 110px;
-  height: 44px;
-  background-color: #fcf0e8;
-  border-radius: 0px 10px;
-  position: absolute;
-  right: 0;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const TradeRequestIng = styled.div`
-  width: 110px;
-  height: 44px;
-  background-color: #fcf6e9;
-  border-radius: 0px 10px;
-  position: absolute;
-  right: 0;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const TradeRequestCancel = styled.div`
-  width: 110px;
-  height: 44px;
-  background-color: rgba(223, 55, 55, 0.1);
-  border-radius: 0px 10px;
-  position: absolute;
-  right: 0;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const TradeRequestComplete = styled.div`
-  width: 110px;
-  height: 44px;
-  background-color: #efefef;
-  border-radius: 0px 10px;
-  position: absolute;
-  right: 0;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const GoodsContainer = styled.div`
+export const GoodsContainer = styled.div`
   border-bottom: 1px solid #d5d4d4;
   padding-bottom: 20px;
   width: 328px;
@@ -214,18 +155,18 @@ const GoodsContainer = styled.div`
   gap: 44px;
 `;
 
-const GoodsImg = styled.img`
+export const GoodsImg = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 5px;
   border: 1px solid black;
 `;
 
-const ContentsContainer = styled.div`
+export const ContentsContainer = styled.div`
   padding: 0px 20px 0px 20px;
 `;
 
-const ExchangeImg = styled.img`
+export const ExchangeImg = styled.img`
   width: 24px;
   height: 24px;
 `;
@@ -238,21 +179,21 @@ const Title = styled.div`
   margin-top: 20px;
 `;
 
-const GoodsTitle = styled.div`
+export const GoodsTitle = styled.div`
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 700;
   margin-top: 6px;
 `;
 
-const Address = styled.div`
+export const Address = styled.div`
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 400;
   color: #adadad;
 `;
 
-// const TradeStateContaner = styled.div`
+// export const TradeStateContaner = styled.div`
 //   display: flex;
 //   justify-content: space-between;
 //   align-items: center;
@@ -262,7 +203,7 @@ const Address = styled.div`
 //   padding: 10px 20px 0px 20px;
 // `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 40px;
