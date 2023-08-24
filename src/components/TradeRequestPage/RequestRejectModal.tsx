@@ -49,8 +49,8 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
 
 const ModalBackgroundBox = styled.div`
   background-color: gray;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   top: 0px;
   left: 0px;
 
