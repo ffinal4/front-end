@@ -51,10 +51,6 @@ const TradeRequestPage = () => {
             <TradeRequestCard />
             <TradeRequestCard />
             <TradeRequestCard />
-            <TradeRequestCard />
-            <TradeRequestCard />
-            <TradeRequestCard />
-            <TradeRequestCard />
           </CardContainer>
         </AllStateContainer>
       </TradeRequestListContainer>
@@ -62,7 +58,7 @@ const TradeRequestPage = () => {
   );
 };
 
-const TradeRequestPageContainer = styled.div`
+export const TradeRequestPageContainer = styled.div`
   width: 100%;
 `;
 
@@ -153,8 +149,7 @@ export const TradeStateMenu = styled.div`
   font-family: Pretendard;
 `;
 
-const AllStateContainer = styled.div`
-  /* border: 1px solid black; */
+export const AllStateContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -167,13 +162,12 @@ export const ChatState = styled.div`
   width: 192px;
 `;
 
-const RequestStateContainer = styled.div`
-  /* border: 1px solid black; */
+export const RequestStateContainer = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const RequestStateNumber = styled.div`
+export const RequestStateNumber = styled.div`
   margin-right: 30px;
   display: flex;
   align-items: center;
@@ -182,19 +176,19 @@ const RequestStateNumber = styled.div`
   font-weight: 400;
 `;
 
-const RequestIngNumber = styled.div`
+export const RequestIngNumber = styled.div`
   display: flex;
   align-items: center;
   font-family: "Pretendard";
   font-size: 16px;
 `;
-const DotImg = styled.img`
+export const DotImg = styled.img`
   width: 8px;
   height: 8px;
   margin-right: 8px;
 `;
 
-const CardContainer = styled.div`
+export const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;

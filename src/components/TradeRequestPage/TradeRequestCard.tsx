@@ -171,7 +171,7 @@ export const ExchangeImg = styled.img`
   height: 24px;
 `;
 
-export const Title = styled.div`
+const Title = styled.div`
   color: #ec8d49;
   font-family: "Pretendard";
   font-size: 14px;
