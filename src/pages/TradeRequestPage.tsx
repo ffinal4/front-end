@@ -16,18 +16,23 @@ const TradeRequestPage = () => {
       <Container>
         <SubTitle>교환요청</SubTitle>
       </Container>
+      <RequestContainer>
+        <GetRequest>받은 요청</GetRequest>
+        <SendRequest>보낸 요청</SendRequest>
+      </RequestContainer>
+
+      {/* <RequestStateContainer>
+        <RequestStateNumber>
+          <DotImg src={orangedot} />
+          교환요청 10
+        </RequestStateNumber>
+        <RequestIngNumber>
+          <DotImg src={yellowdot} />
+          교환진행중 10
+        </RequestIngNumber>
+      </RequestStateContainer> */}
       <TradeRequestListContainer>
         <AllStateContainer>
-          <RequestStateContainer>
-            <RequestStateNumber>
-              <DotImg src={orangedot} />
-              교환요청 10
-            </RequestStateNumber>
-            <RequestIngNumber>
-              <DotImg src={yellowdot} />
-              교환진행중 10
-            </RequestIngNumber>
-          </RequestStateContainer>
           <FilterContainer>
             <Filter
               onClick={() => {
@@ -79,6 +84,27 @@ export const SubTitle = styled.div`
   margin-bottom: 40px;
   margin-top: 6px;
 `;
+
+const RequestContainer = styled.div`
+  display: flex;
+`;
+
+const GetRequest = styled.div`
+  width: 176px;
+  height: 44px;
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px 5px 0px 0px;
+`;
+
+const SendRequest = styled.div`
+  width: 176px;
+  height: 44px;
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px 5px 0px 0px;
+`;
+
 export const FilterContainer = styled.div`
   z-index: 800;
 `;
@@ -102,11 +128,11 @@ export const ArrowImg = styled.img`
 `;
 
 export const TradeRequestListContainer = styled.div`
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
+  border: 2px solid black;
+  border-radius: 10px;
   margin-top: 20px;
-  max-width: 1136px;
-  height: 1764px;
+  max-width: 1216px;
+  height: 1784px;
 `;
 
 export const RequestDateMenu = styled.div`
@@ -165,6 +191,7 @@ export const ChatState = styled.div`
 export const RequestStateContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: end;
 `;
 
 export const RequestStateNumber = styled.div`
