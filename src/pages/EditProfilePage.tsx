@@ -92,7 +92,7 @@ const EditProfilePage = () => {
 
       if (res.status === 200) {
         console.log("개인정보수정완료", res);
-        navigate("/login");
+        navigate("/mypage");
       }
     } catch (error) {
       console.log("개인정보수정실패", error);
