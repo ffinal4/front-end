@@ -20,10 +20,10 @@ const TradeRequestCard = () => {
   useEffect(() => {
     if (request === "교환요청") {
       setBorder("2px solid #EC8D49");
-    };
+    }
     if (request === "교환진행중") {
       setBorder("2px solid #FFCA64");
-    };
+    }
     if (request === "교환취소" || request === "교환완료") {
       setBorder("1px solid #D5D4D4");
     }
@@ -87,8 +87,9 @@ const TradeRequestCard = () => {
       );
     }
   };
+
   return (
-    <CardContainer style={{border: `${border}`}}>
+    <CardContainer style={{ border: `${border}` }}>
       <Container>
         <Date>2023-8-22</Date>
         {tradeRequestState()}
