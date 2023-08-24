@@ -11,57 +11,73 @@ const TradeRequestPage = () => {
   const [dropdownMenu, setDropdownMenu] = useState("필터");
 
   return (
-    <TradeRequestPageContainer>
-      <Title>TRADING REQUEST</Title>
-      <Container>
-        <SubTitle>교환요청</SubTitle>
-      </Container>
-      <RequestContainer>
-        <GetRequest>받은 요청</GetRequest>
-        <SendRequest>보낸 요청</SendRequest>
-      </RequestContainer>
-
-      {/* <RequestStateContainer>
-        <RequestStateNumber>
-          <DotImg src={orangedot} />
-          교환요청 10
-        </RequestStateNumber>
-        <RequestIngNumber>
-          <DotImg src={yellowdot} />
-          교환진행중 10
-        </RequestIngNumber>
-      </RequestStateContainer> */}
-      <TradeRequestListContainer>
-        <AllStateContainer>
-          <FilterContainer>
-            <Filter
-              onClick={() => {
-                setFilterOpen(!filterOpen);
-              }}
-            >
-              {dropdownMenu}
-              <ArrowImg src={arrow} />
-            </Filter>
-            {filterOpen && (
-              <FilterDropdownMenu
-                filterOpen={filterOpen}
-                setFilterOpen={setFilterOpen}
-                setDropdownMenu={setDropdownMenu}
-              />
-            )}
-          </FilterContainer>
-          <CardContainer>
-            <TradeRequestCard />
-            <TradeRequestCard />
-            <TradeRequestCard />
-            <TradeRequestCard />
-            <TradeRequestCard />
-          </CardContainer>
-        </AllStateContainer>
-      </TradeRequestListContainer>
-    </TradeRequestPageContainer>
+    <LayoutContainer>
+      <PageLayout>
+        <TradeRequestPageContainer>
+          <Title>TRADING REQUEST</Title>
+          <Container>
+            <SubTitle>교환요청</SubTitle>
+          </Container>
+          <TabContainer>
+            <GetRequest>받은 요청</GetRequest>
+            <SendRequest>보낸 요청</SendRequest>
+          </TabContainer>
+          <RequestStateContainer>
+            <RequestStateNumber>
+              <DotImg src={orangedot} />
+              교환요청 10
+            </RequestStateNumber>
+            <RequestIngNumber>
+              <DotImg src={yellowdot} />
+              교환진행중 10
+            </RequestIngNumber>
+          </RequestStateContainer>
+          <TradeRequestListContainer>
+            <AllStateContainer>
+              <FilterContainer>
+                <Filter
+                  onClick={() => {
+                    setFilterOpen(!filterOpen);
+                  }}
+                >
+                  {dropdownMenu}
+                  <ArrowImg src={arrow} />
+                </Filter>
+                {filterOpen && (
+                  <FilterDropdownMenu
+                    filterOpen={filterOpen}
+                    setFilterOpen={setFilterOpen}
+                    setDropdownMenu={setDropdownMenu}
+                  />
+                )}
+              </FilterContainer>
+              <CardContainer>
+                <TradeRequestCard />
+                <TradeRequestCard />
+                <TradeRequestCard />
+                <TradeRequestCard />
+                <TradeRequestCard />
+              </CardContainer>
+            </AllStateContainer>
+          </TradeRequestListContainer>
+        </TradeRequestPageContainer>
+      </PageLayout>
+    </LayoutContainer>
   );
 };
+
+const LayoutContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 220px 352px 100px 352px;
+  background-color: #fcf6e9;
+`;
+
+const PageLayout = styled.div`
+  width: 100%;
+  min-width: 1220px;
+  margin: 0 auto;
+`;
 
 export const TradeRequestPageContainer = styled.div`
   width: 100%;
@@ -85,28 +101,40 @@ export const SubTitle = styled.div`
   margin-top: 6px;
 `;
 
-const RequestContainer = styled.div`
+const TabContainer = styled.div`
   display: flex;
+  position: absolute;
+  margin-left: 40px;
 `;
 
 const GetRequest = styled.div`
+  border: 2px solid black;
   width: 176px;
   height: 44px;
   display: flex;
-  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 4px solid white;
   border-radius: 5px 5px 0px 0px;
+  background-color: white;
+  font-family: Pretendard;
 `;
 
 const SendRequest = styled.div`
   width: 176px;
   height: 44px;
   display: flex;
-  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+  border-bottom: 2px solid black;
   border-radius: 5px 5px 0px 0px;
+  font-family: Pretendard;
 `;
 
 export const FilterContainer = styled.div`
   z-index: 800;
+  padding-right: 40px;
 `;
 
 export const Filter = styled.div`
@@ -118,7 +146,6 @@ export const Filter = styled.div`
   align-items: center;
   padding: 10px 10px 10px 20px;
   justify-content: space-between;
-  position: relative;
   font-family: Pretendard;
 `;
 
@@ -130,9 +157,11 @@ export const ArrowImg = styled.img`
 export const TradeRequestListContainer = styled.div`
   border: 2px solid black;
   border-radius: 10px;
-  margin-top: 20px;
-  max-width: 1216px;
+  margin-top: 23px;
+  width: 100%;
   height: 1784px;
+  background-color: white;
+  /* position: relative; */
 `;
 
 export const RequestDateMenu = styled.div`
@@ -178,7 +207,7 @@ export const TradeStateMenu = styled.div`
 export const AllStateContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 30px;
@@ -192,6 +221,7 @@ export const RequestStateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
+  padding-right: 40px;
 `;
 
 export const RequestStateNumber = styled.div`
@@ -219,5 +249,6 @@ export const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  padding: 0px 40px;
 `;
 export default TradeRequestPage;
