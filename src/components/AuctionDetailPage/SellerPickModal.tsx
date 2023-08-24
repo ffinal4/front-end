@@ -127,7 +127,7 @@ const MainContainer = styled.div`
     margin: 26px 0px 40px 0px;
     width: 100%;
     max-height: 788px;
-    overflow: hidden;
+    overflow: auto;
 `;
 
 const CloseBtn = styled.img`
