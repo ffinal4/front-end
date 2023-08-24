@@ -37,9 +37,6 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data, failed } : any) 
                                 setCheckBox={setCheckBox}
                                 setMyPocketGoods={setMyPocketGoods}
                                 myPocketGoods={myPocketGoods}
-                                myPocketData={myPocketData}
-                                setFindedData={setFindedData}
-                                setSeeInfo={setSeeInfo}
                             />
                             {(item.ratingCheck === null
                                 || item.sellerPrice === null)

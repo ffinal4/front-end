@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import goodsexchange from "../../assets/icon/goodsexchange.png";
 import goods from "../../assets/images/kangaroowhy.png";
@@ -15,6 +15,19 @@ import { StRequestState } from "../../styles/RequestStateBox";
 const TradeRequestCard = () => {
   const [requestState, setRequestState] = useState({ request: "교환요청" });
   const { request } = requestState;
+  const [border, setBorder] = useState<string>();
+
+  useEffect(() => {
+    if (request === "교환요청") {
+      setBorder("2px solid #EC8D49");
+    };
+    if (request === "교환진행중") {
+      setBorder("2px solid #FFCA64");
+    };
+    if (request === "교환취소" || request === "교환완료") {
+      setBorder("1px solid #D5D4D4");
+    }
+  }, []);
 
   const tradeRequestState = () => {
     if (request === "교환요청") {
@@ -75,7 +88,7 @@ const TradeRequestCard = () => {
     }
   };
   return (
-    <CardContainer>
+    <CardContainer style={{border: `${border}`}}>
       <Container>
         <Date>2023-8-22</Date>
         {tradeRequestState()}
