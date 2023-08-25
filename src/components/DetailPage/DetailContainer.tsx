@@ -34,10 +34,20 @@ const DetailContainer = ({ data } : any) => {
     <LayoutContainer>
         <ImageOutContainer>
           <SlideBtnWrapper>
-            <SlideButton onClick={moveToPrevBtn}>
+            <SlideButton
+              onClick={moveToPrevBtn}
+              style={{
+                opacity: `${(currentImg === 0 || arrImages.length === 1) ? "0" : "0.2"}`,
+                cursor: `${(currentImg === 0 || arrImages.length === 1) ? "default" : "pointer"}`
+                }}>
               <img src={ArrowLeft} alt=''/>
             </SlideButton>
-            <SlideButton onClick={moveToNextBtn}>
+            <SlideButton
+              onClick={moveToNextBtn}
+              style={{
+                opacity: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "0" : "0.2"}`,
+                cursor: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "default" : "pointer"}`
+              }}>
               <img src={ArrowRight} alt=''/>
             </SlideButton>
           </SlideBtnWrapper>
@@ -126,8 +136,6 @@ const SlideButton = styled.div`
     align-items: center;
     color: #fff;
     z-index: 200;
-    opacity: 0.2;
-    cursor: pointer;
 
     &:hover {
         background-color: #b3b3b3;

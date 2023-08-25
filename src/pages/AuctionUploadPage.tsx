@@ -3,7 +3,8 @@ import { styled } from "styled-components";
 import { StBasicButton } from "../styles/BasicButton";
 import ProductChoice from "../components/AuctionUploadPage/ProductChoice";
 import { useQuery } from "react-query";
-import { getAuctionUploadApi, postAuctionUploadApi } from "../api/goods";
+import { getAuctionUploadApi } from "../api/goods";
+import { postAuctionUploadApi } from "../api/acution"
 import { useNavigate } from "react-router-dom";
 import Remove from "../assets/icon/remove.png";
 

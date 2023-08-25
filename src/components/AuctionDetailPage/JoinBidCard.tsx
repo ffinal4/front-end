@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 import Check from '../../assets/icon/check.png'
@@ -8,22 +8,33 @@ const JoinBidCard = ({
     setCheckBox,
     item,
     myPocketGoods,
-    setMyPocketGoods } : any) => {
+    setMyPocketGoods,
+    ratingPrice,
+    setRatingPrice
+ } : any) => {
+    
+    const index = checkBox.indexOf(item.goodsId);
 
     const onClickCheckHandler = (item : any) => {
-        if (checkBox === item.goodsId) {
-            setCheckBox([]);
+        if (index !== -1) {
+            setCheckBox(checkBox.filter((value : number) => value !== item.goodsId));
+            setRatingPrice(ratingPrice - item.ratingPrice);
         } else {
-            setCheckBox(item.goodsId);
+            setCheckBox([...checkBox, item.goodsId]);
+            setRatingPrice(ratingPrice + item.ratingPrice);
         };
-        return setMyPocketGoods(myPocketGoods.goodsId.push(item.goodsId));
     };
-    // console.log(checkBox, "checkBox");
+
+    useEffect(() => {
+        setMyPocketGoods({...myPocketGoods, goodsId: checkBox});
+    }, [checkBox]);
+    console.log(myPocketGoods, "myPocketGoods");
+    console.log(checkBox, "checkBox");
 
     return (
         <CardContainer onClick={() => onClickCheckHandler(item)}>
             <CardImgContainer src={item?.image} onClick={() => setCheckBox(!checkBox)}>
-                {(checkBox === item?.goodsId)
+                {(index !== -1)
                     && <div>
                         <CheckOutContainer />
                         <CheckContainer>
@@ -120,7 +131,7 @@ const CheckOutContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 888;
+    z-index: 1005;
 `;
 
 const CheckContainer = styled.div`
