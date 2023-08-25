@@ -13,6 +13,7 @@ import { useQuery } from "react-query";
 import { getRatingStartApi, postRatingSubmitApi } from "../api/rating";
 import Remove from "../assets/icon/remove.png";
 import Manual from "../components/RatingPage/Manual";
+import NotDataModal from "../components/RatingPage/NotDataModal";
 
 const RatingPage = () => {
   const { isLoading, data, error }: any = useQuery("ratingStart", getRatingStartApi, {
@@ -20,6 +21,7 @@ const RatingPage = () => {
   });
 
   console.log(data, "data");
+  console.log("에러", error);
 
   type Game = {
     price: any;
@@ -73,8 +75,8 @@ const RatingPage = () => {
     }
   };
   // if (data === undefined) return <p>평가 가능한 상품이 없습니다.</p>;
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isLoading) return <MainLayout><p>Loading...</p></MainLayout>;
+  if (error) return <NotDataModal />;
 
   return (
     <MainLayoutContainer>

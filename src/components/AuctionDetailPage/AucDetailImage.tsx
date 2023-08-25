@@ -19,27 +19,27 @@ const AucDetailImage = ({ data }: any) => {
   const imageWidth: number = 464;
   const SlideRange: number = currentImg * imageWidth;
 
-  useEffect(() => {
-    const interVal = setInterval(() => {
-      if (newLeftTime.days > 0 || bidTimeHours > 0 || bidTimeMinutes > 0 || bidTimeSeconds > 0) {
-        if (bidTimeSeconds > 0) {
-          setBidTimeSeconds((seconds) => (seconds - 1));
-        } else {
-          setBidTimeMinutes((minutes) => (minutes - 1));
-          setBidTimeSeconds((seconds) => (seconds + 59));
-        };
-        if (bidTimeSeconds === 0 && bidTimeMinutes === 0) {
-          setBidTimeMinutes((minutes) => (minutes + 59));
-          setBidTimeSeconds((seconds) => (seconds + 59));
-          setBidTimeHours((hours) => (hours - 1));
-        };
-      };
-    }, 1000);
-    if (newLeftTime.days <= 0 && newLeftTime.hours <= 0 && bidTimeMinutes <= 0 && bidTimeSeconds <= 0) {
-      clearInterval(interVal);
-    };
-    return () => clearInterval(interVal);
-  }, [bidTimeSeconds]);
+  // useEffect(() => {
+  //   const interVal = setInterval(() => {
+  //     if (newLeftTime.days > 0 || bidTimeHours > 0 || bidTimeMinutes > 0 || bidTimeSeconds > 0) {
+  //       if (bidTimeSeconds > 0) {
+  //         setBidTimeSeconds((seconds) => (seconds - 1));
+  //       } else {
+  //         setBidTimeMinutes((minutes) => (minutes - 1));
+  //         setBidTimeSeconds((seconds) => (seconds + 59));
+  //       };
+  //       if (bidTimeSeconds === 0 && bidTimeMinutes === 0) {
+  //         setBidTimeMinutes((minutes) => (minutes + 59));
+  //         setBidTimeSeconds((seconds) => (seconds + 59));
+  //         setBidTimeHours((hours) => (hours - 1));
+  //       };
+  //     };
+  //   }, 1000);
+  //   if (newLeftTime.days <= 0 && newLeftTime.hours <= 0 && bidTimeMinutes <= 0 && bidTimeSeconds <= 0) {
+  //     clearInterval(interVal);
+  //   };
+  //   return () => clearInterval(interVal);
+  // }, [bidTimeSeconds]);
 
   useEffect(() => {
     if (divRef.current) {
@@ -71,15 +71,25 @@ const AucDetailImage = ({ data }: any) => {
             : <TimerContainer>
               <BidTimer src={RedTimer}/>
               <TimerText>
-                마감까지 00 : 0{bidTimeHours} : {(bidTimeMinutes < 10) ? `0${bidTimeMinutes}` : bidTimeMinutes} : {(bidTimeSeconds < 10) ? `0${bidTimeSeconds}` : bidTimeSeconds}
+                마감까지 00 : {(bidTimeHours < 10) && "0"}{bidTimeHours} : {(bidTimeMinutes < 10) && "0"}{bidTimeMinutes} : {(bidTimeSeconds < 10) && "0"}{bidTimeSeconds}
               </TimerText>
             </TimerContainer>
           }
         <SlideBtnWrapper>
-          <SlideButton onClick={moveToPrevBtn}>
+          <SlideButton
+            onClick={moveToPrevBtn}
+            style={{
+              opacity: `${(imagesArr.length === 1 || currentImg === 0) ? "0" : "0.2"}`,
+              cursor: `${(imagesArr.length === 1 || currentImg === 0) ? "default" : "pointer"}`
+              }}>
             <img src={ArrowLeft} alt='' />
           </SlideButton>
-          <SlideButton onClick={moveToNextBtn}>
+          <SlideButton
+            onClick={moveToNextBtn}
+            style={{
+              opacity: `${(imagesArr.length === 1 || currentImg === (imagesArr.length - 1)) ? "0" : "0.2"}`,
+              cursor: `${(imagesArr.length === 1 || currentImg === (imagesArr.length - 1)) ? "default" : "pointer"}`
+              }}>
             <img src={ArrowRight} alt='' />
           </SlideButton>
         </SlideBtnWrapper>
@@ -160,8 +170,6 @@ const SlideButton = styled.div`
       align-items: center;
       color: #fff;
       z-index: 200;
-      opacity: 0.2;
-      cursor: pointer;
   
       &:hover {
           background-color: #b3b3b3;
@@ -235,5 +243,11 @@ const FinishText = styled.div`
   font-weight: 800;
   line-height: 150%;
 `;
+
+// const NoneBtn = styled.div`
+//   width: 36px;
+//   height: 36px;
+  
+// `;
 
 export default AucDetailImage;

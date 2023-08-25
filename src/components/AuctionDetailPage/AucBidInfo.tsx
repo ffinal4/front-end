@@ -1,28 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { styled } from 'styled-components';
 import AucBidCard from './AucBidCard';
-import SellerPickModal from './SellerPickModal';
+import { useQuery } from 'react-query';
+import { getAuctionBidListApi } from '../../api/acution';
+import { useParams } from 'react-router-dom';
 
-const AucBidInfo = ({ data } : any) => {
+const AucBidInfo = ({ productData } : any) => {
 
-    const [sellerPicks, setSellerPicks] = useState({
-        pickModal: false,
-        bidId: "",
-    });
-    const { pickModal, bidId } = sellerPicks;
+    // const auctionId = productData.data.info.auctionId;
+    // const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
+    //     refetchOnWindowFocus: false,
+    // });
+    // console.log("입찰품 목록", data);
 
   return (
     <InfoContainer>
-        {(data.data.info.checkSameUser)
-            &&  <PickBtn
-                onClick={() => setSellerPicks({...sellerPicks, pickModal: !pickModal})}
-            >선호 물건 선택하기</PickBtn>
-        }
-        {(pickModal)
-            && <SellerPickModal
-                sellerPicks={sellerPicks}
-                setSellerPicks={setSellerPicks} />
-        }
         <InfoTextContainer>
             <CardListContainer>
                 <AucBidCard />
@@ -48,7 +40,6 @@ const InfoContainer = styled.div`
     margin: 42px 0px 60px 0px;
     padding: 0px 0px 93px 0px;
     display: grid;
-    position: relative;
 `;
 
 const InfoTextContainer = styled.div`
@@ -63,25 +54,25 @@ const CardListContainer = styled.div`
     gap: 16px;
 `;
 
-const PickBtn = styled.div`
-    display: flex;
-    width: 176px;
-    padding: 10px 0px;
-    justify-content: center;
-    align-items: center;
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
-    color: #222020;
-    background-color: #CBE4FB;
-    border: 1px solid #222020;
-    border-bottom: 2px solid #222020;
-    position: absolute;
-    right: 0;
-    top: -47px;
-    border-radius: 5px 5px 0px 0px;
-    cursor: pointer;
-`;
+// const PickBtn = styled.div`
+//     display: flex;
+//     width: 176px;
+//     padding: 10px 0px;
+//     justify-content: center;
+//     align-items: center;
+//     font-family: "Pretendard";
+//     font-size: 16px;
+//     font-weight: 400;
+//     line-height: 150%;
+//     color: #222020;
+//     background-color: #CBE4FB;
+//     border: 1px solid #222020;
+//     border-bottom: 2px solid #222020;
+//     position: absolute;
+//     right: 0;
+//     top: -47px;
+//     border-radius: 5px 5px 0px 0px;
+//     cursor: pointer;
+// `;
 
 export default AucBidInfo;

@@ -4,22 +4,37 @@ import { StBasicButton } from '../../styles/BasicButton';
 import JoinBidCard from '../AuctionDetailPage/JoinBidCard';
 import Paging from '../common/Paging/Paging';
 import Close from '../../assets/icon/remove.png'
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { getMyPocketApi } from '../../api/goods';
+import { postAuctionBidApi } from '../../api/acution';
+import { useRecoilValue } from 'recoil';
+import { pagination } from '../../store/pagination';
 
-const BidModal = ({ conditional, setConditional } : any) => {
+const BidModal = ({ conditional, setConditional, productData } : any) => {
 
-    const { isError, isLoading, data, error } : any = useQuery("bidPickData", getMyPocketApi, {
+    const currentPage = useRecoilValue(pagination);
+
+    const { isError, isLoading, data, error } : any = useQuery(["bidPickData", currentPage], () => getMyPocketApi(currentPage), {
         refetchOnWindowFocus: false,
     });
+    const newProductData = productData.data.info.goodsResponseDto;
+    const newAuctionId = productData.data.info.auctionId
     const newData = data?.data.info.goodsListResponseDto;
 
     console.log("내주머니입찰데이터", newData);
 
-    const [myPocketGoods, setMyPocketGoods] = useState<{goodsId: string | number[]}>({
+    const [checkBox, setCheckBox] = useState<any[]>([]);
+    const [ratingPrice, setRatingPrice] = useState<number>(0);
+    const [myPocketGoods, setMyPocketGoods] = useState<{ goodsId: string | number[] }>({
         goodsId: [],
     });
-    const [checkBox, setCheckBox] = useState<number | null>(null);
+
+    const mutation = useMutation(() => postAuctionBidApi(myPocketGoods, newAuctionId), {
+        onSuccess: (res) => {
+            console.log("입찰성공!", res);
+            setConditional({ ...conditional, bid: false });
+        },
+    });
 
     if (isLoading) return <p>Loading...</p>;
     if (isError) return <p>Error: {error.message}</p>;
@@ -46,22 +61,38 @@ const BidModal = ({ conditional, setConditional } : any) => {
                 <ButtonWrapper>
                     <RatingPoint>
                         <Text style={{color: "#222020"}}>선택된 총 레이팅 점수</Text>
-                        20,000
+                        {ratingPrice.toLocaleString()}
                     </RatingPoint>
-                    <StButton buttonColor='#D5D4D4'>입찰하기</StButton>
+                    {(ratingPrice > 30000)
+                        ? <StButton
+                            buttonColor='#58ABF7'
+                            style={{cursor: "pointer", border: "2px solid #222020"}}
+                            onClick={() => mutation.mutate()}
+                        >입찰하기</StButton>
+                        : <StButton buttonColor='#D5D4D4'>입찰하기</StButton>}
                 </ButtonWrapper>
             </Wrapper>
             <PocketListContainer>
                 {(data?.data.info.goodsListResponseDto.map((item : any) => {
                     return (
-                        <JoinBidCard
-                            key={item.goodsId}
-                            checkBox={checkBox}
-                            setCheckBox={setCheckBox}
-                            setMyPocketGoods={setMyPocketGoods}
-                            myPocketGoods={myPocketGoods}
-                            item={item}
-                        />
+                        <NotRatingProductWrapper>
+                            <JoinBidCard
+                                key={item.goodsId}
+                                checkBox={checkBox}
+                                setCheckBox={setCheckBox}
+                                setMyPocketGoods={setMyPocketGoods}
+                                myPocketGoods={myPocketGoods}
+                                ratingPrice={ratingPrice}
+                                setRatingPrice={setRatingPrice}
+                                item={item}
+                            />
+                            {(item.ratingPrice === 0 || item.goodsStatus === "BIDDING") && <NotRatingProduct />}
+                            <GoodsConditionContainer />
+                            <GoodsCondition>
+                                <Circle />
+                                거래중
+                            </GoodsCondition>
+                        </NotRatingProductWrapper>
                     )
                 }))}
             </PocketListContainer>
@@ -92,6 +123,11 @@ const ModalContainer = styled.div`
     left: 25%;
     z-index: 1003;
     padding: 40px 30px;
+
+    @media screen and (max-width: 1136px) {
+        width: 100%;
+        left: 0;
+    }
 `;
 
 const ModalTitle = styled.div`
@@ -165,6 +201,59 @@ const CloseBtn = styled.img`
     height: 24px;
     object-fit: contain;
     cursor: pointer;
+`;
+
+const NotRatingProductWrapper = styled.div`
+    position: relative;
+`;
+
+const GoodsConditionContainer = styled.div`
+    position: absolute;
+    bottom: 39px;
+    left: 0;
+    z-index: 887;
+    width: 100%;
+    height: 48px;
+    background-color: #FFFFFF;
+    opacity: 0.8;
+    border-radius: 0px 0px 10px 10px;
+`;
+
+const GoodsCondition = styled.div`
+    position: absolute;
+    bottom: 39px;
+    left: 0;
+    z-index: 888;
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 150%;
+    gap: 10px;
+    color: #222020;
+    padding: 0px 0px 0px 15px;
+`;
+
+const Circle = styled.div`
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #EC8D49;
+`;
+
+const NotRatingProduct = styled.div`
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 272px;
+    height: 333px;
+    border-radius: 10px;
+    background-color: #FCFCFC;
+    opacity: 0.4;
 `;
 
 export default BidModal;

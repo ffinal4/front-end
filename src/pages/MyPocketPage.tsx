@@ -9,10 +9,14 @@ import Paging from "../components/common/Paging/Paging";
 import { useQuery } from "react-query";
 import { getMyPocketApi } from "../api/goods";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { pagination } from "../store/pagination";
 
 const MyPocketPage = () => {
+
+  const currentPage = useRecoilValue(pagination);
   const navigate = useNavigate();
-  const { isLoading, error, data } = useQuery("myPocketData", getMyPocketApi, {
+  const { isLoading, error, data } = useQuery(["myPocketData", currentPage], () => getMyPocketApi(currentPage), {
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <div>Loading...</div>;
