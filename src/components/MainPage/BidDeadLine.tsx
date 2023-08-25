@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
-
+import timer from "../../assets/icon/timer.png";
 const BidDeadLine = ({ deadline, isMainPage }: any) => {
   const calculateTimeLeft = () => {
     const now = new Date().getTime();
@@ -42,9 +42,12 @@ const BidDeadLine = ({ deadline, isMainPage }: any) => {
               입찰 마감까지 {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}
             </TimeContent>
           ) : (
-            <AuctionCardContent>
-              마감까지 {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}
-            </AuctionCardContent>
+            <TimerContainer>
+              <TimerImage src={timer} />
+              <AuctionCardContent>
+                마감까지 {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}
+              </AuctionCardContent>
+            </TimerContainer>
           )}
         </div>
       )}
@@ -67,8 +70,23 @@ const AuctionCardContent = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 24px */
+  margin-left: 4px;
 `;
 
+const TimerImage = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+const TimerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 12px 10px;
+  width: 272px;
+  height: 48px;
+  border-radius: 0px 0px 10px 10px;
+  background: rgba(255, 255, 255, 0.8);
+`;
 const EndContainer = styled.div`
   top: 0;
   left: 0;

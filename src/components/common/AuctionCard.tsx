@@ -17,7 +17,9 @@ const AuctionCard = ({ item }: any) => {
           navigate(`/auctiondetail/${item.auctionId}`);
         }}
       >
-        <BidDeadLine deadline={item?.auctionEndTime} />
+        <DeadLineContainer>
+          <BidDeadLine deadline={item?.auctionEndTime} />
+        </DeadLineContainer>
       </StCardPicture>
       <AddressContent>
         <AddressImage src={eyeImage} />
@@ -96,5 +98,15 @@ const AddressImage = styled.img`
   margin-right: 10px;
 `;
 
-const DeadLineContainer = styled.div``;
+const DeadLineContainer = styled.div`
+  position: absolute;
+  top: 224px;
+  color: var(--black-white-black, #222020);
+  /* KOR/Kor B 16 */
+  font-family: " Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+`;
 export default AuctionCard;
