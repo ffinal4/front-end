@@ -2,7 +2,6 @@ import React from "react";
 import { styled } from "styled-components";
 import { StCardPicture } from "../../styles/CardPicture";
 import { useNavigate } from "react-router-dom";
-import locationImage from "../../assets/icon/location.png";
 import CardZzimBtn from "./CardZzimBtn";
 
 const ItemCard = ({ item }: any) => {

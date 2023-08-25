@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import CardZzimBtn from "./CardZzimBtn";
 import eyeImage from "../../assets/images/eye.svg";
 import BidDeadLine from "../MainPage/BidDeadLine";
-
 const AuctionCard = ({ item }: any) => {
   const navigate = useNavigate();
   return (
