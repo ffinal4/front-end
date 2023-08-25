@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import {
   Address,
@@ -8,16 +8,12 @@ import {
   ContentsContainer,
   Date,
   DotImg,
-  ExchangeImg,
   GoodsContainer,
-  GoodsImg,
   GoodsTitle,
   TradeImg,
   TradeImgContainer,
 } from "../TradeRequestPage/TradeRequestCard";
 
-import goods from "../../assets/icon/peeppo.png";
-import timer from "../../assets/icon/timer.png";
 import bluedot from "../../assets/icon/bluedot.png";
 import blackdot from "../../assets/icon/blackdot.png";
 import reddot from "../../assets/icon/reddot.png";
@@ -27,34 +23,27 @@ import auctioncomplete from "../../assets/icon/auctioncomplete.png";
 import auctiontradecomplete from "../../assets/icon/auctiontradecomplete.png";
 import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
+import AuctionRequestGoods from "./AuctionRequestGoods";
 
 const AuctionRequestCard = () => {
-  const [requestState, setRequestState] = useState({ request: "입찰실패" });
+  const [requestState, setRequestState] = useState({ request: "경매종료" });
+  const [border, setBorder] = useState<string>();
   const { request } = requestState;
 
-  const auctionRequestStateBar = () => {
+  useEffect(() => {
     if (request === "경매중") {
-      return (
-        <TradeImgContainer>
-          <TradeImg src={auctionrequest} />
-        </TradeImgContainer>
-      );
+      setBorder("2px solid #58ABF7");
     }
     if (request === "경매종료") {
-      return (
-        <TradeImgContainer>
-          <TradeImg src={auctioncomplete} />
-        </TradeImgContainer>
-      );
+      setBorder("2px solid #ADADAD");
     }
     if (request === "교환완료") {
-      return (
-        <TradeImgContainer>
-          <TradeImg src={auctiontradecomplete} />
-        </TradeImgContainer>
-      );
+      setBorder("1px solid #D5D4D4");
     }
-  };
+    if (request === "입찰실패") {
+      setBorder("1px solid #D5D4D4");
+    }
+  });
 
   const auctionRequestState = () => {
     if (request === "경매중") {
@@ -91,26 +80,85 @@ const AuctionRequestCard = () => {
     }
   };
 
+  const auctionRequestStateBar = () => {
+    if (request === "경매중") {
+      return (
+        <TradeImgContainer>
+          <TradeImg src={auctionrequest} />
+        </TradeImgContainer>
+      );
+    }
+    if (request === "경매종료") {
+      return (
+        <TradeImgContainer>
+          <TradeImg src={auctioncomplete} />
+        </TradeImgContainer>
+      );
+    }
+    if (request === "교환완료") {
+      return (
+        <TradeImgContainer>
+          <TradeImg src={auctiontradecomplete} />
+        </TradeImgContainer>
+      );
+    }
+  };
+
+  const auctionCondition = () => {
+    if (request === "경매중") {
+      return (
+        <div>
+          <Title>경매상황</Title>
+          <GoodsTitle>현재 총 12명이 입찰중이에요.</GoodsTitle>
+          <Address>경매 종료까지 00:01:12</Address>
+        </div>
+      );
+    }
+    if (request === "경매종료") {
+      return (
+        <div>
+          <Title>경매상황</Title>
+          <GoodsTitle>현재 총 35명이 입찰중이에요.</GoodsTitle>
+          <Address>입찰품 선택까지 11:01:12</Address>
+        </div>
+      );
+    }
+    if (request === "교환완료") {
+      return (
+        <div>
+          <Title>입찰</Title>
+          <GoodsTitle>가디언즈 오브 갤럭시 오리지널 티켓</GoodsTitle>
+          <Address>서울시 서초구 서초 1동</Address>
+        </div>
+      );
+    }
+    if (request === "입찰실패") {
+      return (
+        <div>
+          <Title>경매상황</Title>
+          <GoodsTitle>총 0명이 경매에 입찰했어요.</GoodsTitle>
+        </div>
+      );
+    }
+  };
   return (
-    <CardContainer>
+    <CardContainer style={{ border: `${border}` }}>
       <Container>
         <Date>2023-8-22</Date>
         {auctionRequestState()}
       </Container>
-
       <GoodsContainer>
-        <GoodsImg src={goods} />
-        <ExchangeImg src={timer} />
-        <GoodsImg src={goods} />
+        <AuctionRequestGoods
+          requestState={requestState}
+          setRequestState={setRequestState}
+        />
       </GoodsContainer>
 
       <ContentsContainer>
         <Title>경매</Title>
         <GoodsTitle>스파이더맨 어크로스 더 유니버스 IMAX 포스터</GoodsTitle>
         <Address>경기도 수원시 영통구</Address>
-        <Title>입찰</Title>
-        <GoodsTitle>가디언즈 오브 갤럭시 오리지널 티켓</GoodsTitle>
-        <Address>서울시 서초구 서초1동</Address>
+        {auctionCondition()}
       </ContentsContainer>
       {auctionRequestStateBar()}
       <ButtonContainer>

@@ -4,8 +4,11 @@ import { StTitle } from "../../styles/TitleFont";
 import { StSubTitle } from "../../styles/TitleFont";
 import { StBasicButton } from "../../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
+import defaultUser from "../../assets/icon/profile.png";
 
-const RankList = () => {
+const RankList = ({ data }: any) => {
+  console.log(data);
+
   const navigate = useNavigate();
   return (
     <RankListContainer>
@@ -36,26 +39,26 @@ const RankList = () => {
           >
             <UserContainer>
               <p>1</p>
-              <UserImage />
-              <p>구스구스덕게임을하고싶은지원님</p>
+              <UserImage src={data[0].userImage ? data[0].userImage : defaultUser} />
+              <p>{data[0].nickName}</p>
             </UserContainer>
-            <Count>23</Count>
+            <Count>{data[0].maxRatingCount}</Count>
           </RankContainer>
           <RankContainer>
             <UserContainer>
               <p>2</p>
-              <UserImage />
-              <p>밥먹으러가는준영님</p>
+              <UserImage src={data[1].userImage ? data[1].userImage : defaultUser} />
+              <p>{data[1].nickName}</p>
             </UserContainer>
-            <Count>18</Count>
+            <Count>{data[1].maxRatingCount}</Count>
           </RankContainer>
           <RankContainer>
             <UserContainer>
               <p>3</p>
-              <UserImage />
-              <p>자다깬명진님</p>
+              <UserImage src={data[2].userImage ? data[2].userImage : defaultUser} />
+              <p>{data[2].nickName}</p>
             </UserContainer>
-            <Count>10</Count>
+            <Count>{data[2].maxRatingCount}</Count>
           </RankContainer>
         </RankSection>
       </SectionContainer>
@@ -123,7 +126,7 @@ const UserImage = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 80px;
-  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+  /* background: url(<path-to-image>), lightgray 50% / cover no-repeat; */
   margin: 0 20px;
 `;
 const MoreBtn = styled(StBasicButton)`

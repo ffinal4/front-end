@@ -135,16 +135,16 @@ const WaitingStateContainer = styled.div`
   font-weight: 400;
 `;
 
-const Img = styled.img`
+export const Img = styled.img`
   width: 24px;
   height: 24px;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   gap: 136px;
 `;
-const StCompleteBt = styled(StBasicButton)`
+export const StCompleteBt = styled(StBasicButton)`
   width: 80px;
   height: 44px;
   border: 1px solid black;
@@ -153,7 +153,7 @@ const StCompleteBt = styled(StBasicButton)`
   font-weight: 400;
 `;
 
-const StChatBt = styled(StBasicButton)`
+export const StChatBt = styled(StBasicButton)`
   width: 112px;
   height: 44px;
   border: 1px solid #d5d4d4;
