@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import category from "../../assets/icon/category.png";
 import CategorySelect from "./CategorySelect";

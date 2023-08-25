@@ -14,4 +14,13 @@ export const StBasicButton = styled.button<{
   border-radius: 5px;
   background-color: ${(props) => props.buttonColor};
   cursor: pointer;
+
+  &:hover {
+    background-color: #39373a;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #fdeac2;
+  }
 `;
