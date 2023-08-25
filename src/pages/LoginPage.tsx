@@ -29,6 +29,7 @@ const LoginPage = () => {
     event.preventDefault();
     if (email === "" || password === "") {
       alert("아이디나 비밀번호를 입력해주세요.");
+      return;
     }
     const body = { email: email, password: password };
     try {
@@ -39,8 +40,10 @@ const LoginPage = () => {
         console.log("로그인성공", res);
         navigate("/");
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      if (error.response.data) {
+        alert(error.response.data);
+      }
     }
   };
 
