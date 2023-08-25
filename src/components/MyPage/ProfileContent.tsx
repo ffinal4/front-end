@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import Pocket from "./Pocket";
 import Setting from "../../assets/icon/setting.png";
 import { useNavigate } from "react-router";
-import MyChat from "../../assets/icon/profile.png";
+import Defaultprofile from "../../assets/images/defaultprofile.png";
 import { useRecoilState } from "recoil";
 import { userEmail } from "../../store/userEmail";
 
@@ -20,7 +20,7 @@ const ProfileContent = ({ data }: any) => {
     <LeftContainer>
       <LeftContentContainer>
         <ImageContainer
-          src={data.data.info.image === null ? MyChat : data.data.info.image}
+          src={data.data.info.image === null ? Defaultprofile : data.data.info.image}
         />
         <ContentInBox>
           <ContentLine>

@@ -126,6 +126,10 @@ const OutBox = styled.div`
   align-items: center;
   background-color: #fcfcfc;
   cursor: pointer;
+
+  &:hover {
+    border: 2px solid #D5D4D4;
+  }
 `;
 
 const Wrapper = styled.div`
