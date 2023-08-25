@@ -10,6 +10,8 @@ import BidModal from "./BidModal";
 import CardZzimBtn from "../common/CardZzimBtn";
 import { useNavigate } from "react-router-dom";
 import { ValueToEnum } from "../../utils/EnumCategory";
+import SellerPickModal from "./SellerPickModal";
+import AucButton from "./AucButton";
 
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
@@ -21,15 +23,14 @@ const DetailContent = ({ data }: any) => {
     modal: false,
     auction: false,
   });
+  const [sellerPicks, setSellerPicks] = useState({
+    pickModal: false,
+    bidId: "",
+  });
   const { bid, modal, auction } = conditional;
+  const { pickModal, bidId } = sellerPicks;
 
-  const onClickBidHandler = () => {
-    setConditional({ ...conditional, bid: true });
-  };
-
-  const onClickChatting = () => {
-    setConditional({ ...conditional, bid: false });
-  };
+  
 
   const onClickMenuOpenHandler = () => {
     setConditional({ ...conditional, modal: !modal });
@@ -42,14 +43,13 @@ const DetailContent = ({ data }: any) => {
       <UserNameContainer style={{ border: "none", paddingTop: "16px", position: "relative" }}>
         <TextWrapper
           style={{ gap: "8px" }}
-          // onClick={() => {
-          //   if (data.data.info.checkSameUser) {
-          //     navigate("/mypocket");
-          //   } else {
-          //     navigate(`/userpocket/${newData.nickname}`);
-          //   }
-          // }}
-          // 경매물품 올라오면 핸들러함수 달 예정
+          onClick={() => {
+            if (data.data.info.checkSameUser) {
+              navigate("/mypocket");
+            } else {
+              navigate(`/userpocket/${newData.nickname}`);
+            }
+          }}
         >
           <ColorText color="#39373A">{newData.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
@@ -119,47 +119,27 @@ const DetailContent = ({ data }: any) => {
           <ColorText color="#222020">{newData.tradeType}PP</ColorText>
         </TextLine>
       </TextContainer>
-      <ColorText color="#717171">*상대방이 교환신청을 수락하여 채팅이 가능해요!</ColorText>
-      <ButtonWrapper>
-        {data.data.info.checkSameUser ? (
-          <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
-            입찰하기
-          </StButton>
-        ) : (
-          <StButton buttonColor="#58ABF7" onClick={onClickBidHandler}>
-            입찰하기
-          </StButton>
-        )}
-        {data.data.info.checkSameUser ? (
-          <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
-            찜하기
-          </StButton>
-        ) : (
-          <CardZzimBtn
-            checkZzim={data.data.info.goodsResponseDto.checkDibs}
-            goodsId={data.data.info.goodsResponseDto.goodsId}
-            isCard={false}
-            buttonColor="#58ABF7"
-            fontColor="#ffff"
-          />
-        )}
-        {bid ? (
-          <StButton buttonColor="#58ABF7" onClick={onClickChatting}>
-            채팅하기
-          </StButton>
-        ) : (
-          <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
-            채팅하기
-          </StButton>
-        )}
-      </ButtonWrapper>
-      {bid && <BidModal conditional={conditional} setConditional={setConditional} />}
+      <ColorText color="#717171">*상대방이 교환신청을 수락해야 채팅이 가능해요!</ColorText>
+      <AucButton
+        bid={bid}
+        conditional={conditional}
+        setConditional={setConditional}
+        data={data}
+        sellerPicks={sellerPicks}
+        setSellerPicks={setSellerPicks}
+      />
+      {(pickModal)
+        && <SellerPickModal
+            sellerPicks={sellerPicks}
+            setSellerPicks={setSellerPicks} />
+      }
     </InfoContainer>
   );
 };
 
 const InfoContainer = styled.div`
   width: 100%;
+  
   @media screen and (max-width: 834px) {
     width: 100%;
     display: grid;
@@ -221,13 +201,6 @@ const TextLine = styled.div`
   gap: 40px;
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 16px;
-  padding: 10px 0px 0px 0px;
-`;
-
 const ModalBtnWrapper = styled.div`
   width: 176px;
   position: absolute;
@@ -273,11 +246,6 @@ const ModalBtnDisabled = styled.div`
   border-bottom: 1px solid #d5d4d4;
   border-left: 1px solid #d5d4d4;
   border-right: 1px solid #d5d4d4;
-`;
-
-const StButton = styled(StBasicButton)`
-  border: 1px solid #222020;
-  color: #fcfcfc;
 `;
 
 export default DetailContent;

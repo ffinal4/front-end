@@ -8,14 +8,14 @@ import AucWantedInfo from '../components/AuctionDetailPage/AucWantedInfo';
 import AucBidInfo from '../components/AuctionDetailPage/AucBidInfo';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getAuctionDetailApi } from '../api/goods';
+import { getAuctionDetailApi } from '../api/acution';
 
 const AuctionDetailPage = () => {
     const { auctionId } : any = useParams();
     const { data, isLoading, error } : any = useQuery(["AuctionDetailData", auctionId], () => getAuctionDetailApi(auctionId), {
         refetchOnWindowFocus: false,
       });
-    console.log("data", data);
+    console.log("경매물품상세페이지데이터", data);
 
     const [detailTap, setDetailTap] = useState({
         bid: true,
@@ -65,7 +65,7 @@ const AuctionDetailPage = () => {
                         <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
                         <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
                     </TapContainer>
-                    <AucBidInfo data={data} />
+                    <AucBidInfo productData={data} />
                 </LayoutContainer> 
             }
             {
