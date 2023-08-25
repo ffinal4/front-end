@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { StBasicButton } from "../../styles/BasicButton";
 import { styled } from "styled-components";
+import {
+  ButtonContainer,
+  Img,
+  StChatBt,
+} from "../TradeRequestPage/RequestStateButton";
+import chat from "../../assets/icon/Chatting.png";
+import { useNavigate } from "react-router-dom";
+import AuctionCompleteModal from "./AuctionCompleteModal";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
@@ -11,8 +19,13 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   requestState,
   setRequestState,
 }) => {
+  const navigate = useNavigate();
+  const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
   const { request } = requestState;
 
+  const completeModalClick = () => {
+    setCompleteModalOpen(!completeModalOpen);
+  };
   const stateButton = () => {
     if (request === "경매중") {
       return (
@@ -21,9 +34,30 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     }
     if (request === "경매종료") {
       return (
-        <StAuctionCompleteBt buttonColor="#58ABF7">
-          입찰품 선택
-        </StAuctionCompleteBt>
+        <ButtonContainer>
+          <StAuctionCompleteBt buttonColor="black" onClick={completeModalClick}>
+            완료
+          </StAuctionCompleteBt>
+          {completeModalOpen && (
+            <ModalContainer>
+              <AuctionCompleteModal
+                completeModalOpen={completeModalOpen}
+                setCompleteModalOpen={setCompleteModalOpen}
+                requestState={requestState}
+                setRequestState={setRequestState}
+              />
+            </ModalContainer>
+          )}
+          <StChatBt
+            buttonColor="white"
+            onClick={() => {
+              navigate("/chat");
+            }}
+          >
+            채팅하기
+            <Img src={chat} />
+          </StChatBt>
+        </ButtonContainer>
       );
     }
     if (request === "교환완료") {
@@ -47,7 +81,8 @@ const StAuctionIngBt = styled(StBasicButton)`
 const StAuctionCompleteBt = styled(StBasicButton)`
   color: white;
   border: 2px solid black;
-  font-weight: 700;
+
+  width: 80px;
 `;
 
 const StAuctionTradeCompleteBt = styled(StBasicButton)`
@@ -57,5 +92,9 @@ const StAuctionTradeCompleteBt = styled(StBasicButton)`
 const StAuctionfailBt = styled(StBasicButton)`
   border: 1px solid #d5d4d4;
   margin-top: 80px;
+`;
+
+const ModalContainer = styled.div`
+  position: absolute;
 `;
 export default RequestStateButton;
