@@ -10,6 +10,12 @@ const TradeRequestPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [dropdownMenu, setDropdownMenu] = useState("필터");
 
+  const [detailTap, setDetailTap] = useState({
+    giveTap: true,
+    wantTap: false,
+  });
+  const { giveTap, wantTap } = detailTap;
+
   return (
     <LayoutContainer>
       <PageLayout>
@@ -78,7 +84,7 @@ const LayoutContainer = styled.div`
   background-color: #fcf6e9;
 `;
 
-const PageLayout = styled.div`
+export const PageLayout = styled.div`
   width: 100%;
   max-width: 1220px;
   margin: 0 auto;
@@ -106,13 +112,13 @@ export const SubTitle = styled.div`
   margin-top: 6px;
 `;
 
-const TabContainer = styled.div`
+export const TabContainer = styled.div`
   display: flex;
   position: absolute;
   margin-left: 40px;
 `;
 
-const GetRequest = styled.div`
+export const GetRequest = styled.div`
   border: 2px solid black;
   width: 176px;
   height: 44px;
@@ -125,7 +131,7 @@ const GetRequest = styled.div`
   font-family: Pretendard;
 `;
 
-const SendRequest = styled.div`
+export const SendRequest = styled.div`
   width: 176px;
   height: 44px;
   display: flex;
@@ -166,7 +172,6 @@ export const TradeRequestListContainer = styled.div`
   width: 100%;
   height: 1784px;
   background-color: white;
-  /* position: relative; */
 `;
 
 export const RequestDateMenu = styled.div`
