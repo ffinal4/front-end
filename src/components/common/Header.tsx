@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../assets/logo/logo.png";
 import title from "../../assets/logo/logo_title.png";
@@ -18,8 +17,6 @@ import { postLogoutApi } from "../../api/users";
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { auctionId }: any = useParams();
-
   const insertedToken: string | null = localStorage.getItem("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
@@ -50,51 +47,26 @@ const Header = () => {
   };
 
   const getLogoImage = () => {
-    if (
-      location.pathname === "/login" ||
-      location.pathname === "/signup" ||
-      location.pathname === "/rating" ||
-      location.pathname === "/mypage" ||
-      location.pathname === "/chat" ||
-      location.pathname === "/ratingstart" ||
-      location.pathname === "/myPocket" ||
-      location.pathname === "/userpocket/:nickname" ||
-      location.pathname === "/upload" ||
-      location.pathname === "editprofile" ||
-      location.pathname === "traderequest" ||
-      location.pathname === "zzimlist"
-    ) {
+    if (location.pathname.includes("/auction")) {
       return (
-        <>
-          <Logo src={logo} />
-          <LogoTitle src={title} />
-        </>
-      );
-    }
-    if (
-      location.pathname === "/" ||
-      location.pathname === "/tradeList" ||
-      location.pathname === "/detail/:goodsId" ||
-      location.pathname === "/traderequest"
-    ) {
-      return (
-        <>
-          <Logo src={loginLogo} />
-          <LogoTitle src={loginLTitle} />
-        </>
-      );
-    }
-    if (
-      location.pathname === "/acutionupload" ||
-      location.pathname === "/auctioncheck" ||
-      location.pathname === "/auctionlist" ||
-      location.pathname === "/auctiondetail/:auctionId"
-    ) {
-      return (
-        <>
+        <div>
           <Logo src={blueLogo} />
           <LogoTitle src={blueTitle} />
-        </>
+        </div>
+      );
+    } else if (location.pathname.includes("/" || "/tradeList" || "/traderequest" || "/detail")) {
+      return (
+        <div>
+          <Logo src={loginLogo} />
+          <LogoTitle src={loginLTitle} />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Logo src={logo} />
+          <LogoTitle src={title} />
+        </div>
       );
     }
   };
@@ -152,9 +124,7 @@ const Header = () => {
                 로그인
               </LoginLink>
               <BoxContainer />
-              <SignupLink onClick={() => navigate("/signup")}>
-                회원가입
-              </SignupLink>
+              <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
             </LinkContainer>
           )}
         </HeaderContainer>

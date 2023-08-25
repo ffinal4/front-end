@@ -100,40 +100,40 @@ const DetailInfo = ({ data }: any) => {
             <ColorText color="#ADADAD">{result}일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
-          {data.data.info.checkSameUser ? (
-            <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
-              <SmallBox src={Group} />
-            </TextWrapper>
-          ) : (
-            <TextWrapper style={{ cursor: "pointer" }}>
-              <SmallBox src={Siren} />
-              <ColorText color="#ADADAD">신고하기</ColorText>
-            </TextWrapper>
-          )}
-          {modal && (
-            <ModalBtnWrapper>
-              <ModalBtn
-                style={{
-                  borderTop: "1px solid #D5D4D4",
-                  borderRadius: "5px 5px 0px 0px",
-                }}
-              >
-                예약중
-              </ModalBtn>
-              <ModalBtn>거래완료</ModalBtn>
-              <ModalBtn>게시글 수정</ModalBtn>
-              {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
-              <ModalBtn
-                style={{ borderRadius: "0px 0px 5px 5px" }}
-                onClick={() => {
-                  deleteMutate.mutate();
-                }}
-              >
-                삭제
-              </ModalBtn>
-            </ModalBtnWrapper>
-          )}
-        </TextWrapper>
+            {data.data.info.checkSameUser ? (
+              <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
+                <SmallBox src={Group} />
+              </TextWrapper>
+            ) : (
+              <TextWrapper style={{ cursor: "pointer" }}>
+                <SmallBox src={Siren} />
+                <ColorText color="#ADADAD">신고하기</ColorText>
+              </TextWrapper>
+            )}
+            {modal && (
+              <ModalBtnWrapper>
+                <ModalBtn
+                  style={{
+                    borderTop: "1px solid #D5D4D4",
+                    borderRadius: "5px 5px 0px 0px",
+                  }}
+                >
+                  예약중
+                </ModalBtn>
+                <ModalBtn>거래완료</ModalBtn>
+                <ModalBtn>게시글 수정</ModalBtn>
+                {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
+                <ModalBtn
+                  style={{ borderRadius: "0px 0px 5px 5px" }}
+                  onClick={() => {
+                    deleteMutate.mutate();
+                  }}
+                >
+                  삭제
+                </ModalBtn>
+              </ModalBtnWrapper>
+            )}
+          </TextWrapper>
         </BoxWrapper>
       </UserNameContainer>
       <TextContainer>
