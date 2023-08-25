@@ -101,23 +101,23 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
       );
     }
 
-    if (request === "교환취소") {
-      return (
-        <div>
-          <StDeleteBt buttonColor="white" onClick={deleteModalClick}>
-            기록 삭제
-          </StDeleteBt>
-          {deleteModalOpen && (
-            <TradeDeleteModal
-              deleteModalOpen={deleteModalOpen}
-              setDeleteModalOpen={setDeleteModalOpen}
-              requestState={requestState}
-              setRequestState={setRequestState}
-            />
-          )}
-        </div>
-      );
-    }
+    // if (request === "교환취소") {
+    //   return (
+    //     <div>
+    //       <StDeleteBt buttonColor="white" onClick={deleteModalClick}>
+    //         기록 삭제
+    //       </StDeleteBt>
+    //       {deleteModalOpen && (
+    //         <TradeDeleteModal
+    //           deleteModalOpen={deleteModalOpen}
+    //           setDeleteModalOpen={setDeleteModalOpen}
+    //           requestState={requestState}
+    //           setRequestState={setRequestState}
+    //         />
+    //       )}
+    //     </div>
+    //   );
+    // }
   };
   return <div>{stateButton()}</div>;
 };

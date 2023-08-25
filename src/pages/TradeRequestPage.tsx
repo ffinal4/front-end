@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import arrow from "../assets/icon/arrow.png";
 import orangedot from "../assets/icon/orangedot.png";
 import yellowdot from "../assets/icon/yellowdot.png";
+import emptydot from "../assets/icon/emptydot.png";
 import FilterDropdownMenu from "../components/TradeRequestPage/FilterDropdownMenu";
 import TradeRequestCard from "../components/TradeRequestPage/TradeRequestCard";
 
@@ -30,11 +31,11 @@ const TradeRequestPage = () => {
           </TabContainer>
           <RequestStateContainer>
             <RequestStateNumber>
-              <DotImg src={orangedot} />
+              <DotImg src={emptydot} />
               교환요청 10
             </RequestStateNumber>
             <RequestIngNumber>
-              <DotImg src={yellowdot} />
+              <DotImg src={orangedot} />
               교환진행중 10
             </RequestIngNumber>
           </RequestStateContainer>

@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import goodsexchange from "../../assets/icon/goodsexchange.png";
 import goods from "../../assets/images/kangaroowhy.png";
-import orangedot from "../../assets/icon/orangedot.png";
-import yellowdot from "../../assets/icon/yellowdot.png";
-import reddot from "../../assets/icon/reddot.png";
-import greendot from "../../assets/icon/greendot.png";
 import traderequest from "../../assets/icon/traderequest.png";
 import tradeing from "../../assets/icon/tradeingrequst.png";
 import tradecomplete from "../../assets/icon/tradecomplete.png";
@@ -19,46 +15,61 @@ const TradeRequestCard = () => {
 
   useEffect(() => {
     if (request === "교환요청") {
-      setBorder("2px solid #EC8D49");
+      setBorder("1px solid #D5D4D4");
     }
     if (request === "교환진행중") {
-      setBorder("2px solid #FFCA64");
+      setBorder("1px solid #FBD8BF");
     }
-    if (request === "교환취소" || request === "교환완료") {
-      setBorder("1px solid #D5D4D4");
+    if (request === "교환완료") {
+      setBorder("1px solid  #D5D4D4");
+    }
+    if (request === "교환취소") {
+      setBorder("1px solid #EFEFEF");
     }
   }, []);
 
   const tradeRequestState = () => {
     if (request === "교환요청") {
       return (
-        <StRequestState backgroundcolor="#FCF0E8">
-          <DotImg src={orangedot} />
+        <StRequestState
+          backgroundcolor="white"
+          color="#EC8D49"
+          border="#EC8D49"
+        >
           교환요청
         </StRequestState>
       );
     }
     if (request === "교환진행중") {
       return (
-        <StRequestState backgroundcolor="#FCF6E9">
-          <DotImg src={yellowdot} />
+        <StRequestState
+          backgroundcolor="#EC8D49"
+          color="white"
+          border="#EC8D49"
+        >
           교환진행중
-        </StRequestState>
-      );
-    }
-    if (request === "교환취소") {
-      return (
-        <StRequestState backgroundcolor="rgba(223, 55, 55, 0.10)">
-          <DotImg src={reddot} />
-          교환취소
         </StRequestState>
       );
     }
     if (request === "교환완료") {
       return (
-        <StRequestState backgroundcolor="#EFEFEF">
-          <DotImg src={greendot} />
+        <StRequestState
+          backgroundcolor="#EFEFEF"
+          color="black"
+          border="#EFEFEF"
+        >
           교환완료
+        </StRequestState>
+      );
+    }
+    if (request === "교환취소") {
+      return (
+        <StRequestState
+          backgroundcolor="#EFEFEF"
+          color="#ADADAD"
+          border="#EFEFEF"
+        >
+          교환취소
         </StRequestState>
       );
     }
@@ -88,19 +99,36 @@ const TradeRequestCard = () => {
     }
   };
 
+  const tradeRequestGoods = () => {
+    if (request === "교환요청" || "교환완료" || "교환취소") {
+      return (
+        <GoodsContainer>
+          <GoodsImg src={goods} />
+          <ExchangeImg src={goodsexchange} />
+          <GoodsImg src={goods} />
+        </GoodsContainer>
+      );
+    }
+    if (request === "교환진행중") {
+      return (
+        <GoodsContainer>
+          <GoodsImg src={goods} />
+          <ExchangeImg src={goodsexchange} />
+          <GoodsImg src={goods} />
+          <img src={goods} />
+          <img src={goods} />
+        </GoodsContainer>
+      );
+    }
+  };
+
   return (
     <CardContainer style={{ border: `${border}` }}>
       <Container>
         <Date>2023-8-22</Date>
         {tradeRequestState()}
       </Container>
-
-      <GoodsContainer>
-        <GoodsImg src={goods} />
-        <ExchangeImg src={goodsexchange} />
-        <GoodsImg src={goods} />
-      </GoodsContainer>
-
+      {tradeRequestGoods()}
       <ContentsContainer>
         <Title>상대물건</Title>
         <GoodsTitle>스파이더맨 어크로스 더 유니버스 IMAX 포스터</GoodsTitle>
