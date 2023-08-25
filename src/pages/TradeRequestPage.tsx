@@ -57,6 +57,10 @@ const TradeRequestPage = () => {
                 <TradeRequestCard />
                 <TradeRequestCard />
                 <TradeRequestCard />
+                <TradeRequestCard />
+                <TradeRequestCard />
+                <TradeRequestCard />
+                <TradeRequestCard />
               </CardContainer>
             </AllStateContainer>
           </TradeRequestListContainer>
@@ -69,13 +73,14 @@ const TradeRequestPage = () => {
 const LayoutContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 220px 352px 100px 352px;
+  margin: 0 auto;
+  padding: 220px 0px 190px 0px;
   background-color: #fcf6e9;
 `;
 
 const PageLayout = styled.div`
   width: 100%;
-  min-width: 1220px;
+  max-width: 1220px;
   margin: 0 auto;
 `;
 
