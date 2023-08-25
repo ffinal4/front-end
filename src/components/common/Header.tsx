@@ -74,7 +74,8 @@ const Header = () => {
     if (
       location.pathname === "/" ||
       location.pathname === "/tradeList" ||
-      location.pathname === "/detail/:goodsId"
+      location.pathname === "/detail/:goodsId" ||
+      location.pathname === "/traderequest"
     ) {
       return (
         <>
@@ -87,7 +88,7 @@ const Header = () => {
       location.pathname === "/acutionupload" ||
       location.pathname === "/auctioncheck" ||
       location.pathname === "/auctionlist" ||
-      location.pathname === `/auctiondetail/${auctionId}`
+      location.pathname === "/auctiondetail/:auctionId"
     ) {
       return (
         <>

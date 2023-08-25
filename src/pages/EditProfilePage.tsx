@@ -7,6 +7,8 @@ import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
 import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
 import { patchProfileEditApi, postNicknameApi } from "../api/users";
+import { useRecoilValue } from "recoil";
+import { userEmail } from "../store/userEmail";
 
 interface EditForm {
   password: string;
@@ -26,6 +28,7 @@ const EditProfilePage = () => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
   const [nicknameChecked, setNicknameChecked] = useState(false);
+  const locationData = localStorage.getItem("location");
 
   const {
     register,
@@ -89,12 +92,14 @@ const EditProfilePage = () => {
 
       if (res.status === 200) {
         console.log("개인정보수정완료", res);
-        navigate("/login");
+        navigate("/mypage");
       }
     } catch (error) {
       console.log("개인정보수정실패", error);
     }
   });
+
+  const myEmail = useRecoilValue(userEmail);
 
   return (
     <div>
@@ -114,7 +119,7 @@ const EditProfilePage = () => {
           </ProfileImageContainer>
           <EmailContainer>
             <Label>이메일(아이디)</Label>
-            <Email>peeppo@gmail.com</Email>
+            <Email>{myEmail}</Email>
           </EmailContainer>
           <NickNameContainer>
             <CommonLabel>닉네임</CommonLabel>
@@ -202,7 +207,7 @@ const EditProfilePage = () => {
           </CheckPwContainer>
           <AddressLabelContainer>
             <AddressLabel>주거래지역</AddressLabel>
-            <CurrentAddress>서울시 강남구</CurrentAddress>
+            <CurrentAddress>{locationData}</CurrentAddress>
           </AddressLabelContainer>
           <AddressContainer>
             <KakaoApi

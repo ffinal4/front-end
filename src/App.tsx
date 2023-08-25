@@ -46,7 +46,11 @@ function App() {
               <Route path="/rating" element={<RatingPage />} />
               <Route path="/" element={<MainPage />} />
               <Route path="/mypocket" element={<MyPocketPage />} />
-              <Route path="/userpocket/:nickname" element={<UserPocketPage />} />
+              <Route
+                path="/userpocket/:nickname"
+                element={<UserPocketPage />}
+              />
+              <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route element={<MainLayout />}>
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/upload" element={<UploadPage />} />
@@ -54,9 +58,12 @@ function App() {
                 <Route path="/detail/:goodsId" element={<DetailPage />} />
                 <Route path="/editprofile" element={<EditProfilePage />} />
                 <Route path="/auctionupload" element={<AuctionUploadPage />} />
-                <Route path="/traderequest" element={<TradeRequestPage />} />
+
                 <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
-                <Route path="/auctiondetail/:auctionId" element={<AuctionDetailPage />} />
+                <Route
+                  path="/auctiondetail/:auctionId"
+                  element={<AuctionDetailPage />}
+                />
                 <Route path="/zzimlist" element={<ZzimListPage />} />
                 <Route path="/auctionlist" element={<AuctionListPage />} />
               </Route>

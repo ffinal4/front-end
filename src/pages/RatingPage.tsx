@@ -72,7 +72,7 @@ const RatingPage = () => {
       }
     }
   };
-
+  // if (data === undefined) return <p>평가 가능한 상품이 없습니다.</p>;
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
