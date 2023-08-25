@@ -198,6 +198,7 @@ export const GoodsTitle = styled.div`
   font-size: 16px;
   font-weight: 700;
   margin-top: 6px;
+  margin-bottom: 6px;
 `;
 
 export const Address = styled.div`
@@ -220,7 +221,7 @@ export const Address = styled.div`
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 30px;
   gap: 16px;
 `;
 

@@ -10,6 +10,12 @@ const TradeRequestPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [dropdownMenu, setDropdownMenu] = useState("필터");
 
+  const [detailTap, setDetailTap] = useState({
+    giveTap: true,
+    wantTap: false,
+  });
+  const { giveTap, wantTap } = detailTap;
+
   return (
     <LayoutContainer>
       <PageLayout>
