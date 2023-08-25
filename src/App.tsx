@@ -51,6 +51,7 @@ function App() {
                 element={<UserPocketPage />}
               />
               <Route path="/traderequest" element={<TradeRequestPage />} />
+              <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
               <Route element={<MainLayout />}>
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/upload" element={<UploadPage />} />
@@ -59,7 +60,6 @@ function App() {
                 <Route path="/editprofile" element={<EditProfilePage />} />
                 <Route path="/auctionupload" element={<AuctionUploadPage />} />
 
-                <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
                 <Route
                   path="/auctiondetail/:auctionId"
                   element={<AuctionDetailPage />}

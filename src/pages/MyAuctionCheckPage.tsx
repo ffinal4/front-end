@@ -8,10 +8,14 @@ import {
   DotImg,
   Filter,
   FilterContainer,
+  GetRequest,
+  PageLayout,
   RequestIngNumber,
   RequestStateContainer,
   RequestStateNumber,
+  SendRequest,
   SubTitle,
+  TabContainer,
   Title,
   TradeRequestListContainer,
   TradeRequestPageContainer,
@@ -27,13 +31,17 @@ const MyAuctionCheckPage = () => {
   const [dropdownMenu, setDropdownMenu] = useState("필터");
 
   return (
-    <TradeRequestPageContainer>
-      <Title>TRADING REQUEST</Title>
-      <Container>
-        <SubTitle>교환요청</SubTitle>
-      </Container>
-      <TradeRequestListContainer>
-        <AllStateContainer>
+    <LayoutContainer>
+      <PageLayout>
+        <TradeRequestPageContainer>
+          <Title>BIDDING OVERVIEW</Title>
+          <Container>
+            <SubTitle>경매 현황</SubTitle>
+          </Container>
+          <TabContainer>
+            <GetRequest>내 경매</GetRequest>
+            <SendRequest>입찰 경매</SendRequest>
+          </TabContainer>
           <RequestStateContainer>
             <RequestStateNumber>
               <DotImg src={bluedot} />
@@ -44,33 +52,43 @@ const MyAuctionCheckPage = () => {
               경매완료 2
             </RequestIngNumber>
           </RequestStateContainer>
-          <FilterContainer>
-            <Filter
-              onClick={() => {
-                setFilterOpen(!filterOpen);
-              }}
-            >
-              {dropdownMenu}
-              <ArrowImg src={arrow} />
-            </Filter>
-            {filterOpen && (
-              <FilterDropdownMenu
-                filterOpen={filterOpen}
-                setFilterOpen={setFilterOpen}
-                setDropdownMenu={setDropdownMenu}
-              />
-            )}
-          </FilterContainer>
-          <CardContainer>
-            <AuctionRequestCard />
-            <AuctionRequestCard />
-            <AuctionRequestCard />
-            <AuctionRequestCard />
-          </CardContainer>
-        </AllStateContainer>
-      </TradeRequestListContainer>
-    </TradeRequestPageContainer>
+          <TradeRequestListContainer>
+            <AllStateContainer>
+              <FilterContainer>
+                <Filter
+                  onClick={() => {
+                    setFilterOpen(!filterOpen);
+                  }}
+                >
+                  {dropdownMenu}
+                  <ArrowImg src={arrow} />
+                </Filter>
+                {filterOpen && (
+                  <FilterDropdownMenu
+                    filterOpen={filterOpen}
+                    setFilterOpen={setFilterOpen}
+                    setDropdownMenu={setDropdownMenu}
+                  />
+                )}
+              </FilterContainer>
+              <CardContainer>
+                <AuctionRequestCard />
+                <AuctionRequestCard />
+                <AuctionRequestCard />
+                <AuctionRequestCard />
+              </CardContainer>
+            </AllStateContainer>
+          </TradeRequestListContainer>
+        </TradeRequestPageContainer>
+      </PageLayout>
+    </LayoutContainer>
   );
 };
-
+const LayoutContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 220px 0px 190px 0px;
+  background-color: #ecf4fc;
+`;
 export default MyAuctionCheckPage;
