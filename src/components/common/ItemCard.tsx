@@ -20,7 +20,11 @@ const ItemCard = ({ item }: any) => {
         <AddressImage src={locationImage} />
         {item?.location}
       </AddressContent> */}
-      <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} />
+      {item.checkSameUser ? (
+        <div></div>
+      ) : (
+        <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} />
+      )}
       <ItemTitle>{item?.title}</ItemTitle>
       <UserName> {item?.location}</UserName>
       <ItemContent>{item?.content}</ItemContent>
