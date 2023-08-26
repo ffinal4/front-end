@@ -3,11 +3,8 @@ import { styled } from "styled-components";
 import {
   AllStateContainer,
   ArrowImg,
-  CardContainer,
   Container,
   DotImg,
-  Filter,
-  FilterContainer,
   GetRequest,
   PageLayout,
   RequestIngNumber,
@@ -17,7 +14,6 @@ import {
   SubTitle,
   TabContainer,
   Title,
-  TradeRequestListContainer,
   TradeRequestPageContainer,
 } from "./TradeRequestPage";
 import arrow from "../assets/icon/arrow.png";
@@ -25,6 +21,12 @@ import bluedot from "../assets/icon/bluedot.png";
 import blackdot from "../assets/icon/blackdot.png";
 import FilterDropdownMenu from "../components/MyAuctionCheckPage/FilterDropdownMenu";
 import AuctionRequestCard from "../components/MyAuctionCheckPage/AuctionRequestCard";
+import {
+  CardContainer,
+  Filter,
+  FilterdropdownMenuContainer,
+  TradeRequestListContainer,
+} from "./../components/TradeRequestPage/GetRequestList";
 
 const MyAuctionCheckPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
@@ -54,7 +56,7 @@ const MyAuctionCheckPage = () => {
           </RequestStateContainer>
           <TradeRequestListContainer>
             <AllStateContainer>
-              <FilterContainer>
+              <FilterdropdownMenuContainer>
                 <Filter
                   onClick={() => {
                     setFilterOpen(!filterOpen);
@@ -70,7 +72,7 @@ const MyAuctionCheckPage = () => {
                     setDropdownMenu={setDropdownMenu}
                   />
                 )}
-              </FilterContainer>
+              </FilterdropdownMenuContainer>
               <CardContainer>
                 <AuctionRequestCard />
                 <AuctionRequestCard />
