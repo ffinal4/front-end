@@ -117,6 +117,7 @@ const TradeRequestCard = () => {
           <GoodsImg src={goods} />
           <ExchangeImg src={goodsexchange} />
           <GoodsImg src={goods} />
+          <OtherGoodsImg src={goods} />
         </GoodsContainer>
       );
     }
@@ -200,6 +201,13 @@ export const GoodsContainer = styled.div`
 export const GoodsImg = styled.img`
   width: 80px;
   height: 80px;
+  border-radius: 5px;
+  border: 1px solid black;
+`;
+
+const OtherGoodsImg = styled.img`
+  width: 48px;
+  height: 48px;
   border-radius: 5px;
   border: 1px solid black;
 `;

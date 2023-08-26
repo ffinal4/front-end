@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-
 import orangedot from "../assets/icon/orangedot.png";
 import emptydot from "../assets/icon/emptydot.png";
 import GetRequestList from "../components/TradeRequestPage/GetRequestList";
@@ -160,7 +159,7 @@ export const SendRequest = styled.div`
   cursor: pointer;
 `;
 
-const GetRequests = styled.div`
+export const GetRequests = styled.div`
   width: 176px;
   height: 44px;
   display: flex;
@@ -173,7 +172,7 @@ const GetRequests = styled.div`
   cursor: pointer;
 `;
 
-const SendRequests = styled.div`
+export const SendRequests = styled.div`
   cursor: pointer;
   border: 2px solid black;
   width: 176px;
