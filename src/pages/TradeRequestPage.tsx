@@ -10,11 +10,22 @@ const TradeRequestPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [dropdownMenu, setDropdownMenu] = useState("필터");
 
-  const [detailTap, setDetailTap] = useState({
-    giveTap: true,
-    wantTap: false,
+  const [filterTap, setFilterTap] = useState({
+    getTap: true,
+    sendTap: false,
   });
-  const { giveTap, wantTap } = detailTap;
+  const { getTap, sendTap } = filterTap;
+
+  const sendRequestOnclick = () => {
+    setFilterTap({
+      getTap: false,
+      sendTap: true,
+    });
+  };
+
+  const getRequestOnclick = () => {
+    setFilterTap({ getTap: true, sendTap: false });
+  };
 
   return (
     <LayoutContainer>
@@ -24,51 +35,75 @@ const TradeRequestPage = () => {
           <Container>
             <SubTitle>교환요청</SubTitle>
           </Container>
-          <TabContainer>
-            <GetRequest>받은 요청</GetRequest>
-            <SendRequest>보낸 요청</SendRequest>
-          </TabContainer>
-          <RequestStateContainer>
-            <RequestStateNumber>
-              <DotImg src={emptydot} />
-              교환요청 10
-            </RequestStateNumber>
-            <RequestIngNumber>
-              <DotImg src={orangedot} />
-              교환진행중 10
-            </RequestIngNumber>
-          </RequestStateContainer>
+          {getTap === true && sendTap === false && (
+            <div>
+              <TabContainer>
+                <GetRequest>받은 요청</GetRequest>
+                <SendRequest onClick={sendRequestOnclick}>
+                  보낸 요청
+                </SendRequest>
+              </TabContainer>
+              <RequestStateContainer>
+                <RequestStateNumber>
+                  <DotImg src={emptydot} />
+                  교환요청 10
+                </RequestStateNumber>
+                <RequestIngNumber>
+                  <DotImg src={orangedot} />
+                  교환진행중 10
+                </RequestIngNumber>
+              </RequestStateContainer>
+            </div>
+          )}
+          {getTap === false && sendTap === true && (
+            <div>
+              <TabContainer>
+                <GetRequest onClick={getRequestOnclick}>받은 요청</GetRequest>
+                <SendRequest>보낸 요청</SendRequest>
+              </TabContainer>
+              <RequestStateContainer>
+                <RequestStateNumber>
+                  <DotImg src={emptydot} />
+                  교환요청 10
+                </RequestStateNumber>
+                <RequestIngNumber>
+                  <DotImg src={orangedot} />
+                  교환진행중 10
+                </RequestIngNumber>
+              </RequestStateContainer>
+            </div>
+          )}
+
           <TradeRequestListContainer>
-            <AllStateContainer>
-              <FilterContainer>
-                <Filter
-                  onClick={() => {
-                    setFilterOpen(!filterOpen);
-                  }}
-                >
-                  {dropdownMenu}
-                  <ArrowImg src={arrow} />
-                </Filter>
-                {filterOpen && (
+            <FilterContainer>
+              <Filter
+                onClick={() => {
+                  setFilterOpen(!filterOpen);
+                }}
+              >
+                {dropdownMenu}
+                <ArrowImg src={arrow} />
+              </Filter>
+              {filterOpen && (
+                <FilterdropdownMenuContainer>
                   <FilterDropdownMenu
                     filterOpen={filterOpen}
                     setFilterOpen={setFilterOpen}
                     setDropdownMenu={setDropdownMenu}
                   />
-                )}
-              </FilterContainer>
-              <CardContainer>
-                <TradeRequestCard />
-                <TradeRequestCard />
-                <TradeRequestCard />
-                <TradeRequestCard />
-                <TradeRequestCard />
-                <TradeRequestCard />
-                <TradeRequestCard />
-                <TradeRequestCard />
-                <TradeRequestCard />
-              </CardContainer>
-            </AllStateContainer>
+                </FilterdropdownMenuContainer>
+              )}
+            </FilterContainer>
+            <CardContainer>
+              <TradeRequestCard />
+              <TradeRequestCard />
+              <TradeRequestCard />
+              <TradeRequestCard />
+              <TradeRequestCard />
+              <TradeRequestCard />
+              <TradeRequestCard />
+              <TradeRequestCard />
+            </CardContainer>
           </TradeRequestListContainer>
         </TradeRequestPageContainer>
       </PageLayout>
@@ -141,11 +176,15 @@ export const SendRequest = styled.div`
   border-bottom: 2px solid black;
   border-radius: 5px 5px 0px 0px;
   font-family: Pretendard;
+  cursor: pointer;
 `;
 
 export const FilterContainer = styled.div`
   z-index: 800;
   padding-right: 40px;
+  display: flex;
+  justify-content: end;
+  margin-top: 40px;
 `;
 
 export const Filter = styled.div`
@@ -165,6 +204,11 @@ export const ArrowImg = styled.img`
   height: 24px;
 `;
 
+const FilterdropdownMenuContainer = styled.div`
+  position: absolute;
+  margin-top: 44px;
+`;
+
 export const TradeRequestListContainer = styled.div`
   border: 2px solid black;
   border-radius: 10px;
@@ -172,6 +216,8 @@ export const TradeRequestListContainer = styled.div`
   width: 100%;
   height: 1784px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const RequestDateMenu = styled.div`
@@ -216,11 +262,10 @@ export const TradeStateMenu = styled.div`
 
 export const AllStateContainer = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: end;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 30px;
+  /* flex-wrap: wrap; */
+  /* gap: 16px; */
+  border: 1px solid black;
+  margin-top: 20px;
 `;
 
 export const ChatState = styled.div`
@@ -260,5 +305,6 @@ export const CardContainer = styled.div`
   flex-wrap: wrap;
   gap: 16px;
   padding: 0px 40px;
+  margin-top: 20px;
 `;
 export default TradeRequestPage;

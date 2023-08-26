@@ -18,7 +18,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-  const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
+  // const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
 
   const { request } = requestState;
 
@@ -35,9 +35,9 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     // setRequestState({ ...requestState, request: "교환완료" });
   };
 
-  const deleteModalClick = () => {
-    setDeleteModalOpen(!deleteModalOpen);
-  };
+  // const deleteModalClick = () => {
+  //   setDeleteModalOpen(!deleteModalOpen);
+  // };
 
   const stateButton = () => {
     if (request === "교환요청") {
@@ -128,14 +128,14 @@ const RequestBtContainer = styled.div`
   gap: 16px;
 `;
 
-const WaitingStateContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Pretendard";
-  font-size: 14px;
-  font-weight: 400;
-`;
+// const WaitingStateContainer = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-family: "Pretendard";
+//   font-size: 14px;
+//   font-weight: 400;
+// `;
 
 export const Img = styled.img`
   width: 24px;
@@ -176,14 +176,15 @@ const StDetailBt = styled(StBasicButton)`
   font-weight: 400;
 `;
 
-const StDeleteBt = styled(StBasicButton)`
-  width: 176px;
-  border: 1px solid #d5d4d4;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 400;
-  margin-top: 70px;
-`;
+// const StDeleteBt = styled(StBasicButton)`
+//   width: 176px;
+//   border: 1px solid #d5d4d4;
+//   font-family: "Pretendard";
+//   font-size: 16px;
+//   font-weight: 400;
+//   margin-top: 70px;
+// `;
+
 const StAssureBt = styled(StBasicButton)`
   width: 80px;
   height: 44px;

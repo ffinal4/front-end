@@ -48,7 +48,11 @@ const AuctionRequestCard = () => {
   const auctionRequestState = () => {
     if (request === "경매중") {
       return (
-        <StRequestState backgroundcolor="#ECF4FC">
+        <StRequestState
+          backgroundcolor="#ECF4FC"
+          color="#ADADAD"
+          border="#EFEFEF"
+        >
           <DotImg src={bluedot} />
           경매중
         </StRequestState>
@@ -56,7 +60,11 @@ const AuctionRequestCard = () => {
     }
     if (request === "경매종료") {
       return (
-        <StRequestState backgroundcolor="#EFEFEF">
+        <StRequestState
+          backgroundcolor="#EFEFEF"
+          color="#ADADAD"
+          border="#EFEFEF"
+        >
           <DotImg src={blackdot} />
           경매종료
         </StRequestState>
@@ -64,7 +72,11 @@ const AuctionRequestCard = () => {
     }
     if (request === "교환완료") {
       return (
-        <StRequestState backgroundcolor="#EFEFEF">
+        <StRequestState
+          backgroundcolor="#EFEFEF"
+          color="#ADADAD"
+          border="#EFEFEF"
+        >
           <DotImg src={greendot} />
           교환완료
         </StRequestState>
@@ -72,7 +84,11 @@ const AuctionRequestCard = () => {
     }
     if (request === "입찰실패") {
       return (
-        <StRequestState backgroundcolor="rgba(223, 55, 55, 0.10)">
+        <StRequestState
+          backgroundcolor="rgba(223, 55, 55, 0.10)"
+          color="#ADADAD"
+          border="#EFEFEF"
+        >
           <DotImg src={reddot} />
           입찰실패
         </StRequestState>
