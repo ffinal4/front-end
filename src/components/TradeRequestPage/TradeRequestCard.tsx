@@ -12,6 +12,7 @@ const TradeRequestCard = () => {
   const [requestState, setRequestState] = useState({ request: "교환요청" });
   const { request } = requestState;
   const [border, setBorder] = useState<string>();
+  const [opacity, setOpacity] = useState<string>();
 
   useEffect(() => {
     if (request === "교환요청") {
@@ -25,8 +26,9 @@ const TradeRequestCard = () => {
     }
     if (request === "교환취소") {
       setBorder("1px solid #EFEFEF");
+      setOpacity("0.5");
     }
-  }, []);
+  }, [request]);
 
   const tradeRequestState = () => {
     if (request === "교환요청") {
@@ -121,7 +123,7 @@ const TradeRequestCard = () => {
   };
 
   return (
-    <CardContainer style={{ border: `${border}` }}>
+    <CardContainer style={{ border: `${border}`, opacity: `${opacity}` }}>
       <Container>
         <Date>2023-8-22</Date>
         {tradeRequestState()}
