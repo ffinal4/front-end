@@ -64,8 +64,8 @@ const TradeRequestPage = () => {
           {getTap === false && sendTap === true && (
             <div>
               <TabContainer>
-                <GetRequest onClick={getRequestOnclick}>받은 요청</GetRequest>
-                <SendRequest>보낸 요청</SendRequest>
+                <GetRequests onClick={getRequestOnclick}>받은 요청</GetRequests>
+                <SendRequests>보낸 요청</SendRequests>
               </TabContainer>
               <RequestStateContainer>
                 <RequestStateNumber>
@@ -134,6 +134,7 @@ export const TabContainer = styled.div`
 `;
 
 export const GetRequest = styled.div`
+  cursor: pointer;
   border: 2px solid black;
   width: 176px;
   height: 44px;
@@ -157,6 +158,33 @@ export const SendRequest = styled.div`
   border-radius: 5px 5px 0px 0px;
   font-family: Pretendard;
   cursor: pointer;
+`;
+
+const GetRequests = styled.div`
+  width: 176px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+  border-bottom: 2px solid black;
+  border-radius: 5px 5px 0px 0px;
+  font-family: Pretendard;
+  cursor: pointer;
+`;
+
+const SendRequests = styled.div`
+  cursor: pointer;
+  border: 2px solid black;
+  width: 176px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 4px solid white;
+  border-radius: 5px 5px 0px 0px;
+  background-color: white;
+  font-family: Pretendard;
 `;
 
 export const ArrowImg = styled.img`
