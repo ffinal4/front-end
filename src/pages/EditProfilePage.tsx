@@ -165,7 +165,6 @@ const EditProfilePage = () => {
                   type="password"
                   placeholder="새 비밀번호를 입력해주세요."
                   {...register("newPassword", {
-                    required: "필수입력 항목입니다.",
                     minLength: {
                       value: 8,
                       message: "* 비밀번호는 8자 이상 15자 이하여야 합니다.",
@@ -191,7 +190,6 @@ const EditProfilePage = () => {
                   type="password"
                   placeholder="비밀번호를 확인해주세요."
                   {...register("confirmPassword", {
-                    required: "필수입력 항목입니다.",
                     validate: {
                       check: (value) => {
                         if (getValues("newPassword") !== value) {

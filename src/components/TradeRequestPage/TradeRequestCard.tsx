@@ -18,7 +18,7 @@ const TradeRequestCard = () => {
       setBorder("1px solid #D5D4D4");
     }
     if (request === "교환진행중") {
-      setBorder("1px solid #FBD8BF");
+      setBorder("2px solid #FBD8BF");
     }
     if (request === "교환완료") {
       setBorder("1px solid  #D5D4D4");
@@ -115,8 +115,6 @@ const TradeRequestCard = () => {
           <GoodsImg src={goods} />
           <ExchangeImg src={goodsexchange} />
           <GoodsImg src={goods} />
-          <img src={goods} />
-          <img src={goods} />
         </GoodsContainer>
       );
     }

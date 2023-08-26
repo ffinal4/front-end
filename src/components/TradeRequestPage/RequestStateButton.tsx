@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../../styles/BasicButton";
-import eye from "../../assets/icon/openeye.png";
 import chat from "../../assets/icon/Chatting.png";
 import { useNavigate } from "react-router-dom";
 import RequestRejectModal from "./RequestRejectModal";
 import TradeCompleteModal from "./TradeCompleteModal";
-import TradeDeleteModal from "./TradeDeleteModal";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
@@ -49,36 +47,40 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
         //   상대방의 응답 기다리는 중...
         // </WaitingStateContainer>
         <RequestBtContainer>
-          <StAssureBt buttonColor="#FFCA64" onClick={requestAcceptOnclick}>
-            수락
-          </StAssureBt>
           <StRejectBt buttonColor="white" onClick={rejectModalClick}>
             거절
           </StRejectBt>
           {rejectModalOpen && (
-            <RequestRejectModal
-              requestState={requestState}
-              setRequestState={setRequestState}
-              rejectModalOpen={rejectModalOpen}
-              setRejectModalOpen={setRejectModalOpen}
-            />
+            <ModalContainer>
+              <RequestRejectModal
+                requestState={requestState}
+                setRequestState={setRequestState}
+                rejectModalOpen={rejectModalOpen}
+                setRejectModalOpen={setRejectModalOpen}
+              />
+            </ModalContainer>
           )}
+          <StAssureBt buttonColor="black" onClick={requestAcceptOnclick}>
+            수락
+          </StAssureBt>
         </RequestBtContainer>
       );
     }
     if (request === "교환진행중") {
       return (
         <ButtonContainer>
-          <StCompleteBt buttonColor="#F9B482" onClick={completeModalClick}>
+          <StCompleteBt buttonColor="#EC8D49" onClick={completeModalClick}>
             완료
           </StCompleteBt>
           {completeModalOpen && (
-            <TradeCompleteModal
-              completeModalOpen={completeModalOpen}
-              setCompleteModalOpen={setCompleteModalOpen}
-              requestState={requestState}
-              setRequestState={setRequestState}
-            />
+            <ModalContainer>
+              <TradeCompleteModal
+                completeModalOpen={completeModalOpen}
+                setCompleteModalOpen={setCompleteModalOpen}
+                requestState={requestState}
+                setRequestState={setRequestState}
+              />
+            </ModalContainer>
           )}
           <StChatBt
             buttonColor="white"
@@ -147,10 +149,14 @@ export const ButtonContainer = styled.div`
 export const StCompleteBt = styled(StBasicButton)`
   width: 80px;
   height: 44px;
-  border: 1px solid black;
+  color: white;
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 400;
+`;
+
+const ModalContainer = styled.div`
+  position: absolute;
 `;
 
 export const StChatBt = styled(StBasicButton)`
@@ -183,6 +189,7 @@ const StAssureBt = styled(StBasicButton)`
   height: 44px;
   border-radius: 5px;
   border: 1px solid black;
+  color: white;
 `;
 
 const StRejectBt = styled(StBasicButton)`

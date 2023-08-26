@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import arrow from "../assets/icon/arrow.png";
 import orangedot from "../assets/icon/orangedot.png";
-import yellowdot from "../assets/icon/yellowdot.png";
 import emptydot from "../assets/icon/emptydot.png";
 import FilterDropdownMenu from "../components/TradeRequestPage/FilterDropdownMenu";
 import TradeRequestCard from "../components/TradeRequestPage/TradeRequestCard";
