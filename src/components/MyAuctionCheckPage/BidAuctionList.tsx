@@ -2,6 +2,7 @@ import React from "react";
 import {
   CardContainer,
   Filter,
+  FilterContainer,
   FilterdropdownMenuContainer,
   TradeRequestListContainer,
 } from "../TradeRequestPage/GetRequestList";
@@ -26,7 +27,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   return (
     <div>
       <TradeRequestListContainer>
-        <FilterdropdownMenuContainer>
+        <FilterContainer>
           <Filter
             onClick={() => {
               setFilterOpen(!filterOpen);
@@ -36,15 +37,17 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
             <ArrowImg src={arrow} />
           </Filter>
           {filterOpen && (
-            <FilterDropdownMenu
-              filterOpen={filterOpen}
-              setFilterOpen={setFilterOpen}
-              setDropdownMenu={setDropdownMenu}
-            />
+            <FilterdropdownMenuContainer>
+              <FilterDropdownMenu
+                filterOpen={filterOpen}
+                setFilterOpen={setFilterOpen}
+                setDropdownMenu={setDropdownMenu}
+              />
+            </FilterdropdownMenuContainer>
           )}
-        </FilterdropdownMenuContainer>
+        </FilterContainer>
+
         <CardContainer>
-          <AuctionRequestCard />
           <AuctionRequestCard />
           <AuctionRequestCard />
         </CardContainer>

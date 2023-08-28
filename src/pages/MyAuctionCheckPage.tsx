@@ -19,6 +19,7 @@ import {
 import bluedot from "../assets/icon/bluedot.png";
 import blackdot from "../assets/icon/blackdot.png";
 import MyAuctionList from "../components/MyAuctionCheckPage/MyAuctionList";
+import BidAuctionList from "../components/MyAuctionCheckPage/BidAuctionList";
 
 const MyAuctionCheckPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
@@ -90,7 +91,7 @@ const MyAuctionCheckPage = () => {
                   경매완료 2
                 </RequestIngNumber>
               </RequestStateContainer>
-              <MyAuctionList
+              <BidAuctionList
                 filterOpen={filterOpen}
                 setFilterOpen={setFilterOpen}
                 dropdownMenu={dropdownMenu}

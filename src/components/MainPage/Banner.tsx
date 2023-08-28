@@ -5,7 +5,9 @@ import samllPocketImage from "../../assets/images/smallPocket.svg";
 import MasCotImage from "../../assets/images/mascot1.svg";
 import { StTitle } from "../../styles/TitleFont";
 import bannerBackground from "../../assets/images/banner2.png";
+import { useNavigate } from "react-router-dom";
 const Banner = () => {
+  const navigate = useNavigate();
   return (
     <BannerContainer>
       <FirstBg background={bannerBackground}>
@@ -18,7 +20,14 @@ const Banner = () => {
             <Explain> 지금 핍포에서 내가 필요한 물건으로 교환해보세요!</Explain>
           </ExplainContainer>
 
-          <MainStBasicButton buttonColor="#FCFCFC">핍포 알아보기</MainStBasicButton>
+          <MainStBasicButton
+            buttonColor="#FCFCFC"
+            onClick={() => {
+              navigate("/serviceuse");
+            }}
+          >
+            핍포 알아보기
+          </MainStBasicButton>
           <SmallPocketImage src={samllPocketImage} />
           <MascotImage src={MasCotImage} />
         </ContentContainer>

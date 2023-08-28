@@ -49,24 +49,28 @@ const Header = () => {
   const getLogoImage = () => {
     if (location.pathname.includes("/auction")) {
       return (
-        <div>
+        <LogoContainer>
           <Logo src={blueLogo} />
           <LogoTitle src={blueTitle} />
-        </div>
+        </LogoContainer>
       );
-    } else if (location.pathname.includes("/" || "/tradeList" || "/traderequest" || "/detail")) {
+    } else if (
+      location.pathname.includes(
+        "/" || "/tradeList" || "/traderequest" || "/detail"
+      )
+    ) {
       return (
-        <div>
+        <LogoContainer>
           <Logo src={loginLogo} />
           <LogoTitle src={loginLTitle} />
-        </div>
+        </LogoContainer>
       );
     } else {
       return (
-        <div>
+        <LogoContainer>
           <Logo src={logo} />
           <LogoTitle src={title} />
-        </div>
+        </LogoContainer>
       );
     }
   };
@@ -124,7 +128,9 @@ const Header = () => {
                 로그인
               </LoginLink>
               <BoxContainer />
-              <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
+              <SignupLink onClick={() => navigate("/signup")}>
+                회원가입
+              </SignupLink>
             </LinkContainer>
           )}
         </HeaderContainer>

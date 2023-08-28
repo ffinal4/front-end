@@ -7,12 +7,18 @@ import tradeing from "../../assets/icon/tradeingrequst.png";
 import tradecomplete from "../../assets/icon/tradecomplete.png";
 import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
+import DetailGoodsModal from "./DetailGoodsModal";
 
 const TradeRequestCard = () => {
   const [requestState, setRequestState] = useState({ request: "교환요청" });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
+  const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
   const { request } = requestState;
+
+  const goodsDetailModalOnclick = () => {
+    setDetailModalOpen(!detailModalOpen);
+  };
 
   useEffect(() => {
     if (request === "교환요청") {
@@ -105,7 +111,15 @@ const TradeRequestCard = () => {
     if (request === "교환요청" || "교환완료" || "교환취소") {
       return (
         <GoodsContainer>
-          <GoodsImg src={goods} />
+          <GoodsImg src={goods} onClick={goodsDetailModalOnclick} />
+          {detailModalOpen && (
+            <div>
+              <DetailGoodsModal
+                detailModalOpen={detailModalOpen}
+                setDetailModalOpen={setDetailModalOpen}
+              />
+            </div>
+          )}
           <ExchangeImg src={goodsexchange} />
           <GoodsImg src={goods} />
         </GoodsContainer>
@@ -203,6 +217,7 @@ export const GoodsImg = styled.img`
   height: 80px;
   border-radius: 5px;
   border: 1px solid black;
+  cursor: pointer;
 `;
 
 const OtherGoodsImg = styled.img`
@@ -210,6 +225,7 @@ const OtherGoodsImg = styled.img`
   height: 48px;
   border-radius: 5px;
   border: 1px solid black;
+  cursor: pointer;
 `;
 
 export const ContentsContainer = styled.div`

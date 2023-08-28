@@ -95,14 +95,6 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
       );
     }
 
-    if (request === "교환완료") {
-      return (
-        <div>
-          <StDetailBt buttonColor="white">자세히보기</StDetailBt>
-        </div>
-      );
-    }
-
     // if (request === "교환취소") {
     //   return (
     //     <div>
