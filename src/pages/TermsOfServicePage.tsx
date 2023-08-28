@@ -125,14 +125,15 @@ const PeeppoLayoutContainer = styled.div`
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 220px 0px 190px 0px;
+  padding: 250px 0px 190px 0px;
   background-color: #fcf6e9;
 `;
+
 const AuctionLayoutContainer = styled.div`
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 220px 0px 190px 0px;
+  padding: 250px 0px 190px 0px;
   background-color: #ecf4fc;
 `;
 
@@ -140,7 +141,9 @@ const PageLayout = styled.div`
   width: 100%;
   max-width: 1136px;
   margin: 0 auto;
+  position: relative;
 `;
+
 const Wrapper = styled.div`
   width: 944px;
   overflow: hidden;
@@ -154,22 +157,23 @@ const SlideWrapper = styled.div`
 
 const TabContainer = styled.div`
   display: flex;
-
-  margin-top: 20px;
+  position: absolute;
+  top: -42px;
 `;
 
 const PeepoServiceUse = styled.div`
   cursor: pointer;
-  border: 2px solid black;
-  border-bottom: 4px solid white;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
   width: 176px;
   height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 4px solid white;
   border-radius: 5px 5px 0px 0px;
   background-color: white;
+  /* border-bottom: 1px solid white; */
   font-family: Pretendard;
 `;
 
@@ -180,7 +184,7 @@ const AuctionServiceUse = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #efefef;
-  border-bottom: 2px solid #efefef;
+  border-bottom: 2px solid black;
   border-radius: 5px 5px 0px 0px;
   font-family: Pretendard;
   cursor: pointer;
@@ -193,6 +197,7 @@ const PeepoServiceUses = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #efefef;
+  border-bottom: 2px solid black;
   border-radius: 5px 5px 0px 0px;
   font-family: Pretendard;
   cursor: pointer;
@@ -201,15 +206,15 @@ const PeepoServiceUses = styled.div`
 const AuctionServiceUses = styled.div`
   cursor: pointer;
   border: 2px solid black;
-  border-bottom: 4px solid white;
+  border-bottom: 2px solid white;
   width: 176px;
   height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 4px solid white;
   border-radius: 5px 5px 0px 0px;
   background-color: white;
+
   font-family: Pretendard;
 `;
 
