@@ -233,8 +233,6 @@ export const TradeStateMenu = styled.div`
 
 export const AllStateContainer = styled.div`
   width: 100%;
-  /* flex-wrap: wrap; */
-  /* gap: 16px; */
   border: 1px solid black;
   margin-top: 20px;
 `;

@@ -27,6 +27,7 @@ import Footer from "./components/common/Footer";
 import UserPocketPage from "./pages/UserPocketPage";
 import ScrollTop from "./utils/ScrollTop";
 import { RecoilRoot } from "recoil";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ function App() {
               />
               <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
+              <Route path="/serviceuse" element={<TermsOfServicePage />} />
               <Route element={<MainLayout />}>
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/upload" element={<UploadPage />} />
