@@ -43,27 +43,31 @@ const JoinBidCard = ({
                             </CheckBox>
                         </CheckContainer>
                     </div>}
-                <CardLocationContainer />
+                {/* <CardLocationContainer />
                 <LocatinoWrapper>
                     <LocationIcon src={Location} alt='' />
                     <LocationText>{item?.location}</LocationText>
-                </LocatinoWrapper>
+                </LocatinoWrapper> */}
             </CardImgContainer>
             <TitleContainer>{item?.title}</TitleContainer>
-            <ContentContainer>{item?.ratingPrice}</ContentContainer>
+            <ContentContainer >
+                {(item?.ratingCheck)
+                    ? (item?.ratingPrice > 0) ? item?.ratingPrice.toLocaleString() : "레이팅 되는 중..."
+                    : "레이팅이 필요해요"}
+            </ContentContainer>
         </CardContainer>
     )
 };
 
 const CardContainer = styled.div`
-    width: 272px;
-    height: 312px;
+    width: 176px;
+    height: 229px;
     cursor: pointer;
 `;
 
 const CardImgContainer = styled.div<{ src: string }>`
-    width: 272px;
-    height: 272px;
+    width: 176px;
+    height: 176px;
     border-radius: 10px;
     background-image: ${(props) => `url(${props.src})`};
     background-size: cover;
@@ -108,7 +112,7 @@ const LocationIcon = styled.img`
 const TitleContainer = styled.div`
     width: 100%;
     font-family: "Pretendard";
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 150%;
     padding: 10px 0px 0px 0px;
@@ -123,8 +127,8 @@ const ContentContainer = styled.div`
 `;
 
 const CheckOutContainer = styled.div`
-    width: 272px;
-    height: 272px;
+    width: 176px;
+    height: 176px;
     border-radius: 10px;
     background-color: #000;
     opacity: 0.1;
@@ -135,8 +139,8 @@ const CheckOutContainer = styled.div`
 `;
 
 const CheckContainer = styled.div`
-    width: 272px;
-    height: 272px;
+    width: 176px;
+    height: 176px;
     border-radius: 10px;
     border: 6px solid #222020;
     position: absolute;
@@ -149,8 +153,8 @@ const CheckContainer = styled.div`
 `;
 
 const CheckBox = styled.div`
-    width: 98px;
-    height: 98px;
+    width: 68px;
+    height: 68px;
     border-radius: 100%;
     border: 5px solid #222020;
     background-color: #FCFCFC;
@@ -160,8 +164,8 @@ const CheckBox = styled.div`
 `;
 
 const CheckImage = styled.img`
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
 `;
 
 export default JoinBidCard;

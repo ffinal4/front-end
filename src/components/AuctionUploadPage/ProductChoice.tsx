@@ -40,12 +40,7 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data, failed } : any) 
                             />
                             {(item.ratingCheck === null
                                 || item.sellerPrice === null)
-                                && <NotRatingProduct />}
-                            <GoodsConditionContainer />
-                            <GoodsCondition>
-                                <Circle />
-                                거래중
-                            </GoodsCondition>            
+                                && <NotRatingProduct />}        
                         </NotRatingProductWrapper>
                         )
                     })}
@@ -81,6 +76,22 @@ const UploadContainer = styled.div`
     padding: 30px 0px;
     display: flex;
     border-bottom: 2px solid #EAEAEA;
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #39373A;
+        border-radius: 5px;
+        
+        &:hover {
+            background-color: #524f53;
+        }
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #D5D4D4;
+        border-radius: 5px;
+    }
 `;
 
 const RequiredText = styled.div`
@@ -99,25 +110,12 @@ const MyPocketWrapper = styled.div`
 
 const MyPocketContainer = styled.div`
     width: 100%;
+    height: 333px;
     max-height: 600px;
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
     gap: 16px;
-
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: #ffc596;
-        border-radius: 5px;
-        &:hover {
-            background-color: #f0b280;
-        }
-    }
-    ::-webkit-scrollbar-track {
-        background-color: #fff1e3;
-    }
 `;
 
 const LineWrapper = styled.div`
@@ -167,43 +165,6 @@ const NotRatingProduct = styled.div`
     border-radius: 10px;
     background-color: #FCFCFC;
     opacity: 0.4;
-`;
-
-const GoodsConditionContainer = styled.div`
-    position: absolute;
-    bottom: 39px;
-    left: 0;
-    z-index: 1001;
-    width: 100%;
-    height: 48px;
-    background-color: #FFFFFF;
-    opacity: 0.8;
-    border-radius: 0px 0px 10px 10px;
-`;
-
-const GoodsCondition = styled.div`
-    position: absolute;
-    bottom: 39px;
-    left: 0;
-    z-index: 1003;
-    width: 100%;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 150%;
-    gap: 10px;
-    color: #222020;
-    padding: 0px 0px 0px 15px;
-`;
-
-const Circle = styled.div`
-    width: 18px;
-    height: 18px;
-    border-radius: 100%;
-    background-color: #EC8D49;
 `;
 
 export default ProductChoice;

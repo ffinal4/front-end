@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components';
 import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
@@ -6,6 +6,20 @@ import { useMutation } from 'react-query';
 import { deleteGoodsApi } from '../../api/goods';
 
 const ModalBtn = ({ data, navigate } : any) => {
+
+  const divRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event : any) => {
+            if (divRef.current && !divRef.current.contains(event.target)) {
+              setConditional({ ...conditional, modal: false });
+            }
+        };
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
 
     const deleteMutate = useMutation(() => deleteGoodsApi(data.data.info.goodsId), {
         onSuccess: (res) => {
@@ -15,20 +29,20 @@ const ModalBtn = ({ data, navigate } : any) => {
         },
     });
     
-    const [condition, setCondition] = useState({
+    const [conditional, setConditional] = useState({
         modal: false,
         auction: false,
     });
-    const { modal, auction } = condition;
+    const { modal, auction } = conditional;
 
     const onClickMenuOpenHandler = () => {
-        setCondition({ ...condition, modal: !modal });
+      setConditional({ ...conditional, modal: !modal });
     };
 
   return (
     <TextWrapper>
         {data.data.info.checkSameUser ? (
-            <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
+            <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler} ref={divRef}>
             <SmallBox src={Group} />
             </TextWrapper>
         ) : (
@@ -39,25 +53,27 @@ const ModalBtn = ({ data, navigate } : any) => {
         )}
         {modal && (
             <ModalBtnWrapper>
-            <ModalButton
-                style={{
-                borderTop: "1px solid #D5D4D4",
-                borderRadius: "5px 5px 0px 0px",
-                }}
-            >
-                예약중
-            </ModalButton>
-            <ModalButton>거래완료</ModalButton>
-            <ModalButton>게시글 수정</ModalButton>
-            {auction ? <ModalButton>레이팅 요청</ModalButton> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
-            <ModalButton
-                style={{ borderRadius: "0px 0px 5px 5px" }}
-                onClick={() => {
-                deleteMutate.mutate();
-                }}
-            >
-                삭제
-            </ModalButton>
+              <ModalButton
+                  style={{
+                  borderTop: "1px solid #D5D4D4",
+                  borderRadius: "5px 5px 0px 0px",
+                  }}
+              >
+                  예약중
+              </ModalButton>
+              <ModalButton>거래완료</ModalButton>
+              <ModalButton>게시글 수정</ModalButton>
+              {(data.data.info.ratingCheck)
+                ? <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>
+                : <ModalButton>레이팅 요청</ModalButton>}
+              <ModalButton
+                  style={{ borderRadius: "0px 0px 5px 5px" }}
+                  onClick={() => {
+                  deleteMutate.mutate();
+                  }}
+              >
+                  삭제
+              </ModalButton>
             </ModalBtnWrapper>
         )}
       </TextWrapper>
@@ -67,7 +83,7 @@ const ModalBtn = ({ data, navigate } : any) => {
 const ModalBtnWrapper = styled.div`
   width: 176px;
   position: absolute;
-  top: 40px;
+  top: 50px;
   right: 0;
 `;
 

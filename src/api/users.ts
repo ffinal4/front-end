@@ -71,3 +71,9 @@ export const getZzimPageApi = async () => {
   const res = await instance.get("/api/users/wishlist");
   return res;
 };
+
+// 채팅 목록 조회
+export const getChattingListApi = async () => {
+  const res = await instance.get(`/api/users/2/chats`);
+  return res;
+};

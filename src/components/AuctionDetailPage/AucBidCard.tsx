@@ -2,18 +2,13 @@ import React from 'react'
 import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 
-const AucBidCard = () => {
+const AucBidCard = ({ item } : any) => {
     return (
         <CardContainer>
-            <CardImgContainer>
-                <CardLocationContainer />
-                <LocatinoWrapper>
-                    <LocationIcon src={Location} alt='' />
-                    <LocationText>경기도 용인시 기흥구</LocationText>
-                </LocatinoWrapper>
+            <CardImg src={item.goodsImg}>
                 <SellerChoice>SELLER'S PICK</SellerChoice>
-            </CardImgContainer>
-            <TitleContainer>물건이름</TitleContainer>
+            </CardImg>
+            <TitleContainer>{item.title}</TitleContainer>
             <ContentContainer>110,000PP</ContentContainer>
         </CardContainer>
     )
@@ -25,11 +20,12 @@ const CardContainer = styled.div`
         cursor: pointer;
     `;
 
-const CardImgContainer = styled.div`
+const CardImg = styled.div<{ src : string }>`
         width: 272px;
         height: 272px;
         border-radius: 10px;
-        background-color: #D5D4D4;
+        background-image: ${(props) => `url(${props.src})`};
+        background-size: cover;
         position: relative;
     `;
 
@@ -42,7 +38,7 @@ const CardLocationContainer = styled.div`
         opacity: 0.2;
         display: flex;
         align-items: center;
-        
+        position: absolute;
     `;
 
 const LocatinoWrapper = styled.div`
