@@ -20,7 +20,7 @@ import { StRequestState } from "../../styles/RequestStateBox";
 import AuctionRequestGoods from "./AuctionRequestGoods";
 
 const AuctionRequestCard = () => {
-  const [requestState, setRequestState] = useState({ request: "경매중" });
+  const [requestState, setRequestState] = useState({ request: "입찰실패" });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
   const { request } = requestState;

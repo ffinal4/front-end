@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 import { ExchangeImg, GoodsImg } from "../TradeRequestPage/TradeRequestCard";
 import goods from "../../assets/icon/peeppo.png";
-import goodsexchange from "../../assets/icon/goodsexchange.png";
+import timer from "../../assets/icon/timer.png";
 
 interface AuctionRequestGoodsProps {
   requestState: { request: string };
@@ -26,7 +26,7 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
       return (
         <GoodsContainer>
           <GoodsImg src={goods} />
-          <ExchangeImg src={goodsexchange} />
+          <ExchangeImg src={timer} />
           <GoodsImg src={goods} />
         </GoodsContainer>
       );
