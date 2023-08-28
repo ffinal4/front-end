@@ -45,7 +45,7 @@ const MyPocketPage = () => {
       <HorizontalLine />
       <DotLine src={dotLine} />
       <CardListContainer>
-        <ItemCardList data={data?.data.info.goodsListResponseDto} />
+        <ItemCardList data={data?.data.info.goodsListResponseDto.content} />
       </CardListContainer>
       <Paging />
     </MyPocketPageContainer>

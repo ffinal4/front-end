@@ -27,17 +27,18 @@ const CompleteModal = () => {
           />
         </CancelButtonContainer>
         <ContentsContainer>
-          <Title>ARE YOU SURE?</Title>
-          <Content>거래가 완료되었나요?</Content>
+          <Title>GAME ON!</Title>
+          <Content>입찰을 완료했습니다.</Content>
           <SubContent>
-            한 번 완료한 교환은 교환 완료 상태가 되며 다시 되돌릴 수 없어요.
+            내 물건이 마음에 든다면 경매자가 Seller’s Pick으로 지정할 거예요!
           </SubContent>
           <ButtonContainer>
             <StCompleteBt
-              buttonColor="#FFCA64"
+              buttonColor="#58ABF7"
+              style={{color: "#FCFCFC"}}
             //   onClick={requestCompleteOnclick}
             >
-              교환 완료하기
+              확인
             </StCompleteBt>
           </ButtonContainer>
         </ContentsContainer>
