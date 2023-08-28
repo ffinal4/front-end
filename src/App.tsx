@@ -27,6 +27,7 @@ import Footer from "./components/common/Footer";
 import UserPocketPage from "./pages/UserPocketPage";
 import ScrollTop from "./utils/ScrollTop";
 import { RecoilRoot } from "recoil";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ function App() {
                 />
                 <Route path="/zzimlist" element={<ZzimListPage />} />
                 <Route path="/auctionlist" element={<AuctionListPage />} />
+                <Route path="/serviceuse" element={<TermsOfServicePage />} />
               </Route>
             </Routes>
             <Footer />
