@@ -86,12 +86,15 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
                                 setRatingPrice={setRatingPrice}
                                 item={item}
                             />
-                            {(item.ratingPrice === 0 || item.goodsStatus === "BIDDING") && <NotRatingProduct />}
+                            {(item.ratingPrice === 0 || item.goodsStatus === "BIDDING" || item.rationCheck === false) && <NotRatingProduct />}
+                            {(item.goodsStatus === "BIDDING")
+                            && <div>
                             <GoodsConditionContainer />
                             <GoodsCondition>
                                 <Circle />
-                                거래중
+                                경매중
                             </GoodsCondition>
+                            </div>}
                         </NotRatingProductWrapper>
                     )
                 }))}
@@ -102,7 +105,7 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
   )
 };
 
-const ModalBackgroundBox = styled.div`
+export const ModalBackgroundBox = styled.div`
     position: fixed;
     background-color: #000;
     width: 100%;
@@ -113,11 +116,12 @@ const ModalBackgroundBox = styled.div`
     z-index: 1000;
 `;
 
-const ModalContainer = styled.div`
+export const ModalContainer = styled.div`
     width: 812px;
     height: 940px;
     border: 1px solid #222020;
     background-color: #FCFCFC;
+    border-radius: 10px;
     position: absolute;
     top: 220px;
     left: 25%;
@@ -130,7 +134,7 @@ const ModalContainer = styled.div`
     }
 `;
 
-const ModalTitle = styled.div`
+export const ModalTitle = styled.div`
     font-family: "Lemon/Milk", sans-serif;
     font-size: 40px;
     font-weight: 700;
@@ -140,7 +144,7 @@ const ModalTitle = styled.div`
     justify-content: space-between;
 `;
 
-const ModalSubtitle = styled.div`
+export const ModalSubtitle = styled.div`
     font-family: "Pretendard";
     font-size: 32px;
     font-weight: 800;
@@ -148,17 +152,17 @@ const ModalSubtitle = styled.div`
     padding: 16px 0px 20px 0px;
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
 `;
 
-const TextWrapper = styled.div`
+export const TextWrapper = styled.div`
     display: grid;
 `;
 
-const Text = styled.div`
+export const Text = styled.div`
     font-family: "Pretendard";
     font-size: 16px;
     font-weight: 400;
@@ -166,12 +170,12 @@ const Text = styled.div`
     color: #808080;
 `;
 
-const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div`
     display: grid;
     gap: 10px;
 `;
 
-const RatingPoint = styled.div`
+export const RatingPoint = styled.div`
     font-family: "Pretendard";
     font-size: 18px;
     font-weight: 700;
@@ -180,12 +184,12 @@ const RatingPoint = styled.div`
     justify-content: end;
 `;
 
-const StButton = styled(StBasicButton)`
+export const StButton = styled(StBasicButton)`
     color: #FCFCFC;
     cursor: default;
 `;
 
-const PocketListContainer = styled.div`
+export const PocketListContainer = styled.div`
     width: 100%;
     padding: 20px 0px 20px 20px;
     border-top: 4px solid #222020;
@@ -196,18 +200,18 @@ const PocketListContainer = styled.div`
     gap: 16px;
 `;
 
-const CloseBtn = styled.img`
+export const CloseBtn = styled.img`
     width: 24px;
     height: 24px;
     object-fit: contain;
     cursor: pointer;
 `;
 
-const NotRatingProductWrapper = styled.div`
+export const NotRatingProductWrapper = styled.div`
     position: relative;
 `;
 
-const GoodsConditionContainer = styled.div`
+export const GoodsConditionContainer = styled.div`
     position: absolute;
     bottom: 39px;
     left: 0;
@@ -219,9 +223,9 @@ const GoodsConditionContainer = styled.div`
     border-radius: 0px 0px 10px 10px;
 `;
 
-const GoodsCondition = styled.div`
+export const GoodsCondition = styled.div`
     position: absolute;
-    bottom: 39px;
+    bottom: 45px;
     left: 0;
     z-index: 888;
     width: 100%;
@@ -237,20 +241,20 @@ const GoodsCondition = styled.div`
     padding: 0px 0px 0px 15px;
 `;
 
-const Circle = styled.div`
+export const Circle = styled.div`
     width: 18px;
     height: 18px;
     border-radius: 100%;
-    background-color: #EC8D49;
+    background-color: #58ABF7;
 `;
 
-const NotRatingProduct = styled.div`
+export const NotRatingProduct = styled.div`
     position: absolute;
     z-index: 999;
     top: 0;
     left: 0;
-    width: 272px;
-    height: 333px;
+    width: 176px;
+    height: 229px;
     border-radius: 10px;
     background-color: #FCFCFC;
     opacity: 0.4;

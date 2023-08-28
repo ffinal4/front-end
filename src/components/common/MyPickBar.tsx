@@ -29,6 +29,8 @@ const MyPickBar = () => {
 
 const PickBarContainer = styled.div`
     position: fixed;
+    width: 112px;
+    height: 520px;
     top: 224px;
     right: 11%;
     display: grid;
@@ -46,12 +48,15 @@ const PickBarContainer = styled.div`
 
 const TitleContainer = styled.div`
     display: flex;
-    width: 120px;
+    width: 100%;
     padding: 10px 20px;
     flex-direction: column;
     align-items: center;
-    background-color: #39373A;
+    background-color: #EFEFEF;
     border-radius: 5px 5px 0px 0px;
+    border-top: 1px solid #D5D4D4;
+    border-left: 1px solid #D5D4D4;
+    border-right: 1px solid #D5D4D4;
 
     @media screen and (max-width: 1500px) {
         display: none;
@@ -61,15 +66,15 @@ const TitleContainer = styled.div`
 const Title = styled.div`
     font-family: "Pretendard";
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 400;
     line-height: 150%;
-    color: #fff;
+    color: #222020;
 `;
 
 const ImageBox = styled.img`
     width: 80px;
     height: 80px;
-    border-radius: 5px;
+    border-radius: 3px;
     object-fit: contain;
     cursor: pointer;
 `;
@@ -77,12 +82,15 @@ const ImageBox = styled.img`
 const PickImageContainer = styled.div`
     width: 120px;
     height: 419px;
-    border: 1px solid #D5D4D4;
+    border-bottom: 1px solid #D5D4D4;
+    border-left: 1px solid #D5D4D4;
+    border-right: 1px solid #D5D4D4;
     padding: 20px;
     gap: 20px;
     display: grid;
     justify-content: center;
     background-color: #fff;
+    border-radius: 0px 0px 5px 5px;
 
     @media screen and (max-width: 1500px) {
         display: none;
@@ -91,18 +99,19 @@ const PickImageContainer = styled.div`
 
 const TopMoveButton = styled.div`
     display: inline-flex;
-    margin-top: 10px;
+    margin-top: 16px;
     padding: 16px 29px;
     justify-content: center;
     align-items: center;
-    border: 1px solid #000;
-    border-radius: 5px;
+    border: 1px solid #39373A;
+    border-radius: 40px;
     color: #fff;
     font-family: "Lemon/Milk", sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: normal;
-    background-color: #39373A;
+    background-color: #222020;
+    height: 60px;
     cursor: pointer;
 `;
 

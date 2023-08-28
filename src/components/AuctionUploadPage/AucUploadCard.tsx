@@ -37,6 +37,11 @@ const AucUploadCard = ({
                 <LocationIcon src={Location} alt=''/>
                 <LocationText>{item?.location}</LocationText>
             </LocatinoWrapper>
+            <GoodsConditionContainer />
+                            <GoodsCondition>
+                                <Circle />
+                                거래중
+                            </GoodsCondition>   
         </CardImgContainer>
         <TitleContainer>{item?.title}</TitleContainer>
         <ContentContainer>{item?.title}</ContentContainer>
@@ -151,6 +156,43 @@ const CheckBox = styled.div`
 const CheckImage = styled.img`
     width: 48px;
     height: 48px;
+`;
+
+const GoodsConditionContainer = styled.div`
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: 1001;
+    width: 100%;
+    height: 48px;
+    background-color: #FFFFFF;
+    opacity: 0.8;
+    border-radius: 0px 0px 10px 10px;
+`;
+
+const GoodsCondition = styled.div`
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: 1003;
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 150%;
+    gap: 10px;
+    color: #222020;
+    padding: 0px 0px 0px 15px;
+`;
+
+const Circle = styled.div`
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #EC8D49;
 `;
 
 export default AucUploadCard;
