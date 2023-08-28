@@ -53,6 +53,7 @@ function App() {
               />
               <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
+              <Route path="/serviceuse" element={<TermsOfServicePage />} />
               <Route element={<MainLayout />}>
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/upload" element={<UploadPage />} />
@@ -67,7 +68,6 @@ function App() {
                 />
                 <Route path="/zzimlist" element={<ZzimListPage />} />
                 <Route path="/auctionlist" element={<AuctionListPage />} />
-                <Route path="/serviceuse" element={<TermsOfServicePage />} />
               </Route>
             </Routes>
             <Footer />

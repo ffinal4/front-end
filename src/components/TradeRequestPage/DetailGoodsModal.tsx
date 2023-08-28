@@ -33,8 +33,8 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
 };
 
 const DetailModalContainer = styled.div`
-  width: 1216px;
-  height: 832px;
+  width: 812px;
+  height: 630px;
   background-color: rgb(255, 255, 255);
   position: fixed;
   top: 50%;
