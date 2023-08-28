@@ -10,9 +10,9 @@ import { StRequestState } from "../../styles/RequestStateBox";
 
 const TradeRequestCard = () => {
   const [requestState, setRequestState] = useState({ request: "교환요청" });
-  const { request } = requestState;
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
+  const { request } = requestState;
 
   useEffect(() => {
     if (request === "교환요청") {

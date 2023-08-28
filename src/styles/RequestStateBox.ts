@@ -12,7 +12,7 @@ export const StRequestState = styled.div<{
   right: 0;
   font-family: "Pretendard";
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
