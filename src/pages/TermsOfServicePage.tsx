@@ -6,7 +6,14 @@ import thirduse from "../assets/images/thirduse.png";
 import fouruse from "../assets/images/fouruse.png";
 import fiveuse from "../assets/images/fiveuse.png";
 import arrow from "../assets/icon/peeppoarrow.png";
+import firstauction from "../assets/images/firstauction.png";
+import secondauction from "../assets/images/secondauction.png";
+import thirdauction from "../assets/images/thirdauction.png";
+import fourauction from "../assets/images/fourauction.png";
+import fiveauction from "../assets/images/fiveauction.png";
 import leftarrow from "../assets/icon/leftarrow.png";
+import auctionleft from "../assets/icon/auctionleftarrow.png";
+import auctionright from "../assets/icon/auctionrightarrow.png";
 
 const TermsOfServicePage = () => {
   const slideRef = useRef<HTMLDivElement>(null);
@@ -17,17 +24,8 @@ const TermsOfServicePage = () => {
   const [filterTap, setFilterTap] = useState({
     peeppoTap: true,
     auctionTap: false,
-    ratingTap: false,
   });
-  const { peeppoTap, auctionTap, ratingTap } = filterTap;
-
-  const auctionServiceOnclick = () => {
-    setFilterTap({
-      peeppoTap: false,
-      auctionTap: true,
-      ratingTap: false,
-    });
-  };
+  const { peeppoTap, auctionTap } = filterTap;
 
   useEffect(() => {
     if (slideRef.current) {
@@ -46,44 +44,96 @@ const TermsOfServicePage = () => {
     setCurrentImg(currentImg - 1);
   };
 
+  const peeppoOnclick = () => {
+    setFilterTap({
+      peeppoTap: true,
+      auctionTap: false,
+    });
+  };
+
+  const auctionServiceOnclick = () => {
+    setFilterTap({
+      peeppoTap: false,
+      auctionTap: true,
+    });
+  };
+
   return (
-    <LayoutContainer>
-      <PageLayout>
-        <TabContainer>
-          <PeepoServiceUse>핍포 알아보기</PeepoServiceUse>
-          <AuctionServiceUse onClick={auctionServiceOnclick}>
-            포켓경매
-          </AuctionServiceUse>
-          <RatingServiceUse>레이팅</RatingServiceUse>
-        </TabContainer>
-        <PeepoContainer>
-          <ButtonImg
-            src={leftarrow}
-            style={{ opacity: currentImg === 0 ? "0" : "1" }}
-            onClick={moveToPrevBtn}
-          />
-          <Wrapper>
-            <SlideWrapper ref={slideRef}>
-              <Img src={firstuse} alt="" />
-              <Img src={seconduse} alt="" />
-              <Img src={thirduse} alt="" />
-              <Img src={fouruse} alt="" />
-              <Img src={fiveuse} alt="" />
-            </SlideWrapper>
-          </Wrapper>
-          <ButtonImg src={arrow} onClick={moveToNextBtn} />
-        </PeepoContainer>
-      </PageLayout>
-    </LayoutContainer>
+    <div>
+      {peeppoTap === true && auctionTap === false && (
+        <PeeppoLayoutContainer>
+          <PageLayout>
+            <TabContainer>
+              <PeepoServiceUse>핍포 알아보기</PeepoServiceUse>
+              <AuctionServiceUse onClick={auctionServiceOnclick}>
+                포켓경매
+              </AuctionServiceUse>
+            </TabContainer>
+            <PeeppoContainer>
+              <ButtonImg
+                src={leftarrow}
+                style={{ opacity: currentImg === 0 ? "0" : "1" }}
+                onClick={moveToPrevBtn}
+              />
+              <Wrapper>
+                <SlideWrapper ref={slideRef}>
+                  <Img src={firstuse} alt="" />
+                  <Img src={seconduse} alt="" />
+                  <Img src={thirduse} alt="" />
+                  <Img src={fouruse} alt="" />
+                  <Img src={fiveuse} alt="" />
+                </SlideWrapper>
+              </Wrapper>
+              <ButtonImg src={arrow} onClick={moveToNextBtn} />
+            </PeeppoContainer>
+          </PageLayout>
+        </PeeppoLayoutContainer>
+      )}
+      {peeppoTap === false && auctionTap === true && (
+        <AuctionLayoutContainer>
+          <PageLayout>
+            <TabContainer>
+              <PeepoServiceUses onClick={peeppoOnclick}>
+                핍포 알아보기
+              </PeepoServiceUses>
+              <AuctionServiceUses>포켓경매</AuctionServiceUses>
+            </TabContainer>
+            <PeeppoContainer>
+              <ButtonImg
+                src={auctionleft}
+                style={{ opacity: currentImg === 0 ? "0" : "1" }}
+                onClick={moveToPrevBtn}
+              />
+              <Wrapper>
+                <SlideWrapper ref={slideRef}>
+                  <Img src={firstauction} alt="" />
+                  <Img src={secondauction} alt="" />
+                  <Img src={thirdauction} alt="" />
+                  <Img src={fourauction} alt="" />
+                  <Img src={fiveauction} alt="" />
+                </SlideWrapper>
+              </Wrapper>
+              <ButtonImg src={auctionright} onClick={moveToNextBtn} />
+            </PeeppoContainer>
+          </PageLayout>
+        </AuctionLayoutContainer>
+      )}
+    </div>
   );
 };
-
-const LayoutContainer = styled.div`
+const PeeppoLayoutContainer = styled.div`
   width: 100%;
   height: 100%;
   margin: 0 auto;
   padding: 220px 0px 190px 0px;
   background-color: #fcf6e9;
+`;
+const AuctionLayoutContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 220px 0px 190px 0px;
+  background-color: #ecf4fc;
 `;
 
 const PageLayout = styled.div`
@@ -104,12 +154,14 @@ const SlideWrapper = styled.div`
 
 const TabContainer = styled.div`
   display: flex;
+
+  margin-top: 20px;
 `;
 
 const PeepoServiceUse = styled.div`
   cursor: pointer;
   border: 2px solid black;
-  border-bottom: 1px solid white;
+  border-bottom: 4px solid white;
   width: 176px;
   height: 44px;
   display: flex;
@@ -133,27 +185,44 @@ const AuctionServiceUse = styled.div`
   font-family: Pretendard;
   cursor: pointer;
 `;
-const RatingServiceUse = styled.div`
+
+const PeepoServiceUses = styled.div`
   width: 176px;
   height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #efefef;
-  border-bottom: 2px solid #efefef;
   border-radius: 5px 5px 0px 0px;
   font-family: Pretendard;
   cursor: pointer;
 `;
-const PeepoContainer = styled.div`
-  width: 1136px;
-  height: 719px;
+
+const AuctionServiceUses = styled.div`
+  cursor: pointer;
+  border: 2px solid black;
+  border-bottom: 4px solid white;
+  width: 176px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 4px solid white;
+  border-radius: 5px 5px 0px 0px;
+  background-color: white;
+  font-family: Pretendard;
+`;
+
+const PeeppoContainer = styled.div`
   border: 2px solid black;
   border-radius: 0px 10px 10px 10px;
+  width: 100%;
+  width: 1136px;
+  height: 719px;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
 `;
 
 const Img = styled.img`
