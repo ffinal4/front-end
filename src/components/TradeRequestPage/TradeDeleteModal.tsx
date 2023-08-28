@@ -1,48 +1,47 @@
 import React from "react";
-import {
-  ButtonContainer,
-  CancelButtonContainer,
-  CancelImg,
-  Content,
-  ModalContent,
-  StRejectButton,
-  SubContent,
-  Title,
-} from "./RequestRejectModal";
-import remove from "../../assets/icon/remove.png";
 
-interface TradeDeleteModalProps {
-  deleteModalOpen: boolean;
-  requestState: { request: string };
-  setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
-  setDeleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-const TradeDeleteModal: React.FC<TradeDeleteModalProps> = ({
-  deleteModalOpen,
-  requestState,
-  setDeleteModalOpen,
-  setRequestState,
-}) => {
-  return (
-    <ModalContent>
-      <CancelButtonContainer>
-        <CancelImg
-          src={remove}
-          onClick={() => {
-            setDeleteModalOpen(false);
-          }}
-        />
-      </CancelButtonContainer>
+// import remove from "../../assets/icon/remove.png";
+// import {
+//   ButtonContainer,
+//   CancelButtonContainer,
+//   CancelImg,
+//   Content,
+//   SubContent,
+//   Title,
+// } from "../MyAuctionCheckPage/AuctionCompleteModal";
 
-      <Title>ARE YOU SURE?</Title>
-      <Content>거래 내역을 삭제하시겠어요?</Content>
+// interface TradeDeleteModalProps {
+//   deleteModalOpen: boolean;
+//   requestState: { request: string };
+//   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
+//   setDeleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+// }
+// const TradeDeleteModal: React.FC<TradeDeleteModalProps> = ({
+//   deleteModalOpen,
+//   requestState,
+//   setDeleteModalOpen,
+//   setRequestState,
+// }) => {
+//   return (
+//     <ModalContent>
+//       <CancelButtonContainer>
+//         <CancelImg
+//           src={remove}
+//           onClick={() => {
+//             setDeleteModalOpen(false);
+//           }}
+//         />
+//       </CancelButtonContainer>
 
-      <SubContent>한 번 삭제한 내역은 다시 복구할 수 없어요.</SubContent>
-      <ButtonContainer>
-        <StRejectButton buttonColor="#FFCA64">거래 내역 삭제</StRejectButton>
-      </ButtonContainer>
-    </ModalContent>
-  );
-};
+//       <Title>ARE YOU SURE?</Title>
+//       <Content>거래 내역을 삭제하시겠어요?</Content>
 
-export default TradeDeleteModal;
+//       <SubContent>한 번 삭제한 내역은 다시 복구할 수 없어요.</SubContent>
+//       <ButtonContainer>
+//         <StRejectButton buttonColor="#FFCA64">거래 내역 삭제</StRejectButton>
+//       </ButtonContainer>
+//     </ModalContent>
+//   );
+// };
+
+// export default TradeDeleteModal;

@@ -9,6 +9,7 @@ import {
 import chat from "../../assets/icon/Chatting.png";
 import { useNavigate } from "react-router-dom";
 import AuctionCompleteModal from "./AuctionCompleteModal";
+import BidModal from "../AuctionDetailPage/BidModal";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
@@ -21,43 +22,38 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
 }) => {
   const navigate = useNavigate();
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
+  const [bidModalOpen, setBidModalOpen] = useState<boolean>(false);
   const { request } = requestState;
 
   const completeModalClick = () => {
     setCompleteModalOpen(!completeModalOpen);
   };
+
+  const sellerPickOnclick = () => {
+    setRequestState({ ...requestState, request: "경매중" });
+  };
+
+  const bidGoodsSelectOnclick = () => {
+    setBidModalOpen(!bidModalOpen);
+  };
+
   const stateButton = () => {
     if (request === "경매중") {
       return (
-        <StAuctionIngBt buttonColor="#CBE4FB">Seller's Pick</StAuctionIngBt>
+        <StAuctionIngBt buttonColor="#CBE4FB" onClick={sellerPickOnclick}>
+          Seller's Pick
+        </StAuctionIngBt>
       );
     }
+
     if (request === "경매종료") {
       return (
-        <ButtonContainer>
-          <StAuctionCompleteBt buttonColor="black" onClick={completeModalClick}>
-            완료
-          </StAuctionCompleteBt>
-          {completeModalOpen && (
-            <ModalContainer>
-              <AuctionCompleteModal
-                completeModalOpen={completeModalOpen}
-                setCompleteModalOpen={setCompleteModalOpen}
-                requestState={requestState}
-                setRequestState={setRequestState}
-              />
-            </ModalContainer>
-          )}
-          <StChatBt
-            buttonColor="white"
-            onClick={() => {
-              navigate("/chat");
-            }}
-          >
-            채팅하기
-            <Img src={chat} />
-          </StChatBt>
-        </ButtonContainer>
+        <StAuctionGoodsSelectBt
+          buttonColor="#58ABF7"
+          onClick={bidGoodsSelectOnclick}
+        >
+          입찰품 선택
+        </StAuctionGoodsSelectBt>
       );
     }
     if (request === "교환완료") {
@@ -67,10 +63,44 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
         </StAuctionTradeCompleteBt>
       );
     }
-    if (request === "입찰실패") {
-      return <StAuctionfailBt buttonColor="white">기록 삭제</StAuctionfailBt>;
-    }
+
+    // if (request === "경매종료") {
+    //   return (
+    //     <ButtonContainer>
+    //       <StAuctionCompleteBt
+    //         buttonColor="#58ABF7"
+    //         onClick={completeModalClick}
+    //       >
+    //         완료
+    //       </StAuctionCompleteBt>
+    //       {completeModalOpen && (
+    //         <ModalContainer>
+    //           <AuctionCompleteModal
+    //             completeModalOpen={completeModalOpen}
+    //             setCompleteModalOpen={setCompleteModalOpen}
+    //             requestState={requestState}
+    //             setRequestState={setRequestState}
+    //           />
+    //         </ModalContainer>
+    //       )}
+    //       <StChatBt
+    //         buttonColor="white"
+    //         onClick={() => {
+    //           navigate("/chat");
+    //         }}
+    //       >
+    //         채팅하기
+    //         <Img src={chat} />
+    //       </StChatBt>
+    //     </ButtonContainer>
+    //   );
+    // }
+
+    // if (request === "입찰실패") {
+    //   return <StAuctionfailBt buttonColor="white">기록 삭제</StAuctionfailBt>;
+    // }
   };
+
   return <div>{stateButton()}</div>;
 };
 
@@ -80,11 +110,12 @@ const StAuctionIngBt = styled(StBasicButton)`
 
 const StAuctionCompleteBt = styled(StBasicButton)`
   color: white;
-  border: 2px solid black;
-
   width: 80px;
 `;
 
+const StAuctionGoodsSelectBt = styled(StBasicButton)`
+  color: white;
+`;
 const StAuctionTradeCompleteBt = styled(StBasicButton)`
   border: 1px solid #d5d4d4;
 `;

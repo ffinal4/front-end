@@ -24,9 +24,6 @@ export const FilterDropdownContainer = styled.div`
   width: 176px;
   background-color: white;
   border-bottom: 1px solid black;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
 `;
 
 export const RequestState = styled.div`
