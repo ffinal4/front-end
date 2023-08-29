@@ -82,7 +82,7 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
                 </ButtonWrapper>
             </Wrapper>
             <PocketListContainer>
-                {(data?.data.info.goodsListResponseDto.map((item : any) => {
+                {(data?.data.info.goodsListResponseDto.content.map((item : any) => {
                     return (
                         <NotRatingProductWrapper>
                             <JoinBidCard

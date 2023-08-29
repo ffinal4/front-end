@@ -11,9 +11,9 @@ import {
     SubContent,
     Title,
   } from "../MyAuctionCheckPage/AuctionCompleteModal";
-import { StCompleteBt } from "../../components/TradeRequestPage/TradeCompleteModal";
+import { StCompleteBt } from "../TradeRequestPage/TradeCompleteModal";
 
-const CompleteModal = () => {
+const BidCompleteModal = ({ setBidCheck } : any) => {
   return (
     <div>
       <ModalBackground />
@@ -21,9 +21,9 @@ const CompleteModal = () => {
         <CancelButtonContainer>
           <CancelImg
             src={remove}
-            // onClick={() => {
-            //   setCompleteModalOpen(false);
-            // }}
+            onClick={() => {
+              setBidCheck(false);
+            }}
           />
         </CancelButtonContainer>
         <ContentsContainer>
@@ -36,7 +36,7 @@ const CompleteModal = () => {
             <StCompleteBt
               buttonColor="#58ABF7"
               style={{color: "#FCFCFC"}}
-            //   onClick={requestCompleteOnclick}
+              onClick={() => setBidCheck(false)}
             >
               확인
             </StCompleteBt>
@@ -47,4 +47,4 @@ const CompleteModal = () => {
   )
 };
 
-export default CompleteModal;
+export default BidCompleteModal;

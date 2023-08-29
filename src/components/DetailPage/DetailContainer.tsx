@@ -37,7 +37,7 @@ const DetailContainer = ({ data } : any) => {
             <SlideButton
               onClick={moveToPrevBtn}
               style={{
-                opacity: `${(currentImg === 0 || arrImages.length === 1) ? "0" : "0.2"}`,
+                opacity: `${(currentImg === 0 || arrImages.length === 1) ? "0" : "0.4"}`,
                 cursor: `${(currentImg === 0 || arrImages.length === 1) ? "default" : "pointer"}`
                 }}>
               <img src={ArrowLeft} alt=''/>
@@ -45,7 +45,7 @@ const DetailContainer = ({ data } : any) => {
             <SlideButton
               onClick={moveToNextBtn}
               style={{
-                opacity: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "0" : "0.2"}`,
+                opacity: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "0" : "0.4"}`,
                 cursor: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "default" : "pointer"}`
               }}>
               <img src={ArrowRight} alt=''/>

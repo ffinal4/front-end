@@ -9,6 +9,7 @@ import { getMyPocketApi } from '../../api/goods';
 import { postAuctionBidApi } from '../../api/acution';
 import { useRecoilValue } from 'recoil';
 import { pagination } from '../../store/pagination';
+import BidCompleteModal from './BidCompleteModal';
 
 const BidModal = ({ conditional, setConditional, productData } : any) => {
 
@@ -23,6 +24,7 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
 
     console.log("내주머니입찰데이터", newData);
 
+    const [bidCheck, setBidCheck] = useState(false);
     const [checkBox, setCheckBox] = useState<any[]>([]);
     const [ratingPrice, setRatingPrice] = useState<number>(0);
     const [myPocketGoods, setMyPocketGoods] = useState<{ goodsId: string | number[] }>({
@@ -32,9 +34,13 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
     const mutation = useMutation(() => postAuctionBidApi(myPocketGoods, newAuctionId), {
         onSuccess: (res) => {
             console.log("입찰성공!", res);
-            setConditional({ ...conditional, bid: false });
         },
     });
+
+    const onClickBidHandler = () => {
+        mutation.mutate();
+        setBidCheck(true);
+    };
 
     if (isLoading) return <p>Loading...</p>;
     if (isError) return <p>Error: {error.message}</p>;
@@ -67,10 +73,14 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
                         ? <StButton
                             buttonColor='#58ABF7'
                             style={{cursor: "pointer", border: "2px solid #222020"}}
-                            onClick={() => mutation.mutate()}
+                            onClick={onClickBidHandler}
                         >입찰하기</StButton>
                         : <StButton buttonColor='#D5D4D4'>입찰하기</StButton>}
                 </ButtonWrapper>
+                {(bidCheck)
+                    && <BidCompleteModal
+                        setBidCheck={setBidCheck}
+                    />}
             </Wrapper>
             <PocketListContainer>
                 {(newData.map((item : any) => {
@@ -117,7 +127,7 @@ export const ModalBackgroundBox = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-    width: 812px;
+    width: 814px;
     height: 940px;
     border: 1px solid #222020;
     background-color: #FCFCFC;
@@ -191,7 +201,7 @@ export const StButton = styled(StBasicButton)`
 
 export const PocketListContainer = styled.div`
     width: 100%;
-    padding: 20px 0px 20px 20px;
+    padding: 20px 0px 20px 0px;
     border-top: 4px solid #222020;
     border-bottom: 4px solid #222020;
     margin: 30px 0px 40px 0px;
@@ -215,7 +225,7 @@ export const GoodsConditionContainer = styled.div`
     position: absolute;
     bottom: 39px;
     left: 0;
-    z-index: 887;
+    z-index: 999;
     width: 100%;
     height: 48px;
     background-color: #FFFFFF;
@@ -227,7 +237,7 @@ export const GoodsCondition = styled.div`
     position: absolute;
     bottom: 45px;
     left: 0;
-    z-index: 888;
+    z-index: 999;
     width: 100%;
     height: 48px;
     display: flex;

@@ -4,7 +4,7 @@ import ProfileContent from '../components/MyPage/ProfileContent';
 import MyPippo from '../components/MyPage/MyPippo';
 import { useQuery } from 'react-query';
 import { getMypageApi } from '../api/users';
-import Background from '../assets/images/mypagebg.png'
+import Background from '../assets/images/mypagebg.svg'
 
 const MyPage = () => {
     const { isLoading, error, data } : any = useQuery("myPageData", getMypageApi, {
@@ -36,12 +36,13 @@ const AllLayoutContainer = styled.div`
 `;
 
 const LayoutImage = styled.img`
-    width: 100%;
+    width: 1864px;
     height: 327px;
     object-fit: contain;
     position: absolute;
     top: 170px;
     left: 0;
+    z-index: 0;
 `;
 
 const LayoutContainer = styled.div`
@@ -64,6 +65,7 @@ const MyPageTitle = styled.div`
     font-weight: 700;
     line-height: 110%;
     padding: 0px 0px 60px 0px;
+    position: relative;
 `;
 
 const MyPageContentContainer = styled.div`

@@ -39,7 +39,7 @@ const AucUploadDetail = ({ findedData } : any) => {
                     <InfoNextContainer>
                         <InfoTextContainer>
                             <InfoTextTitle>상품정보</InfoTextTitle>
-                            <InfoTextContent>{findedData.content}</InfoTextContent>
+                            <InfoTextContent style={{paddingTop: "40px"}}>{findedData.content}</InfoTextContent>
                         </InfoTextContainer>
                     </InfoNextContainer>
                 </LayoutContainer> 
@@ -128,7 +128,7 @@ const InfoContainer = styled.div`
 const InfoNextContainer = styled.div`
     width: 100%;
     border-top: 2px solid #000;
-    border-bottom: 2px solid #D9D9D9;
+    /* border-bottom: 2px solid #D9D9D9; */
     margin: 42px 0px 0px 0px;
     display: flex;
     justify-content: space-between;
