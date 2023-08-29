@@ -82,7 +82,7 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
                 </ButtonWrapper>
             </Wrapper>
             <PocketListContainer>
-                {(data?.data.info.goodsListResponseDto.map((item : any) => {
+                {(data?.data.info.goodsListResponseDto.content.map((item : any) => {
                     return (
                         <NotRatingProductWrapper>
                             <JoinBidCard
@@ -95,7 +95,7 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
                                 setRatingPrice={setRatingPrice}
                                 item={item}
                             />
-                            {(item.ratingPrice === 0 || item.goodsStatus === "BIDDING" || item.rationCheck === false) && <NotRatingProduct />}
+                            {(item.goodsStatus === "BIDDING") && <NotRatingProduct />}
                             {(item.goodsStatus === "BIDDING")
                             && <div>
                             <GoodsConditionContainer />

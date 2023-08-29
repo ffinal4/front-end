@@ -5,10 +5,21 @@ import Kangaroo from '../assets/images/kangaroowhy.png'
 import { useNavigate } from 'react-router-dom';
 import Manual from '../components/RatingPage/Manual';
 import RakingSystem from '../components/StartRationPage/RakingSystem';
+import { useQuery } from 'react-query';
+import { getRatingRakingApi } from '../api/rating';
 
 const StartRatingPage = () => {
 
     const navigate = useNavigate();
+
+    const { isLoading, error, data } : any = useQuery("ratingRaking", getRatingRakingApi, {
+        refetchOnWindowFocus: false,
+    });
+
+    console.log("랭킹데이터", data);
+
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
   return (
     <MainLayoutContainer>
@@ -37,7 +48,7 @@ const StartRatingPage = () => {
                 <ImageContainer src={Kangaroo}/>
             </RatingReadyContainer>
         </MainLayout>
-        <RakingSystem />
+        <RakingSystem data={data.data.info} />
     </MainLayoutContainer>
   )
 };

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components';
-import Image from '../../assets/icon/profile.png'
+import Image from '../../assets/images/defaultprofile.png'
 
-const RakingSystem = () => {
+const RakingSystem = ({ data } : any) => {
 
     const divRef = useRef<HTMLDivElement>(null);
     const [refCurrent, setRefCurrent] = useState(0);
@@ -29,71 +29,47 @@ const RakingSystem = () => {
         };
     }, [refCurrent, numberOfSlides]);
 
+    const rankingSystem = (item : any) => {
+        if (data?.indexOf(item) === 0) {
+            return <RakingContainer style={{border: "4px solid #EC8D49"}}>
+                <RakingNumber>{data?.indexOf(item) + 1}</RakingNumber>
+                {(item.userImage === null)
+                    ? <ProfileImg src={Image} />
+                    : <ProfileImg src={item.userImage} />}
+                <Nickname>{item.nickName}</Nickname>
+                <SuccessPoint style={{color: "#EC8D49"}}>{item.maxRatingCount}</SuccessPoint>
+            </RakingContainer>
+        };
+        if (data?.indexOf(item) === 1 || data?.indexOf(item) === 2) {
+            return <RakingContainer>
+                <RakingNumber>{data?.indexOf(item) + 1}</RakingNumber>
+                {(item.userImage === null)
+                    ? <ProfileImg src={Image} />
+                    : <ProfileImg src={item.userImage} />}
+                <Nickname>{item.nickName}</Nickname>
+                <SuccessPoint>{item.maxRatingCount}</SuccessPoint>
+            </RakingContainer>
+        } else {
+            return <RakingContainer>
+                <RakingNumber style={{color: "#ADADAD"}}>{data?.indexOf(item) + 1}</RakingNumber>
+                {(item.userImage === null)
+                    ? <ProfileImg src={Image} />
+                    : <ProfileImg src={item.userImage} />}
+                <Nickname style={{color: "#ADADAD"}}>{item.nickName}</Nickname>
+                <SuccessPoint style={{color: "#ADADAD"}}>{item.maxRatingCount}</SuccessPoint>
+            </RakingContainer>
+        };
+    };
+
   return (
     <AllContainer>
         <RakingWrapper ref={divRef}>
             <EmptyContainer />
-            <RakingContainer style={{border: "4px solid #EC8D49"}}>
-                <RakingNumber>1</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname>구스구스덕게임을하고싶은지원A님</Nickname>
-                <SuccessPoint style={{color: "#EC8D49"}}>23</SuccessPoint>
-            </RakingContainer>
-            <RakingContainer>
-                <RakingNumber>2</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname>밥먹으러가는준영님</Nickname>
-                <SuccessPoint>18</SuccessPoint>
-            </RakingContainer>
-            <RakingContainer>
-                <RakingNumber>3</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname>자다깬명진님</Nickname>
-                <SuccessPoint>10</SuccessPoint>
-            </RakingContainer>
-            <RakingContainer>
-                <RakingNumber style={{color: "#ADADAD"}}>4</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname style={{color: "#ADADAD"}}>보드게임싫어하는승재님</Nickname>
-                <SuccessPoint style={{color: "#ADADAD"}}>8</SuccessPoint>
-            </RakingContainer>
-            <RakingContainer>
-                <RakingNumber style={{color: "#ADADAD"}}>5</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname style={{color: "#ADADAD"}}>운동하러가는지훈님</Nickname>
-                <SuccessPoint style={{color: "#ADADAD"}}>5</SuccessPoint>
-            </RakingContainer>
-            <EmptyContainer />
-            {/* <RakingContainer style={{border: "4px solid #EC8D49"}}>
-                <RakingNumber>1</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname>구스구스덕게임을하고싶은지원A님</Nickname>
-                <SuccessPoint style={{color: "#EC8D49"}}>23</SuccessPoint>
-            </RakingContainer>
-            <RakingContainer>
-                <RakingNumber>2</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname>밥먹으러가는준영님</Nickname>
-                <SuccessPoint>18</SuccessPoint>
-            </RakingContainer>
-            <RakingContainer>
-                <RakingNumber>3</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname>자다깬명진님</Nickname>
-                <SuccessPoint>10</SuccessPoint>
-            </RakingContainer>
-            <RakingContainer>
-                <RakingNumber style={{color: "#ADADAD"}}>4</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname style={{color: "#ADADAD"}}>보드게임싫어하는승재님</Nickname>
-                <SuccessPoint style={{color: "#ADADAD"}}>8</SuccessPoint>
-            </RakingContainer>
-            <RakingContainer>
-                <RakingNumber style={{color: "#ADADAD"}}>5</RakingNumber>
-                <ProfileImg src={Image} />
-                <Nickname style={{color: "#ADADAD"}}>운동하러가는지훈님</Nickname>
-                <SuccessPoint style={{color: "#ADADAD"}}>5</SuccessPoint>
-            </RakingContainer> */}
+            {data?.map((item : any) => {
+                return (
+                    rankingSystem(item)
+                )
+            })}
         </RakingWrapper>
     </AllContainer>
   )

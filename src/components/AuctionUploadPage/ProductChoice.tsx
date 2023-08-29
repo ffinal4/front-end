@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import AucUploadCard from './AucUploadCard';
 import AucUploadDetail from './AucUploadDetail';
@@ -11,6 +11,10 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data, failed } : any) 
     const [checkBox, setCheckBox] = useState<number | null>(null);
     const [findedData, setFindedData] = useState<any>();
     const [seeInfo, setSeeInfo] = useState<boolean>(false);
+
+    useEffect(() => {
+        setFindedData(myPocketData.find((item : any) => item.goodsId === checkBox));
+    }, [checkBox])
 
     const onClickSeeHandler = () => {
         setFindedData(myPocketData.find((item : any) => item.goodsId === checkBox));
@@ -38,7 +42,7 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data, failed } : any) 
                                 setMyPocketGoods={setMyPocketGoods}
                                 myPocketGoods={myPocketGoods}
                             />
-                            {(item.ratingCheck === null
+                            {(item.ratingCheck === false
                                 || item.sellerPrice === null)
                                 && <NotRatingProduct />}        
                         </NotRatingProductWrapper>

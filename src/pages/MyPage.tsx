@@ -1,18 +1,29 @@
-import React from "react";
-import { styled } from "styled-components";
-import ProfileContent from "../components/MyPage/ProfileContent";
-import MyPippo from "../components/MyPage/MyPippo";
-import { useQuery } from "react-query";
-import { getMypageApi } from "../api/users";
-import Background from "../assets/images/mypagebg.png";
+import React, { useEffect } from 'react'
+import { styled } from 'styled-components';
+import ProfileContent from '../components/MyPage/ProfileContent';
+import MyPippo from '../components/MyPage/MyPippo';
+import { useQuery } from 'react-query';
+import { getMypageApi } from '../api/users';
+import Background from '../assets/images/mypagebg.svg'
 
 const MyPage = () => {
-  const { isLoading, error, data }: any = useQuery("myPageData", getMypageApi, {
-    refetchOnWindowFocus: false,
-  });
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  console.log("myPage", data);
+    const { isLoading, error, data } : any = useQuery("myPageData", getMypageApi, {
+        refetchOnWindowFocus: false,
+    });
+
+    useEffect(() => {
+        if (data) {
+            const localLocation = localStorage.getItem("location");
+            if (data.data.info.location !== localLocation) {
+                localStorage.setItem("location", data.data.info.location);
+                console.log("test");
+            };  
+        };
+    }, []);
+    
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+    console.log("myPage", data);
 
   return (
     <AllLayoutContainer>
@@ -36,12 +47,13 @@ const AllLayoutContainer = styled.div`
 `;
 
 const LayoutImage = styled.img`
-  width: 100%;
-  height: 327px;
-  object-fit: contain;
-  position: absolute;
-  top: 170px;
-  left: 0;
+    width: 1864px;
+    height: 327px;
+    object-fit: contain;
+    position: absolute;
+    top: 170px;
+    left: 0;
+    z-index: 0;
 `;
 
 const LayoutContainer = styled.div`
@@ -57,13 +69,14 @@ const LayoutContainer = styled.div`
 `;
 
 const MyPageTitle = styled.div`
-  font-family: "Lemon/Milk", sans-serif;
-  display: flex;
-  justify-content: center;
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 110%;
-  padding: 0px 0px 60px 0px;
+    font-family: "Lemon/Milk", sans-serif;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 110%;
+    padding: 0px 0px 60px 0px;
+    position: relative;
 `;
 
 const MyPageContentContainer = styled.div`

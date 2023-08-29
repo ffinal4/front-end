@@ -125,6 +125,7 @@ const ModalBtnDisabled = styled.div`
   border-bottom: 1px solid #d5d4d4;
   border-left: 1px solid #d5d4d4;
   border-right: 1px solid #d5d4d4;
+  cursor: default;
 `;
 
 const TextWrapper = styled.div`
