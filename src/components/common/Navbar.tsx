@@ -1,21 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import category from "../../assets/icon/category.png";
 import CategorySelect from "./CategorySelect";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [categorySelect, setCategorySelect] = useState({
     category: "",
     name: "카테고리 선택",
   });
   const [selectBar, setSelectBar] = useState<boolean>(false);
+  const [pathnames, setPathnames] = useState(0);
 
   const tradeListOnclick = () => {
     navigate("/tradeList");
   };
+
+  useEffect(() => {
+    if (location.pathname.includes("/auction")) {
+      return (setPathnames(1))
+    } else if (location.pathname.includes("/tradeList") || location.pathname.includes("/detail")) {
+      return (setPathnames(2))
+    } else if (location.pathname.includes("/rating")) {
+      return (setPathnames(3))
+    } else {
+      return (setPathnames(0))
+    };
+  }, [location.pathname]);
 
   return (
     <CategoryHeaderContainer>
@@ -35,15 +49,31 @@ const Navbar = () => {
           )}
         </CategoryContainer>
         <MenuContainer>
-          <Menu onClick={tradeListOnclick}>물물교환</Menu>
+          <Menu
+            onClick={tradeListOnclick}
+            style={{
+              color: `${(pathnames === 2) ? "#EC8D49" : "#222020"}`,
+              fontWeight: `${(pathnames === 2) ? "700" : "400"}`
+            }}
+          >물물교환</Menu>
           <Menu
             onClick={() => {
               navigate("/auctionlist");
             }}
+            style={{
+              color: `${(pathnames === 1) ? "#58ABF7" : "#222020"}`,
+              fontWeight: `${(pathnames === 1) ? "700" : "400"}`
+            }}
           >
             포켓경매
           </Menu>
-          <Menu onClick={() => navigate("/ratingstart")}>레이팅</Menu>
+          <Menu
+            onClick={() => navigate("/ratingstart")}
+            style={{
+              color: `${(pathnames === 3) ? "#EC8D49" : "#222020"}`,
+              fontWeight: `${(pathnames === 3) ? "700" : "400"}`
+            }}
+          >레이팅</Menu>
         </MenuContainer>
       </Wrapper>
     </CategoryHeaderContainer>

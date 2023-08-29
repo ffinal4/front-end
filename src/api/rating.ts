@@ -16,3 +16,9 @@ export const postRatingSubmitApi = async (body : RatingPrice) => {
     const res = await instance.post("/api/ratings", body);
     return res;
 };
+
+// 레이팅 랭킹
+export const getRatingRakingApi = async () => {
+    const res = await instance.get("/api/ratings/main");
+    return res;
+};

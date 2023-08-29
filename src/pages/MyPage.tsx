@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components';
 import ProfileContent from '../components/MyPage/ProfileContent';
 import MyPippo from '../components/MyPage/MyPippo';
@@ -9,7 +9,18 @@ import Background from '../assets/images/mypagebg.svg'
 const MyPage = () => {
     const { isLoading, error, data } : any = useQuery("myPageData", getMypageApi, {
         refetchOnWindowFocus: false,
-      });
+    });
+
+    useEffect(() => {
+        if (data) {
+            const localLocation = localStorage.getItem("location");
+            if (data.data.info.location !== localLocation) {
+                localStorage.setItem("location", data.data.info.location);
+                console.log("test");
+            };  
+        };
+    }, []);
+
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     console.log("myPage", data);

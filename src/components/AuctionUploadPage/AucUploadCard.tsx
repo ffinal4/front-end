@@ -45,8 +45,8 @@ const AucUploadCard = (props : any) => {
         <TitleContainer>{item?.title}</TitleContainer>
         <ContentContainer>
             {(item?.ratingCheck)
-                ?  (item?.sellerPrice > 0)
-                    ? item?.sellerPrice
+                ?  (item?.avgRatingPrice > 0)
+                    ? item?.avgRatingPrice
                     : "레이팅 되는 중..."
                 : "레이팅이 필요해요"}
         </ContentContainer>

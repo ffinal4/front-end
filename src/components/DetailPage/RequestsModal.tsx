@@ -95,7 +95,7 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
                                 setRatingPrice={setRatingPrice}
                                 item={item}
                             />
-                            {(item.ratingPrice === 0 || item.goodsStatus === "BIDDING" || item.rationCheck === false) && <NotRatingProduct />}
+                            {(item.goodsStatus === "BIDDING") && <NotRatingProduct />}
                             {(item.goodsStatus === "BIDDING")
                             && <div>
                             <GoodsConditionContainer />
