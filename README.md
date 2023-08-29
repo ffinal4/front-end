@@ -1,1 +1,1 @@
-<a href="https://www.peeppo.site/" target="_blank">peeppo.site</a>
+[https://www.peeppo.site/](https://www.peeppo.site/){:target="_blank"}
