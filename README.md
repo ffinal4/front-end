@@ -1,1 +1,1 @@
-<https://www.peeppo.site>{:target="_blank"}
+<https://www.peeppo.site>
