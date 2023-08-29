@@ -18,9 +18,7 @@ const AuctionListPage = () => {
   });
   if (isLoading) return <div>Loading...</div>;
   console.log("옥션페이지데이터", data);
-  if (error) {
-    console.log(error);
-  }
+
   return (
     <AuctionListPageContainer>
       <TitleContainer>
