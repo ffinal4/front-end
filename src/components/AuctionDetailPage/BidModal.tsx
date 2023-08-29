@@ -11,9 +11,8 @@ import { useRecoilValue } from 'recoil';
 import { pagination } from '../../store/pagination';
 import BidCompleteModal from './BidCompleteModal';
 
-const BidModal = ({ conditional, setConditional, productData } : any) => {
-
-    const currentPage = useRecoilValue(pagination);
+const BidModal = ({ conditional, setConditional, productData }: any) => {
+  const currentPage = useRecoilValue(pagination);
 
     const { isError, isLoading, data, error } : any = useQuery(["bidPickData", currentPage], () => getMyPocketApi(currentPage), {
         refetchOnWindowFocus: false,
@@ -22,7 +21,8 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
     const newAuctionId = productData.data.info.auctionId
     const newData = data?.data.info.goodsListResponseDto.content;
 
-    console.log("내주머니입찰데이터", newData);
+  console.log("내주머니입찰데이터", newData);
+  console.log("내주머니전체조회에러", error);
 
     const [bidCheck, setBidCheck] = useState(false);
     const [checkBox, setCheckBox] = useState<any[]>([]);
@@ -38,12 +38,12 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
     });
 
     const onClickBidHandler = () => {
-        mutation.mutate();
-        setBidCheck(true);
+      mutation.mutate();
+      setBidCheck(true);
     };
 
-    if (isLoading) return <p>Loading...</p>;
-    if (isError) return <p>Error: {error.message}</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
@@ -77,13 +77,9 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
                         >입찰하기</StButton>
                         : <StButton buttonColor='#D5D4D4'>입찰하기</StButton>}
                 </ButtonWrapper>
-                {(bidCheck)
-                    && <BidCompleteModal
-                        setBidCheck={setBidCheck}
-                    />}
             </Wrapper>
             <PocketListContainer>
-                {(newData.map((item : any) => {
+                {(data?.data.info.goodsListResponseDto.map((item : any) => {
                     return (
                         <NotRatingProductWrapper>
                             <JoinBidCard
@@ -112,18 +108,18 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
             <Paging />
         </ModalContainer>
     </div>
-  )
+  );
 };
 
 export const ModalBackgroundBox = styled.div`
-    position: fixed;
-    background-color: #000;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.25;
-    z-index: 1000;
+  position: fixed;
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.25;
+  z-index: 1000;
 `;
 
 export const ModalContainer = styled.div`
@@ -138,65 +134,65 @@ export const ModalContainer = styled.div`
     z-index: 1003;
     padding: 40px 30px;
 
-    @media screen and (max-width: 1136px) {
-        width: 100%;
-        left: 0;
-    }
+  @media screen and (max-width: 1136px) {
+    width: 100%;
+    left: 0;
+  }
 `;
 
 export const ModalTitle = styled.div`
-    font-family: "Lemon/Milk", sans-serif;
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 110%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  font-family: "Lemon/Milk", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 110%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ModalSubtitle = styled.div`
-    font-family: "Pretendard";
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 150%;
-    padding: 16px 0px 20px 0px;
+  font-family: "Pretendard";
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 150%;
+  padding: 16px 0px 20px 0px;
 `;
 
 export const Wrapper = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const TextWrapper = styled.div`
-    display: grid;
+  display: grid;
 `;
 
 export const Text = styled.div`
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
-    color: #808080;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #808080;
 `;
 
 export const ButtonWrapper = styled.div`
-    display: grid;
-    gap: 10px;
+  display: grid;
+  gap: 10px;
 `;
 
 export const RatingPoint = styled.div`
-    font-family: "Pretendard";
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 150%;
-    display: grid;
-    justify-content: end;
+  font-family: "Pretendard";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 150%;
+  display: grid;
+  justify-content: end;
 `;
 
 export const StButton = styled(StBasicButton)`
-    color: #FCFCFC;
-    cursor: default;
+  color: #fcfcfc;
+  cursor: default;
 `;
 
 export const PocketListContainer = styled.div`
@@ -211,14 +207,14 @@ export const PocketListContainer = styled.div`
 `;
 
 export const CloseBtn = styled.img`
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    cursor: pointer;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
 `;
 
 export const NotRatingProductWrapper = styled.div`
-    position: relative;
+  position: relative;
 `;
 
 export const GoodsConditionContainer = styled.div`
@@ -252,22 +248,22 @@ export const GoodsCondition = styled.div`
 `;
 
 export const Circle = styled.div`
-    width: 18px;
-    height: 18px;
-    border-radius: 100%;
-    background-color: #58ABF7;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background-color: #58abf7;
 `;
 
 export const NotRatingProduct = styled.div`
-    position: absolute;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    width: 176px;
-    height: 229px;
-    border-radius: 10px;
-    background-color: #FCFCFC;
-    opacity: 0.4;
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 176px;
+  height: 229px;
+  border-radius: 10px;
+  background-color: #fcfcfc;
+  opacity: 0.4;
 `;
 
 export default BidModal;

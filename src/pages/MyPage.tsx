@@ -20,30 +20,30 @@ const MyPage = () => {
             };  
         };
     }, []);
-
+    
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     console.log("myPage", data);
 
   return (
     <AllLayoutContainer>
-        <LayoutImage src={Background}/>
-        <LayoutContainer>
-            <MyPageTitle>MY PAGE</MyPageTitle>
-            <MyPageContentContainer>
-                <ProfileContent data={data} />
-                <MyPippo data={data} />
-            </MyPageContentContainer>
-        </LayoutContainer>
+      <LayoutImage src={Background} />
+      <LayoutContainer>
+        <MyPageTitle>MY PAGE</MyPageTitle>
+        <MyPageContentContainer>
+          <ProfileContent data={data} />
+          <MyPippo data={data} />
+        </MyPageContentContainer>
+      </LayoutContainer>
     </AllLayoutContainer>
-  )
+  );
 };
 
 const AllLayoutContainer = styled.div`
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    background-color: #FCF6E9;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #fcf6e9;
 `;
 
 const LayoutImage = styled.img`
@@ -57,15 +57,15 @@ const LayoutImage = styled.img`
 `;
 
 const LayoutContainer = styled.div`
-    width: 1144px;
-    height: 100vh;
-    margin: 0 auto;
-    padding: 220px 0px 100px 0px;
+  width: 1144px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 220px 0px 100px 0px;
 
-    @media screen and (max-width: 1144px) {
-        width: 100%;
-        height: 800px;
-    }
+  @media screen and (max-width: 1144px) {
+    width: 100%;
+    height: 800px;
+  }
 `;
 
 const MyPageTitle = styled.div`
@@ -80,18 +80,16 @@ const MyPageTitle = styled.div`
 `;
 
 const MyPageContentContainer = styled.div`
-    display: flex;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+
+  @media screen and (max-width: 1144px) {
+    display: grid;
     justify-content: center;
-    gap: 16px;
-    width: 100%;
-    height: 100%;
-
-    @media screen and (max-width: 1144px) {
-        display: grid;
-        justify-content: center;
-    }
+  }
 `;
-
-
 
 export default MyPage;

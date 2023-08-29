@@ -25,8 +25,9 @@ instance.interceptors.response.use(
       config,
       response: { status },
     } = error;
-    if (status === 401) {
-      if (error.response.data.message === "RefreshToken Redirect") {
+    if (status === 403) {
+      if (error.response.status === 403) {
+        alert("로그인이 필요한 서비스입니다.");
         window.location.replace("/login");
       } else if (error.response.data.accessValidationError === true) {
         delete config.headers.accesstoken;
