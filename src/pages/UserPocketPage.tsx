@@ -5,7 +5,7 @@ import { StTitle } from "../styles/TitleFont";
 import dotLine from ".././assets/images/vector.png";
 import Paging from "../components/common/Paging/Paging";
 import UserInfo from "../components/UserPocketPage/UserInfo";
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { getUserPocketApi } from "../api/goods";
 import { useParams } from "react-router-dom";
 import ItemCardList from "../components/common/ItemCardList";

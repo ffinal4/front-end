@@ -22,7 +22,7 @@ const PopularAucionCard = ({ bgColor, fontColor, hoverColor, data }: any) => {
         <BidContentContainer fontcolor={fontColor}>
           <BidTitle>현재 입찰 수</BidTitle>
           <BidCount>{data?.bidCount}</BidCount>
-          <BidDeadLine deadline={data?.auctionEndTime} />
+          <BidDeadLine deadline={data?.auctionEndTime} isMainPage={true} />
         </BidContentContainer>
         <CardPicture image={data?.image}>
           <AddressContent>
