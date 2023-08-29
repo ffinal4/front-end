@@ -20,7 +20,7 @@ enum Category {
 
 export const ValueToEnum = (serverValue : string) => {
   switch (serverValue) {
-    case "woman":
+    case "WOMAN":
       return Category.WOMAN;
     case "MAN":
       return Category.MAN;

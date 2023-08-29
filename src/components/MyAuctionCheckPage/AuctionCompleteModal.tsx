@@ -51,7 +51,7 @@ const AuctionCompleteModal: React.FC<AuctionCompleteModalProps> = ({
   );
 };
 
-const ModalBackground = styled.div`
+export const ModalBackground = styled.div`
   position: fixed;
   background-color: #000;
   width: 100%;
@@ -62,7 +62,7 @@ const ModalBackground = styled.div`
   z-index: 1000;
 `;
 
-const ModalContainer = styled.div`
+export const ModalContainer = styled.div`
   width: 656px;
   height: 310px;
   background-color: rgb(255, 255, 255);
@@ -75,24 +75,24 @@ const ModalContainer = styled.div`
   border-radius: 10px;
 `;
 
-const CancelButtonContainer = styled.div`
+export const CancelButtonContainer = styled.div`
   display: flex;
   justify-content: end;
   margin-top: 20px;
   margin-right: 20px;
 `;
 
-const CancelImg = styled.img`
+export const CancelImg = styled.img`
   cursor: pointer;
 `;
 
-const ContentsContainer = styled.div`
+export const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
-const Title = styled.div`
+export const Title = styled.div`
   font-family: "Lemon/Milk", sans-serif;
   font-size: 40px;
   font-weight: 700;
@@ -104,7 +104,7 @@ const Title = styled.div`
   padding-bottom: 20px;
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   color: #000;
   text-align: center;
   font-family: "Pretendard";
@@ -115,7 +115,7 @@ const Content = styled.div`
   padding-top: 30px;
 `;
 
-const SubContent = styled.div`
+export const SubContent = styled.div`
   color: #595959;
   text-align: center;
   font-family: "Pretendard";
@@ -126,7 +126,7 @@ const SubContent = styled.div`
   margin-top: 6px;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;

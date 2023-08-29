@@ -7,17 +7,11 @@ import {
   Container,
   ContentsContainer,
   Date,
-  DotImg,
   GoodsContainer,
   GoodsTitle,
   TradeImg,
   TradeImgContainer,
 } from "../TradeRequestPage/TradeRequestCard";
-
-import bluedot from "../../assets/icon/bluedot.png";
-import blackdot from "../../assets/icon/blackdot.png";
-import reddot from "../../assets/icon/reddot.png";
-import greendot from "../../assets/icon/greendot.png";
 import auctionrequest from "../../assets/icon/auctionrequest.png";
 import auctioncomplete from "../../assets/icon/auctioncomplete.png";
 import auctiontradecomplete from "../../assets/icon/auctiontradecomplete.png";
@@ -26,54 +20,64 @@ import { StRequestState } from "../../styles/RequestStateBox";
 import AuctionRequestGoods from "./AuctionRequestGoods";
 
 const AuctionRequestCard = () => {
-  const [requestState, setRequestState] = useState({ request: "경매종료" });
+  const [requestState, setRequestState] = useState({ request: "입찰실패" });
   const [border, setBorder] = useState<string>();
+  const [opacity, setOpacity] = useState<string>();
   const { request } = requestState;
 
   useEffect(() => {
     if (request === "경매중") {
-      setBorder("2px solid #58ABF7");
+      setBorder("1px solid #D5D4D4");
     }
     if (request === "경매종료") {
-      setBorder("2px solid #ADADAD");
+      setBorder("2px solid #58ABF7");
     }
     if (request === "교환완료") {
       setBorder("1px solid #D5D4D4");
     }
     if (request === "입찰실패") {
       setBorder("1px solid #D5D4D4");
+      setOpacity("0.5");
     }
   });
 
   const auctionRequestState = () => {
     if (request === "경매중") {
       return (
-        <StRequestState backgroundcolor="#ECF4FC">
-          <DotImg src={bluedot} />
+        <StAuctionIng backgroundcolor="white" color="#58ABF7" border="#58ABF7">
           경매중
-        </StRequestState>
+        </StAuctionIng>
       );
     }
     if (request === "경매종료") {
       return (
-        <StRequestState backgroundcolor="#EFEFEF">
-          <DotImg src={blackdot} />
+        <StRequestState
+          backgroundcolor="#58ABF7"
+          color="white"
+          border="#58ABF7"
+        >
           경매종료
         </StRequestState>
       );
     }
     if (request === "교환완료") {
       return (
-        <StRequestState backgroundcolor="#EFEFEF">
-          <DotImg src={greendot} />
+        <StRequestState
+          backgroundcolor="#EFEFEF"
+          color="black"
+          border="#EFEFEF"
+        >
           교환완료
         </StRequestState>
       );
     }
     if (request === "입찰실패") {
       return (
-        <StRequestState backgroundcolor="rgba(223, 55, 55, 0.10)">
-          <DotImg src={reddot} />
+        <StRequestState
+          backgroundcolor="#EFEFEF"
+          color="#ADADAD"
+          border="#EFEFEF"
+        >
           입찰실패
         </StRequestState>
       );
@@ -142,7 +146,7 @@ const AuctionRequestCard = () => {
     }
   };
   return (
-    <CardContainer style={{ border: `${border}` }}>
+    <CardContainer style={{ border: `${border}`, opacity: `${opacity}` }}>
       <Container>
         <Date>2023-8-22</Date>
         {auctionRequestState()}
@@ -170,7 +174,7 @@ const AuctionRequestCard = () => {
     </CardContainer>
   );
 };
-
+const StAuctionIng = styled(StRequestState)``;
 const Title = styled.div`
   color: #58abf7;
   font-family: "Pretendard";

@@ -1,34 +1,47 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import {
-  AllStateContainer,
-  ArrowImg,
-  CardContainer,
   Container,
   DotImg,
-  Filter,
-  FilterContainer,
   GetRequest,
+  GetRequests,
   PageLayout,
   RequestIngNumber,
   RequestStateContainer,
   RequestStateNumber,
   SendRequest,
+  SendRequests,
   SubTitle,
   TabContainer,
   Title,
-  TradeRequestListContainer,
   TradeRequestPageContainer,
 } from "./TradeRequestPage";
-import arrow from "../assets/icon/arrow.png";
 import bluedot from "../assets/icon/bluedot.png";
 import blackdot from "../assets/icon/blackdot.png";
-import FilterDropdownMenu from "../components/MyAuctionCheckPage/FilterDropdownMenu";
-import AuctionRequestCard from "../components/MyAuctionCheckPage/AuctionRequestCard";
+import MyAuctionList from "../components/MyAuctionCheckPage/MyAuctionList";
+import BidAuctionList from "../components/MyAuctionCheckPage/BidAuctionList";
 
 const MyAuctionCheckPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [dropdownMenu, setDropdownMenu] = useState("필터");
+
+  const [filterTap, setFilterTap] = useState({
+    myAuctionTap: true,
+    bidAuctionTap: false,
+  });
+
+  const { myAuctionTap, bidAuctionTap } = filterTap;
+
+  const myAuctionOnclick = () => {
+    setFilterTap({
+      myAuctionTap: false,
+      bidAuctionTap: true,
+    });
+  };
+
+  const bidAuctionOnclick = () => {
+    setFilterTap({ myAuctionTap: true, bidAuctionTap: false });
+  };
 
   return (
     <LayoutContainer>
@@ -38,47 +51,54 @@ const MyAuctionCheckPage = () => {
           <Container>
             <SubTitle>경매 현황</SubTitle>
           </Container>
-          <TabContainer>
-            <GetRequest>내 경매</GetRequest>
-            <SendRequest>입찰 경매</SendRequest>
-          </TabContainer>
-          <RequestStateContainer>
-            <RequestStateNumber>
-              <DotImg src={bluedot} />
-              경매중 10
-            </RequestStateNumber>
-            <RequestIngNumber>
-              <DotImg src={blackdot} />
-              경매완료 2
-            </RequestIngNumber>
-          </RequestStateContainer>
-          <TradeRequestListContainer>
-            <AllStateContainer>
-              <FilterContainer>
-                <Filter
-                  onClick={() => {
-                    setFilterOpen(!filterOpen);
-                  }}
-                >
-                  {dropdownMenu}
-                  <ArrowImg src={arrow} />
-                </Filter>
-                {filterOpen && (
-                  <FilterDropdownMenu
-                    filterOpen={filterOpen}
-                    setFilterOpen={setFilterOpen}
-                    setDropdownMenu={setDropdownMenu}
-                  />
-                )}
-              </FilterContainer>
-              <CardContainer>
-                <AuctionRequestCard />
-                <AuctionRequestCard />
-                <AuctionRequestCard />
-                <AuctionRequestCard />
-              </CardContainer>
-            </AllStateContainer>
-          </TradeRequestListContainer>
+          {myAuctionTap === true && bidAuctionTap === false && (
+            <div>
+              <TabContainer>
+                <GetRequest>내 경매</GetRequest>
+                <SendRequest onClick={myAuctionOnclick}>입찰 경매</SendRequest>
+              </TabContainer>
+              <RequestStateContainer>
+                <RequestStateNumber>
+                  <DotImg src={bluedot} />
+                  경매중 10
+                </RequestStateNumber>
+                <RequestIngNumber>
+                  <DotImg src={blackdot} />
+                  경매완료 2
+                </RequestIngNumber>
+              </RequestStateContainer>
+              <MyAuctionList
+                filterOpen={filterOpen}
+                setFilterOpen={setFilterOpen}
+                dropdownMenu={dropdownMenu}
+                setDropdownMenu={setDropdownMenu}
+              />
+            </div>
+          )}
+          {myAuctionTap === false && bidAuctionTap === true && (
+            <div>
+              <TabContainer>
+                <GetRequests onClick={bidAuctionOnclick}>내 경매</GetRequests>
+                <SendRequests>입찰 경매</SendRequests>
+              </TabContainer>
+              <RequestStateContainer>
+                <RequestStateNumber>
+                  <DotImg src={bluedot} />
+                  경매중 10
+                </RequestStateNumber>
+                <RequestIngNumber>
+                  <DotImg src={blackdot} />
+                  경매완료 2
+                </RequestIngNumber>
+              </RequestStateContainer>
+              <BidAuctionList
+                filterOpen={filterOpen}
+                setFilterOpen={setFilterOpen}
+                dropdownMenu={dropdownMenu}
+                setDropdownMenu={setDropdownMenu}
+              />
+            </div>
+          )}
         </TradeRequestPageContainer>
       </PageLayout>
     </LayoutContainer>

@@ -7,16 +7,25 @@ import { useParams } from 'react-router-dom';
 
 const AucBidInfo = ({ productData } : any) => {
 
-    // const auctionId = productData.data.info.auctionId;
-    // const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
-    //     refetchOnWindowFocus: false,
-    // });
-    // console.log("입찰품 목록", data);
+    const auctionId = productData.data.info.auctionId;
+    const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
+        refetchOnWindowFocus: false,
+    });
+    console.log("입찰품 목록", data);
 
   return (
     <InfoContainer>
         <InfoTextContainer>
             <CardListContainer>
+                {data?.data.info.content.map((item : any) => {
+                    return (
+                        <AucBidCard 
+                            key={item.bidId}
+                            item={item}
+                        />
+                    )}
+                )}
+                {/* <AucBidCard />
                 <AucBidCard />
                 <AucBidCard />
                 <AucBidCard />
@@ -25,8 +34,7 @@ const AucBidInfo = ({ productData } : any) => {
                 <AucBidCard />
                 <AucBidCard />
                 <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
+                <AucBidCard /> */}
             </CardListContainer>
         </InfoTextContainer>
     </InfoContainer>

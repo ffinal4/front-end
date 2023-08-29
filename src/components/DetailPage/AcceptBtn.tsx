@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
 import CardZzimBtn from '../common/CardZzimBtn';
+import RequestsModal from './RequestsModal';
 
 const AcceptBtn = ({ data } : any) => {
 
-    const [chatting, setConditional] = useState(false);
+    const [conditional, setConditional] = useState(false);
 
     const onClickAcceptHandler = () => {
         setConditional(true);
@@ -39,7 +40,7 @@ const AcceptBtn = ({ data } : any) => {
             fontColor="#222020"
           />
         )}
-        {chatting ? (
+        {conditional ? (
           <StButton buttonColor="#FFCA64" onClick={onClickChatting}>
             채팅하기
           </StButton>
@@ -48,6 +49,7 @@ const AcceptBtn = ({ data } : any) => {
             채팅하기
           </StButton>
         )}
+        {conditional && <RequestsModal productData={data} conditional={conditional} setConditional={setConditional}/>}
       </ButtonWrapper>
   )
 };

@@ -49,24 +49,24 @@ const Header = () => {
   const getLogoImage = () => {
     if (location.pathname.includes("/auction")) {
       return (
-        <>
+        <LogoContainer>
           <Logo src={blueLogo} />
           <LogoTitle src={blueTitle} />
-        </>
+        </LogoContainer>
       );
     } else if (location.pathname.includes("/" || "/tradeList" || "/traderequest" || "/detail")) {
       return (
-        <>
+        <LogoContainer>
           <Logo src={loginLogo} />
           <LogoTitle src={loginLTitle} />
-        </>
+        </LogoContainer>
       );
     } else {
       return (
-        <>
+        <LogoContainer>
           <Logo src={logo} />
           <LogoTitle src={title} />
-        </>
+        </LogoContainer>
       );
     }
   };

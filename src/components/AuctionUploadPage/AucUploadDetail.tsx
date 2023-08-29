@@ -38,7 +38,7 @@ const AucUploadDetail = ({ findedData } : any) => {
                     </TapContainer>
                     <InfoNextContainer>
                         <InfoTextContainer>
-                            <InfoTextTitle>{findedData.title}</InfoTextTitle>
+                            <InfoTextTitle>상품정보</InfoTextTitle>
                             <InfoTextContent>{findedData.content}</InfoTextContent>
                         </InfoTextContainer>
                     </InfoNextContainer>

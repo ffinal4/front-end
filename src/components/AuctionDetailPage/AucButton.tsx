@@ -27,13 +27,22 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
           </StButton>
         )}
         {data.data.info.checkSameUser ? (
+          (data.data.info.leftTime.seconds <= 0) ? (
           <StButton
+            buttonColor="#58ABF7"
+            style={{ color: "#FCFCFC" }}
+            onClick={() => setSellerPicks({...sellerPicks, pickModal: true})}
+          >
+            낙찰품 선택
+          </StButton>
+          ) : ( 
+            <StButton
             buttonColor="#58ABF7"
             style={{ color: "#222020" }}
             onClick={() => setSellerPicks({...sellerPicks, pickModal: true})}
           >
             Seller's Pick
-          </StButton>
+          </StButton>)
         ) : (
           <CardZzimBtn
             checkZzim={data.data.info.goodsResponseDto.checkDibs}
