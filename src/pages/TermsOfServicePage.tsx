@@ -49,6 +49,7 @@ const TermsOfServicePage = () => {
       peeppoTap: true,
       auctionTap: false,
     });
+    setCurrentImg(0);
   };
 
   const auctionServiceOnclick = () => {
@@ -56,6 +57,7 @@ const TermsOfServicePage = () => {
       peeppoTap: false,
       auctionTap: true,
     });
+    setCurrentImg(0);
   };
 
   return (
@@ -65,16 +67,10 @@ const TermsOfServicePage = () => {
           <PageLayout>
             <TabContainer>
               <PeepoServiceUse>핍포 알아보기</PeepoServiceUse>
-              <AuctionServiceUse onClick={auctionServiceOnclick}>
-                포켓경매
-              </AuctionServiceUse>
+              <AuctionServiceUse onClick={auctionServiceOnclick}>포켓경매</AuctionServiceUse>
             </TabContainer>
             <PeeppoContainer>
-              <ButtonImg
-                src={leftarrow}
-                style={{ opacity: currentImg === 0 ? "0" : "1" }}
-                onClick={moveToPrevBtn}
-              />
+              <ButtonImg src={leftarrow} style={{ opacity: currentImg === 0 ? "0" : "1" }} onClick={moveToPrevBtn} />
               <Wrapper>
                 <SlideWrapper ref={slideRef}>
                   <Img src={firstuse} alt="" />
@@ -93,17 +89,11 @@ const TermsOfServicePage = () => {
         <AuctionLayoutContainer>
           <PageLayout>
             <TabContainer>
-              <PeepoServiceUses onClick={peeppoOnclick}>
-                핍포 알아보기
-              </PeepoServiceUses>
+              <PeepoServiceUses onClick={peeppoOnclick}>핍포 알아보기</PeepoServiceUses>
               <AuctionServiceUses>포켓경매</AuctionServiceUses>
             </TabContainer>
             <PeeppoContainer>
-              <ButtonImg
-                src={auctionleft}
-                style={{ opacity: currentImg === 0 ? "0" : "1" }}
-                onClick={moveToPrevBtn}
-              />
+              <ButtonImg src={auctionleft} style={{ opacity: currentImg === 0 ? "0" : "1" }} onClick={moveToPrevBtn} />
               <Wrapper>
                 <SlideWrapper ref={slideRef}>
                   <Img src={firstauction} alt="" />
