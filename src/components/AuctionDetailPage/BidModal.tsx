@@ -19,7 +19,7 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
     });
     const newProductData = productData.data.info.goodsResponseDto;
     const newAuctionId = productData.data.info.auctionId
-    const newData = data?.data.info.goodsListResponseDto;
+    const newData = data?.data.info.goodsListResponseDto.content;
 
     console.log("내주머니입찰데이터", newData);
 
@@ -73,7 +73,7 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
                 </ButtonWrapper>
             </Wrapper>
             <PocketListContainer>
-                {(data?.data.info.goodsListResponseDto.map((item : any) => {
+                {(newData.map((item : any) => {
                     return (
                         <NotRatingProductWrapper>
                             <JoinBidCard

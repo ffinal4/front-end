@@ -3,12 +3,9 @@ import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 import Check from '../../assets/icon/check.png'
 
-const AucUploadCard = ({
-    checkBox,
-    setCheckBox,
-    item,
-    myPocketGoods,
-    setMyPocketGoods } : any) => {
+const AucUploadCard = (props : any) => {
+
+    const { checkBox, setCheckBox, item, myPocketGoods, setMyPocketGoods } = props;
 
     const onClickCheckHandler = (item : any) => {
         if (checkBox === item.goodsId) {
@@ -24,27 +21,35 @@ const AucUploadCard = ({
     <CardContainer onClick={() => onClickCheckHandler(item)}>
         <CardImgContainer src={item?.images[0]} onClick={() => setCheckBox(!checkBox)}>
             {(checkBox === item.goodsId)
-                && <div>
+                ? <div>
                     <CheckOutContainer />
                     <CheckContainer>
                         <CheckBox>
                             <CheckImage src={Check}/>
                         </CheckBox>
                     </CheckContainer>
+                </div>
+                : <div>
+                <GoodsConditionContainer />
+                <GoodsCondition>
+                    <Circle />
+                    거래중
+                </GoodsCondition>
                 </div>}
             <CardLocationContainer />
             <LocatinoWrapper>
                 <LocationIcon src={Location} alt=''/>
                 <LocationText>{item?.location}</LocationText>
-            </LocatinoWrapper>
-            <GoodsConditionContainer />
-                            <GoodsCondition>
-                                <Circle />
-                                거래중
-                            </GoodsCondition>   
+            </LocatinoWrapper>  
         </CardImgContainer>
         <TitleContainer>{item?.title}</TitleContainer>
-        <ContentContainer>{item?.title}</ContentContainer>
+        <ContentContainer>
+            {(item?.ratingCheck)
+                ?  (item?.sellerPrice > 0)
+                    ? item?.sellerPrice
+                    : "레이팅 되는 중..."
+                : "레이팅이 필요해요"}
+        </ContentContainer>
     </CardContainer>
   )
 };
