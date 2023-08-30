@@ -64,6 +64,7 @@ const PickBarContainer = styled.div`
 
     @media screen and (max-width: 360px) {
         top: 1480px;
+        right: 10%;
     }
 `;
 

@@ -75,3 +75,8 @@ export const postZzimApi = async (body: zzimBody) => {
   const res = await instance.post("/api/dibs", body);
   return res;
 };
+
+export const postRequestsApi = async (body : any, goodsId : number) => {
+  const res = await instance.post(`/api/goods/users/${goodsId}/request`, body);
+  return res;
+};

@@ -17,12 +17,11 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
     const { isError, isLoading, data, error } : any = useQuery(["bidPickData", currentPage], () => getMyPocketApi(currentPage), {
         refetchOnWindowFocus: false,
     });
-    const newProductData = productData.data.info.goodsResponseDto;
     const newAuctionId = productData.data.info.auctionId
     const newData = data?.data.info.goodsListResponseDto.content;
 
-  console.log("내주머니입찰데이터", newData);
-  console.log("내주머니전체조회에러", error);
+  console.log("내주머니입찰데이터", newAuctionId);
+  console.log("내주머니입찰데이터", data);
 
     const [bidCheck, setBidCheck] = useState(false);
     const [checkBox, setCheckBox] = useState<any[]>([]);
@@ -66,10 +65,11 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
                 </TextWrapper>
                 <ButtonWrapper>
                     <RatingPoint>
-                        <Text style={{color: "#222020"}}>선택된 총 레이팅 점수</Text>
+                        <Text style={{color: "#222020"}}>선택
+                        된 총 레이팅 점수</Text>
                         {ratingPrice.toLocaleString()}
                     </RatingPoint>
-                    {(ratingPrice > 30000)
+                    {(ratingPrice >= productData.data.info.lowPrice)
                         ? <StButton
                             buttonColor='#58ABF7'
                             style={{cursor: "pointer", border: "2px solid #222020"}}
@@ -79,7 +79,7 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
                 </ButtonWrapper>
             </Wrapper>
             <PocketListContainer>
-                {(data?.data.info.goodsListResponseDto.map((item : any) => {
+                {(newData?.map((item : any) => {
                     return (
                         <NotRatingProductWrapper>
                             <JoinBidCard

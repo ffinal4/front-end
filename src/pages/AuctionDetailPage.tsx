@@ -188,7 +188,6 @@ const TapDefaultButton = styled.div`
     background-color: #EFEFEF;
     width: 177px;
     height: 44px;
-    border: 1px solid #000;
     border-bottom: 2px solid #000;
     border-radius: 5px 5px 0px 0px;
     cursor: pointer;

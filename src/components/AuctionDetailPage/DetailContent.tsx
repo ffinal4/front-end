@@ -116,7 +116,7 @@ const DetailContent = ({ data }: any) => {
         </TextLine>
         <TextLine style={{ gap: "54px" }}>
           <ColorText color="#717171">하한가</ColorText>
-          <ColorText color="#222020">{newData.tradeType}PP</ColorText>
+          <ColorText color="#222020">{data.data.info.lowPrice.toLocaleString()}PP</ColorText>
         </TextLine>
       </TextContainer>
       <ColorText color="#717171">*상대방이 교환신청을 수락해야 채팅이 가능해요!</ColorText>

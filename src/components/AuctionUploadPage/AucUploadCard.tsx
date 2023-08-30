@@ -21,26 +21,14 @@ const AucUploadCard = (props : any) => {
     <CardContainer onClick={() => onClickCheckHandler(item)}>
         <CardImgContainer src={item?.images[0]} onClick={() => setCheckBox(!checkBox)}>
             {(checkBox === item.goodsId)
-                ? <div>
+                && <div>
                     <CheckOutContainer />
                     <CheckContainer>
                         <CheckBox>
                             <CheckImage src={Check}/>
                         </CheckBox>
                     </CheckContainer>
-                </div>
-                : <div>
-                <GoodsConditionContainer />
-                <GoodsCondition>
-                    <Circle />
-                    거래중
-                </GoodsCondition>
-                </div>}
-            <CardLocationContainer />
-            <LocatinoWrapper>
-                <LocationIcon src={Location} alt=''/>
-                <LocationText>{item?.location}</LocationText>
-            </LocatinoWrapper>  
+                </div>} 
         </CardImgContainer>
         <TitleContainer>{item?.title}</TitleContainer>
         <ContentContainer>
@@ -56,7 +44,8 @@ const AucUploadCard = (props : any) => {
 
 const CardContainer = styled.div`
     width: 272px;
-    height: 312px;
+    height: 333px;
+    margin-bottom: 40px;
     cursor: pointer;
 `;
 
