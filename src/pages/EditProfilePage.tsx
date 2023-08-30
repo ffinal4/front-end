@@ -24,7 +24,7 @@ const EditProfilePage = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
-  const [uploadImage, setUploadImage] = useState("");
+  const [uploadImage, setUploadImage] = useState<any>([]);
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
   const [nicknameChecked, setNicknameChecked] = useState(false);
@@ -76,16 +76,32 @@ const EditProfilePage = () => {
       },
     };
 
-    console.log(allRequest);
+    console.log("allRequest", allRequest, "uploadImage", uploadImage);
 
+    if (uploadImage) {
+      uploadImage.forEach((blobImage:any, index:any) => {
+        formData.append("image", blobImage, `image${index + 1}.jpg`);
+      });
+    };
     formData.append(
       "data",
       new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
     );
-    formData.append(
-      "image",
-      new Blob([JSON.stringify(uploadImage)], { type: "multipart/form-data" })
-    );
+    // if (uploadImage) {
+    //   fetch(uploadImage)
+    // .then(response => response.blob())
+    // .then(blobImage => {
+    //   formData.append("image", blobImage);
+    // });
+    // };
+    
+    // uploadImage.forEach((blobImage:any, index:any) => {
+    //   formData.append("image", blobImage, `image${index + 1}.jpg`);
+    // });
+
+    formData.forEach(function (value, key) {
+      console.log(key + ": " + value);
+    });
 
     try {
       const res = await patchProfileEditApi(formData);
