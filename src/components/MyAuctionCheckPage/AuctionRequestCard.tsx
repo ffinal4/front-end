@@ -19,7 +19,7 @@ import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import AuctionRequestGoods from "./AuctionRequestGoods";
 import { useQuery } from "react-query";
-import { getMyAuctionCheckApi, getTradeRequestApi } from "../../api/goods";
+import { getMyAuctionCheckApi } from "../../api/goods";
 
 const AuctionRequestCard = () => {
   const [requestState, setRequestState] = useState({ request: "입찰실패" });
@@ -53,7 +53,7 @@ const AuctionRequestCard = () => {
   if (error) {
     console.log(error);
   }
-
+  console.log(data, "데이터!!");
   const auctionRequestState = () => {
     if (request === "경매중") {
       return (
