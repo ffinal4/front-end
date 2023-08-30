@@ -29,10 +29,18 @@ export const getUserPocketApi = async (nickname: any) => {
   return res;
 };
 
-// 물품교환요청 페이지 전체조회
-export const getTradeRequestApi = async () => {
+// 물품교환요청받은 페이지 전체조회
+export const getTradeReceiveRequestApi = async () => {
   const res = await instance.get(
     "/api/goods/users/trade/requested?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUESTED"
+  );
+  return res;
+};
+
+// 물물교환요청한 페이지 전체조회
+export const getTradeRequestApi = async () => {
+  const res = await instance.get(
+    "/api/goods/users/trade/request?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUEST"
   );
   return res;
 };
