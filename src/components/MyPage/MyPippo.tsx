@@ -9,21 +9,21 @@ const MyPippo = ({ data } : any) => {
   useEffect(() => {
     const interVal = setInterval(() => {
       if (point < (data.data.info.userPoint)) {
-        setPoint(point + 10);
+        setPoint(point + 1);
       }
-    }, (data.data.info.userPoint < 400) ? 50 : 10);
+    }, (data.data.info.userPoint < 400) ? 10 : 1);
     return () => clearInterval(interVal);
   }, [point])
 
   return (
-    <RightContainer>
+
       <RightContentContainer>
         <InContainer>
           <PointCount>{point}P</PointCount>
           <PointText>나의 포인트</PointText>
         </InContainer>
       </RightContentContainer>
-    </RightContainer>
+
   )
 };
 
@@ -44,14 +44,21 @@ const RightContentContainer = styled.div`
   min-width: 272px;
   height: 204px;
   padding: 16px 15px 0px 15px;
-  border: 1px solid #D5D4D4;
+  border-top: 2px solid #222020;
+  border-left: 2px solid #222020;
+  border-right: 2px solid #222020;
   background-color: #FCFCFC;
+  border-radius: 5px 5px 0px 0px;
+  position: relative;
 `;
 
 const InContainer = styled.div`
   min-width: 100%;
   height: 100%;
-  border: 1px solid #D5D4D4;
+  border-top: 4px solid #EFEFEF;
+  border-left: 4px solid #EFEFEF;
+  border-right: 4px solid #EFEFEF;
+  border-radius: 5px 5px 0px 0px;
   padding: 43px 56px 56px 42px;
 `;
 

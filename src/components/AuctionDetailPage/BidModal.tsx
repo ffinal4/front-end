@@ -9,20 +9,22 @@ import { getMyPocketApi } from '../../api/goods';
 import { postAuctionBidApi } from '../../api/acution';
 import { useRecoilValue } from 'recoil';
 import { pagination } from '../../store/pagination';
+import BidCompleteModal from './BidCompleteModal';
 
-const BidModal = ({ conditional, setConditional, productData } : any) => {
-
-    const currentPage = useRecoilValue(pagination);
+const BidModal = ({ conditional, setConditional, productData }: any) => {
+  const currentPage = useRecoilValue(pagination);
 
     const { isError, isLoading, data, error } : any = useQuery(["bidPickData", currentPage], () => getMyPocketApi(currentPage), {
         refetchOnWindowFocus: false,
     });
     const newProductData = productData.data.info.goodsResponseDto;
     const newAuctionId = productData.data.info.auctionId
-    const newData = data?.data.info.goodsListResponseDto;
+    const newData = data?.data.info.goodsListResponseDto.content;
 
-    console.log("내주머니입찰데이터", newData);
+  console.log("내주머니입찰데이터", newData);
+  console.log("내주머니전체조회에러", error);
 
+    const [bidCheck, setBidCheck] = useState(false);
     const [checkBox, setCheckBox] = useState<any[]>([]);
     const [ratingPrice, setRatingPrice] = useState<number>(0);
     const [myPocketGoods, setMyPocketGoods] = useState<{ goodsId: string | number[] }>({
@@ -32,12 +34,16 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
     const mutation = useMutation(() => postAuctionBidApi(myPocketGoods, newAuctionId), {
         onSuccess: (res) => {
             console.log("입찰성공!", res);
-            setConditional({ ...conditional, bid: false });
         },
     });
 
-    if (isLoading) return <p>Loading...</p>;
-    if (isError) return <p>Error: {error.message}</p>;
+    const onClickBidHandler = () => {
+      mutation.mutate();
+      setBidCheck(true);
+    };
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
@@ -67,7 +73,7 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
                         ? <StButton
                             buttonColor='#58ABF7'
                             style={{cursor: "pointer", border: "2px solid #222020"}}
-                            onClick={() => mutation.mutate()}
+                            onClick={onClickBidHandler}
                         >입찰하기</StButton>
                         : <StButton buttonColor='#D5D4D4'>입찰하기</StButton>}
                 </ButtonWrapper>
@@ -86,12 +92,15 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
                                 setRatingPrice={setRatingPrice}
                                 item={item}
                             />
-                            {(item.ratingPrice === 0 || item.goodsStatus === "BIDDING") && <NotRatingProduct />}
+                            {(item.ratingPrice === 0 || item.goodsStatus === "BIDDING" || item.rationCheck === false) && <NotRatingProduct />}
+                            {(item.goodsStatus === "BIDDING")
+                            && <div>
                             <GoodsConditionContainer />
                             <GoodsCondition>
                                 <Circle />
-                                거래중
+                                경매중
                             </GoodsCondition>
+                            </div>}
                         </NotRatingProductWrapper>
                     )
                 }))}
@@ -99,95 +108,96 @@ const BidModal = ({ conditional, setConditional, productData } : any) => {
             <Paging />
         </ModalContainer>
     </div>
-  )
+  );
 };
 
-const ModalBackgroundBox = styled.div`
-    position: fixed;
-    background-color: #000;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.25;
-    z-index: 1000;
+export const ModalBackgroundBox = styled.div`
+  position: fixed;
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.25;
+  z-index: 1000;
 `;
 
-const ModalContainer = styled.div`
-    width: 812px;
+export const ModalContainer = styled.div`
+    width: 814px;
     height: 940px;
     border: 1px solid #222020;
     background-color: #FCFCFC;
+    border-radius: 10px;
     position: absolute;
     top: 220px;
     left: 25%;
     z-index: 1003;
     padding: 40px 30px;
 
-    @media screen and (max-width: 1136px) {
-        width: 100%;
-        left: 0;
-    }
-`;
-
-const ModalTitle = styled.div`
-    font-family: "Lemon/Milk", sans-serif;
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 110%;
+  @media screen and (max-width: 1136px) {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    left: 0;
+  }
 `;
 
-const ModalSubtitle = styled.div`
-    font-family: "Pretendard";
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 150%;
-    padding: 16px 0px 20px 0px;
+export const ModalTitle = styled.div`
+  font-family: "Lemon/Milk", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 110%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
 
-const Wrapper = styled.div`
+export const ModalSubtitle = styled.div`
+  font-family: "Pretendard";
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 150%;
+  padding: 16px 0px 20px 0px;
+`;
+
+export const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const TextWrapper = styled.div`
+  display: grid;
+`;
+
+export const Text = styled.div`
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #808080;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: grid;
+  gap: 10px;
+`;
+
+export const RatingPoint = styled.div`
+  font-family: "Pretendard";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 150%;
+  display: grid;
+  justify-content: end;
+`;
+
+export const StButton = styled(StBasicButton)`
+  color: #fcfcfc;
+  cursor: default;
+`;
+
+export const PocketListContainer = styled.div`
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-`;
-
-const TextWrapper = styled.div`
-    display: grid;
-`;
-
-const Text = styled.div`
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
-    color: #808080;
-`;
-
-const ButtonWrapper = styled.div`
-    display: grid;
-    gap: 10px;
-`;
-
-const RatingPoint = styled.div`
-    font-family: "Pretendard";
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 150%;
-    display: grid;
-    justify-content: end;
-`;
-
-const StButton = styled(StBasicButton)`
-    color: #FCFCFC;
-    cursor: default;
-`;
-
-const PocketListContainer = styled.div`
-    width: 100%;
-    padding: 20px 0px 20px 20px;
+    padding: 20px 0px 20px 0px;
     border-top: 4px solid #222020;
     border-bottom: 4px solid #222020;
     margin: 30px 0px 40px 0px;
@@ -196,22 +206,22 @@ const PocketListContainer = styled.div`
     gap: 16px;
 `;
 
-const CloseBtn = styled.img`
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    cursor: pointer;
+export const CloseBtn = styled.img`
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
 `;
 
-const NotRatingProductWrapper = styled.div`
-    position: relative;
+export const NotRatingProductWrapper = styled.div`
+  position: relative;
 `;
 
-const GoodsConditionContainer = styled.div`
+export const GoodsConditionContainer = styled.div`
     position: absolute;
     bottom: 39px;
     left: 0;
-    z-index: 887;
+    z-index: 999;
     width: 100%;
     height: 48px;
     background-color: #FFFFFF;
@@ -219,11 +229,11 @@ const GoodsConditionContainer = styled.div`
     border-radius: 0px 0px 10px 10px;
 `;
 
-const GoodsCondition = styled.div`
+export const GoodsCondition = styled.div`
     position: absolute;
-    bottom: 39px;
+    bottom: 45px;
     left: 0;
-    z-index: 888;
+    z-index: 999;
     width: 100%;
     height: 48px;
     display: flex;
@@ -237,23 +247,23 @@ const GoodsCondition = styled.div`
     padding: 0px 0px 0px 15px;
 `;
 
-const Circle = styled.div`
-    width: 18px;
-    height: 18px;
-    border-radius: 100%;
-    background-color: #EC8D49;
+export const Circle = styled.div`
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background-color: #58abf7;
 `;
 
-const NotRatingProduct = styled.div`
-    position: absolute;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    width: 272px;
-    height: 333px;
-    border-radius: 10px;
-    background-color: #FCFCFC;
-    opacity: 0.4;
+export const NotRatingProduct = styled.div`
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 176px;
+  height: 229px;
+  border-radius: 10px;
+  background-color: #fcfcfc;
+  opacity: 0.4;
 `;
 
 export default BidModal;

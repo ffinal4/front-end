@@ -8,7 +8,6 @@ const GiveInfo = ({ data } : any) => {
         <InfoContainer>
             <InfoTextContainer>
                 <InfoTextTitle>상품정보</InfoTextTitle>
-                <InfoTextContent style={{marginBottom: "20px"}}>{data.data.info.title}</InfoTextContent>
                 <InfoTextContent>{data.data.info.content}</InfoTextContent>
             </InfoTextContainer>
         </InfoContainer>

@@ -10,7 +10,7 @@ const WantedInfo = ({ data } : any) => {
                         <InfoTextTitle>{data.data.info.wantedGoods.title}</InfoTextTitle>
                         <InfoTextContent style={{color: "#A4A4A4"}}>{ValueToEnum(data.data.info.wantedGoods.category)}</InfoTextContent>
                     </TextTitleContainer>
-                    <InfoTextContent>{data.data.info.wantedGoods.content}</InfoTextContent>
+                    <InfoTextContent>{data.data.info.wantedGoods.content.replace(/\n/g, "<br>")}</InfoTextContent>
                 </InfoTextContainer>
             </InfoContainer>
     )

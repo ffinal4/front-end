@@ -54,11 +54,7 @@ const Header = () => {
           <LogoTitle src={blueTitle} />
         </LogoContainer>
       );
-    } else if (
-      location.pathname.includes(
-        "/" || "/tradeList" || "/traderequest" || "/detail"
-      )
-    ) {
+    } else if (location.pathname.includes("/" || "/tradeList" || "/traderequest" || "/detail")) {
       return (
         <LogoContainer>
           <Logo src={loginLogo} />
@@ -128,9 +124,7 @@ const Header = () => {
                 로그인
               </LoginLink>
               <BoxContainer />
-              <SignupLink onClick={() => navigate("/signup")}>
-                회원가입
-              </SignupLink>
+              <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
             </LinkContainer>
           )}
         </HeaderContainer>

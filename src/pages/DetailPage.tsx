@@ -8,6 +8,8 @@ import MyPickBar from "../components/common/MyPickBar";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getDetailPageApi } from "../api/goods";
+import { useRecoilState } from "recoil";
+import { RecentlyView } from "../store/RecentlyView";
 
 const DetailPage = () => {
   const { goodsId }: any = useParams();
@@ -18,6 +20,12 @@ const DetailPage = () => {
       refetchOnWindowFocus: false,
     }
   );
+  const [view, setView] = useRecoilState<any>(RecentlyView);
+  useEffect(() => {
+    if (data) {
+      setView([...view, {goodsId: goodsId, image: data.data.info.images[0]}])
+    };
+  }, []);
   console.log("data", data);
 
   const [detailTap, setDetailTap] = useState({
@@ -73,7 +81,7 @@ const DetailPage = () => {
         </InfoContainer>
       </PageContainer>
       <RecommendCard />
-      <MyPickBar />
+      <MyPickBar view={view} />
     </PageLayout>
   );
 };

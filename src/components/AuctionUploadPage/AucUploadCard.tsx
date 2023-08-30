@@ -3,12 +3,9 @@ import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 import Check from '../../assets/icon/check.png'
 
-const AucUploadCard = ({
-    checkBox,
-    setCheckBox,
-    item,
-    myPocketGoods,
-    setMyPocketGoods } : any) => {
+const AucUploadCard = (props : any) => {
+
+    const { checkBox, setCheckBox, item, myPocketGoods, setMyPocketGoods } = props;
 
     const onClickCheckHandler = (item : any) => {
         if (checkBox === item.goodsId) {
@@ -24,22 +21,35 @@ const AucUploadCard = ({
     <CardContainer onClick={() => onClickCheckHandler(item)}>
         <CardImgContainer src={item?.images[0]} onClick={() => setCheckBox(!checkBox)}>
             {(checkBox === item.goodsId)
-                && <div>
+                ? <div>
                     <CheckOutContainer />
                     <CheckContainer>
                         <CheckBox>
                             <CheckImage src={Check}/>
                         </CheckBox>
                     </CheckContainer>
+                </div>
+                : <div>
+                <GoodsConditionContainer />
+                <GoodsCondition>
+                    <Circle />
+                    거래중
+                </GoodsCondition>
                 </div>}
             <CardLocationContainer />
             <LocatinoWrapper>
                 <LocationIcon src={Location} alt=''/>
                 <LocationText>{item?.location}</LocationText>
-            </LocatinoWrapper>
+            </LocatinoWrapper>  
         </CardImgContainer>
         <TitleContainer>{item?.title}</TitleContainer>
-        <ContentContainer>{item?.title}</ContentContainer>
+        <ContentContainer>
+            {(item?.ratingCheck)
+                ?  (item?.avgRatingPrice > 0)
+                    ? item?.avgRatingPrice
+                    : "레이팅 되는 중..."
+                : "레이팅이 필요해요"}
+        </ContentContainer>
     </CardContainer>
   )
 };
@@ -151,6 +161,43 @@ const CheckBox = styled.div`
 const CheckImage = styled.img`
     width: 48px;
     height: 48px;
+`;
+
+const GoodsConditionContainer = styled.div`
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: 1001;
+    width: 100%;
+    height: 48px;
+    background-color: #FFFFFF;
+    opacity: 0.8;
+    border-radius: 0px 0px 10px 10px;
+`;
+
+const GoodsCondition = styled.div`
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: 1003;
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 150%;
+    gap: 10px;
+    color: #222020;
+    padding: 0px 0px 0px 15px;
+`;
+
+const Circle = styled.div`
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #EC8D49;
 `;
 
 export default AucUploadCard;

@@ -33,13 +33,12 @@ const CategoryUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
             </SelectBar>
             {(selectBar)
             && <SelectContainer>
-                <CategorySelect
-                    categorySelect={categorySelect}
-                    setCategorySelect={setCategorySelect}
-                    setSelectBar={setSelectBar}
-                />
-            </SelectContainer>
-            }
+                    <CategorySelect
+                        categorySelect={categorySelect}
+                        setCategorySelect={setCategorySelect}
+                        setSelectBar={setSelectBar}
+                    />
+                </SelectContainer>}
             {(failedUpload && uploadData.data.category === "")
                 && <Text style={{color: "#DF3737"}}>
                     * 카테고리를 선택해 주세요.
@@ -94,14 +93,16 @@ const ChoiceBox = styled.div`
 `;
 
 const SelectContainer = styled.div`
-    padding: 40px 0px 0px 192px;
+    padding: 40px 0px 0px 0px;
     position: absolute;
+    z-index: 1000;
 `;
 
 const RightWrapper = styled.div`
     width: 100%;
     display: grid;
     gap: 10px;
+    position: relative;
 `;
 
 export default CategoryUpload;

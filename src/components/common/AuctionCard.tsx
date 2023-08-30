@@ -1,5 +1,4 @@
 import React from "react";
-import AucBidCard from "../AuctionDetailPage/AucBidCard";
 import { StCardPicture } from "../../styles/CardPicture";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
