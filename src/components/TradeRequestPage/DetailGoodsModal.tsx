@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { styled } from "styled-components";
 import {
-  CancelButtonContainer,
   CancelImg,
   ModalBackground,
 } from "../MyAuctionCheckPage/AuctionCompleteModal";
@@ -27,6 +26,8 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
   const imageWidth: number = 272;
   const SlideRange: number = currentImg * imageWidth;
 
+  const [activePage, setActivePage] = useState<number | null>(null);
+
   useEffect(() => {
     if (divRef.current) {
       divRef.current.style.transition = "all 0.5s ease-in-out";
@@ -44,20 +45,40 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
     setCurrentImg(currentImg + 1);
   };
 
+  const pageOnclick = (pageNumber: number) => {
+    setActivePage(pageNumber);
+  };
+
   return (
     <div>
       <ModalBackground />
       <BoxContainer>
         <Arrow src={leftarrow} alt="" />
         <DetailModalContainer>
-          <CancelButtonContainer>
-            <CancelImg
-              src={remove}
-              onClick={() => {
-                setDetailModalOpen(false);
-              }}
-            />
-          </CancelButtonContainer>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "30px",
+              marginBottom: "20px",
+            }}
+          >
+            <PageSlideContainer>
+              <PageNumber onClick={() => pageOnclick(1)}>1</PageNumber>
+              <PageNumber onClick={() => pageOnclick(2)}>2</PageNumber>
+              <PageNumber onClick={() => pageOnclick(3)}>3</PageNumber>
+              <PageNumber onClick={() => pageOnclick(4)}>4</PageNumber>
+            </PageSlideContainer>
+            <CancelButtonContainer>
+              <CancelImg
+                src={remove}
+                onClick={() => {
+                  setDetailModalOpen(false);
+                }}
+              />
+            </CancelButtonContainer>
+          </div>
+
           <div style={{ display: "flex", gap: "30px" }}>
             <ImageOutContainer>
               <SlideBtnWrapper>
@@ -96,6 +117,36 @@ const BoxContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const PageSlideContainer = styled.div`
+  border: 1px solid black;
+  /* margin-top: 30px; */
+  /* width: 100px; */
+  display: flex;
+  gap: 16px;
+  /* justify-content: space-between; */
+`;
+
+const PageNumber = styled.div`
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 150%;
+  background-color: #ec8d49;
+  border-radius: 5px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+const CancelButtonContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  margin-right: 20px;
 `;
 
 const DetailModalContainer = styled.div`
