@@ -22,7 +22,10 @@ const Navbar = () => {
   useEffect(() => {
     if (location.pathname.includes("/auction")) {
       return (setPathnames(1))
-    } else if (location.pathname.includes("/tradeList") || location.pathname.includes("/detail")) {
+    } else if (
+      location.pathname.includes("/tradeList")
+      || location.pathname.includes("/detail")
+      || location.pathname.includes("/traderequest")) {
       return (setPathnames(2))
     } else if (location.pathname.includes("/rating")) {
       return (setPathnames(3))

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { styled } from "styled-components";
 import removeIcon from "../../assets/icon/trash.png";
 import camera from "../../assets/icon/camera.png";
@@ -6,26 +6,31 @@ import camera from "../../assets/icon/camera.png";
 const ProfileImageUpload = (props: any) => {
   const { uploadImage, setUploadImage } = props;
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [viewImage, setViewImage] = useState<any>();
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setUploadImage(imageUrl);
+      const imageExtension = "jpg"
+      const imageUrlWithExtension = `${imageUrl}.${imageExtension}`;
+      setViewImage(imageUrl);
+      setUploadImage([...uploadImage, file]);
     }
   };
 
   const onClickRemoveHandler = () => {
-    setUploadImage("");
+    setViewImage(undefined);
+    setUploadImage([]);
   };
 
   return (
     <LineContainer>
       <RequiredText>프로필 사진</RequiredText>
       <InputStyleWrapper>
-        {uploadImage ? (
+        {viewImage ? (
           <UploadImageContainer>
-            <UploadImage src={uploadImage} alt="Uploaded" />
+            <UploadImage src={viewImage} alt="Uploaded" />
           </UploadImageContainer>
         ) : (
           <InputLabel htmlFor="files">

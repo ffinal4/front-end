@@ -42,8 +42,7 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data, failed } : any) 
                                 setMyPocketGoods={setMyPocketGoods}
                                 myPocketGoods={myPocketGoods}
                             />
-                            {(item.ratingCheck === false
-                                || item.sellerPrice === null)
+                            {(item.avgRatingPrice === 0)
                                 && <NotRatingProduct />}        
                         </NotRatingProductWrapper>
                         )

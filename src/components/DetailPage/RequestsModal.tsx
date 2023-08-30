@@ -21,8 +21,8 @@ import JoinBidCard from '../AuctionDetailPage/JoinBidCard';
 import Paging from '../common/Paging/Paging';
 import { useRecoilValue } from 'recoil';
 import { pagination } from '../../store/pagination';
-import { useQuery } from 'react-query';
-import { getMyPocketApi } from '../../api/goods';
+import { useMutation, useQuery } from 'react-query';
+import { getMyPocketApi, postRequestsApi } from '../../api/goods';
 import Close from '../../assets/icon/remove.png'
 
 const RequestsModal = ({ productData, conditional, setConditional } : any) => {
@@ -32,7 +32,7 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
     const { isError, isLoading, data, error } : any = useQuery(["bidPickData", currentPage], () => getMyPocketApi(currentPage), {
         refetchOnWindowFocus: false,
     });
-    // const newProductData = productData.data.info.goodsResponseDto;
+    const newProductData = productData.data.info.goodsId;
     // const newAuctionId = productData.data.info.auctionId
     const newData = data?.data.info.goodsListResponseDto;
 
@@ -44,13 +44,15 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
         goodsId: [],
     });
 
-    // const mutation = useMutation(() => postAuctionBidApi(myPocketGoods, newAuctionId), {
-    //     onSuccess: (res) => {
-    //         console.log("입찰성공!", res);
-    //         setConditional({ ...conditional, bid: false });
-    //     },
-    // });
+    const mutation = useMutation(() => postRequestsApi(myPocketGoods, newProductData), {
+        onSuccess: (res) => {
+            console.log("입찰성공!", res);
+            setConditional({ ...conditional, bid: false });
+            window.location.replace("/traderequest")
+        },
+    });
 
+    console.log(myPocketGoods, newProductData);
     if (isLoading) return <p>Loading...</p>;
     if (isError) return <p>Error: {error.message}</p>;
 
@@ -76,7 +78,7 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
                         ? <StButton
                             buttonColor='#FFCA64'
                             style={{cursor: "pointer", border: "2px solid #222020", color: "#222020", fontWeight: "700"}}
-                            // onClick={() => mutation.mutate()}
+                            onClick={() => mutation.mutate()}
                         >교환요청</StButton>
                         : <StButton buttonColor='#D5D4D4'>교환요청</StButton>}
                 </ButtonWrapper>
