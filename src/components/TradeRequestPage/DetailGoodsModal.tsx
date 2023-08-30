@@ -7,6 +7,7 @@ import {
 } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import remove from "../../assets/icon/remove.png";
 import leftarrow from "../../assets/icon/detailarrow.png";
+import rightarrow from "../../assets/icon/detailrightarrow.png";
 import ArrowLeft from "../../assets/images/arrowleft.png";
 import ArrowRight from "../../assets/images/arrowright.png";
 import DetailInfo from "./DetailInfo";
@@ -46,39 +47,56 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
   return (
     <div>
       <ModalBackground />
-      {/* <Arrow src={leftarrow} alt="" /> */}
-      <DetailModalContainer>
-        <CancelButtonContainer>
-          <CancelImg
-            src={remove}
-            onClick={() => {
-              setDetailModalOpen(false);
-            }}
-          />
-        </CancelButtonContainer>
-        <div style={{ display: "flex", gap: "30px" }}>
-          <ImageOutContainer>
-            <SlideBtnWrapper>
-              <SlideButton onClick={moveToPrevBtn}>
-                <img src={ArrowLeft} alt="" />
-              </SlideButton>
-              <SlideButton onClick={moveToNextBtn}>
-                <img src={ArrowRight} alt="" />
-              </SlideButton>
-            </SlideBtnWrapper>
-          </ImageOutContainer>
-          <DetailInfo />
-        </div>
-        <InfoContainer>
-          <InfoTextTitle>상품정보</InfoTextTitle>
-          <InfoTextContent>
-            내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧
-          </InfoTextContent>
-        </InfoContainer>
-      </DetailModalContainer>
+      <BoxContainer>
+        <Arrow src={leftarrow} alt="" />
+        <DetailModalContainer>
+          <CancelButtonContainer>
+            <CancelImg
+              src={remove}
+              onClick={() => {
+                setDetailModalOpen(false);
+              }}
+            />
+          </CancelButtonContainer>
+          <div style={{ display: "flex", gap: "30px" }}>
+            <ImageOutContainer>
+              <SlideBtnWrapper>
+                <SlideButton onClick={moveToPrevBtn}>
+                  <img src={ArrowLeft} alt="" />
+                </SlideButton>
+                <SlideButton onClick={moveToNextBtn}>
+                  <img src={ArrowRight} alt="" />
+                </SlideButton>
+              </SlideBtnWrapper>
+            </ImageOutContainer>
+            <DetailInfo />
+          </div>
+          <InfoContainer>
+            <InfoTextTitle>상품정보</InfoTextTitle>
+            <InfoTextContent>
+              내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧
+            </InfoTextContent>
+          </InfoContainer>
+        </DetailModalContainer>
+        <Arrow src={rightarrow} alt="" />
+      </BoxContainer>
     </div>
   );
 };
+
+const BoxContainer = styled.div`
+  width: 948px;
+  height: 634px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const DetailModalContainer = styled.div`
   width: 812px;
@@ -92,7 +110,22 @@ const DetailModalContainer = styled.div`
   border: 2px solid black;
   border-radius: 10px;
   padding-left: 30px;
-  margin-top: 20px;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #39373a;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #524f53;
+    }
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #d5d4d4;
+    border-radius: 5px;
+  }
 `;
 
 const Arrow = styled.img`
@@ -142,23 +175,8 @@ const InfoContainer = styled.div`
   /* width: 100%; */
   width: 752px;
   height: 214px;
-  border: 1px solid black;
   margin-top: 30px;
   overflow: auto;
-
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #ffc596;
-    border-radius: 5px;
-    &:hover {
-      background-color: #f0b280;
-    }
-  }
-  ::-webkit-scrollbar-track {
-    background-color: #fff1e3;
-  }
 `;
 
 const InfoTextTitle = styled.div`
