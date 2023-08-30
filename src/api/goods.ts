@@ -32,7 +32,15 @@ export const getUserPocketApi = async (nickname: any) => {
 // 물품교환요청 페이지 전체조회
 export const getTradeRequestApi = async () => {
   const res = await instance.get(
-    `/api/goods/users/trade/requested?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUESTED`
+    "/api/goods/users/trade/requested?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUESTED"
+  );
+  return res;
+};
+
+// 내 경매현황 페이지 전체조회
+export const getMyAuctionCheckApi = async () => {
+  const res = await instance.get(
+    "/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUEST"
   );
   return res;
 };
