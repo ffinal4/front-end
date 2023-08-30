@@ -95,7 +95,7 @@ const Header = () => {
           </LogoContainer>
           <InputContainer>
             <SearchButton>
-              <img src={search} />
+              <img src={search} alt="" />
             </SearchButton>
             <SearchInput type="search" placeholder="Search" />
           </InputContainer>
