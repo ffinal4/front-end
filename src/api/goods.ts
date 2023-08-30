@@ -7,21 +7,36 @@ export const getMainPageApi = async () => {
 };
 // 물물교환 전체 조회
 export const getGoodsApi = async (page: number) => {
-  const res = await instance.get(`/api/goods?page=${page}&size=20&sortBy=createdAt&isAsc=false`);
+  const res = await instance.get(
+    `/api/goods?page=${page}&size=20&sortBy=createdAt&isAsc=false`
+  );
   return res;
 };
 
 // 내주머니 전체조회
-export const getMyPocketApi = async (page : number) => {
-  const res = await instance.get(`/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=false`);
+export const getMyPocketApi = async (page: number) => {
+  const res = await instance.get(
+    `/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=false`
+  );
   return res;
 };
 
 // 다른유저 주머니 전체조회
 export const getUserPocketApi = async (nickname: any) => {
-  const res = await instance.get(`/api/goods/pocket/${nickname}?page=1&size=5&sortBy=createdAt&isAsc=false`);
+  const res = await instance.get(
+    `/api/goods/pocket/${nickname}?page=1&size=5&sortBy=createdAt&isAsc=false`
+  );
   return res;
 };
+
+// 물품교환요청 페이지 전체조회
+export const getTradeRequestApi = async () => {
+  const res = await instance.get(
+    `/api/goods/users/trade/requested?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUESTED`
+  );
+  return res;
+};
+
 // 물품 등록
 interface upLoadBody {
   formdata: {
@@ -76,7 +91,7 @@ export const postZzimApi = async (body: zzimBody) => {
   return res;
 };
 
-export const postRequestsApi = async (body : any, goodsId : number) => {
+export const postRequestsApi = async (body: any, goodsId: number) => {
   const res = await instance.post(`/api/goods/users/${goodsId}/request`, body);
   return res;
 };
