@@ -44,11 +44,11 @@ const DetailInfo = ({ data }: any) => {
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
         <BoxWrapper>
-          <TextWrapper>
+          <TextWrapper style={{cursor: "default"}}>
             <SmallBox src={Like} />
-            <ColorText color="#ADADAD">12</ColorText>
+            <ColorText color="#ADADAD">{data.data.info.goodsResponseDtoList.dibsCount}</ColorText>
           </TextWrapper>
-          <TextWrapper>
+          <TextWrapper style={{cursor: "default"}}>
             <SmallBox src={Time} />
             <ColorText color="#ADADAD">{result}일 전</ColorText>
           </TextWrapper>

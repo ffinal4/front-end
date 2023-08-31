@@ -92,7 +92,7 @@ const AuctionDetailPage = () => {
             }
             </InfoContainer>
         </PageContainer>
-        <RecommendCard />
+        <RecommendCard data={data.data.info.auctionResponseDtos} />
         <MyPickBar />
     </PageLayout>
   )
