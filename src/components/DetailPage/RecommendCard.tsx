@@ -4,7 +4,7 @@ import ItemCard from '../common/ItemCard';
 import ArrowLeft from '../../assets/images/arrowleft.png'
 import ArrowRight from '../../assets/images/arrowright.png'
 
-const RecommendCard = () => {
+const RecommendCard = ({ data } : any) => {
 
     const slideRef = useRef<HTMLDivElement>(null);
     const [currentImg, setCurrentImg] = useState<number>(0);
@@ -44,7 +44,14 @@ const RecommendCard = () => {
                 </SlideButton>
             </SlideBtnWrapper>
             <CardListContainer ref={slideRef}>
-                <ImageCard>
+                {data?.map((item : any) => {
+                    return (
+                        <ImageCard>
+                            <ItemCard key={item.goodsId} item={item} />
+                        </ImageCard>
+                    )
+                })}
+                {/* <ImageCard>
                     <ItemCard />
                 </ImageCard>
                 <ImageCard>
@@ -103,7 +110,7 @@ const RecommendCard = () => {
                 </ImageCard>
                 <ImageCard>
                     <ItemCard />
-                </ImageCard>
+                </ImageCard> */}
             </CardListContainer>
         </RecommendList>
     </LayoutContainer>

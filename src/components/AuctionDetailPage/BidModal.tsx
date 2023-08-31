@@ -136,6 +136,88 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
         </PocketListContainer>
         <Paging />
       </ModalContainer>
+      <ModalBackgroundBox
+        onClick={() => setConditional({ ...conditional, bid: false })}
+      />
+      <ModalContainer>
+        <ModalTitle>
+          JOIN BID!
+          <CloseBtn
+            src={Close}
+            onClick={() => setConditional({ ...conditional, bid: false })}
+          />
+        </ModalTitle>
+        <ModalSubtitle>입찰하기</ModalSubtitle>
+        <Wrapper>
+          <TextWrapper>
+            <Text>
+              - 1개 또는 2개 이상의 물건을 주머니로 묶어서 입찰 할 수 있습니다.
+            </Text>
+            <Text>
+              - 2개 이상의 물건을 주머니로 묶어서 입찰 할 경우, 경매에서
+            </Text>
+            <Text>
+              - 경매자가 정해놓은 입찰 제한 레이팅 이상의 물건만 선택 할 수
+              있습니다.
+            </Text>
+            <Text>
+              - 현재 거래중이거나 다른 경매의 입찰품인 물건은 선택 할 수
+              없습니다.
+            </Text>
+          </TextWrapper>
+          <ButtonWrapper>
+            <RatingPoint>
+              <Text style={{ color: "#222020" }}>선택 된 총 레이팅 점수</Text>
+              {ratingPrice.toLocaleString()}
+            </RatingPoint>
+            {ratingPrice >=
+            productData.data.info.auctionResponseDto.lowPrice ? (
+              <StButton
+                buttonColor="#58ABF7"
+                style={{ cursor: "pointer", border: "2px solid #222020" }}
+                onClick={onClickBidHandler}
+              >
+                입찰하기
+              </StButton>
+            ) : (
+              <StButton buttonColor="#D5D4D4">입찰하기</StButton>
+            )}
+          </ButtonWrapper>
+        </Wrapper>
+        <PocketListContainer>
+          {newData?.map((item: any) => {
+            return (
+              <NotRatingProductWrapper>
+                <JoinBidCard
+                  key={item.goodsId}
+                  checkBox={checkBox}
+                  setCheckBox={setCheckBox}
+                  setMyPocketGoods={setMyPocketGoods}
+                  myPocketGoods={myPocketGoods}
+                  ratingPrice={ratingPrice}
+                  setRatingPrice={setRatingPrice}
+                  item={item}
+                />
+                {(item.ratingPrice === 0 ||
+                  item.goodsStatus === "BIDDING" ||
+                  item.goodsStatus === "ONAUCTION" ||
+                  item.rationCheck === false) && <NotRatingProduct />}
+                {(item.goodsStatus === "BIDDING" ||
+                  item.goodsStatus === "ONAUCTION") && (
+                  <div>
+                    <GoodsConditionContainer />
+                    <GoodsCondition>
+                      <Circle />
+                      경매중
+                    </GoodsCondition>
+                  </div>
+                )}
+              </NotRatingProductWrapper>
+            );
+          })}
+        </PocketListContainer>
+        <Paging />
+      </ModalContainer>
     </div>
   );
 };
