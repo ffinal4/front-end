@@ -9,7 +9,7 @@ const AucBidCard = ({ item } : any) => {
                 <SellerChoice>SELLER'S PICK</SellerChoice>
             </CardImg>
             <TitleContainer>{item.title}</TitleContainer>
-            <ContentContainer>110,000PP</ContentContainer>
+            <ContentContainer>{item.location}</ContentContainer>
         </CardContainer>
     )
 };
