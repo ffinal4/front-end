@@ -102,10 +102,6 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
           <AuctionRequestCard />
           <AuctionRequestCard />
           <AuctionRequestCard />
-          <AuctionRequestCard />
-          <AuctionRequestCard />
-          <AuctionRequestCard />
-          <AuctionRequestCard />
         </CardContainer>
       </TradeRequestListContainer>
     </div>

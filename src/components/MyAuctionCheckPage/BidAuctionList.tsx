@@ -66,11 +66,11 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
       <RequestStateContainer>
         <RequestStateNumber>
           <DotImg src={bluedot} />
-          경매중 10
+          입찰중 10
         </RequestStateNumber>
         <RequestIngNumber>
           <DotImg src={blackdot} />
-          경매완료 2
+          입찰성공 2
         </RequestIngNumber>
       </RequestStateContainer>
       <TradeRequestListContainer>
@@ -95,9 +95,6 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
         </FilterContainer>
 
         <CardContainer>
-          <BidAuctionCard />
-          <BidAuctionCard />
-          <BidAuctionCard />
           <BidAuctionCard />
           <BidAuctionCard />
         </CardContainer>

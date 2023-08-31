@@ -1,24 +1,59 @@
 import React from "react";
 import { styled } from "styled-components";
 import FilterDropdownMenu from "./FilterDropdownMenu";
-import TradeRequestCard from "./TradeRequestCard";
+import TradeRequestCard, { DotImg } from "./TradeRequestCard";
 import arrow from "../../assets/icon/arrow.png";
-import { ArrowImg } from "../../pages/TradeRequestPage";
+import orangedot from "../../assets/icon/orangedot.png";
+import emptydot from "../../assets/icon/emptydot.png";
+import {
+  ArrowImg,
+  GetRequest,
+  RequestIngNumber,
+  RequestStateContainer,
+  RequestStateNumber,
+  SendRequest,
+  TabContainer,
+} from "../../pages/TradeRequestPage";
 
 interface GetRequestListProps {
   filterOpen: boolean;
   setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
   dropdownMenu: string;
   setDropdownMenu: React.Dispatch<React.SetStateAction<string>>;
+  filterTap: any;
+  setFilterTap: React.Dispatch<
+    React.SetStateAction<{ getTap: boolean; sendTap: boolean }>
+  >;
 }
 const GetRequestList: React.FC<GetRequestListProps> = ({
   filterOpen,
   dropdownMenu,
   setFilterOpen,
   setDropdownMenu,
+  setFilterTap,
 }) => {
+  const sendRequestOnclick = () => {
+    setFilterTap({
+      getTap: false,
+      sendTap: true,
+    });
+  };
   return (
     <div>
+      <TabContainer>
+        <GetRequest>받은 요청</GetRequest>
+        <SendRequest onClick={sendRequestOnclick}>보낸 요청</SendRequest>
+      </TabContainer>
+      <RequestStateContainer>
+        <RequestStateNumber>
+          <DotImg src={emptydot} />
+          교환요청 10
+        </RequestStateNumber>
+        <RequestIngNumber>
+          <DotImg src={orangedot} />
+          교환진행중 10
+        </RequestIngNumber>
+      </RequestStateContainer>
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter

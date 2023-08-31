@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import orangedot from "../assets/icon/orangedot.png";
-import emptydot from "../assets/icon/emptydot.png";
+
 import GetRequestList from "../components/TradeRequestPage/GetRequestList";
 import SendRequestList from "../components/TradeRequestPage/SendRequestList";
 
@@ -15,17 +14,6 @@ const TradeRequestPage = () => {
   });
   const { getTap, sendTap } = filterTap;
 
-  const sendRequestOnclick = () => {
-    setFilterTap({
-      getTap: false,
-      sendTap: true,
-    });
-  };
-
-  const getRequestOnclick = () => {
-    setFilterTap({ getTap: true, sendTap: false });
-  };
-
   return (
     <LayoutContainer>
       <PageLayout>
@@ -36,51 +24,25 @@ const TradeRequestPage = () => {
           </Container>
           {getTap === true && sendTap === false && (
             <div>
-              <TabContainer>
-                <GetRequest>받은 요청</GetRequest>
-                <SendRequest onClick={sendRequestOnclick}>
-                  보낸 요청
-                </SendRequest>
-              </TabContainer>
-              <RequestStateContainer>
-                <RequestStateNumber>
-                  <DotImg src={emptydot} />
-                  교환요청 10
-                </RequestStateNumber>
-                <RequestIngNumber>
-                  <DotImg src={orangedot} />
-                  교환진행중 10
-                </RequestIngNumber>
-              </RequestStateContainer>
               <GetRequestList
                 filterOpen={filterOpen}
                 setFilterOpen={setFilterOpen}
                 dropdownMenu={dropdownMenu}
                 setDropdownMenu={setDropdownMenu}
+                filterTap={filterTap}
+                setFilterTap={setFilterTap}
               />
             </div>
           )}
           {getTap === false && sendTap === true && (
             <div>
-              <TabContainer>
-                <GetRequests onClick={getRequestOnclick}>받은 요청</GetRequests>
-                <SendRequests>보낸 요청</SendRequests>
-              </TabContainer>
-              <RequestStateContainer>
-                <RequestStateNumber>
-                  <DotImg src={emptydot} />
-                  교환요청 10
-                </RequestStateNumber>
-                <RequestIngNumber>
-                  <DotImg src={orangedot} />
-                  교환진행중 10
-                </RequestIngNumber>
-              </RequestStateContainer>
               <SendRequestList
                 filterOpen={filterOpen}
                 setFilterOpen={setFilterOpen}
                 dropdownMenu={dropdownMenu}
                 setDropdownMenu={setDropdownMenu}
+                filterTap={filterTap}
+                setFilterTap={setFilterTap}
               />
             </div>
           )}

@@ -26,10 +26,10 @@ const BidAuctionCard = () => {
   const { request } = requestState;
 
   useEffect(() => {
-    if (request === "경매중") {
+    if (request === "입찰중") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "경매종료") {
+    if (request === "입찰성공") {
       setBorder("2px solid #58ABF7");
     }
     if (request === "교환완료") {
@@ -42,21 +42,21 @@ const BidAuctionCard = () => {
   }, [request]);
 
   const auctionRequestState = () => {
-    if (request === "경매중") {
+    if (request === "입찰중") {
       return (
         <StAuctionIng backgroundcolor="white" color="#58ABF7" border="#58ABF7">
-          경매중
+          입찰중
         </StAuctionIng>
       );
     }
-    if (request === "경매종료") {
+    if (request === "입찰성공") {
       return (
         <StRequestState
           backgroundcolor="#58ABF7"
           color="white"
           border="#58ABF7"
         >
-          경매종료
+          입찰성공
         </StRequestState>
       );
     }
@@ -85,14 +85,14 @@ const BidAuctionCard = () => {
   };
 
   const auctionRequestStateBar = () => {
-    if (request === "경매중") {
+    if (request === "입찰중") {
       return (
         <TradeImgContainer>
           <TradeImg src={auctionrequest} />
         </TradeImgContainer>
       );
     }
-    if (request === "경매종료") {
+    if (request === "입찰성공") {
       return (
         <TradeImgContainer>
           <TradeImg src={auctioncomplete} />
@@ -109,7 +109,7 @@ const BidAuctionCard = () => {
   };
 
   const auctionCondition = () => {
-    if (request === "경매중") {
+    if (request === "입찰중") {
       return (
         <div>
           <Title>경매상황</Title>
@@ -118,7 +118,7 @@ const BidAuctionCard = () => {
         </div>
       );
     }
-    if (request === "경매종료") {
+    if (request === "입찰성공") {
       return (
         <div>
           <Title>경매상황</Title>
