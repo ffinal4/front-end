@@ -18,7 +18,7 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
         refetchOnWindowFocus: false,
     });
     const newAuctionId = productData.data.info.auctionResponseDto.auctionId
-    const newData = data?.data.info.auctionResponseDto.goodsListResponseDto.content;
+    const newData = data?.data.info.goodsListResponseDto.content;
 
   console.log("내주머니입찰데이터", newAuctionId);
   console.log("내주머니입찰데이터", data);
