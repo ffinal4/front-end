@@ -22,22 +22,36 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
   // const arrImages: string[] = data.data.info.images;
 
   const divRef = useRef<HTMLDivElement>(null);
+  const divTwoRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
   const imageWidth: number = 272;
   const SlideRange: number = currentImg * imageWidth;
+  const [activePage, setActivePage] = useState<number>(0);
+  const productWidth: number = 752;
+  const productSlideRange: number = activePage * productWidth;
 
-  const [activePage, setActivePage] = useState<number | null>(null);
+  
 
   useEffect(() => {
     if (divRef.current) {
       divRef.current.style.transition = "all 0.5s ease-in-out";
       divRef.current.style.transform = `translateX(-${SlideRange}px)`;
     }
-  }, [SlideRange]);
+    if (divTwoRef.current) {
+      divTwoRef.current.style.transition = "all 0.5s ease-in-out";
+      divTwoRef.current.style.transform = `translateX(-${productSlideRange}px)`;
+    }
+  }, [SlideRange, productSlideRange]);
 
-  const moveToPrevSlideBtn = () => {};
+  const moveToPrevSlideBtn = () => {
+    if (activePage === 0) return;
+    setActivePage(activePage - 1);
+  };
 
-  const moveToNextSlideBtn = () => {};
+  const moveToNextSlideBtn = () => {
+    if (activePage === 3) return; //수정필요
+    setActivePage(activePage + 1);
+  };
 
   const moveToPrevImageBtn = () => {
     if (currentImg === 0) return;
@@ -62,26 +76,26 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
           <DetailModalHeadContainer>
             <PageSlideContainer>
               <PageNumber
+                active={activePage === 0}
+                onClick={() => pageOnclick(0)}
+              >
+                1
+              </PageNumber>
+              <PageNumber
                 active={activePage === 1}
                 onClick={() => pageOnclick(1)}
               >
-                1
+                2
               </PageNumber>
               <PageNumber
                 active={activePage === 2}
                 onClick={() => pageOnclick(2)}
               >
-                2
+                3
               </PageNumber>
               <PageNumber
                 active={activePage === 3}
                 onClick={() => pageOnclick(3)}
-              >
-                3
-              </PageNumber>
-              <PageNumber
-                active={activePage === 4}
-                onClick={() => pageOnclick(4)}
               >
                 4
               </PageNumber>
@@ -95,7 +109,9 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
               />
             </CancelButtonContainer>
           </DetailModalHeadContainer>
-
+          <DetailWrapper>
+          <DetailOutWrapper ref={divTwoRef}>
+          <div>
           <div style={{ display: "flex", gap: "30px" }}>
             <ImageOutContainer>
               <SlideBtnWrapper>
@@ -115,6 +131,51 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
               내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧
             </InfoTextContent>
           </InfoContainer>
+          </div>
+          <div>
+          <div style={{ display: "flex", gap: "30px" }}>
+            <ImageOutContainer>
+              <SlideBtnWrapper>
+                <SlideButton onClick={moveToPrevImageBtn}>
+                  <img src={ArrowLeft} alt="" />
+                </SlideButton>
+                <SlideButton onClick={moveToNextImageBtn}>
+                  <img src={ArrowRight} alt="" />
+                </SlideButton>
+              </SlideBtnWrapper>
+            </ImageOutContainer>
+            <DetailInfo />
+          </div>
+          <InfoContainer>
+            <InfoTextTitle>상품정보</InfoTextTitle>
+            <InfoTextContent>
+              내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧
+            </InfoTextContent>
+          </InfoContainer>
+          </div>
+          <div>
+          <div style={{ display: "flex", gap: "30px" }}>
+            <ImageOutContainer>
+              <SlideBtnWrapper>
+                <SlideButton onClick={moveToPrevImageBtn}>
+                  <img src={ArrowLeft} alt="" />
+                </SlideButton>
+                <SlideButton onClick={moveToNextImageBtn}>
+                  <img src={ArrowRight} alt="" />
+                </SlideButton>
+              </SlideBtnWrapper>
+            </ImageOutContainer>
+            <DetailInfo />
+          </div>
+          <InfoContainer>
+            <InfoTextTitle>상품정보</InfoTextTitle>
+            <InfoTextContent>
+              내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧
+            </InfoTextContent>
+          </InfoContainer>
+          </div>
+          </DetailOutWrapper>
+          </DetailWrapper>
         </DetailModalContainer>
         <Arrow src={rightarrow} alt="" onClick={moveToNextSlideBtn} />
       </BoxContainer>
@@ -268,4 +329,15 @@ const InfoTextContent = styled.div`
   font-weight: 400;
   line-height: 150%;
 `;
+
+const DetailWrapper = styled.div`
+  width: 752px;
+  height: 560px;
+  overflow: hidden;
+`;
+const DetailOutWrapper = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
 export default DetailGoodsModal;
