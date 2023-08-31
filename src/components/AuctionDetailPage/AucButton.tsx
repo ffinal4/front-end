@@ -19,7 +19,7 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
   return (
     <div>
     <ButtonWrapper>
-        {(data.data.info.auctionResponseDto.checkSameUser || data.data.info.auctionResponseDto.leftTime.seconds < 0) ? (
+        {(data.data.info.auctionResponseDto.checkSameUser || data.data.info.auctionResponseDto.leftTime.expired) ? (
           <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
             입찰하기
           </StButton>

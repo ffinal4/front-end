@@ -31,7 +31,7 @@ const JoinBidCard = ({
 
     return (
         <CardContainer onClick={() => onClickCheckHandler(item)}>
-            <CardImgContainer src={item?.image} onClick={() => setCheckBox(!checkBox)}>
+            <CardImgContainer src={item?.image}>
                 {(index !== -1)
                     && <div>
                         <CheckOutContainer />

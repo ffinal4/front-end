@@ -105,6 +105,7 @@ const DetailContent = ({ data }: any) => {
       />
       {(pickModal)
         && <SellerPickModal
+            productData={data}
             sellerPicks={sellerPicks}
             setSellerPicks={setSellerPicks} />
       }
