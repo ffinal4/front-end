@@ -5,13 +5,11 @@ import Time from "../../assets/icon/time.png";
 import Layer from "../../assets/icon/layer_6.png";
 import Group from "../../assets/icon/group.png";
 import Siren from "../../assets/icon/siren.png";
-import { StBasicButton } from "../../styles/BasicButton";
-import BidModal from "./BidModal";
-import CardZzimBtn from "../common/CardZzimBtn";
 import { useNavigate } from "react-router-dom";
 import { ValueToEnum } from "../../utils/EnumCategory";
 import SellerPickModal from "./SellerPickModal";
 import AucButton from "./AucButton";
+import AucModalBtn from "./AucModalBtn";
 
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
@@ -64,32 +62,7 @@ const DetailContent = ({ data }: any) => {
             <ColorText color="#ADADAD">10일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
-            {data.data.info.auctionResponseDto.goodsResponseDto.checkSameUser ? (
-              <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
-                <SmallBox src={Group} />
-              </TextWrapper>
-            ) : (
-              <TextWrapper style={{ cursor: "pointer" }}>
-                <SmallBox src={Siren} />
-                <ColorText color="#ADADAD">신고하기</ColorText>
-              </TextWrapper>
-            )}
-            {modal && (
-              <ModalBtnWrapper>
-                <ModalBtn
-                  style={{
-                    borderTop: "1px solid #D5D4D4",
-                    borderRadius: "5px 5px 0px 0px",
-                  }}
-                >
-                  예약중
-                </ModalBtn>
-                <ModalBtn>거래완료</ModalBtn>
-                <ModalBtn>게시글 수정</ModalBtn>
-                {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
-                <ModalBtn style={{ borderRadius: "0px 0px 5px 5px" }}>삭제</ModalBtn>
-              </ModalBtnWrapper>
-            )}
+            <AucModalBtn data={data} navigate={navigate} />
           </TextWrapper>
         </BoxWrapper>
       </UserNameContainer>
@@ -204,7 +177,7 @@ const TextLine = styled.div`
 const ModalBtnWrapper = styled.div`
   width: 176px;
   position: absolute;
-  top: 40px;
+  top: 50px;
   right: 0;
 `;
 

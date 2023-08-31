@@ -80,7 +80,7 @@ const DetailPage = () => {
           )}
         </InfoContainer>
       </PageContainer>
-      <RecommendCard />
+      <RecommendCard data={data.data.info.rcGoodsResponseDtoList} />
       <MyPickBar view={view} />
     </PageLayout>
   );

@@ -92,8 +92,13 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
                                 setRatingPrice={setRatingPrice}
                                 item={item}
                             />
-                            {(item.ratingPrice === 0 || item.goodsStatus === "BIDDING" || item.rationCheck === false) && <NotRatingProduct />}
-                            {(item.goodsStatus === "BIDDING")
+                            {(item.ratingPrice === 0
+                                || item.goodsStatus === "BIDDING"
+                                || item.goodsStatus === "ONAUCTION"
+                                || item.rationCheck === false)
+                              && <NotRatingProduct />}
+                            {(item.goodsStatus === "BIDDING"
+                              || item.goodsStatus === "ONAUCTION")
                             && <div>
                             <GoodsConditionContainer />
                             <GoodsCondition>
