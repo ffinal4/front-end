@@ -4,7 +4,8 @@ import { StBasicButton } from "../../styles/BasicButton";
 import samllPocketImage from "../../assets/images/smallPocket.svg";
 import MasCotImage from "../../assets/images/mascot1.svg";
 import { StTitle } from "../../styles/TitleFont";
-import bannerBackground from "../../assets/images/banner2.png";
+import bannerBackground from "../../assets/images/banner5.png";
+import bannerCharacter from "../../assets/images/bannerCharacter.png";
 import { useNavigate } from "react-router-dom";
 const Banner = () => {
   const navigate = useNavigate();
@@ -28,10 +29,12 @@ const Banner = () => {
           >
             핍포 알아보기
           </MainStBasicButton>
+          <CharacterBg src={bannerCharacter} />
           <SmallPocketImage src={samllPocketImage} />
           <MascotImage src={MasCotImage} />
         </ContentContainer>
       </FirstBg>
+
       {/* <SecondBg /> */}
     </BannerContainer>
   );
@@ -42,6 +45,14 @@ const BannerContainer = styled.div`
   padding-top: 140px;
   position: relative;
   margin-bottom: 200px;
+  overflow: hidden;
+`;
+
+const CharacterBg = styled.img`
+  height: 397px;
+  position: absolute;
+  top: 159px;
+  left: 41px;
 `;
 
 const FirstBg = styled.div<{ background: string }>`
