@@ -6,7 +6,7 @@ import DetailInfo from './DetailInfo';
 
 const DetailContainer = ({ data } : any) => {
 
-  const arrImages : string[] = data.data.info.images;
+  const arrImages : string[] = data.data.info.goodsResponseDtoList.images;
   
   const divRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
@@ -32,36 +32,36 @@ const DetailContainer = ({ data } : any) => {
 
   return (
     <LayoutContainer>
-        <ImageOutContainer>
-          <SlideBtnWrapper>
-            <SlideButton
-              onClick={moveToPrevBtn}
-              style={{
-                opacity: `${(currentImg === 0 || arrImages.length === 1) ? "0" : "0.2"}`,
-                cursor: `${(currentImg === 0 || arrImages.length === 1) ? "default" : "pointer"}`
-                }}>
-              <img src={ArrowLeft} alt=''/>
-            </SlideButton>
-            <SlideButton
-              onClick={moveToNextBtn}
-              style={{
-                opacity: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "0" : "0.2"}`,
-                cursor: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "default" : "pointer"}`
-              }}>
-              <img src={ArrowRight} alt=''/>
-            </SlideButton>
-          </SlideBtnWrapper>
-          <SlideWrapper ref={divRef}>
-            {arrImages.map((item) => <ImageBox src={item}/>)}
-          </SlideWrapper>
-          <SlidePageBarWrapper>
-            {arrImages.map((item) =>
-              (currentImg === arrImages.indexOf(item))
+      <ImageOutContainer>
+        <SlideBtnWrapper>
+          <SlideButton
+            onClick={moveToPrevBtn}
+            style={{
+              opacity: `${(currentImg === 0 || arrImages.length === 1) ? "0" : "0.4"}`,
+              cursor: `${(currentImg === 0 || arrImages.length === 1) ? "default" : "pointer"}`
+            }}>
+            <img src={ArrowLeft} alt=''/>
+          </SlideButton>
+          <SlideButton
+            onClick={moveToNextBtn}
+            style={{
+              opacity: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "0" : "0.4"}`,
+              cursor: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "default" : "pointer"}`
+            }}>
+          <img src={ArrowRight} alt=''/>
+          </SlideButton>
+        </SlideBtnWrapper>
+        <SlideWrapper ref={divRef}>
+          {arrImages.map((item) => <ImageBox src={item}/>)}
+        </SlideWrapper>
+        <SlidePageBarWrapper>
+          {arrImages.map((item) =>
+            (currentImg === arrImages.indexOf(item))
               ? <SlidePageBar backgdcolor='#fff'></SlidePageBar>
               : <SlidePageBar backgdcolor='#9e9e9e'></SlidePageBar>
             )}
-          </SlidePageBarWrapper>
-        </ImageOutContainer>
+        </SlidePageBarWrapper>
+      </ImageOutContainer>
       <DetailInfo data={data} />
     </LayoutContainer>
   )
@@ -105,7 +105,6 @@ const ImageBox = styled.div<{ src : string }>`
 const ImageOutContainer = styled.div`
   min-width: 464px;
   height: 464px;
-  border: 4px solid;
   border-radius: 10px;
   display: flex;
   justify-content: center;

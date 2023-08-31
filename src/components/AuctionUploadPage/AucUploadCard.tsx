@@ -3,12 +3,9 @@ import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 import Check from '../../assets/icon/check.png'
 
-const AucUploadCard = ({
-    checkBox,
-    setCheckBox,
-    item,
-    myPocketGoods,
-    setMyPocketGoods } : any) => {
+const AucUploadCard = (props : any) => {
+
+    const { checkBox, setCheckBox, item, myPocketGoods, setMyPocketGoods } = props;
 
     const onClickCheckHandler = (item : any) => {
         if (checkBox === item.goodsId) {
@@ -31,27 +28,24 @@ const AucUploadCard = ({
                             <CheckImage src={Check}/>
                         </CheckBox>
                     </CheckContainer>
-                </div>}
-            <CardLocationContainer />
-            <LocatinoWrapper>
-                <LocationIcon src={Location} alt=''/>
-                <LocationText>{item?.location}</LocationText>
-            </LocatinoWrapper>
-            <GoodsConditionContainer />
-                            <GoodsCondition>
-                                <Circle />
-                                거래중
-                            </GoodsCondition>   
+                </div>} 
         </CardImgContainer>
         <TitleContainer>{item?.title}</TitleContainer>
-        <ContentContainer>{item?.title}</ContentContainer>
+        <ContentContainer>
+            {(item?.ratingCheck)
+                ?  (item?.avgRatingPrice > 0)
+                    ? item?.avgRatingPrice
+                    : "레이팅 되는 중..."
+                : "레이팅이 필요해요"}
+        </ContentContainer>
     </CardContainer>
   )
 };
 
 const CardContainer = styled.div`
     width: 272px;
-    height: 312px;
+    height: 333px;
+    margin-bottom: 40px;
     cursor: pointer;
 `;
 

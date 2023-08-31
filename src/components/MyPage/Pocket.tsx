@@ -1,14 +1,17 @@
 import React, { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import Exchange from "../../assets/icon/exchange.png";
-import Auction from "../../assets/icon/auction.png";
-import MyPocket from "../../assets/icon/layer_6.png";
-import Like from "../../assets/icon/blacklike.png";
-import MyChat from "../../assets/icon/profile.png";
+import SecessionModal from "./SecessionModal";
+import RequestBtn from "./RequestBtn";
+import AuctionStatus from "./AuctionStatus";
+import MyPocketBtn from "./MyPocketBtn";
+import ZzimListBtn from "./ZzimListBtn";
+import MyChatBtn from "./MyChatBtn";
 
 const Pocket = () => {
   const navigate = useNavigate();
+
+  const [secessionModal, setSecessionModal] = useState(false);
 
   return (
     <LayoutContainer>
@@ -18,68 +21,18 @@ const Pocket = () => {
         </svg>
         <PocketInline>
           <BoxContainer>
-            <OutBox>
-              <Wrapper
-                onClick={() => {
-                  navigate("/traderequest");
-                }}
-              >
-                <InBoxWrapper>
-                  <InBox src={Exchange} />
-                </InBoxWrapper>
-                <Text>교환 요청</Text>
-              </Wrapper>
-            </OutBox>
-            <OutBox>
-              <Wrapper>
-                <InBoxWrapper>
-                  <InBox src={Auction} />
-                </InBoxWrapper>
-                <Text>경매 현황</Text>
-              </Wrapper>
-            </OutBox>
-            <OutBox>
-              <Wrapper
-                onClick={() => {
-                  navigate("/mypocket");
-                }}
-              >
-                <InBoxWrapper>
-                  <InBox src={MyPocket} />
-                </InBoxWrapper>
-                <Text>내 주머니</Text>
-              </Wrapper>
-            </OutBox>
-            <OutBox>
-              <Wrapper
-                onClick={() => {
-                  navigate("/zzimlist");
-                }}
-              >
-                <InBoxWrapper>
-                  <InBox src={Like} />
-                </InBoxWrapper>
-                <Text>찜한 목록</Text>
-              </Wrapper>
-            </OutBox>
-            <OutBox
-              onClick={() => {
-                navigate("/chat");
-              }}
-            >
-              <Wrapper>
-                <InBoxWrapper>
-                  <InBox src={MyChat} />
-                </InBoxWrapper>
-                <Text>내 채팅</Text>
-              </Wrapper>
-            </OutBox>
+            <RequestBtn navigate={navigate} />
+            <AuctionStatus navigate={navigate} />
+            <MyPocketBtn navigate={navigate} />
+            <ZzimListBtn navigate={navigate} />
+            <MyChatBtn navigate={navigate} />
           </BoxContainer>
           
         </PocketInline>
         <ResignWrapper>
-            <Resign>핍포 탈퇴하기</Resign>
-          </ResignWrapper>
+          <Resign onClick={() => setSecessionModal(true)}>핍포 탈퇴하기</Resign>
+        </ResignWrapper>
+        {(secessionModal) && <SecessionModal setSecessionModal={setSecessionModal} />}
       </PocketContainer>
     </LayoutContainer>
   );
@@ -117,7 +70,7 @@ const BoxContainer = styled.div`
   gap: 16px;
 `;
 
-const OutBox = styled.div`
+export const OutBox = styled.div`
   width: 176px;
   height: 176px;
   border-radius: 5px;
@@ -132,13 +85,13 @@ const OutBox = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
 `;
 
-const InBoxWrapper = styled.div`
+export const InBoxWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -146,13 +99,13 @@ const InBoxWrapper = styled.div`
   padding: 0px 0px 10px 0px;
 `;
 
-const InBox = styled.img`
+export const InBox = styled.img`
   width: 36px;
   height: 36px;
   object-fit: contain;
 `;
 
-const Text = styled.div`
+export const Text = styled.div`
   width: 100%;
   font-family: "Pretendard";
   font-size: 16px;

@@ -14,8 +14,8 @@ import AcceptBtn from "./AcceptBtn";
 const DetailInfo = ({ data }: any) => {
   
   const navigate = useNavigate();
-  const categorys = data.data.info.category;
-  const createdDate = data.data.info.createdAt;
+  const categorys = data.data.info.goodsResponseDtoList.category;
+  const createdDate = data.data.info.goodsResponseDtoList.createdAt;
   const splitDate = createdDate.split("T")[0];
   const dateAt = splitDate.split("-")[2];
   // const receivedDate = new Date(splitDate);
@@ -36,19 +36,19 @@ const DetailInfo = ({ data }: any) => {
             if (data.data.info.checkSameUser) {
               navigate("/mypocket");
             } else {
-              navigate(`/userpocket/${data.data.info.nickname}`);
+              navigate(`/userpocket/${data.data.info.goodsResponseDtoList.nickname}`);
             }
           }}
         >
-          <ColorText color="#39373A">{data.data.info.nickname}</ColorText>
+          <ColorText color="#39373A">{data.data.info.goodsResponseDtoList.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
         <BoxWrapper>
-          <TextWrapper>
+          <TextWrapper style={{cursor: "default"}}>
             <SmallBox src={Like} />
-            <ColorText color="#ADADAD">12</ColorText>
+            <ColorText color="#ADADAD">{data.data.info.goodsResponseDtoList.dibsCount}</ColorText>
           </TextWrapper>
-          <TextWrapper>
+          <TextWrapper style={{cursor: "default"}}>
             <SmallBox src={Time} />
             <ColorText color="#ADADAD">{result}일 전</ColorText>
           </TextWrapper>
@@ -64,15 +64,15 @@ const DetailInfo = ({ data }: any) => {
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품상태</ColorText>
-          <ColorText color="#222020">{data.data.info.goodsCondition}</ColorText>
+          <ColorText color="#222020">{data.data.info.goodsResponseDtoList.goodsCondition}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">거래지역</ColorText>
-          <ColorText color="#222020">{data.data.info.location}</ColorText>
+          <ColorText color="#222020">{data.data.info.goodsResponseDtoList.location}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">거래방법</ColorText>
-          <ColorText color="#222020">{data.data.info.tradeType}</ColorText>
+          <ColorText color="#222020">{data.data.info.goodsResponseDtoList.tradeType}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품태그</ColorText>

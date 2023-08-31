@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components';
 import Image from '../../assets/images/pocket.png'
+import { useRecoilValue } from 'recoil';
+import { RecentlyView } from '../../store/RecentlyView';
+import { useNavigate } from 'react-router-dom';
 
-const MyPickBar = () => {
+const MyPickBar = ({ view } : any) => {
+
+    const navigate = useNavigate();
+    const product = useRecoilValue(RecentlyView);
+    const recentlyProduct = product.slice(0, 4);
+    const reverseProduct = recentlyProduct.reverse();
+
+    useEffect(() => {}, [view])
 
     const onClickScrollButton = () => {
         window.scrollTo({
@@ -17,10 +27,21 @@ const MyPickBar = () => {
             <Title>최근본물건</Title>
         </TitleContainer>
         <PickImageContainer>
+            {recentlyProduct?.map((item : any) => {
+                return (
+                    <ImageBox
+                        key={item.goodsId}
+                        src={item.image}
+                        onClick={() => {
+                            navigate(`/detail/${item.goodsId}`);
+                        }}
+                    />
+                )
+            })}
+            {/* <ImageBox src={Image}/>
             <ImageBox src={Image}/>
             <ImageBox src={Image}/>
-            <ImageBox src={Image}/>
-            <ImageBox src={Image}/>
+            <ImageBox src={Image}/> */}
         </PickImageContainer>
         <TopMoveButton onClick={onClickScrollButton} id='scrollToTopButton'>TOP</TopMoveButton>
     </PickBarContainer>
@@ -30,7 +51,7 @@ const MyPickBar = () => {
 const PickBarContainer = styled.div`
     position: fixed;
     width: 112px;
-    height: 520px;
+    max-height: 520px;
     top: 224px;
     right: 11%;
     display: grid;
@@ -43,12 +64,14 @@ const PickBarContainer = styled.div`
 
     @media screen and (max-width: 360px) {
         top: 1480px;
+        right: 10%;
     }
 `;
 
 const TitleContainer = styled.div`
     display: flex;
     width: 100%;
+    max-height: 44px;
     padding: 10px 20px;
     flex-direction: column;
     align-items: center;
@@ -75,20 +98,23 @@ const ImageBox = styled.img`
     width: 80px;
     height: 80px;
     border-radius: 3px;
-    object-fit: contain;
+    object-fit: cover;
     cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    };
 `;
 
 const PickImageContainer = styled.div`
     width: 120px;
-    height: 419px;
+    max-height: 419px;
     border-bottom: 1px solid #D5D4D4;
     border-left: 1px solid #D5D4D4;
     border-right: 1px solid #D5D4D4;
     padding: 20px;
-    gap: 20px;
     display: grid;
-    justify-content: center;
+    gap: 16px;
     background-color: #fff;
     border-radius: 0px 0px 5px 5px;
 

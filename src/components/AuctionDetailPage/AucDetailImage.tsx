@@ -2,44 +2,18 @@ import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components';
 import ArrowLeft from '../../assets/images/arrowleft.png'
 import ArrowRight from '../../assets/images/arrowright.png'
-import RedTimer from '../../assets/icon/redtimer.png'
 import DetailContent from './DetailContent';
+import AucTimer from './AucTimer';
 
 const AucDetailImage = ({ data }: any) => {
 
-  const imagesArr = data.data.info.goodsResponseDto.images;
-  const newLeftTime = data.data.info.leftTime;
-  console.log("newLeftTime", newLeftTime);
-
-  const [bidTimeSeconds, setBidTimeSeconds] = useState<number>(newLeftTime.seconds);
-  const [bidTimeMinutes, setBidTimeMinutes] = useState<number>(newLeftTime.minutes);
-  const [bidTimeHours, setBidTimeHours] = useState<number>(newLeftTime.hours);
+  const imagesArr = data.data.info.auctionResponseDto.goodsResponseDto.images;
   const divRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
   const imageWidth: number = 464;
   const SlideRange: number = currentImg * imageWidth;
 
-  // useEffect(() => {
-  //   const interVal = setInterval(() => {
-  //     if (newLeftTime.days > 0 || bidTimeHours > 0 || bidTimeMinutes > 0 || bidTimeSeconds > 0) {
-  //       if (bidTimeSeconds > 0) {
-  //         setBidTimeSeconds((seconds) => (seconds - 1));
-  //       } else {
-  //         setBidTimeMinutes((minutes) => (minutes - 1));
-  //         setBidTimeSeconds((seconds) => (seconds + 59));
-  //       };
-  //       if (bidTimeSeconds === 0 && bidTimeMinutes === 0) {
-  //         setBidTimeMinutes((minutes) => (minutes + 59));
-  //         setBidTimeSeconds((seconds) => (seconds + 59));
-  //         setBidTimeHours((hours) => (hours - 1));
-  //       };
-  //     };
-  //   }, 1000);
-  //   if (newLeftTime.days <= 0 && newLeftTime.hours <= 0 && bidTimeMinutes <= 0 && bidTimeSeconds <= 0) {
-  //     clearInterval(interVal);
-  //   };
-  //   return () => clearInterval(interVal);
-  // }, [bidTimeSeconds]);
+  
 
   useEffect(() => {
     if (divRef.current) {
@@ -61,20 +35,7 @@ const AucDetailImage = ({ data }: any) => {
   return (
     <LayoutContainer>
       <ImageOutContainer>
-          {(newLeftTime.days <= 0
-            && bidTimeHours <= 0
-            && bidTimeMinutes <= 0
-            && bidTimeSeconds <= 0)
-            ? <FinishContainer>
-              <FinishText>경매종료</FinishText>
-            </FinishContainer>
-            : <TimerContainer>
-              <BidTimer src={RedTimer}/>
-              <TimerText>
-                마감까지 00 : {(bidTimeHours < 10) && "0"}{bidTimeHours} : {(bidTimeMinutes < 10) && "0"}{bidTimeMinutes} : {(bidTimeSeconds < 10) && "0"}{bidTimeSeconds}
-              </TimerText>
-            </TimerContainer>
-          }
+        <AucTimer data={data} />
         <SlideBtnWrapper>
           <SlideButton
             onClick={moveToPrevBtn}
@@ -194,55 +155,6 @@ const SlidePageBar = styled.div<{ backgdcolor: string }>`
     background-color: ${(props) => props.backgdcolor};
     opacity: 0.8;
   `;
-
-const TimerContainer = styled.div`
-  width: 100%;
-  height: 48px;
-  background-color: rgba(255, 255, 255, 0.80);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  padding: 12px 10px 12px 10px;
-  display: flex;
-  gap: 10px;
-`;
-
-const BidTimer = styled.img`
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-`;
-
-const TimerText = styled.div`
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 150%;
-  color: #E32E2E;
-`;
-
-const FinishContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 464px;
-  height: 464px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.70) 0%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-`;
-
-const FinishText = styled.div`
-  color: #FFF;
-  font-family: "Pretendard";
-  font-size: 32px;
-  font-weight: 800;
-  line-height: 150%;
-`;
 
 // const NoneBtn = styled.div`
 //   width: 36px;

@@ -8,8 +8,8 @@ import {
 } from "../TradeRequestPage/GetRequestList";
 import { ArrowImg } from "../../pages/TradeRequestPage";
 import FilterDropdownMenu from "./FilterDropdownMenu";
-import AuctionRequestCard from "./AuctionRequestCard";
 import arrow from "../../assets/icon/arrow.png";
+import BidAuctionCard from "./BidAuctionCard";
 
 interface BidAuctionListProps {
   filterOpen: boolean;
@@ -48,8 +48,11 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
         </FilterContainer>
 
         <CardContainer>
-          <AuctionRequestCard />
-          <AuctionRequestCard />
+          <BidAuctionCard />
+          <BidAuctionCard />
+          <BidAuctionCard />
+          <BidAuctionCard />
+          <BidAuctionCard />
         </CardContainer>
       </TradeRequestListContainer>
     </div>

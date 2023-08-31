@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { deleteGoodsApi } from '../../api/goods';
+import { useMutation } from 'react-query';
 import { styled } from 'styled-components';
 import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
-import { useMutation } from 'react-query';
-import { deleteGoodsApi } from '../../api/goods';
 
-const ModalBtn = ({ data, navigate } : any) => {
+const AucModalBtn = ({ data, navigate } : any) => {
 
-  const divRef = useRef<HTMLDivElement>(null);
+    const divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleClickOutside = (event : any) => {
@@ -41,7 +41,7 @@ const ModalBtn = ({ data, navigate } : any) => {
 
   return (
     <TextWrapper>
-        {data.data.info.goodsResponseDtoList.checkSameUser ? (
+        {data?.data.info.auctionResponseDto.checkSameUser ? (
             <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler} ref={divRef}>
             <SmallBox src={Group} />
             </TextWrapper>
@@ -63,7 +63,7 @@ const ModalBtn = ({ data, navigate } : any) => {
               </ModalButton>
               <ModalButton>거래완료</ModalButton>
               <ModalButton>게시글 수정</ModalButton>
-              {(data.data.info.goodsResponseDtoList.ratingCheck)
+              {(data.data.info.auctionResponseDto.ratingCheck)
                 ? <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>
                 : <ModalButton>레이팅 요청</ModalButton>}
               <ModalButton
@@ -150,4 +150,4 @@ const ColorText = styled.div<{ color: string }>`
   color: ${(props) => props.color};
 `;
 
-export default ModalBtn;
+export default AucModalBtn;

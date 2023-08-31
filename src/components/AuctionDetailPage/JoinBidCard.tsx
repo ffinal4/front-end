@@ -28,8 +28,6 @@ const JoinBidCard = ({
     useEffect(() => {
         setMyPocketGoods({...myPocketGoods, goodsId: checkBox});
     }, [checkBox]);
-    console.log(myPocketGoods, "myPocketGoods");
-    console.log(checkBox, "checkBox");
 
     return (
         <CardContainer onClick={() => onClickCheckHandler(item)}>

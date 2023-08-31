@@ -8,6 +8,8 @@ import MyPickBar from "../components/common/MyPickBar";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getDetailPageApi } from "../api/goods";
+import { useRecoilState } from "recoil";
+import { RecentlyView } from "../store/RecentlyView";
 
 const DetailPage = () => {
   const { goodsId }: any = useParams();
@@ -18,6 +20,12 @@ const DetailPage = () => {
       refetchOnWindowFocus: false,
     }
   );
+  const [view, setView] = useRecoilState<any>(RecentlyView);
+  useEffect(() => {
+    if (data) {
+      setView([...view, {goodsId: goodsId, image: data.data.info.goodsResponseDtoList.images[0]}])
+    };
+  }, []);
   console.log("data", data);
 
   const [detailTap, setDetailTap] = useState({
@@ -72,8 +80,8 @@ const DetailPage = () => {
           )}
         </InfoContainer>
       </PageContainer>
-      <RecommendCard />
-      <MyPickBar />
+      <RecommendCard data={data.data.info.rcGoodsResponseDtoList} />
+      <MyPickBar view={view} />
     </PageLayout>
   );
 };
@@ -121,7 +129,6 @@ const TapDefaultButton = styled.div`
   background-color: #efefef;
   width: 177px;
   height: 44px;
-  border: 1px solid #000;
   border-bottom: 2px solid #000;
   border-radius: 5px 5px 0px 0px;
   cursor: pointer;

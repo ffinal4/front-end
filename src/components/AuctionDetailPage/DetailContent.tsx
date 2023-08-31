@@ -5,17 +5,16 @@ import Time from "../../assets/icon/time.png";
 import Layer from "../../assets/icon/layer_6.png";
 import Group from "../../assets/icon/group.png";
 import Siren from "../../assets/icon/siren.png";
-import { StBasicButton } from "../../styles/BasicButton";
-import BidModal from "./BidModal";
-import CardZzimBtn from "../common/CardZzimBtn";
 import { useNavigate } from "react-router-dom";
 import { ValueToEnum } from "../../utils/EnumCategory";
 import SellerPickModal from "./SellerPickModal";
 import AucButton from "./AucButton";
+import AucModalBtn from "./AucModalBtn";
+import SuccessBIdModal from "./SuccessBIdModal";
 
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
-  const newData = data.data.info.goodsResponseDto;
+  const newData = data.data.info.auctionResponseDto.goodsResponseDto;
   // console.log("newData", newData);
 
   const [conditional, setConditional] = useState({
@@ -25,10 +24,11 @@ const DetailContent = ({ data }: any) => {
   });
   const [sellerPicks, setSellerPicks] = useState({
     pickModal: false,
+    SuccessBidModal: false,
     bidId: "",
   });
   const { bid, modal, auction } = conditional;
-  const { pickModal, bidId } = sellerPicks;
+  const { pickModal, SuccessBidModal, bidId } = sellerPicks;
 
   
 
@@ -44,7 +44,7 @@ const DetailContent = ({ data }: any) => {
         <TextWrapper
           style={{ gap: "8px" }}
           onClick={() => {
-            if (data.data.info.checkSameUser) {
+            if (data.data.info.auctionResponseDto.goodsResponseDto.checkSameUser) {
               navigate("/mypocket");
             } else {
               navigate(`/userpocket/${newData.nickname}`);
@@ -64,32 +64,7 @@ const DetailContent = ({ data }: any) => {
             <ColorText color="#ADADAD">10일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
-            {data.data.info.checkSameUser ? (
-              <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
-                <SmallBox src={Group} />
-              </TextWrapper>
-            ) : (
-              <TextWrapper style={{ cursor: "pointer" }}>
-                <SmallBox src={Siren} />
-                <ColorText color="#ADADAD">신고하기</ColorText>
-              </TextWrapper>
-            )}
-            {modal && (
-              <ModalBtnWrapper>
-                <ModalBtn
-                  style={{
-                    borderTop: "1px solid #D5D4D4",
-                    borderRadius: "5px 5px 0px 0px",
-                  }}
-                >
-                  예약중
-                </ModalBtn>
-                <ModalBtn>거래완료</ModalBtn>
-                <ModalBtn>게시글 수정</ModalBtn>
-                {auction ? <ModalBtn>레이팅 요청</ModalBtn> : <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>}
-                <ModalBtn style={{ borderRadius: "0px 0px 5px 5px" }}>삭제</ModalBtn>
-              </ModalBtnWrapper>
-            )}
+            <AucModalBtn data={data} navigate={navigate} />
           </TextWrapper>
         </BoxWrapper>
       </UserNameContainer>
@@ -116,7 +91,7 @@ const DetailContent = ({ data }: any) => {
         </TextLine>
         <TextLine style={{ gap: "54px" }}>
           <ColorText color="#717171">하한가</ColorText>
-          <ColorText color="#222020">{newData.tradeType}PP</ColorText>
+          <ColorText color="#222020">{data.data.info.auctionResponseDto.lowPrice.toLocaleString()}PP</ColorText>
         </TextLine>
       </TextContainer>
       <ColorText color="#717171">*상대방이 교환신청을 수락해야 채팅이 가능해요!</ColorText>
@@ -130,6 +105,11 @@ const DetailContent = ({ data }: any) => {
       />
       {(pickModal)
         && <SellerPickModal
+            sellerPicks={sellerPicks}
+            setSellerPicks={setSellerPicks} />
+      }
+      {(SuccessBidModal)
+        && <SuccessBIdModal
             sellerPicks={sellerPicks}
             setSellerPicks={setSellerPicks} />
       }
@@ -204,7 +184,7 @@ const TextLine = styled.div`
 const ModalBtnWrapper = styled.div`
   width: 176px;
   position: absolute;
-  top: 40px;
+  top: 50px;
   right: 0;
 `;
 

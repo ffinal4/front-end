@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
+import React, { useState, useEffect } from "react";
 import {
   Address,
   ButtonContainer,
@@ -12,16 +11,17 @@ import {
   TradeImg,
   TradeImgContainer,
 } from "../TradeRequestPage/TradeRequestCard";
+import AuctionRequestGoods from "./AuctionRequestGoods";
+import { StAuctionIng, Title } from "./AuctionRequestCard";
+import RequestStateButton from "../TradeRequestPage/RequestStateButton";
+import { StRequestState } from "../../styles/RequestStateBox";
 import auctionrequest from "../../assets/icon/auctionrequest.png";
 import auctioncomplete from "../../assets/icon/auctioncomplete.png";
 import auctiontradecomplete from "../../assets/icon/auctiontradecomplete.png";
-import RequestStateButton from "./RequestStateButton";
-import { StRequestState } from "../../styles/RequestStateBox";
-import AuctionRequestGoods from "./AuctionRequestGoods";
+import { getBidAuctionApi } from "../../api/acution";
 import { useQuery } from "react-query";
-import { getMyAuctionCheckApi } from "../../api/acution";
 
-const AuctionRequestCard = () => {
+const BidAuctionCard = () => {
   const [requestState, setRequestState] = useState({ request: "입찰실패" });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
@@ -44,16 +44,16 @@ const AuctionRequestCard = () => {
   }, [request]);
 
   const { isLoading, data, error }: any = useQuery(
-    "getMyAuctionCheckData",
-    getMyAuctionCheckApi
+    " getBidAuctionData",
+    getBidAuctionApi
   );
 
   if (isLoading) return <div>Loading...</div>;
-  console.log("내경매현황 데이터", data);
+  console.log("입찰경매현황 데이터", data);
   if (error) {
     console.log(error);
   }
-  console.log(data, "내 경매 현황 데이터");
+  console.log(data, "입찰경매현황 데이터");
 
   const auctionRequestState = () => {
     if (request === "경매중") {
@@ -188,12 +188,5 @@ const AuctionRequestCard = () => {
     </CardContainer>
   );
 };
-export const StAuctionIng = styled(StRequestState)``;
-export const Title = styled.div`
-  color: #58abf7;
-  font-family: "Pretendard";
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 20px;
-`;
-export default AuctionRequestCard;
+
+export default BidAuctionCard;

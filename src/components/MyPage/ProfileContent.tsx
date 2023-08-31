@@ -68,7 +68,10 @@ const LeftContentContainer = styled.div`
   height: 204px;
   align-items: center;
   padding: 30px 20px 30px 40px;
-  border: 1px solid #d5d4d4;
+  border-top: 2px solid #222020;
+  border-left: 2px solid #222020;
+  border-right: 2px solid #222020;
+  border-radius: 5px 5px 0px 0px;
   position: relative;
   background-color: #fcfcfc;
 `;

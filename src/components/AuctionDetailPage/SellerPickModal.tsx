@@ -32,6 +32,7 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks } : any) => {
                 </ButtonWrapper>
             </Wrapper>
             <MainContainer>
+                {/* <AucBidCard />
                 <AucBidCard />
                 <AucBidCard />
                 <AucBidCard />
@@ -39,8 +40,7 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks } : any) => {
                 <AucBidCard />
                 <AucBidCard />
                 <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
+                <AucBidCard /> */}
             </MainContainer>
             <Paging />
         </ModalContainer>
@@ -61,12 +61,13 @@ const ModalBackgroundBox = styled.div`
 
 const ModalContainer = styled.div`
     width: 1196px;
-    height: 1186px;
+    max-height: 1186px;
     border: 1px solid #222020;
+    border-radius: 10px;
     background-color: #FCFCFC;
     position: absolute;
-    top: -200px;
-    left: 0;
+    top: 220px;
+    left: 392px;
     z-index: 999;
     padding: 40px 30px;
 `;

@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 const AucBidInfo = ({ productData } : any) => {
 
-    const auctionId = productData.data.info.auctionId;
+    const auctionId = productData.data.info.auctionResponseDto.auctionId;
     const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
         refetchOnWindowFocus: false,
     });
@@ -17,7 +17,7 @@ const AucBidInfo = ({ productData } : any) => {
     <InfoContainer>
         <InfoTextContainer>
             <CardListContainer>
-                {data?.data.info.content.map((item : any) => {
+                {data?.data.info.map((item : any) => {
                     return (
                         <AucBidCard 
                             key={item.bidId}
@@ -38,7 +38,7 @@ const AucBidInfo = ({ productData } : any) => {
             </CardListContainer>
         </InfoTextContainer>
     </InfoContainer>
-)
+    )
 };
 
 const InfoContainer = styled.div`
