@@ -82,17 +82,19 @@ const CategoryContainer = styled.div`
 `;
 
 const CategoryHeader = styled.div`
-  width: 100%;
-  height: 54px;
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  background-color: #39373a;
-  color: #fff;
-  font-family: "Pretendard";
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 150%;
+    width: 100%;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #39373A;
+    color: #fff;
+    font-family: "Pretendard";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 150%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 `;
 
 const CategoryWrapper = styled.div`

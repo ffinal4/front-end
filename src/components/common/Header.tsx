@@ -8,11 +8,11 @@ import loginLTitle from "../../assets/logo/login_title.png";
 import blueLogo from "../../assets/logo/bluepeeppo.png";
 import blueTitle from "../../assets/logo/bluetitle.png";
 import search from "../../assets/icon/search.png";
-import alarm from "../../assets/icon/alarm.png";
 import mypage from "../../assets/icon/profile.png";
 import peeppo from "../../assets/icon/peeppo.png";
 import Navbar from "./Navbar";
 import { postLogoutApi } from "../../api/users";
+import AlarmButton from "./AlarmButton";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -98,7 +98,7 @@ const Header = () => {
           {isLoggedIn ? (
             <AllIconContainer>
               <IconContainer>
-                <Alarm src={alarm} />
+                <AlarmButton />
                 <Mypage
                   src={mypage}
                   onClick={() => {
@@ -248,13 +248,6 @@ const AllIconContainer = styled.div`
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const Alarm = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 20px;
-  cursor: pointer;
 `;
 
 const Mypage = styled.img`
