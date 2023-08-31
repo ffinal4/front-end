@@ -24,6 +24,7 @@ const AucBidInfo = ({ productData } : any) => {
                             <AucBidCard 
                                 key={item.bidId}
                                 item={item}
+                                choice={false}
                             />
                         )}
                     )

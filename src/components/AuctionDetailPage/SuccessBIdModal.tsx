@@ -15,13 +15,15 @@ import {
 import Paging from '../common/Paging/Paging'
 import Close from '../../assets/icon/remove.png'
 import { useQuery } from 'react-query'
-import { getAuctionBidListChoiceApi } from '../../api/acution'
+import { getAuctionBidListApi, getAuctionBidListChoiceApi } from '../../api/acution'
+import EmptyPocket from '../common/EmptyPocket'
+import AucBidCard from './AucBidCard'
 
 
 const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => {
 
     const auctionId = productData.data.info.auctionResponseDto.auctionId;
-    const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListChoiceApi(auctionId), {
+    const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
         refetchOnWindowFocus: false,
     });
     console.log("입찰품 목록(낙찰)", data);
@@ -51,6 +53,18 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
                 </ButtonWrapper>
             </Wrapper>
             <MainContainer>
+                {(data?.data.info.content.length > 0)
+                    ? data?.data.info.content.map((item : any) => {
+                        return (
+                            <AucBidCard 
+                                key={item.bidId}
+                                item={item}
+                                choice={true}
+                            />
+                        )}
+                    )
+                    : <EmptyPocket />
+                }
                 {/* <AucBidCard />
                 <AucBidCard />
                 <AucBidCard />

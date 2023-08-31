@@ -52,6 +52,7 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
     mutation.mutate();
   };
   console.log("선택", checkBox);
+  console.log("선택", myPocketGoods);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

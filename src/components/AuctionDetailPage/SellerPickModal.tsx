@@ -1,11 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
 import Paging from '../common/Paging/Paging';
 import AucBidCard from './AucBidCard';
 import Close from '../../assets/icon/remove.png'
+import EmptyPocket from '../common/EmptyPocket';
+import { useMutation, useQuery } from 'react-query';
+import { getAuctionBidListApi, postSellerPicksApi } from '../../api/acution';
 
-const SellerPickModal = ({ sellerPicks, setSellerPicks } : any) => {
+const SellerPickModal = ({ sellerPicks, setSellerPicks, productData } : any) => {
+
+    const auctionId = productData.data.info.auctionResponseDto.auctionId;
+    const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
+        refetchOnWindowFocus: false,
+    });
+
+    const [checkBox, setCheckBox] = useState<any[]>([]);
+    const [bidSellerPick, setBidSellerPick] = useState<{bidId: number[]}>({
+        bidId: []
+    });
+
+    const mutation = useMutation(() => postSellerPicksApi(bidSellerPick, auctionId), {
+        onSuccess: (res) => {
+            console.log("선택완료!", res)
+            setSellerPicks({...sellerPicks, pickModal: false});
+        },
+    });
+
+    console.log("입찰품 목록(낙찰)", data);
+    console.log("선택", checkBox);
+
   return (
     <div>
         <ModalBackgroundBox onClick={() => setSellerPicks({...sellerPicks, pickModal: false})}/>
@@ -25,13 +49,34 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks } : any) => {
                     <Text>- Seller’s Pick은 언제든지 수정할 수 있습니다.</Text>
                 </TextWrapper>
                 <ButtonWrapper>
-                    <StButton
-                        buttonColor='#58ABF7'
-                        onClick={() => setSellerPicks({...sellerPicks, pickModal: false})}
-                    >선택완료</StButton>
+                    {(checkBox.length > 0)
+                        ? <StButton
+                            buttonColor='#58ABF7'
+                            onClick={() => mutation.mutate()}
+                        >선택완료</StButton>
+                        : <StButton
+                            buttonColor='#D5D4D4'
+                            style={{cursor: "default"}}
+                        >선택완료</StButton>}
                 </ButtonWrapper>
             </Wrapper>
             <MainContainer>
+                {(data?.data.info.content.length > 0)
+                    ? data?.data.info.content.map((item : any) => {
+                        return (
+                            <AucBidCard 
+                                key={item.bidId}
+                                item={item}
+                                choice={true}
+                                setCheckBox={setCheckBox}
+                                checkBox={checkBox}
+                                bidSellerPick={bidSellerPick}
+                                setBidSellerPick={setBidSellerPick}
+                            />
+                        )}
+                    )
+                    : <EmptyPocket />
+                }
                 {/* <AucBidCard />
                 <AucBidCard />
                 <AucBidCard />
