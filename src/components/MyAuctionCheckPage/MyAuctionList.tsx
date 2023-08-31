@@ -6,26 +6,77 @@ import {
   FilterdropdownMenuContainer,
   TradeRequestListContainer,
 } from "../TradeRequestPage/GetRequestList";
-import { ArrowImg } from "../../pages/TradeRequestPage";
+import {
+  ArrowImg,
+  GetRequest,
+  RequestIngNumber,
+  RequestStateContainer,
+  RequestStateNumber,
+  SendRequest,
+  TabContainer,
+} from "../../pages/TradeRequestPage";
 import FilterDropdownMenu from "./FilterDropdownMenu";
 import arrow from "../../assets/icon/arrow.png";
 import AuctionRequestCard from "./AuctionRequestCard";
+import { DotImg } from "../TradeRequestPage/TradeRequestCard";
+import bluedot from "../../assets/icon/bluedot.png";
+import blackdot from "../../assets/icon/blackdot.png";
+import { useQuery } from "react-query";
+import { getMyAuctionCheckApi } from "../../api/acution";
 
 interface MyAuctionListProps {
   filterOpen: boolean;
+  filterTap: any;
   setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
   dropdownMenu: string;
   setDropdownMenu: React.Dispatch<React.SetStateAction<string>>;
+  setFilterTap: React.Dispatch<
+    React.SetStateAction<{ myAuctionTap: boolean; bidAuctionTap: boolean }>
+  >;
 }
 
 const MyAuctionList: React.FC<MyAuctionListProps> = ({
   filterOpen,
+  filterTap,
   dropdownMenu,
   setFilterOpen,
   setDropdownMenu,
+  setFilterTap,
 }) => {
+  const { isLoading, data, error }: any = useQuery(
+    "getMyAuctionCheckData",
+    getMyAuctionCheckApi
+  );
+
+  if (isLoading) return <div>Loading...</div>;
+  console.log("내경매현황 데이터", data);
+  if (error) {
+    console.log(error);
+  }
+  console.log(data, "내 경매 현황 데이터");
+  const myAuctionOnclick = () => {
+    setFilterTap({
+      myAuctionTap: false,
+      bidAuctionTap: true,
+    });
+  };
+
   return (
     <div>
+      <TabContainer>
+        <GetRequest>내 경매</GetRequest>
+        <SendRequest onClick={myAuctionOnclick}>입찰 경매</SendRequest>
+      </TabContainer>
+      <RequestStateContainer>
+        <RequestStateNumber>
+          <DotImg src={bluedot} />
+          경매중 10
+        </RequestStateNumber>
+        <RequestIngNumber>
+          <DotImg src={blackdot} />
+          경매완료 2
+        </RequestIngNumber>
+      </RequestStateContainer>
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter

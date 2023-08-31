@@ -18,8 +18,6 @@ import auctiontradecomplete from "../../assets/icon/auctiontradecomplete.png";
 import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import AuctionRequestGoods from "./AuctionRequestGoods";
-import { useQuery } from "react-query";
-import { getMyAuctionCheckApi } from "../../api/acution";
 
 const AuctionRequestCard = () => {
   const [requestState, setRequestState] = useState({ request: "입찰실패" });
@@ -42,18 +40,6 @@ const AuctionRequestCard = () => {
       setOpacity("0.5");
     }
   }, [request]);
-
-  const { isLoading, data, error }: any = useQuery(
-    "getMyAuctionCheckData",
-    getMyAuctionCheckApi
-  );
-
-  if (isLoading) return <div>Loading...</div>;
-  console.log("내경매현황 데이터", data);
-  if (error) {
-    console.log(error);
-  }
-  console.log(data, "내 경매 현황 데이터");
 
   const auctionRequestState = () => {
     if (request === "경매중") {
