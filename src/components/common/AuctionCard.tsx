@@ -21,7 +21,7 @@ const AuctionCard = ({ item }: any) => {
       </StCardPicture>
       <AddressContent>
         <AddressImage src={eyeImage} />
-        {item?.auctionStatus === null ? "입찰을 기다리는 중..." : `${item?.auctionStatus}명이 입찰중`}
+        {item?.bidCount === 0 ? "입찰을 기다리는 중..." : `${item?.bidCount}명이 입찰중`}
       </AddressContent>
       <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} isAuction={true} />
       <ItemTitle>{item?.title}</ItemTitle>
@@ -98,7 +98,6 @@ const AddressImage = styled.img`
 
 const DeadLineContainer = styled.div`
   position: absolute;
-  top: 224px;
   color: var(--black-white-black, #222020);
   /* KOR/Kor B 16 */
   font-family: " Pretendard";
