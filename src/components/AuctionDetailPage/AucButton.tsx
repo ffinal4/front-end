@@ -7,12 +7,14 @@ import CardZzimBtn from '../common/CardZzimBtn';
 const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSellerPicks } : any) => {
 
     const onClickBidHandler = () => {
-        setConditional({ ...conditional, bid: true });
-      };
-    
-      const onClickChatting = () => {
-        setConditional({ ...conditional, bid: false });
-      };
+      setConditional({ ...conditional, bid: true });
+    };
+    const onClickSuccessBiddHandler = () => {
+      setConditional({ ...conditional, bid: true });
+    }; 
+    const onClickChatting = () => {
+      setConditional({ ...conditional, bid: false });
+    };
 
   return (
     <div>
@@ -31,7 +33,7 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
           <StButton
             buttonColor="#58ABF7"
             style={{ color: "#FCFCFC", border: "2px solid #222020" }}
-            onClick={() => setSellerPicks({...sellerPicks, pickModal: true})}
+            onClick={() => setSellerPicks({...sellerPicks, SuccessBidModal: true})}
           >
             낙찰품 선택
           </StButton>

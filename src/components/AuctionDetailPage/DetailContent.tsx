@@ -10,6 +10,7 @@ import { ValueToEnum } from "../../utils/EnumCategory";
 import SellerPickModal from "./SellerPickModal";
 import AucButton from "./AucButton";
 import AucModalBtn from "./AucModalBtn";
+import SuccessBIdModal from "./SuccessBIdModal";
 
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
@@ -23,10 +24,11 @@ const DetailContent = ({ data }: any) => {
   });
   const [sellerPicks, setSellerPicks] = useState({
     pickModal: false,
+    SuccessBidModal: false,
     bidId: "",
   });
   const { bid, modal, auction } = conditional;
-  const { pickModal, bidId } = sellerPicks;
+  const { pickModal, SuccessBidModal, bidId } = sellerPicks;
 
   
 
@@ -103,6 +105,11 @@ const DetailContent = ({ data }: any) => {
       />
       {(pickModal)
         && <SellerPickModal
+            sellerPicks={sellerPicks}
+            setSellerPicks={setSellerPicks} />
+      }
+      {(SuccessBidModal)
+        && <SuccessBIdModal
             sellerPicks={sellerPicks}
             setSellerPicks={setSellerPicks} />
       }
