@@ -54,6 +54,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
     console.log(error);
   }
   console.log(data, "입찰경매현황 데이터");
+
   const bidAuctionOnclick = () => {
     setFilterTap({ myAuctionTap: true, bidAuctionTap: false });
   };

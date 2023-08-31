@@ -20,6 +20,8 @@ import TradeRequestCard, { DotImg } from "./TradeRequestCard";
 import arrow from "../../assets/icon/arrow.png";
 import orangedot from "../../assets/icon/orangedot.png";
 import emptydot from "../../assets/icon/emptydot.png";
+import { useQuery } from "react-query";
+import { getTradeRequestApi } from "../../api/goods";
 
 interface SendRequestListProps {
   filterOpen: boolean;
@@ -39,6 +41,18 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
+  const { isLoading, data, error }: any = useQuery(
+    " getTradeRequestData",
+    getTradeRequestApi
+  );
+
+  if (isLoading) return <div>Loading...</div>;
+  console.log("물물교환요청한 데이터", data);
+  if (error) {
+    console.log(error);
+  }
+  console.log(data, "물물교환요청한 데이터");
+
   const getRequestOnclick = () => {
     setFilterTap({ getTap: true, sendTap: false });
   };

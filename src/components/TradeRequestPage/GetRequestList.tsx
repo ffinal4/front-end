@@ -5,6 +5,7 @@ import TradeRequestCard, { DotImg } from "./TradeRequestCard";
 import arrow from "../../assets/icon/arrow.png";
 import orangedot from "../../assets/icon/orangedot.png";
 import emptydot from "../../assets/icon/emptydot.png";
+import { useQuery } from "react-query";
 import {
   ArrowImg,
   GetRequest,
@@ -14,6 +15,7 @@ import {
   SendRequest,
   TabContainer,
 } from "../../pages/TradeRequestPage";
+import { getTradeReceiveRequestApi } from "../../api/goods";
 
 interface GetRequestListProps {
   filterOpen: boolean;
@@ -32,6 +34,18 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
+  const { isLoading, data, error }: any = useQuery(
+    " getTradeReceiveRequestData",
+    getTradeReceiveRequestApi
+  );
+
+  if (isLoading) return <div>Loading...</div>;
+  console.log("교환요청받은 데이터", data);
+  if (error) {
+    console.log(error);
+  }
+  console.log(data, "교환요청받은 데이터");
+
   const sendRequestOnclick = () => {
     setFilterTap({
       getTap: false,
