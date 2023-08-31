@@ -21,17 +21,18 @@ const Navbar = () => {
 
   useEffect(() => {
     if (location.pathname.includes("/auction")) {
-      return (setPathnames(1))
+      return setPathnames(1);
     } else if (
-      location.pathname.includes("/tradeList")
-      || location.pathname.includes("/detail")
-      || location.pathname.includes("/traderequest")) {
-      return (setPathnames(2))
+      location.pathname.includes("/tradeList") ||
+      location.pathname.includes("/detail") ||
+      location.pathname.includes("/traderequest")
+    ) {
+      return setPathnames(2);
     } else if (location.pathname.includes("/rating")) {
-      return (setPathnames(3))
+      return setPathnames(3);
     } else {
-      return (setPathnames(0))
-    };
+      return setPathnames(0);
+    }
   }, [location.pathname]);
 
   return (
@@ -55,17 +56,19 @@ const Navbar = () => {
           <Menu
             onClick={tradeListOnclick}
             style={{
-              color: `${(pathnames === 2) ? "#EC8D49" : "#222020"}`,
-              fontWeight: `${(pathnames === 2) ? "700" : "400"}`
+              color: `${pathnames === 2 ? "#EC8D49" : "#222020"}`,
+              fontWeight: `${pathnames === 2 ? "700" : "400"}`,
             }}
-          >물물교환</Menu>
+          >
+            물물교환
+          </Menu>
           <Menu
             onClick={() => {
               navigate("/auctionlist");
             }}
             style={{
-              color: `${(pathnames === 1) ? "#58ABF7" : "#222020"}`,
-              fontWeight: `${(pathnames === 1) ? "700" : "400"}`
+              color: `${pathnames === 1 ? "#58ABF7" : "#222020"}`,
+              fontWeight: `${pathnames === 1 ? "700" : "400"}`,
             }}
           >
             포켓경매
@@ -73,10 +76,12 @@ const Navbar = () => {
           <Menu
             onClick={() => navigate("/ratingstart")}
             style={{
-              color: `${(pathnames === 3) ? "#EC8D49" : "#222020"}`,
-              fontWeight: `${(pathnames === 3) ? "700" : "400"}`
+              color: `${pathnames === 3 ? "#EC8D49" : "#222020"}`,
+              fontWeight: `${pathnames === 3 ? "700" : "400"}`,
             }}
-          >레이팅</Menu>
+          >
+            레이팅
+          </Menu>
         </MenuContainer>
       </Wrapper>
     </CategoryHeaderContainer>

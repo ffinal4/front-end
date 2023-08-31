@@ -79,6 +79,8 @@ const TimerImage = styled.img`
 `;
 
 const TimerContainer = styled.div`
+  position: absolute;
+  top: 224px;
   display: flex;
   align-items: center;
   padding: 12px 10px;
