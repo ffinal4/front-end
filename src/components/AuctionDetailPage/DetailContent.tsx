@@ -14,7 +14,7 @@ import SuccessBIdModal from "./SuccessBIdModal";
 
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
-  const newData = data.data.info.auctionResponseDto.goodsResponseDto;
+  const newData = data?.data.info.auctionResponseDto.goodsResponseDto;
   // console.log("newData", newData);
 
   const [conditional, setConditional] = useState({
@@ -110,6 +110,7 @@ const DetailContent = ({ data }: any) => {
       }
       {(SuccessBidModal)
         && <SuccessBIdModal
+            productData={data}
             sellerPicks={sellerPicks}
             setSellerPicks={setSellerPicks} />
       }

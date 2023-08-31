@@ -32,9 +32,12 @@ export const postAuctionBidApi = async (body: BidPick, auctionId: number) => {
 
 // 입찰 전체 조회
 export const getAuctionBidListApi = async (auctionId: number) => {
-  const res = await instance.get(
-    `/api/auction/${auctionId}/bid?page=1&size=5&sortBy=createdAt&isAsc=false`
-  );
+  const res = await instance.get(`/api/auction/${auctionId}/bid/1`);
+  return res;
+};
+
+export const getAuctionBidListChoiceApi = async (auctionId: number) => {
+  const res = await instance.get(`/api/auction/${auctionId}/bid?page=1&size=5&sortBy=createdAt&isAsc=false`);
   return res;
 };
 
