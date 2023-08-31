@@ -45,21 +45,7 @@ export const getTradeRequestApi = async () => {
   return res;
 };
 
-// 내 경매현황 전체조회
-export const getMyAuctionCheckApi = async () => {
-  const res = await instance.get(
-    "/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUEST"
-  );
-  return res;
-};
 
-// 입찰경매 전체조회
-export const getBidAuctionApi = async () => {
-  const res = await instance.get(
-    "/api/auction/bid/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status=SUCCESS"
-  );
-  return res;
-};
 
 // 물품 등록
 interface upLoadBody {
