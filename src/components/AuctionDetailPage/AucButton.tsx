@@ -17,7 +17,7 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
   return (
     <div>
     <ButtonWrapper>
-        {(data.data.info.checkSameUser || data.data.info.leftTime.seconds <= 0) ? (
+        {(data.data.info.auctionResponseDto.checkSameUser || data.data.info.auctionResponseDto.leftTime.seconds <= 0) ? (
           <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
             입찰하기
           </StButton>
@@ -26,7 +26,7 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
             입찰하기
           </StButton>
         )}
-        {data.data.info.checkSameUser ? (
+        {data.data.info.auctionResponseDto.checkSameUser ? (
           (data.data.info.leftTime.seconds <= 0) ? (
           <StButton
             buttonColor="#58ABF7"
@@ -45,8 +45,8 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
           </StButton>)
         ) : (
           <CardZzimBtn
-            checkZzim={data.data.info.goodsResponseDto.checkDibs}
-            goodsId={data.data.info.goodsResponseDto.goodsId}
+            checkZzim={data.data.info.auctionResponseDto.goodsResponseDto.checkDibs}
+            goodsId={data.data.info.auctionResponseDto.goodsResponseDto.goodsId}
             isCard={false}
             buttonColor="#58ABF7"
             fontColor="#ffff"

@@ -4,7 +4,7 @@ import { ValueToEnum } from '../../utils/EnumCategory';
 
 const AucWantedInfo = ({ data } : any) => {
 
-    const wantedData = data.data.info.goodsResponseDto.wantedGoods;
+    const wantedData = data.data.info.auctionResponseDto.goodsResponseDto.wantedGoods;
 
     return (
         <InfoContainer>

@@ -6,7 +6,7 @@ const AucGiveInfo = ({ data } : any) => {
         <InfoContainer>
             <InfoTextContainer>
                 <InfoTextTitle>상품정보</InfoTextTitle>
-                <InfoTextContent>{data.data.info.goodsResponseDto.content}</InfoTextContent>
+                <InfoTextContent>{data.data.info.auctionResponseDto.goodsResponseDto.content}</InfoTextContent>
             </InfoTextContainer>
         </InfoContainer>
   )

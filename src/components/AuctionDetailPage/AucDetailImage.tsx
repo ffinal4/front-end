@@ -7,7 +7,7 @@ import AucTimer from './AucTimer';
 
 const AucDetailImage = ({ data }: any) => {
 
-  const imagesArr = data.data.info.goodsResponseDto.images;
+  const imagesArr = data.data.info.auctionResponseDto.goodsResponseDto.images;
   const divRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
   const imageWidth: number = 464;

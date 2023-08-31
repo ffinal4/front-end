@@ -19,6 +19,22 @@ const RatingDetailInfo = ({ data } : any) => {
 const InfoContainer = styled.div`
     width: 100%;
     padding: 20px 0px 0px 0px;
+    
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #39373A;
+        border-radius: 5px;
+        
+        &:hover {
+            background-color: #524f53;
+        }
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #D5D4D4;
+        border-radius: 5px;
+    }
 `;
 
 const TitleContainer = styled.div`
