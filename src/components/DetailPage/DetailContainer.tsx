@@ -6,7 +6,7 @@ import DetailInfo from './DetailInfo';
 
 const DetailContainer = ({ data } : any) => {
 
-  const arrImages : string[] = data.data.info.images;
+  const arrImages : string[] = data.data.info.goodsResponseDtoList.images;
   
   const divRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);

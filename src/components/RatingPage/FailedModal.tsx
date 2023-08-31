@@ -19,41 +19,55 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
     }, [getPoint]);
 
   return (
-    <ModalContainer>
-        <ModalTitleContainer>
-            OPPS! GAME OVER
-        </ModalTitleContainer>
-        <ContentContainer>
-            <LeftContainer>
-                <LineContainer>
-                    <SmallText>예측가</SmallText>
-                    <SmallText>{resData.ratingPrice}</SmallText>
-                </LineContainer>
-                <LineContainer>
-                    <BigText>정답</BigText>
-                    <BigText style={{color: "#EC8D49"}}>{resData.sellerPrice}</BigText>
-                </LineContainer>
-            </LeftContainer>
-            <RightContainer>
-                <SmallText style={{color: "#39373A"}}>얻은 포인트</SmallText>
-                <Point>+{getPoint}</Point>
-            </RightContainer>
-        </ContentContainer>
-        <BtnWrapper>
-            <StopButton
-                buttonColor='#FCFCFC'
-                onClick={() => {
-                    navigate('/')
-                }}
-            >그만하기</StopButton>
-            <OnemoreBtn
-                buttonColor='#FBD8BF'
-                onClick={() => {navigate('/ratingstart')}}
-            >다시하기</OnemoreBtn>
-        </BtnWrapper>
-    </ModalContainer>
+    <div>
+        <ModalBackground />
+        <ModalContainer>
+            <ModalTitleContainer>
+                OPPS! GAME OVER
+            </ModalTitleContainer>
+            <ContentContainer>
+                <LeftContainer>
+                    <LineContainer>
+                        <SmallText>예측가</SmallText>
+                        <SmallText>{resData.ratingPrice}</SmallText>
+                    </LineContainer>
+                    <LineContainer>
+                        <BigText>정답</BigText>
+                        <BigText style={{color: "#EC8D49"}}>{resData.sellerPrice}</BigText>
+                    </LineContainer>
+                </LeftContainer>
+                <RightContainer>
+                    <SmallText style={{color: "#39373A"}}>얻은 포인트</SmallText>
+                    <Point>+{getPoint}</Point>
+                </RightContainer>
+            </ContentContainer>
+            <BtnWrapper>
+                <StopButton
+                    buttonColor='#FCFCFC'
+                    onClick={() => {
+                        navigate('/')
+                    }}
+                >그만하기</StopButton>
+                <OnemoreBtn
+                    buttonColor='#FBD8BF'
+                    onClick={() => {navigate('/ratingstart')}}
+                >다시하기</OnemoreBtn>
+            </BtnWrapper>
+        </ModalContainer>
+    </div>
   )
 };
+
+const ModalBackground = styled.div`
+  position: fixed;
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.25;
+  z-index: 999;
+`;
 
 const ModalContainer = styled.div`
     width: 100%;
@@ -63,6 +77,7 @@ const ModalContainer = styled.div`
     border-radius: 20px;
     padding: 54px 96px 40px 96px;
     position: relative;
+    z-index: 999;
 `;
 
 const ModalTitleContainer = styled.div`

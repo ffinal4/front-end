@@ -15,7 +15,7 @@ import AucButton from "./AucButton";
 
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
-  const newData = data.data.info.goodsResponseDto;
+  const newData = data.data.info.auctionResponseDto.goodsResponseDto;
   // console.log("newData", newData);
 
   const [conditional, setConditional] = useState({
@@ -44,7 +44,7 @@ const DetailContent = ({ data }: any) => {
         <TextWrapper
           style={{ gap: "8px" }}
           onClick={() => {
-            if (data.data.info.checkSameUser) {
+            if (data.data.info.auctionResponseDto.goodsResponseDto.checkSameUser) {
               navigate("/mypocket");
             } else {
               navigate(`/userpocket/${newData.nickname}`);
@@ -64,7 +64,7 @@ const DetailContent = ({ data }: any) => {
             <ColorText color="#ADADAD">10일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
-            {data.data.info.checkSameUser ? (
+            {data.data.info.auctionResponseDto.goodsResponseDto.checkSameUser ? (
               <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler}>
                 <SmallBox src={Group} />
               </TextWrapper>
@@ -116,7 +116,7 @@ const DetailContent = ({ data }: any) => {
         </TextLine>
         <TextLine style={{ gap: "54px" }}>
           <ColorText color="#717171">하한가</ColorText>
-          <ColorText color="#222020">{data.data.info.lowPrice.toLocaleString()}PP</ColorText>
+          <ColorText color="#222020">{data.data.info.auctionResponseDto.lowPrice.toLocaleString()}PP</ColorText>
         </TextLine>
       </TextContainer>
       <ColorText color="#717171">*상대방이 교환신청을 수락해야 채팅이 가능해요!</ColorText>

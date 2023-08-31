@@ -23,7 +23,7 @@ const DetailPage = () => {
   const [view, setView] = useRecoilState<any>(RecentlyView);
   useEffect(() => {
     if (data) {
-      setView([...view, {goodsId: goodsId, image: data.data.info.images[0]}])
+      setView([...view, {goodsId: goodsId, image: data.data.info.goodsResponseDtoList.images[0]}])
     };
   }, []);
   console.log("data", data);

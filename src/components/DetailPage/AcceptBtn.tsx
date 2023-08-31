@@ -18,7 +18,7 @@ const AcceptBtn = ({ data } : any) => {
 
   return (
     <ButtonWrapper>
-        {data.data.info.checkSameUser ? (
+        {data.data.info.goodsResponseDtoList.checkSameUser ? (
           <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
             교환신청
           </StButton>
@@ -27,14 +27,14 @@ const AcceptBtn = ({ data } : any) => {
             교환신청
           </StButton>
         )}
-        {data.data.info.checkSameUser ? (
+        {data.data.info.goodsResponseDtoList.checkSameUser ? (
           <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
             찜하기
           </StButton>
         ) : (
           <CardZzimBtn
-            checkZzim={data.data.info.checkDibs}
-            goodsId={data.data.info.goodsId}
+            checkZzim={data.data.info.goodsResponseDtoList.checkDibs}
+            goodsId={data.data.info.goodsResponseDtoList.goodsId}
             isCard={false}
             buttonColor="#FFCA64"
             fontColor="#222020"
