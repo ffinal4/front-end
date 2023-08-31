@@ -22,7 +22,7 @@ const CardZzimBtn = ({ checkZzim, goodsId, isCard, isAuction, buttonColor, fontC
 
   useEffect(() => {
     setIsZzim(checkZzim);
-  }, []);
+  }, [checkZzim]);
 
   return (
     <div>
