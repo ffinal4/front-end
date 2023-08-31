@@ -35,12 +35,16 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
     }
   }, [SlideRange]);
 
-  const moveToPrevBtn = () => {
+  const moveToPrevSlideBtn = () => {};
+
+  const moveToNextSlideBtn = () => {};
+
+  const moveToPrevImageBtn = () => {
     if (currentImg === 0) return;
     setCurrentImg(currentImg - 1);
   };
 
-  const moveToNextBtn = () => {
+  const moveToNextImageBtn = () => {
     if (currentImg === 0) return; //수정필요
     setCurrentImg(currentImg + 1);
   };
@@ -53,21 +57,34 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
     <div>
       <ModalBackground />
       <BoxContainer>
-        <Arrow src={leftarrow} alt="" />
+        <Arrow src={leftarrow} alt="" onClick={moveToPrevSlideBtn} />
         <DetailModalContainer>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: "30px",
-              marginBottom: "20px",
-            }}
-          >
+          <DetailModalHeadContainer>
             <PageSlideContainer>
-              <PageNumber onClick={() => pageOnclick(1)}>1</PageNumber>
-              <PageNumber onClick={() => pageOnclick(2)}>2</PageNumber>
-              <PageNumber onClick={() => pageOnclick(3)}>3</PageNumber>
-              <PageNumber onClick={() => pageOnclick(4)}>4</PageNumber>
+              <PageNumber
+                active={activePage === 1}
+                onClick={() => pageOnclick(1)}
+              >
+                1
+              </PageNumber>
+              <PageNumber
+                active={activePage === 2}
+                onClick={() => pageOnclick(2)}
+              >
+                2
+              </PageNumber>
+              <PageNumber
+                active={activePage === 3}
+                onClick={() => pageOnclick(3)}
+              >
+                3
+              </PageNumber>
+              <PageNumber
+                active={activePage === 4}
+                onClick={() => pageOnclick(4)}
+              >
+                4
+              </PageNumber>
             </PageSlideContainer>
             <CancelButtonContainer>
               <CancelImg
@@ -77,15 +94,15 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
                 }}
               />
             </CancelButtonContainer>
-          </div>
+          </DetailModalHeadContainer>
 
           <div style={{ display: "flex", gap: "30px" }}>
             <ImageOutContainer>
               <SlideBtnWrapper>
-                <SlideButton onClick={moveToPrevBtn}>
+                <SlideButton onClick={moveToPrevImageBtn}>
                   <img src={ArrowLeft} alt="" />
                 </SlideButton>
-                <SlideButton onClick={moveToNextBtn}>
+                <SlideButton onClick={moveToNextImageBtn}>
                   <img src={ArrowRight} alt="" />
                 </SlideButton>
               </SlideBtnWrapper>
@@ -99,7 +116,7 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
             </InfoTextContent>
           </InfoContainer>
         </DetailModalContainer>
-        <Arrow src={rightarrow} alt="" />
+        <Arrow src={rightarrow} alt="" onClick={moveToNextSlideBtn} />
       </BoxContainer>
     </div>
   );
@@ -120,20 +137,16 @@ const BoxContainer = styled.div`
 `;
 
 const PageSlideContainer = styled.div`
-  border: 1px solid black;
-  /* margin-top: 30px; */
-  /* width: 100px; */
   display: flex;
   gap: 16px;
-  /* justify-content: space-between; */
 `;
 
-const PageNumber = styled.div`
+const PageNumber = styled.div<{ active: boolean }>`
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 700;
   line-height: 150%;
-  background-color: #ec8d49;
+  background-color: ${(props) => (props.active ? "#ec8d49" : "")};
   border-radius: 5px;
   width: 24px;
   height: 24px;
@@ -141,6 +154,7 @@ const PageNumber = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  color: ${(props) => (props.active ? "white" : "black")};
 `;
 
 const CancelButtonContainer = styled.div`
@@ -177,6 +191,13 @@ const DetailModalContainer = styled.div`
     background-color: #d5d4d4;
     border-radius: 5px;
   }
+`;
+
+const DetailModalHeadContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 20px;
 `;
 
 const Arrow = styled.img`

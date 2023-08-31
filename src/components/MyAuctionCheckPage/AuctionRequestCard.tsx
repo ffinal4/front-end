@@ -53,7 +53,7 @@ const AuctionRequestCard = () => {
   if (error) {
     console.log(error);
   }
-  console.log(data, "데이터!!");
+  console.log(data, "데이터!!입니다");
   const auctionRequestState = () => {
     if (request === "경매중") {
       return (
