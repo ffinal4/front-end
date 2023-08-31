@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
     ModalBackgroundBox,
     ModalContainer,
@@ -26,36 +26,39 @@ import { getMyPocketApi, postRequestsApi } from '../../api/goods';
 import Close from '../../assets/icon/remove.png'
 import EmptyPocket from '../common/EmptyPocket';
 
-const RequestsModal = ({ productData, conditional, setConditional } : any) => {
+const RequestsModal = ({ productData, conditional, setConditional }: any) => {
+  const currentPage = useRecoilValue(pagination);
 
-    const currentPage = useRecoilValue(pagination);
+  const { isError, isLoading, data, error }: any = useQuery(
+    ["bidPickData", currentPage],
+    () => getMyPocketApi(currentPage),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+  const newProductData = productData.data.info.goodsId;
+  // const newAuctionId = productData.data.info.auctionId
+  const newData = data?.data.info.goodsListResponseDto;
 
-    const { isError, isLoading, data, error } : any = useQuery(["bidPickData", currentPage], () => getMyPocketApi(currentPage), {
-        refetchOnWindowFocus: false,
-    });
-    const newProductData = productData.data.info.goodsId;
-    // const newAuctionId = productData.data.info.auctionId
-    const newData = data?.data.info.goodsListResponseDto;
+  console.log("내주머니입찰데이터", newData);
 
-    console.log("내주머니입찰데이터", newData);
+  const [checkBox, setCheckBox] = useState<any[]>([]);
+  const [ratingPrice, setRatingPrice] = useState<number>(0);
+  const [myPocketGoods, setMyPocketGoods] = useState<{ goodsId: string | number[] }>({
+    goodsId: [],
+  });
 
-    const [checkBox, setCheckBox] = useState<any[]>([]);
-    const [ratingPrice, setRatingPrice] = useState<number>(0);
-    const [myPocketGoods, setMyPocketGoods] = useState<{ goodsId: string | number[] }>({
-        goodsId: [],
-    });
+  const mutation = useMutation(() => postRequestsApi(myPocketGoods, newProductData), {
+    onSuccess: (res) => {
+      console.log("입찰성공!", res);
+      setConditional({ ...conditional, bid: false });
+      window.location.replace("/traderequest");
+    },
+  });
 
-    const mutation = useMutation(() => postRequestsApi(myPocketGoods, newProductData), {
-        onSuccess: (res) => {
-            console.log("입찰성공!", res);
-            setConditional({ ...conditional, bid: false });
-            window.location.replace("/traderequest")
-        },
-    });
-
-    console.log(myPocketGoods, newProductData);
-    if (isLoading) return <p>Loading...</p>;
-    if (isError) return <p>Error: {error.message}</p>;
+  console.log(myPocketGoods, newProductData);
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div>
@@ -116,7 +119,7 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
             <Paging />
         </ModalContainer>
     </div>
-  )
+  );
 };
 
 export default RequestsModal;

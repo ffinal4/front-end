@@ -7,25 +7,19 @@ export const getMainPageApi = async () => {
 };
 // 물물교환 전체 조회
 export const getGoodsApi = async (page: number) => {
-  const res = await instance.get(
-    `/api/goods?page=${page}&size=20&sortBy=createdAt&isAsc=false`
-  );
+  const res = await instance.get(`/api/goods?page=${page}&size=20&sortBy=createdAt&isAsc=false`);
   return res;
 };
 
 // 내주머니 전체조회
 export const getMyPocketApi = async (page: number) => {
-  const res = await instance.get(
-    `/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=false`
-  );
+  const res = await instance.get(`/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=false`);
   return res;
 };
 
 // 다른유저 주머니 전체조회
 export const getUserPocketApi = async (nickname: any) => {
-  const res = await instance.get(
-    `/api/goods/pocket/${nickname}?page=1&size=5&sortBy=createdAt&isAsc=false`
-  );
+  const res = await instance.get(`/api/goods/pocket/${nickname}?page=1&size=5&sortBy=createdAt&isAsc=false`);
   return res;
 };
 
@@ -44,8 +38,6 @@ export const getTradeRequestApi = async () => {
   );
   return res;
 };
-
-
 
 // 물품 등록
 interface upLoadBody {
