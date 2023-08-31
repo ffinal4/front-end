@@ -17,8 +17,8 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
     const { isError, isLoading, data, error } : any = useQuery(["bidPickData", currentPage], () => getMyPocketApi(currentPage), {
         refetchOnWindowFocus: false,
     });
-    const newAuctionId = productData.data.info.auctionId
-    const newData = data?.data.info.goodsListResponseDto.content;
+    const newAuctionId = productData.data.info.auctionResponseDto.auctionId
+    const newData = data?.data.info.auctionResponseDto.goodsListResponseDto.content;
 
   console.log("내주머니입찰데이터", newAuctionId);
   console.log("내주머니입찰데이터", data);

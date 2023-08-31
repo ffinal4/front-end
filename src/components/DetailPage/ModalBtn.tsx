@@ -21,7 +21,7 @@ const ModalBtn = ({ data, navigate } : any) => {
         };
     }, []);
 
-    const deleteMutate = useMutation(() => deleteGoodsApi(data.data.info.goodsId), {
+    const deleteMutate = useMutation(() => deleteGoodsApi(data.data.info.goodsResponseDtoList.goodsId), {
         onSuccess: (res) => {
           console.log("삭제성공!", res);
           alert("게시글이 삭제되었습니다.");
@@ -41,7 +41,7 @@ const ModalBtn = ({ data, navigate } : any) => {
 
   return (
     <TextWrapper>
-        {data.data.info.checkSameUser ? (
+        {data.data.info.goodsResponseDtoList.checkSameUser ? (
             <TextWrapper style={{ cursor: "pointer" }} onClick={onClickMenuOpenHandler} ref={divRef}>
             <SmallBox src={Group} />
             </TextWrapper>
@@ -55,15 +55,15 @@ const ModalBtn = ({ data, navigate } : any) => {
             <ModalBtnWrapper>
               <ModalButton
                   style={{
-                  borderTop: "1px solid #D5D4D4",
-                  borderRadius: "5px 5px 0px 0px",
+                    borderTop: "1px solid #D5D4D4",
+                    borderRadius: "5px 5px 0px 0px",
                   }}
               >
                   예약중
               </ModalButton>
               <ModalButton>거래완료</ModalButton>
               <ModalButton>게시글 수정</ModalButton>
-              {(data.data.info.ratingCheck)
+              {(data.data.info.goodsResponseDtoList.ratingCheck)
                 ? <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>
                 : <ModalButton>레이팅 요청</ModalButton>}
               <ModalButton

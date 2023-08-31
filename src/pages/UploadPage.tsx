@@ -60,23 +60,37 @@ const UploadPage = () => {
 
   const onClickUploadHandler = async () => {
 
-    if (
-      uploadImages.length === 0
-      ||uploadData.data.title === ""
-      || uploadData.data.content === ""
-      || uploadData.data.tradeType === ""
-      || uploadData.data.category === ""
-      || uploadData.data.goodsCondition === ""
-      || uploadData.wanted.title === ""
-      || uploadData.wanted.content === ""
-      || uploadData.wanted.category === ""
-    ) {setFailedUpload(true);} else {setFailedUpload(false);};
+    // if (
+    //   uploadImages.length === 0
+    //   ||uploadData.data.title === ""
+    //   || uploadData.data.content === ""
+    //   || uploadData.data.tradeType === ""
+    //   || uploadData.data.category === ""
+    //   || uploadData.data.goodsCondition === ""
+    //   || uploadData.wanted.title === ""
+    //   || uploadData.wanted.content === ""
+    //   || uploadData.wanted.category === ""
+    // ) {setFailedUpload(true);} else {setFailedUpload(false);};
     // formData.append("data", uploadData)
 
     // formData.append("sellerPrice", new Blob([JSON.stringify(uploadPrice.sellerPrice)], { type: "application/json" }));
     if ((uploadData.data.ratingCheck === true && uploadData.data.sellerPrice === "")) {
       setFailedUpload(true);
       console.log(uploadImages, uploadData);
+    };
+    if (
+      uploadImages.length === 0
+      ||uploadData.data.title === ""
+      || uploadData.data.tradeType === ""
+      || uploadData.data.category === ""
+      || uploadData.data.goodsCondition === ""
+      || uploadData.wanted.title === ""
+      || uploadData.wanted.content === ""
+      || uploadData.wanted.category === ""
+      || (uploadData.data.ratingCheck === true && uploadData.data.sellerPrice === "")
+    ) {
+      alert("필수 항목을 입력해주세요!");
+      setFailedUpload(true);
     } else {
       try {
         console.log(uploadImages, uploadData);

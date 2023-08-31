@@ -5,7 +5,7 @@ import defalut from '../../assets/icon/timer.png'
 
 const AucTimer = ({ data } : any) => {
 
-    const newLeftTime = data.data.info.leftTime;
+    const newLeftTime = data.data.info.auctionResponseDto.leftTime;
 
     const [bidTimeSeconds, setBidTimeSeconds] = useState<number>(newLeftTime.seconds);
     const [bidTimeMinutes, setBidTimeMinutes] = useState<number>(newLeftTime.minutes);
