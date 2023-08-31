@@ -69,7 +69,7 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
                         된 총 레이팅 점수</Text>
                         {ratingPrice.toLocaleString()}
                     </RatingPoint>
-                    {(ratingPrice >= productData.data.info.lowPrice)
+                    {(ratingPrice >= productData.data.info.auctionResponseDto.lowPrice)
                         ? <StButton
                             buttonColor='#58ABF7'
                             style={{cursor: "pointer", border: "2px solid #222020"}}
