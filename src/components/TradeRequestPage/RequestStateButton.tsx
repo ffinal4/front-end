@@ -120,14 +120,14 @@ const RequestBtContainer = styled.div`
   gap: 16px;
 `;
 
-// const WaitingStateContainer = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-family: "Pretendard";
-//   font-size: 14px;
-//   font-weight: 400;
-// `;
+export const WaitingStateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pretendard";
+  font-size: 14px;
+  font-weight: 400;
+`;
 
 export const Img = styled.img`
   width: 24px;

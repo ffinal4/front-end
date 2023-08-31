@@ -113,7 +113,7 @@ const TradeRequestCard = () => {
         <GoodsContainer>
           <GoodsImg src={goods} onClick={goodsDetailModalOnclick} />
           {detailModalOpen && (
-            <div>
+            <div style={{ position: "absolute" }}>
               <DetailGoodsModal
                 detailModalOpen={detailModalOpen}
                 setDetailModalOpen={setDetailModalOpen}
