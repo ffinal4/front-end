@@ -24,6 +24,7 @@ import { pagination } from '../../store/pagination';
 import { useMutation, useQuery } from 'react-query';
 import { getMyPocketApi, postRequestsApi } from '../../api/goods';
 import Close from '../../assets/icon/remove.png'
+import EmptyPocket from '../common/EmptyPocket';
 
 const RequestsModal = ({ productData, conditional, setConditional } : any) => {
 
@@ -59,7 +60,7 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
   return (
     <div>
         <ModalBackgroundBox onClick={() => setConditional(false)}/>
-        <ModalContainer style={{height: "868px"}}>
+        <ModalContainer style={{maxHeight: "868px"}}>
             <ModalTitle>
                 PICK YOURS
                 <CloseBtn
@@ -84,31 +85,33 @@ const RequestsModal = ({ productData, conditional, setConditional } : any) => {
                 </ButtonWrapper>
             </Wrapper>
             <PocketListContainer>
-                {(data?.data.info.goodsListResponseDto.content.map((item : any) => {
-                    return (
-                        <NotRatingProductWrapper>
-                            <JoinBidCard
-                                key={item.goodsId}
-                                checkBox={checkBox}
-                                setCheckBox={setCheckBox}
-                                setMyPocketGoods={setMyPocketGoods}
-                                myPocketGoods={myPocketGoods}
-                                ratingPrice={ratingPrice}
-                                setRatingPrice={setRatingPrice}
-                                item={item}
-                            />
-                            {(item.goodsStatus === "BIDDING") && <NotRatingProduct />}
-                            {(item.goodsStatus === "BIDDING")
-                            && <div>
-                            <GoodsConditionContainer />
-                            <GoodsCondition>
-                                <Circle />
-                                경매중
-                            </GoodsCondition>
-                            </div>}
-                        </NotRatingProductWrapper>
-                    )
-                }))}
+                {(newData.content.length > 0)
+                    ? newData.content.map((item : any) => {
+                        return (
+                            <NotRatingProductWrapper>
+                                <JoinBidCard
+                                    key={item.goodsId}
+                                    checkBox={checkBox}
+                                    setCheckBox={setCheckBox}
+                                    setMyPocketGoods={setMyPocketGoods}
+                                    myPocketGoods={myPocketGoods}
+                                    ratingPrice={ratingPrice}
+                                    setRatingPrice={setRatingPrice}
+                                    item={item}
+                                />
+                                {(item.goodsStatus === "BIDDING") && <NotRatingProduct />}
+                                {(item.goodsStatus === "BIDDING")
+                                && <div>
+                                <GoodsConditionContainer />
+                                <GoodsCondition>
+                                    <Circle />
+                                    경매중
+                                </GoodsCondition>
+                                </div>}
+                            </NotRatingProductWrapper>
+                        )
+                    })
+                    : <EmptyPocket />}
             </PocketListContainer>
             <Paging />
         </ModalContainer>

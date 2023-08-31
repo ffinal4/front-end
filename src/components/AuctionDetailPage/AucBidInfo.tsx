@@ -2,8 +2,9 @@ import React from 'react'
 import { styled } from 'styled-components';
 import AucBidCard from './AucBidCard';
 import { useQuery } from 'react-query';
-import { getAuctionBidListApi } from '../../api/acution';
+import { getAuctionBidListApi, getAuctionBidListChoiceApi } from '../../api/acution';
 import { useParams } from 'react-router-dom';
+import EmptyPocket from '../common/EmptyPocket';
 
 const AucBidInfo = ({ productData } : any) => {
 
@@ -17,14 +18,17 @@ const AucBidInfo = ({ productData } : any) => {
     <InfoContainer>
         <InfoTextContainer>
             <CardListContainer>
-                {data?.data.info.map((item : any) => {
-                    return (
-                        <AucBidCard 
-                            key={item.bidId}
-                            item={item}
-                        />
-                    )}
-                )}
+                {(data?.data.info.content.length > 0)
+                    ? data?.data.info.content.map((item : any) => {
+                        return (
+                            <AucBidCard 
+                                key={item.bidId}
+                                item={item}
+                            />
+                        )}
+                    )
+                    : <EmptyPocket />
+                }
                 {/* <AucBidCard />
                 <AucBidCard />
                 <AucBidCard />

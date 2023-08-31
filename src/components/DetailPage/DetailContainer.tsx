@@ -33,6 +33,13 @@ const DetailContainer = ({ data } : any) => {
   return (
     <LayoutContainer>
       <ImageOutContainer>
+        {/* <RequestCondition>
+          <GoodsCondition>
+            <Circle />
+            거래중
+          </GoodsCondition>
+        </RequestCondition> */}
+        <Finished>거래완료</Finished>
         <SlideBtnWrapper>
           <SlideButton
             onClick={moveToPrevBtn}
@@ -57,8 +64,8 @@ const DetailContainer = ({ data } : any) => {
         <SlidePageBarWrapper>
           {arrImages.map((item) =>
             (currentImg === arrImages.indexOf(item))
-              ? <SlidePageBar backgdcolor='#fff'></SlidePageBar>
-              : <SlidePageBar backgdcolor='#9e9e9e'></SlidePageBar>
+              ? <SlidePageBar backgroundcolor='#fff'></SlidePageBar>
+              : <SlidePageBar backgroundcolor='#9e9e9e'></SlidePageBar>
             )}
         </SlidePageBarWrapper>
       </ImageOutContainer>
@@ -151,12 +158,59 @@ const SlidePageBarWrapper = styled.div`
   gap: 16px;
 `;
 
-const SlidePageBar = styled.div<{ backgdcolor: string }>`
+const SlidePageBar = styled.div<{ backgroundcolor: string }>`
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  background-color: ${(props) => props.backgdcolor};
+  background-color: ${(props) => props.backgroundcolor};
   opacity: 0.8;
+`;
+
+const RequestCondition = styled.div`
+  width: 464px;
+  height: 464px;
+  position: absolute;
+  border-radius: 10px;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 13.54%, rgba(0, 0, 0, 0.20) 28.13%, rgba(0, 0, 0, 0.00) 39.06%);
+  z-index: 198;
+`;
+
+const GoodsCondition = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Pretendard";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 150%;
+  position: absolute;
+  z-index: 199;
+  color: #FCFCFC;
+`;
+
+const Circle = styled.div`
+  background-color: #EC8D49;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+`;
+
+const Finished = styled.div`
+  width: 464px;
+  height: 464px;
+  border-radius: 10px;
+  background-color: #00000080;
+  position: absolute;
+  z-index: 199;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Pretendard";
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 150%;
+  color: #FCFCFC;
 `;
 
 export default DetailContainer;

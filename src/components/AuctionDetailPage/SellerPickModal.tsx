@@ -26,7 +26,7 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks } : any) => {
                 </TextWrapper>
                 <ButtonWrapper>
                     <StButton
-                        buttonColor='#FCFCFC'
+                        buttonColor='#58ABF7'
                         onClick={() => setSellerPicks({...sellerPicks, pickModal: false})}
                     >선택완료</StButton>
                 </ButtonWrapper>
@@ -48,7 +48,7 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks } : any) => {
   )
 };
 
-const ModalBackgroundBox = styled.div`
+export const ModalBackgroundBox = styled.div`
     position: fixed;
     background-color: #000;
     width: 100%;
@@ -59,7 +59,7 @@ const ModalBackgroundBox = styled.div`
     z-index: 888;
 `;
 
-const ModalContainer = styled.div`
+export const ModalContainer = styled.div`
     width: 1196px;
     max-height: 1186px;
     border: 1px solid #222020;
@@ -68,10 +68,11 @@ const ModalContainer = styled.div`
     position: absolute;
     top: 220px;
     left: 392px;
-    z-index: 999;
+    z-index: 1000;
     padding: 40px 30px;
 `;
-const ModalTitle = styled.div`
+
+export const ModalTitle = styled.div`
     font-family: "Lemon/Milk", sans-serif;
     font-size: 40px;
     font-weight: 700;
@@ -81,7 +82,7 @@ const ModalTitle = styled.div`
     justify-content: space-between;
 `;
 
-const ModalSubtitle = styled.div`
+export const ModalSubtitle = styled.div`
     font-family: "Pretendard";
     font-size: 32px;
     font-weight: 800;
@@ -89,17 +90,17 @@ const ModalSubtitle = styled.div`
     padding: 16px 0px 20px 0px;
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
 `;
 
-const TextWrapper = styled.div`
+export const TextWrapper = styled.div`
     display: grid;
 `;
 
-const Text = styled.div`
+export const Text = styled.div`
     font-family: "Pretendard";
     font-size: 16px;
     font-weight: 400;
@@ -107,18 +108,18 @@ const Text = styled.div`
     color: #808080;
 `;
 
-const StButton = styled(StBasicButton)`
-    border: 1px solid #222020;
-    color: #222020;
+export const StButton = styled(StBasicButton)`
+    border: 2px solid #222020;
+    color: #FCFCFC;
 `;
 
-const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div`
     height: 72px;
     display: flex;
     align-items: end;
 `;
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
     border-top: 4px solid #222020;
     border-bottom: 4px solid #222020;
     padding: 40px 0px;
@@ -131,7 +132,7 @@ const MainContainer = styled.div`
     overflow: auto;
 `;
 
-const CloseBtn = styled.img`
+export const CloseBtn = styled.img`
     width: 24px;
     height: 24px;
     object-fit: contain;

@@ -95,6 +95,8 @@ const CategoryHeader = styled.div`
     font-size: 18px;
     font-weight: 700;
     line-height: 150%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 `;
 
 const CategoryWrapper = styled.div`

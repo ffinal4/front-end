@@ -12,8 +12,18 @@ import {
     Title,
   } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import { StCompleteBt } from "../TradeRequestPage/TradeCompleteModal";
+import { useNavigate } from 'react-router-dom';
 
-const BidCompleteModal = ({ setBidCheck } : any) => {
+const BidCompleteModal = ({ setBidCheck, setConditional, conditional, data } : any) => {
+
+  const navigate = useNavigate();
+
+  const onClickCheckBtnHandler = () => {
+    setBidCheck(false);
+    setConditional({...conditional, bid: false});
+    navigate(`/auctiondetail/${data.data.info.auctionResponseDto.auctionId}`);
+  };
+
   return (
     <div>
       <ModalBackground />
@@ -36,7 +46,7 @@ const BidCompleteModal = ({ setBidCheck } : any) => {
             <StCompleteBt
               buttonColor="#58ABF7"
               style={{color: "#FCFCFC"}}
-              onClick={() => setBidCheck(false)}
+              onClick={onClickCheckBtnHandler}
             >
               확인
             </StCompleteBt>

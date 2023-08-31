@@ -29,7 +29,7 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
           </StButton>
         )}
         {data.data.info.auctionResponseDto.checkSameUser ? (
-          (data.data.info.auctionResponseDto.leftTime.seconds <= 0) ? (
+          (data.data.info.auctionResponseDto.leftTime.expired) ? (
           <StButton
             buttonColor="#58ABF7"
             style={{ color: "#FCFCFC", border: "2px solid #222020" }}
