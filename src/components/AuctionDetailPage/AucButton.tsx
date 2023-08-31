@@ -22,15 +22,15 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
             입찰하기
           </StButton>
         ) : (
-          <StButton buttonColor="#58ABF7" onClick={onClickBidHandler}>
+          <StButton buttonColor="#58ABF7" style={{ border: "1px solid #222020" }} onClick={onClickBidHandler}>
             입찰하기
           </StButton>
         )}
         {data.data.info.auctionResponseDto.checkSameUser ? (
-          (data.data.info.leftTime.seconds <= 0) ? (
+          (data.data.info.auctionResponseDto.leftTime.seconds <= 0) ? (
           <StButton
             buttonColor="#58ABF7"
-            style={{ color: "#FCFCFC" }}
+            style={{ color: "#FCFCFC", border: "2px solid #222020" }}
             onClick={() => setSellerPicks({...sellerPicks, pickModal: true})}
           >
             낙찰품 선택
@@ -38,7 +38,7 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
           ) : ( 
             <StButton
             buttonColor="#58ABF7"
-            style={{ color: "#222020" }}
+            style={{ color: "#222020", border: "1px solid #222020" }}
             onClick={() => setSellerPicks({...sellerPicks, pickModal: true})}
           >
             Seller's Pick
@@ -53,7 +53,7 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
           />
         )}
         {bid ? (
-          <StButton buttonColor="#58ABF7" onClick={onClickChatting}>
+          <StButton buttonColor="#58ABF7" style={{ border: "1px solid #222020" }} onClick={onClickChatting}>
             채팅하기
           </StButton>
         ) : (
@@ -79,7 +79,6 @@ const ButtonWrapper = styled.div`
 `;
 
 const StButton = styled(StBasicButton)`
-  border: 1px solid #222020;
   color: #fcfcfc;
 `;
 
