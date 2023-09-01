@@ -18,52 +18,41 @@ import auctiontradecomplete from "../../assets/icon/auctiontradecomplete.png";
 import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import AuctionRequestGoods from "./AuctionRequestGoods";
-import { useQuery } from "react-query";
-import { getMyAuctionCheckApi } from "../../api/acution";
 
-const AuctionRequestCard = () => {
-  const [requestState, setRequestState] = useState({ request: "입찰실패" });
+const AuctionRequestCard = ({ item }: any) => {
+  const [requestState, setRequestState] = useState({
+    request: item?.testListResponseDto.auctionStatus,
+  });
+
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
   const { request } = requestState;
 
   useEffect(() => {
-    if (request === "경매중") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "경매종료") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       setBorder("2px solid #58ABF7");
     }
-    if (request === "교환완료") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "입찰실패") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       setBorder("1px solid #D5D4D4");
       setOpacity("0.5");
     }
   }, [request]);
 
-  const { isLoading, data, error }: any = useQuery(
-    "getMyAuctionCheckData",
-    getMyAuctionCheckApi
-  );
-
-  if (isLoading) return <div>Loading...</div>;
-  console.log("내경매현황 데이터", data);
-  if (error) {
-    console.log(error);
-  }
-  console.log(data, "내 경매 현황 데이터");
-
   const auctionRequestState = () => {
-    if (request === "경매중") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <StAuctionIng backgroundcolor="white" color="#58ABF7" border="#58ABF7">
           경매중
         </StAuctionIng>
       );
     }
-    if (request === "경매종료") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <StRequestState
           backgroundcolor="#58ABF7"
@@ -74,7 +63,7 @@ const AuctionRequestCard = () => {
         </StRequestState>
       );
     }
-    if (request === "교환완료") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -85,7 +74,7 @@ const AuctionRequestCard = () => {
         </StRequestState>
       );
     }
-    if (request === "입찰실패") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -99,21 +88,21 @@ const AuctionRequestCard = () => {
   };
 
   const auctionRequestStateBar = () => {
-    if (request === "경매중") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <TradeImgContainer>
           <TradeImg src={auctionrequest} />
         </TradeImgContainer>
       );
     }
-    if (request === "경매종료") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <TradeImgContainer>
           <TradeImg src={auctioncomplete} />
         </TradeImgContainer>
       );
     }
-    if (request === "교환완료") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <TradeImgContainer>
           <TradeImg src={auctiontradecomplete} />
@@ -123,16 +112,16 @@ const AuctionRequestCard = () => {
   };
 
   const auctionCondition = () => {
-    if (request === "경매중") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <div>
           <Title>경매상황</Title>
-          <GoodsTitle>현재 총 12명이 입찰중이에요.</GoodsTitle>
-          <Address>경매 종료까지 00:01:12</Address>
+          <GoodsTitle>{item?.testListResponseDto.bidCount}</GoodsTitle>
+          <Address>{item?.testListResponseDto.timeRemaining}</Address>
         </div>
       );
     }
-    if (request === "경매종료") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <div>
           <Title>경매상황</Title>
@@ -141,7 +130,7 @@ const AuctionRequestCard = () => {
         </div>
       );
     }
-    if (request === "교환완료") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <div>
           <Title>입찰</Title>
@@ -150,7 +139,7 @@ const AuctionRequestCard = () => {
         </div>
       );
     }
-    if (request === "입찰실패") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <div>
           <Title>경매상황</Title>
@@ -162,20 +151,21 @@ const AuctionRequestCard = () => {
   return (
     <CardContainer style={{ border: `${border}`, opacity: `${opacity}` }}>
       <Container>
-        <Date>2023-8-22</Date>
+        <Date>{item?.testListResponseDto.auctionEndTime}</Date>
         {auctionRequestState()}
       </Container>
       <GoodsContainer>
         <AuctionRequestGoods
           requestState={requestState}
           setRequestState={setRequestState}
+          item={item}
         />
       </GoodsContainer>
 
       <ContentsContainer>
         <Title>경매</Title>
-        <GoodsTitle>스파이더맨 어크로스 더 유니버스 IMAX 포스터</GoodsTitle>
-        <Address>경기도 수원시 영통구</Address>
+        <GoodsTitle>{item?.testListResponseDto.title}</GoodsTitle>
+        <Address>{item?.testListResponseDto.location}</Address>
         {auctionCondition()}
       </ContentsContainer>
       {auctionRequestStateBar()}
