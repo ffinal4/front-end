@@ -23,7 +23,7 @@ const TitleUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
     return (
         <LineContainer>
             <RequiredText
-                style={{color: `${(failedUpload && uploadData.data.title === "") && "#DF3737"}`}}
+                style={{color: `${(failedUpload && uploadData.data.title === "") ? "#DF3737" : "#222020"}`}}
             >제목*</RequiredText>
             <OutWrapper>
             <Wrapper>

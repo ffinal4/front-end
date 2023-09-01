@@ -147,6 +147,7 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
             setConditional={setConditional}
             conditional={conditional}
             data={productData}
+            modals={1}
           />}
         <Paging />
       </ModalContainer>

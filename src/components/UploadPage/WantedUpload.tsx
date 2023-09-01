@@ -107,6 +107,7 @@ const RequiredText = styled.div`
     font-weight: 700;
     line-height: 150%;
     min-width: 191px;
+    color: #222020;
 `;
 
 const SelecBarWrapper = styled.div`

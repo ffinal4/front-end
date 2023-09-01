@@ -18,6 +18,7 @@ import { useMutation, useQuery } from 'react-query'
 import { getAuctionBidListApi, getAuctionBidListChoiceApi } from '../../api/acution'
 import EmptyPocket from '../common/EmptyPocket'
 import AucBidCard from './AucBidCard'
+import BidCompleteModal from './BidCompleteModal'
 
 
 const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => {
@@ -28,6 +29,10 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
     });
     console.log("입찰품 목록(낙찰)", data);
 
+    const [wonBidChoice, setWonBidChoice] = useState({
+        sureModal: false,
+        chatModal: false
+    });
     const [checkBox, setCheckBox] = useState<any[]>([]);
     const [bidSellerPick, setBidSellerPick] = useState<{bidId: number[]}>({
         bidId: []
@@ -96,6 +101,14 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
                 <AucBidCard />
                 <AucBidCard /> */}
             </MainContainer>
+            {(wonBidChoice)
+                && <BidCompleteModal
+                    wonBidChoice={wonBidChoice}
+                    setWonBidChoice={setWonBidChoice}
+                    sellerPicks={sellerPicks}
+                    setSellerPicks={setSellerPicks}
+                    modals={2}
+                />}
             <Paging />
         </ModalContainer>
     </div>

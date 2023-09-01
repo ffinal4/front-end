@@ -15,6 +15,12 @@ import SuccessBIdModal from "./SuccessBIdModal";
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
   const newData = data?.data.info.auctionResponseDto.goodsResponseDto;
+  const splitDate = newData?.createdAt.split("T")[0];
+  const targetDate : any = new Date(splitDate);
+  const currentDate : any = new Date();
+  const newDate = currentDate - targetDate;
+  const result = Math.floor(newDate / (1000 * 60 * 60 * 24));
+  console.log("며칠전", result);
   // console.log("newData", newData);
 
   const [conditional, setConditional] = useState({
@@ -57,11 +63,11 @@ const DetailContent = ({ data }: any) => {
         <BoxWrapper>
           <TextWrapper>
             <SmallBox src={Like} />
-            <ColorText color="#ADADAD">12</ColorText>
+            <ColorText color="#ADADAD">0</ColorText>
           </TextWrapper>
           <TextWrapper>
             <SmallBox src={Time} />
-            <ColorText color="#ADADAD">10일 전</ColorText>
+            <ColorText color="#ADADAD">{result}일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
             <AucModalBtn data={data} navigate={navigate} />

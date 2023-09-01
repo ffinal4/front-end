@@ -30,16 +30,26 @@ const DetailContainer = ({ data } : any) => {
     setCurrentImg(currentImg - 1);
   };
 
+  const RequestStatus = () => {
+    if (data.data.info.goodsResponseDtoList.goodsStatus === "ONAUCTION"
+    || data.data.info.goodsResponseDtoList.goodsStatus === "BIDDING") {
+      return <RequestCondition>
+        <GoodsCondition>
+          <Circle />
+          거래중
+        </GoodsCondition>
+      </RequestCondition>
+    } else if (data.data.info.goodsResponseDtoList.goodsStatus === "SOLDOUT") {
+      return <Finished>거래완료</Finished>
+    } else {
+      return
+    };
+  };
+
   return (
     <LayoutContainer>
       <ImageOutContainer>
-        {/* <RequestCondition>
-          <GoodsCondition>
-            <Circle />
-            거래중
-          </GoodsCondition>
-        </RequestCondition> */}
-        <Finished>거래완료</Finished>
+        {RequestStatus()}
         <SlideBtnWrapper>
           <SlideButton
             onClick={moveToPrevBtn}

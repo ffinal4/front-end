@@ -29,25 +29,25 @@ const ConditionUpload = ({ uploadData, setUploadData, failedUpload } : any) => {
   return (
     <LineContainer>
         <RequiredText
-          style={{color: `${(failedUpload && uploadData.data.goodsCondition === "") && "#DF3737"}`}}
+          style={{color: `${(failedUpload && uploadData.data.goodsCondition === "") ? "#DF3737" : "#222020"}`}}
         >물건상태*</RequiredText>
         <AllWrapper>
             <Wrapper>
                 <Button
                     buttonColor={(uploadData.data.goodsCondition === "상") ? "#FFCA64" : ""}
-                    style={{fontWeight: `${(uploadData.data.goodsCondition === "상") && "700"}`}}
+                    style={{fontWeight: `${(uploadData.data.goodsCondition === "상") ? "700" : "400"}`}}
                     onClick={onCheckNewCondition}
                 >상
                 </Button>
                 <Button
                     buttonColor={(uploadData.data.goodsCondition === "중") ? "#FFCA64" : ""}
-                    style={{fontWeight: `${(uploadData.data.goodsCondition === "중") && "700"}`}}
+                    style={{fontWeight: `${(uploadData.data.goodsCondition === "중") ? "700" : "400"}`}}
                     onClick={onCheckUsedCondition}
                 >중
                 </Button>
                 <Button
                     buttonColor={(uploadData.data.goodsCondition === "하") ? "#FFCA64" : ""}
-                    style={{fontWeight: `${(uploadData.data.goodsCondition === "하") && "700"}`}}
+                    style={{fontWeight: `${(uploadData.data.goodsCondition === "하") ? "700" : "400"}`}}
                     onClick={onCheckDamagedCondition}
                 >하
                 </Button>

@@ -26,7 +26,7 @@ const CategoryUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
   return (
     <LineContainer>
         <RequiredText
-            style={{color: `${(failedUpload && uploadData.data.category === "") && "#DF3737"}`}}
+            style={{color: `${(failedUpload && uploadData.data.category === "") ? "#DF3737" : "#222020"}`}}
         >카테고리*</RequiredText>
         <RightWrapper>
             <SelectBar>

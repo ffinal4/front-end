@@ -95,7 +95,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
   return (
     <LineContainer>
       <RequiredText
-        style={{color: `${(failedUpload && uploadImages.length === 0) && "#DF3737"}`}}
+        style={{color: `${(failedUpload && uploadImages.length === 0) ? "#DF3737" : "#222020"}`}}
       >상품이미지*</RequiredText>
       <ContentContainer>
         {file.default.imageUrl ||

@@ -70,7 +70,7 @@ const AuctionUploadPage = () => {
       </TextWrapper>
       <AuctionUploadContainer>
         <PeriodUploadContainer>
-          <RequiredText style={{ color: `${failed && endTime === "" && "#DF3737"}` }}>경매기간*</RequiredText>
+          <RequiredText style={{ color: `${failed && endTime === "" ? "#DF3737" : "#222020"}` }}>경매기간*</RequiredText>
           <FirstWrapper>
             <ButtonWrapper>
               <Button buttonColor={endTime === "30분" ? "#9ACBF9" : "white"} onClick={onClickThirtyMinutesHandler}>
@@ -94,7 +94,9 @@ const AuctionUploadPage = () => {
         </PeriodUploadContainer>
         <ProductChoice myPocketGoods={myPocketGoods} setMyPocketGoods={setMyPocketGoods} failed={failed} data={data} />
         <LastLineContainer>
-          <RequiredText style={{ color: `${failed && lowPrice === ("" || 0) && "#DF3737"}` }}>입찰 제한*</RequiredText>
+          <RequiredText style={{
+            color: `${failed && (lowPrice === "" || lowPrice === 0) ? "#DF3737" : "#222020"}`
+            }}>입찰 제한*</RequiredText>
           <LineWrapper>
             <BidLimitWarpper>
               <InputWrapper>
@@ -159,7 +161,7 @@ const AuctionUploadPage = () => {
           경매 시작
         </Button>
         {failed && (
-          <Text style={{ color: "#DF3737", margin: "0px auto" }}>* 최소 1,000 이상의 값을 입력해 주세요.</Text>
+          <Text style={{ color: "#DF3737", margin: "0px auto" }}>입력 내용을 다시 한 번 확인해 주세요.</Text>
         )}
       </BottomBtnWrapper>
     </PageLayoutContainer>
