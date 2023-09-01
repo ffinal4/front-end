@@ -4,7 +4,7 @@ import category from "../../assets/icon/category.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import FilterModal from "./FilterModal";
 import { useResetRecoilState } from "recoil";
-import { filterCategory, filterName } from "../../store/filterCategory";
+import { filterAsc, filterCategory, filterName } from "../../store/filterCategory";
 import { pagination } from "../../store/pagination";
 
 const Navbar = () => {
@@ -15,6 +15,7 @@ const Navbar = () => {
   const resetCategory = useResetRecoilState(filterCategory);
   const resetCategoryName = useResetRecoilState(filterName);
   const restPage = useResetRecoilState(pagination);
+  const resetAsc = useResetRecoilState(filterAsc);
   const tradeListOnclick = () => {
     navigate("/tradeList");
   };
@@ -53,6 +54,7 @@ const Navbar = () => {
               resetCategory();
               resetCategoryName();
               restPage();
+              resetAsc();
             }}
             style={{
               color: `${pathnames === 2 ? "#EC8D49" : "#222020"}`,
@@ -67,6 +69,7 @@ const Navbar = () => {
               resetCategory();
               resetCategoryName();
               restPage();
+              resetAsc();
             }}
             style={{
               color: `${pathnames === 1 ? "#58ABF7" : "#222020"}`,

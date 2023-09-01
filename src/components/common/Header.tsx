@@ -14,7 +14,7 @@ import Navbar from "./Navbar";
 import { postLogoutApi } from "../../api/users";
 import AlarmButton from "./AlarmButton";
 import { useResetRecoilState } from "recoil";
-import { filterCategory, filterName } from "../../store/filterCategory";
+import { filterAsc, filterCategory, filterName } from "../../store/filterCategory";
 import { pagination } from "../../store/pagination";
 
 const Header = () => {
@@ -25,6 +25,7 @@ const Header = () => {
   const resetCategory = useResetRecoilState(filterCategory);
   const resetCategoryName = useResetRecoilState(filterName);
   const restPage = useResetRecoilState(pagination);
+  const resetAsc = useResetRecoilState(filterAsc);
   useEffect(() => {
     setIsLoggedIn(!!insertedToken);
   }, [insertedToken]);
@@ -111,6 +112,7 @@ const Header = () => {
                     resetCategory();
                     resetCategoryName();
                     restPage();
+                    resetAsc();
                   }}
                 />
                 <Peeppo
@@ -120,6 +122,7 @@ const Header = () => {
                     resetCategory();
                     resetCategoryName();
                     restPage();
+                    resetAsc();
                   }}
                 />
               </IconContainer>
