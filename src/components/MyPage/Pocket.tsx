@@ -39,7 +39,7 @@ const Pocket = () => {
 };
 
 const LayoutContainer = styled.div`
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   height: 442px;
   width: 100%;

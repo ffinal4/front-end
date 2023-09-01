@@ -10,12 +10,11 @@ import Like from "../../assets/icon/blacklike.png";
 
 const ZzimListBtn = ({ navigate } : any) => {
   return (
-    <OutBox>
-        <Wrapper
-        onClick={() => {
-            navigate("/zzimlist");
-        }}
-        >
+    <OutBox
+      onClick={() => {
+        navigate("/zzimlist");
+    }}>
+        <Wrapper>
         <InBoxWrapper>
             <InBox src={Like} />
         </InBoxWrapper>
