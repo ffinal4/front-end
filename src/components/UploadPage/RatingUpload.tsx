@@ -49,7 +49,7 @@ const RatingUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
             style={{color: `${(failedUpload
                     && uploadData.data.ratingCheck === true
                     && uploadData.data.sellerPrice === "")
-                && "#DF3737"}`}}
+                ? "#DF3737" : "#222020"}`}}
         >레이팅 여부</RequiredText>
         <AllWrapper>
             <RatingCheckWrapper>

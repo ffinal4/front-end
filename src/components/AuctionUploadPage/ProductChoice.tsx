@@ -27,7 +27,7 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data, failed } : any) 
     <div>
         <UploadContainer>
             <RequiredText
-                style={{color: `${(failed && myPocketGoods.goodsId === "") && "#DF3737"}`}}
+                style={{color: `${(failed && myPocketGoods.goodsId === "") ? "#DF3737" : "#222020"}`}}
             >경매품 선택*</RequiredText>
             <MyPocketWrapper>
                 <MyPocketContainer>

@@ -24,31 +24,30 @@ const CategoryUpload = ({ setUploadData, uploadData, failedUpload }: any) => {
 
   return (
     <LineContainer>
-      <RequiredText style={{ color: `${failedUpload && uploadData.data.category === "" && "#DF3737"}` }}>
-        카테고리*
-      </RequiredText>
-      <RightWrapper>
-        <SelectBar>
-          <Text>{name}</Text>
-          {selectBar ? (
-            <ChoiceBox src={Up} onClick={onClickDropDownHandelr}></ChoiceBox>
-          ) : (
-            <ChoiceBox src={Down} onClick={onClickDropDownHandelr}></ChoiceBox>
-          )}
-        </SelectBar>
-        {selectBar && (
-          <SelectContainer>
-            <CategorySelect
-              categorySelect={categorySelect}
-              setCategorySelect={setCategorySelect}
-              setSelectBar={setSelectBar}
-            />
-          </SelectContainer>
-        )}
-        {failedUpload && uploadData.data.category === "" && (
-          <Text style={{ color: "#DF3737" }}>* 카테고리를 선택해 주세요.</Text>
-        )}
-      </RightWrapper>
+        <RequiredText
+            style={{color: `${(failedUpload && uploadData.data.category === "") ? "#DF3737" : "#222020"}`}}
+        >카테고리*</RequiredText>
+        <RightWrapper>
+            <SelectBar>
+                <Text>{name}</Text>
+                {(selectBar)
+                    ? <ChoiceBox src={Up} onClick={onClickDropDownHandelr}></ChoiceBox>
+                    : <ChoiceBox src={Down} onClick={onClickDropDownHandelr}></ChoiceBox>}
+            </SelectBar>
+            {(selectBar)
+            && <SelectContainer>
+                    <CategorySelect
+                        categorySelect={categorySelect}
+                        setCategorySelect={setCategorySelect}
+                        setSelectBar={setSelectBar}
+                    />
+                </SelectContainer>}
+            {(failedUpload && uploadData.data.category === "")
+                && <Text style={{color: "#DF3737"}}>
+                    * 카테고리를 선택해 주세요.
+                </Text>
+            }
+        </RightWrapper>
     </LineContainer>
   );
 };

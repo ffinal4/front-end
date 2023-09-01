@@ -17,13 +17,11 @@ const DetailInfo = ({ data }: any) => {
   const categorys = data.data.info.goodsResponseDtoList.category;
   const createdDate = data.data.info.goodsResponseDtoList.createdAt;
   const splitDate = createdDate.split("T")[0];
-  const dateAt = splitDate.split("-")[2];
-  // const receivedDate = new Date(splitDate);
-  const newDate = new Date();
-  const dateData = newDate.getDate();
-  const result = dateData - dateAt;
-
-  // console.log(receivedDate, " createdDate");
+  const targetDate : any = new Date(splitDate);
+  const currentDate : any = new Date();
+  const newDate = currentDate - targetDate;
+  const result = Math.floor(newDate / (1000 * 60 * 60 * 24));
+  console.log("며칠전", result);
 
   return (
     <InfoContainer>

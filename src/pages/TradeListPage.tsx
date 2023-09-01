@@ -41,7 +41,7 @@ const TradeListPage = () => {
       <HorizontalLine />
       <AscFilterButton />
       <FilterButton />
-      <ItemCardList data={data?.data.content} />
+      <ItemCardList data={data?.data.content} allList={true} />
       <Paging />
     </TradeListPageContainer>
   );

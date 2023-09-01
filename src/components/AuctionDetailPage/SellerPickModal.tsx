@@ -56,7 +56,7 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks, productData } : any) => 
                         >선택완료</StButton>
                         : <StButton
                             buttonColor='#D5D4D4'
-                            style={{cursor: "default"}}
+                            style={{cursor: "default", border: "none"}}
                         >선택완료</StButton>}
                 </ButtonWrapper>
             </Wrapper>

@@ -117,7 +117,7 @@ const AuctionRequestCard = ({ item }: any) => {
         <div>
           <Title>경매상황</Title>
           <GoodsTitle>{item?.testListResponseDto.bidCount}</GoodsTitle>
-          <Address>{item?.testListResponseDto.timeRemaining}</Address>
+          <Address>{item?.testListResponseDto.timeRemaining.days}</Address>
         </div>
       );
     }
