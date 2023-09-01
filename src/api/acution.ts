@@ -1,8 +1,8 @@
 import instance from ".";
 
 // 경매 전체 조회 ( 모든 사람이 조회 가능)
-export const getAuctionListApi = async (page: number, category: string | null) => {
-  const res = await instance.get(`/api/auction?page=${page}&size=${20}&sortBy=createdAt&isAsc=false${category}`);
+export const getAuctionListApi = async (page: number, category: string | null, asc: boolean) => {
+  const res = await instance.get(`/api/auction?page=${page}&size=${20}&sortBy=createdAt&isAsc=${asc}${category}`);
   return res;
 };
 

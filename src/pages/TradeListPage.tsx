@@ -35,7 +35,7 @@ const TradeListPage = () => {
       <TitleContainer>
         <TitleImage src={eyeImage} />
         <TitleText marginbottom="0" textalign="center">
-          INSIDE POCKET
+          POCKET TRADE
         </TitleText>
       </TitleContainer>
       <HorizontalLine />

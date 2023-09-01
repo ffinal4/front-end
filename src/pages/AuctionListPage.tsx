@@ -12,15 +12,17 @@ import FilterButton from "../components/common/FilterButton";
 import Paging from "../components/common/Paging/Paging";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../store/pagination";
-import { filterCategory } from "../store/filterCategory";
+import { filterAsc, filterCategory } from "../store/filterCategory";
+import AscFilterButton from "../components/common/AscFilterButton";
 
 const AuctionListPage = () => {
   const currentPage = useRecoilValue(pagination);
   const currentCategory = useRecoilValue(filterCategory);
+  const currentAsc = useRecoilValue(filterAsc);
   const navigate = useNavigate();
   const { isLoading, error, data } = useQuery(
-    ["auctionListPageData", currentPage, currentCategory],
-    () => getAuctionListApi(currentPage, currentCategory),
+    ["auctionListPageData", currentPage, currentCategory, currentAsc],
+    () => getAuctionListApi(currentPage, currentCategory, currentAsc),
     {
       refetchOnWindowFocus: false,
     }
@@ -51,6 +53,7 @@ const AuctionListPage = () => {
         </StButton>
       </TitleContainer>
       <HorizontalLine />
+      <AscFilterButton />
       <FilterButton />
       <CardContainer>
         {data?.data.info.content.map((item: any) => {
