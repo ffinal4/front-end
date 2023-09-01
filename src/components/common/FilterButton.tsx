@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { styled } from "styled-components";
 import { filterName } from "../../store/filterCategory";
 import arrow from "../../assets/icon/downarrow.png";
+import FilterModal from "./FilterModal";
 
 const FilterButton = () => {
   const currentFilter = useRecoilValue(filterName);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   return (
-    <FilterContainer>
+    <FilterContainer
+      onClick={() => {
+        setIsFilterOpen(!isFilterOpen);
+      }}
+    >
       <div>{currentFilter}</div>
       <FilterBox src={arrow} />
+      <ModalContainer>{isFilterOpen && <FilterModal />}</ModalContainer>
     </FilterContainer>
   );
 };
@@ -29,6 +36,8 @@ const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
+  cursor: pointer;
+  position: relative;
 `;
 
 const FilterBox = styled.img`
@@ -36,4 +45,10 @@ const FilterBox = styled.img`
   height: 24px;
 `;
 
+const ModalContainer = styled.div`
+  z-index: 999;
+  position: absolute;
+  top: 45px;
+  left: -823px;
+`;
 export default FilterButton;

@@ -1,18 +1,19 @@
-import React from "react";
-import { useRecoilState } from "recoil";
+import React, { useEffect } from "react";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { styled } from "styled-components";
 import { filterCategory, filterName } from "../../store/filterCategory";
 
 const FilterModal = ({ filterClick }: any) => {
   const [categorySelect, setCategorySelect] = useRecoilState(filterCategory);
-  const [currentFilterName, setCurrentFilterName] = useRecoilState(filterName);
+  const [, setCurrentFilterName] = useRecoilState(filterName);
+
   interface Kind {
     category: string | null;
     name: string;
   }
 
   const categoryArray: Kind[] = [
-    { category: "", name: "전체" },
+    { category: null, name: "전체" },
     { category: "WOMAN", name: "여성패션/잡화" },
     { category: "MAN", name: "남성패션/잡화" },
     { category: "FURNITURE", name: "가구/인테리어" },
@@ -44,13 +45,17 @@ const FilterModal = ({ filterClick }: any) => {
                 if (item.category !== null) {
                   setCategorySelect(`&category=${item.category}`);
                   setCurrentFilterName(item.name);
-                  filterClick();
+                  if (filterClick !== undefined) {
+                    filterClick();
+                  }
                   console.log(categorySelect);
                 } else {
                   setCategorySelect("");
                   setCurrentFilterName(item.name);
 
-                  filterClick();
+                  if (filterClick !== undefined) {
+                    filterClick();
+                  }
                 }
               }}
             >

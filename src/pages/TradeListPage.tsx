@@ -9,7 +9,7 @@ import ItemCardList from "../components/common/ItemCardList";
 import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
 import { pagination } from "../store/pagination";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { filterCategory } from "../store/filterCategory";
 
 const TradeListPage = () => {
