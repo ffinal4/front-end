@@ -1,7 +1,11 @@
 import React from "react";
+import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
+import { filterCategory } from "../../store/filterCategory";
 
-const FilterModal = () => {
+const FilterModal = ({ filterClick }: any) => {
+  const [categorySelect, setCategorySelect] = useRecoilState(filterCategory);
+
   interface Kind {
     category: string | null;
     name: string;
@@ -37,7 +41,14 @@ const FilterModal = () => {
             <CategoryKindWrapper
               key={item.category}
               onClick={() => {
-                alert("hi");
+                if (item.category !== null) {
+                  setCategorySelect(`&category=${item.category}`);
+                  filterClick();
+                  console.log(categorySelect);
+                } else {
+                  setCategorySelect("");
+                  filterClick();
+                }
               }}
             >
               <Text>{item.name}</Text>

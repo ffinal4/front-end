@@ -10,12 +10,18 @@ import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
 import { pagination } from "../store/pagination";
 import { useRecoilValue, useResetRecoilState } from "recoil";
+import { filterCategory } from "../store/filterCategory";
 
 const TradeListPage = () => {
   const currentPage = useRecoilValue(pagination);
-  const { isLoading, error, data } = useQuery(["tradeListPageData", currentPage], () => getGoodsApi(currentPage), {
-    refetchOnWindowFocus: false,
-  });
+  const currentCategory = useRecoilValue(filterCategory);
+  const { isLoading, error, data } = useQuery(
+    ["tradeListPageData", currentPage, currentCategory],
+    () => getGoodsApi(currentPage, currentCategory),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
   if (isLoading) return <div>Loading...</div>;
   console.log("물물교환페이지데이터", data);
   if (error) {

@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import category from "../../assets/icon/category.png";
-import CategorySelect from "./CategorySelect";
 import { useLocation, useNavigate } from "react-router-dom";
+import FilterModal from "./FilterModal";
+import { useRecoilValue } from "recoil";
+import { filterCategory } from "../../store/filterCategory";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const [categorySelect, setCategorySelect] = useState({
-    category: "",
-    name: "카테고리 선택",
-  });
-  const [selectBar, setSelectBar] = useState<boolean>(false);
+  const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
   const [pathnames, setPathnames] = useState(0);
-
+  const CategoryState = useRecoilValue(filterCategory);
   const tradeListOnclick = () => {
     navigate("/tradeList");
   };
@@ -34,23 +31,18 @@ const Navbar = () => {
       return setPathnames(0);
     }
   }, [location.pathname]);
+  console.log(CategoryState);
 
   return (
     <CategoryHeaderContainer>
       <Wrapper>
         <CategoryContainer
           onClick={() => {
-            setSelectBar(!selectBar);
+            setIsCategoryOpen(!isCategoryOpen);
           }}
         >
           <CategoryImg src={category} />
-          {selectBar && (
-            <CategorySelect
-              categorySelect={categorySelect}
-              setCategorySelect={setCategorySelect}
-              setSelectBar={setSelectBar}
-            />
-          )}
+          {isCategoryOpen && <FilterModal filterClick={tradeListOnclick} />}
         </CategoryContainer>
         <MenuContainer>
           <Menu
