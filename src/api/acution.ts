@@ -1,10 +1,8 @@
 import instance from ".";
 
 // 경매 전체 조회 ( 모든 사람이 조회 가능)
-export const getAuctionListApi = async () => {
-  const res = await instance.get(
-    `/api/auction?page=${1}&size=${20}&sortBy=createdAt&isAsc=${false}`
-  );
+export const getAuctionListApi = async (page: number, category: string | null, asc: boolean) => {
+  const res = await instance.get(`/api/auction?page=${page}&size=${20}&sortBy=createdAt&isAsc=${asc}${category}`);
   return res;
 };
 
@@ -43,9 +41,7 @@ export const getAuctionBidListChoiceApi = async (auctionId: number) => {
 
 // 내 경매현황 전체조회
 export const getMyAuctionCheckApi = async () => {
-  const res = await instance.get(
-    "/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUEST"
-  );
+  const res = await instance.get("/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUEST");
   return res;
 };
 

@@ -51,7 +51,7 @@ const ContentContainer = styled.div`
     height: 240px;
     display: flex;
     flex-wrap: wrap;
-    overflow-y: scroll;
+    overflow-y: auto;
 `;
 
 const ContentText = styled.div`

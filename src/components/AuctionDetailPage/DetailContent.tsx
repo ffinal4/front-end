@@ -15,6 +15,12 @@ import SuccessBIdModal from "./SuccessBIdModal";
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
   const newData = data?.data.info.auctionResponseDto.goodsResponseDto;
+  const splitDate = newData?.createdAt.split("T")[0];
+  const targetDate : any = new Date(splitDate);
+  const currentDate : any = new Date();
+  const newDate = currentDate - targetDate;
+  const result = Math.floor(newDate / (1000 * 60 * 60 * 24));
+  console.log("며칠전", result);
   // console.log("newData", newData);
 
   const [conditional, setConditional] = useState({
@@ -24,11 +30,11 @@ const DetailContent = ({ data }: any) => {
   });
   const [sellerPicks, setSellerPicks] = useState({
     pickModal: false,
-    SuccessBidModal: false,
+    successBidModal: false,
     bidId: "",
   });
   const { bid, modal, auction } = conditional;
-  const { pickModal, SuccessBidModal, bidId } = sellerPicks;
+  const { pickModal, successBidModal, bidId } = sellerPicks;
 
   
 
@@ -57,11 +63,11 @@ const DetailContent = ({ data }: any) => {
         <BoxWrapper>
           <TextWrapper>
             <SmallBox src={Like} />
-            <ColorText color="#ADADAD">12</ColorText>
+            <ColorText color="#ADADAD">0</ColorText>
           </TextWrapper>
           <TextWrapper>
             <SmallBox src={Time} />
-            <ColorText color="#ADADAD">10일 전</ColorText>
+            <ColorText color="#ADADAD">{result}일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
             <AucModalBtn data={data} navigate={navigate} />
@@ -91,7 +97,7 @@ const DetailContent = ({ data }: any) => {
         </TextLine>
         <TextLine style={{ gap: "54px" }}>
           <ColorText color="#717171">하한가</ColorText>
-          <ColorText color="#222020">{data.data.info.auctionResponseDto.lowPrice.toLocaleString()}PP</ColorText>
+          <ColorText color="#222020">{data.data.info.auctionResponseDto.lowPrice.toLocaleString()}</ColorText>
         </TextLine>
       </TextContainer>
       <ColorText color="#717171">*상대방이 교환신청을 수락해야 채팅이 가능해요!</ColorText>
@@ -109,7 +115,7 @@ const DetailContent = ({ data }: any) => {
             sellerPicks={sellerPicks}
             setSellerPicks={setSellerPicks} />
       }
-      {(SuccessBidModal)
+      {(successBidModal)
         && <SuccessBIdModal
             productData={data}
             sellerPicks={sellerPicks}

@@ -2,15 +2,18 @@ import React from "react";
 import { styled } from "styled-components";
 import ItemCard from "./ItemCard";
 import EmptyPocket from "./EmptyPocket";
+import EmptyList from "./EmptyList";
 
-const ItemCardList = ({ data }: any) => {
+const ItemCardList = ({ data, allList }: any) => {
   return (
     <ItemCardContainer>
-      {(data.length > 0)
+      {(data?.length > 0)
         ? data?.map((item: any) => {
           return <ItemCard key={item.goodsId} item={item} />;
         })
-        : <EmptyPocket />}
+        : ((allList)
+          ? <EmptyList />
+          : <EmptyPocket />)}
     </ItemCardContainer>
   );
 };

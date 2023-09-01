@@ -21,6 +21,7 @@ import {
 } from "../../api/acution";
 import EmptyPocket from "../common/EmptyPocket";
 import AucBidCard from "./AucBidCard";
+import BidCompleteModal from "./BidCompleteModal";
 
 const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
   const auctionId = productData.data.info.auctionResponseDto.auctionId;
@@ -33,6 +34,11 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
   );
   console.log("입찰품 목록(낙찰)", data);
 
+  const [wonBidChoice, setWonBidChoice] = useState({
+    sureModal: false,
+    chatModal: false,
+  });
+  const { sureModal, chatModal } = wonBidChoice;
   const [checkBox, setCheckBox] = useState<any[]>([]);
   const [bidSellerPick, setBidSellerPick] = useState<{ bidId: number[] }>({
     bidId: [],
@@ -49,7 +55,7 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
     <div>
       <ModalBackgroundBox
         onClick={() =>
-          setSellerPicks({ ...sellerPicks, SuccessBidModal: false })
+          setSellerPicks({ ...sellerPicks, successBidModal: false })
         }
       />
       <ModalContainer>
@@ -58,7 +64,7 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
           <CloseBtn
             src={Close}
             onClick={() =>
-              setSellerPicks({ ...sellerPicks, SuccessBidModal: false })
+              setSellerPicks({ ...sellerPicks, successBidModal: false })
             }
           />
         </ModalTitle>
@@ -80,7 +86,10 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
                 선택완료
               </StButton>
             ) : (
-              <StButton buttonColor="#D5D4D4" style={{ cursor: "default" }}>
+              <StButton
+                buttonColor="#D5D4D4"
+                style={{ cursor: "default", border: "none" }}
+              >
                 선택완료
               </StButton>
             )}
@@ -114,6 +123,24 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
                 <AucBidCard />
                 <AucBidCard /> */}
         </MainContainer>
+        {sureModal && (
+          <BidCompleteModal
+            wonBidChoice={wonBidChoice}
+            setWonBidChoice={setWonBidChoice}
+            sellerPicks={sellerPicks}
+            setSellerPicks={setSellerPicks}
+            modals={2}
+          />
+        )}
+        {chatModal && (
+          <BidCompleteModal
+            wonBidChoice={wonBidChoice}
+            setWonBidChoice={setWonBidChoice}
+            sellerPicks={sellerPicks}
+            setSellerPicks={setSellerPicks}
+            modals={3}
+          />
+        )}
         <Paging />
       </ModalContainer>
     </div>

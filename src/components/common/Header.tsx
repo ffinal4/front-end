@@ -13,13 +13,19 @@ import peeppo from "../../assets/icon/peeppo.png";
 import Navbar from "./Navbar";
 import { postLogoutApi } from "../../api/users";
 import AlarmButton from "./AlarmButton";
+import { useResetRecoilState } from "recoil";
+import { filterAsc, filterCategory, filterName } from "../../store/filterCategory";
+import { pagination } from "../../store/pagination";
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const insertedToken: string | null = localStorage.getItem("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
+  const resetCategory = useResetRecoilState(filterCategory);
+  const resetCategoryName = useResetRecoilState(filterName);
+  const restPage = useResetRecoilState(pagination);
+  const resetAsc = useResetRecoilState(filterAsc);
   useEffect(() => {
     setIsLoggedIn(!!insertedToken);
   }, [insertedToken]);
@@ -103,12 +109,20 @@ const Header = () => {
                   src={mypage}
                   onClick={() => {
                     navigate("/mypage");
+                    resetCategory();
+                    resetCategoryName();
+                    restPage();
+                    resetAsc();
                   }}
                 />
                 <Peeppo
                   src={peeppo}
                   onClick={() => {
                     navigate("/myPocket");
+                    resetCategory();
+                    resetCategoryName();
+                    restPage();
+                    resetAsc();
                   }}
                 />
               </IconContainer>

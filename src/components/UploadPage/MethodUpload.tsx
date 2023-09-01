@@ -25,25 +25,25 @@ const MethodUpload = ({ uploadData, setUploadData, failedUpload }: any) => {
   return (
     <LineContainer>
         <RequiredText
-          style={{color: `${(failedUpload && uploadData.data.tradeType === "") && "#DF3737"}`}}
+          style={{color: `${(failedUpload && uploadData.data.tradeType === "") ? "#DF3737" : "#222020"}`}}
         >교환방법*</RequiredText>
         <AllWrapper>
           <Wrapper>
               <Button
                   buttonColor={(uploadData.data.tradeType === "직거래") ? "#FFCA64" : ""}
-                  style={{fontWeight: `${(uploadData.data.tradeType === "직거래") && "700"}`}}
+                  style={{fontWeight: `${(uploadData.data.tradeType === "직거래") ? "700" : "400"}`}}
                   onClick={onCheckDirectHandler}
               >직거래
               </Button>
               <Button
                   buttonColor={(uploadData.data.tradeType === "택배") ? "#FFCA64" : ""}
-                  style={{fontWeight: `${(uploadData.data.tradeType === "택배") && "700"}`}}
+                  style={{fontWeight: `${(uploadData.data.tradeType === "택배") ? "700" : "400"}`}}
                   onClick={onCheckParcelHandler}
               >택배
               </Button>
               <Button
                   buttonColor={(uploadData.data.tradeType === "상관없음") ? "#FFCA64" : ""}
-                  style={{fontWeight: `${(uploadData.data.tradeType === "상관없음") && "700"}`}}
+                  style={{fontWeight: `${(uploadData.data.tradeType === "상관없음") ? "700" : "400"}`}}
                   onClick={onCheckNoMatterHandler}
               >상관없음
               </Button>

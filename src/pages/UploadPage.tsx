@@ -89,7 +89,6 @@ const UploadPage = () => {
       || uploadData.wanted.category === ""
       || (uploadData.data.ratingCheck === true && uploadData.data.sellerPrice === "")
     ) {
-      alert("필수 항목을 입력해주세요!");
       setFailedUpload(true);
     } else {
       try {

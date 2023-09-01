@@ -35,8 +35,8 @@ const AlarmButton = () => {
 
   return (
     <AlarmWrapper>
-        <Alarm src={NotiAlarm} />
-        {/* <Alarm src={alarm} /> */}
+        {/* <Alarm src={NotiAlarm} /> */}
+        <Alarm src={alarm} />
     </AlarmWrapper>
   )
 };
