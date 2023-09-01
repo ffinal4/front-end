@@ -4,10 +4,12 @@ import { useMutation } from 'react-query';
 import { styled } from 'styled-components';
 import Siren from "../../assets/icon/siren.png";
 import Group from "../../assets/icon/group.png";
+import { deleteAuctionCancelApi } from '../../api/acution';
 
 const AucModalBtn = ({ data, navigate } : any) => {
 
     const divRef = useRef<HTMLDivElement>(null);
+    const auctionId = data?.data.info.auctionResponseDto.auctionId;
 
     useEffect(() => {
         const handleClickOutside = (event : any) => {
@@ -27,6 +29,13 @@ const AucModalBtn = ({ data, navigate } : any) => {
           alert("게시글이 삭제되었습니다.");
           navigate("/");
         },
+    });
+    const cancelMutate = useMutation(() => deleteAuctionCancelApi(auctionId), {
+      onSuccess: (res) => {
+        console.log("경매취소성공!", res);
+        alert("경매가 취소되었습니다.");
+        navigate("/");
+      },
     });
     
     const [conditional, setConditional] = useState({
@@ -58,14 +67,11 @@ const AucModalBtn = ({ data, navigate } : any) => {
                     borderTop: "1px solid #D5D4D4",
                     borderRadius: "5px 5px 0px 0px",
                   }}
+                  onClick={() => cancelMutate.mutate()}
               >
-                  예약중
+                  경매종료
               </ModalButton>
-              <ModalButton>거래완료</ModalButton>
               <ModalButton>게시글 수정</ModalButton>
-              {(data.data.info.auctionResponseDto.ratingCheck)
-                ? <ModalBtnDisabled>레이팅 요청</ModalBtnDisabled>
-                : <ModalButton>레이팅 요청</ModalButton>}
               <ModalButton
                   style={{ borderRadius: "0px 0px 5px 5px" }}
                   onClick={() => {

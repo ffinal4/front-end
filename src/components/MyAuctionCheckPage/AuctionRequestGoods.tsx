@@ -1,38 +1,39 @@
 import React from "react";
 import { styled } from "styled-components";
 import { ExchangeImg, GoodsImg } from "../TradeRequestPage/TradeRequestCard";
-import goods from "../../assets/icon/peeppo.png";
 import timer from "../../assets/icon/timer.png";
 
 interface AuctionRequestGoodsProps {
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
+  item: any;
 }
 
 const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
   requestState,
   setRequestState,
+  item,
 }) => {
   const { request } = requestState;
 
   const auctionGoodsState = () => {
-    if (request === "경매중") {
-      return <GoodsImg src={goods} />;
+    if (request === item?.testListResponseDto.auctionStatus) {
+      return <GoodsImg src={item?.testListResponseDto.image} />;
     }
-    if (request === "경매종료") {
-      return <GoodsImg src={goods} />;
+    if (request === item?.testListResponseDto.auctionStatus) {
+      return <GoodsImg src={item?.testListResponseDto.image} />;
     }
-    if (request === "교환완료") {
+    if (request === item?.testListResponseDto.auctionStatus) {
       return (
         <GoodsContainer>
-          <GoodsImg src={goods} />
+          <GoodsImg src={item?.testListResponseDto.image} />
           <ExchangeImg src={timer} />
-          <GoodsImg src={goods} />
+          <GoodsImg src={item?.testListResponseDto.bidImg} />
         </GoodsContainer>
       );
     }
-    if (request === "입찰실패") {
-      return <GoodsImg src={goods} />;
+    if (request === item?.testListResponseDto.auctionStatus) {
+      return <GoodsImg src={item?.testListResponseDto.image} />;
     }
   };
   return <div>{auctionGoodsState()}</div>;

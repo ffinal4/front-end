@@ -216,7 +216,6 @@ export const GoodsImg = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 5px;
-  border: 1px solid black;
   cursor: pointer;
 `;
 

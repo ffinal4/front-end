@@ -35,14 +35,17 @@ const AuctionUploadPage = () => {
   const bidPrice: number[] = [1000, 5000, 10000, 50000];
   const locateLimit = lowPrice.toLocaleString();
 
-  const onClickTwelveHourHandler = () => {
+  const onClickThirtyMinutesHandler = () => {
     setProductBid({ ...productBid, endTime: "30분" });
   };
-  const onClickOneDayHandler = () => {
+  const onClickOneHoursHandler = () => {
     setProductBid({ ...productBid, endTime: "1시간" });
   };
-  const onClickThreeDayHandler = () => {
+  const onClickThreeHoursHandler = () => {
     setProductBid({ ...productBid, endTime: "3시간" });
+  };
+  const onClickOneDayHandler = () => {
+    setProductBid({ ...productBid, endTime: "1일" });
   };
 
   const onClickAddPriceHandler = (item: number) => {
@@ -70,14 +73,17 @@ const AuctionUploadPage = () => {
           <RequiredText style={{ color: `${failed && endTime === "" && "#DF3737"}` }}>경매기간*</RequiredText>
           <FirstWrapper>
             <ButtonWrapper>
-              <Button buttonColor={endTime === "30분" ? "#9ACBF9" : "white"} onClick={onClickTwelveHourHandler}>
+              <Button buttonColor={endTime === "30분" ? "#9ACBF9" : "white"} onClick={onClickThirtyMinutesHandler}>
                 30분
               </Button>
-              <Button buttonColor={endTime === "1시간" ? "#9ACBF9" : "white"} onClick={onClickOneDayHandler}>
+              <Button buttonColor={endTime === "1시간" ? "#9ACBF9" : "white"} onClick={onClickOneHoursHandler}>
                 1시간
               </Button>
-              <Button buttonColor={endTime === "3시간" ? "#9ACBF9" : "white"} onClick={onClickThreeDayHandler}>
+              <Button buttonColor={endTime === "3시간" ? "#9ACBF9" : "white"} onClick={onClickThreeHoursHandler}>
                 3시간
+              </Button>
+              <Button buttonColor={endTime === "1일" ? "#9ACBF9" : "white"} onClick={onClickOneDayHandler}>
+                1일
               </Button>
             </ButtonWrapper>
             {failed && endTime === "" && (

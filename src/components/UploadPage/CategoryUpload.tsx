@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import CategorySelect from "../common/CategorySelect";
+import Up from "../../assets/icon/uparrow.png";
+import Down from "../../assets/icon/downarrow.png";
 
 const CategoryUpload = ({ setUploadData, uploadData, failedUpload }: any) => {
   const [categorySelect, setCategorySelect] = useState({
@@ -28,7 +30,11 @@ const CategoryUpload = ({ setUploadData, uploadData, failedUpload }: any) => {
       <RightWrapper>
         <SelectBar>
           <Text>{name}</Text>
-          <ChoiceBox onClick={onClickDropDownHandelr}></ChoiceBox>
+          {selectBar ? (
+            <ChoiceBox src={Up} onClick={onClickDropDownHandelr}></ChoiceBox>
+          ) : (
+            <ChoiceBox src={Down} onClick={onClickDropDownHandelr}></ChoiceBox>
+          )}
         </SelectBar>
         {selectBar && (
           <SelectContainer>
@@ -83,10 +89,10 @@ export const Text = styled.div`
   line-height: 150%;
 `;
 
-export const ChoiceBox = styled.div`
+const ChoiceBox = styled.img`
   width: 24px;
   height: 24px;
-  background-color: #d9d9d9;
+  object-fit: contain;
   cursor: pointer;
 `;
 
