@@ -56,3 +56,17 @@ export const getBidAuctionApi = async () => {
   );
   return res;
 };
+
+// 경매 등록자가 관심있는 입찰품 선택
+export const postSellerPicksApi = async (body : any, auctionId : number) => {
+  const res = await instance.post(`/api/auction/${auctionId}/choice/bids`, body);
+  return res;
+};
+
+// 경매 
+
+// 경매 취소
+export const deleteAuctionCancelApi = async (auctionId : number) => {
+  const res = await instance.delete(`/api/auction/${auctionId}`);
+  return res;
+};

@@ -3,9 +3,11 @@ import { styled } from 'styled-components';
 import ItemCard from '../common/ItemCard';
 import ArrowLeft from '../../assets/images/arrowleft.png'
 import ArrowRight from '../../assets/images/arrowright.png'
+import AuctionCard from '../common/AuctionCard';
 
-const RecommendCard = ({ data } : any) => {
+const RecommendCard = ({ data, auction } : any) => {
 
+    const imageLength = Math.floor(data?.length / 4);
     const slideRef = useRef<HTMLDivElement>(null);
     const [currentImg, setCurrentImg] = useState<number>(0);
     const imageWidth : number = 1152;
@@ -19,7 +21,7 @@ const RecommendCard = ({ data } : any) => {
     }, [slideRange]);
 
     const moveToNextSlide = () => {
-        if (currentImg === 4) return;
+        if (currentImg === imageLength) return;
         setCurrentImg(currentImg + 1);
     };
 
@@ -31,24 +33,31 @@ const RecommendCard = ({ data } : any) => {
   return (
     <LayoutContainer>
         <HeadLineContainer>
-            <HeaderText>이런 물건은 어떠세요?</HeaderText>
-            <TitleText>{currentImg + 1}/5</TitleText>
+            {(auction)
+                ? <HeaderText>지금 경매 중인 다른 물건들</HeaderText>
+                : <HeaderText>이런 물건은 어떠세요?</HeaderText>}
+            {(data?.length > 0) && <TitleText>{currentImg + 1}/{imageLength + 1}</TitleText>}
         </HeadLineContainer>
         <RecommendList>
-            <SlideBtnWrapper>
+            {(data?.length > 4)
+                && <SlideBtnWrapper>
                 <SlideButton onClick={moveToPrevSlide}>
                     <img src={ArrowLeft} alt=''/>
                 </SlideButton>
                 <SlideButton onClick={moveToNextSlide}>
                     <img src={ArrowRight} alt=''/>
                 </SlideButton>
-            </SlideBtnWrapper>
+            </SlideBtnWrapper>}
             <CardListContainer ref={slideRef}>
                 {data?.map((item : any) => {
                     return (
-                        <ImageCard>
-                            <ItemCard key={item.goodsId} item={item} />
-                        </ImageCard>
+                        (auction)
+                            ? <ImageCard>
+                                <AuctionCard key={item.auctionid} item={item} />
+                            </ImageCard>
+                            : <ImageCard>
+                                <ItemCard key={item.goodsId} item={item} />
+                            </ImageCard>
                     )
                 })}
                 {/* <ImageCard>
