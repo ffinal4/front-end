@@ -33,6 +33,7 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
         sureModal: false,
         chatModal: false
     });
+    const { sureModal, chatModal } = wonBidChoice
     const [checkBox, setCheckBox] = useState<any[]>([]);
     const [bidSellerPick, setBidSellerPick] = useState<{bidId: number[]}>({
         bidId: []
@@ -47,13 +48,13 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
 
   return (
     <div>
-        <ModalBackgroundBox onClick={() => setSellerPicks({...sellerPicks, SuccessBidModal: false})}/>
+        <ModalBackgroundBox onClick={() => setSellerPicks({...sellerPicks, successBidModal: false})}/>
         <ModalContainer>
             <ModalTitle>
             WHO WON THE BID?
                 <CloseBtn
                     src={Close}
-                    onClick={() => setSellerPicks({...sellerPicks, SuccessBidModal: false})}
+                    onClick={() => setSellerPicks({...sellerPicks, successBidModal: false})}
                 />
             </ModalTitle>
             <ModalSubtitle>최종 낙찰품 선택하기</ModalSubtitle>
@@ -70,7 +71,7 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
                         >선택완료</StButton>
                         : <StButton
                             buttonColor='#D5D4D4'
-                            style={{cursor: "default"}}
+                            style={{cursor: "default", border: "none"}}
                         >선택완료</StButton>}
                 </ButtonWrapper>
             </Wrapper>
@@ -101,7 +102,7 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
                 <AucBidCard />
                 <AucBidCard /> */}
             </MainContainer>
-            {(wonBidChoice)
+            {(sureModal)
                 && <BidCompleteModal
                     wonBidChoice={wonBidChoice}
                     setWonBidChoice={setWonBidChoice}
@@ -109,6 +110,14 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
                     setSellerPicks={setSellerPicks}
                     modals={2}
                 />}
+            {(chatModal)
+                && <BidCompleteModal
+                    wonBidChoice={wonBidChoice}
+                    setWonBidChoice={setWonBidChoice}
+                    sellerPicks={sellerPicks}
+                    setSellerPicks={setSellerPicks}
+                    modals={3}
+            />}
             <Paging />
         </ModalContainer>
     </div>

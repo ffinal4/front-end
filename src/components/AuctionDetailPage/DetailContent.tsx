@@ -30,11 +30,11 @@ const DetailContent = ({ data }: any) => {
   });
   const [sellerPicks, setSellerPicks] = useState({
     pickModal: false,
-    SuccessBidModal: false,
+    successBidModal: false,
     bidId: "",
   });
   const { bid, modal, auction } = conditional;
-  const { pickModal, SuccessBidModal, bidId } = sellerPicks;
+  const { pickModal, successBidModal, bidId } = sellerPicks;
 
   
 
@@ -97,7 +97,7 @@ const DetailContent = ({ data }: any) => {
         </TextLine>
         <TextLine style={{ gap: "54px" }}>
           <ColorText color="#717171">하한가</ColorText>
-          <ColorText color="#222020">{data.data.info.auctionResponseDto.lowPrice.toLocaleString()}PP</ColorText>
+          <ColorText color="#222020">{data.data.info.auctionResponseDto.lowPrice.toLocaleString()}</ColorText>
         </TextLine>
       </TextContainer>
       <ColorText color="#717171">*상대방이 교환신청을 수락해야 채팅이 가능해요!</ColorText>
@@ -115,7 +115,7 @@ const DetailContent = ({ data }: any) => {
             sellerPicks={sellerPicks}
             setSellerPicks={setSellerPicks} />
       }
-      {(SuccessBidModal)
+      {(successBidModal)
         && <SuccessBIdModal
             productData={data}
             sellerPicks={sellerPicks}

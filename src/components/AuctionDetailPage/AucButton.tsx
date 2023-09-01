@@ -33,7 +33,7 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
           <StButton
             buttonColor="#58ABF7"
             style={{ color: "#FCFCFC", border: "2px solid #222020" }}
-            onClick={() => setSellerPicks({...sellerPicks, SuccessBidModal: true})}
+            onClick={() => setSellerPicks({...sellerPicks, successBidModal: true})}
           >
             낙찰품 선택
           </StButton>

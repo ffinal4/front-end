@@ -33,22 +33,20 @@ const BidCompleteModal = ({
   const onClickCheckBtnHandler = () => {
     setBidCheck(false);
     setConditional({...conditional, bid: false});
-    navigate(`/auctiondetail/${data.data.info.auctionResponseDto.auctionId}`);
+    navigate(`/auctiondetail/${data?.data.info.auctionResponseDto.auctionId}`);
   };
   const onClickSureBtnHandler = () => {
-    setBidCheck(false);
-    setConditional({...conditional, bid: false});
-    navigate(`/auctiondetail/${data.data.info.auctionResponseDto.auctionId}`);
+    setWonBidChoice({...wonBidChoice, sureModal: false});
+    setWonBidChoice({...wonBidChoice, chatModal: true});
   };
   const onClickSuccessBidBtnHandler = () => {
-    setBidCheck(false);
-    setConditional({...conditional, bid: false});
-    navigate(`/auctiondetail/${data.data.info.auctionResponseDto.auctionId}`);
+    setWonBidChoice({...wonBidChoice, chatModal: false});
+    navigate("/chat");
   };
 
-  const ModalComponent = () => {
+  const modalComponent = () => {
     if (newModals === 1) {
-      <div>
+      return <div>
         <CancelButtonContainer>
             <CancelImg
               src={remove}
@@ -75,20 +73,20 @@ const BidCompleteModal = ({
           </ContentsContainer>
         </div>
     } else if (newModals === 2) {
-      <div>
+      return <div>
         <CancelButtonContainer>
             <CancelImg
               src={remove}
               onClick={() => {
-                setBidCheck(false);
+                setWonBidChoice({...wonBidChoice, sureModal: false});
               }}
             />
           </CancelButtonContainer>
         <ContentsContainer>
-          <Title>GAME ON!</Title>
-            <Content>입찰을 완료했습니다.</Content>
+          <Title>ARE YOU SURE?</Title>
+            <Content>선택한 물건을 최종 낙찰하시겠어요?</Content>
             <SubContent>
-              내 물건이 마음에 든다면 경매자가 Seller’s Pick으로 지정할 거예요!
+              한 번 낙찰한 경매는 다시 되돌릴 수 없어요.
             </SubContent>
             <ButtonContainer>
               <StCompleteBt
@@ -96,26 +94,27 @@ const BidCompleteModal = ({
                 style={{color: "#FCFCFC"}}
                 onClick={onClickSureBtnHandler}
               >
-                확인
+                낙찰하기
               </StCompleteBt>
             </ButtonContainer>
           </ContentsContainer>
         </div>
     } else {
-      <div>
+      return <div>
         <CancelButtonContainer>
             <CancelImg
               src={remove}
               onClick={() => {
-                setBidCheck(false);
+                setWonBidChoice({...wonBidChoice, chatModal: false});
+                setSellerPicks({...sellerPicks, successBidModal: false});
               }}
             />
           </CancelButtonContainer>
         <ContentsContainer>
-          <Title>GAME ON!</Title>
-            <Content>입찰을 완료했습니다.</Content>
+          <Title>SUCCESSFUL BID!</Title>
+            <Content>최종 낙찰되었습니다.</Content>
             <SubContent>
-              내 물건이 마음에 든다면 경매자가 Seller’s Pick으로 지정할 거예요!
+              지금 바로 상대방과 채팅을 시작해 보세요!
             </SubContent>
             <ButtonContainer>
               <StCompleteBt
@@ -123,7 +122,7 @@ const BidCompleteModal = ({
                 style={{color: "#FCFCFC"}}
                 onClick={onClickSuccessBidBtnHandler}
               >
-                확인
+                채팅하기
               </StCompleteBt>
             </ButtonContainer>
           </ContentsContainer>
@@ -135,30 +134,7 @@ const BidCompleteModal = ({
     <div>
       <ModalBackground />
       <ModalContainer>
-        <CancelButtonContainer>
-          <CancelImg
-            src={remove}
-            onClick={() => {
-              setBidCheck(false);
-            }}
-          />
-        </CancelButtonContainer>
-        <ContentsContainer>
-          <Title>GAME ON!</Title>
-          <Content>입찰을 완료했습니다.</Content>
-          <SubContent>
-            내 물건이 마음에 든다면 경매자가 Seller’s Pick으로 지정할 거예요!
-          </SubContent>
-          <ButtonContainer>
-            <StCompleteBt
-              buttonColor="#58ABF7"
-              style={{color: "#FCFCFC"}}
-              onClick={onClickCheckBtnHandler}
-            >
-              확인
-            </StCompleteBt>
-          </ButtonContainer>
-        </ContentsContainer>
+        {modalComponent()}
       </ModalContainer>
     </div>
   )
