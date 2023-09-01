@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FilterModal from "./FilterModal";
 import { useResetRecoilState } from "recoil";
 import { filterCategory, filterName } from "../../store/filterCategory";
+import { pagination } from "../../store/pagination";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Navbar = () => {
   const [pathnames, setPathnames] = useState(0);
   const resetCategory = useResetRecoilState(filterCategory);
   const resetCategoryName = useResetRecoilState(filterName);
-
+  const restPage = useResetRecoilState(pagination);
   const tradeListOnclick = () => {
     navigate("/tradeList");
   };
@@ -51,6 +52,7 @@ const Navbar = () => {
               navigate("/tradeList");
               resetCategory();
               resetCategoryName();
+              restPage();
             }}
             style={{
               color: `${pathnames === 2 ? "#EC8D49" : "#222020"}`,
@@ -64,6 +66,7 @@ const Navbar = () => {
               navigate("/auctionlist");
               resetCategory();
               resetCategoryName();
+              restPage();
             }}
             style={{
               color: `${pathnames === 1 ? "#58ABF7" : "#222020"}`,
@@ -73,7 +76,10 @@ const Navbar = () => {
             포켓경매
           </Menu>
           <Menu
-            onClick={() => navigate("/ratingstart")}
+            onClick={() => {
+              navigate("/ratingstart");
+              restPage();
+            }}
             style={{
               color: `${pathnames === 3 ? "#EC8D49" : "#222020"}`,
               fontWeight: `${pathnames === 3 ? "700" : "400"}`,
