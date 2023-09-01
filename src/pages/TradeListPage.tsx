@@ -9,20 +9,12 @@ import ItemCardList from "../components/common/ItemCardList";
 import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
 import { pagination } from "../store/pagination";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { filterCategory } from "../store/filterCategory";
 
 const TradeListPage = () => {
   const currentPage = useRecoilValue(pagination);
   const currentCategory = useRecoilValue(filterCategory);
-  const resetPage = useResetRecoilState(pagination);
-  // 컴포넌트 언마운트시 페이지값 1로 초기화
-  useEffect(() => {
-    return () => {
-      resetPage();
-    };
-  }, []);
-
   const { isLoading, error, data } = useQuery(
     ["tradeListPageData", currentPage, currentCategory],
     () => getGoodsApi(currentPage, currentCategory),
