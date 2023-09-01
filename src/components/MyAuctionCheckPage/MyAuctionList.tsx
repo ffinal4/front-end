@@ -43,7 +43,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
-  const { isLoading, data, error }: any = useQuery(
+  const { data, isLoading, error }: any = useQuery(
     "getMyAuctionCheckData",
     getMyAuctionCheckApi
   );
@@ -60,6 +60,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
       bidAuctionTap: true,
     });
   };
+  console.log("경매현황페이지 내경매 데이터", data);
 
   return (
     <div>
@@ -99,9 +100,10 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
         </FilterContainer>
 
         <CardContainer>
-          <AuctionRequestCard />
-          <AuctionRequestCard />
-          <AuctionRequestCard />
+          {data?.data.content.length > 0 &&
+            data?.data.content?.map((item: any) => {
+              return <AuctionRequestCard key={item.auctionId} item={item} />;
+            })}
         </CardContainer>
       </TradeRequestListContainer>
     </div>

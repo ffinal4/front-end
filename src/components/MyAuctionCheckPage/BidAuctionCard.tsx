@@ -11,13 +11,13 @@ import {
   TradeImg,
   TradeImgContainer,
 } from "../TradeRequestPage/TradeRequestCard";
-import AuctionRequestGoods from "./AuctionRequestGoods";
 import { StAuctionIng, Title } from "./AuctionRequestCard";
 import RequestStateButton from "../TradeRequestPage/RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import auctionrequest from "../../assets/icon/auctionrequest.png";
 import auctioncomplete from "../../assets/icon/auctioncomplete.png";
 import auctiontradecomplete from "../../assets/icon/auctiontradecomplete.png";
+import BidAuctionGoods from "./BidAuctionGoods";
 
 const BidAuctionCard = () => {
   const [requestState, setRequestState] = useState({ request: "입찰실패" });
@@ -152,7 +152,7 @@ const BidAuctionCard = () => {
         {auctionRequestState()}
       </Container>
       <GoodsContainer>
-        <AuctionRequestGoods
+        <BidAuctionGoods
           requestState={requestState}
           setRequestState={setRequestState}
         />

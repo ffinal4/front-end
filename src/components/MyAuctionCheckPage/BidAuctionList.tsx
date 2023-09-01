@@ -96,8 +96,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
         </FilterContainer>
 
         <CardContainer>
-          <BidAuctionCard />
-          <BidAuctionCard />
+          <BidAuctionCard />;
         </CardContainer>
       </TradeRequestListContainer>
     </div>
