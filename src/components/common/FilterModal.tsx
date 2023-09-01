@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { styled } from "styled-components";
 import { filterCategory, filterName } from "../../store/filterCategory";
+import { pagination } from "../../store/pagination";
 
 const FilterModal = ({ filterClick }: any) => {
   const [categorySelect, setCategorySelect] = useRecoilState(filterCategory);
   const [, setCurrentFilterName] = useRecoilState(filterName);
+  const resetPage = useResetRecoilState(pagination);
 
   interface Kind {
     category: string | null;
@@ -45,16 +46,19 @@ const FilterModal = ({ filterClick }: any) => {
                 if (item.category !== null) {
                   setCategorySelect(`&category=${item.category}`);
                   setCurrentFilterName(item.name);
+                  resetPage();
                   if (filterClick !== undefined) {
                     filterClick();
+                    resetPage();
                   }
-                  console.log(categorySelect);
                 } else {
                   setCategorySelect("");
                   setCurrentFilterName(item.name);
+                  resetPage();
 
                   if (filterClick !== undefined) {
                     filterClick();
+                    resetPage();
                   }
                 }
               }}

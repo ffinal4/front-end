@@ -10,15 +10,26 @@ import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import FilterButton from "../components/common/FilterButton";
 import Paging from "../components/common/Paging/Paging";
+import { useRecoilValue } from "recoil";
+import { pagination } from "../store/pagination";
+import { filterCategory } from "../store/filterCategory";
 
 const AuctionListPage = () => {
+  const currentPage = useRecoilValue(pagination);
+  const currentCategory = useRecoilValue(filterCategory);
   const navigate = useNavigate();
-  const { isLoading, error, data } = useQuery("auctionListPageData", getAuctionListApi, {
-    refetchOnWindowFocus: false,
-  });
+  const { isLoading, error, data } = useQuery(
+    ["auctionListPageData", currentPage, currentCategory],
+    () => getAuctionListApi(currentPage, currentCategory),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
   if (isLoading) return <div>Loading...</div>;
   console.log("옥션페이지데이터", data);
-
+  if (error) {
+    console.log(error);
+  }
   return (
     <AuctionListPageContainer>
       <TitleContainer>

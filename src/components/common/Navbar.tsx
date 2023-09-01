@@ -3,15 +3,17 @@ import { styled } from "styled-components";
 import category from "../../assets/icon/category.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import FilterModal from "./FilterModal";
-import { useRecoilValue } from "recoil";
-import { filterCategory } from "../../store/filterCategory";
+import { useResetRecoilState } from "recoil";
+import { filterCategory, filterName } from "../../store/filterCategory";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
   const [pathnames, setPathnames] = useState(0);
-  const CategoryState = useRecoilValue(filterCategory);
+  const resetCategory = useResetRecoilState(filterCategory);
+  const resetCategoryName = useResetRecoilState(filterName);
+
   const tradeListOnclick = () => {
     navigate("/tradeList");
   };
@@ -31,7 +33,6 @@ const Navbar = () => {
       return setPathnames(0);
     }
   }, [location.pathname]);
-  console.log(CategoryState);
 
   return (
     <CategoryHeaderContainer>
@@ -46,7 +47,11 @@ const Navbar = () => {
         </CategoryContainer>
         <MenuContainer>
           <Menu
-            onClick={tradeListOnclick}
+            onClick={() => {
+              navigate("/tradeList");
+              resetCategory();
+              resetCategoryName();
+            }}
             style={{
               color: `${pathnames === 2 ? "#EC8D49" : "#222020"}`,
               fontWeight: `${pathnames === 2 ? "700" : "400"}`,
@@ -57,6 +62,8 @@ const Navbar = () => {
           <Menu
             onClick={() => {
               navigate("/auctionlist");
+              resetCategory();
+              resetCategoryName();
             }}
             style={{
               color: `${pathnames === 1 ? "#58ABF7" : "#222020"}`,
