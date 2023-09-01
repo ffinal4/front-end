@@ -6,7 +6,7 @@ export const getMainPageApi = async () => {
   return res;
 };
 // 물물교환 전체 조회
-export const getGoodsApi = async (page: number, category: string) => {
+export const getGoodsApi = async (page: number, category: string | null) => {
   const res = await instance.get(`/api/goods?page=${page}&size=20&sortBy=createdAt&isAsc=false${category}`);
   return res;
 };

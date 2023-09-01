@@ -1,11 +1,15 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
 import { styled } from "styled-components";
+import { filterName } from "../../store/filterCategory";
+import arrow from "../../assets/icon/downarrow.png";
 
 const FilterButton = () => {
+  const currentFilter = useRecoilValue(filterName);
   return (
     <FilterContainer>
-      <div>Filter</div>
-      <FilterBox></FilterBox>
+      <div>{currentFilter}</div>
+      <FilterBox src={arrow} />
     </FilterContainer>
   );
 };
@@ -27,10 +31,9 @@ const FilterContainer = styled.div`
   margin-bottom: 30px;
 `;
 
-const FilterBox = styled.div`
+const FilterBox = styled.img`
   width: 24px;
   height: 24px;
-  background-color: #d9d9d9;
 `;
 
 export default FilterButton;

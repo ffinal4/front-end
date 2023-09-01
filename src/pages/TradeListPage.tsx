@@ -15,6 +15,7 @@ import { filterCategory } from "../store/filterCategory";
 const TradeListPage = () => {
   const currentPage = useRecoilValue(pagination);
   const currentCategory = useRecoilValue(filterCategory);
+
   const { isLoading, error, data } = useQuery(
     ["tradeListPageData", currentPage, currentCategory],
     () => getGoodsApi(currentPage, currentCategory),
