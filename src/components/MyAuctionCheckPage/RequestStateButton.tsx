@@ -11,63 +11,81 @@ import chat from "../../assets/icon/Chatting.png";
 import eye from "../../assets/icon/openeye.png";
 import { useNavigate } from "react-router-dom";
 import AuctionCompleteModal from "./AuctionCompleteModal";
+import SuccessBIdModal from "../AuctionDetailPage/SuccessBIdModal";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
+  item: any;
 }
 
 const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   requestState,
   setRequestState,
+  item,
 }) => {
   const navigate = useNavigate();
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-  const [bidModalOpen, setBidModalOpen] = useState<boolean>(false);
+  const [bidSelectModal, setBidSelectModal] = useState<boolean>(false);
+  const [sellerPickModal, setSellerPickModal] = useState<boolean>(false);
   const { request } = requestState;
+  const testListResponseDto = item?.testListResponseDto;
 
   const completeModalClick = () => {
     setCompleteModalOpen(!completeModalOpen);
   };
 
   const sellerPickOnclick = () => {
-    setRequestState({ ...requestState, request: "경매중" });
+    setSellerPickModal(!sellerPickModal);
+    // setRequestState({ ...requestState, request: "경매중" });
   };
 
   const bidGoodsSelectOnclick = () => {
-    setBidModalOpen(!bidModalOpen);
+    setBidSelectModal(!bidSelectModal);
   };
 
   const stateButton = () => {
-    if (request === "경매중") {
+    // 경매중
+
+    if (request === "AUCTION") {
       return (
-        <StAuctionIngBt buttonColor="#CBE4FB" onClick={sellerPickOnclick}>
-          Seller's Pick
-        </StAuctionIngBt>
+        <div>
+          <StAuctionIngBt buttonColor="#CBE4FB" onClick={sellerPickOnclick}>
+            Seller's Pick
+          </StAuctionIngBt>
+          {sellerPickModal && <SuccessBIdModal />}
+        </div>
       );
     }
 
-    if (request === "경매중") {
+    // 경맴중 - 입찰부분
+
+    // if (request === testListResponseDto.auctionStatus) {
+    //   return (
+    //     <WaitingStateContainer>
+    //       <Img src={eye} />
+    //       낙찰을 기다리는 중...
+    //     </WaitingStateContainer>
+    //   );
+    // }
+
+    // 경매종료
+
+    if (request === "END") {
       return (
-        <WaitingStateContainer>
-          <Img src={eye} />
-          낙찰을 기다리는 중...
-        </WaitingStateContainer>
+        <div>
+          <StAuctionGoodsSelectBt
+            buttonColor="#58ABF7"
+            onClick={bidGoodsSelectOnclick}
+          >
+            입찰품 선택
+          </StAuctionGoodsSelectBt>
+          {bidSelectModal && <SuccessBIdModal />}
+        </div>
       );
     }
 
-    if (request === "경매종료") {
-      return (
-        <StAuctionGoodsSelectBt
-          buttonColor="#58ABF7"
-          onClick={bidGoodsSelectOnclick}
-        >
-          입찰품 선택
-        </StAuctionGoodsSelectBt>
-      );
-    }
-
-    if (request === "경매종료") {
+    if (request === "DONE") {
       return (
         <ButtonContainer>
           <StAuctionCompleteBt
@@ -98,8 +116,8 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
         </ButtonContainer>
       );
     }
-
-    if (request === "교환완료") {
+    // 교환완료
+    if (request === "DONE") {
       return (
         <StAuctionTradeCompleteBt buttonColor="white">
           자세히보기

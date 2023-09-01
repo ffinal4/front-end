@@ -175,7 +175,7 @@ export const TradeImg = styled.img`
 `;
 export const CardContainer = styled.div`
   width: 368px;
-  height: 520px;
+  height: 467px;
   border-radius: 10px;
   border: 1px solid #d5d4d4;
   position: relative;
