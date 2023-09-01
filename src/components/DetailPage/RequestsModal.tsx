@@ -15,7 +15,8 @@ import {
     GoodsConditionContainer,
     GoodsCondition,
     Circle,
-    NotRatingProduct
+    NotRatingProduct,
+    DoneContainer
 } from '../AuctionDetailPage/BidModal'
 import JoinBidCard from '../AuctionDetailPage/JoinBidCard';
 import Paging from '../common/Paging/Paging';
@@ -25,6 +26,7 @@ import { useMutation, useQuery } from 'react-query';
 import { getMyPocketApi, postRequestsApi } from '../../api/goods';
 import Close from '../../assets/icon/remove.png'
 import EmptyPocket from '../common/EmptyPocket';
+import { styled } from "styled-components";
 
 const RequestsModal = ({ productData, conditional, setConditional }: any) => {
   const currentPage = useRecoilValue(pagination);
@@ -102,16 +104,33 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
                                     setRatingPrice={setRatingPrice}
                                     item={item}
                                 />
-                                {(item.goodsStatus === "BIDDING") && <NotRatingProduct />}
-                                {(item.goodsStatus === "BIDDING")
-                                && <div>
-                                <GoodsConditionContainer />
-                                <GoodsCondition>
-                                    <Circle />
-                                    경매중
-                                </GoodsCondition>
-                                </div>}
-                            </NotRatingProductWrapper>
+                                {(item?.goodsStatus !== "ONSALE"
+                                    && item?.goodsStatus !== "REQUEST"
+                                    && item?.goodsStatus !== "CANCEL")
+                                    && ((item?.goodsStatus === "BIDDING"
+                                        || item?.goodsStatus === "ONAUCTION"
+                                        || item?.goodsStatus === "END"
+                                        || item?.goodsStatus === "AUCTION")
+                                        ? <div>
+                                            <NotRatingProduct />
+                                            <GoodsConditionContainer />
+                                            <GoodsCondition>
+                                                <Circle />
+                                                경매중
+                                            </GoodsCondition>
+                                        </div>
+                                        : ((item?.goodsStatus === "END"
+                                            || item?.goodsStatus === "DONE")
+                                            ? <DoneContainer>거래완료</DoneContainer>
+                                            : <div>
+                                                <NotRatingProduct />
+                                                <GoodsConditionContainer />
+                                                <GoodsCondition>
+                                                    <Circle style={{backgroundColor: "#EC8D49"}} />
+                                                    거래중
+                                                </GoodsCondition>
+                                            </div>))}
+                                </NotRatingProductWrapper>
                         )
                     })
                     : <EmptyPocket />}

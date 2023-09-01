@@ -4,8 +4,24 @@ import { StCardPicture } from "../../styles/CardPicture";
 import { useNavigate } from "react-router-dom";
 import CardZzimBtn from "./CardZzimBtn";
 
-const ItemCard = ({ item }: any) => {
+const ItemCard = ({ item, isPocket }: any) => {
   const navigate = useNavigate();
+
+  const cardContent = () => {
+    if (isPocket) {
+      if (item?.ratingCheck) {
+        if (item?.ratingPrice > 0) {
+          return <UserName>{(item?.ratingPrice).toLocaleString()}</UserName>
+        } else {
+          return <UserName>레이팅이 되는 중...</UserName>
+        };
+      } else {
+        return <UserName>레이팅이 필요해요</UserName>
+      };
+    } else {
+      return <UserName>{item?.location}</UserName>
+    };
+  };
 
   return (
     <ItemCardContainer>
@@ -22,10 +38,12 @@ const ItemCard = ({ item }: any) => {
       {item?.checkSameUser ? (
         <div></div>
       ) : (
-        <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} />
+        (isPocket)
+          ? <div></div>
+          : <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} />
       )}
       <ItemTitle>{item?.title}</ItemTitle>
-      <UserName> {item?.location}</UserName>
+      {cardContent()}
       <ItemContent>{item?.content}</ItemContent>
     </ItemCardContainer>
   );

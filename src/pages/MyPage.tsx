@@ -5,6 +5,7 @@ import MyPippo from '../components/MyPage/MyPippo';
 import { useQuery } from 'react-query';
 import { getMypageApi } from '../api/users';
 import Background from '../assets/images/mypagebg.svg'
+import Pocket from '../components/MyPage/Pocket';
 
 const MyPage = () => {
     const { isLoading, error, data } : any = useQuery("myPageData", getMypageApi, {
@@ -34,7 +35,9 @@ const MyPage = () => {
           <ProfileContent data={data} />
           <MyPippo data={data} />
         </MyPageContentContainer>
+        <Pocket />
       </LayoutContainer>
+      
     </AllLayoutContainer>
   );
 };
@@ -59,6 +62,7 @@ const LayoutImage = styled.img`
 const LayoutContainer = styled.div`
   width: 1144px;
   height: 100vh;
+  display: grid;
   margin: 0 auto;
   padding: 220px 0px 100px 0px;
 

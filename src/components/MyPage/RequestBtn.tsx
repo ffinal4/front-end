@@ -10,12 +10,11 @@ import Exchange from "../../assets/icon/exchange.png";
 
 const RequestBtn = ({ navigate } : any) => {
   return (
-    <OutBox>
-        <Wrapper
-        onClick={() => {
-            navigate("/traderequest");
-        }}
-        >
+    <OutBox
+      onClick={() => {
+        navigate("/traderequest");
+    }}>
+        <Wrapper>
         <InBoxWrapper>
             <InBox src={Exchange} />
         </InBoxWrapper>
