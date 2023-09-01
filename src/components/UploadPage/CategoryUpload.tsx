@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { styled } from 'styled-components'
-import CategorySelect from '../common/CategorySelect';
-import Up from '../../assets/icon/uparrow.png'
-import Down from '../../assets/icon/downarrow.png'
+import React, { useState, useEffect } from "react";
+import { styled } from "styled-components";
+import CategorySelect from "../common/CategorySelect";
+import Up from "../../assets/icon/uparrow.png";
+import Down from "../../assets/icon/downarrow.png";
 
-const CategoryUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
+const CategoryUpload = ({ setUploadData, uploadData, failedUpload }: any) => {
+  const [categorySelect, setCategorySelect] = useState({
+    category: "",
+    name: "카테고리 선택",
+  });
+  const { category, name } = categorySelect;
+  const [selectBar, setSelectBar] = useState<boolean>(false);
 
-    const  [categorySelect, setCategorySelect] = useState({
-        category: "",
-        name: "카테고리 선택",
-    });
-    const { category, name } = categorySelect;
-    const [selectBar, setSelectBar] = useState<boolean>(false);
+  const onClickDropDownHandelr = () => {
+    setSelectBar(!selectBar);
+  };
 
-    const onClickDropDownHandelr = () => {
-        setSelectBar(!selectBar);
-    };
-
-    useEffect(() => {
-        if (category !== "") {
-            setUploadData({...uploadData, data: {...uploadData.data, category: category}});
-        };
-    }, [selectBar]);
+  useEffect(() => {
+    if (category !== "") {
+      setUploadData({ ...uploadData, data: { ...uploadData.data, category: category } });
+    }
+  }, [selectBar]);
 
   return (
     <LineContainer>
@@ -50,63 +49,63 @@ const CategoryUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
             }
         </RightWrapper>
     </LineContainer>
-  )
+  );
 };
 
-const LineContainer = styled.div`
-    width: 100%;
-    display: flex;
-    padding: 30px 0px 30px 0px;
-    border-bottom: 2px solid #EAEAEA;
+export const LineContainer = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 30px 0px 30px 0px;
+  border-bottom: 2px solid #eaeaea;
 `;
 
-const RequiredText = styled.div`
-    font-family: "Pretendard";
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 150%;
-    min-width: 191px;
+export const RequiredText = styled.div`
+  font-family: "Pretendard";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 150%;
+  min-width: 191px;
 `;
 
-const SelectBar = styled.div`
-    display: inline-flex;
-    width: 176px;
-    height: 44px;
-    padding: 0px 10px;
-    border-bottom: 1px solid;
-    justify-content: space-between;
-    align-items: center;
+export const SelectBar = styled.div`
+  display: inline-flex;
+  width: 176px;
+  height: 44px;
+  padding: 0px 10px;
+  border-bottom: 1px solid;
+  justify-content: space-between;
+  align-items: center;
 
-    @media screen and (max-width: 843px) {
-        gap: 20px;
-    }
+  @media screen and (max-width: 843px) {
+    gap: 20px;
+  }
 `;
 
-const Text = styled.div`
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
+export const Text = styled.div`
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
 `;
 
 const ChoiceBox = styled.img`
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    cursor: pointer;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
 `;
 
-const SelectContainer = styled.div`
-    padding: 40px 0px 0px 0px;
-    position: absolute;
-    z-index: 1000;
+export const SelectContainer = styled.div`
+  padding: 40px 0px 0px 0px;
+  position: absolute;
+  z-index: 1000;
 `;
 
-const RightWrapper = styled.div`
-    width: 100%;
-    display: grid;
-    gap: 10px;
-    position: relative;
+export const RightWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  position: relative;
 `;
 
 export default CategoryUpload;

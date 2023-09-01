@@ -9,13 +9,21 @@ import ItemCardList from "../components/common/ItemCardList";
 import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
 import { pagination } from "../store/pagination";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
+import { filterAsc, filterCategory } from "../store/filterCategory";
+import AscFilterButton from "../components/common/AscFilterButton";
 
 const TradeListPage = () => {
   const currentPage = useRecoilValue(pagination);
-  const { isLoading, error, data } = useQuery(["tradeListPageData", currentPage], () => getGoodsApi(currentPage), {
-    refetchOnWindowFocus: false,
-  });
+  const currentCategory = useRecoilValue(filterCategory);
+  const currentAsc = useRecoilValue(filterAsc);
+  const { isLoading, error, data } = useQuery(
+    ["tradeListPageData", currentPage, currentCategory, currentAsc],
+    () => getGoodsApi(currentPage, currentCategory, currentAsc),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
   if (isLoading) return <div>Loading...</div>;
   console.log("물물교환페이지데이터", data);
   if (error) {
@@ -27,10 +35,11 @@ const TradeListPage = () => {
       <TitleContainer>
         <TitleImage src={eyeImage} />
         <TitleText marginbottom="0" textalign="center">
-          INSIDE POCKET
+          POCKET TRADE
         </TitleText>
       </TitleContainer>
       <HorizontalLine />
+      <AscFilterButton />
       <FilterButton />
       <ItemCardList data={data?.data.content} />
       <Paging />

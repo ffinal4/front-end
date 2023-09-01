@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import category from "../../assets/icon/category.png";
-import CategorySelect from "./CategorySelect";
 import { useLocation, useNavigate } from "react-router-dom";
+import FilterModal from "./FilterModal";
+import { useResetRecoilState } from "recoil";
+import { filterAsc, filterCategory, filterName } from "../../store/filterCategory";
+import { pagination } from "../../store/pagination";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const [categorySelect, setCategorySelect] = useState({
-    category: "",
-    name: "카테고리 선택",
-  });
-  const [selectBar, setSelectBar] = useState<boolean>(false);
+  const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
   const [pathnames, setPathnames] = useState(0);
-
+  const resetCategory = useResetRecoilState(filterCategory);
+  const resetCategoryName = useResetRecoilState(filterName);
+  const restPage = useResetRecoilState(pagination);
+  const resetAsc = useResetRecoilState(filterAsc);
   const tradeListOnclick = () => {
     navigate("/tradeList");
   };
@@ -40,21 +41,21 @@ const Navbar = () => {
       <Wrapper>
         <CategoryContainer
           onClick={() => {
-            setSelectBar(!selectBar);
+            setIsCategoryOpen(!isCategoryOpen);
           }}
         >
           <CategoryImg src={category} />
-          {selectBar && (
-            <CategorySelect
-              categorySelect={categorySelect}
-              setCategorySelect={setCategorySelect}
-              setSelectBar={setSelectBar}
-            />
-          )}
+          {isCategoryOpen && <FilterModal filterClick={tradeListOnclick} />}
         </CategoryContainer>
         <MenuContainer>
           <Menu
-            onClick={tradeListOnclick}
+            onClick={() => {
+              navigate("/tradeList");
+              resetCategory();
+              resetCategoryName();
+              restPage();
+              resetAsc();
+            }}
             style={{
               color: `${pathnames === 2 ? "#EC8D49" : "#222020"}`,
               fontWeight: `${pathnames === 2 ? "700" : "400"}`,
@@ -65,6 +66,10 @@ const Navbar = () => {
           <Menu
             onClick={() => {
               navigate("/auctionlist");
+              resetCategory();
+              resetCategoryName();
+              restPage();
+              resetAsc();
             }}
             style={{
               color: `${pathnames === 1 ? "#58ABF7" : "#222020"}`,
@@ -74,7 +79,10 @@ const Navbar = () => {
             포켓경매
           </Menu>
           <Menu
-            onClick={() => navigate("/ratingstart")}
+            onClick={() => {
+              navigate("/ratingstart");
+              restPage();
+            }}
             style={{
               color: `${pathnames === 3 ? "#EC8D49" : "#222020"}`,
               fontWeight: `${pathnames === 3 ? "700" : "400"}`,
