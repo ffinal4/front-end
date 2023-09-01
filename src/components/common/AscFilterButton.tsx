@@ -1,29 +1,33 @@
 import React, { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { styled } from "styled-components";
-import { filterName } from "../../store/filterCategory";
 import arrow from "../../assets/icon/downarrow.png";
-import FilterModal from "./FilterModal";
+import { styled } from "styled-components";
+import AscModal from "./AscModal";
+import { useRecoilValue } from "recoil";
+import { filterAsc } from "../../store/filterCategory";
 
-const FilterButton = () => {
-  const currentFilter = useRecoilValue(filterName);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+const AscFilterButton = () => {
+  const [isAsdcModalOpen, setIsAscModalOpen] = useState(false);
+  const ascState = useRecoilValue(filterAsc);
   return (
     <FilterContainer
       onClick={() => {
-        setIsFilterOpen(!isFilterOpen);
+        setIsAscModalOpen(!isAsdcModalOpen);
       }}
     >
-      <div>{currentFilter}</div>
+      {ascState ? <div>오래된순</div> : <div>최신순</div>}
       <FilterBox src={arrow} />
-      <ModalContainer>{isFilterOpen && <FilterModal />}</ModalContainer>
+      {isAsdcModalOpen && (
+        <ModalContainer>
+          <AscModal />
+        </ModalContainer>
+      )}
     </FilterContainer>
   );
 };
 
 const FilterContainer = styled.div`
   float: right;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -38,6 +42,7 @@ const FilterContainer = styled.div`
   margin-bottom: 30px;
   cursor: pointer;
   position: relative;
+  margin-left: 16px;
 `;
 
 const FilterBox = styled.img`
@@ -49,6 +54,6 @@ const ModalContainer = styled.div`
   z-index: 999;
   position: absolute;
   top: 45px;
-  left: -823px;
+  left: 0;
 `;
-export default FilterButton;
+export default AscFilterButton;
