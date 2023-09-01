@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     ModalBackgroundBox,
     ModalContainer,
@@ -14,7 +14,7 @@ import {
 } from './SellerPickModal'
 import Paging from '../common/Paging/Paging'
 import Close from '../../assets/icon/remove.png'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import { getAuctionBidListApi, getAuctionBidListChoiceApi } from '../../api/acution'
 import EmptyPocket from '../common/EmptyPocket'
 import AucBidCard from './AucBidCard'
@@ -27,6 +27,18 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
         refetchOnWindowFocus: false,
     });
     console.log("입찰품 목록(낙찰)", data);
+
+    const [checkBox, setCheckBox] = useState<any[]>([]);
+    const [bidSellerPick, setBidSellerPick] = useState<{bidId: number[]}>({
+        bidId: []
+    });
+
+    // const mutation = useMutation(() => postSellerPicksApi(bidSellerPick, auctionId), {
+    //     onSuccess: (res) => {
+    //         console.log("선택완료!", res)
+    //         setSellerPicks({...sellerPicks, SuccessBidModal: false});
+    //     },
+    // });
 
   return (
     <div>
@@ -46,10 +58,15 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
                     <Text>- 최종 낙찰품은 한 번 선택하면 바꿀 수 없습니다.</Text>
                 </TextWrapper>
                 <ButtonWrapper style={{height: "48px"}} >
-                    <StButton
-                        buttonColor='#58ABF7'
-                        onClick={() => setSellerPicks({...sellerPicks, SuccessBidModal: false})}
-                    >선택완료</StButton>
+                    {(checkBox.length > 0)
+                        ? <StButton
+                            buttonColor='#58ABF7'
+                            // onClick={() => mutation.mutate()}
+                        >선택완료</StButton>
+                        : <StButton
+                            buttonColor='#D5D4D4'
+                            style={{cursor: "default"}}
+                        >선택완료</StButton>}
                 </ButtonWrapper>
             </Wrapper>
             <MainContainer>
@@ -60,6 +77,10 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks } : any) => 
                                 key={item.bidId}
                                 item={item}
                                 choice={true}
+                                setCheckBox={setCheckBox}
+                                checkBox={checkBox}
+                                bidSellerPick={bidSellerPick}
+                                setBidSellerPick={setBidSellerPick}
                             />
                         )}
                     )

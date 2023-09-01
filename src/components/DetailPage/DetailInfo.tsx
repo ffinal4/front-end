@@ -27,7 +27,7 @@ const DetailInfo = ({ data }: any) => {
 
   return (
     <InfoContainer>
-      <InfoTitle>{data.data.info.title}</InfoTitle>
+      <InfoTitle>{data.data.info.goodsResponseDtoList.title}</InfoTitle>
       <UserNameContainer></UserNameContainer>
       <UserNameContainer style={{ border: "none", paddingTop: "16px", position: "relative" }}>
         <TextWrapper
