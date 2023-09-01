@@ -10,14 +10,16 @@ import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
 import { pagination } from "../store/pagination";
 import { useRecoilValue } from "recoil";
-import { filterCategory } from "../store/filterCategory";
+import { filterAsc, filterCategory } from "../store/filterCategory";
+import AscFilterButton from "../components/common/AscFilterButton";
 
 const TradeListPage = () => {
   const currentPage = useRecoilValue(pagination);
   const currentCategory = useRecoilValue(filterCategory);
+  const currentAsc = useRecoilValue(filterAsc);
   const { isLoading, error, data } = useQuery(
-    ["tradeListPageData", currentPage, currentCategory],
-    () => getGoodsApi(currentPage, currentCategory),
+    ["tradeListPageData", currentPage, currentCategory, currentAsc],
+    () => getGoodsApi(currentPage, currentCategory, currentAsc),
     {
       refetchOnWindowFocus: false,
     }
@@ -37,6 +39,7 @@ const TradeListPage = () => {
         </TitleText>
       </TitleContainer>
       <HorizontalLine />
+      <AscFilterButton />
       <FilterButton />
       <ItemCardList data={data?.data.content} />
       <Paging />
