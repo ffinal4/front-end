@@ -97,8 +97,6 @@ const AuctionRequestCard = ({ item, deadline }: any) => {
             {testListResponseDto.timeRemaining.minutes}:
             {testListResponseDto.timeRemaining.seconds}
           </Address>
-          <GoodsTitle>{item?.testListResponseDto.bidCount}</GoodsTitle>
-          <Address>{item?.testListResponseDto.timeRemaining.days}</Address>
         </div>
       );
     }

@@ -1,8 +1,14 @@
 import instance from ".";
 
 // 경매 전체 조회 ( 모든 사람이 조회 가능)
-export const getAuctionListApi = async (page: number, category: string | null, asc: boolean) => {
-  const res = await instance.get(`/api/auction?page=${page}&size=${20}&sortBy=createdAt&isAsc=${asc}${category}`);
+export const getAuctionListApi = async (
+  page: number,
+  category: string | null,
+  asc: boolean
+) => {
+  const res = await instance.get(
+    `/api/auction?page=${page}&size=${20}&sortBy=createdAt&isAsc=${asc}${category}`
+  );
   return res;
 };
 
@@ -35,13 +41,17 @@ export const getAuctionBidListApi = async (auctionId: number) => {
 };
 
 export const getAuctionBidListChoiceApi = async (auctionId: number) => {
-  const res = await instance.get(`/api/auction/${auctionId}/bid?page=1&size=5&sortBy=createdAt&isAsc=false`);
+  const res = await instance.get(
+    `/api/auction/${auctionId}/bid?page=1&size=5&sortBy=createdAt&isAsc=false`
+  );
   return res;
 };
 
 // 내 경매현황 전체조회
 export const getMyAuctionCheckApi = async () => {
-  const res = await instance.get("/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUEST");
+  const res = await instance.get(
+    "/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUEST"
+  );
   return res;
 };
 
@@ -54,15 +64,18 @@ export const getBidAuctionApi = async () => {
 };
 
 // 경매 등록자가 관심있는 입찰품 선택
-export const postSellerPicksApi = async (body : any, auctionId : number) => {
-  const res = await instance.post(`/api/auction/${auctionId}/choice/bids`, body);
+export const postSellerPicksApi = async (body: any, auctionId: number) => {
+  const res = await instance.post(
+    `/api/auction/${auctionId}/choice/bids`,
+    body
+  );
   return res;
 };
 
-// 경매 
+// 경매
 
 // 경매 취소
-export const deleteAuctionCancelApi = async (auctionId : number) => {
+export const deleteAuctionCancelApi = async (auctionId: number) => {
   const res = await instance.delete(`/api/auction/${auctionId}`);
   return res;
 };
