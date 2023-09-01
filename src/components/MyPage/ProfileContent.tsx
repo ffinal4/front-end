@@ -40,7 +40,6 @@ const ProfileContent = ({ data }: any) => {
           <Button src={Setting} onClick={onclickAddEmailHandler} />
         </ButtonBox>
       </LeftContentContainer>
-      <Pocket />
     </LeftContainer>
   );
 };

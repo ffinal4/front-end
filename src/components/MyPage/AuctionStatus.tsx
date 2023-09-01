@@ -10,7 +10,7 @@ import Auction from "../../assets/icon/auction.png";
 
 const AuctionStatus = ({ navigate } : any) => {
   return (
-    <OutBox>
+    <OutBox onClick={() => navigate("/auctioncheck")}>
         <Wrapper>
         <InBoxWrapper>
             <InBox src={Auction} />

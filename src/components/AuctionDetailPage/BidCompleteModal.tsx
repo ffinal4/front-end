@@ -28,8 +28,6 @@ const BidCompleteModal = ({
 
   const navigate = useNavigate();
 
-  const [newModals, setNewModals] = useState(modals);
-
   const onClickCheckBtnHandler = () => {
     setBidCheck(false);
     setConditional({...conditional, bid: false});
@@ -45,7 +43,7 @@ const BidCompleteModal = ({
   };
 
   const modalComponent = () => {
-    if (newModals === 1) {
+    if (modals === 1) {
       return <div>
         <CancelButtonContainer>
             <CancelImg
@@ -72,7 +70,7 @@ const BidCompleteModal = ({
             </ButtonContainer>
           </ContentsContainer>
         </div>
-    } else if (newModals === 2) {
+    } else if (modals === 2) {
       return <div>
         <CancelButtonContainer>
             <CancelImg
