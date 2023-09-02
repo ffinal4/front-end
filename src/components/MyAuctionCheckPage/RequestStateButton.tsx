@@ -58,19 +58,6 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
       );
     }
 
-    // 경맴중 - 입찰부분
-
-    // if (request === testListResponseDto.auctionStatus) {
-    //   return (
-    //     <WaitingStateContainer>
-    //       <Img src={eye} />
-    //       낙찰을 기다리는 중...
-    //     </WaitingStateContainer>
-    //   );
-    // }
-
-    // 경매종료
-
     if (request === "END") {
       return (
         <div>
@@ -129,19 +116,19 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   return <div>{stateButton()}</div>;
 };
 
-const StAuctionIngBt = styled(StBasicButton)`
+export const StAuctionIngBt = styled(StBasicButton)`
   border: 1px solid black;
 `;
 
-const StAuctionCompleteBt = styled(StBasicButton)`
+export const StAuctionCompleteBt = styled(StBasicButton)`
   color: white;
   width: 80px;
 `;
 
-const StAuctionGoodsSelectBt = styled(StBasicButton)`
+export const StAuctionGoodsSelectBt = styled(StBasicButton)`
   color: white;
 `;
-const StAuctionTradeCompleteBt = styled(StBasicButton)`
+export const StAuctionTradeCompleteBt = styled(StBasicButton)`
   border: 1px solid #d5d4d4;
 `;
 
@@ -150,7 +137,7 @@ const StAuctionTradeCompleteBt = styled(StBasicButton)`
 //   margin-top: 80px;
 // `;
 
-const ModalContainer = styled.div`
+export const ModalContainer = styled.div`
   position: absolute;
 `;
 export default RequestStateButton;

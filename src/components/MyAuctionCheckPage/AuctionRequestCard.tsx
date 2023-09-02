@@ -14,7 +14,7 @@ import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import AuctionRequestGoods from "./AuctionRequestGoods";
 
-const AuctionRequestCard = ({ item, deadline }: any) => {
+const AuctionRequestCard = ({ item }: any) => {
   const testListResponseDto = item?.testListResponseDto;
   const [requestState, setRequestState] = useState({
     request: testListResponseDto.auctionStatus,
@@ -89,7 +89,7 @@ const AuctionRequestCard = ({ item, deadline }: any) => {
         <div>
           <Title>경매상황</Title>
           <GoodsTitle>
-            현재 총 {testListResponseDto.bidCount} 명이 경매에 입찰했어요.
+            현재 총 {testListResponseDto.bidCount}명이 경매에 입찰했어요.
           </GoodsTitle>
           <Address>
             경매 종료까지 {testListResponseDto.timeRemaining.days}:

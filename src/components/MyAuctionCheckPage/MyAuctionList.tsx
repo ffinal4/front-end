@@ -15,7 +15,6 @@ import {
   SendRequest,
   TabContainer,
 } from "../../pages/TradeRequestPage";
-import FilterDropdownMenu from "./FilterDropdownMenu";
 import arrow from "../../assets/icon/arrow.png";
 import AuctionRequestCard from "./AuctionRequestCard";
 import { DotImg } from "../TradeRequestPage/TradeRequestCard";
@@ -23,12 +22,15 @@ import bluedot from "../../assets/icon/bluedot.png";
 import blackdot from "../../assets/icon/blackdot.png";
 import { useQuery } from "react-query";
 import { getMyAuctionCheckApi } from "../../api/acution";
+import AuctionFilterDropdownMenu from "./AuctionFilterDropdownMenu";
+import { useRecoilValue } from "recoil";
+import { myAuctionFilter } from "../../store/filterCategory";
 
 interface MyAuctionListProps {
-  filterOpen: boolean;
   filterTap: any;
-  setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  auctionFilterOpen: boolean;
   dropdownMenu: string;
+  setAuctionFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setDropdownMenu: React.Dispatch<React.SetStateAction<string>>;
   setFilterTap: React.Dispatch<
     React.SetStateAction<{ myAuctionTap: boolean; bidAuctionTap: boolean }>
@@ -36,13 +38,15 @@ interface MyAuctionListProps {
 }
 
 const MyAuctionList: React.FC<MyAuctionListProps> = ({
-  filterOpen,
+  auctionFilterOpen,
   filterTap,
   dropdownMenu,
-  setFilterOpen,
+  setAuctionFilterOpen,
   setDropdownMenu,
   setFilterTap,
 }) => {
+  const auctionFilter = useRecoilValue(myAuctionFilter);
+
   const { data, isLoading, error }: any = useQuery(
     "getMyAuctionCheckData",
     getMyAuctionCheckApi
@@ -82,17 +86,19 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
         <FilterContainer>
           <Filter
             onClick={() => {
-              setFilterOpen(!filterOpen);
+              setAuctionFilterOpen(!auctionFilterOpen);
             }}
           >
-            {dropdownMenu}
+            <div>{auctionFilter}</div>
+            {/* {dropdownMenu} */}
             <ArrowImg src={arrow} />
           </Filter>
-          {filterOpen && (
+
+          {auctionFilterOpen && (
             <FilterdropdownMenuContainer>
-              <FilterDropdownMenu
-                filterOpen={filterOpen}
-                setFilterOpen={setFilterOpen}
+              <AuctionFilterDropdownMenu
+                auctionFilterOpen={auctionFilterOpen}
+                setAuctionFilterOpen={setAuctionFilterOpen}
                 setDropdownMenu={setDropdownMenu}
               />
             </FilterdropdownMenuContainer>

@@ -58,7 +58,7 @@ export const getMyAuctionCheckApi = async () => {
 // 입찰경매 전체조회
 export const getBidAuctionApi = async () => {
   const res = await instance.get(
-    "/api/auction/bid/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status=SUCCESS"
+    "/api/bid/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status"
   );
   return res;
 };
