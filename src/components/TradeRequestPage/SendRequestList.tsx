@@ -93,9 +93,10 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
           )}
         </FilterContainer>
         <CardContainer>
-          <TradeRequestCard />
-          <TradeRequestCard />
-          <TradeRequestCard />
+          {data?.data.content.length > 0 &&
+            data?.data.content?.map((item: any) => {
+              return <TradeRequestCard key={item.goodsId} item={item} />;
+            })}
         </CardContainer>
       </TradeRequestListContainer>
     </div>

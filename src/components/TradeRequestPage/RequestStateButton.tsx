@@ -18,7 +18,6 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-  // const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
 
   const { request } = requestState;
 
@@ -34,10 +33,6 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     setCompleteModalOpen(!completeModalOpen);
     // setRequestState({ ...requestState, request: "교환완료" });
   };
-
-  // const deleteModalClick = () => {
-  //   setDeleteModalOpen(!deleteModalOpen);
-  // };
 
   const stateButton = () => {
     if (request === "교환요청") {

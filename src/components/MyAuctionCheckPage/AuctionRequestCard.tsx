@@ -9,50 +9,45 @@ import {
   Date,
   GoodsContainer,
   GoodsTitle,
-  TradeImg,
-  TradeImgContainer,
 } from "../TradeRequestPage/TradeRequestCard";
-import auctionrequest from "../../assets/icon/auctionrequest.png";
-import auctioncomplete from "../../assets/icon/auctioncomplete.png";
-import auctiontradecomplete from "../../assets/icon/auctiontradecomplete.png";
 import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import AuctionRequestGoods from "./AuctionRequestGoods";
 
 const AuctionRequestCard = ({ item }: any) => {
+  const testListResponseDto = item?.testListResponseDto;
   const [requestState, setRequestState] = useState({
-    request: item?.testListResponseDto.auctionStatus,
+    request: testListResponseDto.auctionStatus,
   });
-
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
   const { request } = requestState;
 
   useEffect(() => {
-    if (request === item?.testListResponseDto.auctionStatus) {
+    if (request === "AUCTION") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
+    if (request === "END") {
       setBorder("2px solid #58ABF7");
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
+    if (request === "DONE") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
+    if (request === "CANCEL") {
       setBorder("1px solid #D5D4D4");
       setOpacity("0.5");
     }
   }, [request]);
 
   const auctionRequestState = () => {
-    if (request === item?.testListResponseDto.auctionStatus) {
+    if (request === "AUCTION") {
       return (
         <StAuctionIng backgroundcolor="white" color="#58ABF7" border="#58ABF7">
           경매중
         </StAuctionIng>
       );
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
+    if (request === "END") {
       return (
         <StRequestState
           backgroundcolor="#58ABF7"
@@ -63,7 +58,7 @@ const AuctionRequestCard = ({ item }: any) => {
         </StRequestState>
       );
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
+    if (request === "DONE") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -74,7 +69,7 @@ const AuctionRequestCard = ({ item }: any) => {
         </StRequestState>
       );
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
+    if (request === "CANCEL") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -87,50 +82,54 @@ const AuctionRequestCard = ({ item }: any) => {
     }
   };
 
-  const auctionRequestStateBar = () => {
-    if (request === item?.testListResponseDto.auctionStatus) {
-      return (
-        <TradeImgContainer>
-          <TradeImg src={auctionrequest} />
-        </TradeImgContainer>
-      );
-    }
-    if (request === item?.testListResponseDto.auctionStatus) {
-      return (
-        <TradeImgContainer>
-          <TradeImg src={auctioncomplete} />
-        </TradeImgContainer>
-      );
-    }
-    if (request === item?.testListResponseDto.auctionStatus) {
-      return (
-        <TradeImgContainer>
-          <TradeImg src={auctiontradecomplete} />
-        </TradeImgContainer>
-      );
-    }
-  };
-
   const auctionCondition = () => {
-    if (request === item?.testListResponseDto.auctionStatus) {
+    // 경매중
+    if (request === "AUCTION") {
       return (
         <div>
           <Title>경매상황</Title>
-          <GoodsTitle>{item?.testListResponseDto.bidCount}</GoodsTitle>
-          <Address>{item?.testListResponseDto.timeRemaining.days}</Address>
+          <GoodsTitle>
+            현재 총 {testListResponseDto.bidCount}명이 경매에 입찰했어요.
+          </GoodsTitle>
+          <Address>
+            경매 종료까지 {testListResponseDto.timeRemaining.days}:
+            {testListResponseDto.timeRemaining.hours}:
+            {testListResponseDto.timeRemaining.minutes}:
+            {testListResponseDto.timeRemaining.seconds}
+          </Address>
         </div>
       );
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
-      return (
-        <div>
-          <Title>경매상황</Title>
-          <GoodsTitle>현재 총 35명이 입찰중이에요.</GoodsTitle>
-          <Address>입찰품 선택까지 11:01:12</Address>
-        </div>
-      );
+    //경매종료
+    if (request === "END") {
+      if (testListResponseDto.bidCount === 0) {
+        // bidCount가 0이면 request를 "CANCEL"로 변경
+        setRequestState({ request: "CANCEL" });
+        return (
+          <div>
+            <Title>경매상황</Title>
+            <GoodsTitle>총 0명이 경매에 입찰했어요.</GoodsTitle>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <Title>경매상황</Title>
+            <GoodsTitle>
+              현재 총 {testListResponseDto.bidCount} 명이 입찰중이에요.
+            </GoodsTitle>
+            <Address>
+              입찰품 선택까지 {testListResponseDto.timeRemaining.days}일
+              {testListResponseDto.timeRemaining.hours}시간
+              {testListResponseDto.timeRemaining.minutes}분
+              {testListResponseDto.timeRemaining.seconds}초
+            </Address>
+          </div>
+        );
+      }
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
+    // 교환완료
+    if (request === "DONE") {
       return (
         <div>
           <Title>입찰</Title>
@@ -139,7 +138,8 @@ const AuctionRequestCard = ({ item }: any) => {
         </div>
       );
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
+    // 경매실패
+    if (request === "CANCEL") {
       return (
         <div>
           <Title>경매상황</Title>
@@ -151,7 +151,7 @@ const AuctionRequestCard = ({ item }: any) => {
   return (
     <CardContainer style={{ border: `${border}`, opacity: `${opacity}` }}>
       <Container>
-        <Date>{item?.testListResponseDto.auctionEndTime}</Date>
+        <Date>{testListResponseDto.auctionEndTime.slice(0, 10)}</Date>
         {auctionRequestState()}
       </Container>
       <GoodsContainer>
@@ -164,15 +164,15 @@ const AuctionRequestCard = ({ item }: any) => {
 
       <ContentsContainer>
         <Title>경매</Title>
-        <GoodsTitle>{item?.testListResponseDto.title}</GoodsTitle>
-        <Address>{item?.testListResponseDto.location}</Address>
+        <GoodsTitle>{testListResponseDto.title}</GoodsTitle>
+        <Address>{testListResponseDto.location}</Address>
         {auctionCondition()}
       </ContentsContainer>
-      {auctionRequestStateBar()}
       <ButtonContainer>
         <RequestStateButton
           requestState={requestState}
           setRequestState={setRequestState}
+          item={item}
         />
       </ButtonContainer>
     </CardContainer>
