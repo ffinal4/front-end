@@ -67,7 +67,7 @@ const DetailContent = ({ data }: any) => {
           </TextWrapper>
           <TextWrapper>
             <SmallBox src={Time} />
-            <ColorText color="#ADADAD">{result}일 전</ColorText>
+            <ColorText color="#ADADAD">{(result === -1) ? "0" : result}일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
             <AucModalBtn data={data} navigate={navigate} />

@@ -136,6 +136,11 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
                       </GoodsCondition>
                     </div>
                   )}
+                  {(item.goodsStatus === "END" ||
+                    item.goodsStatus === "DONE") &&
+                    <DoneContainer>
+                      거래완료
+                    </DoneContainer>}
                 </NotRatingProductWrapper>
               );
             })
@@ -308,6 +313,24 @@ export const NotRatingProduct = styled.div`
   border-radius: 10px;
   background-color: #fcfcfc;
   opacity: 0.4;
+`;
+
+export const DoneContainer = styled.div`
+  width: 176px;
+  height: 176px;
+  background-color: #00000080;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Pretendard";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 150%;
+  color: #FCFCFC;
 `;
 
 export default BidModal;

@@ -10,12 +10,10 @@ import MyPocket from "../../assets/icon/layer_6.png";
 
 const MyPocketBtn = ({ navigate } : any) => {
   return (
-    <OutBox>
-        <Wrapper
-        onClick={() => {
-            navigate("/mypocket");
-        }}
-        >
+    <OutBox onClick={() => {
+      navigate("/mypocket");
+    }}>
+        <Wrapper>
         <InBoxWrapper>
             <InBox src={MyPocket} />
         </InBoxWrapper>

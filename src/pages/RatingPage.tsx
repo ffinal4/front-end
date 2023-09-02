@@ -17,13 +17,9 @@ import Manual from "../components/RatingPage/Manual";
 import NotDataModal from "../components/RatingPage/NotDataModal";
 
 const RatingPage = () => {
-  const { isLoading, data, error }: any = useQuery(
-    "ratingStart",
-    getRatingStartApi,
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { isLoading, data, error, refetch }: any = useQuery("ratingStart", getRatingStartApi, {
+    refetchOnWindowFocus: false,
+  });
 
   console.log(data, "data");
   console.log("에러", error);

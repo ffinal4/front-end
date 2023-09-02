@@ -40,7 +40,6 @@ const ProfileContent = ({ data }: any) => {
           <Button src={Setting} onClick={onclickAddEmailHandler} />
         </ButtonBox>
       </LeftContentContainer>
-      <Pocket />
     </LeftContainer>
   );
 };
@@ -74,6 +73,10 @@ const LeftContentContainer = styled.div`
   border-radius: 5px 5px 0px 0px;
   position: relative;
   background-color: #fcfcfc;
+
+  @media screen and (max-width: 1136px) {
+    width: 100%;
+  }
 `;
 
 const ImageContainer = styled.div<{ src: string }>`
@@ -92,6 +95,10 @@ const ContentInBox = styled.div`
   gap: 16px;
   padding: 0px 0px 0px 40px;
   width: 80%;
+  
+  @media screen and (max-width: 1136px) {
+    width: 100%;
+  }
 `;
 
 const ContentLine = styled.div`
@@ -107,7 +114,7 @@ const TypeContainer = styled.div`
   width: 192px;
 
   @media screen and (max-width: 1144px) {
-    width: 150px;
+    width: 130px;
   }
 `;
 

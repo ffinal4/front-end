@@ -7,6 +7,7 @@ import AuctionStatus from "./AuctionStatus";
 import MyPocketBtn from "./MyPocketBtn";
 import ZzimListBtn from "./ZzimListBtn";
 import MyChatBtn from "./MyChatBtn";
+import Line from "../../assets/images/vector.png"
 
 const Pocket = () => {
   const navigate = useNavigate();
@@ -16,9 +17,7 @@ const Pocket = () => {
   return (
     <LayoutContainer>
       <PocketContainer>
-        <svg xmlns="http://www.w3.org/2000/svg" width="1917" height="2" viewBox="0 0 1917 2" fill="none">
-          <path d="M1 1H1916" stroke="#39373A" strokeWidth="2" strokeLinecap="round" strokeDasharray="20 20" />
-        </svg>
+        <DashLine src={Line} />
         <PocketInline>
           <BoxContainer>
             <RequestBtn navigate={navigate} />
@@ -26,8 +25,7 @@ const Pocket = () => {
             <MyPocketBtn navigate={navigate} />
             <ZzimListBtn navigate={navigate} />
             <MyChatBtn navigate={navigate} />
-          </BoxContainer>
-          
+          </BoxContainer>  
         </PocketInline>
         <ResignWrapper>
           <Resign onClick={() => setSecessionModal(true)}>핍포 탈퇴하기</Resign>
@@ -39,11 +37,14 @@ const Pocket = () => {
 };
 
 const LayoutContainer = styled.div`
-  position: absolute;
-  left: 0;
-  height: 442px;
+  /* position: absolute; */
+  height: 425px;
   width: 100%;
   background-color: #ffca64;
+
+  @media screen and (max-width: 1144px) {
+    height: 100vh;
+  }
 `;
 
 const PocketContainer = styled.div`
@@ -53,6 +54,10 @@ const PocketContainer = styled.div`
   overflow: hidden;
   padding: 10px 0px 0px 0px;
   background-color: #ffca64;
+  
+  @media screen and (max-width: 1144px) {
+    height: 100vh;
+  }
 `;
 
 const PocketInline = styled.div`
@@ -67,6 +72,7 @@ const BoxContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
   gap: 16px;
 `;
 
@@ -114,7 +120,7 @@ export const Text = styled.div`
 `;
 
 const ResignWrapper = styled.div`
-  width: 100%;
+  width: 100vh;
   padding: 0px 392px 0px 392px;
 `;
 
@@ -129,6 +135,12 @@ const Resign = styled.div`
   color: #39373a;
   border-bottom: 1px solid #7a7a7a;
   cursor: pointer;
+`;
+
+const DashLine = styled.img`
+  width: 100%;
+  height: 2px;
+  object-fit: contain;
 `;
 
 export default Pocket;
