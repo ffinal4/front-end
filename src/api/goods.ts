@@ -103,6 +103,7 @@ export const postZzimApi = async (body: zzimBody) => {
   return res;
 };
 
+// 물품 교환신청
 export const postRequestsApi = async (body: any, goodsId: number) => {
   const res = await instance.post(`/api/goods/users/${goodsId}/request`, body);
   return res;

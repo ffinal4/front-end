@@ -9,7 +9,7 @@ import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import DetailGoodsModal from "./DetailGoodsModal";
 
-const TradeRequestCard = () => {
+const TradeRequestCard = ({ item }: any) => {
   const [requestState, setRequestState] = useState({ request: "교환요청" });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
@@ -83,30 +83,6 @@ const TradeRequestCard = () => {
     }
   };
 
-  const tradeRequestStateBar = () => {
-    if (request === "교환요청") {
-      return (
-        <TradeImgContainer>
-          <TradeImg src={traderequest} />
-        </TradeImgContainer>
-      );
-    }
-    if (request === "교환진행중") {
-      return (
-        <TradeImgContainer>
-          <TradeImg src={tradeing} />
-        </TradeImgContainer>
-      );
-    }
-    if (request === "교환완료") {
-      return (
-        <TradeImgContainer>
-          <TradeImg src={tradecomplete} />
-        </TradeImgContainer>
-      );
-    }
-  };
-
   const tradeRequestGoods = () => {
     if (request === "교환요청" || "교환완료" || "교환취소") {
       return (
@@ -152,7 +128,6 @@ const TradeRequestCard = () => {
         <GoodsTitle>가디언즈 오브 갤럭시 오리지널 티켓</GoodsTitle>
         <Address>서울시 서초구 서초1동</Address>
       </ContentsContainer>
-      {tradeRequestStateBar()}
       <ButtonContainer>
         <RequestStateButton
           requestState={requestState}
