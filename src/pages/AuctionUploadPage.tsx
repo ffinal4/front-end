@@ -8,17 +8,14 @@ import { getAuctionUploadApi } from "../api/goods";
 import { postAuctionUploadApi } from "../api/acution";
 import { useNavigate } from "react-router-dom";
 import Remove from "../assets/icon/remove.png";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const AuctionUploadPage = () => {
   const navigate = useNavigate();
 
-  const { isLoading, error, data }: any = useQuery(
-    "AuctionMyPocket",
-    getAuctionUploadApi,
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { isLoading, error, data }: any = useQuery("AuctionMyPocket", getAuctionUploadApi, {
+    refetchOnWindowFocus: false,
+  });
 
   console.log("경매물품등록내주머니데이터", data);
 
@@ -64,7 +61,7 @@ const AuctionUploadPage = () => {
   };
   console.log("productBid", productBid);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
@@ -72,14 +69,8 @@ const AuctionUploadPage = () => {
       <PageTitleContainer>START TO BID</PageTitleContainer>
       <KoreanTitle>경매 시작하기</KoreanTitle>
       <TextWrapper>
-        <Text>
-          * 드려요, 보세요 정보는 기존 물건을 주머니에 등록할 때 정보와 동일하게
-          보여집니다.
-        </Text>
-        <Text>
-          * 경매 등록 시 10포인트가 차감되며 입찰자가 없을 경우 글을 수정하거나
-          삭제할 수 있습니다.
-        </Text>
+        <Text>* 드려요, 보세요 정보는 기존 물건을 주머니에 등록할 때 정보와 동일하게 보여집니다.</Text>
+        <Text>* 경매 등록 시 10포인트가 차감되며 입찰자가 없을 경우 글을 수정하거나 삭제할 수 있습니다.</Text>
       </TextWrapper>
       <AuctionUploadContainer>
         <PeriodUploadContainer>
@@ -92,56 +83,30 @@ const AuctionUploadPage = () => {
           </RequiredText>
           <FirstWrapper>
             <ButtonWrapper>
-              <Button
-                buttonColor={endTime === "30분" ? "#9ACBF9" : "white"}
-                onClick={onClickThirtyMinutesHandler}
-              >
+              <Button buttonColor={endTime === "30분" ? "#9ACBF9" : "white"} onClick={onClickThirtyMinutesHandler}>
                 30분
               </Button>
-              <Button
-                buttonColor={endTime === "1시간" ? "#9ACBF9" : "white"}
-                onClick={onClickOneHoursHandler}
-              >
+              <Button buttonColor={endTime === "1시간" ? "#9ACBF9" : "white"} onClick={onClickOneHoursHandler}>
                 1시간
               </Button>
-              <Button
-                buttonColor={endTime === "3시간" ? "#9ACBF9" : "white"}
-                onClick={onClickThreeHoursHandler}
-              >
+              <Button buttonColor={endTime === "3시간" ? "#9ACBF9" : "white"} onClick={onClickThreeHoursHandler}>
                 3시간
               </Button>
-              <Button
-                buttonColor={endTime === "1일" ? "#9ACBF9" : "white"}
-                onClick={onClickOneDayHandler}
-              >
+              <Button buttonColor={endTime === "1일" ? "#9ACBF9" : "white"} onClick={onClickOneDayHandler}>
                 1일
               </Button>
             </ButtonWrapper>
             {failed && endTime === "" && (
-              <Text style={{ color: "#DF3737", paddingTop: "10px" }}>
-                * 경매기간을 선택해주세요.
-              </Text>
+              <Text style={{ color: "#DF3737", paddingTop: "10px" }}>* 경매기간을 선택해주세요.</Text>
             )}
-            <Text>
-              * 경매기간은 경매 시작을 기점으로 카운트다운되며 수정 할 수
-              없습니다.
-            </Text>
+            <Text>* 경매기간은 경매 시작을 기점으로 카운트다운되며 수정 할 수 없습니다.</Text>
           </FirstWrapper>
         </PeriodUploadContainer>
-        <ProductChoice
-          myPocketGoods={myPocketGoods}
-          setMyPocketGoods={setMyPocketGoods}
-          failed={failed}
-          data={data}
-        />
+        <ProductChoice myPocketGoods={myPocketGoods} setMyPocketGoods={setMyPocketGoods} failed={failed} data={data} />
         <LastLineContainer>
           <RequiredText
             style={{
-              color: `${
-                failed && (lowPrice === "" || lowPrice === 0)
-                  ? "#DF3737"
-                  : "#222020"
-              }`,
+              color: `${failed && (lowPrice === "" || lowPrice === 0) ? "#DF3737" : "#222020"}`,
             }}
           >
             입찰 제한*
@@ -164,10 +129,7 @@ const AuctionUploadPage = () => {
                 {bidPrice.map((item) => {
                   return (
                     <div key={item}>
-                      <PriceBtn
-                        buttonColor="#CBE4FB"
-                        onClick={() => onClickAddPriceHandler(item)}
-                      >
+                      <PriceBtn buttonColor="#CBE4FB" onClick={() => onClickAddPriceHandler(item)}>
                         {item.toLocaleString()}
                       </PriceBtn>
                     </div>
@@ -175,9 +137,7 @@ const AuctionUploadPage = () => {
                 })}
               </ButtonWrapper>
               {failed && lowPrice === ("" || 0) && (
-                <Text style={{ color: "#DF3737" }}>
-                  * 최소 1,000 이상의 값을 입력해 주세요.
-                </Text>
+                <Text style={{ color: "#DF3737" }}>* 최소 1,000 이상의 값을 입력해 주세요.</Text>
               )}
             </BidLimitWarpper>
           </LineWrapper>
@@ -192,19 +152,11 @@ const AuctionUploadPage = () => {
               ...productBid,
               lowPrice: String(lowPrice),
             };
-            if (
-              endTime === "" ||
-              lowPrice === "" ||
-              lowPrice === 0 ||
-              myPocketGoods.goodsId === ""
-            ) {
+            if (endTime === "" || lowPrice === "" || lowPrice === 0 || myPocketGoods.goodsId === "") {
               setFailed(true);
             } else {
               try {
-                const res = await postAuctionUploadApi(
-                  newBid,
-                  myPocketGoods.goodsId
-                );
+                const res = await postAuctionUploadApi(newBid, myPocketGoods.goodsId);
                 if (res.status === 200) {
                   Swal.fire({
                     icon: "success",
@@ -230,11 +182,7 @@ const AuctionUploadPage = () => {
           {" "}
           경매 시작
         </Button>
-        {failed && (
-          <Text style={{ color: "#DF3737", margin: "0px auto" }}>
-            입력 내용을 다시 한 번 확인해 주세요.
-          </Text>
-        )}
+        {failed && <Text style={{ color: "#DF3737", margin: "0px auto" }}>입력 내용을 다시 한 번 확인해 주세요.</Text>}
       </BottomBtnWrapper>
     </PageLayoutContainer>
   );
