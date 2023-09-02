@@ -28,7 +28,7 @@ instance.interceptors.response.use(
     if (status === 403) {
       if (error.response.status === 403) {
         alert("로그인이 필요한 서비스입니다.");
-        window.location.replace("/login");
+        // window.location.replace("/login");
       } else if (error.response.data.accessValidationError === true) {
         delete config.headers.accesstoken;
         try {
