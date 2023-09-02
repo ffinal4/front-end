@@ -15,25 +15,26 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
   item,
 }) => {
   const { request } = requestState;
+  const testListResponseDto = item?.testListResponseDto;
 
   const auctionGoodsState = () => {
-    if (request === item?.testListResponseDto.auctionStatus) {
-      return <GoodsImg src={item?.testListResponseDto.image} />;
+    if (request === "AUCTION") {
+      return <GoodsImg src={testListResponseDto.image} />;
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
-      return <GoodsImg src={item?.testListResponseDto.image} />;
+    if (request === "END") {
+      return <GoodsImg src={testListResponseDto.image} />;
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
+    if (request === "DONE") {
       return (
         <GoodsContainer>
-          <GoodsImg src={item?.testListResponseDto.image} />
+          <GoodsImg src={testListResponseDto.image} />
           <ExchangeImg src={timer} />
-          <GoodsImg src={item?.testListResponseDto.bidImg} />
+          <GoodsImg src={testListResponseDto.bidImg} />
         </GoodsContainer>
       );
     }
-    if (request === item?.testListResponseDto.auctionStatus) {
-      return <GoodsImg src={item?.testListResponseDto.image} />;
+    if (request === "CANCEL") {
+      return <GoodsImg src={testListResponseDto.image} />;
     }
   };
   return <div>{auctionGoodsState()}</div>;

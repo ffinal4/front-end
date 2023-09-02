@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import Swal from "sweetalert2";
 import ImageUpload from "../components/UploadPage/ImageUpload";
 import TitleUpload from "../components/UploadPage/TitleUpload";
 import CategoryUpload from "../components/UploadPage/CategoryUpload";
@@ -20,15 +21,15 @@ const UploadPage = () => {
 
   type uploadBodyData = {
     data: {
-      title: string,
-      content: string,
-      tradeType: string,
-      category: string,
-      goodsCondition: string,
-      ratingCheck: boolean,
-      sellerPrice: string
-      location: string,
-    },
+      title: string;
+      content: string;
+      tradeType: string;
+      category: string;
+      goodsCondition: string;
+      ratingCheck: boolean;
+      sellerPrice: string;
+      location: string;
+    };
     wanted: {
       title: string;
       content: string;
@@ -37,7 +38,7 @@ const UploadPage = () => {
   };
 
   const [failedUpload, setFailedUpload] = useState(false);
-  const [uploadImages,setUploadImages]= useState<File[]>([]);
+  const [uploadImages, setUploadImages] = useState<File[]>([]);
   const [uploadData, setUploadData] = useState<uploadBodyData>({
     data: {
       title: "",
@@ -59,7 +60,6 @@ const UploadPage = () => {
   const formData = new FormData();
 
   const onClickUploadHandler = async () => {
-
     // if (
     //   uploadImages.length === 0
     //   ||uploadData.data.title === ""
@@ -74,20 +74,24 @@ const UploadPage = () => {
     // formData.append("data", uploadData)
 
     // formData.append("sellerPrice", new Blob([JSON.stringify(uploadPrice.sellerPrice)], { type: "application/json" }));
-    if ((uploadData.data.ratingCheck === true && uploadData.data.sellerPrice === "")) {
+    if (
+      uploadData.data.ratingCheck === true &&
+      uploadData.data.sellerPrice === ""
+    ) {
       setFailedUpload(true);
       console.log(uploadImages, uploadData);
-    };
+    }
     if (
-      uploadImages.length === 0
-      ||uploadData.data.title === ""
-      || uploadData.data.tradeType === ""
-      || uploadData.data.category === ""
-      || uploadData.data.goodsCondition === ""
-      || uploadData.wanted.title === ""
-      || uploadData.wanted.content === ""
-      || uploadData.wanted.category === ""
-      || (uploadData.data.ratingCheck === true && uploadData.data.sellerPrice === "")
+      uploadImages.length === 0 ||
+      uploadData.data.title === "" ||
+      uploadData.data.tradeType === "" ||
+      uploadData.data.category === "" ||
+      uploadData.data.goodsCondition === "" ||
+      uploadData.wanted.title === "" ||
+      uploadData.wanted.content === "" ||
+      uploadData.wanted.category === "" ||
+      (uploadData.data.ratingCheck === true &&
+        uploadData.data.sellerPrice === "")
     ) {
       setFailedUpload(true);
     } else {
@@ -120,16 +124,20 @@ const UploadPage = () => {
         formData.forEach(function (value, key) {
           console.log(key + ": " + value);
         });
-  
+
         const res = await postUploadApi(formData);
         if (res.status === 200) {
-          alert("업로드 성공!");
+          Swal.fire({
+            icon: "success",
+            text: "주머니에 물건이 추가되었어요!",
+            confirmButtonColor: "#ffca64",
+          });
           navigate("/");
         }
       } catch (error) {
         console.log(error);
       }
-    };
+    }
   };
 
   return (
@@ -145,24 +153,50 @@ const UploadPage = () => {
           uploadImages={uploadImages}
           failedUpload={failedUpload}
         />
-        <TitleUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
-        <CategoryUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
+        <TitleUpload
+          setUploadData={setUploadData}
+          uploadData={uploadData}
+          failedUpload={failedUpload}
+        />
+        <CategoryUpload
+          setUploadData={setUploadData}
+          uploadData={uploadData}
+          failedUpload={failedUpload}
+        />
         <RegionUpload locationData={locationData} />
         <ConditionUpload
           setUploadData={setUploadData}
           uploadData={uploadData}
           failedUpload={failedUpload}
         />
-        <MethodUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
-        <DetailUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
+        <MethodUpload
+          setUploadData={setUploadData}
+          uploadData={uploadData}
+          failedUpload={failedUpload}
+        />
+        <DetailUpload
+          setUploadData={setUploadData}
+          uploadData={uploadData}
+          failedUpload={failedUpload}
+        />
         <TagUpload />
-        <RatingUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
-        <WantedUpload setUploadData={setUploadData} uploadData={uploadData} failedUpload={failedUpload} />
+        <RatingUpload
+          setUploadData={setUploadData}
+          uploadData={uploadData}
+          failedUpload={failedUpload}
+        />
+        <WantedUpload
+          setUploadData={setUploadData}
+          uploadData={uploadData}
+          failedUpload={failedUpload}
+        />
         <BtnWrapper>
           <Button buttonColor="#FFCA64" onClick={onClickUploadHandler}>
             주머니에 추가
           </Button>
-          {(failedUpload) && <FailedText>입력 내용을 다시 한 번 확인해 주세요.</FailedText>}
+          {failedUpload && (
+            <FailedText>입력 내용을 다시 한 번 확인해 주세요.</FailedText>
+          )}
         </BtnWrapper>
       </PageContainer>
     </PageLayout>
@@ -230,7 +264,7 @@ const FailedText = styled.div`
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
-  color: #DF3737;
+  color: #df3737;
   margin: 0px auto;
 `;
 

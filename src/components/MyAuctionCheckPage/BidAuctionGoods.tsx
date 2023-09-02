@@ -1,60 +1,60 @@
 import React from "react";
-import { styled } from "styled-components";
 import {
   ExchangeImg,
   GoodsContainer,
   GoodsImg,
 } from "../TradeRequestPage/TradeRequestCard";
 import timer from "../../assets/icon/timer.png";
-import goods from "../../assets/images/eye.svg";
 
 interface BidAuctionGoodsProps {
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
-  // item: any;
+  item: any;
 }
 
 const BidAuctionGoods: React.FC<BidAuctionGoodsProps> = ({
   requestState,
   setRequestState,
-  // item,
+  item,
 }) => {
   const { request } = requestState;
+  const testListResponseDto = item?.testListResponseDto;
+  const bidListResponseDtos = item?.bidListResponseDtos[0];
 
   const bidAuctionGoodsState = () => {
-    if (request === "입찰중") {
+    if (request === "BIDDING") {
       return (
         <GoodsContainer>
-          <GoodsImg src={goods} />
+          <GoodsImg src={testListResponseDto.image} />
           <ExchangeImg src={timer} />
-          <GoodsImg src={goods} />
+          <GoodsImg src={bidListResponseDtos.goodsImg} />
         </GoodsContainer>
       );
     }
-    if (request === "입찰성공") {
+    if (request === "SUCCESS") {
       return (
         <GoodsContainer>
-          <GoodsImg src={goods} />
+          <GoodsImg src={testListResponseDto.image} />
           <ExchangeImg src={timer} />
-          <GoodsImg src={goods} />
+          <GoodsImg src={bidListResponseDtos.goodsImg} />
         </GoodsContainer>
       );
     }
-    if (request === "교환완료") {
+    if (request === "DONE") {
       return (
         <GoodsContainer>
-          <GoodsImg src={goods} />
+          <GoodsImg src={testListResponseDto.image} />
           <ExchangeImg src={timer} />
-          <GoodsImg src={goods} />
+          <GoodsImg src={bidListResponseDtos.goodsImg} />
         </GoodsContainer>
       );
     }
-    if (request === "입찰실패") {
+    if (request === "FAIL") {
       return (
         <GoodsContainer>
-          <GoodsImg src={goods} />
+          <GoodsImg src={testListResponseDto.image} />
           <ExchangeImg src={timer} />
-          <GoodsImg src={goods} />
+          <GoodsImg src={bidListResponseDtos.goodsImg} />
         </GoodsContainer>
       );
     }

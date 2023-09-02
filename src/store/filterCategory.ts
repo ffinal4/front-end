@@ -15,3 +15,9 @@ export const filterAsc = atom({
   key: "filterAsc",
   default: false,
 });
+
+//경매현황페이지 - 내경매 filter
+export const myAuctionFilter = atom({
+  key: "AuctionFilterName",
+  default: "전체",
+});
