@@ -28,14 +28,11 @@ const LoginPage = () => {
   const loginOnclick = async (event: any) => {
     event.preventDefault();
     if (email === "" || password === "") {
-      // Swal.fire({
-      //   icon: "warning",
-      //   text: <CustomModal>아이디나 비밀번호를 입력해주세요.</CustomModal>,
-      //   confirmButtonColor: "#ffca64",
-      //   customClass: {
-      //     confirmButton: "custom-confirm-button",
-      //   },
-      // });
+      Swal.fire({
+        icon: "warning",
+        text: "아이디나 비밀번호를 입력해주세요.",
+        confirmButtonColor: "#ffca64",
+      });
 
       return;
     }
