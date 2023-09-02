@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { styled } from "styled-components";
 import PocketRight from "../assets/images/smallPocketright.png";
 import RatingInfo from "../components/RatingPage/RatingInfo";
@@ -70,12 +71,21 @@ const RatingPage = () => {
       }
     } catch {
       if (error) {
-        alert(`${error}`);
+        Swal.fire({
+          icon: "warning",
+          text: `${error}`,
+          confirmButtonColor: "#ffca64",
+        });
       }
     }
   };
   // if (data === undefined) return <p>평가 가능한 상품이 없습니다.</p>;
-  if (isLoading) return <MainLayout><p>Loading...</p></MainLayout>;
+  if (isLoading)
+    return (
+      <MainLayout>
+        <p>Loading...</p>
+      </MainLayout>
+    );
   if (error) return <NotDataModal />;
 
   return (
@@ -93,7 +103,11 @@ const RatingPage = () => {
               </AnswerCountContainer>
               <LikeBtn>♡</LikeBtn>
             </ImageContainer>
-            {detailInfo ? <RatingDetailInfo data={data} /> : <RatingInfo data={data} />}
+            {detailInfo ? (
+              <RatingDetailInfo data={data} />
+            ) : (
+              <RatingInfo data={data} />
+            )}
             {detailInfo ? (
               <DetailBtnWrapper onClick={onClickDetailInfoHandler}>
                 <Text style={{ color: "#ADADAD" }}>간략히보기</Text>
@@ -138,7 +152,10 @@ const RatingPage = () => {
             {ratingPrice.map((item) => {
               return (
                 <div key={item}>
-                  <PriceButton buttonColor="#FDEAC2" onClick={() => onClickAddRatingHandler(item)}>
+                  <PriceButton
+                    buttonColor="#FDEAC2"
+                    onClick={() => onClickAddRatingHandler(item)}
+                  >
                     + {item.toLocaleString()}
                   </PriceButton>
                 </div>
@@ -149,7 +166,11 @@ const RatingPage = () => {
             {success ? (
               <StBasicButton
                 buttonColor="#FFCA64"
-                style={{ color: "#39373A", border: "2px solid #39373A", fontWeight: "700" }}
+                style={{
+                  color: "#39373A",
+                  border: "2px solid #39373A",
+                  fontWeight: "700",
+                }}
                 onClick={() => window.location.reload()}
               >
                 이어하기
@@ -157,7 +178,11 @@ const RatingPage = () => {
             ) : (
               <StBasicButton
                 buttonColor="#FFCA64"
-                style={{ color: "#39373A", border: "2px solid #39373A", fontWeight: "700" }}
+                style={{
+                  color: "#39373A",
+                  border: "2px solid #39373A",
+                  fontWeight: "700",
+                }}
                 onClick={onClickSubmitHandler}
               >
                 제출
@@ -165,11 +190,18 @@ const RatingPage = () => {
             )}
           </BottomBtnWrapper>
           <PocketBottomIconContainer>
-            <PocketImage src={PocketLeft} style={{ transform: "rotate(-10.208deg)" }} />
+            <PocketImage
+              src={PocketLeft}
+              style={{ transform: "rotate(-10.208deg)" }}
+            />
           </PocketBottomIconContainer>
           {gameover && (
             <FaildContainer>
-              <FailedModal resData={resData} setAddPrice={setAddPrice} addPrice={addPrice} />
+              <FailedModal
+                resData={resData}
+                setAddPrice={setAddPrice}
+                addPrice={addPrice}
+              />
             </FaildContainer>
           )}
         </RatingContainer>

@@ -12,7 +12,8 @@ import BidAuctionList from "../components/MyAuctionCheckPage/BidAuctionList";
 
 const MyAuctionCheckPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
-  const [dropdownMenu, setDropdownMenu] = useState("필터");
+  const [auctionFilterOpen, setAuctionFilterOpen] = useState(false);
+  const [dropdownMenu, setDropdownMenu] = useState("전체");
 
   const [filterTap, setFilterTap] = useState({
     myAuctionTap: true,
@@ -32,8 +33,8 @@ const MyAuctionCheckPage = () => {
           {myAuctionTap === true && bidAuctionTap === false && (
             <div>
               <MyAuctionList
-                filterOpen={filterOpen}
-                setFilterOpen={setFilterOpen}
+                auctionFilterOpen={auctionFilterOpen}
+                setAuctionFilterOpen={setAuctionFilterOpen}
                 dropdownMenu={dropdownMenu}
                 setDropdownMenu={setDropdownMenu}
                 setFilterTap={setFilterTap}

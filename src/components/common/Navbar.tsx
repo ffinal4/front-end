@@ -4,7 +4,11 @@ import category from "../../assets/icon/category.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import FilterModal from "./FilterModal";
 import { useResetRecoilState } from "recoil";
-import { filterAsc, filterCategory, filterName } from "../../store/filterCategory";
+import {
+  filterAsc,
+  filterCategory,
+  filterName,
+} from "../../store/filterCategory";
 import { pagination } from "../../store/pagination";
 
 const Navbar = () => {
@@ -97,7 +101,7 @@ const Navbar = () => {
 };
 const CategoryHeaderContainer = styled.div`
   max-width: 1920px;
-  height: 70px;
+  height: 60px;
   display: flex;
   align-items: center;
 `;

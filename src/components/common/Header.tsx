@@ -14,7 +14,11 @@ import Navbar from "./Navbar";
 import { postLogoutApi } from "../../api/users";
 import AlarmButton from "./AlarmButton";
 import { useResetRecoilState } from "recoil";
-import { filterAsc, filterCategory, filterName } from "../../store/filterCategory";
+import {
+  filterAsc,
+  filterCategory,
+  filterName,
+} from "../../store/filterCategory";
 import { pagination } from "../../store/pagination";
 
 const Header = () => {
@@ -60,7 +64,11 @@ const Header = () => {
           <LogoTitle src={blueTitle} />
         </LogoContainer>
       );
-    } else if (location.pathname.includes("/" || "/tradeList" || "/traderequest" || "/detail")) {
+    } else if (
+      location.pathname.includes(
+        "/" || "/tradeList" || "/traderequest" || "/detail"
+      )
+    ) {
       return (
         <LogoContainer>
           <Logo src={loginLogo} />
@@ -138,7 +146,9 @@ const Header = () => {
                 로그인
               </LoginLink>
               <BoxContainer />
-              <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
+              <SignupLink onClick={() => navigate("/signup")}>
+                회원가입
+              </SignupLink>
             </LinkContainer>
           )}
         </HeaderContainer>
@@ -167,7 +177,7 @@ const HeaderoutContainer = styled.div`
 
 const HeaderContainer = styled.div`
   width: 1136px;
-  height: 70px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;

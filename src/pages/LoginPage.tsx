@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Swal from "sweetalert2";
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import { StBasicButton } from "../styles/BasicButton";
@@ -28,7 +28,15 @@ const LoginPage = () => {
   const loginOnclick = async (event: any) => {
     event.preventDefault();
     if (email === "" || password === "") {
-      alert("아이디나 비밀번호를 입력해주세요.");
+      // Swal.fire({
+      //   icon: "warning",
+      //   text: <CustomModal>아이디나 비밀번호를 입력해주세요.</CustomModal>,
+      //   confirmButtonColor: "#ffca64",
+      //   customClass: {
+      //     confirmButton: "custom-confirm-button",
+      //   },
+      // });
+
       return;
     }
     const body = { email: email, password: password };
@@ -109,9 +117,9 @@ const LoginPage = () => {
         </LogInForm>
       </LoginContainer>
       <Box>
-        <img src={firstbox} />
+        <img src={firstbox} alt="" />
         <SecondDiv>
-          <img src={secondbox} />
+          <img src={secondbox} alt="" />
         </SecondDiv>
       </Box>
       <FooterContainer>
@@ -123,6 +131,16 @@ const LoginPage = () => {
     </LoginPageContainer>
   );
 };
+const CustomModal = styled.div`
+  font-size: 20px; /* 원하는 글꼴 크기로 변경하세요 */
+`;
+
+const CustomConfirmButton = styled.button`
+  background-color: #ffca64; /* 원하는 배경색으로 변경하세요 */
+  border-color: #ffca64; /* 원하는 테두리 색상으로 변경하세요 */
+  color: #333;
+`;
+
 const LoginPageContainer = styled.div`
   background-color: #fcf6e9;
   position: relative;
@@ -170,13 +188,13 @@ const Title = styled.div`
   font-size: 32px;
   font-weight: 800;
   margin-top: 10px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 400;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 const InputContainer = styled.div`
@@ -200,7 +218,7 @@ const SearchId = styled.span`
   height: 24px;
   cursor: pointer;
   font-size: 16px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   display: flex;
   align-items: center;
 `;
@@ -210,12 +228,12 @@ const SearchPw = styled.span`
   padding-left: 16px;
   font-size: 16px;
   height: 24px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   display: flex;
   align-items: center;
 `;
 const MaintainLogin = styled.span`
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 const SecondContainer = styled.div`
@@ -259,7 +277,7 @@ const SignUpContainer = styled.div`
 `;
 
 const Content = styled.span`
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 const SignupLink = styled.button`
@@ -267,7 +285,7 @@ const SignupLink = styled.button`
   font-size: 16px;
   font-weight: 1000;
   margin-left: 10px;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 const Box = styled.div`
