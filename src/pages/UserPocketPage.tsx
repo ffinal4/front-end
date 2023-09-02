@@ -8,12 +8,23 @@ import { useQuery } from "react-query";
 import { getUserPocketApi } from "../api/goods";
 import { useParams } from "react-router-dom";
 import ItemCardList from "../components/common/ItemCardList";
+import { useRecoilValue } from "recoil";
+import { pagination } from "../store/pagination";
+import { filterAsc } from "../store/filterCategory";
+import AscFilterButton from "../components/common/AscFilterButton";
 
 const UserPocketPage = () => {
   const { nickname } = useParams();
-  const { isLoading, error, data } = useQuery(["myPocketData", nickname], () => getUserPocketApi(nickname), {
-    refetchOnWindowFocus: false,
-  });
+  const page = useRecoilValue(pagination);
+  const asc = useRecoilValue(filterAsc);
+
+  const { isLoading, error, data } = useQuery(
+    ["myPocketData", nickname, page, asc],
+    () => getUserPocketApi(nickname, page, asc),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
   if (isLoading) return <div>Loading...</div>;
   console.log("남의포켓데이터", data);
   if (error) {
@@ -28,6 +39,9 @@ const UserPocketPage = () => {
         <UserInfo data={data?.data} />
       </TitleContainer>
       <DotLine src={dotLine} />
+      <FilterButtonContainer>
+        <AscFilterButton />
+      </FilterButtonContainer>
       <CardListContainer>
         <ItemCardList data={data?.data.info.goodsListResponseDto} />
       </CardListContainer>
@@ -50,6 +64,13 @@ const TitleContainer = styled.div`
   background-color: #39373a;
 `;
 
+const FilterButtonContainer = styled.div`
+  width: 100%;
+  max-width: 1136px;
+  margin: 0 auto;
+  margin-top: 20px;
+`;
+
 const TitleFont = styled(StTitle)`
   color: #fcfcfc;
 `;
@@ -61,7 +82,6 @@ const TitleLogo = styled.img`
 const DotLine = styled.img`
   width: 100%;
   margin-top: 20px;
-  margin-bottom: 80px;
 `;
 
 const CardListContainer = styled.div`
