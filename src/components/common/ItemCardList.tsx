@@ -18,7 +18,6 @@ const ItemCardList = ({ data, allList, isPocket }: any) => {
                   && item?.goodsStatus !== "CANCEL")
                     && ((item?.goodsStatus === "BIDDING"
                       || item?.goodsStatus === "ONAUCTION"
-                      || item?.goodsStatus === "END"
                       || item?.goodsStatus === "AUCTION")
                         ? <div>
                           <GoodsConditionContainer />

@@ -59,10 +59,10 @@ export const postSellerPicksApi = async (body: any, auctionId: number) => {
   return res;
 };
 
-// 경매
+// 경매 
 
-// 경매 강제취소
-export const deleteAuctionCancelApi = async (auctionId: number) => {
+// 경매 강제 취소
+export const deleteAuctionCancelApi = async (auctionId : number) => {
   const res = await instance.delete(`/api/auction/${auctionId}`);
   return res;
 };

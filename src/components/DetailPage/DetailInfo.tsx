@@ -48,7 +48,7 @@ const DetailInfo = ({ data }: any) => {
           </TextWrapper>
           <TextWrapper style={{cursor: "default"}}>
             <SmallBox src={Time} />
-            <ColorText color="#ADADAD">{result}일 전</ColorText>
+            <ColorText color="#ADADAD">{(result === -1) ? "0" : result}일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
             <ModalBtn data={data} navigate={navigate} />
