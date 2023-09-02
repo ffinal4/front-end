@@ -9,16 +9,17 @@ import TradeCompleteModal from "./TradeCompleteModal";
 interface RequestStateButtonProps {
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
+  item: any;
 }
 
 const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   requestState,
   setRequestState,
+  item,
 }) => {
   const navigate = useNavigate();
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-
   const { request } = requestState;
 
   const rejectModalClick = () => {
@@ -26,7 +27,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   };
 
   const requestAcceptOnclick = () => {
-    setRequestState({ ...requestState, request: "교환진행중" });
+    setRequestState({ ...requestState, request: "TRADING" });
   };
 
   const completeModalClick = () => {
@@ -34,13 +35,9 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     // setRequestState({ ...requestState, request: "교환완료" });
   };
 
-  const stateButton = () => {
-    if (request === "교환요청") {
+  const receiveStateButton = () => {
+    if (request === "REQUEST") {
       return (
-        // <WaitingStateContainer>
-        //   <Img src={eye} />
-        //   상대방의 응답 기다리는 중...
-        // </WaitingStateContainer>
         <RequestBtContainer>
           <StRejectBt buttonColor="white" onClick={rejectModalClick}>
             거절
@@ -61,7 +58,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
         </RequestBtContainer>
       );
     }
-    if (request === "교환진행중") {
+    if (request === "TRADING") {
       return (
         <ButtonContainer>
           <StCompleteBt buttonColor="#EC8D49" onClick={completeModalClick}>
@@ -89,30 +86,16 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
         </ButtonContainer>
       );
     }
-
-    // if (request === "교환취소") {
-    //   return (
-    //     <div>
-    //       <StDeleteBt buttonColor="white" onClick={deleteModalClick}>
-    //         기록 삭제
-    //       </StDeleteBt>
-    //       {deleteModalOpen && (
-    //         <TradeDeleteModal
-    //           deleteModalOpen={deleteModalOpen}
-    //           setDeleteModalOpen={setDeleteModalOpen}
-    //           requestState={requestState}
-    //           setRequestState={setRequestState}
-    //         />
-    //       )}
-    //     </div>
-    //   );
-    // }
   };
-  return <div>{stateButton()}</div>;
+  return <div>{receiveStateButton()}</div>;
 };
 const RequestBtContainer = styled.div`
   display: flex;
   gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
 `;
 
 export const WaitingStateContainer = styled.div`

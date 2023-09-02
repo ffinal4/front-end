@@ -108,3 +108,5 @@ export const postRequestsApi = async (body: any, goodsId: number) => {
   const res = await instance.post(`/api/goods/users/${goodsId}/request`, body);
   return res;
 };
+
+// 교환요청 수락

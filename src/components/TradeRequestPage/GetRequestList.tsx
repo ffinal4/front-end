@@ -16,6 +16,7 @@ import {
   TabContainer,
 } from "../../pages/TradeRequestPage";
 import { getTradeReceiveRequestApi } from "../../api/goods";
+import TradeReceiveCard from "./TradeReceiveCard";
 
 interface GetRequestListProps {
   filterOpen: boolean;
@@ -91,7 +92,7 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
         <CardContainer>
           {data?.data.content.length > 0 &&
             data?.data.content?.map((item: any) => {
-              return <TradeRequestCard key={item.goodsId} item={item} />;
+              return <TradeReceiveCard key={item.goodsId} item={item} />;
             })}
         </CardContainer>
       </TradeRequestListContainer>

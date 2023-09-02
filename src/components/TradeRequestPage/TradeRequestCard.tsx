@@ -135,6 +135,7 @@ const TradeRequestCard = ({ item }: any) => {
       </ContentsContainer>
       <ButtonContainer>
         <RequestStateButton
+          item={item}
           requestState={requestState}
           setRequestState={setRequestState}
         />
@@ -199,7 +200,7 @@ export const GoodsImg = styled.img`
   cursor: pointer;
 `;
 
-const OtherGoodsImg = styled.img`
+export const OtherGoodsImg = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 5px;
@@ -216,7 +217,7 @@ export const ExchangeImg = styled.img`
   height: 24px;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   color: #ec8d49;
   font-family: "Pretendard";
   font-size: 14px;
