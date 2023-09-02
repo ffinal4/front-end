@@ -59,7 +59,11 @@ export const postSellerPicksApi = async (body: any, auctionId: number) => {
   return res;
 };
 
-// 경매 
+// 경매 낙찰품 선택
+export const deleteAucEndApi = async (body : any, auctionId : number) => {
+  const res = await instance.delete(`/api/auction/${auctionId}/pick/bid/list`, body);
+  return res;
+};
 
 // 경매 강제 취소
 export const deleteAuctionCancelApi = async (auctionId : number) => {
