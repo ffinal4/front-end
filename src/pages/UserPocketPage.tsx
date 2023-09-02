@@ -1,6 +1,5 @@
 import React from "react";
 import { styled } from "styled-components";
-import eyeImage from "../assets/images/eye.svg";
 import { StTitle } from "../styles/TitleFont";
 import dotLine from ".././assets/images/vector.png";
 import Paging from "../components/common/Paging/Paging";
@@ -23,10 +22,9 @@ const UserPocketPage = () => {
   return (
     <UserPocketContainer>
       <TitleContainer>
-        <TitleLogo src={eyeImage} />
-        <StTitle marginbottom="80px" textalign="center">
+        <TitleFont marginbottom="28px" textalign="center">
           PEEPPING POCKET
-        </StTitle>
+        </TitleFont>
         <UserInfo data={data?.data} />
       </TitleContainer>
       <DotLine src={dotLine} />
@@ -38,19 +36,23 @@ const UserPocketPage = () => {
   );
 };
 const UserPocketContainer = styled.div`
-  padding-top: 240px;
   width: 100%;
   padding-bottom: 100px;
 `;
 
 const TitleContainer = styled.div`
+  padding-top: 200px;
+  padding-bottom: 80px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 4px solid #222020;
+  background-color: #39373a;
 `;
 
+const TitleFont = styled(StTitle)`
+  color: #fcfcfc;
+`;
 const TitleLogo = styled.img`
   width: 66px;
   margin-bottom: 16px;

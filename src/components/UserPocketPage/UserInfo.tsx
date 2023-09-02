@@ -1,60 +1,94 @@
 import React from "react";
 import { styled } from "styled-components";
+import eyeImage from "../../assets/images/eye.svg";
+import userImage from "../../assets/images/defaultprofile.png";
+import locationImage from "../../assets/icon/location.png";
 
 const UserInfo = ({ data }: any) => {
   return (
     <UserInfoContainer>
-      <UserImage />
-      <InfoContainer>
+      <UserImage src={userImage} />
+      <NameContainer>
         <UserName>{data.info.nickName}</UserName>
+        <Nim>님의 주머니를 훔쳐보는 중...</Nim>
+        <ImageContainer>
+          <EyeImage src={eyeImage} />
+        </ImageContainer>
+      </NameContainer>
+      <LocationContainer>
+        <LocationImage src={locationImage} />
         <UserLocation>{data.info.location}</UserLocation>
-      </InfoContainer>
+      </LocationContainer>
     </UserInfoContainer>
   );
 };
 
 const UserInfoContainer = styled.div`
-  width: 464px;
-  height: 174px;
-  border-top: 1px solid #000;
-  border-left: 1px solid #000;
-  border-right: 1px solid #000;
   display: flex;
-  padding: 31px 40px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
-const UserImage = styled.img`
-  width: 112px;
-  height: 112px;
-  border-radius: 112px;
-  background-color: black;
-  margin-right: 40px;
+const LocationContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
-const UserName = styled.div`
-  color: #000;
-  font-family: "Pretendard";
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 150%; /* 30px */
-  margin-bottom: 6px;
+
+const LocationImage = styled.img`
+  width: 18px;
+  height: 18px;
+  margin-right: 7px;
 `;
-const UserLocation = styled.div`
-  color: #000;
-  /* KOR/Kor R 16 */
+const NameContainer = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+`;
+const Nim = styled.div`
+  color: var(--black-white-white, #fcfcfc);
+  /* WEB/KOR/Kor R 16 */
   font-family: "Pretendard";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 24px */
 `;
+const EyeImage = styled.img`
+  width: 18px;
+  height: 15px;
+`;
 
-const InfoContainer = styled.div`
-  width: 100%;
-  max-width: 200px;
+const ImageContainer = styled.div`
+  margin-left: 3px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+`;
+
+const UserImage = styled.img`
+  width: 112px;
+  height: 112px;
+  border-radius: 112px;
+  margin-bottom: 28px;
+`;
+const UserName = styled.div`
+  color: var(--black-white-white, #fcfcfc);
+  text-align: right;
+  /* WEB/KOR/Kor B 16 */
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+`;
+const UserLocation = styled.div`
+  color: var(--black-white-gray-10, #efefef);
+  /* WEB/KOR/Kor R 16 */
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
 `;
 
 export default UserInfo;

@@ -13,7 +13,6 @@ import { useRecoilValue } from "recoil";
 import { pagination } from "../store/pagination";
 
 const MyPocketPage = () => {
-
   const currentPage = useRecoilValue(pagination);
   const navigate = useNavigate();
   const { isLoading, error, data } = useQuery(["myPocketData", currentPage], () => getMyPocketApi(currentPage), {
@@ -53,7 +52,7 @@ const MyPocketPage = () => {
 };
 
 const MyPocketPageContainer = styled.div`
-  padding-top: 140px;
+  padding-top: 120px;
   width: 100%;
   padding-bottom: 100px;
 `;
