@@ -12,6 +12,7 @@ import { useRecoilValue } from "recoil";
 import { pagination } from "../store/pagination";
 import { filterAsc } from "../store/filterCategory";
 import AscFilterButton from "../components/common/AscFilterButton";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const UserPocketPage = () => {
   const { nickname } = useParams();
@@ -25,7 +26,7 @@ const UserPocketPage = () => {
       refetchOnWindowFocus: false,
     }
   );
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   console.log("남의포켓데이터", data);
   if (error) {
     console.log(error);

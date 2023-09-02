@@ -8,12 +8,13 @@ import { getZzimPageApi } from "../api/users";
 import { useQuery } from "react-query";
 import ItemCardList from "../components/common/ItemCardList";
 import Paging from "../components/common/Paging/Paging";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const ZzimListPage = () => {
   const { isLoading, error, data } = useQuery("ZzimListPageData", getZzimPageApi, {
     refetchOnWindowFocus: false,
   });
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   console.log("찜 리스트페이지데이터", data);
   if (error) {
     console.log(error);

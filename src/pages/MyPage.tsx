@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { getMypageApi } from "../api/users";
 import Background from "../assets/images/mypagebg.svg";
 import Pocket from "../components/MyPage/Pocket";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const MyPage = () => {
   const { isLoading, error, data }: any = useQuery("myPageData", getMypageApi, {
@@ -22,7 +23,7 @@ const MyPage = () => {
     }
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error: {error.message}</p>;
   console.log("myPage", data);
 
