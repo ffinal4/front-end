@@ -13,12 +13,11 @@ import BidCompleteModal from "./BidCompleteModal";
 import EmptyPocket from "../common/EmptyPocket";
 
 const BidModal = ({ conditional, setConditional, productData }: any) => {
-
   const currentPage = useRecoilValue(pagination);
 
   const { isError, isLoading, data, error }: any = useQuery(
     ["bidPickData", currentPage],
-    () => getMyPocketApi(currentPage),
+    () => getMyPocketApi(currentPage, false),
     {
       refetchOnWindowFocus: false,
     }
@@ -38,15 +37,12 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
     goodsId: [],
   });
 
-  const mutation = useMutation(
-    () => postAuctionBidApi(myPocketGoods, newAuctionId),
-    {
-      onSuccess: (res) => {
-        console.log("입찰성공!", res);
-        setBidCheck(true);
-      },
-    }
-  );
+  const mutation = useMutation(() => postAuctionBidApi(myPocketGoods, newAuctionId), {
+    onSuccess: (res) => {
+      console.log("입찰성공!", res);
+      setBidCheck(true);
+    },
+  });
 
   const onClickBidHandler = () => {
     mutation.mutate();
@@ -59,42 +55,26 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
 
   return (
     <div>
-      <ModalBackgroundBox
-        onClick={() => setConditional({ ...conditional, bid: false })}
-      />
+      <ModalBackgroundBox onClick={() => setConditional({ ...conditional, bid: false })} />
       <ModalContainer>
         <ModalTitle>
           JOIN BID!
-          <CloseBtn
-            src={Close}
-            onClick={() => setConditional({ ...conditional, bid: false })}
-          />
+          <CloseBtn src={Close} onClick={() => setConditional({ ...conditional, bid: false })} />
         </ModalTitle>
         <ModalSubtitle>입찰하기</ModalSubtitle>
         <Wrapper>
           <TextWrapper>
-            <Text>
-              - 1개 또는 2개 이상의 물건을 주머니로 묶어서 입찰 할 수 있습니다.
-            </Text>
-            <Text>
-              - 2개 이상의 물건을 주머니로 묶어서 입찰 할 경우, 경매에서
-            </Text>
-            <Text>
-              - 경매자가 정해놓은 입찰 제한 레이팅 이상의 물건만 선택 할 수
-              있습니다.
-            </Text>
-            <Text>
-              - 현재 거래중이거나 다른 경매의 입찰품인 물건은 선택 할 수
-              없습니다.
-            </Text>
+            <Text>- 1개 또는 2개 이상의 물건을 주머니로 묶어서 입찰 할 수 있습니다.</Text>
+            <Text>- 2개 이상의 물건을 주머니로 묶어서 입찰 할 경우, 경매에서</Text>
+            <Text>- 경매자가 정해놓은 입찰 제한 레이팅 이상의 물건만 선택 할 수 있습니다.</Text>
+            <Text>- 현재 거래중이거나 다른 경매의 입찰품인 물건은 선택 할 수 없습니다.</Text>
           </TextWrapper>
           <ButtonWrapper>
             <RatingPoint>
               <Text style={{ color: "#222020" }}>선택 된 총 레이팅 점수</Text>
               {ratingPrice.toLocaleString()}
             </RatingPoint>
-            {ratingPrice >=
-            productData.data.info.auctionResponseDto.lowPrice ? (
+            {ratingPrice >= productData.data.info.auctionResponseDto.lowPrice ? (
               <StButton
                 buttonColor="#58ABF7"
                 style={{ cursor: "pointer", border: "2px solid #222020" }}
@@ -108,8 +88,8 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
           </ButtonWrapper>
         </Wrapper>
         <PocketListContainer>
-          {(newData.length > 0)
-            ? newData?.map((item: any) => {
+          {newData.length > 0 ? (
+            newData?.map((item: any) => {
               return (
                 <NotRatingProductWrapper>
                   <JoinBidCard
@@ -126,8 +106,7 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
                     item.goodsStatus === "BIDDING" ||
                     item.goodsStatus === "ONAUCTION" ||
                     item.rationCheck === false) && <NotRatingProduct />}
-                  {(item.goodsStatus === "BIDDING" ||
-                    item.goodsStatus === "ONAUCTION") && (
+                  {(item.goodsStatus === "BIDDING" || item.goodsStatus === "ONAUCTION") && (
                     <div>
                       <GoodsConditionContainer />
                       <GoodsCondition>
@@ -136,24 +115,25 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
                       </GoodsCondition>
                     </div>
                   )}
-                  {(item.goodsStatus === "END" ||
-                    item.goodsStatus === "DONE") &&
-                    <DoneContainer>
-                      거래완료
-                    </DoneContainer>}
+                  {(item.goodsStatus === "END" || item.goodsStatus === "DONE") && (
+                    <DoneContainer>거래완료</DoneContainer>
+                  )}
                 </NotRatingProductWrapper>
               );
             })
-            : <EmptyPocket />}
+          ) : (
+            <EmptyPocket />
+          )}
         </PocketListContainer>
-        {(bidCheck)
-          && <BidCompleteModal
+        {bidCheck && (
+          <BidCompleteModal
             setBidCheck={setBidCheck}
             setConditional={setConditional}
             conditional={conditional}
             data={productData}
             modals={1}
-          />}
+          />
+        )}
         <Paging />
       </ModalContainer>
     </div>
@@ -330,7 +310,7 @@ export const DoneContainer = styled.div`
   font-size: 20px;
   font-weight: 700;
   line-height: 150%;
-  color: #FCFCFC;
+  color: #fcfcfc;
 `;
 
 export default BidModal;

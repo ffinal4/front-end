@@ -12,8 +12,8 @@ export const getGoodsApi = async (page: number, category: string | null, asc: bo
 };
 
 // 내주머니 전체조회
-export const getMyPocketApi = async (page: number) => {
-  const res = await instance.get(`/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=false`);
+export const getMyPocketApi = async (page: number, asc: boolean) => {
+  const res = await instance.get(`/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=${asc}`);
   return res;
 };
 
