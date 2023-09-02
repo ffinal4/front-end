@@ -10,18 +10,24 @@ import { useNavigate } from "react-router-dom";
 import { ValueToEnum } from "../../utils/EnumCategory";
 import ModalBtn from "./ModalBtn";
 import AcceptBtn from "./AcceptBtn";
+import { useResetRecoilState } from "recoil";
+import { filterAsc, filterCategory, filterName } from "../../store/filterCategory";
+import { pagination } from "../../store/pagination";
 
 const DetailInfo = ({ data }: any) => {
-  
   const navigate = useNavigate();
   const categorys = data.data.info.goodsResponseDtoList.category;
   const createdDate = data.data.info.goodsResponseDtoList.createdAt;
   const splitDate = createdDate.split("T")[0];
-  const targetDate : any = new Date(splitDate);
-  const currentDate : any = new Date();
+  const targetDate: any = new Date(splitDate);
+  const currentDate: any = new Date();
   const newDate = currentDate - targetDate;
   const result = Math.floor(newDate / (1000 * 60 * 60 * 24));
   console.log("며칠전", result);
+  const resetCategory = useResetRecoilState(filterCategory);
+  const resetCategoryName = useResetRecoilState(filterName);
+  const restPage = useResetRecoilState(pagination);
+  const resetAsc = useResetRecoilState(filterAsc);
 
   return (
     <InfoContainer>
@@ -31,9 +37,17 @@ const DetailInfo = ({ data }: any) => {
         <TextWrapper
           style={{ gap: "8px" }}
           onClick={() => {
-            if (data.data.info.checkSameUser) {
+            if (data.data.info.goodsResponseDtoList.checkSameUser) {
               navigate("/mypocket");
+              resetCategory();
+              resetCategoryName();
+              restPage();
+              resetAsc();
             } else {
+              resetCategory();
+              resetCategoryName();
+              restPage();
+              resetAsc();
               navigate(`/userpocket/${data.data.info.goodsResponseDtoList.nickname}`);
             }
           }}
@@ -42,13 +56,13 @@ const DetailInfo = ({ data }: any) => {
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
         <BoxWrapper>
-          <TextWrapper style={{cursor: "default"}}>
+          <TextWrapper style={{ cursor: "default" }}>
             <SmallBox src={Like} />
             <ColorText color="#ADADAD">{data.data.info.goodsResponseDtoList.dibsCount}</ColorText>
           </TextWrapper>
-          <TextWrapper style={{cursor: "default"}}>
+          <TextWrapper style={{ cursor: "default" }}>
             <SmallBox src={Time} />
-            <ColorText color="#ADADAD">{(result === -1) ? "0" : result}일 전</ColorText>
+            <ColorText color="#ADADAD">{result === -1 ? "0" : result}일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
             <ModalBtn data={data} navigate={navigate} />

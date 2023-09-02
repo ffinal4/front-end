@@ -11,14 +11,21 @@ import { getMyPocketApi } from "../api/goods";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../store/pagination";
+import { filterAsc } from "../store/filterCategory";
+import AscFilterButton from "../components/common/AscFilterButton";
 
 const MyPocketPage = () => {
-
   const currentPage = useRecoilValue(pagination);
+  const asc = useRecoilValue(filterAsc);
+
   const navigate = useNavigate();
-  const { isLoading, error, data } = useQuery(["myPocketData", currentPage], () => getMyPocketApi(currentPage), {
-    refetchOnWindowFocus: false,
-  });
+  const { isLoading, error, data } = useQuery(
+    ["myPocketData", currentPage, asc],
+    () => getMyPocketApi(currentPage, asc),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
   if (isLoading) return <div>Loading...</div>;
   console.log("마이포켓데이터", data);
   if (error) {
@@ -43,7 +50,11 @@ const MyPocketPage = () => {
       </TitleContainer>
 
       <HorizontalLine />
+
       <DotLine src={dotLine} />
+      <FilterButtonContainer>
+        <AscFilterButton />
+      </FilterButtonContainer>
       <CardListContainer>
         <ItemCardList data={data?.data.info.goodsListResponseDto.content} isPocket={true} />
       </CardListContainer>
@@ -53,9 +64,16 @@ const MyPocketPage = () => {
 };
 
 const MyPocketPageContainer = styled.div`
-  padding-top: 140px;
+  padding-top: 120px;
   width: 100%;
   padding-bottom: 100px;
+`;
+
+const FilterButtonContainer = styled.div`
+  width: 100%;
+  max-width: 1136px;
+  margin: 0 auto;
+  margin-top: 20px;
 `;
 
 const TitleContainer = styled.div`
@@ -104,7 +122,7 @@ const UploadBtn = styled.div`
 const DotLine = styled.img`
   width: 100%;
   margin-top: 20px;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 `;
 const CardListContainer = styled.div`
   width: 100%;

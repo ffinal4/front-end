@@ -39,7 +39,7 @@ const Banner = () => {
 
 const BannerContainer = styled.div`
   width: 100%;
-  padding-top: 140px;
+  padding-top: 120px;
   position: relative;
   margin-bottom: 200px;
 `;

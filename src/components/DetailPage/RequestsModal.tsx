@@ -33,7 +33,7 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
 
   const { isError, isLoading, data, error }: any = useQuery(
     ["bidPickData", currentPage],
-    () => getMyPocketApi(currentPage),
+    () => getMyPocketApi(currentPage, false),
     {
       refetchOnWindowFocus: false,
     }
@@ -54,16 +54,13 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
     goodsId: [],
   });
 
-  const mutation = useMutation(
-    () => postRequestsApi(myPocketGoods, newProductData),
-    {
-      onSuccess: (res) => {
-        console.log("입찰성공!", res);
-        setConditional({ ...conditional, bid: false });
-        window.location.replace("/traderequest");
-      },
-    }
-  );
+  const mutation = useMutation(() => postRequestsApi(myPocketGoods, newProductData), {
+    onSuccess: (res) => {
+      console.log("입찰성공!", res);
+      setConditional({ ...conditional, bid: false });
+      window.location.replace("/traderequest");
+    },
+  });
 
   console.log(myPocketGoods, newProductData);
 
@@ -81,13 +78,8 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
         <ModalSubtitle>교환 신청할 물건 선택</ModalSubtitle>
         <Wrapper>
           <TextWrapper>
-            <Text>
-              - 1개 또는 2개 이상의 물건을 주머니로 묶어서 교환 신청할 수
-              있습니다.
-            </Text>
-            <Text>
-              - 현재 경매 중이거나 거래 중인 물건은 선택할 수 없습니다.
-            </Text>
+            <Text>- 1개 또는 2개 이상의 물건을 주머니로 묶어서 교환 신청할 수 있습니다.</Text>
+            <Text>- 현재 경매 중이거나 거래 중인 물건은 선택할 수 없습니다.</Text>
           </TextWrapper>
           <ButtonWrapper>
             {checkBox.length > 0 ? (
@@ -138,8 +130,7 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
                           경매중
                         </GoodsCondition>
                       </div>
-                    ) : item?.goodsStatus === "END" ||
-                      item?.goodsStatus === "DONE" ? (
+                    ) : item?.goodsStatus === "END" || item?.goodsStatus === "DONE" ? (
                       <DoneContainer>거래완료</DoneContainer>
                     ) : (
                       <div>

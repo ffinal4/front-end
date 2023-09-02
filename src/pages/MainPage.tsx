@@ -18,15 +18,14 @@ const MainPage = () => {
     console.log(error);
   }
   return (
-    <MainPageContainer>
+    <div>
       <Banner />
       <NewItemList data={data?.data.info.goodsListResponseDto} />
       <RankList data={data?.data.info.ratingUserResponseDto} />
       <AuctionList data={data?.data.info.auctionResponseDto} />
       <HowToTrade />
-    </MainPageContainer>
+    </div>
   );
 };
 
-const MainPageContainer = styled.div``;
 export default MainPage;
