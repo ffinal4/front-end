@@ -30,9 +30,7 @@ interface BidAuctionListProps {
   filterTap: any;
   setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setDropdownMenu: React.Dispatch<React.SetStateAction<string>>;
-  setFilterTap: React.Dispatch<
-    React.SetStateAction<{ myAuctionTap: boolean; bidAuctionTap: boolean }>
-  >;
+  setFilterTap: React.Dispatch<React.SetStateAction<{ myAuctionTap: boolean; bidAuctionTap: boolean }>>;
 }
 
 const BidAuctionList: React.FC<BidAuctionListProps> = ({
@@ -43,10 +41,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
-  const { isLoading, data, error }: any = useQuery(
-    " getBidAuctionData",
-    getBidAuctionApi
-  );
+  const { isLoading, data, error }: any = useQuery(" getBidAuctionData", getBidAuctionApi);
 
   if (isLoading) return <div>Loading...</div>;
   console.log("입찰경매현황 데이터", data);
