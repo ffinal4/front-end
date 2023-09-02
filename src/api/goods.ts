@@ -6,27 +6,37 @@ export const getMainPageApi = async () => {
   return res;
 };
 // 물물교환 전체 조회
-export const getGoodsApi = async (page: number, category: string | null, asc: boolean) => {
-  const res = await instance.get(`/api/goods?page=${page}&size=20&sortBy=createdAt&isAsc=${asc}${category}`);
+export const getGoodsApi = async (
+  page: number,
+  category: string | null,
+  asc: boolean
+) => {
+  const res = await instance.get(
+    `/api/goods?page=${page}&size=20&sortBy=createdAt&isAsc=${asc}${category}`
+  );
   return res;
 };
 
 // 내주머니 전체조회
 export const getMyPocketApi = async (page: number) => {
-  const res = await instance.get(`/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=false`);
+  const res = await instance.get(
+    `/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=false`
+  );
   return res;
 };
 
 // 다른유저 주머니 전체조회
 export const getUserPocketApi = async (nickname: any) => {
-  const res = await instance.get(`/api/goods/pocket/${nickname}?page=1&size=5&sortBy=createdAt&isAsc=false`);
+  const res = await instance.get(
+    `/api/goods/pocket/${nickname}?page=1&size=5&sortBy=createdAt&isAsc=false`
+  );
   return res;
 };
 
 // 물품교환요청받은 페이지 전체조회
 export const getTradeReceiveRequestApi = async () => {
   const res = await instance.get(
-    "/api/goods/users/trade/requested?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUESTED"
+    "/api/goods/users/trade/receive?page=1&size=5&sortBy=createdAt&isAsc=false"
   );
   return res;
 };
@@ -34,7 +44,7 @@ export const getTradeReceiveRequestApi = async () => {
 // 물물교환요청한 페이지 전체조회
 export const getTradeRequestApi = async () => {
   const res = await instance.get(
-    "/api/goods/users/trade/request?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUEST"
+    "/api/goods/users/trade/request?page=1&size=5&sortBy=createdAt&isAsc=false"
   );
   return res;
 };
