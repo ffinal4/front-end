@@ -50,7 +50,7 @@ export const getAuctionBidListChoiceApi = async (auctionId: number) => {
 // 내 경매현황 전체조회
 export const getMyAuctionCheckApi = async () => {
   const res = await instance.get(
-    "/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status=REQUEST"
+    "/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status"
   );
   return res;
 };

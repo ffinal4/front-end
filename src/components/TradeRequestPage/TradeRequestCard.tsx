@@ -15,13 +15,15 @@ const TradeRequestCard = ({ item }: any) => {
   const [opacity, setOpacity] = useState<string>();
   const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
   const { request } = requestState;
+  const goodsListResponseDto = item?.goodsListResponseDto; // 상대물건
+  const goodsListResponseDtos = item?.goodsListResponseDtos[0]; //내 물건
 
   const goodsDetailModalOnclick = () => {
     setDetailModalOpen(!detailModalOpen);
   };
 
   useEffect(() => {
-    if (request === "교환요청") {
+    if (request === "REQUEST") {
       setBorder("1px solid #D5D4D4");
     }
     if (request === "교환진행중") {
@@ -37,7 +39,7 @@ const TradeRequestCard = ({ item }: any) => {
   }, [request]);
 
   const tradeRequestState = () => {
-    if (request === "교환요청") {
+    if (request === "REQUEST") {
       return (
         <StRequestState
           backgroundcolor="white"
@@ -48,7 +50,7 @@ const TradeRequestCard = ({ item }: any) => {
         </StRequestState>
       );
     }
-    if (request === "교환진행중") {
+    if (request === "TRADING") {
       return (
         <StRequestState
           backgroundcolor="#EC8D49"
@@ -59,7 +61,7 @@ const TradeRequestCard = ({ item }: any) => {
         </StRequestState>
       );
     }
-    if (request === "교환완료") {
+    if (request === "DONE") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -70,7 +72,7 @@ const TradeRequestCard = ({ item }: any) => {
         </StRequestState>
       );
     }
-    if (request === "교환취소") {
+    if (request === "CANCEL") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -84,10 +86,13 @@ const TradeRequestCard = ({ item }: any) => {
   };
 
   const tradeRequestGoods = () => {
-    if (request === "교환요청" || "교환완료" || "교환취소") {
+    if (request === "REQUEST" || "DONE" || "CANCEL") {
       return (
         <GoodsContainer>
-          <GoodsImg src={goods} onClick={goodsDetailModalOnclick} />
+          <GoodsImg
+            src={goodsListResponseDto.imageUrl}
+            onClick={goodsDetailModalOnclick}
+          />
           {detailModalOpen && (
             <div style={{ position: "absolute" }}>
               <DetailGoodsModal
@@ -97,11 +102,11 @@ const TradeRequestCard = ({ item }: any) => {
             </div>
           )}
           <ExchangeImg src={goodsexchange} />
-          <GoodsImg src={goods} />
+          <GoodsImg src={goodsListResponseDtos.imageUrl} />
         </GoodsContainer>
       );
     }
-    if (request === "교환진행중") {
+    if (request === "TRADING") {
       return (
         <GoodsContainer>
           <GoodsImg src={goods} />
@@ -122,11 +127,11 @@ const TradeRequestCard = ({ item }: any) => {
       {tradeRequestGoods()}
       <ContentsContainer>
         <Title>상대물건</Title>
-        <GoodsTitle>스파이더맨 어크로스 더 유니버스 IMAX 포스터</GoodsTitle>
-        <Address>경기도 수원시 영통구</Address>
+        <GoodsTitle>{goodsListResponseDto.title}</GoodsTitle>
+        <Address>{goodsListResponseDto.location}</Address>
         <Title>내 물건</Title>
-        <GoodsTitle>가디언즈 오브 갤럭시 오리지널 티켓</GoodsTitle>
-        <Address>서울시 서초구 서초1동</Address>
+        <GoodsTitle>{goodsListResponseDtos.title}</GoodsTitle>
+        <Address>{goodsListResponseDtos.location}</Address>
       </ContentsContainer>
       <ButtonContainer>
         <RequestStateButton
