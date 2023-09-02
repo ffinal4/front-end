@@ -44,13 +44,18 @@ const MyPage = () => {
 
 const AllLayoutContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 954px;
   position: relative;
+  overflow-x: hidden;
   background-color: #fcf6e9;
+
+  @media screen and (max-width: 1144px) {
+    height: 1390px;
+  }
 `;
 
 const LayoutImage = styled.img`
-    width: 1864px;
+    min-width: 1947px;
     height: 327px;
     object-fit: contain;
     position: absolute;
@@ -60,10 +65,9 @@ const LayoutImage = styled.img`
 `;
 
 const LayoutContainer = styled.div`
-  width: 1144px;
+  width: 100%;
   height: 100vh;
   display: grid;
-  margin: 0 auto;
   padding: 220px 0px 100px 0px;
 
   @media screen and (max-width: 1144px) {
@@ -91,8 +95,10 @@ const MyPageContentContainer = styled.div`
   height: 100%;
 
   @media screen and (max-width: 1144px) {
+    width: 100%;
     display: grid;
     justify-content: center;
+    gap: 0px;
   }
 `;
 

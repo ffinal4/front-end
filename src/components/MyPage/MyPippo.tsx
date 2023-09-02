@@ -50,6 +50,10 @@ const RightContentContainer = styled.div`
   background-color: #FCFCFC;
   border-radius: 5px 5px 0px 0px;
   position: relative;
+
+  @media screen and (max-width: 1136px) {
+    width: 100%;
+  }
 `;
 
 const InContainer = styled.div`
