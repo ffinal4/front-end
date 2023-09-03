@@ -15,6 +15,7 @@ import SuccessBIdModal from "./SuccessBIdModal";
 const DetailContent = ({ data }: any) => {
   const navigate = useNavigate();
   const newData = data?.data.info.auctionResponseDto.goodsResponseDto;
+  const productData = data?.data.info.auctionResponseDto.auctionId;
   const splitDate = newData?.createdAt.split("T")[0];
   const targetDate : any = new Date(splitDate);
   const currentDate : any = new Date();
@@ -26,15 +27,13 @@ const DetailContent = ({ data }: any) => {
   const [conditional, setConditional] = useState({
     bid: false,
     modal: false,
-    auction: false,
   });
   const [sellerPicks, setSellerPicks] = useState({
     pickModal: false,
     successBidModal: false,
-    bidId: "",
   });
-  const { bid, modal, auction } = conditional;
-  const { pickModal, successBidModal, bidId } = sellerPicks;
+  const { bid, modal } = conditional;
+  const { pickModal, successBidModal } = sellerPicks;
 
   
 
@@ -111,13 +110,13 @@ const DetailContent = ({ data }: any) => {
       />
       {(pickModal)
         && <SellerPickModal
-            productData={data}
+            auctionId={productData}
             sellerPicks={sellerPicks}
             setSellerPicks={setSellerPicks} />
       }
       {(successBidModal)
         && <SuccessBIdModal
-            productData={data}
+            auctionId={productData}
             sellerPicks={sellerPicks}
             setSellerPicks={setSellerPicks} />
       }

@@ -50,7 +50,7 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
                 >그만하기</StopButton>
                 <OnemoreBtn
                     buttonColor='#FBD8BF'
-                    onClick={() => {navigate('/ratingstart')}}
+                    onClick={() => {window.location.reload()}}
                 >다시하기</OnemoreBtn>
             </BtnWrapper>
         </ModalContainer>

@@ -83,7 +83,15 @@ const BidAuctionCard = ({ item }: any) => {
   };
 
   const auctionCondition = () => {
-    if (request === "BIDDING") {
+    if (item?.bidListResponseDtos.length > 1) {
+      return (
+        <div>
+          <Title>입찰</Title>
+          <GoodsTitle>{bidListResponseDtos.title} 외 {item?.bidListResponseDtos.length - 1}개</GoodsTitle>
+          <Address>{bidListResponseDtos.location}</Address>
+        </div>
+      );
+    } else {
       return (
         <div>
           <Title>입찰</Title>
@@ -91,33 +99,42 @@ const BidAuctionCard = ({ item }: any) => {
           <Address>{bidListResponseDtos.location}</Address>
         </div>
       );
-    }
-    if (request === "SUCCESS") {
-      return (
-        <div>
-          <Title>입찰</Title>
-          <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
-          <Address>{bidListResponseDtos.location}</Address>
-        </div>
-      );
-    }
-    if (request === "DONE") {
-      return (
-        <div>
-          <Title>입찰</Title>
-          <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
-          <Address>{bidListResponseDtos.location}</Address>
-        </div>
-      );
-    }
-    if (request === "FAIL") {
-      return (
-        <div>
-          <Title>입찰</Title>
-          <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
-        </div>
-      );
-    }
+    };
+    // if (request === "BIDDING") {
+    //   return (
+    //     <div>
+    //       <Title>입찰</Title>
+    //       <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
+    //       <Address>{bidListResponseDtos.location}</Address>
+    //     </div>
+    //   );
+    // }
+    // if (request === "SUCCESS") {
+    //   return (
+    //     <div>
+    //       <Title>입찰</Title>
+    //       <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
+    //       <Address>{bidListResponseDtos.location}</Address>
+    //     </div>
+    //   );
+    // }
+    // if (request === "DONE") {
+    //   return (
+    //     <div>
+    //       <Title>입찰</Title>
+    //       <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
+    //       <Address>{bidListResponseDtos.location}</Address>
+    //     </div>
+    //   );
+    // }
+    // if (request === "FAIL") {
+    //   return (
+    //     <div>
+    //       <Title>입찰</Title>
+    //       <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
+    //       <Address>{bidListResponseDtos.location}</Address>
+    //     </div>
+    //   );
   };
   return (
     <CardContainer style={{ border: `${border}`, opacity: `${opacity}` }}>

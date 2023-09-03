@@ -2,6 +2,10 @@ import React from 'react'
 import { styled } from 'styled-components';
 
 const RatingDetailInfo = ({ data } : any) => {
+
+    const contentData = data?.data.info.content;
+    const inputData = contentData.split("\n");
+
   return (
     <InfoContainer>
         <TitleContainer>
@@ -9,7 +13,13 @@ const RatingDetailInfo = ({ data } : any) => {
         </TitleContainer>
         <ContentContainer>
             <ContentText>
-                {data.data.info.content}
+                {inputData?.map((item : string) => {
+                        return (
+                            (item === inputData[inputData.length - 1])
+                                ? <div>{item}</div>
+                                : <div>{item}<br /></div>
+                        )
+                    })}
             </ContentText>
         </ContentContainer>
     </InfoContainer>

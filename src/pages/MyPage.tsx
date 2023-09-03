@@ -30,23 +30,21 @@ const MyPage = () => {
   return (
     <AllLayoutContainer>
       <LayoutImage src={Background} />
-      <LayoutContainer>
         <MyPageTitle>MY PAGE</MyPageTitle>
         <MyPageContentContainer>
           <ProfileContent data={data} />
           <MyPippo data={data} />
         </MyPageContentContainer>
         <Pocket />
-      </LayoutContainer>
     </AllLayoutContainer>
   );
 };
 
 const AllLayoutContainer = styled.div`
+  padding-top: 200px;
   width: 100%;
-  height: 100vh;
-  position: relative;
   background-color: #fcf6e9;
+  overflow: hidden;
 `;
 
 const LayoutImage = styled.img`
@@ -57,19 +55,6 @@ const LayoutImage = styled.img`
   top: 170px;
   left: 0;
   z-index: 0;
-`;
-
-const LayoutContainer = styled.div`
-  width: 1144px;
-  height: 100vh;
-  display: grid;
-  margin: 0 auto;
-  padding: 220px 0px 100px 0px;
-
-  @media screen and (max-width: 1144px) {
-    width: 100%;
-    height: 800px;
-  }
 `;
 
 const MyPageTitle = styled.div`

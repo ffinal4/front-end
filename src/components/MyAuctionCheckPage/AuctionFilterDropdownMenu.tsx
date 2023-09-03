@@ -3,12 +3,15 @@ import {
   FilterDropdownContainer,
   RequestState,
 } from "../TradeRequestPage/FilterDropdownMenu";
+import { useRecoilState } from "recoil";
+import { myAuctionFilter } from "../../store/filterCategory";
 
 const AuctionFilterDropdownMenu = (props: any) => {
   const { auctionFilterOpen, setAuctionFilterOpen, setDropdownMenu } = props;
 
+  const [filter, setFilter] = useRecoilState(myAuctionFilter);
   const requestStateOnclick = (event: any) => {
-    setDropdownMenu(event.target.innerHTML);
+    setFilter(event.target.innerHTML);
     setAuctionFilterOpen(!auctionFilterOpen);
   };
   return (

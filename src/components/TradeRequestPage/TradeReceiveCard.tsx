@@ -107,10 +107,10 @@ const TradeReceiveCard = ({ item, data }: any) => {
           />
           {detailModalOpen && (
             <div style={{ position: "absolute" }}>
-              <DetailGoodsModal
+              {/* <DetailGoodsModal
                 detailModalOpen={detailModalOpen}
                 setDetailModalOpen={setDetailModalOpen}
-              />
+              /> */}
             </div>
           )}
           <ExchangeImg src={goodsexchange} />

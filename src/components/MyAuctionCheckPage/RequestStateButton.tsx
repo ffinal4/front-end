@@ -12,22 +12,28 @@ import eye from "../../assets/icon/openeye.png";
 import { useNavigate } from "react-router-dom";
 import AuctionCompleteModal from "./AuctionCompleteModal";
 import SuccessBIdModal from "../AuctionDetailPage/SuccessBIdModal";
+import SellerPickModal from "../AuctionDetailPage/SellerPickModal";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   item: any;
+  setDto: React.Dispatch<React.SetStateAction<any>>;
+  setSellerPicks: React.Dispatch<React.SetStateAction<{ pickModal: boolean, successBidModal: boolean }>>;
+  sellerPicks: { pickModal: boolean, successBidModal: boolean };
 }
 
 const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   requestState,
   setRequestState,
   item,
+  setDto,
+  setSellerPicks,
+  sellerPicks
 }) => {
   const navigate = useNavigate();
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
   const [bidSelectModal, setBidSelectModal] = useState<boolean>(false);
-  const [sellerPickModal, setSellerPickModal] = useState<boolean>(false);
   const { request } = requestState;
   const testListResponseDto = item?.testListResponseDto;
 
@@ -36,12 +42,14 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   };
 
   const sellerPickOnclick = () => {
-    setSellerPickModal(!sellerPickModal);
+    setDto(item?.testListResponseDto.auctionId);
+    setSellerPicks({...sellerPicks, pickModal: true});
     // setRequestState({ ...requestState, request: "경매중" });
   };
 
   const bidGoodsSelectOnclick = () => {
-    setBidSelectModal(!bidSelectModal);
+    setDto(item?.testListResponseDto.auctionId);
+    setSellerPicks({...sellerPicks, successBidModal: true});
   };
 
   const stateButton = () => {
@@ -53,56 +61,86 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
           <StAuctionIngBt buttonColor="#CBE4FB" onClick={sellerPickOnclick}>
             Seller's Pick
           </StAuctionIngBt>
-          {sellerPickModal && <SuccessBIdModal />}
         </div>
       );
     }
 
     if (request === "END") {
-      return (
-        <div>
-          <StAuctionGoodsSelectBt
-            buttonColor="#58ABF7"
-            onClick={bidGoodsSelectOnclick}
-          >
-            입찰품 선택
-          </StAuctionGoodsSelectBt>
-          {bidSelectModal && <SuccessBIdModal />}
-        </div>
-      );
+      if (item?.bidListResponseDtos.length > 0) {
+        return (
+          <ButtonContainer>
+            <StAuctionCompleteBt
+              buttonColor="#58ABF7"
+              onClick={completeModalClick}
+            >
+              완료
+            </StAuctionCompleteBt>
+            {completeModalOpen && (
+              <ModalContainer>
+                <AuctionCompleteModal
+                  completeModalOpen={completeModalOpen}
+                  setCompleteModalOpen={setCompleteModalOpen}
+                  requestState={requestState}
+                  setRequestState={setRequestState}
+                />
+              </ModalContainer>
+            )}
+            <StChatBt
+              buttonColor="white"
+              onClick={() => {
+                navigate("/chat");
+              }}
+            >
+              채팅하기
+              <Img src={chat} />
+            </StChatBt>
+          </ButtonContainer>
+        );
+      } else {
+        return (
+          <div>
+            <StAuctionGoodsSelectBt
+              buttonColor="#58ABF7"
+              onClick={bidGoodsSelectOnclick}
+            >
+              입찰품 선택
+            </StAuctionGoodsSelectBt>
+          </div>
+        );
+      };
     }
 
-    if (request === "DONE") {
-      return (
-        <ButtonContainer>
-          <StAuctionCompleteBt
-            buttonColor="#58ABF7"
-            onClick={completeModalClick}
-          >
-            완료
-          </StAuctionCompleteBt>
-          {completeModalOpen && (
-            <ModalContainer>
-              <AuctionCompleteModal
-                completeModalOpen={completeModalOpen}
-                setCompleteModalOpen={setCompleteModalOpen}
-                requestState={requestState}
-                setRequestState={setRequestState}
-              />
-            </ModalContainer>
-          )}
-          <StChatBt
-            buttonColor="white"
-            onClick={() => {
-              navigate("/chat");
-            }}
-          >
-            채팅하기
-            <Img src={chat} />
-          </StChatBt>
-        </ButtonContainer>
-      );
-    }
+    // if (request === "DONE") {
+    //   return (
+    //     <ButtonContainer>
+    //       <StAuctionCompleteBt
+    //         buttonColor="#58ABF7"
+    //         onClick={completeModalClick}
+    //       >
+    //         완료
+    //       </StAuctionCompleteBt>
+    //       {completeModalOpen && (
+    //         <ModalContainer>
+    //           <AuctionCompleteModal
+    //             completeModalOpen={completeModalOpen}
+    //             setCompleteModalOpen={setCompleteModalOpen}
+    //             requestState={requestState}
+    //             setRequestState={setRequestState}
+    //           />
+    //         </ModalContainer>
+    //       )}
+    //       <StChatBt
+    //         buttonColor="white"
+    //         onClick={() => {
+    //           navigate("/chat");
+    //         }}
+    //       >
+    //         채팅하기
+    //         <Img src={chat} />
+    //       </StChatBt>
+    //     </ButtonContainer>
+    //   );
+    // }
     // 교환완료
     if (request === "DONE") {
       return (
@@ -138,6 +176,9 @@ export const StAuctionTradeCompleteBt = styled(StBasicButton)`
 // `;
 
 export const ModalContainer = styled.div`
+  width: 100%;
+  height: 100%;
   position: absolute;
 `;
+
 export default RequestStateButton;
