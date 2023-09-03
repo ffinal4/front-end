@@ -89,7 +89,7 @@ const AuctionRequestCard = ({ item }: any) => {
         <div>
           <Title>경매상황</Title>
           <GoodsTitle>
-            현재 총 {testListResponseDto.bidCount}명이 경매에 입찰했어요.
+            현재 총 {testListResponseDto.bidCount} 명이 경매에 입찰했어요.
           </GoodsTitle>
           <Address>
             경매 종료까지 {testListResponseDto.timeRemaining.days}:

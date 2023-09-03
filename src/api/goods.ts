@@ -6,32 +6,50 @@ export const getMainPageApi = async () => {
   return res;
 };
 // 물물교환 전체 조회
-export const getGoodsApi = async (page: number, category: string | null, asc: boolean) => {
-  const res = await instance.get(`/api/goods?page=${page}&size=20&sortBy=createdAt&isAsc=${asc}${category}`);
+export const getGoodsApi = async (
+  page: number,
+  category: string | null,
+  asc: boolean
+) => {
+  const res = await instance.get(
+    `/api/goods?page=${page}&size=20&sortBy=createdAt&isAsc=${asc}${category}`
+  );
   return res;
 };
 
 // 내주머니 전체조회
 export const getMyPocketApi = async (page: number, asc: boolean) => {
-  const res = await instance.get(`/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=${asc}`);
+  const res = await instance.get(
+    `/api/goods/pocket?page=${page}&size=8&sortBy=createdAt&isAsc=${asc}`
+  );
   return res;
 };
 
 // 다른유저 주머니 전체조회
-export const getUserPocketApi = async (nickname: any, page: number, asc: boolean) => {
-  const res = await instance.get(`/api/goods/pocket/${nickname}?page=${page}&size=8&sortBy=createdAt&isAsc=${asc}`);
+export const getUserPocketApi = async (
+  nickname: any,
+  page: number,
+  asc: boolean
+) => {
+  const res = await instance.get(
+    `/api/goods/pocket/${nickname}?page=${page}&size=8&sortBy=createdAt&isAsc=${asc}`
+  );
   return res;
 };
 
 // 물품교환요청받은 페이지 전체조회
 export const getTradeReceiveRequestApi = async () => {
-  const res = await instance.get("/api/goods/users/trade/receive?page=1&size=5&sortBy=createdAt&isAsc=false");
+  const res = await instance.get(
+    "/api/goods/users/trade/receive?page=1&size=5&sortBy=createdAt&isAsc=false"
+  );
   return res;
 };
 
 // 물물교환요청한 페이지 전체조회
 export const getTradeRequestApi = async () => {
-  const res = await instance.get("/api/goods/users/trade/request?page=1&size=5&sortBy=createdAt&isAsc=false");
+  const res = await instance.get(
+    "/api/goods/users/trade/request?page=1&size=5&sortBy=createdAt&isAsc=false"
+  );
   return res;
 };
 
@@ -92,5 +110,23 @@ export const postZzimApi = async (body: zzimBody) => {
 // 물품 교환신청
 export const postRequestsApi = async (body: any, goodsId: number) => {
   const res = await instance.post(`/api/goods/users/${goodsId}/request`, body);
+  return res;
+};
+
+// 교환요청 수락
+interface acceptBody {
+  requestId: number;
+}
+export const postAcceptTradeApi = async (body: acceptBody) => {
+  const res = await instance.post("/api/goods/users/accept", body);
+  return res;
+};
+
+// 교환요청 거절
+interface refuseBody {
+  requestId: number;
+}
+export const deleteRefuseTradeApi = async () => {
+  const res = await instance.delete("/api/goods/users/refuse");
   return res;
 };
