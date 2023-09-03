@@ -23,10 +23,10 @@ import AucBidCard from "./AucBidCard";
 import BidCompleteModal from "./BidCompleteModal";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../../store/pagination";
+import LoadingSpinner from "../common/LoadingSpinner";
 
-const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
+const SuccessBIdModal = ({ auctionId, sellerPicks, setSellerPicks }: any) => {
   const currentPage = useRecoilValue(pagination);
-  const auctionId = productData.data.info.auctionResponseDto.auctionId;
   const { isLoading, error, data }: any = useQuery(
     ["auctionBid", currentPage, auctionId],
     () => getAuctionBidListApi(currentPage, auctionId),
@@ -50,6 +50,7 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
       onSuccess: (res) => {
           console.log("선택완료!", res)
           setSellerPicks({...sellerPicks, SuccessBidModal: false});
+          setWonBidChoice({...wonBidChoice, sureModal: true});
       },
   });
   
@@ -59,6 +60,8 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
   //   };
     
   // };
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>

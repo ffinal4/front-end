@@ -11,29 +11,27 @@ const NotDataModal = () => {
 
   return (
     <div>
-    
-        <Background>
-            
-    <ModalContainer>
-        <ModalTitleContainer>
-            LIST RUNS OUT!
-        </ModalTitleContainer>
-        <ContentContainer>
-            <SubTitleContainer>리스트의 모든 물건들을 레이팅했어요.</SubTitleContainer>
-            <ContentTextWrapper>
-                <ContentText>물건들이 추가되면 게임을 이어서 진행할 수 있어요.</ContentText>
-                <ContentText>걱정 마세요! 지금까지 얻은 포인트는 마이페이지에 적립됐답니다!</ContentText>
-            </ContentTextWrapper>
-        </ContentContainer>
-        <BtnWrapper>
-            <OnemoreBtn
-                buttonColor='#FBD8BF'
-                onClick={() => {navigate('/mypage')}}
-            >포인트 확인</OnemoreBtn>
-        </BtnWrapper>
-    </ModalContainer>
-    <BackgroundContainer />
-    </Background>
+        <Background>     
+            <ModalContainer>
+                <ModalTitleContainer>
+                    LIST RUNS OUT!
+                </ModalTitleContainer>
+                <ContentContainer>
+                    <SubTitleContainer>리스트의 모든 물건들을 레이팅했어요.</SubTitleContainer>
+                    <ContentTextWrapper>
+                        <ContentText>물건들이 추가되면 게임을 이어서 진행할 수 있어요.</ContentText>
+                        <ContentText>걱정 마세요! 지금까지 얻은 포인트는 마이페이지에 적립됐답니다!</ContentText>
+                    </ContentTextWrapper>
+                </ContentContainer>
+                <BtnWrapper>
+                    <OnemoreBtn
+                        buttonColor='#FBD8BF'
+                        onClick={() => {navigate('/mypage')}}
+                    >포인트 확인</OnemoreBtn>
+                </BtnWrapper>
+            </ModalContainer>
+            <BackgroundContainer />
+        </Background>
     </div>
   )
 };

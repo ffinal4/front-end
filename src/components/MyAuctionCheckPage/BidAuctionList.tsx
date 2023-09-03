@@ -23,6 +23,8 @@ import bluedot from "../../assets/icon/bluedot.png";
 import blackdot from "../../assets/icon/blackdot.png";
 import { getBidAuctionApi } from "../../api/acution";
 import { useQuery } from "react-query";
+import LoadingSpinner from "../common/LoadingSpinner";
+import { BidFilterToEnum } from "../../utils/EnumFilter";
 
 interface BidAuctionListProps {
   filterOpen: boolean;
@@ -41,9 +43,16 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
-  const { isLoading, data, error }: any = useQuery(" getBidAuctionData", getBidAuctionApi);
 
-  if (isLoading) return <div>Loading...</div>;
+  const newFilter = BidFilterToEnum(dropdownMenu);
+  console.log("filter", newFilter);
+
+  const { isLoading, data, error }: any = useQuery(
+    ["getBidAuctionData", newFilter],
+    () => getBidAuctionApi(newFilter)
+  );
+
+  if (isLoading) return <LoadingSpinner />;
   console.log("입찰경매현황 데이터", data);
   if (error) {
     console.log(error);

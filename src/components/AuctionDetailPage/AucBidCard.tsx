@@ -2,9 +2,25 @@ import React, { useEffect } from 'react'
 import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 import Check from '../../assets/icon/check.png'
+import { useMutation } from 'react-query';
+import { getAuctionBidDetailApi } from '../../api/acution';
+import { DoneContainer } from './BidModal';
 
-const AucBidCard = ({ item, setCheckBox, checkBox, choice, seller, setBidSellerPick, bidSellerPick } : any) => {
+const AucBidCard = ({
+    item,
+    productData,
+    setCheckBox,
+    checkBox,
+    choice,
+    seller,
+    setBidSellerPick,
+    bidSellerPick,
+    setDetailModalOpen,
+    setDetailData
+} : any) => {
 
+    const auctionId = productData?.data.info.auctionResponseDto.auctionId;
+    const userId = item?.userId;
     const index = checkBox?.indexOf(item?.bidId);
 
     const onClickCheckHandler = (item : any) => {
@@ -21,6 +37,18 @@ const AucBidCard = ({ item, setCheckBox, checkBox, choice, seller, setBidSellerP
                 setCheckBox(item?.bidId);
             };     
         };
+    };
+
+    const mutation = useMutation(() => getAuctionBidDetailApi(auctionId, userId), {
+        onSuccess: (res) => {
+            console.log("상세보기", res)
+            setDetailModalOpen(true);
+            setDetailData(res);
+        }
+    });
+
+    const onClickDetailHandler = () => {
+        mutation.mutate();
     };
 
     useEffect(() => {
@@ -47,39 +75,47 @@ const AucBidCard = ({ item, setCheckBox, checkBox, choice, seller, setBidSellerP
     const cardCondition = () => {
         if (choice) {
             return (
-                <CardContainer onClick={() => onClickCheckHandler(item)}>
-                    <CardImg src={item?.image}>
-                        {(seller)
-                            ? (index !== -1)
-                                && <div>
-                                    <CheckOutContainer />
-                                    <CheckContainer>
-                                        <CheckBox>
-                                            <CheckImage src={Check} />
-                                        </CheckBox>
-                                    </CheckContainer>
-                                </div>
-                            : (checkBox === item?.bidId)
-                                && <div>
-                                    <CheckOutContainer />
-                                    <CheckContainer>
-                                        <CheckBox>
-                                            <CheckImage src={Check} />
-                                        </CheckBox>
-                                    </CheckContainer>
-                                </div>}
-                    </CardImg>
-                    <TitleContainer>{item?.title}</TitleContainer>
-                    <ContentContainer>{item?.location}</ContentContainer>
-                </CardContainer>
+                <div style={{position: "relative"}}>
+                    {(checkBox.length >= 4) && <NotRatingProduct />}
+                    <CardContainer onClick={() => onClickCheckHandler(item)}>
+                        <CardImg src={item?.image}>
+                            {(seller)
+                                ? (index !== -1)
+                                    && <div>
+                                        <CheckOutContainer />
+                                        <CheckContainer>
+                                            <CheckBox>
+                                                <CheckImage src={Check} />
+                                            </CheckBox>
+                                        </CheckContainer>
+                                    </div>
+                                : (checkBox === item?.bidId)
+                                    && <div>
+                                        <CheckOutContainer />
+                                        <CheckContainer>
+                                            <CheckBox>
+                                                <CheckImage src={Check} />
+                                            </CheckBox>
+                                        </CheckContainer>
+                                    </div>}
+                        </CardImg>
+                        <TitleContainer>{item?.title}</TitleContainer>
+                        <ContentContainer>{item?.location}</ContentContainer>
+                    </CardContainer>
+                </div>
             );
         } else {
             return (
-                <CardContainer>
+                <CardContainer onClick={onClickDetailHandler}>
                 <CardImg src={item?.image}>
                     {(item?.sellersPick) && <SellerChoice>SELLER'S PICK</SellerChoice>}
+                    {(item?.bidId.length > 1) && <Done>{item?.bidId.length}개의 물건</Done>}
                 </CardImg>
-                <TitleContainer>{item?.title}</TitleContainer>
+                <TitleContainer>
+                    {(item?.bidId.length > 1)
+                        ? `${item?.title} 외 ${(item?.bidId.length - 1)}개`
+                        : item?.title}
+                </TitleContainer>
                 <ContentContainer>{item?.location}</ContentContainer>
             </CardContainer>
             );
@@ -104,41 +140,6 @@ const CardImg = styled.div<{ src : string }>`
         background-image: ${(props) => `url(${props.src})`};
         background-size: cover;
         position: relative;
-    `;
-
-const CardLocationContainer = styled.div`
-        width: 100%;
-        height: 44px;
-        border-radius: 10px 10px 0px 0px;
-        color: #fff;
-        background-color: #222020;
-        opacity: 0.2;
-        display: flex;
-        align-items: center;
-        position: absolute;
-    `;
-
-const LocatinoWrapper = styled.div`
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        top: 10px;
-        left: 20px;
-        position: absolute;
-        z-index: 20;
-    `;
-
-const LocationText = styled.div`
-        color: #fff;
-        font-family: "Pretendard";
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 150%;
-    `;
-
-const LocationIcon = styled.img`
-        width: 18px;
-        height: 18px;
     `;
 
 const TitleContainer = styled.div`
@@ -173,6 +174,7 @@ const SellerChoice = styled.div`
     bottom: 0;
     position: absolute;
     border-radius: 0px 0px 10px 10px;
+    z-index: 999;
 `;
 
 const CheckOutContainer = styled.div`
@@ -215,6 +217,24 @@ const CheckBox = styled.div`
 const CheckImage = styled.img`
     width: 48px;
     height: 48px;
+`;
+
+const NotRatingProduct = styled.div`
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 272px;
+    height: 333px;
+    border-radius: 10px;
+    background-color: #FCFCFC;
+    opacity: 0.4;
+    cursor: default;
+`;
+
+const Done = styled(DoneContainer)`
+  width: 272px;
+  height: 272px;
 `;
 
 export default AucBidCard;

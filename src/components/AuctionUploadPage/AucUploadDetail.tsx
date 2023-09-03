@@ -4,6 +4,12 @@ import AucDetail from './AucDetail';
 import { ValueToEnum } from '../../utils/EnumCategory';
 
 const AucUploadDetail = ({ findedData } : any) => {
+
+    const contentData = findedData?.content;
+    const wantedData = findedData?.wantedGoods.content;
+    const inputData1 = contentData.split("\n");
+    const inputData2 = wantedData.split("\n");
+
     const [detailTap, setDetailTap] = useState({
         giveTap: true,
         wantTap: false,
@@ -39,7 +45,15 @@ const AucUploadDetail = ({ findedData } : any) => {
                     <InfoNextContainer>
                         <InfoTextContainer>
                             <InfoTextTitle>상품정보</InfoTextTitle>
-                            <InfoTextContent style={{paddingTop: "40px"}}>{findedData.content}</InfoTextContent>
+                            <InfoTextContent style={{paddingTop: "40px"}}>
+                                {inputData1?.map((item : string) => {
+                                    return (
+                                        (item === inputData1[inputData1.length - 1])
+                                            ? <div>{item}</div>
+                                            : <div>{item}<br /></div>
+                                    )
+                                })}
+                            </InfoTextContent>
                         </InfoTextContainer>
                     </InfoNextContainer>
                 </LayoutContainer> 
@@ -54,10 +68,18 @@ const AucUploadDetail = ({ findedData } : any) => {
                     <InfoNextContainer>
                         <InfoTextContainer>
                             <TextTitleContainer>
-                                <InfoTextTitle>{findedData.title}</InfoTextTitle>
-                                <InfoTextContent style={{color: "#A4A4A4"}}>{ValueToEnum(findedData.category)}</InfoTextContent>
+                                <InfoTextTitle>{findedData.wantedGoods.title}</InfoTextTitle>
+                                <InfoTextContent style={{color: "#A4A4A4"}}>{ValueToEnum(findedData.wantedGoods.category)}</InfoTextContent>
                             </TextTitleContainer>
-                            <InfoTextContent>{findedData.content}</InfoTextContent>
+                            <InfoTextContent>
+                                {inputData2?.map((item : string) => {
+                                    return (
+                                        (item === inputData2[inputData2.length - 1])
+                                            ? <div>{item}</div>
+                                            : <div>{item}<br /></div>
+                                    )
+                                })}
+                            </InfoTextContent>
                         </InfoTextContainer>
                     </InfoNextContainer>
                 </LayoutContainer> 

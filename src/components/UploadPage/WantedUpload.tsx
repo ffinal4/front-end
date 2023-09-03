@@ -69,12 +69,13 @@ const WantedUpload = ({ uploadData, setUploadData } : any) => {
                     placeholder='교환 받고 싶은 물건의 이름을 입력해주세요.'
                     onChange={onChangeTextInfoHandler}
                     onBlur={onBlurEventHandler}
+                    style={{borderColor: `${(title.length >= 40) ? "red" : "#000"}`}}
                 >
             </TitleInput>
-            <InputContainer>
+            <InputContainer style={{borderColor: `${(content.length >= 250) ? "red" : "#000"}`}}>
                 <DesciptionTextarea
                     typeof='text'
-                    maxLength={2000}
+                    maxLength={250}
                     name='content'
                     value={content}
                     placeholder='구입 연도, 브랜드, 사용감, 하자 유무 등 교환을 원하는 사람들에게 필요한 정보를 꼭 포함해주세요! (최소 10자 이상)'
@@ -83,9 +84,9 @@ const WantedUpload = ({ uploadData, setUploadData } : any) => {
                 />
             </InputContainer>
             <TextCount
-                style={{marginBottom: "30px"}}
-                color={(content.length >= 2000) ? "red" : "#000"}
-            >{content.length}/2000
+                style={{marginBottom: "30px", color: `${(content.length >= 250) ? "red" : "#000"}`}}
+                color={(content.length >= 250) ? "red" : "#000"}
+            >{content.length}/250
             </TextCount>
             <TagInput
                 placeholder='태그를 입력해주세요.'
@@ -165,6 +166,10 @@ const DesciptionTextarea = styled.textarea`
     line-height: 150%;
     border: none;
     outline: none;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
 `;
 
 const TextCount = styled.div`
@@ -187,6 +192,10 @@ const TagInput = styled.input`
     border: 1px solid #ADADAD;
     border-radius: 5px;
     background-color: #FCFCFC;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
 `;
 
 const TitleInput = styled.input`
@@ -201,6 +210,10 @@ const TitleInput = styled.input`
     border: 1px solid #ADADAD;
     border-radius: 5px;
     background-color: #FCFCFC;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
 `;
 
 const SelectContainer = styled.div`

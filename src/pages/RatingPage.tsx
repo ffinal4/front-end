@@ -18,7 +18,7 @@ import NotDataModal from "../components/RatingPage/NotDataModal";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const RatingPage = () => {
-  const { isLoading, data, error, refetch }: any = useQuery("ratingStart", getRatingStartApi, {
+  const { isLoading, data, error, status }: any = useQuery("ratingStart", getRatingStartApi, {
     refetchOnWindowFocus: false,
   });
 

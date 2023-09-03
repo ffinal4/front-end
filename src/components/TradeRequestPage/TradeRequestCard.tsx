@@ -94,10 +94,10 @@ const TradeRequestCard = ({ item, data }: any) => {
           />
           {detailModalOpen && (
             <div style={{ position: "absolute" }}>
-              <DetailGoodsModal
+              {/* <DetailGoodsModal
                 detailModalOpen={detailModalOpen}
                 setDetailModalOpen={setDetailModalOpen}
-              />
+              /> */}
             </div>
           )}
           <ExchangeImg src={goodsexchange} />
@@ -192,10 +192,13 @@ export const GoodsContainer = styled.div`
   gap: 44px;
 `;
 
-export const GoodsImg = styled.img`
+export const GoodsImg = styled.div<{ src : string }>`
   width: 80px;
   height: 80px;
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: cover;
   border-radius: 5px;
+  position: relative;
   cursor: pointer;
 `;
 

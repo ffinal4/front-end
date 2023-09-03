@@ -12,15 +12,17 @@ import ArrowRight from "../../assets/images/arrowright.png";
 import DetailInfo from "./DetailInfo";
 
 interface DetailGoodsModalProps {
+  detailData: any;
   detailModalOpen: boolean;
   setDetailModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
+  detailData,
   detailModalOpen,
   setDetailModalOpen,
 }) => {
   // const arrImages: string[] = data.data.info.images;
-
+  const modalData = detailData?.data.info;
   const divRef = useRef<HTMLDivElement>(null);
   const divTwoRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
@@ -111,9 +113,16 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
           </DetailModalHeadContainer>
           <DetailWrapper>
           <DetailOutWrapper ref={divTwoRef}>
-          <div>
+          {modalData?.map((item : any) => {
+            return (
+              <div>
           <div style={{ display: "flex", gap: "30px" }}>
             <ImageOutContainer>
+            <ImageWrapper>
+              {item?.imageUrls.map((image : string) => {
+                return <ImageBox src={image} />
+              })}
+              </ImageWrapper>
               <SlideBtnWrapper>
                 <SlideButton onClick={moveToPrevImageBtn}>
                   <img src={ArrowLeft} alt="" />
@@ -123,57 +132,18 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
                 </SlideButton>
               </SlideBtnWrapper>
             </ImageOutContainer>
-            <DetailInfo />
+            <DetailInfo item={item} />
           </div>
           <InfoContainer>
-            <InfoTextTitle>상품정보</InfoTextTitle>
+            <InfoTextTitle>{item?.title}</InfoTextTitle>
             <InfoTextContent>
-              내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧
+              {item?.content}
             </InfoTextContent>
           </InfoContainer>
           </div>
-          <div>
-          <div style={{ display: "flex", gap: "30px" }}>
-            <ImageOutContainer>
-              <SlideBtnWrapper>
-                <SlideButton onClick={moveToPrevImageBtn}>
-                  <img src={ArrowLeft} alt="" />
-                </SlideButton>
-                <SlideButton onClick={moveToNextImageBtn}>
-                  <img src={ArrowRight} alt="" />
-                </SlideButton>
-              </SlideBtnWrapper>
-            </ImageOutContainer>
-            <DetailInfo />
-          </div>
-          <InfoContainer>
-            <InfoTextTitle>상품정보</InfoTextTitle>
-            <InfoTextContent>
-              내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧
-            </InfoTextContent>
-          </InfoContainer>
-          </div>
-          <div>
-          <div style={{ display: "flex", gap: "30px" }}>
-            <ImageOutContainer>
-              <SlideBtnWrapper>
-                <SlideButton onClick={moveToPrevImageBtn}>
-                  <img src={ArrowLeft} alt="" />
-                </SlideButton>
-                <SlideButton onClick={moveToNextImageBtn}>
-                  <img src={ArrowRight} alt="" />
-                </SlideButton>
-              </SlideBtnWrapper>
-            </ImageOutContainer>
-            <DetailInfo />
-          </div>
-          <InfoContainer>
-            <InfoTextTitle>상품정보</InfoTextTitle>
-            <InfoTextContent>
-              내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧내용안녕하세욧
-            </InfoTextContent>
-          </InfoContainer>
-          </div>
+            )
+          })
+        }
           </DetailOutWrapper>
           </DetailWrapper>
         </DetailModalContainer>
@@ -278,6 +248,19 @@ const ImageOutContainer = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
+`;
+
+const ImageWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+const ImageBox = styled.div<{ src : string }>`
+  min-width: 272px;
+  height: 272px;
+  background-size: cover;
+  background-image: ${(props) => `url(${props.src})`};
 `;
 
 const SlideBtnWrapper = styled.div`

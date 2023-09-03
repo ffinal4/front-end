@@ -24,10 +24,10 @@ const DetailUpload = ({ uploadData, setUploadData } : any) => {
     <LineContainer>
         <RequiredText>상세설명</RequiredText>
         <Wrapper>
-          <InputContainer>
+          <InputContainer style={{borderColor: `${(content.length >= 250) ? "red" : "#000"}`}}>
             <DesciptionTextarea
                 typeof='text'
-                maxLength={2000}
+                maxLength={250}
                 name='content'
                 value={content}
                 placeholder='구입 연도, 브랜드, 사용감, 하자 유무 등 교환을 원하는 사람들에게 필요한 정보를 꼭 포함해주세요! (최소 10자 이상)'
@@ -35,7 +35,7 @@ const DetailUpload = ({ uploadData, setUploadData } : any) => {
                 onBlur={onBlurTextAreaHandler}
             />
           </InputContainer>
-          <TextCount color={(content.length >= 2000) ? "red" : "#000"}>{content.length}/2000</TextCount>
+          <TextCount style={{color: `${(content.length >= 250) ? "red" : "#000"}`}}>{content.length}/250</TextCount>
         </Wrapper>
     </LineContainer>
   )
@@ -80,6 +80,10 @@ const DesciptionTextarea = styled.textarea`
     line-height: 150%;
     border: none;
     outline: none;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
 `;
 
 const TextCount = styled.div`
