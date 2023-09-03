@@ -1,6 +1,5 @@
 import React from "react";
 import { styled } from "styled-components";
-import eyeImage from "../assets/images/eye.svg";
 import { StTitle } from "../styles/TitleFont";
 import dotLine from ".././assets/images/vector.png";
 import Paging from "../components/common/Paging/Paging";
@@ -9,13 +8,25 @@ import { useQuery } from "react-query";
 import { getUserPocketApi } from "../api/goods";
 import { useParams } from "react-router-dom";
 import ItemCardList from "../components/common/ItemCardList";
+import { useRecoilValue } from "recoil";
+import { pagination } from "../store/pagination";
+import { filterAsc } from "../store/filterCategory";
+import AscFilterButton from "../components/common/AscFilterButton";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const UserPocketPage = () => {
   const { nickname } = useParams();
-  const { isLoading, error, data } = useQuery(["myPocketData", nickname], () => getUserPocketApi(nickname), {
-    refetchOnWindowFocus: false,
-  });
-  if (isLoading) return <div>Loading...</div>;
+  const page = useRecoilValue(pagination);
+  const asc = useRecoilValue(filterAsc);
+
+  const { isLoading, error, data } = useQuery(
+    ["myPocketData", nickname, page, asc],
+    () => getUserPocketApi(nickname, page, asc),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+  if (isLoading) return <LoadingSpinner />;
   console.log("남의포켓데이터", data);
   if (error) {
     console.log(error);
@@ -23,13 +34,15 @@ const UserPocketPage = () => {
   return (
     <UserPocketContainer>
       <TitleContainer>
-        <TitleLogo src={eyeImage} />
-        <StTitle marginbottom="80px" textalign="center">
+        <TitleFont marginbottom="28px" textalign="center">
           PEEPPING POCKET
-        </StTitle>
+        </TitleFont>
         <UserInfo data={data?.data} />
       </TitleContainer>
       <DotLine src={dotLine} />
+      <FilterButtonContainer>
+        <AscFilterButton />
+      </FilterButtonContainer>
       <CardListContainer>
         <ItemCardList data={data?.data.info.goodsListResponseDto} />
       </CardListContainer>
@@ -38,19 +51,30 @@ const UserPocketPage = () => {
   );
 };
 const UserPocketContainer = styled.div`
-  padding-top: 240px;
   width: 100%;
   padding-bottom: 100px;
 `;
 
 const TitleContainer = styled.div`
+  padding-top: 200px;
+  padding-bottom: 80px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 4px solid #222020;
+  background-color: #39373a;
 `;
 
+const FilterButtonContainer = styled.div`
+  width: 100%;
+  max-width: 1136px;
+  margin: 0 auto;
+  margin-top: 20px;
+`;
+
+const TitleFont = styled(StTitle)`
+  color: #fcfcfc;
+`;
 const TitleLogo = styled.img`
   width: 66px;
   margin-bottom: 16px;
@@ -59,7 +83,6 @@ const TitleLogo = styled.img`
 const DotLine = styled.img`
   width: 100%;
   margin-top: 20px;
-  margin-bottom: 80px;
 `;
 
 const CardListContainer = styled.div`
