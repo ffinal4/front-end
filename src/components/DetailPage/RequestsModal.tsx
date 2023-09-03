@@ -38,7 +38,6 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
       refetchOnWindowFocus: false,
     }
   );
-  console.log(productData, "ddd");
 
   const newProductData = productData.data.info.goodsResponseDtoList.goodsId;
   // const newAuctionId = productData.data.info.auctionId
