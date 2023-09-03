@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import remove from "../../assets/icon/remove.png";
 import {
   ButtonContainer,
@@ -21,6 +21,8 @@ interface RequestRejectModalProps {
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   setRejectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   item: any;
+  requestGoods: any;
+  setRequestGoods: any;
 }
 
 const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
@@ -29,20 +31,28 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
   setRejectModalOpen,
   setRequestState,
   item,
+  requestGoods,
+  setRequestGoods,
 }) => {
-  const [requestGoods, setRequestGoods] = useState<{
-    requestId: string | number[];
-  }>({
-    requestId: [],
-  });
-
+  useEffect(() => {
+    const goodsData = item?.goodsListResponseDtos.map(
+      (item: any) => item?.goodsId
+    );
+    setRequestGoods({ ...requestGoods, requestId: goodsData });
+  }, [data]);
   // 교환거절 통신
-  const deleteMutate = useMutation(() => deleteRefuseTradeApi(), {
-    onSuccess: (res) => {
-      console.log("교환거절성공!", res);
-      setRequestState({ ...requestState, request: "CANCEL" });
-    },
-  });
+
+  const refuseGoodsData = item?.goodsListResponseDtos[0].goodsId;
+  console.log(refuseGoodsData, "거절");
+  const deleteMutate = useMutation(
+    () => deleteRefuseTradeApi(refuseGoodsData),
+    {
+      onSuccess: (res) => {
+        console.log("교환거절성공!", res);
+        setRequestState({ ...requestState, request: "CANCEL" });
+      },
+    }
+  );
 
   return (
     <div>

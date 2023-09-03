@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import RequestRejectModal from "./RequestRejectModal";
 import TradeCompleteModal from "./TradeCompleteModal";
 import { useMutation } from "react-query";
+import TradeAcceptButton from "./TradeAcceptButton";
 import { postAcceptTradeApi } from "../../api/goods";
 
 interface RequestStateButtonProps {
@@ -23,9 +24,6 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
 }) => {
   const navigate = useNavigate();
   const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
-
-  console.log(newGoodsData, "보내야할거");
-
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
   const { request } = requestState;
@@ -35,24 +33,12 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     requestId: [],
   });
 
-  useEffect(() => {
-    const goodsData = item?.goodsListResponseDtos.map(
-      (item: any) => item?.goodsId
-    );
-    setRequestGoods({ ...requestGoods, requestId: goodsData });
-  }, []);
-
-  //교환요청수락통신
   const mutation = useMutation(() => postAcceptTradeApi(newGoodsData), {
     onSuccess: (res) => {
       console.log("교환요청수락성공!", res);
       setRequestState({ ...requestState, request: "TRADING" });
     },
   });
-
-  const mutationHandler = () => {
-    mutation.mutate();
-  };
 
   console.log(requestGoods, "요청수락물건아이디");
 
@@ -84,10 +70,20 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
                 rejectModalOpen={rejectModalOpen}
                 setRejectModalOpen={setRejectModalOpen}
                 item={item}
+                requestGoods={requestGoods}
+                setRequestGoods={setRequestGoods}
               />
             </ModalContainer>
           )}
-          <StAssureBt buttonColor="black" onClick={mutationHandler}>
+          <TradeAcceptButton
+            data={data}
+            requestState={requestState}
+            setRequestState={setRequestState}
+            requestGoods={requestGoods}
+            setRequestGoods={setRequestGoods}
+            item={item}
+          />
+          <StAssureBt buttonColor="black" onClick={() => mutation.mutate()}>
             수락
           </StAssureBt>
         </RequestBtContainer>
@@ -173,14 +169,6 @@ export const StChatBt = styled(StBasicButton)`
   font-weight: 400;
 `;
 
-const StDetailBt = styled(StBasicButton)`
-  width: 176px;
-  border: 1px solid #d5d4d4;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 400;
-`;
-
 // const StDeleteBt = styled(StBasicButton)`
 //   width: 176px;
 //   border: 1px solid #d5d4d4;
@@ -189,7 +177,6 @@ const StDetailBt = styled(StBasicButton)`
 //   font-weight: 400;
 //   margin-top: 70px;
 // `;
-
 const StAssureBt = styled(StBasicButton)`
   width: 80px;
   height: 44px;
