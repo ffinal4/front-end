@@ -27,7 +27,14 @@ const AucBidCard = ({ item, setCheckBox, checkBox, choice, seller, setBidSellerP
         if (choice) {
             if (checkBox) {
                 if (seller) {
-    
+                    let emptyArray = [];
+                    for (let i = 0; i < checkBox.length; i++) {
+                        for (let j = 0; j < checkBox[i].length; j++) {
+                            emptyArray.push(checkBox[i][j]);
+                        };
+                    };
+                    setBidSellerPick({...bidSellerPick, bidId: emptyArray});
+                    console.log("test", bidSellerPick);
                 } else {
                     setBidSellerPick({...bidSellerPick, bidId: checkBox});
                 };
