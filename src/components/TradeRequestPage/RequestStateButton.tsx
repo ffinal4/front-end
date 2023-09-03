@@ -33,13 +33,13 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     requestId: [],
   });
 
-  const mutation = useMutation(() => postAcceptTradeApi(newGoodsData), {
+  const mutation = useMutation(() => postAcceptTradeApi(requestGoods), {
     onSuccess: (res) => {
       console.log("교환요청수락성공!", res);
       setRequestState({ ...requestState, request: "TRADING" });
     },
   });
-
+  console.log(newGoodsData, "id");
   console.log(requestGoods, "요청수락물건아이디");
 
   const rejectModalClick = () => {

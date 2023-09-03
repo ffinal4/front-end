@@ -39,13 +39,13 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
       (item: any) => item?.goodsId
     );
     setRequestGoods({ ...requestGoods, requestId: goodsData });
-  }, [data]);
+  }, []);
   // 교환거절 통신
 
   const refuseGoodsData = item?.goodsListResponseDtos[0].goodsId;
   console.log(refuseGoodsData, "거절");
   const deleteMutate = useMutation(
-    () => deleteRefuseTradeApi(refuseGoodsData),
+    () => deleteRefuseTradeApi(),
     {
       onSuccess: (res) => {
         console.log("교환거절성공!", res);
