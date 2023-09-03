@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import remove from "../../assets/icon/remove.png";
 import {
   ButtonContainer,
@@ -12,12 +12,15 @@ import {
   Title,
 } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import { StCompleteBt } from "./TradeCompleteModal";
+import { useMutation } from "react-query";
+import { deleteRefuseTradeApi } from "../../api/goods";
 
 interface RequestRejectModalProps {
   rejectModalOpen: boolean;
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   setRejectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  item: any;
 }
 
 const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
@@ -25,10 +28,22 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
   requestState,
   setRejectModalOpen,
   setRequestState,
+  item,
 }) => {
-  const requestRejectOnclick = () => {
-    setRequestState({ ...requestState, request: "교환취소" });
-  };
+  const [requestGoods, setRequestGoods] = useState<{
+    requestId: string | number[];
+  }>({
+    requestId: [],
+  });
+
+  // 교환거절 통신
+  const deleteMutate = useMutation(() => deleteRefuseTradeApi(), {
+    onSuccess: (res) => {
+      console.log("교환거절성공!", res);
+      setRequestState({ ...requestState, request: "CANCEL" });
+    },
+  });
+
   return (
     <div>
       <ModalBackground />
@@ -48,7 +63,12 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
             한 번 거절한 물건은 다시 교환 신청할 수 없어요.
           </SubContent>
           <ButtonContainer>
-            <StCompleteBt buttonColor="#FFCA64" onClick={requestRejectOnclick}>
+            <StCompleteBt
+              buttonColor="#FFCA64"
+              onClick={() => {
+                deleteMutate.mutate();
+              }}
+            >
               거절하기
             </StCompleteBt>
           </ButtonContainer>

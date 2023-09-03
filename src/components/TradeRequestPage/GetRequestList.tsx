@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import FilterDropdownMenu from "./FilterDropdownMenu";
-import TradeRequestCard, { DotImg } from "./TradeRequestCard";
+import { DotImg } from "./TradeRequestCard";
 import arrow from "../../assets/icon/arrow.png";
 import orangedot from "../../assets/icon/orangedot.png";
 import emptydot from "../../assets/icon/emptydot.png";
@@ -92,7 +92,9 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
         <CardContainer>
           {data?.data.content.length > 0 &&
             data?.data.content?.map((item: any) => {
-              return <TradeReceiveCard key={item.goodsId} item={item} />;
+              return (
+                <TradeReceiveCard key={item.goodsId} item={item} data={data} />
+              );
             })}
         </CardContainer>
       </TradeRequestListContainer>

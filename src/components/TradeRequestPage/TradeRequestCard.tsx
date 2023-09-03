@@ -2,21 +2,20 @@ import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import goodsexchange from "../../assets/icon/goodsexchange.png";
 import goods from "../../assets/images/kangaroowhy.png";
-import traderequest from "../../assets/icon/traderequest.png";
-import tradeing from "../../assets/icon/tradeingrequst.png";
-import tradecomplete from "../../assets/icon/tradecomplete.png";
-import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import DetailGoodsModal from "./DetailGoodsModal";
+import SendRequestButton from "./SendRequestButton";
 
-const TradeRequestCard = ({ item }: any) => {
-  const [requestState, setRequestState] = useState({ request: "교환요청" });
+const TradeRequestCard = ({ item, data }: any) => {
+  const [requestState, setRequestState] = useState({
+    request: item?.requestStatus,
+  });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
   const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
   const { request } = requestState;
-  const goodsListResponseDto = item?.goodsListResponseDto; // 상대물건
-  const goodsListResponseDtos = item?.goodsListResponseDtos[0]; //내 물건
+  const goodsListResponseDto = item?.goodsListResponseDto;
+  const goodsListResponseDtos = item?.goodsListResponseDtos[0];
 
   const goodsDetailModalOnclick = () => {
     setDetailModalOpen(!detailModalOpen);
@@ -26,13 +25,13 @@ const TradeRequestCard = ({ item }: any) => {
     if (request === "REQUEST") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "교환진행중") {
+    if (request === "TRADING") {
       setBorder("2px solid #EC8D49");
     }
-    if (request === "교환완료") {
+    if (request === "DONE") {
       setBorder("1px solid  #D5D4D4");
     }
-    if (request === "교환취소") {
+    if (request === "CANCEL") {
       setBorder("1px solid #EFEFEF");
       setOpacity("0.5");
     }
@@ -133,13 +132,13 @@ const TradeRequestCard = ({ item }: any) => {
         <GoodsTitle>{goodsListResponseDtos.title}</GoodsTitle>
         <Address>{goodsListResponseDtos.location}</Address>
       </ContentsContainer>
-      <ButtonContainer>
-        <RequestStateButton
-          item={item}
-          requestState={requestState}
-          setRequestState={setRequestState}
-        />
-      </ButtonContainer>
+
+      <SendRequestButton
+        data={data}
+        item={item}
+        requestState={requestState}
+        setRequestState={setRequestState}
+      />
     </CardContainer>
   );
 };

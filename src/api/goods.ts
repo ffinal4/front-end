@@ -110,13 +110,16 @@ export const postRequestsApi = async (body: any, goodsId: number) => {
 };
 
 // 교환요청 수락
-export const postAcceptTrade = async () => {
-  const res = await instance.post("/api/goods/users/accept");
+interface acceptBody {
+  goodsId: number;
+}
+export const postAcceptTradeApi = async (body: acceptBody) => {
+  const res = await instance.post("/api/goods/users/accept", body);
   return res;
 };
 
 // 교환요청 거절
-export const deleteRefuseTrade = async () => {
+export const deleteRefuseTradeApi = async () => {
   const res = await instance.delete("/api/goods/users/refuse");
   return res;
 };

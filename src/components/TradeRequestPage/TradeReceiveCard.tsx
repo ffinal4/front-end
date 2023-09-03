@@ -18,7 +18,7 @@ import goodsexchange from "../../assets/icon/goodsexchange.png";
 import goods from "../../assets/images/kangaroowhy.png";
 import DetailGoodsModal from "./DetailGoodsModal";
 
-const TradeReceiveCard = ({ item }: any) => {
+const TradeReceiveCard = ({ item, data }: any) => {
   const goodsListResponseDto = item?.goodsListResponseDto;
   const goodsListResponseDtos = item?.goodsListResponseDtos[0];
   const tradeDate = item?.createdAt;
@@ -148,6 +148,7 @@ const TradeReceiveCard = ({ item }: any) => {
       <RequestStateButton
         requestState={requestState}
         setRequestState={setRequestState}
+        data={data}
         item={item}
       />
     </CardContainer>

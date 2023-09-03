@@ -128,15 +128,6 @@ const LoginPage = () => {
     </LoginPageContainer>
   );
 };
-const CustomModal = styled.div`
-  font-size: 20px; /* 원하는 글꼴 크기로 변경하세요 */
-`;
-
-const CustomConfirmButton = styled.button`
-  background-color: #ffca64; /* 원하는 배경색으로 변경하세요 */
-  border-color: #ffca64; /* 원하는 테두리 색상으로 변경하세요 */
-  color: #333;
-`;
 
 const LoginPageContainer = styled.div`
   background-color: #fcf6e9;

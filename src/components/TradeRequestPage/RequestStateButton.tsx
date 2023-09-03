@@ -1,34 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../../styles/BasicButton";
 import chat from "../../assets/icon/Chatting.png";
 import { useNavigate } from "react-router-dom";
 import RequestRejectModal from "./RequestRejectModal";
 import TradeCompleteModal from "./TradeCompleteModal";
+import { useMutation } from "react-query";
+import { postAcceptTradeApi } from "../../api/goods";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   item: any;
+  data: any;
 }
 
 const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   requestState,
   setRequestState,
   item,
+  data,
 }) => {
   const navigate = useNavigate();
+  const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
+
+  console.log(newGoodsData, "보내야할거");
+
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
   const { request } = requestState;
+  const [requestGoods, setRequestGoods] = useState<{
+    requestId: string | number[];
+  }>({
+    requestId: [],
+  });
+
+  useEffect(() => {
+    const goodsData = item?.goodsListResponseDtos.map(
+      (item: any) => item?.goodsId
+    );
+    setRequestGoods({ ...requestGoods, requestId: goodsData });
+  }, []);
+
+  //교환요청수락통신
+  const mutation = useMutation(() => postAcceptTradeApi(newGoodsData), {
+    onSuccess: (res) => {
+      console.log("교환요청수락성공!", res);
+      setRequestState({ ...requestState, request: "TRADING" });
+    },
+  });
+
+  const mutationHandler = () => {
+    mutation.mutate();
+  };
+
+  console.log(requestGoods, "요청수락물건아이디");
 
   const rejectModalClick = () => {
     setRejectModalOpen(!rejectModalOpen);
   };
 
-  const requestAcceptOnclick = () => {
-    setRequestState({ ...requestState, request: "TRADING" });
-  };
+  // const requestAcceptOnclick = () => {
+  //   setRequestState({ ...requestState, request: "TRADING" });
+  // };
 
   const completeModalClick = () => {
     setCompleteModalOpen(!completeModalOpen);
@@ -49,10 +83,11 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
                 setRequestState={setRequestState}
                 rejectModalOpen={rejectModalOpen}
                 setRejectModalOpen={setRejectModalOpen}
+                item={item}
               />
             </ModalContainer>
           )}
-          <StAssureBt buttonColor="black" onClick={requestAcceptOnclick}>
+          <StAssureBt buttonColor="black" onClick={mutationHandler}>
             수락
           </StAssureBt>
         </RequestBtContainer>
