@@ -16,18 +16,20 @@ import Paging from "../common/Paging/Paging";
 import Close from "../../assets/icon/remove.png";
 import { useMutation, useQuery } from "react-query";
 import {
-  getAuctionBidListApi,
-  getAuctionBidListChoiceApi,
+  getAuctionBidListApi, postAucEndApi, postSellerPicksApi,
 } from "../../api/acution";
 import EmptyPocket from "../common/EmptyPocket";
 import AucBidCard from "./AucBidCard";
 import BidCompleteModal from "./BidCompleteModal";
+import { useRecoilValue } from "recoil";
+import { pagination } from "../../store/pagination";
 
 const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
+  const currentPage = useRecoilValue(pagination);
   const auctionId = productData.data.info.auctionResponseDto.auctionId;
   const { isLoading, error, data }: any = useQuery(
-    ["auctionBid", auctionId],
-    () => getAuctionBidListApi(auctionId),
+    ["auctionBid", currentPage, auctionId],
+    () => getAuctionBidListApi(currentPage, auctionId),
     {
       refetchOnWindowFocus: false,
     }
@@ -43,13 +45,20 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
   const [bidSellerPick, setBidSellerPick] = useState<{ bidId: number[] }>({
     bidId: [],
   });
-
-  // const mutation = useMutation(() => postSellerPicksApi(bidSellerPick, auctionId), {
-  //     onSuccess: (res) => {
-  //         console.log("선택완료!", res)
-  //         setSellerPicks({...sellerPicks, SuccessBidModal: false});
-  //     },
-  // });
+  console.log("확인", bidSellerPick);
+  const mutation = useMutation(() => postAucEndApi(bidSellerPick, auctionId), {
+      onSuccess: (res) => {
+          console.log("선택완료!", res)
+          setSellerPicks({...sellerPicks, SuccessBidModal: false});
+      },
+  });
+  
+  // const onClickChoiceHandler = () => {
+  //   if (bidSellerPick.bidId) {
+  //     mutation.mutate();
+  //   };
+    
+  // };
 
   return (
     <div>
@@ -81,7 +90,8 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
             {checkBox.length > 0 ? (
               <StButton
                 buttonColor="#58ABF7"
-                // onClick={() => mutation.mutate()}
+                onClick={() => mutation.mutate()}
+                // onClick={onClickChoiceHandler}
               >
                 선택완료
               </StButton>
@@ -96,8 +106,8 @@ const SuccessBIdModal = ({ productData, sellerPicks, setSellerPicks }: any) => {
           </ButtonWrapper>
         </Wrapper>
         <MainContainer>
-          {data?.data.info.content.length > 0 ? (
-            data?.data.info.content.map((item: any) => {
+          {data?.data.content.length > 0 ? (
+            data?.data.content.map((item: any) => {
               return (
                 <AucBidCard
                   key={item.bidId}
