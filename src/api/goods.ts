@@ -38,17 +38,18 @@ export const getUserPocketApi = async (
 };
 
 // 물품교환요청받은 페이지 전체조회
-export const getTradeReceiveRequestApi = async () => {
+
+export const getTradeReceiveRequestApi = async (page: number, asc: boolean) => {
   const res = await instance.get(
-    "/api/goods/users/trade/receive?page=1&size=5&sortBy=createdAt&isAsc=false"
+    `/api/goods/users/trade/receive?page=${page}&size=5&sortBy=createdAt&isAsc=${asc}`
   );
   return res;
 };
 
 // 물물교환요청한 페이지 전체조회
-export const getTradeRequestApi = async () => {
+export const getTradeRequestApi = async (page: number, asc: boolean) => {
   const res = await instance.get(
-    "/api/goods/users/trade/request?page=1&size=5&sortBy=createdAt&isAsc=false"
+    `/api/goods/users/trade/request?page=${page}&size=5&sortBy=createdAt&isAsc=${asc}`
   );
   return res;
 };
@@ -126,7 +127,7 @@ export const postAcceptTradeApi = async (body: acceptBody) => {
 interface refuseBody {
   requestId: string | number[];
 }
-export const deleteRefuseTradeApi = async () => {
-  const res = await instance.delete("/api/goods/users/refuse");
+export const deleteRefuseTradeApi = async (body: refuseBody) => {
+  const res = await instance.post("/api/goods/users/refuse", body);
   return res;
 };

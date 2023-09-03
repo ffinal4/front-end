@@ -23,6 +23,7 @@ interface RequestRejectModalProps {
   item: any;
   requestGoods: any;
   setRequestGoods: any;
+  data: any;
 }
 
 const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
@@ -31,6 +32,7 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
   setRejectModalOpen,
   setRequestState,
   item,
+  data,
   requestGoods,
   setRequestGoods,
 }) => {
@@ -39,20 +41,18 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
       (item: any) => item?.goodsId
     );
     setRequestGoods({ ...requestGoods, requestId: goodsData });
-  }, []);
+  }, [data]);
   // 교환거절 통신
 
   const refuseGoodsData = item?.goodsListResponseDtos[0].goodsId;
+
   console.log(refuseGoodsData, "거절");
-  const deleteMutate = useMutation(
-    () => deleteRefuseTradeApi(),
-    {
-      onSuccess: (res) => {
-        console.log("교환거절성공!", res);
-        setRequestState({ ...requestState, request: "CANCEL" });
-      },
-    }
-  );
+  const deleteMutate = useMutation(() => deleteRefuseTradeApi(requestGoods), {
+    onSuccess: (res) => {
+      console.log("교환거절성공!", res);
+      setRequestState({ ...requestState, request: "CANCEL" });
+    },
+  });
 
   return (
     <div>

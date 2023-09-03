@@ -17,6 +17,9 @@ import {
 } from "../../pages/TradeRequestPage";
 import { getTradeReceiveRequestApi } from "../../api/goods";
 import TradeReceiveCard from "./TradeReceiveCard";
+import { useRecoilValue } from "recoil";
+import { pagination } from "../../store/pagination";
+import { filterAsc } from "../../store/filterCategory";
 
 interface GetRequestListProps {
   filterOpen: boolean;
@@ -35,9 +38,12 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
+  const currentPage = useRecoilValue(pagination);
+  const asc = useRecoilValue(filterAsc);
   const { isLoading, data, error }: any = useQuery(
-    " getTradeReceiveRequestData",
-    getTradeReceiveRequestApi
+    [" getTradeReceiveRequestData", currentPage, asc],
+    () => getTradeReceiveRequestApi(currentPage, asc),
+    { refetchOnWindowFocus: false }
   );
 
   if (isLoading) return <div>Loading...</div>;

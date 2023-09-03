@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-
 import GetRequestList from "../components/TradeRequestPage/GetRequestList";
 import SendRequestList from "../components/TradeRequestPage/SendRequestList";
+import Paging from "../components/common/Paging/Paging";
+import { useRecoilValue } from "recoil";
+import { pagination } from "../store/pagination";
+import { filterAsc } from "../store/filterCategory";
 
 const TradeRequestPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [dropdownMenu, setDropdownMenu] = useState("필터");
-
   const [filterTap, setFilterTap] = useState({
     getTap: true,
     sendTap: false,
@@ -48,6 +50,7 @@ const TradeRequestPage = () => {
           )}
         </TradeRequestPageContainer>
       </PageLayout>
+      <Paging />
     </LayoutContainer>
   );
 };
@@ -68,6 +71,7 @@ export const PageLayout = styled.div`
 
 export const TradeRequestPageContainer = styled.div`
   width: 100%;
+  margin-bottom: 50px;
 `;
 
 export const Title = styled.div`
@@ -105,7 +109,7 @@ export const GetRequest = styled.div`
   border-bottom: 4px solid white;
   border-radius: 5px 5px 0px 0px;
   background-color: white;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 export const SendRequest = styled.div`

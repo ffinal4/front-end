@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import { ButtonContainer, Img, StChatBt } from "./RequestStateButton";
-import TradeCompleteModal, { StCompleteBt } from "./TradeCompleteModal";
+import {
+  ButtonContainer,
+  Img,
+  StChatBt,
+  StCompleteBt,
+} from "./RequestStateButton";
+import TradeCompleteModal from "./TradeCompleteModal";
 import { ModalContainer } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import { useNavigate } from "react-router-dom";
 import chat from "../../assets/icon/Chatting.png";
@@ -39,7 +44,7 @@ const SendRequestButton: React.FC<SendRequestButtonProps> = ({
       return (
         <WaitingStateContainer>
           <Img src={eye} />
-          낙찰을 기다리는 중...
+          상대방의 응답 기다리는 중...
         </WaitingStateContainer>
       );
     }

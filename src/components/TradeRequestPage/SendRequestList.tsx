@@ -22,6 +22,9 @@ import orangedot from "../../assets/icon/orangedot.png";
 import emptydot from "../../assets/icon/emptydot.png";
 import { useQuery } from "react-query";
 import { getTradeRequestApi } from "../../api/goods";
+import { useRecoilValue } from "recoil";
+import { pagination } from "../../store/pagination";
+import { filterAsc } from "../../store/filterCategory";
 
 interface SendRequestListProps {
   filterOpen: boolean;
@@ -41,9 +44,12 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
+  const currentPage = useRecoilValue(pagination);
+  const asc = useRecoilValue(filterAsc);
   const { isLoading, data, error }: any = useQuery(
-    " getTradeRequestData",
-    getTradeRequestApi
+    [" getTradeRequestData", currentPage, asc],
+    () => getTradeRequestApi(currentPage, asc),
+    { refetchOnWindowFocus: false }
   );
 
   if (isLoading) return <div>Loading...</div>;
@@ -56,6 +62,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
   const getRequestOnclick = () => {
     setFilterTap({ getTap: true, sendTap: false });
   };
+
   return (
     <div>
       <TabContainer>
