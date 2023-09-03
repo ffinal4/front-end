@@ -12,6 +12,7 @@ import { pagination } from "../store/pagination";
 import { useRecoilValue } from "recoil";
 import { filterAsc, filterCategory } from "../store/filterCategory";
 import AscFilterButton from "../components/common/AscFilterButton";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const TradeListPage = () => {
   const currentPage = useRecoilValue(pagination);
@@ -24,7 +25,7 @@ const TradeListPage = () => {
       refetchOnWindowFocus: false,
     }
   );
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   console.log("물물교환페이지데이터", data);
   if (error) {
     console.log(error);

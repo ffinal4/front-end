@@ -15,14 +15,12 @@ import { getRatingStartApi, postRatingSubmitApi } from "../api/rating";
 import Remove from "../assets/icon/remove.png";
 import Manual from "../components/RatingPage/Manual";
 import NotDataModal from "../components/RatingPage/NotDataModal";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const RatingPage = () => {
   const { isLoading, data, error, refetch }: any = useQuery("ratingStart", getRatingStartApi, {
     refetchOnWindowFocus: false,
   });
-
-  console.log(data, "data");
-  console.log("에러", error);
 
   type Game = {
     price: any;
@@ -83,7 +81,7 @@ const RatingPage = () => {
   if (isLoading)
     return (
       <MainLayout>
-        <p>Loading...</p>
+        <LoadingSpinner />
       </MainLayout>
     );
   if (error) return <NotDataModal />;
@@ -103,11 +101,7 @@ const RatingPage = () => {
               </AnswerCountContainer>
               <LikeBtn>♡</LikeBtn>
             </ImageContainer>
-            {detailInfo ? (
-              <RatingDetailInfo data={data} />
-            ) : (
-              <RatingInfo data={data} />
-            )}
+            {detailInfo ? <RatingDetailInfo data={data} /> : <RatingInfo data={data} />}
             {detailInfo ? (
               <DetailBtnWrapper onClick={onClickDetailInfoHandler}>
                 <Text style={{ color: "#ADADAD" }}>간략히보기</Text>
@@ -152,10 +146,7 @@ const RatingPage = () => {
             {ratingPrice.map((item) => {
               return (
                 <div key={item}>
-                  <PriceButton
-                    buttonColor="#FDEAC2"
-                    onClick={() => onClickAddRatingHandler(item)}
-                  >
+                  <PriceButton buttonColor="#FDEAC2" onClick={() => onClickAddRatingHandler(item)}>
                     + {item.toLocaleString()}
                   </PriceButton>
                 </div>
@@ -190,18 +181,11 @@ const RatingPage = () => {
             )}
           </BottomBtnWrapper>
           <PocketBottomIconContainer>
-            <PocketImage
-              src={PocketLeft}
-              style={{ transform: "rotate(-10.208deg)" }}
-            />
+            <PocketImage src={PocketLeft} style={{ transform: "rotate(-10.208deg)" }} />
           </PocketBottomIconContainer>
           {gameover && (
             <FaildContainer>
-              <FailedModal
-                resData={resData}
-                setAddPrice={setAddPrice}
-                addPrice={addPrice}
-              />
+              <FailedModal resData={resData} setAddPrice={setAddPrice} addPrice={addPrice} />
             </FaildContainer>
           )}
         </RatingContainer>

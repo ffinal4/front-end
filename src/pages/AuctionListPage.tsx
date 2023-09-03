@@ -14,6 +14,7 @@ import { useRecoilValue } from "recoil";
 import { pagination } from "../store/pagination";
 import { filterAsc, filterCategory } from "../store/filterCategory";
 import AscFilterButton from "../components/common/AscFilterButton";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const AuctionListPage = () => {
   const currentPage = useRecoilValue(pagination);
@@ -27,7 +28,7 @@ const AuctionListPage = () => {
       refetchOnWindowFocus: false,
     }
   );
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   console.log("옥션페이지데이터", data);
   if (error) {
     console.log(error);
