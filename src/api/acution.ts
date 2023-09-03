@@ -35,14 +35,15 @@ export const postAuctionBidApi = async (body: BidPick, auctionId: number) => {
 };
 
 // 입찰 전체 조회
-export const getAuctionBidListApi = async (auctionId: number) => {
-  const res = await instance.get(`/api/auction/${auctionId}/bid/1`);
+export const getAuctionBidListApi = async (page : number, auctionId: number) => {
+  const res = await instance.get(`/api/auction/${auctionId}/bid/page/${page}`);
   return res;
 };
 
-export const getAuctionBidListChoiceApi = async (auctionId: number) => {
+// 입찰 상세 조회
+export const getAuctionBidDetailApi = async (auctionId: number) => {
   const res = await instance.get(
-    `/api/auction/${auctionId}/bid?page=1&size=5&sortBy=createdAt&isAsc=false`
+    `/auction/${auctionId}/bid/{userId}`
   );
   return res;
 };
@@ -72,7 +73,11 @@ export const postSellerPicksApi = async (body: any, auctionId: number) => {
   return res;
 };
 
-// 경매
+// 경매 낙찰품 선택
+export const postAucEndApi = async (body: any, auctionId: number) => {
+  const res = await instance.post(`/api/auction/${auctionId}/pick/bid/list`, body);
+  return res;
+};
 
 // 경매 강제 취소
 export const deleteAuctionCancelApi = async (auctionId: number) => {

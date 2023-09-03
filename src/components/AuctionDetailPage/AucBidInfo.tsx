@@ -2,14 +2,19 @@ import React from 'react'
 import { styled } from 'styled-components';
 import AucBidCard from './AucBidCard';
 import { useQuery } from 'react-query';
-import { getAuctionBidListApi, getAuctionBidListChoiceApi } from '../../api/acution';
+import { getAuctionBidListApi } from '../../api/acution';
 import { useParams } from 'react-router-dom';
 import EmptyPocket from '../common/EmptyPocket';
+import Paging from '../common/Paging/Paging';
+import { useRecoilValue } from 'recoil';
+import { pagination } from '../../store/pagination';
 
 const AucBidInfo = ({ productData } : any) => {
 
+    const currentPage = useRecoilValue(pagination);
+
     const auctionId = productData.data.info.auctionResponseDto.auctionId;
-    const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
+    const { isLoading, error, data } : any = useQuery(["auctionBid", currentPage, auctionId], () => getAuctionBidListApi(currentPage, auctionId), {
         refetchOnWindowFocus: false,
     });
     console.log("입찰품 목록", data);
@@ -18,11 +23,11 @@ const AucBidInfo = ({ productData } : any) => {
     <InfoContainer>
         <InfoTextContainer>
             <CardListContainer>
-                {(data?.data.info.content.length > 0)
-                    ? data?.data.info.content.map((item : any) => {
+                {(data?.data.content.length > 0)
+                    ? data?.data.content.map((item : any) => {
                         return (
                             <AucBidCard 
-                                key={item.bidId}
+                                key={item.userId}
                                 item={item}
                                 choice={false}
                             />
@@ -42,6 +47,7 @@ const AucBidInfo = ({ productData } : any) => {
                 <AucBidCard /> */}
             </CardListContainer>
         </InfoTextContainer>
+        <Paging />
     </InfoContainer>
     )
 };

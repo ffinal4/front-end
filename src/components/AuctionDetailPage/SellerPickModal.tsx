@@ -7,11 +7,15 @@ import Close from '../../assets/icon/remove.png'
 import EmptyPocket from '../common/EmptyPocket';
 import { useMutation, useQuery } from 'react-query';
 import { getAuctionBidListApi, postSellerPicksApi } from '../../api/acution';
+import { useRecoilValue } from 'recoil';
+import { pagination } from '../../store/pagination';
 
 const SellerPickModal = ({ sellerPicks, setSellerPicks, productData } : any) => {
 
+    const currentPage = useRecoilValue(pagination);
+
     const auctionId = productData.data.info.auctionResponseDto.auctionId;
-    const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
+    const { isLoading, error, data } : any = useQuery(["auctionBid", currentPage, auctionId], () => getAuctionBidListApi(currentPage, auctionId), {
         refetchOnWindowFocus: false,
     });
 
@@ -61,17 +65,18 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks, productData } : any) => 
                 </ButtonWrapper>
             </Wrapper>
             <MainContainer>
-                {(data?.data.info.content.length > 0)
-                    ? data?.data.info.content.map((item : any) => {
+                {(data?.data.content.length > 0)
+                    ? data?.data.content.map((item : any) => {
                         return (
                             <AucBidCard 
-                                key={item.bidId}
+                                key={item.userId}
                                 item={item}
                                 choice={true}
                                 setCheckBox={setCheckBox}
                                 checkBox={checkBox}
                                 bidSellerPick={bidSellerPick}
                                 setBidSellerPick={setBidSellerPick}
+                                seller={true}
                             />
                         )}
                     )

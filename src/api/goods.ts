@@ -115,7 +115,7 @@ export const postRequestsApi = async (body: any, goodsId: number) => {
 
 // 교환요청 수락
 interface acceptBody {
-  requestId: number;
+  requestId: string | number[];
 }
 export const postAcceptTradeApi = async (body: acceptBody) => {
   const res = await instance.post("/api/goods/users/accept", body);
@@ -124,7 +124,7 @@ export const postAcceptTradeApi = async (body: acceptBody) => {
 
 // 교환요청 거절
 interface refuseBody {
-  requestId: number;
+  requestId: string | number[];
 }
 export const deleteRefuseTradeApi = async () => {
   const res = await instance.delete("/api/goods/users/refuse");

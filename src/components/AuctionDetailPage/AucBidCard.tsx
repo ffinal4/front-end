@@ -3,30 +3,63 @@ import { styled } from 'styled-components';
 import Location from '../../assets/icon/location.png'
 import Check from '../../assets/icon/check.png'
 
-const AucBidCard = ({ item, setCheckBox, checkBox, choice, setBidSellerPick, bidSellerPick } : any) => {
+const AucBidCard = ({ item, setCheckBox, checkBox, choice, seller, setBidSellerPick, bidSellerPick } : any) => {
 
     const index = checkBox?.indexOf(item?.bidId);
 
     const onClickCheckHandler = (item : any) => {
-        if (index !== -1) {
-            setCheckBox(checkBox.filter((value : number) => value !== item.bidId));
+        if (seller) {
+            if (index !== -1) {
+                setCheckBox(checkBox.filter((value : number) => value !== item?.bidId));
+            } else {
+                setCheckBox([...checkBox, item?.bidId]);
+            };
         } else {
-            setCheckBox([...checkBox, item.bidId]);
+            if (checkBox === item?.bidId) {
+                setCheckBox([]);
+            } else {
+                setCheckBox(item?.bidId);
+            };     
         };
     };
 
     useEffect(() => {
         if (choice) {
-            setBidSellerPick({...bidSellerPick, bidId: checkBox});
+            if (checkBox) {
+                if (seller) {
+                    let emptyArray = [];
+                    for (let i = 0; i < checkBox.length; i++) {
+                        for (let j = 0; j < checkBox[i].length; j++) {
+                            emptyArray.push(checkBox[i][j]);
+                        };
+                    };
+                    setBidSellerPick({...bidSellerPick, bidId: emptyArray});
+                    console.log("test", bidSellerPick);
+                } else {
+                    setBidSellerPick({...bidSellerPick, bidId: checkBox});
+                };
+            };
         };
     }, [checkBox]);
+    console.log("선택", checkBox);
+    
 
     const cardCondition = () => {
         if (choice) {
             return (
                 <CardContainer onClick={() => onClickCheckHandler(item)}>
-                    <CardImg src={item?.goodsImg}>
-                        {(index !== -1)
+                    <CardImg src={item?.image}>
+                        {(seller)
+                            ? (index !== -1)
+                                && <div>
+                                    <CheckOutContainer />
+                                    <CheckContainer>
+                                        <CheckBox>
+                                            <CheckImage src={Check} />
+                                        </CheckBox>
+                                    </CheckContainer>
+                                </div>
+                            : (checkBox === item?.bidId)
                                 && <div>
                                     <CheckOutContainer />
                                     <CheckContainer>
@@ -43,7 +76,7 @@ const AucBidCard = ({ item, setCheckBox, checkBox, choice, setBidSellerPick, bid
         } else {
             return (
                 <CardContainer>
-                <CardImg src={item?.goodsImg}>
+                <CardImg src={item?.image}>
                     {(item?.sellersPick) && <SellerChoice>SELLER'S PICK</SellerChoice>}
                 </CardImg>
                 <TitleContainer>{item?.title}</TitleContainer>

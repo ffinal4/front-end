@@ -10,6 +10,7 @@ import { deleteAuctionCancelApi } from "../../api/acution";
 const AucModalBtn = ({ data, navigate }: any) => {
   const divRef = useRef<HTMLDivElement>(null);
   const auctionId = data?.data.info.auctionResponseDto.auctionId;
+  const goodsId = data?.data.info.auctionResponseDto.goodsResponseDto.goodsId;
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -24,7 +25,7 @@ const AucModalBtn = ({ data, navigate }: any) => {
   }, []);
 
   const deleteMutate = useMutation(
-    () => deleteGoodsApi(data.data.info.goodsResponseDtoList.goodsId),
+    () => deleteGoodsApi(goodsId),
     {
       onSuccess: (res) => {
         console.log("삭제성공!", res);
