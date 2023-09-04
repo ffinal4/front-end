@@ -38,18 +38,23 @@ export const getUserPocketApi = async (
 };
 
 // 물품교환요청받은 페이지 전체조회
-
-export const getTradeReceiveRequestApi = async (page: number, asc: boolean) => {
+export const getTradeReceiveRequestApi = async (
+  page: number,
+  tradeState: string | null
+) => {
   const res = await instance.get(
-    `/api/goods/users/trade/receive?page=${page}&size=5&sortBy=createdAt&isAsc=${asc}`
+    `/api/goods/users/trade/receive?page=${page}&size=5&sortBy=createdAt&isAsc=false${tradeState}`
   );
   return res;
 };
 
 // 물물교환요청한 페이지 전체조회
-export const getTradeRequestApi = async (page: number, asc: boolean) => {
+export const getTradeRequestApi = async (
+  page: number,
+  tradeState: string | null
+) => {
   const res = await instance.get(
-    `/api/goods/users/trade/request?page=${page}&size=5&sortBy=createdAt&isAsc=${asc}`
+    `/api/goods/users/trade/request?page=${page}&size=5&sortBy=createdAt&isAsc=false&status=${tradeState}`
   );
   return res;
 };

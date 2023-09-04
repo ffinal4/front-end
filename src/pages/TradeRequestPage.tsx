@@ -3,13 +3,9 @@ import { styled } from "styled-components";
 import GetRequestList from "../components/TradeRequestPage/GetRequestList";
 import SendRequestList from "../components/TradeRequestPage/SendRequestList";
 import Paging from "../components/common/Paging/Paging";
-import { useRecoilValue } from "recoil";
-import { pagination } from "../store/pagination";
-import { filterAsc } from "../store/filterCategory";
 
 const TradeRequestPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
-  const [dropdownMenu, setDropdownMenu] = useState("필터");
   const [filterTap, setFilterTap] = useState({
     getTap: true,
     sendTap: false,
@@ -29,8 +25,6 @@ const TradeRequestPage = () => {
               <GetRequestList
                 filterOpen={filterOpen}
                 setFilterOpen={setFilterOpen}
-                dropdownMenu={dropdownMenu}
-                setDropdownMenu={setDropdownMenu}
                 filterTap={filterTap}
                 setFilterTap={setFilterTap}
               />
@@ -41,8 +35,6 @@ const TradeRequestPage = () => {
               <SendRequestList
                 filterOpen={filterOpen}
                 setFilterOpen={setFilterOpen}
-                dropdownMenu={dropdownMenu}
-                setDropdownMenu={setDropdownMenu}
                 filterTap={filterTap}
                 setFilterTap={setFilterTap}
               />

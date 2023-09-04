@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import FilterDropdownMenu from "./FilterDropdownMenu";
 import { DotImg } from "./TradeRequestCard";
@@ -19,13 +19,11 @@ import { getTradeReceiveRequestApi } from "../../api/goods";
 import TradeReceiveCard from "./TradeReceiveCard";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../../store/pagination";
-import { filterAsc } from "../../store/filterCategory";
+import { requestCategory } from "../../store/filterCategory";
 
 interface GetRequestListProps {
   filterOpen: boolean;
   setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  dropdownMenu: string;
-  setDropdownMenu: React.Dispatch<React.SetStateAction<string>>;
   filterTap: any;
   setFilterTap: React.Dispatch<
     React.SetStateAction<{ getTap: boolean; sendTap: boolean }>
@@ -33,16 +31,16 @@ interface GetRequestListProps {
 }
 const GetRequestList: React.FC<GetRequestListProps> = ({
   filterOpen,
-  dropdownMenu,
   setFilterOpen,
-  setDropdownMenu,
   setFilterTap,
 }) => {
+  const [dropdownMenu, setDropdownMenu] = useState("전체");
   const currentPage = useRecoilValue(pagination);
-  const asc = useRecoilValue(filterAsc);
+  const tradeState = useRecoilValue(requestCategory); //filter기능넣기
+
   const { isLoading, data, error }: any = useQuery(
-    [" getTradeReceiveRequestData", currentPage, asc],
-    () => getTradeReceiveRequestApi(currentPage, asc),
+    [" getTradeReceiveRequestData", currentPage, tradeState],
+    () => getTradeReceiveRequestApi(currentPage, tradeState),
     { refetchOnWindowFocus: false }
   );
 
@@ -59,6 +57,7 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
       sendTap: true,
     });
   };
+
   return (
     <div>
       <TabContainer>

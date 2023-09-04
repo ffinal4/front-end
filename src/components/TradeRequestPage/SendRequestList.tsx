@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CardContainer,
   Filter,
@@ -24,13 +24,12 @@ import { useQuery } from "react-query";
 import { getTradeRequestApi } from "../../api/goods";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../../store/pagination";
-import { filterAsc } from "../../store/filterCategory";
+import { getRequestFilter } from "../../store/filterCategory";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 interface SendRequestListProps {
   filterOpen: boolean;
   setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  dropdownMenu: string;
-  setDropdownMenu: React.Dispatch<React.SetStateAction<string>>;
   filterTap: any;
   setFilterTap: React.Dispatch<
     React.SetStateAction<{ getTap: boolean; sendTap: boolean }>
@@ -39,20 +38,20 @@ interface SendRequestListProps {
 
 const SendRequestList: React.FC<SendRequestListProps> = ({
   filterOpen,
-  dropdownMenu,
   setFilterOpen,
-  setDropdownMenu,
   setFilterTap,
 }) => {
+  const [dropdownMenu, setDropdownMenu] = useState("전체");
   const currentPage = useRecoilValue(pagination);
-  const asc = useRecoilValue(filterAsc);
+  const tradeState = useRecoilValue(getRequestFilter);
+
   const { isLoading, data, error }: any = useQuery(
-    [" getTradeRequestData", currentPage, asc],
-    () => getTradeRequestApi(currentPage, asc),
+    [" getTradeRequestData", currentPage, tradeState],
+    () => getTradeRequestApi(currentPage, tradeState),
     { refetchOnWindowFocus: false }
   );
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   console.log("물물교환요청한 데이터", data);
   if (error) {
     console.log(error);
