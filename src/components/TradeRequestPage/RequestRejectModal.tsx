@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Swal from "sweetalert2";
 import remove from "../../assets/icon/remove.png";
 import {
   ButtonContainer,
@@ -36,24 +37,25 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
   requestGoods,
   setRequestGoods,
 }) => {
-  useEffect(() => {
-    const goodsData = item?.goodsListResponseDtos.map(
-      (item: any) => item?.goodsId
-    );
-    setRequestGoods({ ...requestGoods, requestId: goodsData });
-  }, [data]);
+  const newGoodsData = item?.goodsListResponseDtos.map((item: any) => {
+    return item.goodsId;
+  });
+  // useEffect(() => {
+  //   const goodsData = item?.goodsListResponseDtos.map(
+  //     (item: any) => item?.goodsId
+  //   );
+  //   setRequestGoods({ ...requestGoods, requestId: goodsData });
+  // }, [data]);
+
   // 교환거절 통신
-
   const refuseGoodsData = item?.goodsListResponseDtos[0].goodsId;
-
   console.log(refuseGoodsData, "거절");
   const deleteMutate = useMutation(() => deleteRefuseTradeApi(requestGoods), {
     onSuccess: (res) => {
-      console.log("교환거절성공!", res);
+      setRejectModalOpen(!rejectModalOpen);
       setRequestState({ ...requestState, request: "CANCEL" });
     },
   });
-
   return (
     <div>
       <ModalBackground />
