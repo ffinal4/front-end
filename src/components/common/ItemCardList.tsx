@@ -42,7 +42,7 @@ const ItemCardList = ({ data, allList, isPocket }: any) => {
                 ))}
             </NotRatingProductWrapper>
           );
-        })
+        }))
         : ((allList)
           ? <EmptyList />
           : <EmptyPocket pocketStatus={0} />)}

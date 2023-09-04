@@ -147,7 +147,6 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
   gap: 136px;
 `;
 
