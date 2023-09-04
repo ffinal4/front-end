@@ -23,6 +23,12 @@ export const getRequestFilter = atom({
   default: "",
 });
 
+// 교환요청페이지 - 보낸요청 filter
+export const sendRequestFilter = atom({
+  key: "sendRequestFilter",
+  default: "",
+});
+
 //경매현황페이지 - 내경매 filter
 export const myAuctionFilter = atom({
   key: "AuctionFilterName",
