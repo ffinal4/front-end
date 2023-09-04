@@ -3,46 +3,48 @@ import { styled } from "styled-components";
 import ItemCard from "./ItemCard";
 import EmptyPocket from "./EmptyPocket";
 import EmptyList from "./EmptyList";
-import { DoneContainer, NotRatingProductWrapper } from '../AuctionDetailPage/BidModal';
+import { DoneContainer, NotRatingProductWrapper } from "../AuctionDetailPage/BidModal";
 
 const ItemCardList = ({ data, allList, isPocket }: any) => {
   return (
     <ItemCardContainer>
-      {(data?.length > 0)
-        ? data?.map((item: any) => {
+      {data?.length > 0 ? (
+        data?.map((item: any) => {
           return (
             <NotRatingProductWrapper>
               <ItemCard key={item?.goodsId} item={item} isPocket={isPocket} />
-                {(item?.goodsStatus !== "ONSALE"
-                  && item?.goodsStatus !== "REQUEST"
-                  && item?.goodsStatus !== "CANCEL")
-                    && ((item?.goodsStatus === "BIDDING"
-                      || item?.goodsStatus === "ONAUCTION"
-                      || item?.goodsStatus === "AUCTION")
-                        ? <div>
-                          <GoodsConditionContainer />
-                          <GoodsCondition>
-                            <Circle />
-                              경매중
-                          </GoodsCondition>
-                        </div>
-                        : ((item?.goodsStatus === "END"
-                          || item?.goodsStatus === "DONE"
-                          || item?.goodsStatus === "SOLDOUT")
-                          ? <Done>거래완료</Done>
-                          : <div>
-                            <GoodsConditionContainer />
-                            <GoodsCondition>
-                              <Circle style={{backgroundColor: "#EC8D49"}} />
-                                거래중
-                            </GoodsCondition>
-                          </div>))}
+              {item?.goodsStatus !== "ONSALE" &&
+                item?.goodsStatus !== "REQUEST" &&
+                item?.goodsStatus !== "CANCEL" &&
+                (item?.goodsStatus === "BIDDING" ||
+                item?.goodsStatus === "ONAUCTION" ||
+                item?.goodsStatus === "AUCTION" ? (
+                  <div>
+                    <GoodsConditionContainer />
+                    <GoodsCondition>
+                      <Circle />
+                      경매중
+                    </GoodsCondition>
+                  </div>
+                ) : item?.goodsStatus === "END" || item?.goodsStatus === "DONE" || item?.goodsStatus === "SOLDOUT" ? (
+                  <Done>거래완료</Done>
+                ) : (
+                  <div>
+                    <GoodsConditionContainer />
+                    <GoodsCondition>
+                      <Circle style={{ backgroundColor: "#EC8D49" }} />
+                      거래중
+                    </GoodsCondition>
+                  </div>
+                ))}
             </NotRatingProductWrapper>
           );
         })
-        : ((allList)
-          ? <EmptyList />
-          : <EmptyPocket />)}
+      ) : allList ? (
+        <EmptyList />
+      ) : (
+        <EmptyPocket />
+      )}
     </ItemCardContainer>
   );
 };
@@ -53,6 +55,7 @@ const ItemCardContainer = styled.div`
   flex-wrap: wrap;
   gap: 40px 16px;
   margin-bottom: 100px;
+  justify-content: center;
 `;
 
 const GoodsConditionContainer = styled.div`
