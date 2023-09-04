@@ -18,7 +18,6 @@ import NotDataModal from "../components/RatingPage/NotDataModal";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const RatingPage = () => {
-
   const queryClient = useQueryClient();
   const { isLoading, data, error, isError }: any = useQuery("ratingStart", getRatingStartApi, {
     refetchOnWindowFocus: false,
@@ -80,12 +79,7 @@ const RatingPage = () => {
     }
   };
   // if (data === undefined) return <p>평가 가능한 상품이 없습니다.</p>;
-  if (isLoading)
-    return (
-      <MainLayout>
-        <LoadingSpinner />
-      </MainLayout>
-    );
+  if (isLoading) return <LoadingSpinner />;
   if (isError) return <NotDataModal />;
 
   return (
@@ -165,7 +159,7 @@ const RatingPage = () => {
                   fontWeight: "700",
                 }}
                 onClick={() => {
-                  queryClient.invalidateQueries('ratingStart')
+                  queryClient.invalidateQueries("ratingStart");
                   setAddPrice({ ...addPrice, success: false });
                 }}
               >
