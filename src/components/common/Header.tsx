@@ -14,11 +14,7 @@ import Navbar from "./Navbar";
 import { postLogoutApi } from "../../api/users";
 import AlarmButton from "./AlarmButton";
 import { useResetRecoilState } from "recoil";
-import {
-  filterAsc,
-  filterCategory,
-  filterName,
-} from "../../store/filterCategory";
+import { filterAsc, filterCategory, filterName } from "../../store/filterCategory";
 import { pagination } from "../../store/pagination";
 
 const Header = () => {
@@ -44,13 +40,13 @@ const Header = () => {
     };
 
     try {
+      navigate("/");
       const res = await postLogoutApi(logoutData);
-      console.log(res);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("location");
+      console.log(res);
       setIsLoggedIn(false);
-      navigate("/");
     } catch (error) {
       console.log("로그아웃실패", error);
     }
@@ -64,11 +60,7 @@ const Header = () => {
           <LogoTitle src={blueTitle} />
         </LogoContainer>
       );
-    } else if (
-      location.pathname.includes(
-        "/" || "/tradeList" || "/traderequest" || "/detail"
-      )
-    ) {
+    } else if (location.pathname.includes("/" || "/tradeList" || "/traderequest" || "/detail")) {
       return (
         <LogoContainer>
           <Logo src={loginLogo} />
@@ -146,9 +138,7 @@ const Header = () => {
                 로그인
               </LoginLink>
               <BoxContainer />
-              <SignupLink onClick={() => navigate("/signup")}>
-                회원가입
-              </SignupLink>
+              <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
             </LinkContainer>
           )}
         </HeaderContainer>

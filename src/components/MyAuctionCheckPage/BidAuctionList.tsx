@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CardContainer,
   Filter,
@@ -44,12 +44,13 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   setFilterTap,
 }) => {
 
-  const newFilter = BidFilterToEnum(dropdownMenu);
-  console.log("filter", newFilter);
+  const [category, setCategory] = useState<string | null>("");
+  const [filter, setFilter] = useState("전체");
+  console.log("filter", category);
 
   const { isLoading, data, error }: any = useQuery(
-    ["getBidAuctionData", newFilter],
-    () => getBidAuctionApi(newFilter)
+    ["getBidAuctionData", category],
+    () => getBidAuctionApi(category)
   );
 
   if (isLoading) return <LoadingSpinner />;
@@ -85,7 +86,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
               setFilterOpen(!filterOpen);
             }}
           >
-            {dropdownMenu}
+            {filter}
             <ArrowImg src={arrow} />
           </Filter>
           {filterOpen && (
@@ -94,6 +95,8 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
                 filterOpen={filterOpen}
                 setFilterOpen={setFilterOpen}
                 setDropdownMenu={setDropdownMenu}
+                setFilter={setFilter}
+                setCategory={setCategory}
               />
             </FilterdropdownMenuContainer>
           )}

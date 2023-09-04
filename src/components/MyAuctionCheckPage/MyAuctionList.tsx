@@ -24,7 +24,7 @@ import { useQuery } from "react-query";
 import { getMyAuctionCheckApi } from "../../api/acution";
 import AuctionFilterDropdownMenu from "./AuctionFilterDropdownMenu";
 import { useRecoilValue } from "recoil";
-import { myAuctionFilter } from "../../store/filterCategory";
+import { auctionCategory, myAuctionFilter } from "../../store/filterCategory";
 import SellerPickModal from "../AuctionDetailPage/SellerPickModal";
 import SuccessBIdModal from "../AuctionDetailPage/SuccessBIdModal";
 import Paging from "../common/Paging/Paging";
@@ -54,7 +54,8 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
 }) => {
 
   const currentPage = useRecoilValue(pagination);
-  const auctionFilter = useRecoilValue(myAuctionFilter);
+  const [category, setCategory] = useState<string | null>("");
+  const [filter, setFilter] = useState("전체");
   const [detailData, setDetailData] = useState<any>();
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [sellerPicks, setSellerPicks] = useState<{
@@ -71,13 +72,11 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   //   name: string;
   // }
 
-  const newFilter = FilterToEnum(auctionFilter);
-
-  console.log("filter", newFilter);
+  console.log("filter", category);
 
   const { data, isLoading, error }: any = useQuery(
-    ["getMyAuctionCheckData", currentPage, newFilter],
-    () => getMyAuctionCheckApi(currentPage, newFilter)
+    ["getMyAuctionCheckData", currentPage, category],
+    () => getMyAuctionCheckApi(currentPage, category)
   );
 
   const [testListResponseDto, setTestListResponseDto] = useState<any>();
@@ -119,7 +118,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
               setAuctionFilterOpen(!auctionFilterOpen);
             }}
           >
-            <div>{auctionFilter}</div>
+            <div>{filter}</div>
             {/* {dropdownMenu} */}
             <ArrowImg src={arrow} />
           </Filter>
@@ -130,6 +129,8 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
                 auctionFilterOpen={auctionFilterOpen}
                 setAuctionFilterOpen={setAuctionFilterOpen}
                 setDropdownMenu={setDropdownMenu}
+                setFilter={setFilter}
+                setCategory={setCategory}
               />
             </FilterdropdownMenuContainer>
           )}
@@ -167,8 +168,8 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
               detailModalOpen={detailModalOpen}
               setDetailModalOpen={setDetailModalOpen}
             />}
-          <Paging />
       </TradeRequestListContainer>
+      <Paging />
     </div>
   );
 };

@@ -157,6 +157,8 @@ const ContentContainer = styled.div`
         font-weight: 400;
         line-height: 150%;
         color: #ADADAD;
+        word-break: break-word;
+        display: -webkit-box;
     `;
 
 const SellerChoice = styled.div`

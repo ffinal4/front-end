@@ -135,6 +135,11 @@ const UploadPage = () => {
           navigate("/");
         }
       } catch (error) {
+          Swal.fire({
+            icon: "warning",
+            text: "이미지의 크기가 너무 커요!",
+            confirmButtonColor: "#ffca64",
+          });
         console.log(error);
       }
     }

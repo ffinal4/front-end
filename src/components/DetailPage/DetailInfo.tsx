@@ -89,7 +89,7 @@ const DetailInfo = ({ data }: any) => {
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품태그</ColorText>
-          <ColorText color="#222020">#스타벅스 #기프티콘 #교환권</ColorText>
+          <ColorText color="#222020">준비중입니다.</ColorText>
         </TextLine>
       </TextContainer>
       <ColorText color="#717171">*상대방이 교환신청을 수락해야 채팅이 가능해요!</ColorText>
@@ -107,6 +107,7 @@ const InfoContainer = styled.div`
 `;
 
 const InfoTitle = styled.div`
+  width: 100%;
   font-family: "Pretendard";
   font-size: 32px;
   font-weight: 800;
