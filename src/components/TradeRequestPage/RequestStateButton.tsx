@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../../styles/BasicButton";
 import chat from "../../assets/icon/Chatting.png";
@@ -46,13 +46,9 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     setRejectModalOpen(!rejectModalOpen);
   };
 
-  // const requestAcceptOnclick = () => {
-  //   setRequestState({ ...requestState, request: "TRADING" });
-  // };
-
   const completeModalClick = () => {
     setCompleteModalOpen(!completeModalOpen);
-    // setRequestState({ ...requestState, request: "교환완료" });
+    setRequestState({ ...requestState, request: "DONE" });
   };
 
   const receiveStateButton = () => {
@@ -70,6 +66,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
                 rejectModalOpen={rejectModalOpen}
                 setRejectModalOpen={setRejectModalOpen}
                 item={item}
+                data={data}
                 requestGoods={requestGoods}
                 setRequestGoods={setRequestGoods}
               />
@@ -145,8 +142,12 @@ export const Img = styled.img`
 
 export const ButtonContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
   gap: 136px;
 `;
+
 export const StCompleteBt = styled(StBasicButton)`
   width: 80px;
   height: 44px;

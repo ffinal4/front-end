@@ -12,7 +12,7 @@ import {
   OtherGoodsImg,
   Title,
 } from "./TradeRequestCard";
-import RequestStateButton, { ButtonContainer } from "./RequestStateButton";
+import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import goodsexchange from "../../assets/icon/goodsexchange.png";
 import goods from "../../assets/images/kangaroowhy.png";
@@ -30,9 +30,9 @@ const TradeReceiveCard = ({ item, data }: any) => {
   const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
   const { request } = requestState;
 
-  //   const goodsDetailModalOnclick = () => {
-  //     setDetailModalOpen(!detailModalOpen);
-  //   };
+  const goodsDetailModalOnclick = () => {
+    setDetailModalOpen(!detailModalOpen);
+  };
 
   useEffect(() => {
     if (request === "REQUEST") {
@@ -103,7 +103,7 @@ const TradeReceiveCard = ({ item, data }: any) => {
         <GoodsContainer>
           <GoodsImg
             src={goodsListResponseDtos.imageUrl}
-            // onClick={goodsDetailModalOnclick}
+            onClick={goodsDetailModalOnclick}
           />
           {detailModalOpen && (
             <div style={{ position: "absolute" }}>

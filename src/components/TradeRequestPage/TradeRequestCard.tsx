@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import goodsexchange from "../../assets/icon/goodsexchange.png";
-import goods from "../../assets/images/kangaroowhy.png";
 import { StRequestState } from "../../styles/RequestStateBox";
 import DetailGoodsModal from "./DetailGoodsModal";
 import SendRequestButton from "./SendRequestButton";
@@ -85,7 +84,7 @@ const TradeRequestCard = ({ item, data }: any) => {
   };
 
   const tradeRequestGoods = () => {
-    if (request === "REQUEST" || "DONE" || "CANCEL") {
+    if (request === "REQUEST" || "DONE" || "TRADING") {
       return (
         <GoodsContainer>
           <GoodsImg
@@ -105,13 +104,12 @@ const TradeRequestCard = ({ item, data }: any) => {
         </GoodsContainer>
       );
     }
-    if (request === "TRADING") {
+    if (request === "CANCEL") {
       return (
         <GoodsContainer>
-          <GoodsImg src={goods} />
+          <GoodsImg src={goodsListResponseDto.imageUrl} />
           <ExchangeImg src={goodsexchange} />
-          <GoodsImg src={goods} />
-          <OtherGoodsImg src={goods} />
+          <GoodsImg src={goodsListResponseDtos.imageUrl} />
         </GoodsContainer>
       );
     }
@@ -120,7 +118,7 @@ const TradeRequestCard = ({ item, data }: any) => {
   return (
     <CardContainer style={{ border: `${border}`, opacity: `${opacity}` }}>
       <Container>
-        <Date>2023-8-22</Date>
+        <Date>{item.createdAt.slice(0, 10)}</Date>
         {tradeRequestState()}
       </Container>
       {tradeRequestGoods()}
@@ -241,16 +239,6 @@ export const Address = styled.div`
   font-weight: 400;
   color: #adadad;
 `;
-
-// export const TradeStateContaner = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   font-family: "Pretendard";
-//   font-size: 14px;
-//   font-weight: 400;
-//   padding: 10px 20px 0px 20px;
-// `;
 
 export const ButtonContainer = styled.div`
   display: flex;
