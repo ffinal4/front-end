@@ -33,12 +33,16 @@ const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
   setRequestState,
   item,
 }) => {
-  const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
+  const newGoodsData = item?.goodsListResponseDtos.map((item: any) => {
+    return item.goodsId;
+  });
+
   const [completeGoods, setCompleteGoods] = useState<{
     requestId: string | number[];
   }>({
-    requestId: [],
+    requestId: newGoodsData,
   });
+
   // 교환완료 api
   const completeMutation = useMutation(() => completeTradeApi(completeGoods), {
     onSuccess: (res) => {
@@ -46,7 +50,7 @@ const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
       // setCompleteGoods({ ...requestState, request: "DONE" });
     },
   });
-  console.log(newGoodsData, "완료할id");
+  console.log(newGoodsData, "교환완료id들");
   console.log(completeGoods, "교환요청성공아이디");
 
   return (
