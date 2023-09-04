@@ -22,7 +22,6 @@ instance.interceptors.response.use(
   // refreshToken api 나오면 수정될수도 있음
   async (error) => {
     const {
-      config,
       response: { status },
     } = error;
     if (status === 403) {
@@ -32,18 +31,12 @@ instance.interceptors.response.use(
         localStorage.removeItem("location");
         alert("로그인이 필요한 서비스입니다.");
         window.location.replace("/login");
-      } else if (error.response.data.accessValidationError === true) {
-        delete config.headers.accesstoken;
-        try {
-          const res = await axios(config);
-          if (res.status === 200) {
-            localStorage.setItem("accessToken", res.headers.accesstoken);
-            console.log("accesstoken갱신성공!!");
-            return res;
-          }
-        } catch (error) {
-          console.log("토큰리프레시에러", error);
-        }
+      } else if (error.response.status === 401) {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("location");
+        alert("재 로그인이 필요합니다.");
+        window.location.replace("/login");
       }
     }
     return Promise.reject(error);
