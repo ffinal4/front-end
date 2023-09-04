@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
 import Image from '../../assets/images/pocket.png'
 
 const GiveInfo = ({ data } : any) => {
+
+    const contentData = data?.data.info.goodsResponseDtoList.content;
+    const inputData = contentData.split("\n");
+
   return (
         <InfoContainer>
             <InfoTextContainer>
                 <InfoTextTitle>상품정보</InfoTextTitle>
-                <InfoTextContent>{data.data.info.goodsResponseDtoList.content}</InfoTextContent>
+                <InfoTextContent>
+                    {inputData?.map((item : string) => {
+                        return (
+                            (item === inputData[inputData.length - 1])
+                                ? <div>{item}</div>
+                                : <div>{item}<br /></div>
+                        )
+                    })}
+                </InfoTextContent>
             </InfoTextContainer>
         </InfoContainer>
   )

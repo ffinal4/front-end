@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardContainer,
   Filter,
@@ -25,6 +25,13 @@ import { getMyAuctionCheckApi } from "../../api/acution";
 import AuctionFilterDropdownMenu from "./AuctionFilterDropdownMenu";
 import { useRecoilValue } from "recoil";
 import { myAuctionFilter } from "../../store/filterCategory";
+import SellerPickModal from "../AuctionDetailPage/SellerPickModal";
+import SuccessBIdModal from "../AuctionDetailPage/SuccessBIdModal";
+import Paging from "../common/Paging/Paging";
+import { pagination } from "../../store/pagination";
+import LoadingSpinner from "../common/LoadingSpinner";
+import { FilterToEnum } from "../../utils/EnumFilter";
+import DetailGoodsModal from "../TradeRequestPage/DetailGoodsModal";
 
 interface MyAuctionListProps {
   filterTap: any;
@@ -45,14 +52,37 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
+
+  const currentPage = useRecoilValue(pagination);
   const auctionFilter = useRecoilValue(myAuctionFilter);
+  const [detailData, setDetailData] = useState<any>();
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
+  const [sellerPicks, setSellerPicks] = useState<{
+    pickModal: boolean,
+    successBidModal: boolean
+  }>({
+    pickModal: false,
+    successBidModal: false,
+  });
+  const { pickModal, successBidModal } = sellerPicks;
+
+  // interface Kind {
+  //   filter: string | null;
+  //   name: string;
+  // }
+
+  const newFilter = FilterToEnum(auctionFilter);
+
+  console.log("filter", newFilter);
 
   const { data, isLoading, error }: any = useQuery(
-    "getMyAuctionCheckData",
-    getMyAuctionCheckApi
+    ["getMyAuctionCheckData", currentPage, newFilter],
+    () => getMyAuctionCheckApi(currentPage, newFilter)
   );
 
-  if (isLoading) return <div>Loading...</div>;
+  const [testListResponseDto, setTestListResponseDto] = useState<any>();
+
+  if (isLoading) return <LoadingSpinner />;
   console.log("내경매현황 데이터", data);
   if (error) {
     console.log(error);
@@ -108,9 +138,36 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
         <CardContainer>
           {data?.data.content.length > 0 &&
             data?.data.content?.map((item: any) => {
-              return <AuctionRequestCard key={item.auctionId} item={item} />;
+              return <AuctionRequestCard
+                key={item.auctionId}
+                item={item}
+                setDto={setTestListResponseDto}
+                setSellerPicks={setSellerPicks}
+                sellerPicks={sellerPicks}
+                setDetailModalOpen={setDetailModalOpen}
+                setDetailData={setDetailData}
+              />;
             })}
         </CardContainer>
+        {pickModal
+            && <SellerPickModal
+              setSellerPicks={setSellerPicks}
+              sellerPicks={sellerPicks}
+              auctionId={testListResponseDto}
+          />}
+          {successBidModal
+            && <SuccessBIdModal
+              setSellerPicks={setSellerPicks}
+              sellerPicks={sellerPicks}
+              auctionId={testListResponseDto}
+          />}
+          {detailModalOpen
+            && <DetailGoodsModal
+              detailData={detailData}
+              detailModalOpen={detailModalOpen}
+              setDetailModalOpen={setDetailModalOpen}
+            />}
+          <Paging />
       </TradeRequestListContainer>
     </div>
   );

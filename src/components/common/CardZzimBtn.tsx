@@ -7,13 +7,18 @@ import { useMutation, useQueryClient } from "react-query";
 import { postZzimApi } from "../../api/goods";
 import { StBasicButton } from "../../styles/BasicButton";
 
-const CardZzimBtn = ({ checkZzim, goodsId, isCard, isAuction, buttonColor, fontColor }: any) => {
+const CardZzimBtn = ({ checkZzim, goodsId, isCard, isAuction, buttonColor, fontColor, dibsCount, setDibsCount }: any) => {
   const queryClient = useQueryClient();
   const [isZzim, setIsZzim] = useState(false);
   const zzimMutate = useMutation(() => postZzimApi({ goodsId: goodsId }), {
     onSuccess: (res) => {
       console.log("찜성공!", res);
       setIsZzim(!isZzim);
+      if (isZzim) {
+        setDibsCount(dibsCount - 1);
+      } else {
+        setDibsCount(dibsCount + 1);
+      };
     },
   });
   const zzimBtnhandleClick = () => {

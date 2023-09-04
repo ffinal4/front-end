@@ -41,25 +41,25 @@ export const getAuctionBidListApi = async (page : number, auctionId: number) => 
 };
 
 // 입찰 상세 조회
-export const getAuctionBidDetailApi = async (auctionId: number) => {
+export const getAuctionBidDetailApi = async (auctionId: number, userId : number) => {
   const res = await instance.get(
-    `/auction/${auctionId}/bid/{userId}`
+    `/api/auction/${auctionId}/bid/${userId}`
   );
   return res;
 };
 
 // 내 경매현황 전체조회
-export const getMyAuctionCheckApi = async () => {
+export const getMyAuctionCheckApi = async (page : number, status : string | null) => {
   const res = await instance.get(
-    "/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status"
+    `/api/auction/users/trade?page=${page}&size=9&sortBy=createdAt&isAsc=false&status=${status}`
   );
   return res;
 };
 
 // 입찰경매 전체조회
-export const getBidAuctionApi = async () => {
+export const getBidAuctionApi = async (status : string | null) => {
   const res = await instance.get(
-    "/api/bid/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status"
+    `/api/bid/users/trade?page=1&size=9&sortBy=createdAt&isAsc=false&status=${status}`
   );
   return res;
 };

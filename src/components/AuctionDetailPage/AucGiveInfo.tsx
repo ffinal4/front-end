@@ -2,11 +2,23 @@ import React from 'react'
 import { styled } from 'styled-components';
 
 const AucGiveInfo = ({ data } : any) => {
+
+    const contentData = data?.data.info.auctionResponseDto.goodsResponseDto.content;
+    const inputData = contentData.split("\n");
+
     return (
         <InfoContainer>
             <InfoTextContainer>
                 <InfoTextTitle>상품정보</InfoTextTitle>
-                <InfoTextContent>{data.data.info.auctionResponseDto.goodsResponseDto.content}</InfoTextContent>
+                <InfoTextContent>
+                    {inputData?.map((item : string) => {
+                        return (
+                            (item === inputData[inputData.length - 1])
+                                ? <div>{item}</div>
+                                : <div>{item}<br /></div>
+                        )
+                    })}
+                </InfoTextContent>
             </InfoTextContainer>
         </InfoContainer>
   )

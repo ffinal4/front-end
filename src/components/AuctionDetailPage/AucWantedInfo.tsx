@@ -4,6 +4,9 @@ import { ValueToEnum } from '../../utils/EnumCategory';
 
 const AucWantedInfo = ({ data } : any) => {
 
+    const contentData = data?.data.info.auctionResponseDto.goodsResponseDto.wantedGoods.content;
+    const inputData = contentData.split("\n");
+
     const wantedData = data.data.info.auctionResponseDto.goodsResponseDto.wantedGoods;
 
     return (
@@ -13,7 +16,15 @@ const AucWantedInfo = ({ data } : any) => {
                     <InfoTextTitle>{wantedData.title}</InfoTextTitle>
                     <InfoTextContent style={{color: "#A4A4A4"}}>{ValueToEnum(wantedData.category)}</InfoTextContent>
                 </TextTitleContainer>
-                <InfoTextContent>{wantedData.content}</InfoTextContent>
+                <InfoTextContent>
+                    {inputData?.map((item : string) => {
+                        return (
+                            (item === inputData[inputData.length - 1])
+                                ? <div>{item}</div>
+                                : <div>{item}<br /></div>
+                        )
+                    })}
+                </InfoTextContent>
             </InfoTextContainer>
         </InfoContainer>
 )
