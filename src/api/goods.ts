@@ -54,7 +54,7 @@ export const getTradeRequestApi = async (
   tradeState: string | null
 ) => {
   const res = await instance.get(
-    `/api/goods/users/trade/request?page=${page}&size=5&sortBy=createdAt&isAsc=false&status=${tradeState}`
+    `/api/goods/users/trade/request?page=${page}&size=5&sortBy=createdAt&isAsc=false${tradeState}`
   );
   return res;
 };
@@ -134,5 +134,14 @@ interface refuseBody {
 }
 export const deleteRefuseTradeApi = async (body: refuseBody) => {
   const res = await instance.post("/api/goods/users/refuse", body);
+  return res;
+};
+
+//교환완료
+interface completeBody {
+  requestId: string | number[];
+}
+export const completeTradeApi = async (body: completeBody) => {
+  const res = await instance.post("/api/goods/users/accept/completed", body);
   return res;
 };
