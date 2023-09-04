@@ -27,7 +27,7 @@ const RatingInfo = ({ data } : any) => {
             </ContentLineContainer>
             <ContentLineContainer>
                 <Text style={{color: "#ADADAD"}}>상품태그</Text>
-                <Text style={{color: "#39373A"}}># 인테리어   # 이케아  # 의자</Text>
+                <Text style={{color: "#39373A"}}>준비중입니다.</Text>
             </ContentLineContainer>
         </ContentWrapper>
     </InfoContainer>
