@@ -9,14 +9,11 @@ import {
   GoodsContainer,
   GoodsImg,
   GoodsTitle,
-  OtherGoodsImg,
   Title,
 } from "./TradeRequestCard";
 import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import goodsexchange from "../../assets/icon/goodsexchange.png";
-import goods from "../../assets/images/kangaroowhy.png";
-import DetailGoodsModal from "./DetailGoodsModal";
 
 const TradeReceiveCard = ({ item, data }: any) => {
   const goodsListResponseDto = item?.goodsListResponseDto;
@@ -35,23 +32,23 @@ const TradeReceiveCard = ({ item, data }: any) => {
   };
 
   useEffect(() => {
-    if (request === "REQUEST") {
+    if (item?.requestStatus === "REQUEST") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "TRADING") {
+    if (item?.requestStatus === "TRADING") {
       setBorder("2px solid #EC8D49");
     }
-    if (request === "DONE") {
+    if (item?.requestStatus === "DONE") {
       setBorder("1px solid  #D5D4D4");
     }
-    if (request === "CANCEL") {
+    if (item?.requestStatus === "CANCEL") {
       setBorder("1px solid #EFEFEF");
       setOpacity("0.5");
     }
-  }, [request]);
+  }, [item?.requestStatus]);
 
   const tradeReceiveState = () => {
-    if (request === "REQUEST") {
+    if (item?.requestStatus === "REQUEST") {
       return (
         <StRequestState
           backgroundcolor="white"
@@ -62,7 +59,7 @@ const TradeReceiveCard = ({ item, data }: any) => {
         </StRequestState>
       );
     }
-    if (request === "TRADING") {
+    if (item?.requestStatus === "TRADING") {
       return (
         <StRequestState
           backgroundcolor="#EC8D49"
@@ -73,7 +70,7 @@ const TradeReceiveCard = ({ item, data }: any) => {
         </StRequestState>
       );
     }
-    if (request === "DONE") {
+    if (item?.requestStatus === "DONE") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -84,7 +81,7 @@ const TradeReceiveCard = ({ item, data }: any) => {
         </StRequestState>
       );
     }
-    if (request === "CANCEL") {
+    if (item?.requestStatus === "CANCEL") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -98,7 +95,7 @@ const TradeReceiveCard = ({ item, data }: any) => {
   };
 
   const tradeReceiveGoods = () => {
-    if (request === "REQUEST" || "DONE" || "CANCEL") {
+    if (item?.requestStatus === "REQUEST" || "DONE" || "CANCEL" || "TRADING") {
       return (
         <GoodsContainer>
           <GoodsImg
@@ -115,16 +112,6 @@ const TradeReceiveCard = ({ item, data }: any) => {
           )}
           <ExchangeImg src={goodsexchange} />
           <GoodsImg src={goodsListResponseDto.imageUrl} />
-        </GoodsContainer>
-      );
-    }
-    if (request === "TRADING") {
-      return (
-        <GoodsContainer>
-          <GoodsImg src={goods} />
-          <ExchangeImg src={goodsexchange} />
-          <GoodsImg src={goods} />
-          <OtherGoodsImg src={goods} />
         </GoodsContainer>
       );
     }

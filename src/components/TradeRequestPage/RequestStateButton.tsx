@@ -32,7 +32,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   }>({
     requestId: [],
   });
-
+  // 교환요청 수락api
   const mutation = useMutation(() => postAcceptTradeApi(requestGoods), {
     onSuccess: (res) => {
       console.log("교환요청수락성공!", res);
@@ -48,11 +48,10 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
 
   const completeModalClick = () => {
     setCompleteModalOpen(!completeModalOpen);
-    setRequestState({ ...requestState, request: "DONE" });
   };
 
   const receiveStateButton = () => {
-    if (request === "REQUEST") {
+    if (item?.requestStatus === "REQUEST") {
       return (
         <RequestBtContainer>
           <StRejectBt buttonColor="white" onClick={rejectModalClick}>
@@ -86,7 +85,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
         </RequestBtContainer>
       );
     }
-    if (request === "TRADING") {
+    if (item?.requestStatus === "TRADING") {
       return (
         <ButtonContainer>
           <StCompleteBt buttonColor="#EC8D49" onClick={completeModalClick}>
@@ -95,10 +94,12 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
           {completeModalOpen && (
             <ModalContainer>
               <TradeCompleteModal
+                item={item}
                 completeModalOpen={completeModalOpen}
                 setCompleteModalOpen={setCompleteModalOpen}
                 requestState={requestState}
                 setRequestState={setRequestState}
+                requestGoods={requestGoods}
               />
             </ModalContainer>
           )}
@@ -146,7 +147,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-top: 40px; */
+  margin-top: 40px;
   gap: 136px;
 `;
 

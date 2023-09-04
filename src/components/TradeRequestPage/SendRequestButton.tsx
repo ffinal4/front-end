@@ -29,6 +29,11 @@ const SendRequestButton: React.FC<SendRequestButtonProps> = ({
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
   const { request } = requestState;
+  const [requestGoods, setRequestGoods] = useState<{
+    requestId: string | number[];
+  }>({
+    requestId: [],
+  });
 
   const rejectModalClick = () => {
     setRejectModalOpen(!rejectModalOpen);
@@ -40,7 +45,7 @@ const SendRequestButton: React.FC<SendRequestButtonProps> = ({
   };
 
   const sendStateButton = () => {
-    if (request === "REQUEST") {
+    if (item?.requestStatus === "REQUEST") {
       return (
         <WaitingStateContainer>
           <Img src={eye} />
@@ -48,7 +53,7 @@ const SendRequestButton: React.FC<SendRequestButtonProps> = ({
         </WaitingStateContainer>
       );
     }
-    if (request === "TRADING") {
+    if (item?.requestStatus === "TRADING") {
       return (
         <ButtonContainer>
           <StCompleteBt buttonColor="#EC8D49" onClick={completeModalClick}>
@@ -57,6 +62,8 @@ const SendRequestButton: React.FC<SendRequestButtonProps> = ({
           {completeModalOpen && (
             <ModalContainer>
               <TradeCompleteModal
+                item={item}
+                requestGoods={requestGoods}
                 completeModalOpen={completeModalOpen}
                 setCompleteModalOpen={setCompleteModalOpen}
                 requestState={requestState}
