@@ -89,6 +89,7 @@ const LayoutContainer = styled.div`
     display: flex;
     gap: 112px;
     width: 100%;
+
     @media screen and (max-width: 1136px) {
       display: grid;
       justify-content: center;

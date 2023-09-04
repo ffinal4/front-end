@@ -117,6 +117,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   };
   return <div>{receiveStateButton()}</div>;
 };
+
 const RequestBtContainer = styled.div`
   display: flex;
   gap: 16px;
@@ -141,10 +142,11 @@ export const Img = styled.img`
 `;
 
 export const ButtonContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   gap: 136px;
 `;
 

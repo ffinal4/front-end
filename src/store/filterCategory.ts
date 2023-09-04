@@ -24,7 +24,11 @@ export const getRequestFilter = atom({
 });
 
 //경매현황페이지 - 내경매 filter
+export const auctionCategory = atom({
+  key: "auctionCategory",
+  default: "",
+});
 export const myAuctionFilter = atom({
   key: "AuctionFilterName",
-  default: "전체",
+  default: "",
 });
