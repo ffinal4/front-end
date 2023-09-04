@@ -1,20 +1,50 @@
 import React from "react";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { styled } from "styled-components";
+import { getRequestFilter, requestCategory } from "../../store/filterCategory";
+import { pagination } from "../../store/pagination";
 
 const FilterDropdownMenu = (props: any) => {
-  const { filterOpen, setFilterOpen, setDropdownMenu } = props;
+  // const { filterOpen, setFilterOpen, setDropdownMenu } = props;
+  const [categorySelect, setCategorySelect] = useRecoilState(requestCategory);
+  const [tradeState, setTradeState] = useRecoilState(getRequestFilter);
+  const resetPage = useResetRecoilState(pagination);
 
-  const requestStateOnclick = (event: any) => {
-    setDropdownMenu(event.target.innerHTML);
-    setFilterOpen(!filterOpen);
-  };
+  interface State {
+    status: string | null;
+    name: string;
+  }
+  const statusArray: State[] = [
+    { status: null, name: "전체" },
+    { status: "REQUEST", name: "교환요청" },
+    { status: "TRADING", name: "교환진행중" },
+    { status: "CANCEL", name: "교환취소" },
+    { status: "DONE", name: "교환완료" },
+  ];
+
   return (
     <div>
       <FilterDropdownContainer>
-        <RequestState onClick={requestStateOnclick}>교환요청</RequestState>
-        <RequestState onClick={requestStateOnclick}>교환진행중</RequestState>
-        <RequestState onClick={requestStateOnclick}>교환취소</RequestState>
-        <RequestState onClick={requestStateOnclick}>교환완료</RequestState>
+        {statusArray.map((item) => {
+          return (
+            <div
+              key={item.status}
+              onClick={() => {
+                if (item.status !== null) {
+                  setCategorySelect(`&status=${item.status}`);
+                  setTradeState(item.name);
+                  resetPage();
+                } else {
+                  setCategorySelect("");
+                  setTradeState(item.name);
+                  resetPage();
+                }
+              }}
+            >
+              <RequestState>{item.name}</RequestState>
+            </div>
+          );
+        })}
       </FilterDropdownContainer>
     </div>
   );

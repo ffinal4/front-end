@@ -3,6 +3,10 @@ import { styled } from 'styled-components';
 import { ValueToEnum } from '../../utils/EnumCategory';
 
 const WantedInfo = ({ data } : any) => {
+
+    const contentData = data?.data.info.goodsResponseDtoList.wantedGoods.content;
+    const inputData = contentData.split("\n");
+
     return (
             <InfoContainer>
                 <InfoTextContainer>
@@ -10,7 +14,15 @@ const WantedInfo = ({ data } : any) => {
                         <InfoTextTitle>{data.data.info.goodsResponseDtoList.wantedGoods.title}</InfoTextTitle>
                         <InfoTextContent style={{color: "#A4A4A4"}}>{ValueToEnum(data.data.info.goodsResponseDtoList.wantedGoods.category)}</InfoTextContent>
                     </TextTitleContainer>
-                    <InfoTextContent>{data.data.info.goodsResponseDtoList.wantedGoods.content.replace(/\n/g, "<br>")}</InfoTextContent>
+                    <InfoTextContent>
+                        {inputData?.map((item : string) => {
+                            return (
+                                (item === inputData[inputData.length - 1])
+                                    ? <div>{item}</div>
+                                    : <div>{item}<br /></div>
+                            )
+                        })}
+                    </InfoTextContent>
                 </InfoTextContainer>
             </InfoContainer>
     )
@@ -50,6 +62,8 @@ const InfoTextContent = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
+    word-break: break-word;
+    display: -webkit-box;
 `;
 
 export default WantedInfo;

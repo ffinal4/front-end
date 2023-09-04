@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CardContainer,
   Filter,
@@ -23,6 +23,8 @@ import bluedot from "../../assets/icon/bluedot.png";
 import blackdot from "../../assets/icon/blackdot.png";
 import { getBidAuctionApi } from "../../api/acution";
 import { useQuery } from "react-query";
+import LoadingSpinner from "../common/LoadingSpinner";
+import { BidFilterToEnum } from "../../utils/EnumFilter";
 
 interface BidAuctionListProps {
   filterOpen: boolean;
@@ -41,9 +43,17 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
-  const { isLoading, data, error }: any = useQuery(" getBidAuctionData", getBidAuctionApi);
 
-  if (isLoading) return <div>Loading...</div>;
+  const [category, setCategory] = useState<string | null>("");
+  const [filter, setFilter] = useState("전체");
+  console.log("filter", category);
+
+  const { isLoading, data, error }: any = useQuery(
+    ["getBidAuctionData", category],
+    () => getBidAuctionApi(category)
+  );
+
+  if (isLoading) return <LoadingSpinner />;
   console.log("입찰경매현황 데이터", data);
   if (error) {
     console.log(error);
@@ -76,7 +86,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
               setFilterOpen(!filterOpen);
             }}
           >
-            {dropdownMenu}
+            {filter}
             <ArrowImg src={arrow} />
           </Filter>
           {filterOpen && (
@@ -85,6 +95,8 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
                 filterOpen={filterOpen}
                 setFilterOpen={setFilterOpen}
                 setDropdownMenu={setDropdownMenu}
+                setFilter={setFilter}
+                setCategory={setCategory}
               />
             </FilterdropdownMenuContainer>
           )}

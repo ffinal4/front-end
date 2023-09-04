@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import goodsexchange from "../../assets/icon/goodsexchange.png";
-import goods from "../../assets/images/kangaroowhy.png";
-import traderequest from "../../assets/icon/traderequest.png";
-import tradeing from "../../assets/icon/tradeingrequst.png";
-import tradecomplete from "../../assets/icon/tradecomplete.png";
-import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import DetailGoodsModal from "./DetailGoodsModal";
+import SendRequestButton from "./SendRequestButton";
 
-const TradeRequestCard = ({ item }: any) => {
-  const [requestState, setRequestState] = useState({ request: "교환요청" });
+const TradeRequestCard = ({ item, data }: any) => {
+  const [requestState, setRequestState] = useState({
+    request: item?.requestStatus,
+  });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
   const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
   const { request } = requestState;
-  const goodsListResponseDto = item?.goodsListResponseDto; // 상대물건
-  const goodsListResponseDtos = item?.goodsListResponseDtos[0]; //내 물건
+  const goodsListResponseDto = item?.goodsListResponseDto;
+  const goodsListResponseDtos = item?.goodsListResponseDtos[0];
 
   const goodsDetailModalOnclick = () => {
     setDetailModalOpen(!detailModalOpen);
@@ -26,13 +24,13 @@ const TradeRequestCard = ({ item }: any) => {
     if (request === "REQUEST") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "교환진행중") {
+    if (request === "TRADING") {
       setBorder("2px solid #EC8D49");
     }
-    if (request === "교환완료") {
+    if (request === "DONE") {
       setBorder("1px solid  #D5D4D4");
     }
-    if (request === "교환취소") {
+    if (request === "CANCEL") {
       setBorder("1px solid #EFEFEF");
       setOpacity("0.5");
     }
@@ -86,7 +84,7 @@ const TradeRequestCard = ({ item }: any) => {
   };
 
   const tradeRequestGoods = () => {
-    if (request === "REQUEST" || "DONE" || "CANCEL") {
+    if (request === "REQUEST" || "DONE" || "TRADING") {
       return (
         <GoodsContainer>
           <GoodsImg
@@ -95,10 +93,10 @@ const TradeRequestCard = ({ item }: any) => {
           />
           {detailModalOpen && (
             <div style={{ position: "absolute" }}>
-              <DetailGoodsModal
+              {/* <DetailGoodsModal
                 detailModalOpen={detailModalOpen}
                 setDetailModalOpen={setDetailModalOpen}
-              />
+              /> */}
             </div>
           )}
           <ExchangeImg src={goodsexchange} />
@@ -106,13 +104,12 @@ const TradeRequestCard = ({ item }: any) => {
         </GoodsContainer>
       );
     }
-    if (request === "TRADING") {
+    if (request === "CANCEL") {
       return (
         <GoodsContainer>
-          <GoodsImg src={goods} />
+          <GoodsImg src={goodsListResponseDto.imageUrl} />
           <ExchangeImg src={goodsexchange} />
-          <GoodsImg src={goods} />
-          <OtherGoodsImg src={goods} />
+          <GoodsImg src={goodsListResponseDtos.imageUrl} />
         </GoodsContainer>
       );
     }
@@ -121,7 +118,7 @@ const TradeRequestCard = ({ item }: any) => {
   return (
     <CardContainer style={{ border: `${border}`, opacity: `${opacity}` }}>
       <Container>
-        <Date>2023-8-22</Date>
+        <Date>{item.createdAt.slice(0, 10)}</Date>
         {tradeRequestState()}
       </Container>
       {tradeRequestGoods()}
@@ -133,12 +130,13 @@ const TradeRequestCard = ({ item }: any) => {
         <GoodsTitle>{goodsListResponseDtos.title}</GoodsTitle>
         <Address>{goodsListResponseDtos.location}</Address>
       </ContentsContainer>
-      <ButtonContainer>
-        <RequestStateButton
-          requestState={requestState}
-          setRequestState={setRequestState}
-        />
-      </ButtonContainer>
+
+      <SendRequestButton
+        data={data}
+        item={item}
+        requestState={requestState}
+        setRequestState={setRequestState}
+      />
     </CardContainer>
   );
 };
@@ -192,14 +190,17 @@ export const GoodsContainer = styled.div`
   gap: 44px;
 `;
 
-export const GoodsImg = styled.img`
+export const GoodsImg = styled.div<{ src : string }>`
   width: 80px;
   height: 80px;
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: cover;
   border-radius: 5px;
+  position: relative;
   cursor: pointer;
 `;
 
-const OtherGoodsImg = styled.img`
+export const OtherGoodsImg = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 5px;
@@ -216,7 +217,7 @@ export const ExchangeImg = styled.img`
   height: 24px;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   color: #ec8d49;
   font-family: "Pretendard";
   font-size: 14px;
@@ -238,16 +239,6 @@ export const Address = styled.div`
   font-weight: 400;
   color: #adadad;
 `;
-
-// export const TradeStateContaner = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   font-family: "Pretendard";
-//   font-size: 14px;
-//   font-weight: 400;
-//   padding: 10px 20px 0px 20px;
-// `;
 
 export const ButtonContainer = styled.div`
   display: flex;

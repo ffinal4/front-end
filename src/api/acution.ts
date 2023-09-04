@@ -35,30 +35,31 @@ export const postAuctionBidApi = async (body: BidPick, auctionId: number) => {
 };
 
 // 입찰 전체 조회
-export const getAuctionBidListApi = async (auctionId: number) => {
-  const res = await instance.get(`/api/auction/${auctionId}/bid/1`);
+export const getAuctionBidListApi = async (page : number, auctionId: number) => {
+  const res = await instance.get(`/api/auction/${auctionId}/bid/page/${page}`);
   return res;
 };
 
-export const getAuctionBidListChoiceApi = async (auctionId: number) => {
+// 입찰 상세 조회
+export const getAuctionBidDetailApi = async (auctionId: number, userId : number) => {
   const res = await instance.get(
-    `/api/auction/${auctionId}/bid?page=1&size=5&sortBy=createdAt&isAsc=false`
+    `/api/auction/${auctionId}/bid/${userId}`
   );
   return res;
 };
 
 // 내 경매현황 전체조회
-export const getMyAuctionCheckApi = async () => {
+export const getMyAuctionCheckApi = async (page : number, status : string | null) => {
   const res = await instance.get(
-    "/api/auction/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status"
+    `/api/auction/users/trade?page=${page}&size=9&sortBy=createdAt&isAsc=false${status}`
   );
   return res;
 };
 
 // 입찰경매 전체조회
-export const getBidAuctionApi = async () => {
+export const getBidAuctionApi = async (status : string | null) => {
   const res = await instance.get(
-    "/api/bid/users/trade?page=1&size=5&sortBy=createdAt&isAsc=false&status"
+    `/api/bid/users/trade?page=1&size=9&sortBy=createdAt&isAsc=false&${status}`
   );
   return res;
 };
@@ -72,7 +73,11 @@ export const postSellerPicksApi = async (body: any, auctionId: number) => {
   return res;
 };
 
-// 경매
+// 경매 낙찰품 선택
+export const postAucEndApi = async (body: any, auctionId: number) => {
+  const res = await instance.post(`/api/auction/${auctionId}/pick/bid/list`, body);
+  return res;
+};
 
 // 경매 강제 취소
 export const deleteAuctionCancelApi = async (auctionId: number) => {

@@ -1,31 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components';
 import AucBidCard from './AucBidCard';
 import { useQuery } from 'react-query';
-import { getAuctionBidListApi, getAuctionBidListChoiceApi } from '../../api/acution';
-import { useParams } from 'react-router-dom';
+import { getAuctionBidListApi } from '../../api/acution';
 import EmptyPocket from '../common/EmptyPocket';
+import Paging from '../common/Paging/Paging';
+import { useRecoilValue } from 'recoil';
+import { pagination } from '../../store/pagination';
+import DetailGoodsModal from '../TradeRequestPage/DetailGoodsModal';
+import { DoneContainer } from './BidModal';
 
 const AucBidInfo = ({ productData } : any) => {
 
+    const currentPage = useRecoilValue(pagination);
+
     const auctionId = productData.data.info.auctionResponseDto.auctionId;
-    const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
+    const { isLoading, error, data } : any = useQuery(["auctionBid", currentPage, auctionId], () => getAuctionBidListApi(currentPage, auctionId), {
         refetchOnWindowFocus: false,
     });
+    const [detailData, setDetailData] = useState<any>();
+    const [detailModalOpen, setDetailModalOpen] = useState(false);
     console.log("입찰품 목록", data);
 
   return (
     <InfoContainer>
         <InfoTextContainer>
             <CardListContainer>
-                {(data?.data.info.content.length > 0)
-                    ? data?.data.info.content.map((item : any) => {
+                {(data?.data.content.length > 0)
+                    ? data?.data.content.map((item : any) => {
                         return (
-                            <AucBidCard 
-                                key={item.bidId}
-                                item={item}
-                                choice={false}
-                            />
+                            <div>
+                                <AucBidCard 
+                                    key={item.userId}
+                                    item={item}
+                                    choice={false}
+                                    productData={productData}
+                                    setDetailModalOpen={setDetailModalOpen}
+                                    setDetailData={setDetailData}
+                                />
+                                
+                            </div>
                         )}
                     )
                     : <EmptyPocket />
@@ -42,6 +56,13 @@ const AucBidInfo = ({ productData } : any) => {
                 <AucBidCard /> */}
             </CardListContainer>
         </InfoTextContainer>
+        <Paging />
+        {(detailModalOpen)
+            && <DetailGoodsModal
+                    detailModalOpen={detailModalOpen}
+                    setDetailModalOpen={setDetailModalOpen}
+                    detailData={detailData}
+                />}
     </InfoContainer>
     )
 };
@@ -56,7 +77,7 @@ const InfoContainer = styled.div`
 `;
 
 const InfoTextContainer = styled.div`
-    padding: 60px 0px 0px 0px;
+    padding: 60px 0px 60px 0px;
     width: 100%;
 `;
 

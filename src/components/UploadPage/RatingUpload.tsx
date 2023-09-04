@@ -177,6 +177,10 @@ const PriceInput = styled.input`
     border: 1px solid #ADADAD;
     border-radius: 5px;
     background-color: #FCFCFC;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
 `;
 
 const Text = styled.div`

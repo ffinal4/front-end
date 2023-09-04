@@ -27,7 +27,8 @@ const ItemCardList = ({ data, allList, isPocket }: any) => {
                           </GoodsCondition>
                         </div>
                         : ((item?.goodsStatus === "END"
-                          || item?.goodsStatus === "DONE")
+                          || item?.goodsStatus === "DONE"
+                          || item?.goodsStatus === "SOLDOUT")
                           ? <Done>거래완료</Done>
                           : <div>
                             <GoodsConditionContainer />

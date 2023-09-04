@@ -14,7 +14,7 @@ import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import AuctionRequestGoods from "./AuctionRequestGoods";
 
-const AuctionRequestCard = ({ item }: any) => {
+const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, sellerPicks, setDetailModalOpen }: any) => {
   const testListResponseDto = item?.testListResponseDto;
   const [requestState, setRequestState] = useState({
     request: testListResponseDto.auctionStatus,
@@ -89,7 +89,7 @@ const AuctionRequestCard = ({ item }: any) => {
         <div>
           <Title>경매상황</Title>
           <GoodsTitle>
-            현재 총 {testListResponseDto.bidCount}명이 경매에 입찰했어요.
+            현재 총 {testListResponseDto.bidCount} 명이 경매에 입찰했어요.
           </GoodsTitle>
           <Address>
             경매 종료까지 {testListResponseDto.timeRemaining.days}:
@@ -112,20 +112,31 @@ const AuctionRequestCard = ({ item }: any) => {
           </div>
         );
       } else {
-        return (
-          <div>
-            <Title>경매상황</Title>
-            <GoodsTitle>
-              현재 총 {testListResponseDto.bidCount} 명이 입찰중이에요.
-            </GoodsTitle>
-            <Address>
-              입찰품 선택까지 {testListResponseDto.timeRemaining.days}일
-              {testListResponseDto.timeRemaining.hours}시간
-              {testListResponseDto.timeRemaining.minutes}분
-              {testListResponseDto.timeRemaining.seconds}초
-            </Address>
-          </div>
-        );
+        if (item?.bidListResponseDtos.length > 0) {
+          return (
+            <div>
+              <Title>입찰</Title>
+              <GoodsTitle>{item?.bidListResponseDtos[0].title}</GoodsTitle>
+              <Address>{item?.bidListResponseDtos[0].location}</Address>
+            </div>
+          );
+        } else {
+          return (
+            <div>
+              <Title>경매상황</Title>
+              <GoodsTitle>
+                현재 총 {testListResponseDto.bidCount} 명이 입찰중이에요.
+              </GoodsTitle>
+              <Address>
+                {/* 입찰품 선택까지 {testListResponseDto.timeRemaining.days}:
+              {testListResponseDto.timeRemaining.hours}:
+              {testListResponseDto.timeRemaining.minutes}:
+              {testListResponseDto.timeRemaining.seconds} */}
+              입찰품을 선택해주세요.
+              </Address>
+            </div>
+          );
+        };
       }
     }
     // 교환완료
@@ -133,8 +144,8 @@ const AuctionRequestCard = ({ item }: any) => {
       return (
         <div>
           <Title>입찰</Title>
-          <GoodsTitle>가디언즈 오브 갤럭시 오리지널 티켓</GoodsTitle>
-          <Address>서울시 서초구 서초 1동</Address>
+          <GoodsTitle>{item?.bidListResponseDtos[0].title}</GoodsTitle>
+          <Address>{item?.bidListResponseDtos[0].location}</Address>
         </div>
       );
     }
@@ -159,6 +170,8 @@ const AuctionRequestCard = ({ item }: any) => {
           requestState={requestState}
           setRequestState={setRequestState}
           item={item}
+          setDetailModalOpen={setDetailModalOpen}
+          setDetailData={setDetailData}
         />
       </GoodsContainer>
 
@@ -173,6 +186,9 @@ const AuctionRequestCard = ({ item }: any) => {
           requestState={requestState}
           setRequestState={setRequestState}
           item={item}
+          setDto={setDto}
+          setSellerPicks={setSellerPicks}
+          sellerPicks={sellerPicks}
         />
       </ButtonContainer>
     </CardContainer>

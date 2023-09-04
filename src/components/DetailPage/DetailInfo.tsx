@@ -16,8 +16,9 @@ import { pagination } from "../../store/pagination";
 
 const DetailInfo = ({ data }: any) => {
   const navigate = useNavigate();
-  const categorys = data.data.info.goodsResponseDtoList.category;
-  const createdDate = data.data.info.goodsResponseDtoList.createdAt;
+  const [dibsCount, setDibsCount] = useState(data?.data.info.goodsResponseDtoList.dibsCount);
+  const categorys = data?.data.info.goodsResponseDtoList.category;
+  const createdDate = data?.data.info.goodsResponseDtoList.createdAt;
   const splitDate = createdDate.split("T")[0];
   const targetDate: any = new Date(splitDate);
   const currentDate: any = new Date();
@@ -37,7 +38,7 @@ const DetailInfo = ({ data }: any) => {
         <TextWrapper
           style={{ gap: "8px" }}
           onClick={() => {
-            if (data.data.info.goodsResponseDtoList.checkSameUser) {
+            if (data?.data.info.goodsResponseDtoList.checkSameUser) {
               navigate("/mypocket");
               resetCategory();
               resetCategoryName();
@@ -48,17 +49,17 @@ const DetailInfo = ({ data }: any) => {
               resetCategoryName();
               restPage();
               resetAsc();
-              navigate(`/userpocket/${data.data.info.goodsResponseDtoList.nickname}`);
+              navigate(`/userpocket/${data?.data.info.goodsResponseDtoList.nickname}`);
             }
           }}
         >
-          <ColorText color="#39373A">{data.data.info.goodsResponseDtoList.nickname}</ColorText>
+          <ColorText color="#39373A">{data?.data.info.goodsResponseDtoList.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
         <BoxWrapper>
           <TextWrapper style={{ cursor: "default" }}>
             <SmallBox src={Like} />
-            <ColorText color="#ADADAD">{data.data.info.goodsResponseDtoList.dibsCount}</ColorText>
+            <ColorText color="#ADADAD">{dibsCount}</ColorText>
           </TextWrapper>
           <TextWrapper style={{ cursor: "default" }}>
             <SmallBox src={Time} />
@@ -76,23 +77,23 @@ const DetailInfo = ({ data }: any) => {
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품상태</ColorText>
-          <ColorText color="#222020">{data.data.info.goodsResponseDtoList.goodsCondition}</ColorText>
+          <ColorText color="#222020">{data?.data.info.goodsResponseDtoList.goodsCondition}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">거래지역</ColorText>
-          <ColorText color="#222020">{data.data.info.goodsResponseDtoList.location}</ColorText>
+          <ColorText color="#222020">{data?.data.info.goodsResponseDtoList.location}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">거래방법</ColorText>
-          <ColorText color="#222020">{data.data.info.goodsResponseDtoList.tradeType}</ColorText>
+          <ColorText color="#222020">{data?.data.info.goodsResponseDtoList.tradeType}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#717171">상품태그</ColorText>
-          <ColorText color="#222020">#스타벅스 #기프티콘 #교환권</ColorText>
+          <ColorText color="#222020">준비중입니다.</ColorText>
         </TextLine>
       </TextContainer>
       <ColorText color="#717171">*상대방이 교환신청을 수락해야 채팅이 가능해요!</ColorText>
-      <AcceptBtn data={data} />
+      <AcceptBtn data={data} dibsCount={dibsCount} setDibsCount={setDibsCount} />
     </InfoContainer>
   );
 };
@@ -106,6 +107,7 @@ const InfoContainer = styled.div`
 `;
 
 const InfoTitle = styled.div`
+  width: 100%;
   font-family: "Pretendard";
   font-size: 32px;
   font-weight: 800;

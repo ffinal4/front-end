@@ -81,7 +81,7 @@ const DetailPage = () => {
         </InfoContainer>
       </PageContainer>
       <RecommendCard data={data.data.info.rcGoodsResponseDtoList} auction={false} />
-      <MyPickBar view={view} />
+      {/* <MyPickBar view={view} /> */}
     </PageLayout>
   );
 };

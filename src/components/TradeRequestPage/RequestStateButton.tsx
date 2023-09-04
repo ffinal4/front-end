@@ -5,42 +5,55 @@ import chat from "../../assets/icon/Chatting.png";
 import { useNavigate } from "react-router-dom";
 import RequestRejectModal from "./RequestRejectModal";
 import TradeCompleteModal from "./TradeCompleteModal";
+import { useMutation } from "react-query";
+import TradeAcceptButton from "./TradeAcceptButton";
+import { postAcceptTradeApi } from "../../api/goods";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
+  item: any;
+  data: any;
 }
 
 const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   requestState,
   setRequestState,
+  item,
+  data,
 }) => {
   const navigate = useNavigate();
+  const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-
   const { request } = requestState;
+  const [requestGoods, setRequestGoods] = useState<{
+    requestId: string | number[];
+  }>({
+    requestId: [],
+  });
+
+  const mutation = useMutation(() => postAcceptTradeApi(requestGoods), {
+    onSuccess: (res) => {
+      console.log("교환요청수락성공!", res);
+      setRequestState({ ...requestState, request: "TRADING" });
+    },
+  });
+  console.log(newGoodsData, "id");
+  console.log(requestGoods, "요청수락물건아이디");
 
   const rejectModalClick = () => {
     setRejectModalOpen(!rejectModalOpen);
   };
 
-  const requestAcceptOnclick = () => {
-    setRequestState({ ...requestState, request: "교환진행중" });
-  };
-
   const completeModalClick = () => {
     setCompleteModalOpen(!completeModalOpen);
-    // setRequestState({ ...requestState, request: "교환완료" });
+    setRequestState({ ...requestState, request: "DONE" });
   };
 
-  const stateButton = () => {
-    if (request === "교환요청") {
+  const receiveStateButton = () => {
+    if (request === "REQUEST") {
       return (
-        // <WaitingStateContainer>
-        //   <Img src={eye} />
-        //   상대방의 응답 기다리는 중...
-        // </WaitingStateContainer>
         <RequestBtContainer>
           <StRejectBt buttonColor="white" onClick={rejectModalClick}>
             거절
@@ -52,16 +65,28 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
                 setRequestState={setRequestState}
                 rejectModalOpen={rejectModalOpen}
                 setRejectModalOpen={setRejectModalOpen}
+                item={item}
+                data={data}
+                requestGoods={requestGoods}
+                setRequestGoods={setRequestGoods}
               />
             </ModalContainer>
           )}
-          <StAssureBt buttonColor="black" onClick={requestAcceptOnclick}>
+          <TradeAcceptButton
+            data={data}
+            requestState={requestState}
+            setRequestState={setRequestState}
+            requestGoods={requestGoods}
+            setRequestGoods={setRequestGoods}
+            item={item}
+          />
+          <StAssureBt buttonColor="black" onClick={() => mutation.mutate()}>
             수락
           </StAssureBt>
         </RequestBtContainer>
       );
     }
-    if (request === "교환진행중") {
+    if (request === "TRADING") {
       return (
         <ButtonContainer>
           <StCompleteBt buttonColor="#EC8D49" onClick={completeModalClick}>
@@ -89,30 +114,17 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
         </ButtonContainer>
       );
     }
-
-    // if (request === "교환취소") {
-    //   return (
-    //     <div>
-    //       <StDeleteBt buttonColor="white" onClick={deleteModalClick}>
-    //         기록 삭제
-    //       </StDeleteBt>
-    //       {deleteModalOpen && (
-    //         <TradeDeleteModal
-    //           deleteModalOpen={deleteModalOpen}
-    //           setDeleteModalOpen={setDeleteModalOpen}
-    //           requestState={requestState}
-    //           setRequestState={setRequestState}
-    //         />
-    //       )}
-    //     </div>
-    //   );
-    // }
   };
-  return <div>{stateButton()}</div>;
+  return <div>{receiveStateButton()}</div>;
 };
+
 const RequestBtContainer = styled.div`
   display: flex;
   gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
 `;
 
 export const WaitingStateContainer = styled.div`
@@ -130,9 +142,14 @@ export const Img = styled.img`
 `;
 
 export const ButtonContainer = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 40px; */
   gap: 136px;
 `;
+
 export const StCompleteBt = styled(StBasicButton)`
   width: 80px;
   height: 44px;
@@ -155,14 +172,6 @@ export const StChatBt = styled(StBasicButton)`
   font-weight: 400;
 `;
 
-const StDetailBt = styled(StBasicButton)`
-  width: 176px;
-  border: 1px solid #d5d4d4;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 400;
-`;
-
 // const StDeleteBt = styled(StBasicButton)`
 //   width: 176px;
 //   border: 1px solid #d5d4d4;
@@ -171,7 +180,6 @@ const StDetailBt = styled(StBasicButton)`
 //   font-weight: 400;
 //   margin-top: 70px;
 // `;
-
 const StAssureBt = styled(StBasicButton)`
   width: 80px;
   height: 44px;

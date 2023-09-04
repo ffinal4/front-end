@@ -181,11 +181,10 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
                 />
               </div>
             )}
-            <RemoveBtnWrapper>
+            <RemoveBtnWrapper onClick={onClickRemoveHandler}>
               <RemoveIcon
                 src={removeIcon}
                 alt=""
-                onClick={onClickRemoveHandler}
               />
               이미지 전체 삭제
             </RemoveBtnWrapper>

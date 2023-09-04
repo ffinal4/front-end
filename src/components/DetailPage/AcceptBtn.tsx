@@ -4,7 +4,7 @@ import { StBasicButton } from '../../styles/BasicButton';
 import CardZzimBtn from '../common/CardZzimBtn';
 import RequestsModal from './RequestsModal';
 
-const AcceptBtn = ({ data } : any) => {
+const AcceptBtn = ({ data, dibsCount, setDibsCount } : any) => {
 
     const [conditional, setConditional] = useState(false);
 
@@ -38,6 +38,8 @@ const AcceptBtn = ({ data } : any) => {
             isCard={false}
             buttonColor="#FFCA64"
             fontColor="#222020"
+            dibsCount={dibsCount}
+            setDibsCount={setDibsCount}
           />
         )}
         {conditional ? (
@@ -59,6 +61,11 @@ const ButtonWrapper = styled.div`
   width: 100%;
   gap: 16px;
   padding: 10px 0px 0px 0px;
+
+
+  @media screen and (max-width: 375px) {
+    display: grid;
+  }
 `;
 
 

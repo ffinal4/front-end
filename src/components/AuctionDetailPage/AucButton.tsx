@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
 import BidModal from './BidModal';
@@ -6,6 +6,7 @@ import CardZzimBtn from '../common/CardZzimBtn';
 
 const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSellerPicks } : any) => {
 
+    const [expired, setExpired] = useState(data?.data.info.auctionResponseDto.leftTime.expired);
     const onClickBidHandler = () => {
       setConditional({ ...conditional, bid: true });
     };
@@ -28,8 +29,8 @@ const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSel
             입찰하기
           </StButton>
         )}
-        {data.data.info.auctionResponseDto.checkSameUser ? (
-          (data.data.info.auctionResponseDto.leftTime.expired) ? (
+        {data?.data.info.auctionResponseDto.checkSameUser ? (
+          (expired) ? (
           <StButton
             buttonColor="#58ABF7"
             style={{ color: "#FCFCFC", border: "2px solid #222020" }}

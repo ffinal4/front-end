@@ -7,11 +7,14 @@ import Close from '../../assets/icon/remove.png'
 import EmptyPocket from '../common/EmptyPocket';
 import { useMutation, useQuery } from 'react-query';
 import { getAuctionBidListApi, postSellerPicksApi } from '../../api/acution';
+import { useRecoilValue } from 'recoil';
+import { pagination } from '../../store/pagination';
+import LoadingSpinner from '../common/LoadingSpinner';
 
-const SellerPickModal = ({ sellerPicks, setSellerPicks, productData } : any) => {
+const SellerPickModal = ({ sellerPicks, setSellerPicks, auctionId } : any) => {
 
-    const auctionId = productData.data.info.auctionResponseDto.auctionId;
-    const { isLoading, error, data } : any = useQuery(["auctionBid", auctionId], () => getAuctionBidListApi(auctionId), {
+    const currentPage = useRecoilValue(pagination);
+    const { isLoading, error, data } : any = useQuery(["auctionBid", currentPage, auctionId], () => getAuctionBidListApi(currentPage, auctionId), {
         refetchOnWindowFocus: false,
     });
 
@@ -29,6 +32,9 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks, productData } : any) => 
 
     console.log("입찰품 목록(낙찰)", data);
     console.log("선택", checkBox);
+
+    if (isLoading) return <LoadingSpinner />;
+    if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
@@ -61,17 +67,18 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks, productData } : any) => 
                 </ButtonWrapper>
             </Wrapper>
             <MainContainer>
-                {(data?.data.info.content.length > 0)
-                    ? data?.data.info.content.map((item : any) => {
+                {(data?.data.content.length > 0)
+                    ? data?.data.content.map((item : any) => {
                         return (
                             <AucBidCard 
-                                key={item.bidId}
+                                key={item.userId}
                                 item={item}
                                 choice={true}
                                 setCheckBox={setCheckBox}
                                 checkBox={checkBox}
                                 bidSellerPick={bidSellerPick}
                                 setBidSellerPick={setBidSellerPick}
+                                seller={true}
                             />
                         )}
                     )
@@ -95,26 +102,34 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks, productData } : any) => 
 
 export const ModalBackgroundBox = styled.div`
     position: fixed;
-    background-color: #000;
+    background-color: #00000025;
     width: 100%;
     height: 100vh;
     top: 0;
     left: 0;
-    opacity: 0.25;
-    z-index: 888;
+    z-index: 1000;
+    @media screen and (max-width: 1196px) {
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 export const ModalContainer = styled.div`
-    width: 1196px;
+    width: 62.85%;
     max-height: 1186px;
     border: 1px solid #222020;
     border-radius: 10px;
     background-color: #FCFCFC;
     position: absolute;
     top: 220px;
-    left: 392px;
+    left: 20%;
     z-index: 1000;
     padding: 40px 30px;
+
+    @media screen and (max-width: 1196px) {
+        width: 100%;
+        left: 0;
+    }
 `;
 
 export const ModalTitle = styled.div`

@@ -28,14 +28,11 @@ const LoginPage = () => {
   const loginOnclick = async (event: any) => {
     event.preventDefault();
     if (email === "" || password === "") {
-      // Swal.fire({
-      //   icon: "warning",
-      //   text: <CustomModal>아이디나 비밀번호를 입력해주세요.</CustomModal>,
-      //   confirmButtonColor: "#ffca64",
-      //   customClass: {
-      //     confirmButton: "custom-confirm-button",
-      //   },
-      // });
+      Swal.fire({
+        icon: "warning",
+        text: "아이디나 비밀번호를 입력해주세요.",
+        confirmButtonColor: "#ffca64",
+      });
 
       return;
     }
@@ -131,15 +128,6 @@ const LoginPage = () => {
     </LoginPageContainer>
   );
 };
-const CustomModal = styled.div`
-  font-size: 20px; /* 원하는 글꼴 크기로 변경하세요 */
-`;
-
-const CustomConfirmButton = styled.button`
-  background-color: #ffca64; /* 원하는 배경색으로 변경하세요 */
-  border-color: #ffca64; /* 원하는 테두리 색상으로 변경하세요 */
-  color: #333;
-`;
 
 const LoginPageContainer = styled.div`
   background-color: #fcf6e9;

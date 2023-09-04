@@ -16,8 +16,19 @@ export const filterAsc = atom({
   default: false,
 });
 
+// 교환요청페이지 - 받은요청 filter
+export const requestCategory = atom({ key: "requestCategory", default: "" });
+export const getRequestFilter = atom({
+  key: "getRequestFilter",
+  default: "",
+});
+
 //경매현황페이지 - 내경매 filter
+export const auctionCategory = atom({
+  key: "auctionCategory",
+  default: "",
+});
 export const myAuctionFilter = atom({
   key: "AuctionFilterName",
-  default: "전체",
+  default: "",
 });

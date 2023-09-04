@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from 'react-query';
 
 const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
+
+    const queryClient = useQueryClient();
 
     const navigate = useNavigate();
 
@@ -50,7 +53,10 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
                 >그만하기</StopButton>
                 <OnemoreBtn
                     buttonColor='#FBD8BF'
-                    onClick={() => {navigate('/ratingstart')}}
+                    onClick={() => {
+                        queryClient.invalidateQueries('ratingStart')
+                        setAddPrice({ ...addPrice, gameover: false });
+                    }}
                 >다시하기</OnemoreBtn>
             </BtnWrapper>
         </ModalContainer>

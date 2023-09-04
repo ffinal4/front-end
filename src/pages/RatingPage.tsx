@@ -10,7 +10,7 @@ import CloseEyes from "../assets/images/closedEyes.png";
 import RatingDetailInfo from "../components/RatingPage/RatingDetailInfo";
 import SuccessRating from "../components/RatingPage/SuccessRating";
 import FailedModal from "../components/RatingPage/FailedModal";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { getRatingStartApi, postRatingSubmitApi } from "../api/rating";
 import Remove from "../assets/icon/remove.png";
 import Manual from "../components/RatingPage/Manual";
@@ -18,7 +18,9 @@ import NotDataModal from "../components/RatingPage/NotDataModal";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const RatingPage = () => {
-  const { isLoading, data, error, refetch }: any = useQuery("ratingStart", getRatingStartApi, {
+
+  const queryClient = useQueryClient();
+  const { isLoading, data, error, isError }: any = useQuery("ratingStart", getRatingStartApi, {
     refetchOnWindowFocus: false,
   });
 
@@ -84,7 +86,7 @@ const RatingPage = () => {
         <LoadingSpinner />
       </MainLayout>
     );
-  if (error) return <NotDataModal />;
+  if (isError) return <NotDataModal />;
 
   return (
     <MainLayoutContainer>
@@ -162,7 +164,10 @@ const RatingPage = () => {
                   border: "2px solid #39373A",
                   fontWeight: "700",
                 }}
-                onClick={() => window.location.reload()}
+                onClick={() => {
+                  queryClient.invalidateQueries('ratingStart')
+                  setAddPrice({ ...addPrice, success: false });
+                }}
               >
                 이어하기
               </StBasicButton>

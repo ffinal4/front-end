@@ -3,8 +3,12 @@ import { styled } from "styled-components";
 import Like from "../../assets/icon/like.png";
 import Time from "../../assets/icon/time.png";
 import Layer from "../../assets/icon/layer_6.png";
+import { ValueToEnum } from "../../utils/EnumCategory";
 
-const DetailInfo = () => {
+const DetailInfo = ({ item } : any) => {
+
+  const categorys = item?.category;
+
   return (
     <InfoContainer>
       <InfoTitle>스타벅스</InfoTitle>
@@ -22,13 +26,13 @@ const DetailInfo = () => {
           //     }
           //   }}
         >
-          <ColorText color="#39373A">안녕</ColorText>
+          <ColorText color="#39373A">{item?.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
         </TextWrapper>
         <BoxWrapper>
           <TextWrapper>
             <SmallBox src={Like} />
-            <ColorText color="#ADADAD">12</ColorText>
+            <ColorText color="#ADADAD">0</ColorText>
           </TextWrapper>
           <TextWrapper>
             <SmallBox src={Time} />
@@ -42,23 +46,23 @@ const DetailInfo = () => {
       <TextContainer>
         <TextLine>
           <ColorText color="#ADADAD">카테고리</ColorText>
-          <ColorText color="#222020">티켓</ColorText>
+          <ColorText color="#222020">{ValueToEnum(categorys)}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#ADADAD">상품상태</ColorText>
-          <ColorText color="#222020">상</ColorText>
+          <ColorText color="#222020">{item?.goodsCondition}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#ADADAD">거래지역</ColorText>
-          <ColorText color="#222020">수원</ColorText>
+          <ColorText color="#222020">{item?.location}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#ADADAD">거래방법</ColorText>
-          <ColorText color="#222020">직접교환</ColorText>
+          <ColorText color="#222020">{item?.tradeType}</ColorText>
         </TextLine>
         <TextLine>
           <ColorText color="#ADADAD">상품태그</ColorText>
-          <ColorText color="#222020">#스타벅스 #기프티콘 #교환권</ColorText>
+          <ColorText color="#222020">준비중입니다.</ColorText>
         </TextLine>
       </TextContainer>
     </InfoContainer>
