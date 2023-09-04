@@ -84,3 +84,6 @@ export const deleteAuctionCancelApi = async (auctionId: number) => {
   const res = await instance.delete(`/api/auction/${auctionId}`);
   return res;
 };
+
+// 경매 교환 완료
+// export const /users/auction/{auctionId}/accept

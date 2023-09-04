@@ -56,7 +56,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   const currentPage = useRecoilValue(pagination);
   const [category, setCategory] = useState<string | null>("");
   const [filter, setFilter] = useState("전체");
-  const [detailData, setDetailData] = useState<any>();
+  const [detailData, setDetailData] = useState<any>(null);
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [sellerPicks, setSellerPicks] = useState<{
     pickModal: boolean,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import remove from "../../assets/icon/remove.png";
 import {
@@ -13,23 +13,42 @@ import {
   Title,
 } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import { StBasicButton } from "../../styles/BasicButton";
+import { useMutation } from "react-query";
+import { completeTradeApi } from "../../api/goods";
 
 interface TradeCompleteModalProps {
   completeModalOpen: boolean;
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   setCompleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  requestGoods: any;
+  item: any;
 }
 
 const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
   completeModalOpen,
   requestState,
+  requestGoods,
   setCompleteModalOpen,
   setRequestState,
+  item,
 }) => {
-  const requestCompleteOnclick = () => {
-    setRequestState({ ...requestState, request: "교환완료" });
-  };
+  const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
+  const [completeGoods, setCompleteGoods] = useState<{
+    requestId: string | number[];
+  }>({
+    requestId: [],
+  });
+  // 교환완료 api
+  const completeMutation = useMutation(() => completeTradeApi(completeGoods), {
+    onSuccess: (res) => {
+      console.log("교환완료 성공", res);
+      // setCompleteGoods({ ...requestState, request: "DONE" });
+    },
+  });
+  console.log(newGoodsData, "완료할id");
+  console.log(completeGoods, "교환요청성공아이디");
+
   return (
     <div>
       <ModalBackground />
@@ -51,7 +70,9 @@ const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
           <ButtonContainer>
             <StCompleteBt
               buttonColor="#FFCA64"
-              onClick={requestCompleteOnclick}
+              onClick={() => {
+                completeMutation.mutate();
+              }}
             >
               교환 완료하기
             </StCompleteBt>

@@ -5,19 +5,15 @@ import { StBasicButton } from "../../styles/BasicButton";
 
 interface AuctionCompleteModalProps {
   completeModalOpen: boolean;
-  requestState: { request: string };
-  setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   setCompleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AuctionCompleteModal: React.FC<AuctionCompleteModalProps> = ({
   completeModalOpen,
-  requestState,
-  setRequestState,
   setCompleteModalOpen,
 }) => {
   const requestCompleteOnclick = () => {
-    setRequestState({ ...requestState, request: "" });
+    // setRequestState({ ...requestState, request: "" });
   };
   return (
     <div>

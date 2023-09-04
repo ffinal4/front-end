@@ -42,7 +42,7 @@ const AucBidInfo = ({ productData } : any) => {
                             </div>
                         )}
                     )
-                    : <EmptyPocket />
+                    : <EmptyPocket pocketStatus={3} />
                 }
                 {/* <AucBidCard />
                 <AucBidCard />

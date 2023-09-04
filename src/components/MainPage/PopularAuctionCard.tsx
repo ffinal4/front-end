@@ -25,15 +25,11 @@ const PopularAucionCard = ({ bgColor, fontColor, hoverColor, data }: any) => {
           <BidDeadLine deadline={data?.auctionEndTime} isMainPage={true} />
         </BidContentContainer>
         <CardPicture image={data?.image}>
-          <AddressContent>
-            <AddressImage src={locationImage} />
-            {data?.location}
-          </AddressContent>
         </CardPicture>
       </FirstSectionContainer>
       <SecondSectionContainer>
         <ItemTitle>{data?.title}</ItemTitle>
-        <UserName>피핍포인트</UserName>
+        <UserName>{data?.location}</UserName>
         <ItemContent>{data?.content}</ItemContent>
       </SecondSectionContainer>
     </PopularAuctionCardContainer>

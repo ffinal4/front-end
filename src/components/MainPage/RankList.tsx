@@ -4,7 +4,7 @@ import { StTitle } from "../../styles/TitleFont";
 import { StSubTitle } from "../../styles/TitleFont";
 import { StBasicButton } from "../../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
-import defaultUser from "../../assets/icon/profile.png";
+import defaultUser from "../../assets/images/defaultprofile.png";
 
 const RankList = ({ data }: any) => {
   console.log(data);

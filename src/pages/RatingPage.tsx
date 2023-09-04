@@ -95,7 +95,6 @@ const RatingPage = () => {
                 정답횟수
                 <AnswerCount>{data.data.info.score}</AnswerCount>
               </AnswerCountContainer>
-              <LikeBtn>♡</LikeBtn>
             </ImageContainer>
             {detailInfo ? <RatingDetailInfo data={data} /> : <RatingInfo data={data} />}
             {detailInfo ? (
@@ -160,7 +159,7 @@ const RatingPage = () => {
                 }}
                 onClick={() => {
                   queryClient.invalidateQueries("ratingStart");
-                  setAddPrice({ ...addPrice, success: false });
+                  setAddPrice({ ...addPrice, success: false, price: 0 });
                 }}
               >
                 이어하기

@@ -63,7 +63,7 @@ const InfoTextContent = styled.div`
     font-weight: 400;
     line-height: 150%;
     word-break: break-word;
-    display: -webkit-box;
+    display: -webkit-box-vertical;
 `;
 
 export default WantedInfo;

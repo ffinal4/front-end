@@ -124,7 +124,7 @@ const SuccessBIdModal = ({ auctionId, sellerPicks, setSellerPicks }: any) => {
               );
             })
           ) : (
-            <EmptyPocket />
+            <EmptyPocket pocketStatus={3} />
           )}
           {/* <AucBidCard />
                 <AucBidCard />

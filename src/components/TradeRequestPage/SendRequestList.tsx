@@ -15,7 +15,6 @@ import {
   SendRequests,
   TabContainer,
 } from "../../pages/TradeRequestPage";
-import FilterDropdownMenu from "./FilterDropdownMenu";
 import TradeRequestCard, { DotImg } from "./TradeRequestCard";
 import arrow from "../../assets/icon/arrow.png";
 import orangedot from "../../assets/icon/orangedot.png";
@@ -24,8 +23,9 @@ import { useQuery } from "react-query";
 import { getTradeRequestApi } from "../../api/goods";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../../store/pagination";
-import { getRequestFilter } from "../../store/filterCategory";
+import { getRequestFilter, requestCategory } from "../../store/filterCategory";
 import LoadingSpinner from "../common/LoadingSpinner";
+import SendRequestFilterDropdownMenu from "./SendRequestFilterDropdownMenu";
 
 interface SendRequestListProps {
   filterOpen: boolean;
@@ -43,7 +43,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
 }) => {
   const [dropdownMenu, setDropdownMenu] = useState("전체");
   const currentPage = useRecoilValue(pagination);
-  const tradeState = useRecoilValue(getRequestFilter);
+  const tradeState = useRecoilValue(requestCategory);
 
   const { isLoading, data, error }: any = useQuery(
     [" getTradeRequestData", currentPage, tradeState],
@@ -90,7 +90,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
           </Filter>
           {filterOpen && (
             <FilterdropdownMenuContainer>
-              <FilterDropdownMenu
+              <SendRequestFilterDropdownMenu
                 filterOpen={filterOpen}
                 setFilterOpen={setFilterOpen}
                 setDropdownMenu={setDropdownMenu}

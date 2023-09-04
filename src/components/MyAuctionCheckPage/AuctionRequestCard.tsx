@@ -24,41 +24,55 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
   const { request } = requestState;
 
   useEffect(() => {
-    if (request === "AUCTION") {
+    if (testListResponseDto.auctionStatus === "AUCTION") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "END") {
-      setBorder("2px solid #58ABF7");
+    if (testListResponseDto.auctionStatus === "END") {
+      if (testListResponseDto.bidCount === 0) {
+        setBorder("1px solid #D5D4D4");
+        setOpacity("0.5");
+      } else {
+        setBorder("2px solid #58ABF7");
+      };
     }
-    if (request === "DONE") {
+    if (testListResponseDto.auctionStatus === "DONE") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "CANCEL") {
+    if (testListResponseDto.auctionStatus === "CANCEL") {
       setBorder("1px solid #D5D4D4");
       setOpacity("0.5");
     }
-  }, [request]);
+  }, []);
 
   const auctionRequestState = () => {
-    if (request === "AUCTION") {
+    if (testListResponseDto.auctionStatus === "AUCTION") {
       return (
         <StAuctionIng backgroundcolor="white" color="#58ABF7" border="#58ABF7">
           경매중
         </StAuctionIng>
       );
     }
-    if (request === "END") {
+    if (testListResponseDto.auctionStatus === "END") {
       return (
-        <StRequestState
-          backgroundcolor="#58ABF7"
-          color="white"
-          border="#58ABF7"
-        >
-          경매종료
-        </StRequestState>
+        (testListResponseDto.bidCount === 0)
+          ? <StRequestState
+            backgroundcolor="#EFEFEF"
+            color="#ADADAD"
+            border="#EFEFEF"
+          >
+            입찰실패
+          </StRequestState>
+          : <StRequestState
+            backgroundcolor="#58ABF7"
+            color="white"
+            border="#58ABF7"
+          >
+            경매종료
+          </StRequestState>
+        
       );
     }
-    if (request === "DONE") {
+    if (testListResponseDto.auctionStatus === "DONE") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -69,7 +83,7 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
         </StRequestState>
       );
     }
-    if (request === "CANCEL") {
+    if (testListResponseDto.auctionStatus === "CANCEL") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -84,7 +98,7 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
 
   const auctionCondition = () => {
     // 경매중
-    if (request === "AUCTION") {
+    if (testListResponseDto.auctionStatus === "AUCTION") {
       return (
         <div>
           <Title>경매상황</Title>
@@ -101,10 +115,10 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
       );
     }
     //경매종료
-    if (request === "END") {
+    if (testListResponseDto.auctionStatus === "END") {
       if (testListResponseDto.bidCount === 0) {
         // bidCount가 0이면 request를 "CANCEL"로 변경
-        setRequestState({ request: "CANCEL" });
+        // setRequestState({ request: "CANCEL" });
         return (
           <div>
             <Title>경매상황</Title>
@@ -140,7 +154,7 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
       }
     }
     // 교환완료
-    if (request === "DONE") {
+    if (testListResponseDto.auctionStatus === "DONE") {
       return (
         <div>
           <Title>입찰</Title>
@@ -150,7 +164,7 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
       );
     }
     // 경매실패
-    if (request === "CANCEL") {
+    if (testListResponseDto.auctionStatus === "CANCEL") {
       return (
         <div>
           <Title>경매상황</Title>
