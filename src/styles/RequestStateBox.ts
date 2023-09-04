@@ -7,7 +7,7 @@ export const StRequestState = styled.div<{
 }>`
   width: 110px;
   height: 44px;
-  border-radius: 0px 10px;
+  border-radius: 0px 7px;
   position: absolute;
   right: 0;
   font-family: "Pretendard";
