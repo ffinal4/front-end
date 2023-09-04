@@ -1765,9 +1765,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@stomp/stompjs@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.npmjs.org/@stomp/stompjs/-/stompjs-7.0.0.tgz"
-  integrity sha512-fGdq4wPDnSV/KyOsjq4P+zLc8MFWC3lMmP5FBgLWKPJTYcuCbAIrnRGjB7q2jHZdYCOD5vxLuFoKIYLy5/u8Pw==
+  "integrity" "sha512-fGdq4wPDnSV/KyOsjq4P+zLc8MFWC3lMmP5FBgLWKPJTYcuCbAIrnRGjB7q2jHZdYCOD5vxLuFoKIYLy5/u8Pw=="
+  "resolved" "https://registry.npmjs.org/@stomp/stompjs/-/stompjs-7.0.0.tgz"
+  "version" "7.0.0"
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   "integrity" "sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ=="
@@ -2236,9 +2236,9 @@
     "@types/node" "*"
 
 "@types/sockjs-client@^1.5.1":
-  version "1.5.1"
-  resolved "https://registry.npmjs.org/@types/sockjs-client/-/sockjs-client-1.5.1.tgz"
-  integrity sha512-bmZM6A1GPdjF0bcuIUC+50hZEMGkzMsiG9by6X9U+7IZFOiPtz7MJ9h05FSpPVxlj4i+TzzoG3ESo1FJlbLb6A==
+  "integrity" "sha512-bmZM6A1GPdjF0bcuIUC+50hZEMGkzMsiG9by6X9U+7IZFOiPtz7MJ9h05FSpPVxlj4i+TzzoG3ESo1FJlbLb6A=="
+  "resolved" "https://registry.npmjs.org/@types/sockjs-client/-/sockjs-client-1.5.1.tgz"
+  "version" "1.5.1"
 
 "@types/sockjs@^0.3.33":
   "integrity" "sha512-f0KEEe05NvUnat+boPTZ0dgaLZ4SfSouXUgv5noUiefG2ajgKjmETo9ZJyuqsl7dfl2aHlLJUiki6B4ZYldiiw=="
@@ -2248,16 +2248,9 @@
     "@types/node" "*"
 
 "@types/stack-utils@^2.0.0":
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/@types/stack-utils/-/stack-utils-2.0.1.tgz"
-  integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
-
-"@types/stompjs@^2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@types/stompjs/-/stompjs-2.3.5.tgz#fa6f8d1d878ba3728377a082e631c33f6765a704"
-  integrity sha512-0WkL8RlB1uuZt8XJEdnwdFdV5RIFcQw9UhNQfTpiJYcjqC6QQpFqc5YcIrlH+K/843EGJVIaOFANjs7u7bmTlw==
-  dependencies:
-    "@types/node" "*"
+  "integrity" "sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw=="
+  "resolved" "https://registry.npmjs.org/@types/stack-utils/-/stack-utils-2.0.1.tgz"
+  "version" "2.0.1"
 
 "@types/stompjs@^2.3.5":
   "integrity" "sha512-0WkL8RlB1uuZt8XJEdnwdFdV5RIFcQw9UhNQfTpiJYcjqC6QQpFqc5YcIrlH+K/843EGJVIaOFANjs7u7bmTlw=="
@@ -4600,15 +4593,15 @@
   "resolved" "https://registry.npmjs.org/events/-/events-3.3.0.tgz"
   "version" "3.3.0"
 
-eventsource@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/eventsource/-/eventsource-2.0.2.tgz#76dfcc02930fb2ff339520b6d290da573a9e8508"
-  integrity sha512-IzUmBGPR3+oUG9dUeXynyNmf91/3zUSJg1lCktzKw47OXuhco54U3r9B7O4XX+Rb1Itm9OZ2b0RkTs10bICOxA==
+"eventsource@^2.0.2":
+  "integrity" "sha512-IzUmBGPR3+oUG9dUeXynyNmf91/3zUSJg1lCktzKw47OXuhco54U3r9B7O4XX+Rb1Itm9OZ2b0RkTs10bICOxA=="
+  "resolved" "https://registry.npmjs.org/eventsource/-/eventsource-2.0.2.tgz"
+  "version" "2.0.2"
 
-execa@^5.0.0:
-  version "5.1.1"
-  resolved "https://registry.npmjs.org/execa/-/execa-5.1.1.tgz"
-  integrity sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==
+"execa@^5.0.0":
+  "integrity" "sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg=="
+  "resolved" "https://registry.npmjs.org/execa/-/execa-5.1.1.tgz"
+  "version" "5.1.1"
   dependencies:
     "cross-spawn" "^7.0.3"
     "get-stream" "^6.0.0"
@@ -4705,10 +4698,10 @@ execa@^5.0.0:
   dependencies:
     "reusify" "^1.0.4"
 
-faye-websocket@^0.11.3, faye-websocket@^0.11.4:
-  version "0.11.4"
-  resolved "https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.11.4.tgz"
-  integrity sha512-CzbClwlXAuiRQAlUyfqPgvPoNKTckTPGfwZV4ZdAhVcP2lh9KUxJg2b5GkE7XbjKQ3YJnQ9z6D9ntLAlB+tP8g==
+"faye-websocket@^0.11.3", "faye-websocket@^0.11.4":
+  "integrity" "sha512-CzbClwlXAuiRQAlUyfqPgvPoNKTckTPGfwZV4ZdAhVcP2lh9KUxJg2b5GkE7XbjKQ3YJnQ9z6D9ntLAlB+tP8g=="
+  "resolved" "https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.11.4.tgz"
+  "version" "0.11.4"
   dependencies:
     "websocket-driver" ">=0.5.1"
 
@@ -5406,10 +5399,10 @@ faye-websocket@^0.11.3, faye-websocket@^0.11.4:
     "once" "^1.3.0"
     "wrappy" "1"
 
-inherits@2, inherits@2.0.4, inherits@^2.0.1, inherits@^2.0.3, inherits@^2.0.4, inherits@~2.0.0, inherits@~2.0.3:
-  version "2.0.4"
-  resolved "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz"
-  integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
+"inherits@^2.0.1", "inherits@^2.0.3", "inherits@^2.0.4", "inherits@~2.0.0", "inherits@~2.0.3", "inherits@2", "inherits@2.0.4":
+  "integrity" "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ=="
+  "resolved" "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz"
+  "version" "2.0.4"
 
 "inherits@2.0.3":
   "integrity" "sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw=="
@@ -8523,36 +8516,10 @@ inherits@2, inherits@2.0.4, inherits@^2.0.1, inherits@^2.0.3, inherits@^2.0.4, i
   "resolved" "https://registry.npmjs.org/shell-quote/-/shell-quote-1.8.1.tgz"
   "version" "1.8.1"
 
-slash@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/slash/-/slash-2.0.0.tgz"
-  integrity sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==
-
-slash@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/slash/-/slash-3.0.0.tgz"
-  integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
-
-slash@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/slash/-/slash-4.0.0.tgz"
-  integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
-
-sockjs-client@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/sockjs-client/-/sockjs-client-1.6.1.tgz#350b8eda42d6d52ddc030c39943364c11dcad806"
-  integrity sha512-2g0tjOR+fRs0amxENLi/q5TiJTqY+WXFOzb5UwXndlK6TO3U/mirZznpx6w34HVMoc3g7cY24yC/ZMIYnDlfkw==
-  dependencies:
-    debug "^3.2.7"
-    eventsource "^2.0.2"
-    faye-websocket "^0.11.4"
-    inherits "^2.0.4"
-    url-parse "^1.5.10"
-
-sockjs@^0.3.24:
-  version "0.3.24"
-  resolved "https://registry.npmjs.org/sockjs/-/sockjs-0.3.24.tgz"
-  integrity sha512-GJgLTZ7vYb/JtPSSZ10hsOYIvEYsjbNU+zPdIHcUaWVNUEPivzxku31865sSSud0Da0W4lEeOPlmw93zLQchuQ==
+"side-channel@^1.0.4":
+  "integrity" "sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw=="
+  "resolved" "https://registry.npmjs.org/side-channel/-/side-channel-1.0.4.tgz"
+  "version" "1.0.4"
   dependencies:
     "call-bind" "^1.0.0"
     "get-intrinsic" "^1.0.2"
@@ -9399,10 +9366,10 @@ sockjs@^0.3.24:
   dependencies:
     "punycode" "^2.1.0"
 
-url-parse@^1.5.10, url-parse@^1.5.3:
-  version "1.5.10"
-  resolved "https://registry.npmjs.org/url-parse/-/url-parse-1.5.10.tgz"
-  integrity sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==
+"url-parse@^1.5.10", "url-parse@^1.5.3":
+  "integrity" "sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ=="
+  "resolved" "https://registry.npmjs.org/url-parse/-/url-parse-1.5.10.tgz"
+  "version" "1.5.10"
   dependencies:
     "querystringify" "^2.1.1"
     "requires-port" "^1.0.0"
