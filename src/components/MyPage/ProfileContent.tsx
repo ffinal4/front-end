@@ -37,7 +37,7 @@ const ProfileContent = ({ data }: any) => {
           </ContentLine>
         </ContentInBox>
         <ButtonBox>
-          <Button src={Setting} onClick={onclickAddEmailHandler} />
+          <Button onClick={onclickAddEmailHandler}>프로필수정</Button>
         </ButtonBox>
       </LeftContentContainer>
     </LeftContainer>
@@ -131,12 +131,24 @@ const ButtonBox = styled.div`
   position: absolute;
 `;
 
-const Button = styled.img`
-  width: 24px;
-  height: 24px;
-  color: #000;
-  object-fit: contain;
+const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 81px;
+  height: 32px;
+  color: #39373A;
+  border-radius: 5px;
+  background-color: #EFEFEF;
+  font-family: "Pretendard";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 140%;
   cursor: pointer;
+
+  &:hover {
+    background-color: #e9e9e9;
+  }
 `;
 
 export default ProfileContent;

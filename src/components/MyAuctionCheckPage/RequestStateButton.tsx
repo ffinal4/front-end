@@ -55,7 +55,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   const stateButton = () => {
     // 경매중
 
-    if (request === "AUCTION") {
+    if (testListResponseDto.auctionStatus === "AUCTION") {
       return (
         <div>
           <StAuctionIngBt buttonColor="#CBE4FB" onClick={sellerPickOnclick}>
@@ -65,7 +65,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
       );
     }
 
-    if (request === "END") {
+    if (testListResponseDto.auctionStatus === "END") {
       if (item?.bidListResponseDtos.length > 0) {
         return (
           <ButtonContainer>
@@ -80,8 +80,6 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
                 <AuctionCompleteModal
                   completeModalOpen={completeModalOpen}
                   setCompleteModalOpen={setCompleteModalOpen}
-                  requestState={requestState}
-                  setRequestState={setRequestState}
                 />
               </ModalContainer>
             )}
@@ -97,16 +95,20 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
           </ButtonContainer>
         );
       } else {
-        return (
-          <div>
-            <StAuctionGoodsSelectBt
-              buttonColor="#58ABF7"
-              onClick={bidGoodsSelectOnclick}
-            >
-              입찰품 선택
-            </StAuctionGoodsSelectBt>
-          </div>
-        );
+        if (testListResponseDto.bidCount === 0) {
+          return
+        } else {
+          return (
+            <div>
+              <StAuctionGoodsSelectBt
+                buttonColor="#58ABF7"
+                onClick={bidGoodsSelectOnclick}
+              >
+                입찰품 선택
+              </StAuctionGoodsSelectBt>
+            </div>
+          );
+        };
       };
     }
 
@@ -142,7 +144,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     //   );
     // }
     // 교환완료
-    if (request === "DONE") {
+    if (testListResponseDto.auctionStatus === "DONE") {
       return (
         <StAuctionTradeCompleteBt buttonColor="white">
           자세히보기

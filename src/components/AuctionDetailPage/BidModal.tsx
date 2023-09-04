@@ -4,15 +4,18 @@ import { StBasicButton } from "../../styles/BasicButton";
 import JoinBidCard from "../AuctionDetailPage/JoinBidCard";
 import Paging from "../common/Paging/Paging";
 import Close from "../../assets/icon/remove.png";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getMyPocketApi } from "../../api/goods";
 import { postAuctionBidApi } from "../../api/acution";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../../store/pagination";
 import BidCompleteModal from "./BidCompleteModal";
 import EmptyPocket from "../common/EmptyPocket";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 const BidModal = ({ conditional, setConditional, productData }: any) => {
+
+  const queryClient = useQueryClient();
   const currentPage = useRecoilValue(pagination);
 
   const { isError, isLoading, data, error }: any = useQuery(
@@ -40,6 +43,7 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
   const mutation = useMutation(() => postAuctionBidApi(myPocketGoods, newAuctionId), {
     onSuccess: (res) => {
       console.log("입찰성공!", res);
+      queryClient.invalidateQueries("auctionBid");
       setBidCheck(true);
     },
   });
@@ -50,7 +54,7 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
   console.log("선택", checkBox);
   console.log("선택", myPocketGoods);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
@@ -122,7 +126,7 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
               );
             })
           ) : (
-            <EmptyPocket />
+            <EmptyPocket pocketStatus={0} />
           )}
         </PocketListContainer>
         {bidCheck && (

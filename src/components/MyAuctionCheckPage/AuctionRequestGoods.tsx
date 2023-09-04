@@ -25,18 +25,20 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
   const { request } = requestState;
   const testListResponseDto = item?.testListResponseDto;
   const bidListResponseDtos = item?.bidListResponseDtos;
+  const auctionId = testListResponseDto?.auctionId;
+  const userId = bidListResponseDtos[0]?.userId;
 
-//   const mutation = useMutation(() => getAuctionBidDetailApi(auctionId, userId), {
-//     onSuccess: (res) => {
-//         console.log("상세보기", res)
-//         setDetailModalOpen(true);
-//         setDetailData(res);
-//     }
-// });
+  const mutation = useMutation(() => getAuctionBidDetailApi(auctionId, userId), {
+    onSuccess: (res) => {
+        console.log("상세보기", res)
+        setDetailModalOpen(true);
+        setDetailData(res);
+    }
+});
 
   const onCilckDetailModalHandler = () => {
     setDetailModalOpen(true);
-    // mutation.mutate();
+    mutation.mutate();
   };
 
   const auctionGoodsState = () => {
@@ -59,9 +61,14 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
             <ExchangeImg src={timer} />
             {(bidListResponseDtos?.length > 1)
               ? <GoodsImg src={bidListResponseDtos[0].goodsImg}>
-                <GoodsCount>{bidListResponseDtos?.length}개의 물건</GoodsCount>
+                <GoodsCount 
+                  onClick={onCilckDetailModalHandler}
+                >{bidListResponseDtos?.length}개의 물건</GoodsCount>
               </GoodsImg>
-              : <GoodsImg src={bidListResponseDtos[0].goodsImg} />}
+              : <GoodsImg
+                src={bidListResponseDtos[0].goodsImg}
+                onClick={onCilckDetailModalHandler}
+              />}
           </GoodsContainer>
         );
       } else {
@@ -83,9 +90,13 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
           <ExchangeImg src={timer} />
           {(bidListResponseDtos?.length > 1)
               ? <GoodsImg src={bidListResponseDtos[0].goodsImg}>
-                <GoodsCount>{bidListResponseDtos?.length}개의 물건</GoodsCount>
+                <GoodsCount
+                  onClick={onCilckDetailModalHandler}
+                >{bidListResponseDtos?.length}개의 물건</GoodsCount>
               </GoodsImg>
-              : <GoodsImg src={bidListResponseDtos[0].goodsImg} />}
+              : <GoodsImg src={bidListResponseDtos[0].goodsImg}
+                onClick={onCilckDetailModalHandler}
+              />}
         </GoodsContainer>
       );
     }

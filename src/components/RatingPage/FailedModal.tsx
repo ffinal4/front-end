@@ -17,7 +17,7 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
             if (getPoint < resData.totalPoint) {
                 setGetPoint(getPoint + 1);
             };
-        }, 40);
+        }, 50);
         return () => clearInterval(interVal);
     }, [getPoint]);
 
@@ -55,7 +55,8 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
                     buttonColor='#FBD8BF'
                     onClick={() => {
                         queryClient.invalidateQueries('ratingStart')
-                        setAddPrice({ ...addPrice, gameover: false });
+                        setAddPrice({ ...addPrice, gameover: false, price: 0 })
+                        // setAddPrice({ ...addPrice, price: 0 })
                     }}
                 >다시하기</OnemoreBtn>
             </BtnWrapper>
