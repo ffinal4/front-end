@@ -107,6 +107,7 @@ const InfoContainer = styled.div`
 `;
 
 const InfoTitle = styled.div`
+  width: 100%;
   font-family: "Pretendard";
   font-size: 32px;
   font-weight: 800;

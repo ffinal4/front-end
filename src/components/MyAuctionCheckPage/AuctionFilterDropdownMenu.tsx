@@ -3,13 +3,14 @@ import {
   FilterDropdownContainer,
   RequestState,
 } from "../TradeRequestPage/FilterDropdownMenu";
-import { useRecoilState } from "recoil";
-import { myAuctionFilter } from "../../store/filterCategory";
+import { useRecoilState, useResetRecoilState } from "recoil";
+import { auctionCategory, myAuctionFilter } from "../../store/filterCategory";
+import { pagination } from "../../store/pagination";
 
 const AuctionFilterDropdownMenu = (props: any) => {
-  const { auctionFilterOpen, setAuctionFilterOpen, setDropdownMenu } = props;
+  const { auctionFilterOpen, setAuctionFilterOpen, setCategory, setFilter } = props;
 
-  const [filter, setFilter] = useRecoilState(myAuctionFilter);
+  const resetPage = useResetRecoilState(pagination);
 
   interface State {
     status: string | null;
@@ -23,10 +24,7 @@ const AuctionFilterDropdownMenu = (props: any) => {
     { status: "DONE", name: "교환완료" },
     { status: "CANCLE", name: "입찰실패" },
   ];
-  const requestStateOnclick = (event: any) => {
-    setFilter(event.target.innerHTML);
-    setAuctionFilterOpen(!auctionFilterOpen);
-  };
+
   return (
     <div>
       <FilterDropdownContainer>
@@ -36,10 +34,18 @@ const AuctionFilterDropdownMenu = (props: any) => {
               key={item.status}
               onClick={() => {
                 if (item.status !== null) {
+                  setCategory(`&status=${item.status}`);
                   setFilter(item.name);
-                }
+                  resetPage();
+                  setAuctionFilterOpen(false);
+                } else {
+                  setCategory("");
+                  setFilter(item.name);
+                  resetPage();
+                  setAuctionFilterOpen(false);
+                };
               }}>
-              <RequestState onClick={requestStateOnclick}>경매중</RequestState>
+              <RequestState>{item.name}</RequestState>
             </div>
           )
         })}

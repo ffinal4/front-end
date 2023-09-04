@@ -51,7 +51,7 @@ export const getAuctionBidDetailApi = async (auctionId: number, userId : number)
 // 내 경매현황 전체조회
 export const getMyAuctionCheckApi = async (page : number, status : string | null) => {
   const res = await instance.get(
-    `/api/auction/users/trade?page=${page}&size=9&sortBy=createdAt&isAsc=false&${status}`
+    `/api/auction/users/trade?page=${page}&size=9&sortBy=createdAt&isAsc=false${status}`
   );
   return res;
 };

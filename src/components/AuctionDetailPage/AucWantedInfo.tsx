@@ -64,6 +64,8 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: 150%;
+word-break: break-word;
+display: -webkit-box;
 `;
 
 export default AucWantedInfo;

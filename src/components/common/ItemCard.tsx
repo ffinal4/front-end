@@ -78,8 +78,8 @@ const UserName = styled.div`
 const ItemContent = styled.div`
   text-overflow: ellipsis;
   word-break: break-word;
-  overflow: hidden;
   display: -webkit-box;
+  overflow: hidden;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   height: 48px;

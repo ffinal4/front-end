@@ -51,7 +51,7 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
   };
 
   const moveToNextSlideBtn = () => {
-    if (activePage === 3) return; //수정필요
+    if (activePage === (modalData?.length - 1)) return; //수정필요
     setActivePage(activePage + 1);
   };
 
@@ -61,7 +61,7 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
   };
 
   const moveToNextImageBtn = () => {
-    if (currentImg === 0) return; //수정필요
+    if (currentImg === (modalData[activePage]?.imageUrls.length - 1)) return; //수정필요
     setCurrentImg(currentImg + 1);
   };
 
@@ -77,30 +77,16 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
         <DetailModalContainer>
           <DetailModalHeadContainer>
             <PageSlideContainer>
-              <PageNumber
-                active={activePage === 0}
-                onClick={() => pageOnclick(0)}
-              >
-                1
-              </PageNumber>
-              <PageNumber
-                active={activePage === 1}
-                onClick={() => pageOnclick(1)}
-              >
-                2
-              </PageNumber>
-              <PageNumber
-                active={activePage === 2}
-                onClick={() => pageOnclick(2)}
-              >
-                3
-              </PageNumber>
-              <PageNumber
-                active={activePage === 3}
-                onClick={() => pageOnclick(3)}
-              >
-                4
-              </PageNumber>
+              {modalData?.map((item : any) => {
+                return (
+                  <PageNumber
+                    active={activePage === modalData?.indexOf(item)}
+                    onClick={() => pageOnclick(modalData?.indexOf(item))}
+                  >
+                    {(modalData?.indexOf(item) + 1)}
+                  </PageNumber>
+                )
+              })}
             </PageSlideContainer>
             <CancelButtonContainer>
               <CancelImg
@@ -118,7 +104,7 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
               <div>
           <div style={{ display: "flex", gap: "30px" }}>
             <ImageOutContainer>
-            <ImageWrapper>
+            <ImageWrapper ref={divRef}>
               {item?.imageUrls.map((image : string) => {
                 return <ImageBox src={image} />
               })}
