@@ -27,8 +27,11 @@ instance.interceptors.response.use(
     } = error;
     if (status === 403) {
       if (error.response.status === 403) {
-        // alert("로그인이 필요한 서비스입니다.");
-        // window.location.replace("/login");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("location");
+        alert("로그인이 필요한 서비스입니다.");
+        window.location.replace("/login");
       } else if (error.response.data.accessValidationError === true) {
         delete config.headers.accesstoken;
         try {
