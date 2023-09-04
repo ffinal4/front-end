@@ -14,7 +14,11 @@ import Navbar from "./Navbar";
 import { postLogoutApi } from "../../api/users";
 import AlarmButton from "./AlarmButton";
 import { useResetRecoilState } from "recoil";
-import { filterAsc, filterCategory, filterName } from "../../store/filterCategory";
+import {
+  filterAsc,
+  filterCategory,
+  filterName,
+} from "../../store/filterCategory";
 import { pagination } from "../../store/pagination";
 
 const Header = () => {
@@ -60,7 +64,11 @@ const Header = () => {
           <LogoTitle src={blueTitle} />
         </LogoContainer>
       );
-    } else if (location.pathname.includes("/" || "/tradeList" || "/traderequest" || "/detail")) {
+    } else if (
+      location.pathname.includes(
+        "/" || "/tradeList" || "/traderequest" || "/detail"
+      )
+    ) {
       return (
         <LogoContainer>
           <Logo src={loginLogo} />
@@ -138,7 +146,12 @@ const Header = () => {
                 로그인
               </LoginLink>
               <BoxContainer />
-              <SignupLink onClick={() => navigate("/signup")}>회원가입</SignupLink>
+              <SignupLink
+                className="signup-link"
+                onClick={() => navigate("/signup")}
+              >
+                회원가입
+              </SignupLink>
             </LinkContainer>
           )}
         </HeaderContainer>
@@ -211,6 +224,9 @@ const InputContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  @media screen and (max-width: 700px) {
+    width: 300px;
+  }
 `;
 
 const SearchButton = styled.button`
@@ -219,7 +235,11 @@ const SearchButton = styled.button`
   cursor: pointer;
   position: absolute;
   margin-left: 20px;
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `;
+
 const SearchInput = styled.input`
   border: 1px solid #efefef;
   border-radius: 10px;
@@ -228,6 +248,12 @@ const SearchInput = styled.input`
   height: 44px;
   font-size: 16px;
   padding-left: 50px;
+  @media screen and (max-width: 700px) {
+    width: 300px;
+  }
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `;
 
 const LinkContainer = styled.div`
@@ -239,26 +265,29 @@ const LoginLink = styled.div`
   cursor: pointer;
   margin-left: 20px;
   font-size: 16px;
+  width: 42px;
   height: 24px;
   display: flex;
   align-items: center;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 const SignupLink = styled.div`
   cursor: pointer;
   margin-left: 20px;
   font-size: 16px;
+  width: 56px;
   height: 24px;
   display: flex;
   align-items: center;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
 
 const AllIconContainer = styled.div`
   display: flex;
-  font-family: Pretendard;
+  font-family: "Pretendard";
 `;
+
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
@@ -284,4 +313,5 @@ const Logout = styled.div`
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
+  width: 56px;
 `;
