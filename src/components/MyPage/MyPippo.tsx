@@ -11,7 +11,7 @@ const MyPippo = ({ data } : any) => {
       if (point < (data.data.info.userPoint)) {
         setPoint(point + 1);
       }
-    }, (data.data.info.userPoint < 400) ? 10 : 1);
+    }, (data.data.info.userPoint < 150) ? 10 : 1);
     return () => clearInterval(interVal);
   }, [point])
 

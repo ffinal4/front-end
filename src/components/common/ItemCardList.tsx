@@ -6,6 +6,9 @@ import EmptyList from "./EmptyList";
 import { DoneContainer, NotRatingProductWrapper } from '../AuctionDetailPage/BidModal';
 
 const ItemCardList = ({ data, allList, isPocket }: any) => {
+
+  const myLocation = localStorage.getItem("location");
+
   return (
     <ItemCardContainer>
       {(data?.length > 0)
@@ -42,7 +45,7 @@ const ItemCardList = ({ data, allList, isPocket }: any) => {
         })
         : ((allList)
           ? <EmptyList />
-          : <EmptyPocket />)}
+          : <EmptyPocket pocketStatus={0} />)}
     </ItemCardContainer>
   );
 };

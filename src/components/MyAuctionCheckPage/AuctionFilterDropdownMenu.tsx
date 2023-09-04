@@ -22,7 +22,7 @@ const AuctionFilterDropdownMenu = (props: any) => {
     { status: "AUCTION", name: "경매중" },
     { status: "END", name: "경매종료" },
     { status: "DONE", name: "교환완료" },
-    { status: "CANCLE", name: "입찰실패" },
+    { status: "CANCEL", name: "입찰실패" },
   ];
 
   return (

@@ -10,6 +10,7 @@ import { useQuery } from "react-query";
 import { getDetailPageApi } from "../api/goods";
 import { useRecoilState } from "recoil";
 import { RecentlyView } from "../store/RecentlyView";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const DetailPage = () => {
   const { goodsId }: any = useParams();
@@ -48,7 +49,7 @@ const DetailPage = () => {
     });
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
