@@ -28,6 +28,7 @@ import UserPocketPage from "./pages/UserPocketPage";
 import ScrollTop from "./utils/ScrollTop";
 import { RecoilRoot } from "recoil";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
+import Chat from "./pages/Chat";
 
 const queryClient = new QueryClient();
 
@@ -47,10 +48,7 @@ function App() {
               <Route path="/rating" element={<RatingPage />} />
               <Route path="/" element={<MainPage />} />
               <Route path="/mypocket" element={<MyPocketPage />} />
-              <Route
-                path="/userpocket/:nickname"
-                element={<UserPocketPage />}
-              />
+              <Route path="/userpocket/:nickname" element={<UserPocketPage />} />
               <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
               <Route path="/serviceuse" element={<TermsOfServicePage />} />
@@ -62,12 +60,10 @@ function App() {
                 <Route path="/editprofile" element={<EditProfilePage />} />
                 <Route path="/auctionupload" element={<AuctionUploadPage />} />
 
-                <Route
-                  path="/auctiondetail/:auctionId"
-                  element={<AuctionDetailPage />}
-                />
+                <Route path="/auctiondetail/:auctionId" element={<AuctionDetailPage />} />
                 <Route path="/zzimlist" element={<ZzimListPage />} />
                 <Route path="/auctionlist" element={<AuctionListPage />} />
+                <Route path="/chatting" element={<Chat />} />
               </Route>
             </Routes>
             <Footer />
