@@ -34,7 +34,6 @@ const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
   item,
 }) => {
   const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
-
   const [completeGoods, setCompleteGoods] = useState<{
     requestId: string | number[];
   }>({
@@ -44,10 +43,10 @@ const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
   const completeMutation = useMutation(() => completeTradeApi(completeGoods), {
     onSuccess: (res) => {
       console.log("교환완료 성공", res);
-      setCompleteGoods({ ...requestState, request: "DONE" });
+      // setCompleteGoods({ ...requestState, request: "DONE" });
     },
   });
-  console.log(newGoodsData, "id");
+  console.log(newGoodsData, "완료할id");
   console.log(completeGoods, "교환요청성공아이디");
 
   return (
