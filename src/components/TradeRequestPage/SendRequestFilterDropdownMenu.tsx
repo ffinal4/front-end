@@ -34,13 +34,13 @@ const SendRequestFilterDropdownMenu = (props: any) => {
                 if (item.status !== null) {
                   setCategorySelect(`&status=${item.status}`);
                   setDropdownMenu(item.name);
-                  setFilterOpen(!filterOpen);
                   resetPage();
+                  setFilterOpen(!filterOpen);
                 } else {
                   setCategorySelect("");
                   setDropdownMenu(item.name);
-                  setFilterOpen(!filterOpen);
                   resetPage();
+                  setFilterOpen(!filterOpen);
                 }
               }}
             >
