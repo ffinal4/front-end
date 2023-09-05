@@ -1,34 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import Image from "../../assets/images/defaultprofile.png";
+import './RakingSystem.css';
 
 const RakingSystem = ({ data }: any) => {
-  const divRef = useRef<HTMLDivElement>(null);
-  const [refCurrent, setRefCurrent] = useState(0);
-  const numberOfSlides = 210;
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setRefCurrent((index) => (index + 0.2) % numberOfSlides);
-    }, 100);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  useEffect(() => {
-    if (divRef.current) {
-      if (refCurrent === 0) {
-        divRef.current.style.transition = "none";
-        divRef.current.style.opacity = "0";
-      } else {
-        divRef.current.style.opacity = "1";
-        divRef.current.style.transition = "transform 0.1s ease-in-out";
-        divRef.current.style.transform = `translateX(-${
-          refCurrent * (210 / numberOfSlides)
-        }%)`;
-      }
-    }
-  }, [refCurrent, numberOfSlides]);
 
   const rankingSystem = (item: any) => {
     if (data?.indexOf(item) === 0) {
@@ -82,12 +57,15 @@ const RakingSystem = ({ data }: any) => {
 
   return (
     <AllContainer>
-      <RakingWrapper ref={divRef}>
-        <EmptyContainer />
+      <div className="slider1">
+        {/* <EmptyContainer /> */}
         {data?.map((item: any) => {
           return rankingSystem(item);
         })}
-      </RakingWrapper>
+        {data?.map((item: any) => {
+          return rankingSystem(item);
+        })}
+      </div>
     </AllContainer>
   );
 };
@@ -98,17 +76,6 @@ const AllContainer = styled.div`
   background-color: #efefef;
   position: relative;
   overflow: hidden;
-`;
-
-const RakingWrapper = styled.div`
-  height: 100%;
-  padding: 30px;
-  display: flex;
-  gap: 16px;
-`;
-
-const EmptyContainer = styled.div`
-  min-width: 1920px;
 `;
 
 const RakingContainer = styled.div`
@@ -135,6 +102,8 @@ const ProfileImg = styled.div<{ src: string }>`
   height: 48px;
   background-size: cover;
   background-image: ${(props) => `url(${props.src})`};
+  background-position: center center;
+  background-repeat: no-repeat;
   border-radius: 100%;
 `;
 
