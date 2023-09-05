@@ -23,7 +23,7 @@ import { useQuery } from "react-query";
 import { getTradeRequestApi } from "../../api/goods";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../../store/pagination";
-import { getRequestFilter, requestCategory } from "../../store/filterCategory";
+import { requestCategory } from "../../store/filterCategory";
 import LoadingSpinner from "../common/LoadingSpinner";
 import SendRequestFilterDropdownMenu from "./SendRequestFilterDropdownMenu";
 
@@ -68,7 +68,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
         <GetRequests onClick={getRequestOnclick}>받은 요청</GetRequests>
         <SendRequests>보낸 요청</SendRequests>
       </TabContainer>
-      <RequestStateContainer>
+      {/* <RequestStateContainer>
         <RequestStateNumber>
           <DotImg src={emptydot} />
           교환요청 10
@@ -77,7 +77,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
           <DotImg src={orangedot} />
           교환진행중 10
         </RequestIngNumber>
-      </RequestStateContainer>
+      </RequestStateContainer> */}
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter

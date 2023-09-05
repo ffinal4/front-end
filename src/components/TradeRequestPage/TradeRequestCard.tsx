@@ -3,21 +3,19 @@ import { styled } from "styled-components";
 import goodsexchange from "../../assets/icon/goodsexchange.png";
 import { StRequestState } from "../../styles/RequestStateBox";
 import SendRequestButton from "./SendRequestButton";
+import { GoodsCount } from "../MyAuctionCheckPage/AuctionRequestGoods";
+import { useNavigate } from "react-router-dom";
 
 const TradeRequestCard = ({ item, data }: any) => {
+  const navigate = useNavigate();
   const [requestState, setRequestState] = useState({
     request: item?.requestStatus,
   });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
-  const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
   const { request } = requestState;
   const goodsListResponseDto = item?.goodsListResponseDto;
   const goodsListResponseDtos = item?.goodsListResponseDtos[0];
-
-  const goodsDetailModalOnclick = () => {
-    setDetailModalOpen(!detailModalOpen);
-  };
 
   useEffect(() => {
     if (item?.requestStatus === "REQUEST") {
@@ -33,7 +31,7 @@ const TradeRequestCard = ({ item, data }: any) => {
       setBorder("1px solid #EFEFEF");
       setOpacity("0.5");
     }
-  }, [request]);
+  }, [item?.requestStatus]);
 
   const tradeRequestState = () => {
     if (item?.requestStatus === "REQUEST") {
@@ -83,29 +81,58 @@ const TradeRequestCard = ({ item, data }: any) => {
   };
 
   const tradeRequestGoods = () => {
-    if (item?.requestStatus === "REQUEST" || "DONE" || "TRADING") {
+    if (item?.requestStatus === "REQUEST") {
+      if (goodsListResponseDtos?.length > 0) {
+        return (
+          <GoodsContainer>
+            <GoodsImg
+              src={goodsListResponseDto.imageUrl}
+              onClick={() =>
+                navigate(`/detail/${goodsListResponseDto.goodsId}`)
+              }
+            />
+            <ExchangeImg src={goodsexchange} />
+            {goodsListResponseDtos?.length > 1 ? (
+              <GoodsImg src={goodsListResponseDtos[0].imageUrl}>
+                <GoodsCount>
+                  {goodsListResponseDtos?.length}개의 물건
+                </GoodsCount>
+              </GoodsImg>
+            ) : (
+              <GoodsImg
+                src={goodsListResponseDtos[0].imageUrl}
+                onClick={() => {
+                  navigate("/mypocket");
+                }}
+              />
+            )}
+          </GoodsContainer>
+        );
+      } else {
+        return (
+          <GoodsContainer>
+            <GoodsImg src={goodsListResponseDto.imageUrl} />
+            <ExchangeImg src={goodsexchange} />
+            <GoodsImg src={goodsListResponseDtos.imageUrl} />
+          </GoodsContainer>
+        );
+      }
+    }
+    if (item?.requestStatus === "DONE" || "TRADING" || "CANCEL") {
       return (
         <GoodsContainer>
           <GoodsImg
             src={goodsListResponseDto.imageUrl}
-            onClick={goodsDetailModalOnclick}
+            onClick={() => navigate(`/detail/${goodsListResponseDto.goodsId}`)}
           />
-          {detailModalOpen && <div style={{ position: "absolute" }}></div>}
+
           <ExchangeImg src={goodsexchange} />
-          <GoodsImg src={goodsListResponseDtos.imageUrl} />
-          {/* <DetailGoodsModal
-                detailModalOpen={detailModalOpen}
-                setDetailModalOpen={setDetailModalOpen}
-              /> */}
-        </GoodsContainer>
-      );
-    }
-    if (item?.requestStatus === "CANCEL") {
-      return (
-        <GoodsContainer>
-          <GoodsImg src={goodsListResponseDto.imageUrl} />
-          <ExchangeImg src={goodsexchange} />
-          <GoodsImg src={goodsListResponseDtos.imageUrl} />
+          <GoodsImg
+            src={goodsListResponseDtos.imageUrl}
+            onClick={() => {
+              navigate("/mypocket");
+            }}
+          />
         </GoodsContainer>
       );
     }

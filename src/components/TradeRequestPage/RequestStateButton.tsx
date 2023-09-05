@@ -5,7 +5,7 @@ import chat from "../../assets/icon/Chatting.png";
 import { useNavigate } from "react-router-dom";
 import RequestRejectModal from "./RequestRejectModal";
 import TradeCompleteModal from "./TradeCompleteModal";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import TradeAcceptButton from "./TradeAcceptButton";
 import { postAcceptTradeApi } from "../../api/goods";
 
@@ -22,6 +22,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   item,
   data,
 }) => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
@@ -32,11 +33,12 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   }>({
     requestId: [],
   });
+
   // 교환요청 수락api
   const mutation = useMutation(() => postAcceptTradeApi(requestGoods), {
     onSuccess: (res) => {
       console.log("교환요청수락성공!", res);
-      setRequestState({ ...requestState, request: "TRADING" });
+      queryClient.invalidateQueries("getTradeReceiveRequestData");
     },
   });
   console.log(newGoodsData, "id");
@@ -148,6 +150,7 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 136px;
+  margin-top: 40px;
 `;
 
 export const StCompleteBt = styled(StBasicButton)`
