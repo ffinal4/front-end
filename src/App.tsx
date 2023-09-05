@@ -28,6 +28,7 @@ import UserPocketPage from "./pages/UserPocketPage";
 import ScrollTop from "./utils/ScrollTop";
 import { RecoilRoot } from "recoil";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
+import SearchPage from "./pages/SearchPage";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/auctionupload" element={<AuctionUploadPage />} />
                 <Route path="/auctiondetail/:auctionId" element={<AuctionDetailPage />} />
                 <Route path="/zzimlist" element={<ZzimListPage />} />
+                <Route path="/search/:keyword" element={<SearchPage />} />
                 <Route path="/auctionlist" element={<AuctionListPage />} />
               </Route>
             </Routes>
