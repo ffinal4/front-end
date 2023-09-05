@@ -52,15 +52,14 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
-
   const currentPage = useRecoilValue(pagination);
   const [category, setCategory] = useState<string | null>("");
   const [filter, setFilter] = useState("전체");
   const [detailData, setDetailData] = useState<any>(null);
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [sellerPicks, setSellerPicks] = useState<{
-    pickModal: boolean,
-    successBidModal: boolean
+    pickModal: boolean;
+    successBidModal: boolean;
   }>({
     pickModal: false,
     successBidModal: false,
@@ -101,7 +100,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
         <GetRequest>내 경매</GetRequest>
         <SendRequest onClick={myAuctionOnclick}>입찰 경매</SendRequest>
       </TabContainer>
-      <RequestStateContainer>
+      {/* <RequestStateContainer>
         <RequestStateNumber>
           <DotImg src={bluedot} />
           경매중 10
@@ -110,7 +109,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
           <DotImg src={blackdot} />
           경매완료 2
         </RequestIngNumber>
-      </RequestStateContainer>
+      </RequestStateContainer> */}
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter
@@ -139,35 +138,40 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
         <CardContainer>
           {data?.data.content.length > 0 &&
             data?.data.content?.map((item: any) => {
-              return <AuctionRequestCard
-                key={item.auctionId}
-                item={item}
-                setDto={setTestListResponseDto}
-                setSellerPicks={setSellerPicks}
-                sellerPicks={sellerPicks}
-                setDetailModalOpen={setDetailModalOpen}
-                setDetailData={setDetailData}
-              />;
+              return (
+                <AuctionRequestCard
+                  key={item.auctionId}
+                  item={item}
+                  setDto={setTestListResponseDto}
+                  setSellerPicks={setSellerPicks}
+                  sellerPicks={sellerPicks}
+                  setDetailModalOpen={setDetailModalOpen}
+                  setDetailData={setDetailData}
+                />
+              );
             })}
         </CardContainer>
-        {pickModal
-            && <SellerPickModal
-              setSellerPicks={setSellerPicks}
-              sellerPicks={sellerPicks}
-              auctionId={testListResponseDto}
-          />}
-          {successBidModal
-            && <SuccessBIdModal
-              setSellerPicks={setSellerPicks}
-              sellerPicks={sellerPicks}
-              auctionId={testListResponseDto}
-          />}
-          {detailModalOpen
-            && <DetailGoodsModal
-              detailData={detailData}
-              detailModalOpen={detailModalOpen}
-              setDetailModalOpen={setDetailModalOpen}
-            />}
+        {pickModal && (
+          <SellerPickModal
+            setSellerPicks={setSellerPicks}
+            sellerPicks={sellerPicks}
+            auctionId={testListResponseDto}
+          />
+        )}
+        {successBidModal && (
+          <SuccessBIdModal
+            setSellerPicks={setSellerPicks}
+            sellerPicks={sellerPicks}
+            auctionId={testListResponseDto}
+          />
+        )}
+        {detailModalOpen && (
+          <DetailGoodsModal
+            detailData={detailData}
+            detailModalOpen={detailModalOpen}
+            setDetailModalOpen={setDetailModalOpen}
+          />
+        )}
       </TradeRequestListContainer>
       <Paging />
     </div>
