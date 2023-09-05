@@ -20,7 +20,11 @@ const ProfileContent = ({ data }: any) => {
     <LeftContainer>
       <LeftContentContainer>
         <ImageContainer
-          src={data.data.info.image === null ? Defaultprofile : data.data.info.image}
+          src={
+            data.data.info.image === null
+              ? Defaultprofile
+              : data.data.info.image
+          }
         />
         <ContentInBox>
           <ContentLine>
@@ -38,7 +42,12 @@ const ProfileContent = ({ data }: any) => {
         </ContentInBox>
         <ButtonBox>
           <Button onClick={onclickAddEmailHandler}>프로필수정</Button>
-          <Button style={{width: "93px"}} onClick={onclickAddEmailHandler}>비밀번호변경</Button>
+          <Button
+            style={{ width: "93px" }}
+            onClick={() => navigate("/passwordchange")}
+          >
+            비밀번호변경
+          </Button>
         </ButtonBox>
       </LeftContentContainer>
     </LeftContainer>
@@ -96,7 +105,7 @@ const ContentInBox = styled.div`
   gap: 16px;
   padding: 0px 0px 0px 40px;
   width: 80%;
-  
+
   @media screen and (max-width: 1136px) {
     width: 100%;
   }
@@ -141,9 +150,9 @@ const Button = styled.div`
   align-items: center;
   width: 81px;
   height: 32px;
-  color: #39373A;
+  color: #39373a;
   border-radius: 5px;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   font-family: "Pretendard";
   font-size: 14px;
   font-weight: 600;
