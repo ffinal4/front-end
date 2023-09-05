@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import category from "../../assets/icon/category.png";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ import {
 import { pagination } from "../../store/pagination";
 
 const Navbar = () => {
+  const divRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
@@ -23,6 +24,18 @@ const Navbar = () => {
   const tradeListOnclick = () => {
     navigate("/tradeList");
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setIsCategoryOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (location.pathname.includes("/auction")) {
@@ -42,14 +55,16 @@ const Navbar = () => {
 
   return (
     <CategoryHeaderContainer>
-      <Wrapper>
+      <Wrapper ref={divRef}>
         <CategoryContainer
           onClick={() => {
             setIsCategoryOpen(!isCategoryOpen);
           }}
         >
           <CategoryImg src={category} />
-          {isCategoryOpen && <FilterModal filterClick={tradeListOnclick} />}
+          <CategoryImgWrapper>
+            {isCategoryOpen && <FilterModal filterClick={tradeListOnclick} />}
+          </CategoryImgWrapper>
         </CategoryContainer>
         <MenuContainer>
           <Menu
@@ -118,6 +133,12 @@ const Wrapper = styled.div`
 
 const CategoryContainer = styled.div`
   cursor: pointer;
+  position: relative;
+`;
+
+const CategoryImgWrapper = styled.div`
+  position: absolute;
+  top: 42px;
 `;
 
 const CategoryImg = styled.img``;

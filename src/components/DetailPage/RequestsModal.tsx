@@ -129,18 +129,21 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
                           경매중
                         </GoodsCondition>
                       </div>
-                    ) : item?.goodsStatus === "END" || item?.goodsStatus === "DONE" ? (
-                      <DoneContainer>거래완료</DoneContainer>
-                    ) : (
-                      <div>
-                        <NotRatingProduct />
-                        <GoodsConditionContainer />
-                        <GoodsCondition>
-                          <Circle style={{ backgroundColor: "#EC8D49" }} />
-                          거래중
-                        </GoodsCondition>
-                      </div>
-                    ))}
+                    ) : item?.goodsStatus === "END"
+                      || item?.goodsStatus === "DONE"
+                      || item?.goodsStatus === "SOLDOUT"
+                        ? (
+                          <DoneContainer>거래완료</DoneContainer>
+                        ) : (
+                          <div>
+                            <NotRatingProduct />
+                            <GoodsConditionContainer />
+                            <GoodsCondition>
+                              <Circle style={{ backgroundColor: "#EC8D49" }} />
+                              거래중
+                            </GoodsCondition>
+                          </div>
+                        ))}
                 </NotRatingProductWrapper>
               );
             })

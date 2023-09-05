@@ -19,7 +19,7 @@ const ItemCardList = ({ data, allList, isPocket }: any) => {
             <NotRatingProductWrapper>
               <ItemCard key={item?.goodsId} item={item} isPocket={isPocket} />
               {item?.goodsStatus !== "ONSALE" &&
-                item?.goodsStatus !== "REQUEST" &&
+                // item?.goodsStatus !== "REQUEST" &&
                 item?.goodsStatus !== "CANCEL" &&
                 (item?.goodsStatus === "BIDDING" ||
                 item?.goodsStatus === "ONAUCTION" ||
