@@ -3,10 +3,12 @@ import { styled } from "styled-components";
 import ItemCard from "./ItemCard";
 import EmptyPocket from "./EmptyPocket";
 import EmptyList from "./EmptyList";
-import { DoneContainer, NotRatingProductWrapper } from "../AuctionDetailPage/BidModal";
+import {
+  DoneContainer,
+  NotRatingProductWrapper,
+} from "../AuctionDetailPage/BidModal";
 
 const ItemCardList = ({ data, allList, isPocket }: any) => {
-
   const myLocation = localStorage.getItem("location");
 
   return (
@@ -29,7 +31,9 @@ const ItemCardList = ({ data, allList, isPocket }: any) => {
                       경매중
                     </GoodsCondition>
                   </div>
-                ) : item?.goodsStatus === "END" || item?.goodsStatus === "DONE" || item?.goodsStatus === "SOLDOUT" ? (
+                ) : item?.goodsStatus === "END" ||
+                  item?.goodsStatus === "DONE" ||
+                  item?.goodsStatus === "SOLDOUT" ? (
                   <Done>거래완료</Done>
                 ) : (
                   <div>
@@ -43,9 +47,11 @@ const ItemCardList = ({ data, allList, isPocket }: any) => {
             </NotRatingProductWrapper>
           );
         })
-        : ((allList)
-          ? <EmptyList />
-          : <EmptyPocket pocketStatus={0} />)}
+      ) : allList ? (
+        <EmptyList />
+      ) : (
+        <EmptyPocket pocketStatus={0} />
+      )}
     </ItemCardContainer>
   );
 };

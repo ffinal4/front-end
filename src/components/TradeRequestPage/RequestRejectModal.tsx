@@ -13,7 +13,7 @@ import {
   Title,
 } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import { StCompleteBt } from "./TradeCompleteModal";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { deleteRefuseTradeApi } from "../../api/goods";
 
 interface RequestRejectModalProps {
@@ -37,6 +37,7 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
   requestGoods,
   setRequestGoods,
 }) => {
+  const queryClient = useQueryClient();
   const newGoodsData = item?.goodsListResponseDtos.map((item: any) => {
     return item.goodsId;
   });
@@ -53,7 +54,7 @@ const RequestRejectModal: React.FC<RequestRejectModalProps> = ({
   const deleteMutate = useMutation(() => deleteRefuseTradeApi(requestGoods), {
     onSuccess: (res) => {
       setRejectModalOpen(!rejectModalOpen);
-      setRequestState({ ...requestState, request: "CANCEL" });
+      queryClient.invalidateQueries("getTradeReceiveRequestData");
     },
   });
   return (

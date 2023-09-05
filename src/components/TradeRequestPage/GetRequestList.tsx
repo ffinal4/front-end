@@ -39,7 +39,7 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
   const tradeState = useRecoilValue(requestCategory); //filter기능넣기
 
   const { isLoading, data, error }: any = useQuery(
-    [" getTradeReceiveRequestData", currentPage, tradeState],
+    ["getTradeReceiveRequestData", currentPage, tradeState],
     () => getTradeReceiveRequestApi(currentPage, tradeState),
     { refetchOnWindowFocus: false }
   );
@@ -64,7 +64,7 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
         <GetRequest>받은 요청</GetRequest>
         <SendRequest onClick={sendRequestOnclick}>보낸 요청</SendRequest>
       </TabContainer>
-      <RequestStateContainer>
+      {/* <RequestStateContainer>
         <RequestStateNumber>
           <DotImg src={emptydot} />
           교환요청 10
@@ -73,7 +73,7 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
           <DotImg src={orangedot} />
           교환진행중 10
         </RequestIngNumber>
-      </RequestStateContainer>
+      </RequestStateContainer> */}
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter
@@ -110,7 +110,6 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
 export const TradeRequestListContainer = styled.div`
   border: 2px solid black;
   border-radius: 10px;
-  margin-top: 23px;
   width: 100%;
   height: 1784px;
   background-color: white;

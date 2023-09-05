@@ -79,10 +79,10 @@ const EditProfilePage = () => {
     console.log("allRequest", allRequest, "uploadImage", uploadImage);
 
     if (uploadImage) {
-      uploadImage.forEach((blobImage:any, index:any) => {
+      uploadImage.forEach((blobImage: any, index: any) => {
         formData.append("image", blobImage, `image${index + 1}.jpg`);
       });
-    };
+    }
     formData.append(
       "data",
       new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
@@ -94,7 +94,7 @@ const EditProfilePage = () => {
     //   formData.append("image", blobImage);
     // });
     // };
-    
+
     // uploadImage.forEach((blobImage:any, index:any) => {
     //   formData.append("image", blobImage, `image${index + 1}.jpg`);
     // });
