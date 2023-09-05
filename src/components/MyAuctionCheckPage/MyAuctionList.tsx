@@ -23,7 +23,7 @@ import blackdot from "../../assets/icon/blackdot.png";
 import { useQuery } from "react-query";
 import { getMyAuctionCheckApi } from "../../api/acution";
 import AuctionFilterDropdownMenu from "./AuctionFilterDropdownMenu";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import { auctionCategory, myAuctionFilter } from "../../store/filterCategory";
 import SellerPickModal from "../AuctionDetailPage/SellerPickModal";
 import SuccessBIdModal from "../AuctionDetailPage/SuccessBIdModal";
@@ -53,6 +53,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   setFilterTap,
 }) => {
   const currentPage = useRecoilValue(pagination);
+  const resetPage = useResetRecoilState(pagination);
   const [category, setCategory] = useState<string | null>("");
   const [filter, setFilter] = useState("전체");
   const [detailData, setDetailData] = useState<any>(null);
@@ -87,6 +88,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   }
   console.log(data, "내 경매 현황 데이터");
   const myAuctionOnclick = () => {
+    resetPage();
     setFilterTap({
       myAuctionTap: false,
       bidAuctionTap: true,

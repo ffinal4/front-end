@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardContainer,
   Filter,
@@ -25,6 +25,9 @@ import { getBidAuctionApi } from "../../api/acution";
 import { useQuery } from "react-query";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { BidFilterToEnum } from "../../utils/EnumFilter";
+import Paging from "../common/Paging/Paging";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import { pagination } from "../../store/pagination";
 
 interface BidAuctionListProps {
   filterOpen: boolean;
@@ -45,13 +48,16 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
+
+  const currentPage = useRecoilValue(pagination);
+  const resetPage = useResetRecoilState(pagination);
   const [category, setCategory] = useState<string | null>("");
   const [filter, setFilter] = useState("전체");
   console.log("filter", category);
 
   const { isLoading, data, error }: any = useQuery(
-    ["getBidAuctionData", category],
-    () => getBidAuctionApi(category)
+    ["getBidAuctionData", currentPage, category],
+    () => getBidAuctionApi(currentPage, category)
   );
 
   if (isLoading) return <LoadingSpinner />;
@@ -63,7 +69,9 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
 
   const bidAuctionOnclick = () => {
     setFilterTap({ myAuctionTap: true, bidAuctionTap: false });
+    resetPage();
   };
+
   return (
     <div>
       <TabContainer>
@@ -110,6 +118,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
             })}
         </CardContainer>
       </TradeRequestListContainer>
+      <Paging />
     </div>
   );
 };
