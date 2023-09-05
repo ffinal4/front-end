@@ -26,47 +26,62 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
   const testListResponseDto = item?.testListResponseDto;
   const bidListResponseDtos = item?.bidListResponseDtos;
   const auctionId = testListResponseDto?.auctionId;
-  const userId = bidListResponseDtos[0]?.userId;
+  
 
-  const mutation = useMutation(() => getAuctionBidDetailApi(auctionId, userId), {
-    onSuccess: (res) => {
-        console.log("상세보기", res)
-        setDetailModalOpen(true);
-        setDetailData(res);
-    }
-});
+//   const mutation = useMutation(() => getAuctionBidDetailApi(auctionId, userId), {
+//     onSuccess: (res) => {
+//         console.log("상세보기", res)
+//         setDetailModalOpen(true);
+//         setDetailData(res);
+//     }
+// });
 
-  const onCilckDetailModalHandler = () => {
-    setDetailModalOpen(true);
-    mutation.mutate();
+  const onCilckDetailModalHandler = async () => {
+    if (item?.bidListResponseDtos) {
+      const userId = item?.bidListResponseDtos[0].userId;
+      try {
+        const res = await getAuctionBidDetailApi(auctionId, userId);
+        if (res.status === 200) {
+          setDetailModalOpen(true);
+          console.log("상세보기", res)
+          setDetailModalOpen(true);
+          setDetailData(res);
+        };
+      } catch {
+        if (Error) {
+          console.log(Error);
+        };
+      };
+    };
   };
 
   const auctionGoodsState = () => {
-    if (request === "AUCTION") {
+    if (item?.testListResponseDto.auctionStatus === "AUCTION") {
       return <GoodsImg
         key={testListResponseDto?.auctionId}
-        src={testListResponseDto.image}
+        src={testListResponseDto?.image}
         onClick={() => navigate(`/auctiondetail/${testListResponseDto?.auctionId}`)}
       />;
     }
-    if (request === "END") {
+    if (item?.testListResponseDto.auctionStatus === "END"
+      || item?.testListResponseDto.auctionStatus === "TRADING") {
       if (bidListResponseDtos?.length > 0) {
         return (
           <GoodsContainer>
             <GoodsImg
               key={testListResponseDto?.auctionId}
-              src={testListResponseDto.image}
+              src={testListResponseDto?.image}
               onClick={() => navigate(`/auctiondetail/${testListResponseDto?.auctionId}`)}
             />
             <ExchangeImg src={timer} />
             {(bidListResponseDtos?.length > 1)
-              ? <GoodsImg src={bidListResponseDtos[0].goodsImg}>
+              ? <GoodsImg src={bidListResponseDtos[0]?.goodsImg}>
                 <GoodsCount 
                   onClick={onCilckDetailModalHandler}
                 >{bidListResponseDtos?.length}개의 물건</GoodsCount>
               </GoodsImg>
               : <GoodsImg
-                src={bidListResponseDtos[0].goodsImg}
+                src={bidListResponseDtos[0]?.goodsImg}
                 onClick={onCilckDetailModalHandler}
               />}
           </GoodsContainer>
@@ -74,34 +89,34 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
       } else {
         return <GoodsImg
           key={testListResponseDto?.auctionId}
-          src={testListResponseDto.image}
+          src={testListResponseDto?.image}
           onClick={() => navigate(`/auctiondetail/${testListResponseDto?.auctionId}`)}
         />;
       };
     }
-    if (request === "DONE") {
+    if (item?.testListResponseDto.auctionStatus === "DONE") {
       return (
         <GoodsContainer>
           <GoodsImg
             key={testListResponseDto?.auctionId}
-            src={testListResponseDto.image}
+            src={testListResponseDto?.image}
             onClick={() => navigate(`/auctiondetail/${testListResponseDto?.auctionId}`)}
           />
           <ExchangeImg src={timer} />
           {(bidListResponseDtos?.length > 1)
-              ? <GoodsImg src={bidListResponseDtos[0].goodsImg}>
+              ? <GoodsImg src={bidListResponseDtos[0]?.goodsImg}>
                 <GoodsCount
                   onClick={onCilckDetailModalHandler}
                 >{bidListResponseDtos?.length}개의 물건</GoodsCount>
               </GoodsImg>
-              : <GoodsImg src={bidListResponseDtos[0].goodsImg}
+              : <GoodsImg src={bidListResponseDtos[0]?.goodsImg}
                 onClick={onCilckDetailModalHandler}
               />}
         </GoodsContainer>
       );
     }
-    if (request === "CANCEL") {
-      return <GoodsImg src={testListResponseDto.image} />;
+    if (item?.testListResponseDto.auctionStatus === "CANCEL") {
+      return <GoodsImg src={testListResponseDto?.image} />;
     }
   };
   return <div>{auctionGoodsState()}</div>;

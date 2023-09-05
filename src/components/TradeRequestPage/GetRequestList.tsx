@@ -39,7 +39,7 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
   const tradeState = useRecoilValue(requestCategory); //filter기능넣기
 
   const { isLoading, data, error }: any = useQuery(
-    ["getTradeReceiveRequestData", currentPage, tradeState],
+    [" getTradeReceiveRequestData", currentPage, tradeState],
     () => getTradeReceiveRequestApi(currentPage, tradeState),
     { refetchOnWindowFocus: false }
   );

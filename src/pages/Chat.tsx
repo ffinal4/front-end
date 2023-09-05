@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Stomp } from "@stomp/stompjs";
+import { useQuery } from "react-query";
+import LoadingSpinner from "../components/common/LoadingSpinner";
+import { getChatApi } from "../api/chat";
 
 const Chat = () => {
   const [stompClient, setStompClient] = useState<any>(null);
   const [messages, setMessages] = useState<string[]>([]);
   const [inputMessage, setInputMessage] = useState<string>("");
   const accessToken = localStorage.getItem("accessToken");
+  // const { isLoading, error, data } = useQuery("getChatData", getChatApi, {
+  //   refetchOnWindowFocus: false,
+  // });
 
   useEffect(() => {
     // STOMP 클라이언트 설정
@@ -46,6 +52,12 @@ const Chat = () => {
       }
     );
   }, [accessToken]);
+
+  // if (isLoading) return <LoadingSpinner />;
+  // console.log("메인페이지데이터", data);
+  // if (error) {
+  //   console.log(error);
+  // }
 
   const handleSendMessage = () => {
     if (stompClient && inputMessage.trim() !== "") {

@@ -30,6 +30,7 @@ const Header = () => {
   const resetCategoryName = useResetRecoilState(filterName);
   const restPage = useResetRecoilState(pagination);
   const resetAsc = useResetRecoilState(filterAsc);
+  const [searchInput, setSearchInput] = useState("");
   useEffect(() => {
     setIsLoggedIn(!!insertedToken);
   }, [insertedToken]);
@@ -56,6 +57,11 @@ const Header = () => {
     }
   };
 
+  const searchHandleSubmit = (e: any) => {
+    e.preventDefault();
+    navigate(`search/${searchInput}`);
+    setSearchInput("");
+  };
   const getLogoImage = () => {
     if (location.pathname.includes("/auction")) {
       return (
@@ -103,11 +109,18 @@ const Header = () => {
               </>
             )}
           </LogoContainer>
-          <InputContainer>
-            <SearchButton>
+          <InputContainer typeof="onSubmit" onSubmit={searchHandleSubmit}>
+            <SearchButton onClick={searchHandleSubmit}>
               <img src={search} alt="" />
             </SearchButton>
-            <SearchInput type="search" placeholder="Search" />
+            <SearchInput
+              type="search"
+              placeholder="Search"
+              value={searchInput}
+              onChange={(e) => {
+                setSearchInput(e.target.value);
+              }}
+            />
           </InputContainer>
           {isLoggedIn ? (
             <AllIconContainer>
@@ -219,7 +232,7 @@ export const BoxContainer = styled.div`
   font-weight: 400;
 `;
 
-const InputContainer = styled.div`
+const InputContainer = styled.form`
   width: 600px;
   display: flex;
   align-items: center;

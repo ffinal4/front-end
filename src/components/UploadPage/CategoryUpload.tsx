@@ -28,11 +28,11 @@ const CategoryUpload = ({ setUploadData, uploadData, failedUpload }: any) => {
             style={{color: `${(failedUpload && uploadData.data.category === "") ? "#DF3737" : "#222020"}`}}
         >카테고리*</RequiredText>
         <RightWrapper>
-            <SelectBar>
+            <SelectBar onClick={onClickDropDownHandelr}>
                 <Text>{name}</Text>
                 {(selectBar)
-                    ? <ChoiceBox src={Up} onClick={onClickDropDownHandelr}></ChoiceBox>
-                    : <ChoiceBox src={Down} onClick={onClickDropDownHandelr}></ChoiceBox>}
+                    ? <ChoiceBox src={Up}></ChoiceBox>
+                    : <ChoiceBox src={Down}></ChoiceBox>}
             </SelectBar>
             {(selectBar)
             && <SelectContainer>
@@ -75,6 +75,7 @@ export const SelectBar = styled.div`
   border-bottom: 1px solid;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 
   @media screen and (max-width: 843px) {
     gap: 20px;
@@ -92,7 +93,6 @@ const ChoiceBox = styled.img`
   width: 24px;
   height: 24px;
   object-fit: contain;
-  cursor: pointer;
 `;
 
 export const SelectContainer = styled.div`

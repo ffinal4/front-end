@@ -21,6 +21,7 @@ const AuctionFilterDropdownMenu = (props: any) => {
     { status: null, name: "전체" },
     { status: "AUCTION", name: "경매중" },
     { status: "END", name: "경매종료" },
+    { status: "TRADING", name: "거래진행중" },
     { status: "DONE", name: "교환완료" },
     { status: "CANCEL", name: "입찰실패" },
   ];

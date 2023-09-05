@@ -219,6 +219,7 @@ export const RequestIngNumber = styled.div`
   font-family: "Pretendard";
   font-size: 16px;
 `;
+
 export const DotImg = styled.img`
   width: 8px;
   height: 8px;

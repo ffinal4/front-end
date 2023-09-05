@@ -51,7 +51,7 @@ export const postNicknameApi = async (body: checkNicknameBody) => {
 //   userImg: string;
 // }
 export const patchProfileEditApi = async (body: any) => {
-  const res = await instance.put("/api/users/mypage", body, {
+  const res = await instance.patch("/api/users/mypage", body, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

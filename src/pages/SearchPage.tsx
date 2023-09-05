@@ -4,38 +4,36 @@ import { StTitle } from "../styles/TitleFont";
 import eyeImage from "../assets/images/eye.svg";
 import HorizontalLine from "../components/common/HorizontalLine";
 import dotLine from ".././assets/images/vector.png";
-import { getZzimPageApi } from "../api/users";
 import { useQuery } from "react-query";
 import ItemCardList from "../components/common/ItemCardList";
-import Paging from "../components/common/Paging/Paging";
 import LoadingSpinner from "../components/common/LoadingSpinner";
+import { searchApi } from "../api/goods";
+import { useParams } from "react-router-dom";
+const SearchPage = () => {
+  const { keyword }: any = useParams();
 
-const ZzimListPage = () => {
-  const { isLoading, error, data } = useQuery("ZzimListPageData", getZzimPageApi, {
+  const { isLoading, error, data } = useQuery(["searchData", keyword], () => searchApi(keyword), {
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <LoadingSpinner />;
-  console.log("찜 리스트페이지데이터", data);
+  console.log("검색데이터", data);
   if (error) {
     console.log(error);
   }
-
   return (
     <div>
       <TitleContainer>
         <TitleImage src={eyeImage} />
         <StTitle marginbottom="0" textalign="center">
-          ZZIM LIST
+          SEARCH RESULT
         </StTitle>
       </TitleContainer>
       <HorizontalLine />
       <DotLine src={dotLine} />
-      <ItemCardList data={data?.data.info} />
-      <Paging />
+      <ItemCardList data={data?.data.info} allList={true} />
     </div>
   );
 };
-
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,5 +50,4 @@ const DotLine = styled.img`
   margin-top: 20px;
   margin-bottom: 80px;
 `;
-
-export default ZzimListPage;
+export default SearchPage;
