@@ -13,7 +13,7 @@ import {
   Title,
 } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import { StBasicButton } from "../../styles/BasicButton";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { completeTradeApi } from "../../api/goods";
 
 interface TradeCompleteModalProps {
@@ -33,6 +33,7 @@ const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
   setRequestState,
   item,
 }) => {
+  const queryClient = useQueryClient();
   const newGoodsData = item?.goodsListResponseDtos.map((item: any) => {
     return item.goodsId;
   });
