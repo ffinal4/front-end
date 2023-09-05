@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import ChattingList from "../components/ChattingPage/ChattingList";
 import ChattingRoom from "../components/ChattingPage/ChattingRoom";
+import LoadingSpinner from "../components/common/LoadingSpinner";
+import { useQuery } from "react-query";
+import { getChatApi } from "../api/chat";
 
 const ChattingPage = () => {
+  const [chatRoomOpen, setChatRoomOpen] = useState(false);
+  const { isLoading, error, data } = useQuery("getChatData", getChatApi, {
+    refetchOnWindowFocus: false,
+  });
+  if (isLoading) return <LoadingSpinner />;
+  console.log("채팅페이지데이터", data);
+  if (error) {
+    console.log(error);
+  }
+
   return (
     <ChattingPageContainer>
       <ChatWrap>
-        <ChattingList />
-        <ChattingRoom />
+        <ChattingList chatList={data?.data} setChatRoomOpen={setChatRoomOpen} />
+        {chatRoomOpen && <ChattingRoom setChatRoomOpen={setChatRoomOpen} />}
       </ChatWrap>
     </ChattingPageContainer>
   );

@@ -2,17 +2,12 @@ import React from "react";
 import { styled } from "styled-components";
 import ListCard from "./ListCard";
 
-const ChattingList = () => {
+const ChattingList = ({ chatList, setChatRoomOpen }: any) => {
   return (
     <ChattingListContainer>
-      <ListCard />
-      <ListCard />
-      <ListCard />
-      <ListCard />
-      <ListCard />
-      <ListCard />
-      <ListCard />
-      <ListCard />
+      {chatList.map((item: any) => {
+        return <ListCard item={item} key={item.id} setChatRoomOpen={setChatRoomOpen} />;
+      })}
     </ChattingListContainer>
   );
 };
