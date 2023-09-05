@@ -1,5 +1,5 @@
 import React from "react";
-import spinner from "../../assets/images/loadinggif.gif";
+import spinner from "../../assets/images/loadingspinner.gif";
 import { styled } from "styled-components";
 
 const LoadingSpinner = () => {
@@ -11,7 +11,7 @@ const LoadingSpinner = () => {
 };
 
 const SpinnerImage = styled.img`
-  width: 200px;
+  width: 150px;
 `;
 
 const SpinnerContainer = styled.div`

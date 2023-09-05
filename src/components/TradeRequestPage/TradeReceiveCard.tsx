@@ -9,49 +9,44 @@ import {
   GoodsContainer,
   GoodsImg,
   GoodsTitle,
-  OtherGoodsImg,
   Title,
 } from "./TradeRequestCard";
 import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import goodsexchange from "../../assets/icon/goodsexchange.png";
-import goods from "../../assets/images/kangaroowhy.png";
-import DetailGoodsModal from "./DetailGoodsModal";
+import { GoodsCount } from "../MyAuctionCheckPage/AuctionRequestGoods";
+import { useNavigate } from "react-router-dom";
 
 const TradeReceiveCard = ({ item, data }: any) => {
+  const navigate = useNavigate();
   const goodsListResponseDto = item?.goodsListResponseDto;
-  const goodsListResponseDtos = item?.goodsListResponseDtos[0];
+  const goodsListResponseDtos = item?.goodsListResponseDtos;
   const tradeDate = item?.createdAt;
   const [requestState, setRequestState] = useState({
     request: item?.requestStatus,
   });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
-  const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
   const { request } = requestState;
 
-  const goodsDetailModalOnclick = () => {
-    setDetailModalOpen(!detailModalOpen);
-  };
-
   useEffect(() => {
-    if (request === "REQUEST") {
+    if (item?.requestStatus === "REQUEST") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "TRADING") {
+    if (item?.requestStatus === "TRADING") {
       setBorder("2px solid #EC8D49");
     }
-    if (request === "DONE") {
+    if (item?.requestStatus === "DONE") {
       setBorder("1px solid  #D5D4D4");
     }
-    if (request === "CANCEL") {
+    if (item?.requestStatus === "CANCEL") {
       setBorder("1px solid #EFEFEF");
       setOpacity("0.5");
     }
-  }, [request]);
+  }, [item?.requestStatus]);
 
   const tradeReceiveState = () => {
-    if (request === "REQUEST") {
+    if (item?.requestStatus === "REQUEST") {
       return (
         <StRequestState
           backgroundcolor="white"
@@ -62,7 +57,7 @@ const TradeReceiveCard = ({ item, data }: any) => {
         </StRequestState>
       );
     }
-    if (request === "TRADING") {
+    if (item?.requestStatus === "TRADING") {
       return (
         <StRequestState
           backgroundcolor="#EC8D49"
@@ -73,7 +68,7 @@ const TradeReceiveCard = ({ item, data }: any) => {
         </StRequestState>
       );
     }
-    if (request === "DONE") {
+    if (item?.requestStatus === "DONE") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -84,7 +79,7 @@ const TradeReceiveCard = ({ item, data }: any) => {
         </StRequestState>
       );
     }
-    if (request === "CANCEL") {
+    if (item?.requestStatus === "CANCEL") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -98,33 +93,51 @@ const TradeReceiveCard = ({ item, data }: any) => {
   };
 
   const tradeReceiveGoods = () => {
-    if (request === "REQUEST" || "DONE" || "CANCEL") {
+    if (item?.requestStatus === "TRADING") {
+      if (goodsListResponseDtos?.length > 0) {
+        return (
+          <GoodsContainer>
+            {goodsListResponseDtos?.length > 1 ? (
+              <GoodsImg src={goodsListResponseDtos[0].imageUrl}>
+                <GoodsCount
+                  onClick={() =>
+                    navigate(`/detail/${goodsListResponseDtos[0].goodsId}`)
+                  }
+                >
+                  {goodsListResponseDtos?.length}개의 물건
+                </GoodsCount>
+              </GoodsImg>
+            ) : (
+              <GoodsImg
+                src={goodsListResponseDtos[0].imageUrl}
+                onClick={() =>
+                  navigate(`/detail/${goodsListResponseDtos[0].goodsId}`)
+                }
+              />
+            )}
+
+            <ExchangeImg src={goodsexchange} />
+            <GoodsImg
+              src={goodsListResponseDto.imageUrl}
+              onClick={() => navigate("/mypocket")}
+            />
+          </GoodsContainer>
+        );
+      } else {
+        return (
+          <GoodsContainer>
+            <GoodsImg src={goodsListResponseDtos[0].imageUrl} />
+          </GoodsContainer>
+        );
+      }
+    }
+
+    if (item?.requestStatus === "REQUEST" || "DONE" || "CANCEL") {
       return (
         <GoodsContainer>
-          <GoodsImg
-            src={goodsListResponseDtos.imageUrl}
-            onClick={goodsDetailModalOnclick}
-          />
-          {detailModalOpen && (
-            <div style={{ position: "absolute" }}>
-              {/* <DetailGoodsModal
-                detailModalOpen={detailModalOpen}
-                setDetailModalOpen={setDetailModalOpen}
-              /> */}
-            </div>
-          )}
+          <GoodsImg src={goodsListResponseDtos[0].imageUrl} />
           <ExchangeImg src={goodsexchange} />
           <GoodsImg src={goodsListResponseDto.imageUrl} />
-        </GoodsContainer>
-      );
-    }
-    if (request === "TRADING") {
-      return (
-        <GoodsContainer>
-          <GoodsImg src={goods} />
-          <ExchangeImg src={goodsexchange} />
-          <GoodsImg src={goods} />
-          <OtherGoodsImg src={goods} />
         </GoodsContainer>
       );
     }
@@ -139,8 +152,8 @@ const TradeReceiveCard = ({ item, data }: any) => {
       {tradeReceiveGoods()}
       <ContentsContainer>
         <Title>상대물건</Title>
-        <GoodsTitle>{goodsListResponseDtos.title}</GoodsTitle>
-        <Address>{goodsListResponseDtos.location}</Address>
+        <GoodsTitle>{goodsListResponseDtos[0].title}</GoodsTitle>
+        <Address>{goodsListResponseDtos[0].location}</Address>
         <Title>내 물건</Title>
         <GoodsTitle>{goodsListResponseDto.title}</GoodsTitle>
         <Address>{goodsListResponseDto.location}</Address>

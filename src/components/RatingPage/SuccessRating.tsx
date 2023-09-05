@@ -7,7 +7,7 @@ const SuccessRating = ({ resData } : any) => {
 
     useEffect(() => {
         if (pointRef.current) {
-            pointRef.current.style.transition = `opacity 0.6s ease-in-out`;
+            pointRef.current.style.transition = `opacity 0.8s ease-in-out`;
             pointRef.current.style.opacity = `1`;
         };
     }, []);

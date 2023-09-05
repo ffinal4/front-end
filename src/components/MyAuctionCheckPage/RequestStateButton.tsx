@@ -34,10 +34,17 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   const navigate = useNavigate();
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
   const [bidSelectModal, setBidSelectModal] = useState<boolean>(false);
+  const [bidIdData, setBidIdData] = useState<{ requestId: number[] }>({
+    requestId: [],
+  });
   const { request } = requestState;
   const testListResponseDto = item?.testListResponseDto;
 
   const completeModalClick = () => {
+    if (item?.bidListResponseDtos) {
+      const bidIdList = item?.bidListResponseDtos.map((id : any) => id.bidId);
+      setBidIdData({...bidIdData, requestId: bidIdList});
+    };
     setCompleteModalOpen(!completeModalOpen);
   };
 
@@ -55,7 +62,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   const stateButton = () => {
     // 경매중
 
-    if (request === "AUCTION") {
+    if (testListResponseDto.auctionStatus === "AUCTION") {
       return (
         <div>
           <StAuctionIngBt buttonColor="#CBE4FB" onClick={sellerPickOnclick}>
@@ -65,7 +72,39 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
       );
     }
 
-    if (request === "END") {
+    if (testListResponseDto.auctionStatus === "TRADING") {
+      return (
+        <ButtonContainer>
+            <StAuctionCompleteBt
+              buttonColor="#58ABF7"
+              onClick={completeModalClick}
+            >
+              완료
+            </StAuctionCompleteBt>
+            {completeModalOpen && (
+              <ModalContainer>
+                <AuctionCompleteModal
+                  completeModalOpen={completeModalOpen}
+                  setCompleteModalOpen={setCompleteModalOpen}
+                  auctionId={item?.testListResponseDto.auctionId}
+                  bidIdData={bidIdData}
+                />
+              </ModalContainer>
+            )}
+            <StChatBt
+              buttonColor="white"
+              onClick={() => {
+                navigate("/chat");
+              }}
+            >
+              채팅하기
+              <Img src={chat} />
+            </StChatBt>
+          </ButtonContainer>
+      );
+    }
+
+    if (testListResponseDto.auctionStatus === "END") {
       if (item?.bidListResponseDtos.length > 0) {
         return (
           <ButtonContainer>
@@ -80,8 +119,8 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
                 <AuctionCompleteModal
                   completeModalOpen={completeModalOpen}
                   setCompleteModalOpen={setCompleteModalOpen}
-                  requestState={requestState}
-                  setRequestState={setRequestState}
+                  auctionId={item?.testListResponseDto.auctionId}
+                  bidIdData={bidIdData}
                 />
               </ModalContainer>
             )}
@@ -97,16 +136,20 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
           </ButtonContainer>
         );
       } else {
-        return (
-          <div>
-            <StAuctionGoodsSelectBt
-              buttonColor="#58ABF7"
-              onClick={bidGoodsSelectOnclick}
-            >
-              입찰품 선택
-            </StAuctionGoodsSelectBt>
-          </div>
-        );
+        if (testListResponseDto.bidCount === 0) {
+          return
+        } else {
+          return (
+            <div>
+              <StAuctionGoodsSelectBt
+                buttonColor="#58ABF7"
+                onClick={bidGoodsSelectOnclick}
+              >
+                입찰품 선택
+              </StAuctionGoodsSelectBt>
+            </div>
+          );
+        };
       };
     }
 
@@ -142,7 +185,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     //   );
     // }
     // 교환완료
-    if (request === "DONE") {
+    if (testListResponseDto.auctionStatus === "DONE") {
       return (
         <StAuctionTradeCompleteBt buttonColor="white">
           자세히보기

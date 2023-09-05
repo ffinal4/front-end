@@ -18,6 +18,7 @@ const FilterDropdownMenu = (props: any) => {
   const statusArray: State[] = [
     { status: null, name: "전체" },
     { status: "BIDDING", name: "입찰중" },
+    { status: "TRADING", name: "거래진행중" },
     { status: "DONE", name: "교환완료" },
     { status: "FAIL", name: "입찰실패" },
     { status: "SUCCESS", name: "입찰성공" },

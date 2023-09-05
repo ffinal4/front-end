@@ -11,27 +11,30 @@ import chat from "../../assets/icon/Chatting.png";
 import { useNavigate } from "react-router-dom";
 
 interface BidStateButtonProps {
-  requestState: { request: string };
-  setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   item: any;
 }
 
 const BidStateButton: React.FC<BidStateButtonProps> = ({
-  requestState,
-  setRequestState,
   item,
 }) => {
   const navigate = useNavigate();
+  const bidListResponseDtos = item?.bidListResponseDtos[0].bidStatus;
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-  const { request } = requestState;
+  const [bidIdData, setBidIdData] = useState<{ requestId: number[] }>({
+    requestId: [],
+  });
 
   const completeModalClick = () => {
+    if (item?.bidListResponseDtos) {
+      const bidIdList = item?.bidListResponseDtos.map((id : any) => id.bidId);
+      setBidIdData({...bidIdData, requestId: bidIdList});
+    };
     setCompleteModalOpen(!completeModalOpen);
   };
 
   const stateButton = () => {
     // 입찰중
-    if (request === "BIDDING") {
+    if (bidListResponseDtos === "BIDDING") {
       return (
         <WaitingStateContainer>
           <Img src={eye} />
@@ -41,9 +44,9 @@ const BidStateButton: React.FC<BidStateButtonProps> = ({
     }
 
     // 입찰성공
-    if (request === "DONE") {
+    if (bidListResponseDtos === "SUCCESS") {
       return (
-        <ButtonContainer>
+        <ButtonContainer style={{gap: "136px", marginTop: "0px"}}>
           <StAuctionCompleteBt
             buttonColor="#58ABF7"
             onClick={completeModalClick}
@@ -55,8 +58,8 @@ const BidStateButton: React.FC<BidStateButtonProps> = ({
               <AuctionCompleteModal
                 completeModalOpen={completeModalOpen}
                 setCompleteModalOpen={setCompleteModalOpen}
-                requestState={requestState}
-                setRequestState={setRequestState}
+                auctionId={item?.testListResponseDto.auctionId}
+                bidIdData={bidIdData}
               />
             </ModalContainer>
           )}

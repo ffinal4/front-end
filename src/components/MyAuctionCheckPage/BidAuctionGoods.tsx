@@ -10,19 +10,14 @@ import Empty from "../../assets/images/defaultprofile.png"
 import { useNavigate } from "react-router-dom";
 
 interface BidAuctionGoodsProps {
-  requestState: { request: string };
-  setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   item: any;
 }
 
 const BidAuctionGoods: React.FC<BidAuctionGoodsProps> = ({
-  requestState,
-  setRequestState,
   item,
 }) => {
 
   const navigate = useNavigate();
-  const { request } = requestState;
   const testListResponseDto = item?.testListResponseDto;
   const bidListResponseDtos = item?.bidListResponseDtos[0];
 

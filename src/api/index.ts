@@ -25,11 +25,11 @@ instance.interceptors.response.use(
       response: { status },
     } = error;
     if (status === 403) {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-      localStorage.removeItem("location");
-      alert("로그인이 필요한 서비스입니다.");
-      window.location.replace("/login");
+      // localStorage.removeItem("accessToken");
+      // localStorage.removeItem("refreshToken");
+      // localStorage.removeItem("location");
+      // alert("로그인이 필요한 서비스입니다.");
+      // window.location.replace("/login");
     } else if (status === 401) {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
