@@ -23,7 +23,8 @@ const BidAuctionCard = ({ item }: any) => {
     if (bidListResponseDtos.bidStatus === "BIDDING") {
       setBorder("1px solid #D5D4D4");
     }
-    if (bidListResponseDtos.bidStatus === "SUCCESS") {
+    if (bidListResponseDtos.bidStatus === "SUCCESS"
+      || bidListResponseDtos.bidStatus === "TRADING") {
       setBorder("2px solid #58ABF7");
     }
     if (bidListResponseDtos.bidStatus === "DONE") {
@@ -50,6 +51,16 @@ const BidAuctionCard = ({ item }: any) => {
           border="#58ABF7"
         >
           입찰성공
+        </StRequestState>
+      );
+    } else if (bidListResponseDtos.bidStatus === "TRADING") {
+      return (
+        <StRequestState
+          backgroundcolor="#58ABF7"
+          color="white"
+          border="#58ABF7"
+        >
+          거래진행중
         </StRequestState>
       );
     } else if (bidListResponseDtos.bidStatus === "DONE") {

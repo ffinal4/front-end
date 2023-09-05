@@ -38,6 +38,7 @@ const ProfileContent = ({ data }: any) => {
         </ContentInBox>
         <ButtonBox>
           <Button onClick={onclickAddEmailHandler}>프로필수정</Button>
+          <Button style={{width: "93px"}} onClick={onclickAddEmailHandler}>비밀번호변경</Button>
         </ButtonBox>
       </LeftContentContainer>
     </LeftContainer>
@@ -129,6 +130,9 @@ const ButtonBox = styled.div`
   top: 20px;
   right: 20px;
   position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 `;
 
 const Button = styled.div`
