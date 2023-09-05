@@ -1,57 +1,49 @@
 import React, { useRef, useState } from "react";
 import { styled } from "styled-components";
 import removeIcon from "../../assets/icon/trash.png";
-import camera from "../../assets/icon/camera.png";
 
 const ProfileImageUpload = (props: any) => {
-  const { uploadImage, setUploadImage } = props;
+  const { uploadImage, setUploadImage, data } = props;
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [viewImage, setViewImage] = useState<any>();
+  const [viewImage, setViewImage] = useState<any>(data?.data.info.image);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      const imageExtension = "jpg"
-      const imageUrlWithExtension = `${imageUrl}.${imageExtension}`;
       setViewImage(imageUrl);
       setUploadImage([...uploadImage, file]);
     }
   };
 
   const onClickRemoveHandler = () => {
-    setViewImage(undefined);
-    setUploadImage([]);
+    setViewImage(data?.data.info.image);
+    setUploadImage([...uploadImage, data?.data.info.image]);
   };
 
   return (
     <LineContainer>
       <RequiredText>프로필 사진</RequiredText>
       <InputStyleWrapper>
-        {viewImage ? (
-          <UploadImageContainer>
-            <UploadImage src={viewImage} alt="Uploaded" />
-          </UploadImageContainer>
-        ) : (
-          <InputLabel htmlFor="files">
-            <CameraImg src={camera} />
-            <Text style={{ color: "#717171" }}>이미지등록</Text>
-            <UploadInputBox
-              type="file"
-              accept="image/jpg, image/jpeg, image/png, image/gif"
-              id="files"
-              ref={fileInputRef}
-              style={{ display: "none" }}
-              multiple
-              onChange={handleImageUpload}
-            />
-            <button
-              onClick={() => {
-                fileInputRef.current?.click();
-              }}
-            />
-          </InputLabel>
-        )}
+        <UploadImageContainer>
+          <UploadImage src={viewImage} alt="" />
+        </UploadImageContainer>
+        <InputLabel htmlFor="files">
+          <UploadInputBox
+            type="file"
+            accept="image/jpg, image/jpeg, image/png, image/gif"
+            id="files"
+            ref={fileInputRef}
+            style={{ opacity: "100%" }}
+            multiple
+            onChange={handleImageUpload}
+          />
+          <button
+            onClick={() => {
+              fileInputRef.current?.click();
+            }}
+          />
+        </InputLabel>
       </InputStyleWrapper>
       <RightContainer>
         {uploadImage && (
@@ -97,18 +89,27 @@ const RequiredText = styled.div`
 const InputLabel = styled.label`
   width: 272px;
   height: 272px;
-  background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  position: absolute;
 `;
 
 const InputStyleWrapper = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
+  position: relative;
+`;
+
+const UploadImageContainer = styled.div`
+  min-width: 272px;
+  width: 272px;
+  height: 272px;
+  overflow: hidden;
+  cursor: pointer;
 `;
 
 const RemoveBtnWrapper = styled.div`
@@ -134,20 +135,6 @@ const RemoveIcon = styled.img`
   border-radius: 5px;
   opacity: 0.7;
   cursor: pointer;
-`;
-
-const UploadImageContainer = styled.div`
-  min-width: 272px;
-  width: 272px;
-  height: 272px;
-  overflow: hidden;
-  cursor: pointer;
-`;
-
-const CameraImg = styled.img`
-  width: 48px;
-  height: 48px;
-  margin: 0px auto 1px auto;
 `;
 
 const Text = styled.div`

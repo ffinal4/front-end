@@ -30,7 +30,7 @@ import { RecoilRoot } from "recoil";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import SearchPage from "./pages/SearchPage";
 import ChattingPage2 from "./pages/ChattingPage2";
-import PasswordChange from "./pages/PasswordChange";
+import PasswordChangePage from "./pages/PasswordChangePage";
 
 const queryClient = new QueryClient();
 
@@ -63,7 +63,10 @@ function App() {
                 <Route path="/tradelist" element={<TradeListPage />} />
                 <Route path="/detail/:goodsId" element={<DetailPage />} />
                 <Route path="/editprofile" element={<EditProfilePage />} />
-                <Route path="/passwordchange" element={<PasswordChange />} />
+                <Route
+                  path="/passwordchange"
+                  element={<PasswordChangePage />}
+                />
                 <Route path="/auctionupload" element={<AuctionUploadPage />} />
                 <Route
                   path="/auctiondetail/:auctionId"

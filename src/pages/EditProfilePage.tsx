@@ -6,37 +6,45 @@ import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
 import KakaoApi from "../components/common/KakaoApi";
 import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
-import { patchProfileEditApi, postNicknameApi } from "../api/users";
-import { useRecoilValue } from "recoil";
-import { userEmail } from "../store/userEmail";
+import {
+  getMypageApi,
+  patchProfileEditApi,
+  postNicknameApi,
+} from "../api/users";
+import { useQuery } from "react-query";
+import LoadingSpinner from "../components/common/LoadingSpinner";
+import { upload } from "@testing-library/user-event/dist/upload";
 
 interface EditForm {
-  password: string;
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
   nickname: string;
   uploadImage: string;
   address: string;
+  data: any;
 }
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
-  const [uploadImage, setUploadImage] = useState<any>([]);
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
   const [nicknameChecked, setNicknameChecked] = useState(false);
-  const myEmail = useRecoilValue(userEmail);
-  const locationData = localStorage.getItem("location");
+  const [isNicknameEditable, setNicknameEditable] = React.useState(false);
 
   const {
     register,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: { isSubmitting },
   } = useForm<EditForm>({ mode: "onBlur" });
+
+  // 개인정보 가져오기
+  const { isLoading, error, data }: any = useQuery("myPageData", getMypageApi, {
+    refetchOnWindowFocus: false,
+  });
+  const [uploadImage, setUploadImage] = useState<any>([data?.data.info.image]);
+
+  console.log("개인정보수정페이지", data);
 
   //닉네임 중복 확인 통신
   const checkNicknameAvailability = async (
@@ -44,6 +52,7 @@ const EditProfilePage = () => {
   ) => {
     const formData = getValues();
     const newNick = formData.nickname;
+
     const nickData = { nickname: newNick };
     console.log(nickData, "nick");
     try {
@@ -67,8 +76,6 @@ const EditProfilePage = () => {
     const formData = new FormData();
     const request = {
       nickname: data.nickname,
-      originPassword: data.currentPassword,
-      password: data.newPassword,
     };
     const allRequest = {
       data: {
@@ -77,13 +84,20 @@ const EditProfilePage = () => {
       },
     };
 
-    console.log("allRequest", allRequest, "uploadImage", uploadImage);
+    console.log("이미지,주소", allRequest);
+    console.log("이미지 업로드", uploadImage);
+    console.log("폼데이터", formData);
 
     if (uploadImage) {
-      uploadImage.forEach((blobImage: any, index: any) => {
-        formData.append("image", blobImage, `image${index + 1}.jpg`);
-      });
+      if (uploadImage[0] === data?.data.info.image) {
+        formData.append("image", uploadImage, "image.jpg");
+      } else {
+        uploadImage.forEach((blobImage: any, index: any) => {
+          formData.append("image", blobImage, `image${index + 1}.jpg`);
+        });
+      }
     }
+
     formData.append(
       "data",
       new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
@@ -105,6 +119,12 @@ const EditProfilePage = () => {
     }
   });
 
+  const handleNicknameEdit = () => {
+    setNicknameEditable(true);
+  };
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <p>Error: {error.message}</p>;
   return (
     <div>
       <EditProfilePageContainer>
@@ -119,22 +139,34 @@ const EditProfilePage = () => {
             <ProfileImageUpload
               uploadImage={uploadImage}
               setUploadImage={setUploadImage}
+              data={data}
             />
           </ProfileImageContainer>
           <EmailContainer>
             <Label>이메일(아이디)</Label>
-            <Email>{myEmail}</Email>
+            <Email>{data.data.info.email}</Email>
           </EmailContainer>
           <NickNameContainer>
             <CommonLabel>닉네임</CommonLabel>
             <NickNameInputContainer>
-              <StBasicInput
-                focusBorderColor="#EC0000"
-                borderColor="#ADADAD"
-                type="text"
-                placeholder="닉네임을 입력해주세요."
-                {...register("nickname")}
-              />
+              {isNicknameEditable ? ( // 수정 가능 상태일 때
+                <StBasicInput
+                  focusBorderColor="#EC0000"
+                  borderColor="#ADADAD"
+                  type="text"
+                  onFocus={handleNicknameEdit}
+                  {...register("nickname")}
+                />
+              ) : (
+                // 수정 불가능 상태일 때
+                <StBasicInput
+                  focusBorderColor="green"
+                  borderColor="#ADADAD"
+                  type="text"
+                  value={data.data.info.nickname}
+                  onClick={handleNicknameEdit}
+                />
+              )}
             </NickNameInputContainer>
             <StBasicButton
               buttonColor="#FDD988"
@@ -144,11 +176,15 @@ const EditProfilePage = () => {
               중복확인
             </StBasicButton>
           </NickNameContainer>
-          {nicknameError && <Content>* 중복된 닉네임입니다.</Content>}
-          {isAvailable && <Content>* 사용 가능한 닉네임입니다.</Content>}
+          {nicknameError && (
+            <Content fontcolor="red">* 중복된 닉네임입니다.</Content>
+          )}
+          {isAvailable && (
+            <Content fontcolor="#46A75B">* 사용 가능한 닉네임입니다.</Content>
+          )}
           <AddressLabelContainer>
             <AddressLabel>주거래지역</AddressLabel>
-            <CurrentAddress>{locationData}</CurrentAddress>
+            <CurrentAddress>{data.data.info.location}</CurrentAddress>
           </AddressLabelContainer>
           <AddressContainer>
             <KakaoApi
@@ -235,7 +271,6 @@ const NickNameContainer = styled.div`
   padding-top: 30px;
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
 `;
 
 const CommonLabel = styled.div`
@@ -250,14 +285,14 @@ const NickNameInputContainer = styled.div`
   width: 464px;
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<{ fontcolor: string }>`
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 400;
   width: 465px;
   height: 24px;
   margin-left: 220px;
-  color: red;
+  color: ${(props) => props.fontcolor};
   margin-top: 10px;
   margin-bottom: 30px;
 `;

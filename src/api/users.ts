@@ -44,19 +44,22 @@ export const postNicknameApi = async (body: checkNicknameBody) => {
 };
 
 // 개인정보수정
-// interface profileEditBody {
-//   nickname: string;
-//   password: string;
-//   location: string;
-//   userImg: string;
-// }
 export const patchProfileEditApi = async (body: any) => {
   const res = await instance.patch("/api/users/mypage", body, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
+  return res;
+};
 
+// 비밀번호 변경
+interface passwordBody {
+  originPassword: string;
+  password: string;
+}
+export const postPasswordChangeApi = async (body: passwordBody) => {
+  const res = await instance.post("/api/users/password", body);
   return res;
 };
 
