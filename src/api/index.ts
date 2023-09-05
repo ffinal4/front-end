@@ -22,7 +22,6 @@ instance.interceptors.response.use(
   // refreshToken api 나오면 수정될수도 있음
   async (error) => {
     const {
-      config,
       response: { status },
     } = error;
     if (status === 403) {

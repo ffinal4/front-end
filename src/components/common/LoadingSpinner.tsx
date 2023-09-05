@@ -1,6 +1,7 @@
 import React from "react";
 import spinner from "../../assets/images/loadingspinner.gif";
 import { styled } from "styled-components";
+
 const LoadingSpinner = () => {
   return (
     <SpinnerContainer>
