@@ -118,6 +118,8 @@ const ImageBox = styled.div<{ src : string }>`
   height: 464px;
   background-image: ${(props) => `url(${props.src})`};
   background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 `;
 
 const ImageOutContainer = styled.div`

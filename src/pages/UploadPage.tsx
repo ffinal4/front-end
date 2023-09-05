@@ -39,7 +39,7 @@ const UploadPage = () => {
 
   const [failedUpload, setFailedUpload] = useState(false);
   const [uploadImages, setUploadImages] = useState<File[]>([]);
-  const [uploadData, setUploadData] = useState<uploadBodyData>({
+  const [uploadData, setUploadData] = useState<any>({
     data: {
       title: "",
       content: "",
@@ -87,14 +87,64 @@ const UploadPage = () => {
       uploadData.data.tradeType === "" ||
       uploadData.data.category === "" ||
       uploadData.data.goodsCondition === "" ||
-      uploadData.wanted.title === "" ||
-      uploadData.wanted.content === "" ||
-      uploadData.wanted.category === "" ||
+      // uploadData.wanted.title === "" ||
+      // uploadData.wanted.content === "" ||
+      // uploadData.wanted.category === "" ||
       (uploadData.data.ratingCheck === true &&
         uploadData.data.sellerPrice === "")
     ) {
       setFailedUpload(true);
     } else {
+      if (uploadData.wanted.category === "") {
+        setUploadData({...uploadData, wanted: {...uploadData.wanted, category: "ETC"}});
+        try {
+          console.log(uploadImages, uploadData);
+          const sliceImages = uploadImages.slice(0, 3);
+          // const formData = new FormData();
+          // const newData = JSON.stringify(uploadData.data);
+          // const newWanted = JSON.stringify(uploadData.wanted);
+          sliceImages.forEach((blobImage, index) => {
+            formData.append("images", blobImage, `image${index + 1}.jpg`);
+          });
+          // const upLoadData = [uploadData.data]
+          // const upLoadWanted = [uploadData.wanted]
+          // formData.append("images", uploadImages)
+          formData.append(
+            "data",
+            new Blob([JSON.stringify(uploadData.data)], {
+              type: "application/json",
+            })
+          );
+          formData.append(
+            "wanted",
+            new Blob([JSON.stringify(uploadData.wanted)], {
+              type: "application/json",
+            })
+          );
+          // formData.append("data", JSON.stringify(uploadData.data));
+          // formData.append("wanted", JSON.stringify(uploadData.wanted));
+          formData.forEach(function (value, key) {
+            console.log(key + ": " + value);
+          });
+  
+          const res = await postUploadApi(formData);
+          if (res.status === 200) {
+            Swal.fire({
+              icon: "success",
+              text: "주머니에 물건이 추가되었어요!",
+              confirmButtonColor: "#ffca64",
+            });
+            navigate("/myPocket");
+          }
+        } catch (error) {
+          Swal.fire({
+            icon: "warning",
+            text: "이미지의 크기가 너무 커요!",
+            confirmButtonColor: "#ffca64",
+          });
+          console.log(error);
+        }
+      };
       try {
         console.log(uploadImages, uploadData);
         const sliceImages = uploadImages.slice(0, 3);

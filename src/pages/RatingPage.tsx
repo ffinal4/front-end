@@ -19,7 +19,7 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const RatingPage = () => {
   const queryClient = useQueryClient();
-  const { isLoading, data, error, isError }: any = useQuery("ratingStart", getRatingStartApi, {
+  const { isLoading, data, error, isError, status }: any = useQuery("ratingStart", getRatingStartApi, {
     refetchOnWindowFocus: false,
   });
 
@@ -78,6 +78,7 @@ const RatingPage = () => {
       }
     }
   };
+
   // if (data === undefined) return <p>평가 가능한 상품이 없습니다.</p>;
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <NotDataModal />;

@@ -72,7 +72,7 @@ const RatingUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
             <TextWrapper>
                 <Text style={{color: "#808080"}}>- 레이팅 값이 없는 물건은 물물교환에만 사용될 수 있으며 경매에 참가할 수 없습니다.</Text>
                 <Text style={{color: "#808080"}}>- 레이팅이 시작되면 다른 유저들이 내가 생각하는 물건의 가치에 대해 평가하게 됩니다.</Text>
-                <Text style={{color: "#808080"}}>- 10명이 레이팅을 완료하게되면 내가 생각하는 물건의 가치와 유저들이 평가한 가치의 평균가가 물건의 점수로 레이팅됩니다.</Text>
+                <Text style={{color: "#808080"}}>- 3명 이상이 레이팅을 완료하게되면 내가 생각하는 물건의 가치와 유저들이 평가한 가치의 평균가가 물건의 점수로 레이팅됩니다.</Text>
             </TextWrapper>
             {
             (ratingCheck)
