@@ -24,15 +24,17 @@ const KakaoApi = (props: any) => {
       setOpenPostcode(false);
     },
   };
+
+  // const defaultAddress = address || data.data.info.location;
   return (
     <>
       <AddressContainer>
         <StBasicInput
-          focusBorderColor="#ADADAD"
+          focusBorderColor="#46A75B"
           borderColor="#ADADAD"
           type="text"
           placeholder="주소를 입력해주세요."
-          value={address}
+          // value={defaultAddress}
           onChange={addressOnchange}
         />
       </AddressContainer>

@@ -12,7 +12,10 @@ const ProfileImageUpload = (props: any) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setViewImage(imageUrl);
-      setUploadImage([...uploadImage, file]);
+      setUploadImage([file]);
+    } else {
+      setViewImage(data?.data.info.image);
+      setUploadImage([]);
     }
   };
 
