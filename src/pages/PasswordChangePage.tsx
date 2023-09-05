@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
+import Swal from "sweetalert2";
 import {
   AssignButtonContainer,
-  Content,
   Label,
   StButton,
   SubTitle,
@@ -11,6 +11,8 @@ import {
 } from "./EditProfilePage";
 import { StBasicInput } from "../styles/BasicInput";
 import { useForm } from "react-hook-form";
+import { postPasswordChangeApi } from "../api/users";
+import { useNavigate } from "react-router-dom";
 
 interface PwChangeForm {
   newPassword: string;
@@ -19,19 +21,35 @@ interface PwChangeForm {
 }
 
 const PasswordChangePage = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     getValues,
-    formState: { isSubmitting },
+    formState: { errors },
   } = useForm<PwChangeForm>({ mode: "onBlur" });
 
   // 비밀번호 통신
-  const editPasswordOnclick = async (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    const pwData = getValues();
-  };
+  const editPasswordOnclick = handleSubmit(async (data) => {
+    const body = {
+      originPassword: data.originPassword,
+      password: data.newPassword,
+    };
+    console.log(body, "데이터");
+    try {
+      const res = await postPasswordChangeApi(body);
+      if (res.status === 200) {
+        Swal.fire({
+          icon: "success",
+          text: "개인정보가 수정되었습니다.",
+          confirmButtonColor: "#ffca64",
+        });
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   return (
     <div>
@@ -43,24 +61,24 @@ const PasswordChangePage = () => {
       </TitleContainer>
       <PasswordContainer>
         <CurrentPwContainer>
-          <Label>현재 비밀번호</Label>
+          <Label style={{ marginTop: "10px" }}>현재 비밀번호</Label>
           <CurrentPwInputContainer>
             <StBasicInput
-              focusBorderColor="#EC0000"
-              borderColor="#ADADAD"
+              focusBorderColor="#46A75B"
+              borderColor={errors.originPassword ? "red" : "#ADADAD"}
               type="password"
               placeholder="현재 비밀번호를 입력해주세요."
               {...register("originPassword")}
             />
-            {/* <Content>{errors?.currentPassword?.message}</Content> */}
+            <Content>{errors?.originPassword?.message}</Content>
           </CurrentPwInputContainer>
         </CurrentPwContainer>
         <ResetPwContainer>
           <Label>비밀번호 재설정</Label>
           <ResetPwInputContainer>
             <StBasicInput
-              focusBorderColor="#EC0000"
-              borderColor="#ADADAD"
+              focusBorderColor="#46A75B"
+              borderColor={errors.newPassword ? "red" : "#ADADAD"}
               type="password"
               placeholder="새 비밀번호를 입력해주세요."
               {...register("newPassword", {
@@ -75,7 +93,7 @@ const PasswordChangePage = () => {
                 },
               })}
             />
-            {/* <PwValidation>{errors?.newPassword?.message}</PwValidation> */}
+            <PwValidation>{errors?.newPassword?.message}</PwValidation>
             <PwContent>
               - 영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상
             </PwContent>
@@ -86,8 +104,8 @@ const PasswordChangePage = () => {
           <SetPwInputContainer>
             <CheckPwInputContainer>
               <StBasicInput
-                focusBorderColor="#EC0000"
-                borderColor="#ADADAD"
+                focusBorderColor="#46A75B"
+                borderColor={errors.newPassword ? "red" : "#ADADAD"}
                 type="password"
                 placeholder="비밀번호를 확인해주세요."
                 {...register("confirmPassword", {
@@ -100,7 +118,7 @@ const PasswordChangePage = () => {
                   },
                 })}
               />
-              {/* <PwValidation>{errors?.confirmPassword?.message}</PwValidation> */}
+              <PwValidation>{errors?.confirmPassword?.message}</PwValidation>
             </CheckPwInputContainer>
           </SetPwInputContainer>
         </ConfirmPwContainer>
@@ -113,6 +131,7 @@ const PasswordChangePage = () => {
             border: "2px solid black",
             fontWeight: "700",
           }}
+          onClick={editPasswordOnclick}
         >
           변경사항 저장
         </StButton>
@@ -124,14 +143,14 @@ const PasswordContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   width: 100%;
-  height: 306px;
+  height: 408px;
   margin: auto;
 `;
 
 const CurrentPwContainer = styled.div`
   display: flex;
-  align-items: center;
   margin-top: 40px;
+  /* border: 1px solid black; */
 `;
 
 const CurrentPwInputContainer = styled.div`
@@ -141,7 +160,7 @@ const CurrentPwInputContainer = styled.div`
 const ResetPwContainer = styled.div`
   width: 100%;
   display: flex;
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 const ResetPwInputContainer = styled.div`
   width: 656px;
@@ -178,4 +197,13 @@ const ConfirmPwContainer = styled.div`
   display: flex;
 `;
 
+const Content = styled.div`
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 400;
+  width: 465px;
+  height: 24px;
+  color: black;
+  margin-bottom: 30px;
+`;
 export default PasswordChangePage;
