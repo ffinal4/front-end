@@ -2,22 +2,45 @@ import React from "react";
 import { styled } from "styled-components";
 import remove from "../../assets/icon/remove.png";
 import { StBasicButton } from "../../styles/BasicButton";
+import { postAuctionDoneApi } from "../../api/acution";
+import { useQueryClient } from "react-query";
+import Swal from "sweetalert2";
 
 interface AuctionCompleteModalProps {
   completeModalOpen: boolean;
-  requestState: { request: string };
-  setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   setCompleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  auctionId: number;
+  bidIdData: { requestId: number[] };
 }
 
 const AuctionCompleteModal: React.FC<AuctionCompleteModalProps> = ({
   completeModalOpen,
-  requestState,
-  setRequestState,
   setCompleteModalOpen,
+  auctionId,
+  bidIdData
 }) => {
-  const requestCompleteOnclick = () => {
-    setRequestState({ ...requestState, request: "" });
+
+  const queryClient = useQueryClient();
+
+  const requestCompleteOnclick = async () => {
+    if (auctionId && bidIdData) {
+      console.log("bidIdData", bidIdData);
+      try {
+        const res = await postAuctionDoneApi(bidIdData, auctionId);
+        if (res.status === 200) {
+          console.log("거래완료!", res);
+          Swal.fire({
+            icon: "success",
+            text: "교환이 완료되었습니다! 상대방이 교환완료를 진행해야 완료상태가 됩니다.",
+            confirmButtonColor: "#ffca64",
+          });
+          queryClient.invalidateQueries("getMyAuctionCheckData");
+        };
+      } catch (error) {
+        console.log(error);
+      };
+    };
+    // setRequestState({ ...requestState, request: "" });
   };
   return (
     <div>

@@ -72,6 +72,8 @@ const ContentText = styled.div`
     color: #39373A;
     width: 100%;
     height: 408px;
+    word-break: break-word;
+    display: -webkit-box-vertical;
 `;
 
 export default RatingDetailInfo;

@@ -5,13 +5,15 @@ import Paging from '../common/Paging/Paging';
 import AucBidCard from './AucBidCard';
 import Close from '../../assets/icon/remove.png'
 import EmptyPocket from '../common/EmptyPocket';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getAuctionBidListApi, postSellerPicksApi } from '../../api/acution';
 import { useRecoilValue } from 'recoil';
 import { pagination } from '../../store/pagination';
 import LoadingSpinner from '../common/LoadingSpinner';
 
 const SellerPickModal = ({ sellerPicks, setSellerPicks, auctionId } : any) => {
+
+    const queryClient = useQueryClient();
 
     const currentPage = useRecoilValue(pagination);
     const { isLoading, error, data } : any = useQuery(["auctionBid", currentPage, auctionId], () => getAuctionBidListApi(currentPage, auctionId), {
@@ -26,6 +28,7 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks, auctionId } : any) => {
     const mutation = useMutation(() => postSellerPicksApi(bidSellerPick, auctionId), {
         onSuccess: (res) => {
             console.log("선택완료!", res)
+            queryClient.invalidateQueries("auctionBid");
             setSellerPicks({...sellerPicks, pickModal: false});
         },
     });
@@ -82,7 +85,7 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks, auctionId } : any) => {
                             />
                         )}
                     )
-                    : <EmptyPocket />
+                    : <EmptyPocket pocketStatus={3} />
                 }
                 {/* <AucBidCard />
                 <AucBidCard />

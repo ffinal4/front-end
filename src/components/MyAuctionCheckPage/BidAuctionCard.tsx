@@ -16,38 +16,33 @@ import BidStateButton from "./BidStateButton";
 const BidAuctionCard = ({ item }: any) => {
   const bidListResponseDtos = item?.bidListResponseDtos[0];
   const testListResponseDto = item?.testListResponseDto;
-  const [requestState, setRequestState] = useState({
-    request: bidListResponseDtos.bidStatus,
-  });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
-  const { request } = requestState;
 
   useEffect(() => {
-    if (request === "BIDDING") {
+    if (bidListResponseDtos.bidStatus === "BIDDING") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "SUCCESS") {
+    if (bidListResponseDtos.bidStatus === "SUCCESS") {
       setBorder("2px solid #58ABF7");
     }
-    if (request === "DONE") {
+    if (bidListResponseDtos.bidStatus === "DONE") {
       setBorder("1px solid #D5D4D4");
     }
-    if (request === "FAIL") {
+    if (bidListResponseDtos.bidStatus === "FAIL") {
       setBorder("1px solid #D5D4D4");
       setOpacity("0.5");
     }
-  }, [request]);
+  }, []);
 
   const auctionRequestState = () => {
-    if (request === "BIDDING") {
+    if (bidListResponseDtos.bidStatus === "BIDDING") {
       return (
         <StAuctionIng backgroundcolor="white" color="#58ABF7" border="#58ABF7">
           입찰중
         </StAuctionIng>
       );
-    }
-    if (request === "SUCCESS") {
+    } else if (bidListResponseDtos.bidStatus === "SUCCESS") {
       return (
         <StRequestState
           backgroundcolor="#58ABF7"
@@ -57,8 +52,7 @@ const BidAuctionCard = ({ item }: any) => {
           입찰성공
         </StRequestState>
       );
-    }
-    if (request === "DONE") {
+    } else if (bidListResponseDtos.bidStatus === "DONE") {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -68,8 +62,7 @@ const BidAuctionCard = ({ item }: any) => {
           교환완료
         </StRequestState>
       );
-    }
-    if (request === "FAIL") {
+    } else {
       return (
         <StRequestState
           backgroundcolor="#EFEFEF"
@@ -144,8 +137,6 @@ const BidAuctionCard = ({ item }: any) => {
       </Container>
       <div>
         <BidAuctionGoods
-          requestState={requestState}
-          setRequestState={setRequestState}
           item={item}
         />
       </div>
@@ -159,8 +150,6 @@ const BidAuctionCard = ({ item }: any) => {
 
       <ButtonContainer>
         <BidStateButton
-          requestState={requestState}
-          setRequestState={setRequestState}
           item={item}
         />
       </ButtonContainer>

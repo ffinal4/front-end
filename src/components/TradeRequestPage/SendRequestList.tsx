@@ -15,7 +15,6 @@ import {
   SendRequests,
   TabContainer,
 } from "../../pages/TradeRequestPage";
-import FilterDropdownMenu from "./FilterDropdownMenu";
 import TradeRequestCard, { DotImg } from "./TradeRequestCard";
 import arrow from "../../assets/icon/arrow.png";
 import orangedot from "../../assets/icon/orangedot.png";
@@ -24,8 +23,9 @@ import { useQuery } from "react-query";
 import { getTradeRequestApi } from "../../api/goods";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../../store/pagination";
-import { getRequestFilter } from "../../store/filterCategory";
+import { requestCategory } from "../../store/filterCategory";
 import LoadingSpinner from "../common/LoadingSpinner";
+import SendRequestFilterDropdownMenu from "./SendRequestFilterDropdownMenu";
 
 interface SendRequestListProps {
   filterOpen: boolean;
@@ -43,7 +43,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
 }) => {
   const [dropdownMenu, setDropdownMenu] = useState("전체");
   const currentPage = useRecoilValue(pagination);
-  const tradeState = useRecoilValue(getRequestFilter);
+  const tradeState = useRecoilValue(requestCategory);
 
   const { isLoading, data, error }: any = useQuery(
     [" getTradeRequestData", currentPage, tradeState],
@@ -68,7 +68,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
         <GetRequests onClick={getRequestOnclick}>받은 요청</GetRequests>
         <SendRequests>보낸 요청</SendRequests>
       </TabContainer>
-      <RequestStateContainer>
+      {/* <RequestStateContainer>
         <RequestStateNumber>
           <DotImg src={emptydot} />
           교환요청 10
@@ -77,7 +77,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
           <DotImg src={orangedot} />
           교환진행중 10
         </RequestIngNumber>
-      </RequestStateContainer>
+      </RequestStateContainer> */}
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter
@@ -90,7 +90,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
           </Filter>
           {filterOpen && (
             <FilterdropdownMenuContainer>
-              <FilterDropdownMenu
+              <SendRequestFilterDropdownMenu
                 filterOpen={filterOpen}
                 setFilterOpen={setFilterOpen}
                 setDropdownMenu={setDropdownMenu}
