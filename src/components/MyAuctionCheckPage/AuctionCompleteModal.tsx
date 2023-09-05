@@ -28,6 +28,7 @@ const AuctionCompleteModal: React.FC<AuctionCompleteModalProps> = ({
       try {
         const res = await postAuctionDoneApi(bidIdData, auctionId);
         if (res.status === 200) {
+          setCompleteModalOpen(false);
           console.log("거래완료!", res);
           Swal.fire({
             icon: "success",
