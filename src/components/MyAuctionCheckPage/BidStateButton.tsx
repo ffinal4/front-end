@@ -20,8 +20,15 @@ const BidStateButton: React.FC<BidStateButtonProps> = ({
   const navigate = useNavigate();
   const bidListResponseDtos = item?.bidListResponseDtos[0].bidStatus;
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
+  const [bidIdData, setBidIdData] = useState<{ requestId: number[] }>({
+    requestId: [],
+  });
 
   const completeModalClick = () => {
+    if (item?.bidListResponseDtos) {
+      const bidIdList = item?.bidListResponseDtos.map((id : any) => id.bidId);
+      setBidIdData({...bidIdData, requestId: bidIdList});
+    };
     setCompleteModalOpen(!completeModalOpen);
   };
 
@@ -51,6 +58,8 @@ const BidStateButton: React.FC<BidStateButtonProps> = ({
               <AuctionCompleteModal
                 completeModalOpen={completeModalOpen}
                 setCompleteModalOpen={setCompleteModalOpen}
+                auctionId={item?.testListResponseDto.auctionId}
+                bidIdData={bidIdData}
               />
             </ModalContainer>
           )}
