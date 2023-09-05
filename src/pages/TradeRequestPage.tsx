@@ -86,7 +86,6 @@ export const SubTitle = styled.div`
 
 export const TabContainer = styled.div`
   display: flex;
-  position: absolute;
   margin-left: 40px;
 `;
 
@@ -98,7 +97,7 @@ export const GetRequest = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 4px solid white;
+  border-bottom: 1px solid white;
   border-radius: 5px 5px 0px 0px;
   background-color: white;
   font-family: "Pretendard";
@@ -111,7 +110,6 @@ export const SendRequest = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #efefef;
-  border-bottom: 2px solid black;
   border-radius: 5px 5px 0px 0px;
   font-family: Pretendard;
   cursor: pointer;
@@ -124,7 +122,7 @@ export const GetRequests = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #efefef;
-  border-bottom: 2px solid black;
+
   border-radius: 5px 5px 0px 0px;
   font-family: Pretendard;
   cursor: pointer;
@@ -138,7 +136,7 @@ export const SendRequests = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 4px solid white;
+  border-bottom: 1px solid white;
   border-radius: 5px 5px 0px 0px;
   background-color: white;
   font-family: Pretendard;
@@ -221,6 +219,7 @@ export const RequestIngNumber = styled.div`
   font-family: "Pretendard";
   font-size: 16px;
 `;
+
 export const DotImg = styled.img`
   width: 8px;
   height: 8px;
