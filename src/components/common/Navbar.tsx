@@ -144,6 +144,7 @@ const CategoryImgWrapper = styled.div`
 const CategoryImg = styled.img``;
 
 const MenuContainer = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   margin-left: 60px;
@@ -155,5 +156,6 @@ const Menu = styled.div`
   margin-left: 40px;
   margin-right: 40px;
   font-weight: 400;
+  width: 56px;
 `;
 export default Navbar;
