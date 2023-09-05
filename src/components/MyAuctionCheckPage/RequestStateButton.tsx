@@ -34,10 +34,17 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   const navigate = useNavigate();
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
   const [bidSelectModal, setBidSelectModal] = useState<boolean>(false);
+  const [bidIdData, setBidIdData] = useState<{ requestId: number[] }>({
+    requestId: [],
+  });
   const { request } = requestState;
   const testListResponseDto = item?.testListResponseDto;
 
   const completeModalClick = () => {
+    if (item?.bidListResponseDtos) {
+      const bidIdList = item?.bidListResponseDtos.map((id : any) => id.bidId);
+      setBidIdData({...bidIdData, requestId: bidIdList});
+    };
     setCompleteModalOpen(!completeModalOpen);
   };
 
@@ -65,6 +72,38 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
       );
     }
 
+    if (testListResponseDto.auctionStatus === "TRADING") {
+      return (
+        <ButtonContainer>
+            <StAuctionCompleteBt
+              buttonColor="#58ABF7"
+              onClick={completeModalClick}
+            >
+              완료
+            </StAuctionCompleteBt>
+            {completeModalOpen && (
+              <ModalContainer>
+                <AuctionCompleteModal
+                  completeModalOpen={completeModalOpen}
+                  setCompleteModalOpen={setCompleteModalOpen}
+                  auctionId={item?.testListResponseDto.auctionId}
+                  bidIdData={bidIdData}
+                />
+              </ModalContainer>
+            )}
+            <StChatBt
+              buttonColor="white"
+              onClick={() => {
+                navigate("/chat");
+              }}
+            >
+              채팅하기
+              <Img src={chat} />
+            </StChatBt>
+          </ButtonContainer>
+      );
+    }
+
     if (testListResponseDto.auctionStatus === "END") {
       if (item?.bidListResponseDtos.length > 0) {
         return (
@@ -80,6 +119,8 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
                 <AuctionCompleteModal
                   completeModalOpen={completeModalOpen}
                   setCompleteModalOpen={setCompleteModalOpen}
+                  auctionId={item?.testListResponseDto.auctionId}
+                  bidIdData={bidIdData}
                 />
               </ModalContainer>
             )}

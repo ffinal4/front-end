@@ -45,11 +45,11 @@ const WantedUpload = ({ uploadData, setUploadData } : any) => {
         <RequiredText>받아요</RequiredText>
         <LastWrapper>
             <SelecBarWrapper>
-                <SelectBar style={{marginBottom: "30px"}}>
+                <SelectBar style={{marginBottom: "30px"}} onClick={onClickDropDownHandelr}>
                     <Text>{name}</Text>
                     {(selectBar)
-                        ? <ChoiceBox src={Up} onClick={onClickDropDownHandelr}></ChoiceBox>
-                        : <ChoiceBox src={Down} onClick={onClickDropDownHandelr}></ChoiceBox>}
+                        ? <ChoiceBox src={Up}></ChoiceBox>
+                        : <ChoiceBox src={Down}></ChoiceBox>}
                 </SelectBar>
             </SelecBarWrapper>
             {(selectBar)
@@ -124,6 +124,7 @@ const SelectBar = styled.div`
     align-items: center;
     gap: 122px;
     margin-bottom: 30px;
+    cursor: pointer;
 
     @media screen and (max-width: 843px) {
         gap: 20px;
@@ -146,7 +147,6 @@ const ChoiceBox = styled.img`
     width: 24px;
     height: 24px;
     object-fit: contain;
-    cursor: pointer;
 `;
 
 const InputContainer = styled.div`

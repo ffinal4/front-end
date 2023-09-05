@@ -63,7 +63,8 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
         onClick={() => navigate(`/auctiondetail/${testListResponseDto?.auctionId}`)}
       />;
     }
-    if (item?.testListResponseDto.auctionStatus === "END") {
+    if (item?.testListResponseDto.auctionStatus === "END"
+      || item?.testListResponseDto.auctionStatus === "TRADING") {
       if (bidListResponseDtos?.length > 0) {
         return (
           <GoodsContainer>

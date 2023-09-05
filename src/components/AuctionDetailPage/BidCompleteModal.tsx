@@ -13,6 +13,7 @@ import {
   } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import { StCompleteBt } from "../TradeRequestPage/TradeCompleteModal";
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from 'react-query';
 
 const BidCompleteModal = ({
   setBidCheck,
@@ -25,6 +26,8 @@ const BidCompleteModal = ({
   setSellerPicks,
   sellerPicks
 } : any) => {
+
+  const queryClient = useQueryClient();
 
   const navigate = useNavigate();
 
@@ -105,6 +108,7 @@ const BidCompleteModal = ({
               onClick={() => {
                 setWonBidChoice({...wonBidChoice, chatModal: false});
                 setSellerPicks({...sellerPicks, successBidModal: false});
+                queryClient.invalidateQueries("getMyAuctionCheckData");
               }}
             />
           </CancelButtonContainer>
