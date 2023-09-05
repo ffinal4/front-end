@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import FilterDropdownMenu from "./FilterDropdownMenu";
-import { DotImg } from "./TradeRequestCard";
 import arrow from "../../assets/icon/arrow.png";
-import orangedot from "../../assets/icon/orangedot.png";
-import emptydot from "../../assets/icon/emptydot.png";
 import { useQuery } from "react-query";
 import {
   ArrowImg,
   GetRequest,
-  RequestIngNumber,
-  RequestStateContainer,
-  RequestStateNumber,
   SendRequest,
   TabContainer,
 } from "../../pages/TradeRequestPage";
@@ -20,6 +14,7 @@ import TradeReceiveCard from "./TradeReceiveCard";
 import { useRecoilValue } from "recoil";
 import { pagination } from "../../store/pagination";
 import { requestCategory } from "../../store/filterCategory";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 interface GetRequestListProps {
   filterOpen: boolean;
@@ -38,13 +33,14 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
   const currentPage = useRecoilValue(pagination);
   const tradeState = useRecoilValue(requestCategory); //filter기능넣기
 
+  //받은요청 API
   const { isLoading, data, error }: any = useQuery(
     [" getTradeReceiveRequestData", currentPage, tradeState],
     () => getTradeReceiveRequestApi(currentPage, tradeState),
     { refetchOnWindowFocus: false }
   );
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   console.log("교환요청받은 데이터", data);
   if (error) {
     console.log(error);
@@ -64,16 +60,6 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
         <GetRequest>받은 요청</GetRequest>
         <SendRequest onClick={sendRequestOnclick}>보낸 요청</SendRequest>
       </TabContainer>
-      {/* <RequestStateContainer>
-        <RequestStateNumber>
-          <DotImg src={emptydot} />
-          교환요청 10
-        </RequestStateNumber>
-        <RequestIngNumber>
-          <DotImg src={orangedot} />
-          교환진행중 10
-        </RequestIngNumber>
-      </RequestStateContainer> */}
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter

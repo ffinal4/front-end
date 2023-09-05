@@ -132,14 +132,14 @@ const UploadPage = () => {
             text: "주머니에 물건이 추가되었어요!",
             confirmButtonColor: "#ffca64",
           });
-          navigate("/");
+          navigate("/myPocket");
         }
       } catch (error) {
-          Swal.fire({
-            icon: "warning",
-            text: "이미지의 크기가 너무 커요!",
-            confirmButtonColor: "#ffca64",
-          });
+        Swal.fire({
+          icon: "warning",
+          text: "이미지의 크기가 너무 커요!",
+          confirmButtonColor: "#ffca64",
+        });
         console.log(error);
       }
     }

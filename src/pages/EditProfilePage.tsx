@@ -28,6 +28,7 @@ const EditProfilePage = () => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
   const [nicknameChecked, setNicknameChecked] = useState(false);
+  const myEmail = useRecoilValue(userEmail);
   const locationData = localStorage.getItem("location");
 
   const {
@@ -87,17 +88,6 @@ const EditProfilePage = () => {
       "data",
       new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
     );
-    // if (uploadImage) {
-    //   fetch(uploadImage)
-    // .then(response => response.blob())
-    // .then(blobImage => {
-    //   formData.append("image", blobImage);
-    // });
-    // };
-
-    // uploadImage.forEach((blobImage:any, index:any) => {
-    //   formData.append("image", blobImage, `image${index + 1}.jpg`);
-    // });
 
     formData.forEach(function (value, key) {
       console.log(key + ": " + value);
@@ -114,8 +104,6 @@ const EditProfilePage = () => {
       console.log("개인정보수정실패", error);
     }
   });
-
-  const myEmail = useRecoilValue(userEmail);
 
   return (
     <div>
@@ -158,67 +146,6 @@ const EditProfilePage = () => {
           </NickNameContainer>
           {nicknameError && <Content>* 중복된 닉네임입니다.</Content>}
           {isAvailable && <Content>* 사용 가능한 닉네임입니다.</Content>}
-          <PwContainer>
-            <Label>현재 비밀번호</Label>
-            <PwInputContainer>
-              <StBasicInput
-                focusBorderColor="#EC0000"
-                borderColor="#ADADAD"
-                type="password"
-                placeholder="현재 비밀번호를 입력해주세요."
-                {...register("currentPassword")}
-              />
-            </PwInputContainer>
-          </PwContainer>
-          <Content>{errors?.currentPassword?.message}</Content>
-          <CheckPwContainer>
-            <Label>비밀번호 재설정</Label>
-            <SetPwInputContainer>
-              <NewInputContainer>
-                <StBasicInput
-                  focusBorderColor="#EC0000"
-                  borderColor="#ADADAD"
-                  type="password"
-                  placeholder="새 비밀번호를 입력해주세요."
-                  {...register("newPassword", {
-                    minLength: {
-                      value: 8,
-                      message: "* 비밀번호는 8자 이상 15자 이하여야 합니다.",
-                    },
-                    pattern: {
-                      value:
-                        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
-                      message:
-                        "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
-                    },
-                  })}
-                />
-                <PwValidation>{errors?.newPassword?.message}</PwValidation>
-                <PwContent>
-                  영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상
-                </PwContent>
-              </NewInputContainer>
-
-              <CheckPwInputContainer>
-                <StBasicInput
-                  focusBorderColor="#EC0000"
-                  borderColor="#ADADAD"
-                  type="password"
-                  placeholder="비밀번호를 확인해주세요."
-                  {...register("confirmPassword", {
-                    validate: {
-                      check: (value) => {
-                        if (getValues("newPassword") !== value) {
-                          return "* 비밀번호가 일치하지 않습니다.";
-                        }
-                      },
-                    },
-                  })}
-                />
-                <PwValidation>{errors?.confirmPassword?.message}</PwValidation>
-              </CheckPwInputContainer>
-            </SetPwInputContainer>
-          </CheckPwContainer>
           <AddressLabelContainer>
             <AddressLabel>주거래지역</AddressLabel>
             <CurrentAddress>{locationData}</CurrentAddress>
@@ -232,7 +159,7 @@ const EditProfilePage = () => {
             />
           </AddressContainer>
           <AddContent>
-            입력된 주소는 나의 주거래 지역으로 표시됩니다.
+            - 입력된 주소는 나의 주거래 지역으로 표시됩니다.
           </AddContent>
         </EditProfileContainer>
         <AssignButtonContainer>
@@ -256,18 +183,18 @@ const EditProfilePage = () => {
 
 const EditProfilePageContainer = styled.div``;
 
-const TitleContainer = styled.div`
+export const TitleContainer = styled.div`
   width: 100%;
   margin: auto;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   font-size: 40px;
   font-weight: 800;
   font-family: "Lemon/Milk", sans-serif;
 `;
 
-const SubTitle = styled.div`
+export const SubTitle = styled.div`
   font-size: 32px;
   margin-top: 16px;
   margin-bottom: 16px;
@@ -278,7 +205,7 @@ const EditProfileContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   width: 100%;
-  height: 1135px;
+  height: 771px;
   margin: auto;
 `;
 const ProfileImageContainer = styled.div``;
@@ -290,7 +217,7 @@ const EmailContainer = styled.div`
   margin-bottom: 33px;
 `;
 
-const Label = styled.div`
+export const Label = styled.div`
   font-size: 20px;
   font-family: "Pretendard";
   width: 150px;
@@ -308,6 +235,7 @@ const NickNameContainer = styled.div`
   padding-top: 30px;
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
 `;
 
 const CommonLabel = styled.div`
@@ -334,50 +262,6 @@ export const Content = styled.div`
   margin-bottom: 30px;
 `;
 
-const PwContainer = styled.div`
-  border-top: 1px solid gray;
-  display: flex;
-  align-items: center;
-  padding-top: 30px;
-  margin-top: 30px;
-`;
-
-const PwInputContainer = styled.div`
-  width: 656px;
-`;
-
-const SetPwInputContainer = styled.div`
-  width: 656px;
-`;
-
-const NewInputContainer = styled.div``;
-
-const CheckPwInputContainer = styled.div`
-  margin-bottom: 30px;
-`;
-
-const CheckPwContainer = styled.div`
-  border-bottom: 1px solid gray;
-  display: flex;
-`;
-
-const PwValidation = styled.div`
-  color: red;
-  margin-top: 10px;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 10px;
-`;
-
-const PwContent = styled.div`
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 30px;
-  color: #808080;
-`;
-
 const CurrentAddress = styled.div`
   font-family: "Pretendard";
   font-size: 16px;
@@ -386,6 +270,8 @@ const AddressLabelContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 30px;
+  border-top: 1px solid gray;
+  padding-top: 30px;
 `;
 
 const AddressLabel = styled.label`
@@ -408,17 +294,17 @@ const AddressContainer = styled.div`
 const AddContent = styled.div`
   font-family: "Pretendard";
   margin: 10px 0px 40px 220px;
-  color: gray;
+  color: #39373a;
 `;
 
-const AssignButtonContainer = styled.div`
+export const AssignButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 60px 0px 20px 0px;
 `;
 
-const StButton = styled(StBasicButton)`
+export const StButton = styled(StBasicButton)`
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 700;
