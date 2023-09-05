@@ -11,6 +11,7 @@ import { ModalContainer } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import { useNavigate } from "react-router-dom";
 import chat from "../../assets/icon/Chatting.png";
 import eye from "../../assets/icon/openeye.png";
+import { useQueryClient } from "react-query";
 
 interface SendRequestButtonProps {
   requestState: { request: string };
@@ -25,23 +26,18 @@ const SendRequestButton: React.FC<SendRequestButtonProps> = ({
   item,
   data,
 }) => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-  const { request } = requestState;
   const [requestGoods, setRequestGoods] = useState<{
     requestId: string | number[];
   }>({
     requestId: [],
   });
 
-  const rejectModalClick = () => {
-    setRejectModalOpen(!rejectModalOpen);
-  };
-
   const completeModalClick = () => {
     setCompleteModalOpen(!completeModalOpen);
-    // setRequestState({ ...requestState, request: "교환완료" });
+    queryClient.invalidateQueries("getTradeRequestData");
   };
 
   const sendStateButton = () => {
@@ -55,7 +51,7 @@ const SendRequestButton: React.FC<SendRequestButtonProps> = ({
     }
     if (item?.requestStatus === "TRADING") {
       return (
-        <ButtonContainer>
+        <ButtonContainer style={{ marginTop: "40px" }}>
           <StCompleteBt buttonColor="#EC8D49" onClick={completeModalClick}>
             완료
           </StCompleteBt>
