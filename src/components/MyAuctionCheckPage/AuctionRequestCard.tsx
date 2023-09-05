@@ -35,6 +35,9 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
         setBorder("2px solid #58ABF7");
       };
     }
+    if (testListResponseDto.auctionStatus === "TRADING") {
+      setBorder("2px solid #58ABF7");
+    }
     if (testListResponseDto.auctionStatus === "DONE") {
       setBorder("1px solid #D5D4D4");
     }
@@ -70,6 +73,17 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
             경매종료
           </StRequestState>
         
+      );
+    }
+    if (testListResponseDto.auctionStatus === "TRADING") {
+      return (
+        <StRequestState
+          backgroundcolor="#58ABF7"
+          color="white"
+          border="#58ABF7"
+        >
+          거래진행중
+        </StRequestState>
       );
     }
     if (testListResponseDto.auctionStatus === "DONE") {
@@ -154,7 +168,9 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
       }
     }
     // 교환완료
-    if (testListResponseDto.auctionStatus === "DONE") {
+    if (testListResponseDto.auctionStatus === "DONE"
+      // || testListResponseDto.auctionStatus === "TRADING"
+      ) {
       return (
         <div>
           <Title>입찰</Title>
