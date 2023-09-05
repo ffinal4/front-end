@@ -29,6 +29,7 @@ import ScrollTop from "./utils/ScrollTop";
 import { RecoilRoot } from "recoil";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import SearchPage from "./pages/SearchPage";
+import ChattingPage2 from "./pages/ChattingPage2";
 
 const queryClient = new QueryClient();
 
@@ -51,7 +52,7 @@ function App() {
               <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
               <Route path="/serviceuse" element={<TermsOfServicePage />} />
-              <Route path="/chat" element={<ChattingPage />} />
+              <Route path="/chat" element={<ChattingPage2 />} />
               <Route element={<MainLayout />}>
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/upload" element={<UploadPage />} />

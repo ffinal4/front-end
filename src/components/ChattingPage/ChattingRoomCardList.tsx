@@ -27,7 +27,12 @@ const ChattingRoomCardList = ({ data, webSocketMsg, isLoading }: any) => {
         })}
       <div>
         {webSocketMsg.map((item: any) => {
-          return <div>{item.message}</div>;
+          return (
+            <div>
+              {item.message}
+              <MyChat item={item} key={item.time} />
+            </div>
+          );
         })}
       </div>
       <div ref={messageEndRef}></div>
