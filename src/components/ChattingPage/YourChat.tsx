@@ -1,12 +1,16 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const YourChat = () => {
+const YourChat = ({ item }: any) => {
+  const hours = new Date(item.time).getHours();
+  const minutes = new Date(item.time).getMinutes();
+  const amPm = hours < 12 ? "오전" : "오후";
+  const formattedTime = `${amPm} ${hours % 12}:${minutes.toString().padStart(2, "0")}`;
   return (
     <YourChatContainer>
       <UserImage />
-      <TextBox>좋아요! 직접 교환만 가능한데</TextBox>
-      <Time>오후 2:10</Time>
+      <TextBox>{item.message}</TextBox>
+      <Time>{formattedTime}</Time>
     </YourChatContainer>
   );
 };

@@ -1,15 +1,15 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const MyChat = () => {
+const MyChat = ({ item }: any) => {
+  const hours = new Date(item.time).getHours();
+  const minutes = new Date(item.time).getMinutes();
+  const amPm = hours < 12 ? "오전" : "오후";
+  const formattedTime = `${amPm} ${hours % 12}:${minutes.toString().padStart(2, "0")}`;
   return (
     <MyChatContainer>
-      <Time>오후 2:10</Time>
-      <TextBox>
-        좋아요! 직접 교환만
-        가능한데가능한데가능한데가능한데가능한데가능한데가능한가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데가능한데
-        근처까지 오실 수 있나요?
-      </TextBox>
+      <Time>{formattedTime}</Time>
+      <TextBox>{item.message}</TextBox>
       <UserImage />
     </MyChatContainer>
   );
