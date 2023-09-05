@@ -14,18 +14,14 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const DetailPage = () => {
   const { goodsId }: any = useParams();
-  const { data, isLoading, error }: any = useQuery(
-    ["DetailData", goodsId],
-    () => getDetailPageApi(goodsId),
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { data, isLoading, error }: any = useQuery(["DetailData", goodsId], () => getDetailPageApi(goodsId), {
+    refetchOnWindowFocus: false,
+  });
   const [view, setView] = useRecoilState<any>(RecentlyView);
   useEffect(() => {
     if (data) {
-      setView([...view, {goodsId: goodsId, image: data.data.info.goodsResponseDtoList.images[0]}])
-    };
+      setView([...view, { goodsId: goodsId, image: data.data.info.goodsResponseDtoList.images[0] }]);
+    }
   }, []);
   console.log("data", data);
 
@@ -61,9 +57,7 @@ const DetailPage = () => {
             <LayoutContainer>
               <TapContainer>
                 <TapClickButton>드려요</TapClickButton>
-                <TapDefaultButton onClick={onClickWantHandler}>
-                  받아요
-                </TapDefaultButton>
+                <TapDefaultButton onClick={onClickWantHandler}>받아요</TapDefaultButton>
               </TapContainer>
               <GiveInfo data={data} />
             </LayoutContainer>
@@ -71,9 +65,7 @@ const DetailPage = () => {
           {giveTap === false && wantTap === true && (
             <LayoutContainer>
               <TapContainer>
-                <TapDefaultButton onClick={onClickGiveHandler}>
-                  드려요
-                </TapDefaultButton>
+                <TapDefaultButton onClick={onClickGiveHandler}>드려요</TapDefaultButton>
                 <TapClickButton>받아요</TapClickButton>
               </TapContainer>
               <WantedInfo data={data} />
