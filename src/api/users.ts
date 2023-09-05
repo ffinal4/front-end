@@ -54,7 +54,11 @@ export const patchProfileEditApi = async (body: any) => {
 };
 
 // 비밀번호 변경
-export const postPasswordChangeApi = async (body: any) => {
+interface passwordBody {
+  originPassword: string;
+  password: string;
+}
+export const postPasswordChangeApi = async (body: passwordBody) => {
   const res = await instance.post("/api/users/password", body);
   return res;
 };

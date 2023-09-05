@@ -12,7 +12,27 @@ import {
 import { StBasicInput } from "../styles/BasicInput";
 import { useForm } from "react-hook-form";
 
-const PasswordChange = () => {
+interface PwChangeForm {
+  newPassword: string;
+  originPassword: string;
+  confirmPassword: string;
+}
+
+const PasswordChangePage = () => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { isSubmitting },
+  } = useForm<PwChangeForm>({ mode: "onBlur" });
+
+  // 비밀번호 통신
+  const editPasswordOnclick = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    const pwData = getValues();
+  };
+
   return (
     <div>
       <TitleContainer>
@@ -30,7 +50,7 @@ const PasswordChange = () => {
               borderColor="#ADADAD"
               type="password"
               placeholder="현재 비밀번호를 입력해주세요."
-              //   {...register("currentPassword")}
+              {...register("originPassword")}
             />
             {/* <Content>{errors?.currentPassword?.message}</Content> */}
           </CurrentPwInputContainer>
@@ -43,17 +63,17 @@ const PasswordChange = () => {
               borderColor="#ADADAD"
               type="password"
               placeholder="새 비밀번호를 입력해주세요."
-              // {...register("newPassword", {
-              //   minLength: {
-              //     value: 8,
-              //     message: "* 비밀번호는 8자 이상 15자 이하여야 합니다.",
-              //   },
-              //   pattern: {
-              //     value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
-              //     message:
-              //       "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
-              //   },
-              // })}
+              {...register("newPassword", {
+                minLength: {
+                  value: 8,
+                  message: "* 비밀번호는 8자 이상 15자 이하여야 합니다.",
+                },
+                pattern: {
+                  value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
+                  message:
+                    "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
+                },
+              })}
             />
             {/* <PwValidation>{errors?.newPassword?.message}</PwValidation> */}
             <PwContent>
@@ -70,15 +90,15 @@ const PasswordChange = () => {
                 borderColor="#ADADAD"
                 type="password"
                 placeholder="비밀번호를 확인해주세요."
-                //   {...register("confirmPassword", {
-                //     validate: {
-                //       check: (value) => {
-                //         if (getValues("newPassword") !== value) {
-                //           return "* 비밀번호가 일치하지 않습니다.";
-                //         }
-                //       },
-                //     },
-                //   })}
+                {...register("confirmPassword", {
+                  validate: {
+                    check: (value) => {
+                      if (getValues("newPassword") !== value) {
+                        return "* 비밀번호가 일치하지 않습니다.";
+                      }
+                    },
+                  },
+                })}
               />
               {/* <PwValidation>{errors?.confirmPassword?.message}</PwValidation> */}
             </CheckPwInputContainer>
@@ -158,4 +178,4 @@ const ConfirmPwContainer = styled.div`
   display: flex;
 `;
 
-export default PasswordChange;
+export default PasswordChangePage;
