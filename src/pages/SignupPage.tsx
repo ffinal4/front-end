@@ -104,8 +104,8 @@ const SignupPage = () => {
           <Label>이메일(아이디)</Label>
           <EmailInputContainer>
             <StBasicInput
-              borderColor="#ADADAD"
-              focusBorderColor="#EC0000"
+              borderColor={errors.email ? "red" : "#ADADAD"}
+              focusBorderColor="#46A75B"
               type="email"
               placeholder="이메일을 입력해주세요"
               {...register("email", {
@@ -146,8 +146,8 @@ const SignupPage = () => {
               )}
             </PwVisibleButton>
             <StBasicInput
-              borderColor="#ADADAD"
-              focusBorderColor="#EC0000"
+              borderColor={errors.password ? "red" : "#ADADAD"}
+              focusBorderColor="#46A75B"
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("password", {
@@ -175,8 +175,8 @@ const SignupPage = () => {
           <Label>비밀번호 확인</Label>
           <CheckPwInputContainer>
             <StBasicInput
-              borderColor="#ADADAD"
-              focusBorderColor="#EC0000"
+              borderColor={errors.password ? "red" : "#ADADAD"}
+              focusBorderColor="#46A75B"
               type={pwType.type}
               placeholder="비밀번호를 입력해주세요."
               {...register("confirmPassword", {
@@ -214,8 +214,8 @@ const SignupPage = () => {
           <SecondLabel>닉네임</SecondLabel>
           <NickNameInputContainer>
             <StBasicInput
-              borderColor="#ADADAD"
-              focusBorderColor="#EC0000"
+              borderColor={errors.nickname ? "red" : "#ADADAD"}
+              focusBorderColor="#46A75B"
               type="text"
               placeholder="한글, 영문, 숫자를 이용한 2~15자"
               {...register("nickname", {
@@ -240,8 +240,10 @@ const SignupPage = () => {
           </StButton>
         </NickNameContainer>
         {/* <ValidateMessage>{errors?.nickname?.message}</ValidateMessage> */}
-        {nicknameError && <Content>* 중복된 닉네임입니다.</Content>}
-        {isAvailable && <Content>* 사용 가능한 닉네임입니다.</Content>}
+        {nicknameError && <Content color="red">* 중복된 닉네임입니다.</Content>}
+        {isAvailable && (
+          <Content color="#46A75B">* 사용 가능한 닉네임입니다.</Content>
+        )}
       </SignUpContainer>
       <AssignButtonContainer>
         <StBasicButton
@@ -329,11 +331,11 @@ const ValidateMessage = styled.div`
   font-size: 16px;
 `;
 
-const Content = styled.div`
+const Content = styled.div<{ color: string }>`
   padding-left: 250px;
   font-family: Pretendard;
   font-size: 16px;
-  color: red;
+  color: ${(props) => props.color};
   margin-top: 10px;
 `;
 

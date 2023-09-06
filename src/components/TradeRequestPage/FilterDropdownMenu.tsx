@@ -5,7 +5,8 @@ import { requestCategory } from "../../store/filterCategory";
 import { pagination } from "../../store/pagination";
 
 const FilterDropdownMenu = (props: any) => {
-  const { filterOpen, setFilterOpen, setDropdownMenu } = props;
+  const { filterOpen, setFilterOpen, setDropdownMenu, category, setCategory } =
+    props;
   const [categorySelect, setCategorySelect] = useRecoilState(requestCategory);
   // const [tradeState, setTradeState] = useRecoilState(getRequestFilter);
   const resetPage = useResetRecoilState(pagination);
@@ -34,13 +35,13 @@ const FilterDropdownMenu = (props: any) => {
                 if (item.status !== null) {
                   setCategorySelect(`&status=${item.status}`);
                   setDropdownMenu(item.name);
-                  setFilterOpen(!filterOpen);
                   resetPage();
+                  setFilterOpen(!filterOpen);
                 } else {
                   setCategorySelect("");
                   setDropdownMenu(item.name);
-                  setFilterOpen(!filterOpen);
                   resetPage();
+                  setFilterOpen(!filterOpen);
                 }
               }}
             >

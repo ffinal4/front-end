@@ -13,7 +13,6 @@ import {
 } from "../api/users";
 import { useQuery } from "react-query";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import { upload } from "@testing-library/user-event/dist/upload";
 
 interface EditForm {
   nickname: string;
@@ -24,7 +23,7 @@ interface EditForm {
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
-  const [address, setAddress] = useState(""); //주소
+  //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
@@ -35,24 +34,25 @@ const EditProfilePage = () => {
     register,
     handleSubmit,
     getValues,
-    formState: { isSubmitting },
+    formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
 
   // 개인정보 가져오기
   const { isLoading, error, data }: any = useQuery("myPageData", getMypageApi, {
     refetchOnWindowFocus: false,
   });
-  const [uploadImage, setUploadImage] = useState<any>([data?.data.info.image]);
-
   console.log("개인정보수정페이지", data);
+
+  const [uploadImage, setUploadImage] = useState<any>(
+    [] || data.data.info.image
+  );
 
   //닉네임 중복 확인 통신
   const checkNicknameAvailability = async (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     const formData = getValues();
-    const newNick = formData.nickname;
-
+    const newNick = formData.nickname || data?.data.info.nickname;
     const nickData = { nickname: newNick };
     console.log(nickData, "nick");
     try {
@@ -70,6 +70,7 @@ const EditProfilePage = () => {
       console.log("중복된 닉네임 입니다.", error);
     }
   };
+  const [address, setAddress] = useState(data?.data.info.location || "");
 
   //변경사항 저장 통신
   const editprofileOnclick = handleSubmit(async (data: EditForm) => {
@@ -80,7 +81,7 @@ const EditProfilePage = () => {
     const allRequest = {
       data: {
         ...request,
-        location: address,
+        location: address || data?.data.info.location,
       },
     };
 
@@ -151,8 +152,8 @@ const EditProfilePage = () => {
             <NickNameInputContainer>
               {isNicknameEditable ? ( // 수정 가능 상태일 때
                 <StBasicInput
-                  focusBorderColor="#EC0000"
-                  borderColor="#ADADAD"
+                  focusBorderColor="#46A75B"
+                  borderColor={errors.nickname ? "red" : "#ADADAD"}
                   type="text"
                   onFocus={handleNicknameEdit}
                   {...register("nickname")}
@@ -160,8 +161,8 @@ const EditProfilePage = () => {
               ) : (
                 // 수정 불가능 상태일 때
                 <StBasicInput
-                  focusBorderColor="green"
-                  borderColor="#ADADAD"
+                  focusBorderColor="#46A75B"
+                  borderColor={errors.nickname ? "red" : "#ADADAD"}
                   type="text"
                   value={data.data.info.nickname}
                   onClick={handleNicknameEdit}
@@ -192,6 +193,7 @@ const EditProfilePage = () => {
               setAddress={setAddress}
               openPostcode={openPostcode}
               setOpenPostcode={setOpenPostcode}
+              data={data}
             />
           </AddressContainer>
           <AddContent>
@@ -207,7 +209,7 @@ const EditProfilePage = () => {
               fontWeight: nicknameChecked ? "700" : "400",
             }}
             onClick={editprofileOnclick}
-            disabled={!nicknameChecked}
+            // disabled={!nicknameChecked}
           >
             변경사항 저장
           </StButton>
@@ -328,7 +330,8 @@ const AddressContainer = styled.div`
 
 const AddContent = styled.div`
   font-family: "Pretendard";
-  margin: 10px 0px 40px 220px;
+  margin: 10px 0px 0px 220px;
+  margin-bottom: 40px;
   color: #39373a;
 `;
 

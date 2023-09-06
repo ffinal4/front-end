@@ -16,8 +16,8 @@ const ItemCardList = ({ data, allList, isPocket }: any) => {
       {data?.length > 0 ? (
         data?.map((item: any) => {
           return (
-            <NotRatingProductWrapper>
-              <ItemCard key={item?.goodsId} item={item} isPocket={isPocket} />
+            <NotRatingProductWrapper key={item?.goodsId}>
+              <ItemCard item={item} isPocket={isPocket} />
               {item?.goodsStatus !== "ONSALE" &&
                 // item?.goodsStatus !== "REQUEST" &&
                 item?.goodsStatus !== "CANCEL" &&
