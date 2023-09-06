@@ -17,3 +17,9 @@ export const postMakeChatApi = async (goodsId: any, body: any) => {
   const res = await instance.post(`/api/chat/room/${goodsId}`, body);
   return res;
 };
+
+// 거래 취소
+export const postDenyChatApi = async (userId: number) => {
+  const res = await instance.post(`/api/${userId}/me`);
+  return res;
+};

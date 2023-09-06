@@ -9,6 +9,7 @@ export const chatOtherUserData = atom({
     recentMessage: "",
     recentMessageTime: "",
     roomId: "",
+    title: "",
   },
 });
 
@@ -16,3 +17,23 @@ export const chatOtherUserData = atom({
 //   key: "webSocketMessage",
 //   default: [],
 // });
+
+export const makeChatAuctionGoodsId = atom({
+  key: "makeChatAuctionGoodsId",
+  default: null,
+});
+
+export const makeChatAuctionBuyerId = atom({
+  key: "makeChatAuctionBuyerId",
+  default: null,
+});
+
+export const myProfileImage = atom({
+  key: "myProfileImage",
+  default: null,
+});
+
+export const otherProfileImage = atom({
+  key: "otherProfileImage",
+  default: null,
+});
