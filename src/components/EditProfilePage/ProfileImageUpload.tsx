@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { styled } from "styled-components";
 import removeIcon from "../../assets/icon/trash.png";
+import profile from "../../assets/images/defaultprofile.png";
 
 const ProfileImageUpload = (props: any) => {
   const { uploadImage, setUploadImage, data } = props;
@@ -26,7 +27,7 @@ const ProfileImageUpload = (props: any) => {
       <RequiredText>프로필 사진</RequiredText>
       <InputStyleWrapper>
         <UploadImageContainer>
-          <UploadImage src={viewImage} alt="" />
+          <UploadImage src={viewImage ? viewImage : profile} alt="" />
         </UploadImageContainer>
         <InputLabel htmlFor="files">
           <UploadInputBox

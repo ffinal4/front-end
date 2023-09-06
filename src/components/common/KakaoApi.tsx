@@ -25,7 +25,6 @@ const KakaoApi = (props: any) => {
     },
   };
 
-  // const defaultAddress = address || data.data.info.location;
   return (
     <>
       <AddressContainer>
@@ -34,7 +33,7 @@ const KakaoApi = (props: any) => {
           borderColor="#ADADAD"
           type="text"
           placeholder="주소를 입력해주세요."
-          // value={defaultAddress}
+          value={address}
           onChange={addressOnchange}
         />
       </AddressContainer>

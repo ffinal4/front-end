@@ -4,15 +4,15 @@ import { useForm } from "react-hook-form";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
-import KakaoApi from "../components/common/KakaoApi";
 import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
 import {
   getMypageApi,
-  patchProfileEditApi,
+  pathchProfileEditApi,
   postNicknameApi,
 } from "../api/users";
 import { useQuery } from "react-query";
 import LoadingSpinner from "../components/common/LoadingSpinner";
+import MainTradingAddress from "../components/EditProfilePage/MainTradingAddress";
 
 interface EditForm {
   nickname: string;
@@ -45,7 +45,7 @@ const EditProfilePage = () => {
 
   const imageData = data?.data.info.image;
   const nicknameData = data?.data.info.nickname;
-  const location =  data?.data.info.location;
+  const location = data?.data.info.location;
 
   const [uploadImage, setUploadImage] = useState<any>([]);
 
@@ -78,59 +78,39 @@ const EditProfilePage = () => {
   const editprofileOnclick = handleSubmit(async (data: EditForm) => {
     const formData = new FormData();
     const request = {
-      nickname: data.nickname,
+      nickname: data.nickname || nicknameData,
     };
     const allRequest = {
       data: {
         ...request,
         location: address || location,
       },
-  };
+    };
 
-    console.log("이미지,주소", allRequest);
+    console.log("주소, 닉네임", allRequest);
     console.log("이미지 업로드", uploadImage);
-    console.log("폼데이터", formData);
-
-    
 
     try {
       if (uploadImage[0]) {
-        if (uploadImage[0] === undefined
-          || uploadImage[0] === imageData) {
-          //   setUploadImage([imageData]);
-          //   console.log("d", uploadImage);
-          //   fetch(imageData)
-          //     .then(response => response.blob())
-          //     .then(blob => {
-          //       console.log("성공", blob);
-          //       setUploadImage([blob]);
-          //       uploadImage.forEach((blobImage: any, index: any) => {
-          //         formData.append("image", blobImage, `image${index + 1}.jpg`);
-          //       });
-          //     })
-          //     .catch(error => {
-          //       console.error('이미지를 가져오는 중 오류 발생: ', error);
-          //       console.error('오류 유형:', error.name);
-          //       console.error('오류 메시지:', error.message);
-          //     });
-            
-          // // console.log("test", uploadImage);
+        if (uploadImage[0] === undefined || uploadImage[0] === imageData) {
         } else {
           uploadImage.forEach((blobImage: any, index: any) => {
             formData.append("image", blobImage, `image${index + 1}.jpg`);
           });
         }
       }
-  
+
       formData.append(
         "data",
-        new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
+        new Blob([JSON.stringify(allRequest.data)], {
+          type: "application/json",
+        })
       );
-  
+
       formData.forEach(function (value, key) {
         console.log(key + ": " + value);
       });
-      const res = await patchProfileEditApi(formData);
+      const res = await pathchProfileEditApi(formData);
 
       if (res.status === 200) {
         console.log("개인정보수정완료", res);
@@ -204,33 +184,23 @@ const EditProfilePage = () => {
           {isAvailable && (
             <Content fontcolor="#46A75B">* 사용 가능한 닉네임입니다.</Content>
           )}
-          <AddressLabelContainer>
-            <AddressLabel>주거래지역</AddressLabel>
-            <CurrentAddress>{data.data.info.location}</CurrentAddress>
-          </AddressLabelContainer>
-          <AddressContainer>
-            <KakaoApi
-              address={address}
-              setAddress={setAddress}
-              openPostcode={openPostcode}
-              setOpenPostcode={setOpenPostcode}
-              data={data}
-            />
-          </AddressContainer>
-          <AddContent>
-            - 입력된 주소는 나의 주거래 지역으로 표시됩니다.
-          </AddContent>
+          <MainTradingAddress
+            openPostcode={openPostcode}
+            setOpenPostcode={setOpenPostcode}
+            address={address}
+            setAddress={setAddress}
+            data={data}
+          />
         </EditProfileContainer>
         <AssignButtonContainer>
           <StButton
-            buttonColor={nicknameChecked ? "#FDD988" : "#D5D4D4"}
+            buttonColor={"#FDD988"}
             style={{
-              color: nicknameChecked ? "black" : "white",
-              border: nicknameChecked ? "1px solid black" : "none",
-              fontWeight: nicknameChecked ? "700" : "400",
+              color: "black",
+              border: "1px solid black",
+              fontWeight: "700",
             }}
             onClick={editprofileOnclick}
-            // disabled={!nicknameChecked}
           >
             변경사항 저장
           </StButton>
@@ -318,42 +288,6 @@ export const Content = styled.div<{ fontcolor: string }>`
   color: ${(props) => props.fontcolor};
   margin-top: 10px;
   margin-bottom: 30px;
-`;
-
-const CurrentAddress = styled.div`
-  font-family: "Pretendard";
-  font-size: 16px;
-`;
-const AddressLabelContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
-  border-top: 1px solid gray;
-  padding-top: 30px;
-`;
-
-const AddressLabel = styled.label`
-  width: 150px;
-  height: 33px;
-  font-size: 20px;
-  font-family: "Pretendard";
-  font-weight: bold;
-  margin-right: 70px;
-`;
-
-const AddressContainer = styled.div`
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  padding-left: 220px;
-  padding-right: 250px;
-`;
-
-const AddContent = styled.div`
-  font-family: "Pretendard";
-  margin: 10px 0px 0px 220px;
-  margin-bottom: 40px;
-  color: #39373a;
 `;
 
 export const AssignButtonContainer = styled.div`
