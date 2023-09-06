@@ -39,9 +39,7 @@ interface MyAuctionListProps {
   dropdownMenu: string;
   setAuctionFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setDropdownMenu: React.Dispatch<React.SetStateAction<string>>;
-  setFilterTap: React.Dispatch<
-    React.SetStateAction<{ myAuctionTap: boolean; bidAuctionTap: boolean }>
-  >;
+  setFilterTap: React.Dispatch<React.SetStateAction<{ myAuctionTap: boolean; bidAuctionTap: boolean }>>;
 }
 
 const MyAuctionList: React.FC<MyAuctionListProps> = ({
@@ -75,9 +73,8 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
 
   console.log("filter", category);
 
-  const { data, isLoading, error }: any = useQuery(
-    ["getMyAuctionCheckData", currentPage, category],
-    () => getMyAuctionCheckApi(currentPage, category)
+  const { data, isLoading, error }: any = useQuery(["getMyAuctionCheckData", currentPage, category], () =>
+    getMyAuctionCheckApi(currentPage, category)
   );
 
   useEffect(() => {
@@ -167,18 +164,10 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
             })}
         </CardContainer>
         {pickModal && (
-          <SellerPickModal
-            setSellerPicks={setSellerPicks}
-            sellerPicks={sellerPicks}
-            auctionId={testListResponseDto}
-          />
+          <SellerPickModal setSellerPicks={setSellerPicks} sellerPicks={sellerPicks} auctionId={testListResponseDto} />
         )}
         {successBidModal && (
-          <SuccessBIdModal
-            setSellerPicks={setSellerPicks}
-            sellerPicks={sellerPicks}
-            auctionId={testListResponseDto}
-          />
+          <SuccessBIdModal setSellerPicks={setSellerPicks} sellerPicks={sellerPicks} auctionId={testListResponseDto} />
         )}
         {detailModalOpen && (
           <DetailGoodsModal

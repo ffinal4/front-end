@@ -103,8 +103,8 @@ export const postRequestsApi = async (body: any, goodsId: number) => {
 interface acceptBody {
   requestId: string | number[];
 }
-export const postAcceptTradeApi = async (body: acceptBody) => {
-  const res = await instance.post("/api/goods/users/accept", body);
+export const postAcceptTradeApi = async (sellerGoods: any, body: acceptBody) => {
+  const res = await instance.post(`/api/goods/${sellerGoods}/users/accept`, body);
   return res;
 };
 
