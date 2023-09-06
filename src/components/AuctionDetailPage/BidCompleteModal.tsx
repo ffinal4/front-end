@@ -108,6 +108,7 @@ const BidCompleteModal = ({
               onClick={() => {
                 setWonBidChoice({...wonBidChoice, chatModal: false});
                 setSellerPicks({...sellerPicks, successBidModal: false});
+                navigate("/auctioncheck");
                 queryClient.invalidateQueries("getMyAuctionCheckData");
               }}
             />
