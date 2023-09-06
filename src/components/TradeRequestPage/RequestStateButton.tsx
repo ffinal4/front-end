@@ -32,6 +32,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({ requestState, s
     const postChatBody = {
       buyerId: item.goodsListResponseDtos[0].userId,
     };
+
     try {
       const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
       if (res.status == 200) {
@@ -44,7 +45,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({ requestState, s
   };
 
   // 교환요청 수락api
-  const mutation = useMutation(() => postAcceptTradeApi(requestGoods), {
+  const mutation = useMutation(() => postAcceptTradeApi(item.goodsListResponseDto.goodsId, requestGoods), {
     onSuccess: (res) => {
       console.log("교환요청수락성공!", res);
       queryClient.invalidateQueries("getTradeReceiveRequestData");

@@ -22,19 +22,17 @@ const ChattingRoomCardList = ({ data, webSocketMsg, isLoading, otherUserNickname
           </div>
         );
       })}
-      <div>
-        {webSocketMsg.map((item: any) => {
-          return (
-            <div>
-              {otherUserNickname === item.nickname ? (
-                <YourChat item={item} key={item.time} />
-              ) : (
-                <MyChat item={item} key={item.time} />
-              )}
-            </div>
-          );
-        })}
-      </div>
+      {webSocketMsg.map((item: any) => {
+        return (
+          <div>
+            {otherUserNickname === item.nickname ? (
+              <YourChat item={item} key={item.time} />
+            ) : (
+              <MyChat item={item} key={item.time} />
+            )}
+          </div>
+        );
+      })}
       <div ref={messageEndRef}></div>
     </ChattingRoomCardListContainer>
   );
