@@ -56,7 +56,7 @@ function App() {
               <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
               <Route path="/serviceuse" element={<TermsOfServicePage />} />
-              <Route path="/chat" element={<ChattingPage2 />} />
+              <Route path="/chat" element={<ChattingPage />} />
               <Route element={<MainLayout />}>
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/upload" element={<UploadPage />} />
