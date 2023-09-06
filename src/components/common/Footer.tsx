@@ -12,19 +12,19 @@ const Footer = () => {
         </LogoContainer>
         <MemberContainer>
           <Position>FRONTEND</Position>
-          <Name>박준영</Name>
-          <Name>서명진</Name>
+          <Name onClick={() => window.open("https://github.com/LOCA525")}>박준영</Name>
+          <Name onClick={() => window.open("https://github.com/myeongjin99")}>서명진</Name>
           <Name onClick={() => window.open("https://github.com/seungjaelee2684")}>이승재</Name>
         </MemberContainer>
         <MemberContainer>
           <Position>BACKEND</Position>
-          <Name>이지원 ♀</Name>
-          <Name>김지훈</Name>
-          <Name>이지원 ♂</Name>
+          <Name onClick={() => window.open("https://github.com/jiooong")}>이지원 ♀</Name>
+          <Name onClick={() => window.open("https://github.com/K-IMjihun")}>김지훈</Name>
+          <Name onClick={() => window.open("https://github.com/stoow1")}>이지원 ♂</Name>
         </MemberContainer>
         <MemberContainer>
           <Position>DESIGN</Position>
-          <Name>윤지숙</Name>
+          <Name onClick={() => window.open("https://www.figma.com/file/aL874LElbs7lkXTpuuhARZ/항해99-4조?type=design&node-id=716%3A29&mode=design&t=iv4Sq7t46PMtYKlH-1")}>윤지숙</Name>
         </MemberContainer>
       </ContentContainer>
     </FooterContainer>
@@ -82,5 +82,10 @@ const Name = styled.span`
   font-weight: 400;
   line-height: 150%; /* 27px */
   cursor: pointer;
+
+  &:hover {
+    color: #394772;
+    border-bottom: 1px solid #394772;
+  }
 `;
 export default Footer;
