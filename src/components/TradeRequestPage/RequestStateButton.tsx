@@ -22,7 +22,6 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({ requestState, s
   const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-  const { request } = requestState;
   const [requestGoods, setRequestGoods] = useState<{
     requestId: string | number[];
   }>({
@@ -84,7 +83,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({ requestState, s
     }
     if (item?.requestStatus === "TRADING") {
       return (
-        <ButtonContainer>
+        <ButtonContainer style={{ marginTop: "40px" }}>
           <StCompleteBt buttonColor="#EC8D49" onClick={completeModalClick}>
             완료
           </StCompleteBt>
@@ -145,7 +144,6 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 136px;
-  margin-top: 40px;
 `;
 
 export const StCompleteBt = styled(StBasicButton)`
@@ -170,14 +168,6 @@ export const StChatBt = styled(StBasicButton)`
   font-weight: 400;
 `;
 
-// const StDeleteBt = styled(StBasicButton)`
-//   width: 176px;
-//   border: 1px solid #d5d4d4;
-//   font-family: "Pretendard";
-//   font-size: 16px;
-//   font-weight: 400;
-//   margin-top: 70px;
-// `;
 const StAssureBt = styled(StBasicButton)`
   width: 80px;
   height: 44px;

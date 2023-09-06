@@ -4,31 +4,31 @@ import { useForm } from "react-hook-form";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { StBasicInput } from "../styles/BasicInput";
-import KakaoApi from "../components/common/KakaoApi";
 import ProfileImageUpload from "../components/EditProfilePage/ProfileImageUpload";
-import { patchProfileEditApi, postNicknameApi } from "../api/users";
-import { useRecoilValue } from "recoil";
-import { userEmail } from "../store/userEmail";
+import {
+  getMypageApi,
+  pathchProfileEditApi,
+  postNicknameApi,
+} from "../api/users";
+import { useQuery } from "react-query";
+import LoadingSpinner from "../components/common/LoadingSpinner";
+import MainTradingAddress from "../components/EditProfilePage/MainTradingAddress";
 
 interface EditForm {
-  password: string;
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
   nickname: string;
   uploadImage: string;
   address: string;
+  data: any;
 }
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
-  const [address, setAddress] = useState(""); //주소
+  //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
-  const [uploadImage, setUploadImage] = useState<any>([]);
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
   const [nicknameChecked, setNicknameChecked] = useState(false);
-  const locationData = localStorage.getItem("location");
+  const [isNicknameEditable, setNicknameEditable] = React.useState(false);
 
   const {
     register,
@@ -37,12 +37,24 @@ const EditProfilePage = () => {
     formState: { errors },
   } = useForm<EditForm>({ mode: "onBlur" });
 
+  // 개인정보 가져오기
+  const { isLoading, error, data }: any = useQuery("myPageData", getMypageApi, {
+    refetchOnWindowFocus: false,
+  });
+  console.log("개인정보수정페이지", data);
+
+  const imageData = data?.data.info.image;
+  const nicknameData = data?.data.info.nickname;
+  const location = data?.data.info.location;
+
+  const [uploadImage, setUploadImage] = useState<any>([]);
+
   //닉네임 중복 확인 통신
   const checkNicknameAvailability = async (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     const formData = getValues();
-    const newNick = formData.nickname;
+    const newNick = formData.nickname || nicknameData;
     const nickData = { nickname: newNick };
     console.log(nickData, "nick");
     try {
@@ -60,51 +72,45 @@ const EditProfilePage = () => {
       console.log("중복된 닉네임 입니다.", error);
     }
   };
+  const [address, setAddress] = useState(location || "");
 
   //변경사항 저장 통신
   const editprofileOnclick = handleSubmit(async (data: EditForm) => {
     const formData = new FormData();
     const request = {
-      nickname: data.nickname,
-      originPassword: data.currentPassword,
-      password: data.newPassword,
+      nickname: data.nickname || nicknameData,
     };
     const allRequest = {
       data: {
         ...request,
-        location: address,
+        location: address || location,
       },
     };
 
-    console.log("allRequest", allRequest, "uploadImage", uploadImage);
-
-    if (uploadImage) {
-      uploadImage.forEach((blobImage: any, index: any) => {
-        formData.append("image", blobImage, `image${index + 1}.jpg`);
-      });
-    }
-    formData.append(
-      "data",
-      new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
-    );
-    // if (uploadImage) {
-    //   fetch(uploadImage)
-    // .then(response => response.blob())
-    // .then(blobImage => {
-    //   formData.append("image", blobImage);
-    // });
-    // };
-
-    // uploadImage.forEach((blobImage:any, index:any) => {
-    //   formData.append("image", blobImage, `image${index + 1}.jpg`);
-    // });
-
-    formData.forEach(function (value, key) {
-      console.log(key + ": " + value);
-    });
+    console.log("주소, 닉네임", allRequest);
+    console.log("이미지 업로드", uploadImage);
 
     try {
-      const res = await patchProfileEditApi(formData);
+      if (uploadImage[0]) {
+        if (uploadImage[0] === undefined || uploadImage[0] === imageData) {
+        } else {
+          uploadImage.forEach((blobImage: any, index: any) => {
+            formData.append("image", blobImage, `image${index + 1}.jpg`);
+          });
+        }
+      }
+
+      formData.append(
+        "data",
+        new Blob([JSON.stringify(allRequest.data)], {
+          type: "application/json",
+        })
+      );
+
+      formData.forEach(function (value, key) {
+        console.log(key + ": " + value);
+      });
+      const res = await pathchProfileEditApi(formData);
 
       if (res.status === 200) {
         console.log("개인정보수정완료", res);
@@ -115,8 +121,12 @@ const EditProfilePage = () => {
     }
   });
 
-  const myEmail = useRecoilValue(userEmail);
+  const handleNicknameEdit = () => {
+    setNicknameEditable(true);
+  };
 
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <p>Error: {error.message}</p>;
   return (
     <div>
       <EditProfilePageContainer>
@@ -131,22 +141,34 @@ const EditProfilePage = () => {
             <ProfileImageUpload
               uploadImage={uploadImage}
               setUploadImage={setUploadImage}
+              data={data}
             />
           </ProfileImageContainer>
           <EmailContainer>
             <Label>이메일(아이디)</Label>
-            <Email>{myEmail}</Email>
+            <Email>{data.data.info.email}</Email>
           </EmailContainer>
           <NickNameContainer>
             <CommonLabel>닉네임</CommonLabel>
             <NickNameInputContainer>
-              <StBasicInput
-                focusBorderColor="#EC0000"
-                borderColor="#ADADAD"
-                type="text"
-                placeholder="닉네임을 입력해주세요."
-                {...register("nickname")}
-              />
+              {isNicknameEditable ? ( // 수정 가능 상태일 때
+                <StBasicInput
+                  focusBorderColor="#46A75B"
+                  borderColor={errors.nickname ? "red" : "#ADADAD"}
+                  type="text"
+                  onFocus={handleNicknameEdit}
+                  {...register("nickname")}
+                />
+              ) : (
+                // 수정 불가능 상태일 때
+                <StBasicInput
+                  focusBorderColor="#46A75B"
+                  borderColor={errors.nickname ? "red" : "#ADADAD"}
+                  type="text"
+                  value={data.data.info.nickname}
+                  onClick={handleNicknameEdit}
+                />
+              )}
             </NickNameInputContainer>
             <StBasicButton
               buttonColor="#FDD988"
@@ -156,95 +178,29 @@ const EditProfilePage = () => {
               중복확인
             </StBasicButton>
           </NickNameContainer>
-          {nicknameError && <Content>* 중복된 닉네임입니다.</Content>}
-          {isAvailable && <Content>* 사용 가능한 닉네임입니다.</Content>}
-          <PwContainer>
-            <Label>현재 비밀번호</Label>
-            <PwInputContainer>
-              <StBasicInput
-                focusBorderColor="#EC0000"
-                borderColor="#ADADAD"
-                type="password"
-                placeholder="현재 비밀번호를 입력해주세요."
-                {...register("currentPassword")}
-              />
-            </PwInputContainer>
-          </PwContainer>
-          <Content>{errors?.currentPassword?.message}</Content>
-          <CheckPwContainer>
-            <Label>비밀번호 재설정</Label>
-            <SetPwInputContainer>
-              <NewInputContainer>
-                <StBasicInput
-                  focusBorderColor="#EC0000"
-                  borderColor="#ADADAD"
-                  type="password"
-                  placeholder="새 비밀번호를 입력해주세요."
-                  {...register("newPassword", {
-                    minLength: {
-                      value: 8,
-                      message: "* 비밀번호는 8자 이상 15자 이하여야 합니다.",
-                    },
-                    pattern: {
-                      value:
-                        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
-                      message:
-                        "영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
-                    },
-                  })}
-                />
-                <PwValidation>{errors?.newPassword?.message}</PwValidation>
-                <PwContent>
-                  영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상
-                </PwContent>
-              </NewInputContainer>
-
-              <CheckPwInputContainer>
-                <StBasicInput
-                  focusBorderColor="#EC0000"
-                  borderColor="#ADADAD"
-                  type="password"
-                  placeholder="비밀번호를 확인해주세요."
-                  {...register("confirmPassword", {
-                    validate: {
-                      check: (value) => {
-                        if (getValues("newPassword") !== value) {
-                          return "* 비밀번호가 일치하지 않습니다.";
-                        }
-                      },
-                    },
-                  })}
-                />
-                <PwValidation>{errors?.confirmPassword?.message}</PwValidation>
-              </CheckPwInputContainer>
-            </SetPwInputContainer>
-          </CheckPwContainer>
-          <AddressLabelContainer>
-            <AddressLabel>주거래지역</AddressLabel>
-            <CurrentAddress>{locationData}</CurrentAddress>
-          </AddressLabelContainer>
-          <AddressContainer>
-            <KakaoApi
-              address={address}
-              setAddress={setAddress}
-              openPostcode={openPostcode}
-              setOpenPostcode={setOpenPostcode}
-            />
-          </AddressContainer>
-          <AddContent>
-            입력된 주소는 나의 주거래 지역으로 표시됩니다.
-          </AddContent>
+          {nicknameError && (
+            <Content fontcolor="red">* 중복된 닉네임입니다.</Content>
+          )}
+          {isAvailable && (
+            <Content fontcolor="#46A75B">* 사용 가능한 닉네임입니다.</Content>
+          )}
+          <MainTradingAddress
+            openPostcode={openPostcode}
+            setOpenPostcode={setOpenPostcode}
+            address={address}
+            setAddress={setAddress}
+            data={data}
+          />
         </EditProfileContainer>
         <AssignButtonContainer>
           <StButton
-            buttonColor={nicknameChecked ? "#FDD988" : "#D5D4D4"}
+            buttonColor={"#FDD988"}
             style={{
-              color: nicknameChecked ? "black" : "white",
-              border: nicknameChecked ? "1px solid black" : "none",
-              fontWeight: nicknameChecked ? "700" : "400",
+              color: "black",
+              border: "1px solid black",
+              fontWeight: "700",
             }}
             onClick={editprofileOnclick}
-            disabled={!nicknameChecked}
           >
             변경사항 저장
           </StButton>
@@ -256,18 +212,18 @@ const EditProfilePage = () => {
 
 const EditProfilePageContainer = styled.div``;
 
-const TitleContainer = styled.div`
+export const TitleContainer = styled.div`
   width: 100%;
   margin: auto;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   font-size: 40px;
   font-weight: 800;
   font-family: "Lemon/Milk", sans-serif;
 `;
 
-const SubTitle = styled.div`
+export const SubTitle = styled.div`
   font-size: 32px;
   margin-top: 16px;
   margin-bottom: 16px;
@@ -278,7 +234,7 @@ const EditProfileContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   width: 100%;
-  height: 1135px;
+  height: 771px;
   margin: auto;
 `;
 const ProfileImageContainer = styled.div``;
@@ -290,7 +246,7 @@ const EmailContainer = styled.div`
   margin-bottom: 33px;
 `;
 
-const Label = styled.div`
+export const Label = styled.div`
   font-size: 20px;
   font-family: "Pretendard";
   width: 150px;
@@ -322,103 +278,26 @@ const NickNameInputContainer = styled.div`
   width: 464px;
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<{ fontcolor: string }>`
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 400;
   width: 465px;
   height: 24px;
   margin-left: 220px;
-  color: red;
+  color: ${(props) => props.fontcolor};
   margin-top: 10px;
   margin-bottom: 30px;
 `;
 
-const PwContainer = styled.div`
-  border-top: 1px solid gray;
-  display: flex;
-  align-items: center;
-  padding-top: 30px;
-  margin-top: 30px;
-`;
-
-const PwInputContainer = styled.div`
-  width: 656px;
-`;
-
-const SetPwInputContainer = styled.div`
-  width: 656px;
-`;
-
-const NewInputContainer = styled.div``;
-
-const CheckPwInputContainer = styled.div`
-  margin-bottom: 30px;
-`;
-
-const CheckPwContainer = styled.div`
-  border-bottom: 1px solid gray;
-  display: flex;
-`;
-
-const PwValidation = styled.div`
-  color: red;
-  margin-top: 10px;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 10px;
-`;
-
-const PwContent = styled.div`
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 30px;
-  color: #808080;
-`;
-
-const CurrentAddress = styled.div`
-  font-family: "Pretendard";
-  font-size: 16px;
-`;
-const AddressLabelContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
-`;
-
-const AddressLabel = styled.label`
-  width: 150px;
-  height: 33px;
-  font-size: 20px;
-  font-family: "Pretendard";
-  font-weight: bold;
-  margin-right: 70px;
-`;
-
-const AddressContainer = styled.div`
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  padding-left: 220px;
-  padding-right: 250px;
-`;
-
-const AddContent = styled.div`
-  font-family: "Pretendard";
-  margin: 10px 0px 40px 220px;
-  color: gray;
-`;
-
-const AssignButtonContainer = styled.div`
+export const AssignButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 60px 0px 20px 0px;
 `;
 
-const StButton = styled(StBasicButton)`
+export const StButton = styled(StBasicButton)`
   font-family: "Pretendard";
   font-size: 16px;
   font-weight: 700;

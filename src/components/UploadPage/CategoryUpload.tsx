@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { styled } from "styled-components";
 import CategorySelect from "../common/CategorySelect";
 import Up from "../../assets/icon/uparrow.png";
 import Down from "../../assets/icon/downarrow.png";
 
 const CategoryUpload = ({ setUploadData, uploadData, failedUpload }: any) => {
+
+  const divRef = useRef<HTMLDivElement>(null);
   const [categorySelect, setCategorySelect] = useState({
     category: "",
     name: "카테고리 선택",
@@ -15,6 +17,18 @@ const CategoryUpload = ({ setUploadData, uploadData, failedUpload }: any) => {
   const onClickDropDownHandelr = () => {
     setSelectBar(!selectBar);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setSelectBar(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (category !== "") {
@@ -28,7 +42,7 @@ const CategoryUpload = ({ setUploadData, uploadData, failedUpload }: any) => {
             style={{color: `${(failedUpload && uploadData.data.category === "") ? "#DF3737" : "#222020"}`}}
         >카테고리*</RequiredText>
         <RightWrapper>
-            <SelectBar onClick={onClickDropDownHandelr}>
+            <SelectBar ref={divRef} onClick={onClickDropDownHandelr}>
                 <Text>{name}</Text>
                 {(selectBar)
                     ? <ChoiceBox src={Up}></ChoiceBox>

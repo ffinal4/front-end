@@ -141,13 +141,25 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
         );
       } else {
         if (item?.bidListResponseDtos.length > 0) {
-          return (
-            <div>
-              <Title>입찰</Title>
-              <GoodsTitle>{item?.bidListResponseDtos[0].title}</GoodsTitle>
-              <Address>{item?.bidListResponseDtos[0].location}</Address>
-            </div>
-          );
+          if (item?. bidListResponseDtos.length > 1) {
+            return (
+              <div>
+                <Title>입찰</Title>
+                <GoodsTitle>
+                  {item?.bidListResponseDtos[0].title} 외 {item?. bidListResponseDtos.length - 1} 개
+                </GoodsTitle>
+                <Address>{item?.bidListResponseDtos[0].location}</Address>
+              </div>
+            );
+          } else {
+            return (
+              <div>
+                <Title>입찰</Title>
+                <GoodsTitle>{item?.bidListResponseDtos[0].title}</GoodsTitle>
+                <Address>{item?.bidListResponseDtos[0].location}</Address>
+              </div>
+            );
+          };   
         } else {
           return (
             <div>

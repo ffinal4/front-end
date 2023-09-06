@@ -9,16 +9,11 @@ import {
 import {
   ArrowImg,
   GetRequests,
-  RequestIngNumber,
-  RequestStateContainer,
-  RequestStateNumber,
   SendRequests,
   TabContainer,
 } from "../../pages/TradeRequestPage";
-import TradeRequestCard, { DotImg } from "./TradeRequestCard";
+import TradeRequestCard from "./TradeRequestCard";
 import arrow from "../../assets/icon/arrow.png";
-import orangedot from "../../assets/icon/orangedot.png";
-import emptydot from "../../assets/icon/emptydot.png";
 import { useQuery } from "react-query";
 import { getTradeRequestApi } from "../../api/goods";
 import { useRecoilValue } from "recoil";
@@ -46,7 +41,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
   const tradeState = useRecoilValue(requestCategory);
 
   const { isLoading, data, error }: any = useQuery(
-    [" getTradeRequestData", currentPage, tradeState],
+    ["getTradeRequestData", currentPage, tradeState],
     () => getTradeRequestApi(currentPage, tradeState),
     { refetchOnWindowFocus: false }
   );
@@ -68,16 +63,6 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
         <GetRequests onClick={getRequestOnclick}>받은 요청</GetRequests>
         <SendRequests>보낸 요청</SendRequests>
       </TabContainer>
-      {/* <RequestStateContainer>
-        <RequestStateNumber>
-          <DotImg src={emptydot} />
-          교환요청 10
-        </RequestStateNumber>
-        <RequestIngNumber>
-          <DotImg src={orangedot} />
-          교환진행중 10
-        </RequestIngNumber>
-      </RequestStateContainer> */}
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter

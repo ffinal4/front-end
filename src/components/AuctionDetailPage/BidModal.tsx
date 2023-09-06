@@ -109,17 +109,31 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
                   {(item.ratingPrice === 0 ||
                     item.goodsStatus === "BIDDING" ||
                     item.goodsStatus === "ONAUCTION" ||
+                    item.goodsStatus === "TRADING" ||
+                    item.goodsStatus === "REQUEST" ||
                     item.rationCheck === false) && <NotRatingProduct />}
-                  {(item.goodsStatus === "BIDDING" || item.goodsStatus === "ONAUCTION") && (
-                    <div>
-                      <GoodsConditionContainer />
-                      <GoodsCondition>
-                        <Circle />
-                        경매중
-                      </GoodsCondition>
-                    </div>
-                  )}
-                  {(item.goodsStatus === "END" || item.goodsStatus === "DONE") && (
+                  {(item.goodsStatus === "REQUEST"
+                    || item.goodsStatus === "TRADING")
+                      && <div>
+                        <GoodsConditionContainer />
+                        <GoodsCondition>
+                          <Circle style={{backgroundColor: "#EC8D49"}} />
+                          거래중
+                        </GoodsCondition>
+                      </div>}
+                  {(item.goodsStatus === "BIDDING"
+                    || item.goodsStatus === "ONAUCTION")
+                      && <div>
+                        <GoodsConditionContainer />
+                        <GoodsCondition>
+                          <Circle />
+                          경매중
+                        </GoodsCondition>
+                      </div>}
+                  {(item.goodsStatus === "END"
+                    || item.goodsStatus === "DONE"
+                    || item.goodsStatus === "SOLDOUT"
+                    ) && (
                     <DoneContainer>거래완료</DoneContainer>
                   )}
                 </NotRatingProductWrapper>
@@ -157,7 +171,7 @@ export const ModalBackgroundBox = styled.div`
 
 export const ModalContainer = styled.div`
   width: 814px;
-  max-height: 940px;
+  min-height: 940px;
   border: 1px solid #222020;
   background-color: #fcfcfc;
   border-radius: 10px;
@@ -252,7 +266,7 @@ export const NotRatingProductWrapper = styled.div`
 
 export const GoodsConditionContainer = styled.div`
   position: absolute;
-  bottom: 39px;
+  bottom: 53px;
   left: 0;
   z-index: 999;
   width: 100%;
@@ -264,7 +278,7 @@ export const GoodsConditionContainer = styled.div`
 
 export const GoodsCondition = styled.div`
   position: absolute;
-  bottom: 45px;
+  bottom: 51px;
   left: 0;
   z-index: 999;
   width: 100%;

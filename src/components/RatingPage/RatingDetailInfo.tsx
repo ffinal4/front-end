@@ -61,7 +61,7 @@ const ContentContainer = styled.div`
     height: 240px;
     display: flex;
     flex-wrap: wrap;
-    overflow-y: auto;
+    
 `;
 
 const ContentText = styled.div`
@@ -70,6 +70,7 @@ const ContentText = styled.div`
     font-weight: 400;
     line-height: 150%;
     color: #39373A;
+    overflow-y: auto;
     width: 100%;
     height: 408px;
     word-break: break-word;

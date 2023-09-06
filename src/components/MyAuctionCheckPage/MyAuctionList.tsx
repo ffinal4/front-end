@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   CardContainer,
   Filter,
@@ -23,7 +23,7 @@ import blackdot from "../../assets/icon/blackdot.png";
 import { useQuery } from "react-query";
 import { getMyAuctionCheckApi } from "../../api/acution";
 import AuctionFilterDropdownMenu from "./AuctionFilterDropdownMenu";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import { auctionCategory, myAuctionFilter } from "../../store/filterCategory";
 import SellerPickModal from "../AuctionDetailPage/SellerPickModal";
 import SuccessBIdModal from "../AuctionDetailPage/SuccessBIdModal";
@@ -52,7 +52,9 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
+  const divRef = useRef<HTMLDivElement>(null);
   const currentPage = useRecoilValue(pagination);
+  const resetPage = useResetRecoilState(pagination);
   const [category, setCategory] = useState<string | null>("");
   const [filter, setFilter] = useState("전체");
   const [detailData, setDetailData] = useState<any>(null);
@@ -78,21 +80,34 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
     () => getMyAuctionCheckApi(currentPage, category)
   );
 
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setAuctionFilterOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   const [testListResponseDto, setTestListResponseDto] = useState<any>();
 
-  if (isLoading) return <LoadingSpinner />;
-  console.log("내경매현황 데이터", data);
-  if (error) {
-    console.log(error);
-  }
-  console.log(data, "내 경매 현황 데이터");
   const myAuctionOnclick = () => {
+    resetPage();
     setFilterTap({
       myAuctionTap: false,
       bidAuctionTap: true,
     });
   };
   console.log("경매현황페이지 내경매 데이터", data);
+
+  if (isLoading) return <LoadingSpinner />;
+  console.log("내경매현황 데이터", data);
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <div>
@@ -113,6 +128,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter
+            ref={divRef}
             onClick={() => {
               setAuctionFilterOpen(!auctionFilterOpen);
             }}
@@ -121,7 +137,6 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
             {/* {dropdownMenu} */}
             <ArrowImg src={arrow} />
           </Filter>
-
           {auctionFilterOpen && (
             <FilterdropdownMenuContainer>
               <AuctionFilterDropdownMenu

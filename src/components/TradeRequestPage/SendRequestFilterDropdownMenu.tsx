@@ -5,6 +5,7 @@ import { requestCategory, sendRequestFilter } from "../../store/filterCategory";
 import { pagination } from "../../store/pagination";
 
 const SendRequestFilterDropdownMenu = (props: any) => {
+  const { filterOpen, setFilterOpen, setDropdownMenu } = props;
   const [categorySelect, setCategorySelect] = useRecoilState(requestCategory);
   const [tradeState, setTradeState] = useRecoilState(sendRequestFilter);
   const resetPage = useResetRecoilState(pagination);
@@ -32,12 +33,14 @@ const SendRequestFilterDropdownMenu = (props: any) => {
               onClick={() => {
                 if (item.status !== null) {
                   setCategorySelect(`&status=${item.status}`);
-                  setTradeState(item.name);
+                  setDropdownMenu(item.name);
                   resetPage();
+                  setFilterOpen(!filterOpen);
                 } else {
                   setCategorySelect("");
-                  setTradeState(item.name);
+                  setDropdownMenu(item.name);
                   resetPage();
+                  setFilterOpen(!filterOpen);
                 }
               }}
             >

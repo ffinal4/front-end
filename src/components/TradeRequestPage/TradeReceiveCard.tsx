@@ -27,7 +27,6 @@ const TradeReceiveCard = ({ item, data }: any) => {
   });
   const [border, setBorder] = useState<string>();
   const [opacity, setOpacity] = useState<string>();
-  const { request } = requestState;
 
   useEffect(() => {
     if (item?.requestStatus === "REQUEST") {
