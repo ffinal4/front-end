@@ -16,12 +16,7 @@ interface RequestStateButtonProps {
   data: any;
 }
 
-const RequestStateButton: React.FC<RequestStateButtonProps> = ({
-  requestState,
-  setRequestState,
-  item,
-  data,
-}) => {
+const RequestStateButton: React.FC<RequestStateButtonProps> = ({ requestState, setRequestState, item, data }) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
