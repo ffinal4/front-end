@@ -13,7 +13,7 @@ export const getChatDetailApi = async (roomId: string) => {
 };
 
 // 채팅방 생성(교환요청 수락시 post)
-export const postMakeChatApi = async (goodsId: any) => {
-  const res = await instance.post(`/api/chat/room/${goodsId}`);
+export const postMakeChatApi = async (goodsId: any, body: any) => {
+  const res = await instance.post(`/api/chat/room/${goodsId}`, body);
   return res;
 };

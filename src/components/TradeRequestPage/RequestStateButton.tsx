@@ -8,6 +8,7 @@ import TradeCompleteModal from "./TradeCompleteModal";
 import { useMutation, useQueryClient } from "react-query";
 import TradeAcceptButton from "./TradeAcceptButton";
 import { postAcceptTradeApi } from "../../api/goods";
+import { postMakeChatApi } from "../../api/chat";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
@@ -27,12 +28,27 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({ requestState, s
   }>({
     requestId: [],
   });
+  const postChat = async () => {
+    const postChatBody = {
+      buyerId: item.goodsListResponseDtos[0].userId,
+    };
+    try {
+      const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
+      if (res.status == 200) {
+        const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
+        console.log("채팅 생성 성공", res);
+      }
+    } catch (error) {
+      console.log("채팅 생성에러", error);
+    }
+  };
 
   // 교환요청 수락api
   const mutation = useMutation(() => postAcceptTradeApi(requestGoods), {
     onSuccess: (res) => {
       console.log("교환요청수락성공!", res);
       queryClient.invalidateQueries("getTradeReceiveRequestData");
+      postChat();
     },
   });
   console.log(newGoodsData, "id");
