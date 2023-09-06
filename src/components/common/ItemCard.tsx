@@ -11,16 +11,16 @@ const ItemCard = ({ item, isPocket }: any) => {
     if (isPocket) {
       if (item?.ratingCheck) {
         if (item?.ratingPrice > 0) {
-          return <UserName>{(item?.ratingPrice).toLocaleString()}</UserName>
+          return <UserName>{(item?.ratingPrice).toLocaleString()}</UserName>;
         } else {
-          return <UserName>레이팅이 되는 중...</UserName>
-        };
+          return <UserName>레이팅이 되는 중...</UserName>;
+        }
       } else {
-        return <UserName>레이팅이 필요해요</UserName>
-      };
+        return <UserName>레이팅이 필요해요</UserName>;
+      }
     } else {
-      return <UserName>{item?.location}</UserName>
-    };
+      return <UserName>{item?.location}</UserName>;
+    }
   };
 
   return (
@@ -37,10 +37,14 @@ const ItemCard = ({ item, isPocket }: any) => {
       </AddressContent> */}
       {item?.checkSameUser ? (
         <div></div>
+      ) : isPocket ? (
+        <div></div>
       ) : (
-        (isPocket)
-          ? <div></div>
-          : <CardZzimBtn checkZzim={item?.checkDibs} goodsId={item?.goodsId} isCard={true} />
+        <CardZzimBtn
+          checkZzim={item?.checkDibs}
+          goodsId={item?.goodsId}
+          isCard={true}
+        />
       )}
       <ItemTitle>{item?.title}</ItemTitle>
       {cardContent()}
@@ -63,6 +67,13 @@ const ItemTitle = styled.div`
   font-size: 20px;
   font-weight: 700;
   margin-top: 10px;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  height: 24px;
 `;
 
 const UserName = styled.div`

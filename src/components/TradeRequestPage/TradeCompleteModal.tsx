@@ -13,7 +13,7 @@ import {
   Title,
 } from "../MyAuctionCheckPage/AuctionCompleteModal";
 import { StBasicButton } from "../../styles/BasicButton";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { completeTradeApi } from "../../api/goods";
 
 interface TradeCompleteModalProps {
@@ -33,6 +33,7 @@ const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
   setRequestState,
   item,
 }) => {
+  const queryClient = useQueryClient();
   const newGoodsData = item?.goodsListResponseDtos.map((item: any) => {
     return item.goodsId;
   });
@@ -47,11 +48,11 @@ const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
   const completeMutation = useMutation(() => completeTradeApi(completeGoods), {
     onSuccess: (res) => {
       console.log("교환완료 성공", res);
-      // setCompleteGoods({ ...requestState, request: "DONE" });
+      queryClient.invalidateQueries("getTradeReceiveRequestData");
     },
   });
-  console.log(newGoodsData, "교환완료id들");
-  console.log(completeGoods, "교환요청성공아이디");
+  console.log(newGoodsData, "교환완료goodsId들");
+  console.log(completeGoods, "교환완료requestId");
 
   return (
     <div>

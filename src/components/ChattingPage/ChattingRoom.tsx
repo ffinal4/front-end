@@ -85,10 +85,10 @@ const ChattingRoom = ({ setChatRoomOpen }: any) => {
         // 컴포넌트 언마운트 시 연결 해제
         return () => {
           console.log("언마운트!!!!!!!");
-
           if (clientRef.current) {
             subscription.unsubscribe();
             stompClient.disconnect(() => {});
+            console.log("웹소켓 연결 종료");
           }
         };
       },
@@ -100,14 +100,12 @@ const ChattingRoom = ({ setChatRoomOpen }: any) => {
       console.log("WebSocket 연결이 닫혔습니다.");
       setChatRoomOpen(false);
     };
-  }, [accessToken]);
+  }, []);
   console.log("웹소켓메시지", webSocketMsg);
 
-  // if (isLoading) return <LoadingSpinner />;
-  // console.log("채팅디테일데이터", data);
-  // if (error) {
-  //   console.log(error);
-  // }
+  if (isLoading) return <LoadingSpinner />;
+  console.log("채팅디테일데이터", data);
+
   return (
     <ChattingRoomContainer>
       <OtherUserContainer>
@@ -118,7 +116,12 @@ const ChattingRoom = ({ setChatRoomOpen }: any) => {
         </ContentContainer>
         <DenyButton>거절</DenyButton>
       </OtherUserContainer>
-      <ChattingRoomCardList data={data?.data} webSocketMsg={webSocketMsg} isLoading={isLoading} />
+      <ChattingRoomCardList
+        data={data?.data.content}
+        webSocketMsg={webSocketMsg}
+        isLoading={isLoading}
+        otherUserNickname={otherUserData.nickname}
+      />
       <ChattingInput accessToken={accessToken} stompClient={stompClient} />
     </ChattingRoomContainer>
   );

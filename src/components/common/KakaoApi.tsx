@@ -24,17 +24,19 @@ const KakaoApi = (props: any) => {
       setOpenPostcode(false);
     },
   };
+
   return (
     <>
-      <StBasicInput
-        focusBorderColor="#ADADAD"
-        borderColor="#ADADAD"
-        type="text"
-        placeholder="주소를 입력해주세요."
-        value={address}
-        onChange={addressOnchange}
-      />
-
+      <AddressContainer>
+        <StBasicInput
+          focusBorderColor="#46A75B"
+          borderColor="#ADADAD"
+          type="text"
+          placeholder="주소를 입력해주세요."
+          value={address}
+          onChange={addressOnchange}
+        />
+      </AddressContainer>
       <StButton buttonColor="#FDD988" onClick={handle.clickButton}>
         {openPostcode && (
           <DaumPostcode
@@ -51,5 +53,8 @@ const KakaoApi = (props: any) => {
 const StButton = styled(StBasicButton)`
   margin-left: 20px;
   border: 1px solid black;
+`;
+const AddressContainer = styled.div`
+  width: 464px;
 `;
 export default KakaoApi;

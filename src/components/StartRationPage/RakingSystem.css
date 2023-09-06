@@ -1,0 +1,28 @@
+.slider1 {
+    display:flex;
+    width: 1904.1px;
+    height: 100%;
+    padding: 30px;
+    gap: 21.5px;
+}
+
+.slider1 {
+    animation-iteration-count: infinite;
+    animation-duration: 25s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.slider1 {
+    animation-name: slideleft;
+}
+  
+@keyframes slideleft {
+    0% {
+        transform: translateX(0%);
+      }
+    100% {
+        transform: translateX(-100%);
+      }
+    
+}

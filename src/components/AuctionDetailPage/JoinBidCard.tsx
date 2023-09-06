@@ -69,6 +69,8 @@ const CardImgContainer = styled.div<{ src: string }>`
     border-radius: 10px;
     background-image: ${(props) => `url(${props.src})`};
     background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     position: relative;
 `;
 
@@ -114,6 +116,12 @@ const TitleContainer = styled.div`
     font-weight: 700;
     line-height: 150%;
     padding: 10px 0px 0px 0px;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 `;
 
 const ContentContainer = styled.div`

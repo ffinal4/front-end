@@ -15,4 +15,7 @@ export const StBasicInput = styled.input<{
     outline: none !important;
     border-color: ${(props) => props.focusBorderColor};
   }
+  &:error {
+    border-color: red !important;
+  }
 `;

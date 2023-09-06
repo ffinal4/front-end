@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import defaultProfile from "../../assets/images/defaultprofile.png";
 
 const YourChat = ({ item }: any) => {
   const hours = new Date(item.time).getHours();
@@ -8,7 +9,7 @@ const YourChat = ({ item }: any) => {
   const formattedTime = `${amPm} ${hours % 12}:${minutes.toString().padStart(2, "0")}`;
   return (
     <YourChatContainer>
-      <UserImage />
+      <UserImage src={defaultProfile} />
       <TextBox>{item.message}</TextBox>
       <Time>{formattedTime}</Time>
     </YourChatContainer>
@@ -50,7 +51,7 @@ const TextBox = styled.div`
   background: var(--black-white-white, #fcfcfc);
 `;
 
-const UserImage = styled.div`
+const UserImage = styled.img`
   margin-right: 20px;
   width: 48px;
   height: 48px;

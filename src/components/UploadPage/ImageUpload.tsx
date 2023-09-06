@@ -1,7 +1,7 @@
-import React, { ChangeEvent,useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { styled } from "styled-components";
 import removeIcon from "../../assets/icon/trash.png";
-import Camera from '../../assets/icon/camera.png'
+import Camera from "../../assets/icon/camera.png";
 
 const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
   type FileState = {
@@ -55,15 +55,25 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
   };
 
   const onClickChangeHandler = (id: number) => {
-    const switchValues = (imageUrlLists: string[], index1: number, index2: number) => {
-      [imageUrlLists[index1], imageUrlLists[index2]] = [imageUrlLists[index2], imageUrlLists[index1],];
+    const switchValues = (
+      imageUrlLists: string[],
+      index1: number,
+      index2: number
+    ) => {
+      [imageUrlLists[index1], imageUrlLists[index2]] = [
+        imageUrlLists[index2],
+        imageUrlLists[index1],
+      ];
     };
     const switchFile = (
       uploadImages: string[],
       index1: number,
       index2: number
     ) => {
-      [uploadImages[index1], uploadImages[index2]] = [uploadImages[index2], uploadImages[index1],];
+      [uploadImages[index1], uploadImages[index2]] = [
+        uploadImages[index2],
+        uploadImages[index1],
+      ];
     };
 
     switchFile(uploadImages, 0, id - 1);
@@ -95,8 +105,14 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
   return (
     <LineContainer>
       <RequiredText
-        style={{color: `${(failedUpload && uploadImages.length === 0) ? "#DF3737" : "#222020"}`}}
-      >상품이미지*</RequiredText>
+        style={{
+          color: `${
+            failedUpload && uploadImages.length === 0 ? "#DF3737" : "#222020"
+          }`,
+        }}
+      >
+        상품이미지*
+      </RequiredText>
       <ContentContainer>
         {file.default.imageUrl ||
         file.second.imageUrl ||
@@ -117,7 +133,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
               <div>
                 <InputLabel htmlFor="files">
                   <InputStyleWrapper>
-                    <InputStyleBox src={Camera}/>
+                    <InputStyleBox src={Camera} />
                     <Text style={{ color: "#717171" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
@@ -143,7 +159,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
               <div>
                 <InputLabel htmlFor="files">
                   <InputStyleWrapper>
-                    <InputStyleBox src={Camera}/>
+                    <InputStyleBox src={Camera} />
                     <Text style={{ color: "#717171" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
@@ -182,10 +198,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
               </div>
             )}
             <RemoveBtnWrapper onClick={onClickRemoveHandler}>
-              <RemoveIcon
-                src={removeIcon}
-                alt=""
-              />
+              <RemoveIcon src={removeIcon} alt="" />
               이미지 전체 삭제
             </RemoveBtnWrapper>
           </ImageContainer>
@@ -230,11 +243,11 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
           </ImageContainer>
         )}
         <TextWrapper>
-          {(failedUpload && uploadImages.length === 0)
-            && <Text style={{color: "#DF3737", paddingBottom: "10px"}}>
+          {failedUpload && uploadImages.length === 0 && (
+            <Text style={{ color: "#DF3737", paddingBottom: "10px" }}>
               * 상품 이미지는 최소 1개 이상 필수로 등록되어야 합니다.
             </Text>
-          }
+          )}
           <Text>* 상품 이미지는 640X640에 최적화되어 있습니다.</Text>
           <Text>- 이미지는 상품 등록 시 정사각형으로 잘려서 등록됩니다.</Text>
           <Text>
@@ -293,7 +306,7 @@ const FirstImage = styled.div`
   font-size: 14px;
   font-weight: 400;
   line-height: 150%;
-  background-color: #EC8D49;
+  background-color: #ec8d49;
   color: #fff;
 `;
 
@@ -356,6 +369,7 @@ const RemoveBtnWrapper = styled.div`
   margin: 0px 0px 0px 173px;
   color: #222020;
   cursor: pointer;
+  height: 24px;
 
   @media screen and (max-width: 1136px) {
     margin: 0px;

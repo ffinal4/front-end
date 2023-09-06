@@ -247,6 +247,8 @@ const ImageBox = styled.div<{ src : string }>`
   height: 272px;
   background-size: cover;
   background-image: ${(props) => `url(${props.src})`};
+  background-position: center center;
+  background-repeat: no-repeat;
 `;
 
 const SlideBtnWrapper = styled.div`

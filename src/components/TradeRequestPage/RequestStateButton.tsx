@@ -8,6 +8,7 @@ import TradeCompleteModal from "./TradeCompleteModal";
 import { useMutation, useQueryClient } from "react-query";
 import TradeAcceptButton from "./TradeAcceptButton";
 import { postAcceptTradeApi } from "../../api/goods";
+import { postMakeChatApi } from "../../api/chat";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
@@ -16,29 +17,38 @@ interface RequestStateButtonProps {
   data: any;
 }
 
-const RequestStateButton: React.FC<RequestStateButtonProps> = ({
-  requestState,
-  setRequestState,
-  item,
-  data,
-}) => {
+const RequestStateButton: React.FC<RequestStateButtonProps> = ({ requestState, setRequestState, item, data }) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const newGoodsData = item?.goodsListResponseDtos[0].goodsId;
   const [rejectModalOpen, setRejectModalOpen] = useState<boolean>(false);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-  const { request } = requestState;
   const [requestGoods, setRequestGoods] = useState<{
     requestId: string | number[];
   }>({
     requestId: [],
   });
+  const postChat = async () => {
+    const postChatBody = {
+      buyerId: item.goodsListResponseDtos[0].userId,
+    };
+    try {
+      const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
+      if (res.status == 200) {
+        const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
+        console.log("채팅 생성 성공", res);
+      }
+    } catch (error) {
+      console.log("채팅 생성에러", error);
+    }
+  };
 
   // 교환요청 수락api
   const mutation = useMutation(() => postAcceptTradeApi(requestGoods), {
     onSuccess: (res) => {
       console.log("교환요청수락성공!", res);
       queryClient.invalidateQueries("getTradeReceiveRequestData");
+      postChat();
     },
   });
   console.log(newGoodsData, "id");
@@ -89,7 +99,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     }
     if (item?.requestStatus === "TRADING") {
       return (
-        <ButtonContainer>
+        <ButtonContainer style={{ marginTop: "40px" }}>
           <StCompleteBt buttonColor="#EC8D49" onClick={completeModalClick}>
             완료
           </StCompleteBt>
@@ -150,7 +160,6 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 136px;
-  margin-top: 40px;
 `;
 
 export const StCompleteBt = styled(StBasicButton)`
@@ -175,14 +184,6 @@ export const StChatBt = styled(StBasicButton)`
   font-weight: 400;
 `;
 
-// const StDeleteBt = styled(StBasicButton)`
-//   width: 176px;
-//   border: 1px solid #d5d4d4;
-//   font-family: "Pretendard";
-//   font-size: 16px;
-//   font-weight: 400;
-//   margin-top: 70px;
-// `;
 const StAssureBt = styled(StBasicButton)`
   width: 80px;
   height: 44px;

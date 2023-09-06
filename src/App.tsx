@@ -30,6 +30,7 @@ import { RecoilRoot } from "recoil";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import SearchPage from "./pages/SearchPage";
 import ChattingPage2 from "./pages/ChattingPage2";
+import PasswordChangePage from "./pages/PasswordChangePage";
 
 const queryClient = new QueryClient();
 
@@ -48,19 +49,29 @@ function App() {
               <Route path="/rating" element={<RatingPage />} />
               <Route path="/" element={<MainPage />} />
               <Route path="/mypocket" element={<MyPocketPage />} />
-              <Route path="/userpocket/:nickname" element={<UserPocketPage />} />
+              <Route
+                path="/userpocket/:nickname"
+                element={<UserPocketPage />}
+              />
               <Route path="/traderequest" element={<TradeRequestPage />} />
               <Route path="/auctioncheck" element={<MyAuctionCheckPage />} />
               <Route path="/serviceuse" element={<TermsOfServicePage />} />
-              <Route path="/chat" element={<ChattingPage2 />} />
+              <Route path="/chat" element={<ChattingPage />} />
               <Route element={<MainLayout />}>
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/upload" element={<UploadPage />} />
                 <Route path="/tradelist" element={<TradeListPage />} />
                 <Route path="/detail/:goodsId" element={<DetailPage />} />
                 <Route path="/editprofile" element={<EditProfilePage />} />
+                <Route
+                  path="/passwordchange"
+                  element={<PasswordChangePage />}
+                />
                 <Route path="/auctionupload" element={<AuctionUploadPage />} />
-                <Route path="/auctiondetail/:auctionId" element={<AuctionDetailPage />} />
+                <Route
+                  path="/auctiondetail/:auctionId"
+                  element={<AuctionDetailPage />}
+                />
                 <Route path="/zzimlist" element={<ZzimListPage />} />
                 <Route path="/search/:keyword" element={<SearchPage />} />
                 <Route path="/auctionlist" element={<AuctionListPage />} />

@@ -217,6 +217,8 @@ export const GoodsImg = styled.div<{ src: string }>`
   height: 80px;
   background-image: ${(props) => `url(${props.src})`};
   background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   border-radius: 5px;
   position: relative;
   cursor: pointer;
