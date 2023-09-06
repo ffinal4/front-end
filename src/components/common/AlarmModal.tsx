@@ -10,14 +10,14 @@ const AlarmModal = ({ setAlarmModalOpen } : any) => {
           <Triangle />
         </TriangleWrapper>
         <ModalWrapper>
-            <ModalLineContainer
+            <EmptyModalContainer
               style={{borderRadius: "5px",
                 padding: "20px",
                 display: "flex",
                 justifyContent: "center"}}
             >
               <Content style={{color: "#ADADAD"}}>새로운 알림이 없어요.</Content>
-            </ModalLineContainer>
+            </EmptyModalContainer>
             {/* <ModalLineContainer style={{borderRadius: "5px 5px 0px 0px"}} >
               <ImageBox src={Default} />
               <TextLine>
@@ -65,8 +65,10 @@ const AlarmModal = ({ setAlarmModalOpen } : any) => {
 
 const ModalContainer = styled.div`
   width: 396px;
-  height: 446px;
+  max-height: 446px;
   position: relative;
+  box-shadow: 1px 1px 8px 0px #c7c7c7;
+  border-radius: 5px;
 `;
 
 const TriangleWrapper = styled.div`
@@ -91,6 +93,15 @@ const ModalWrapper = styled.div`
   width: 396px;
   max-height: 424px;
   background-color: #FCFCFC;
+`;
+
+const EmptyModalContainer = styled.div`
+  width: 100%;
+  height: 106px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 `;
 
 const ModalLineContainer = styled.div`

@@ -60,66 +60,6 @@ const RecommendCard = ({ data, auction } : any) => {
                             </ImageCard>
                     )
                 })}
-                {/* <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard> */}
             </CardListContainer>
         </RecommendList>
     </LayoutContainer>
