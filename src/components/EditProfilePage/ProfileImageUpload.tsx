@@ -13,15 +13,12 @@ const ProfileImageUpload = (props: any) => {
       const imageUrl = URL.createObjectURL(file);
       setViewImage(imageUrl);
       setUploadImage([file]);
-    } else {
-      setViewImage(data?.data.info.image);
-      setUploadImage([]);
     }
   };
 
   const onClickRemoveHandler = () => {
     setViewImage(data?.data.info.image);
-    setUploadImage([...uploadImage, data?.data.info.image]);
+    setUploadImage([]);
   };
 
   return (

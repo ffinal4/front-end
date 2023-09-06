@@ -43,16 +43,18 @@ const EditProfilePage = () => {
   });
   console.log("개인정보수정페이지", data);
 
-  const [uploadImage, setUploadImage] = useState<any>(
-    [] || data.data.info.image
-  );
+  const imageData = data?.data.info.image;
+  const nicknameData = data?.data.info.nickname;
+  const location =  data?.data.info.location;
+
+  const [uploadImage, setUploadImage] = useState<any>([]);
 
   //닉네임 중복 확인 통신
   const checkNicknameAvailability = async (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     const formData = getValues();
-    const newNick = formData.nickname || data?.data.info.nickname;
+    const newNick = formData.nickname || nicknameData;
     const nickData = { nickname: newNick };
     console.log(nickData, "nick");
     try {
@@ -70,7 +72,7 @@ const EditProfilePage = () => {
       console.log("중복된 닉네임 입니다.", error);
     }
   };
-  const [address, setAddress] = useState(data?.data.info.location || "");
+  const [address, setAddress] = useState(location || "");
 
   //변경사항 저장 통신
   const editprofileOnclick = handleSubmit(async (data: EditForm) => {
@@ -81,34 +83,53 @@ const EditProfilePage = () => {
     const allRequest = {
       data: {
         ...request,
-        location: address || data?.data.info.location,
+        location: address || location,
       },
-    };
+  };
 
     console.log("이미지,주소", allRequest);
     console.log("이미지 업로드", uploadImage);
     console.log("폼데이터", formData);
 
-    if (uploadImage) {
-      if (uploadImage[0] === data?.data.info.image) {
-        formData.append("image", uploadImage, "image.jpg");
-      } else {
-        uploadImage.forEach((blobImage: any, index: any) => {
-          formData.append("image", blobImage, `image${index + 1}.jpg`);
-        });
-      }
-    }
-
-    formData.append(
-      "data",
-      new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
-    );
-
-    formData.forEach(function (value, key) {
-      console.log(key + ": " + value);
-    });
+    
 
     try {
+      if (uploadImage[0]) {
+        if (uploadImage[0] === undefined
+          || uploadImage[0] === imageData) {
+          //   setUploadImage([imageData]);
+          //   console.log("d", uploadImage);
+          //   fetch(imageData)
+          //     .then(response => response.blob())
+          //     .then(blob => {
+          //       console.log("성공", blob);
+          //       setUploadImage([blob]);
+          //       uploadImage.forEach((blobImage: any, index: any) => {
+          //         formData.append("image", blobImage, `image${index + 1}.jpg`);
+          //       });
+          //     })
+          //     .catch(error => {
+          //       console.error('이미지를 가져오는 중 오류 발생: ', error);
+          //       console.error('오류 유형:', error.name);
+          //       console.error('오류 메시지:', error.message);
+          //     });
+            
+          // // console.log("test", uploadImage);
+        } else {
+          uploadImage.forEach((blobImage: any, index: any) => {
+            formData.append("image", blobImage, `image${index + 1}.jpg`);
+          });
+        }
+      }
+  
+      formData.append(
+        "data",
+        new Blob([JSON.stringify(allRequest.data)], { type: "application/json" })
+      );
+  
+      formData.forEach(function (value, key) {
+        console.log(key + ": " + value);
+      });
       const res = await patchProfileEditApi(formData);
 
       if (res.status === 200) {
