@@ -48,7 +48,6 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   setDropdownMenu,
   setFilterTap,
 }) => {
-
   const divRef = useRef<HTMLDivElement>(null);
   const currentPage = useRecoilValue(pagination);
   const resetPage = useResetRecoilState(pagination);
@@ -91,16 +90,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
         <GetRequests onClick={bidAuctionOnclick}>내 경매</GetRequests>
         <SendRequests>입찰 경매</SendRequests>
       </TabContainer>
-      {/* <RequestStateContainer>
-        <RequestStateNumber>
-          <DotImg src={bluedot} />
-          입찰중 1
-        </RequestStateNumber>
-        <RequestIngNumber>
-          <DotImg src={blackdot} />
-          입찰성공 0
-        </RequestIngNumber>
-      </RequestStateContainer> */}
+
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter

@@ -35,7 +35,7 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
 
   //받은요청 API
   const { isLoading, data, error }: any = useQuery(
-    [" getTradeReceiveRequestData", currentPage, tradeState],
+    ["getTradeReceiveRequestData", currentPage, tradeState],
     () => getTradeReceiveRequestApi(currentPage, tradeState),
     { refetchOnWindowFocus: false }
   );
