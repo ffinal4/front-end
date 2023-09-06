@@ -44,7 +44,7 @@ export const postNicknameApi = async (body: checkNicknameBody) => {
 };
 
 // 개인정보수정
-export const patchProfileEditApi = async (body: any) => {
+export const pathchProfileEditApi = async (body: any) => {
   const res = await instance.patch("/api/users/mypage", body, {
     headers: {
       "Content-Type": "multipart/form-data",

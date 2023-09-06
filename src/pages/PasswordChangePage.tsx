@@ -143,14 +143,12 @@ const PasswordContainer = styled.div`
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   width: 100%;
-  height: 408px;
   margin: auto;
 `;
 
 const CurrentPwContainer = styled.div`
   display: flex;
   margin-top: 40px;
-  /* border: 1px solid black; */
 `;
 
 const CurrentPwInputContainer = styled.div`
@@ -162,6 +160,7 @@ const ResetPwContainer = styled.div`
   display: flex;
   margin-top: 20px;
 `;
+
 const ResetPwInputContainer = styled.div`
   width: 656px;
 `;
@@ -189,7 +188,7 @@ const SetPwInputContainer = styled.div`
 `;
 
 const CheckPwInputContainer = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 `;
 
 const ConfirmPwContainer = styled.div`

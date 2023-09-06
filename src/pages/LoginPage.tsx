@@ -47,7 +47,11 @@ const LoginPage = () => {
       }
     } catch (error: any) {
       if (error.response.data) {
-        alert(error.response.data);
+        Swal.fire({
+          icon: "warning",
+          text: "아이디와 비밀번호를 한 번 더 확인해주세요.",
+          confirmButtonColor: "#ffca64",
+        });
       }
     }
   };
