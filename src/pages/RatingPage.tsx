@@ -160,7 +160,7 @@ const RatingPage = () => {
                 }}
                 onClick={() => {
                   queryClient.invalidateQueries("ratingStart");
-                  setAddPrice({ ...addPrice, success: false, price: 0 });
+                  setAddPrice({ ...addPrice, success: false, price: 0, detailInfo: false });
                 }}
               >
                 이어하기

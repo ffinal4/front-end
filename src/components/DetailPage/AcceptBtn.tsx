@@ -3,30 +3,48 @@ import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
 import CardZzimBtn from '../common/CardZzimBtn';
 import RequestsModal from './RequestsModal';
+import { useResetRecoilState } from 'recoil';
+import { pagination } from '../../store/pagination';
 
 const AcceptBtn = ({ data, dibsCount, setDibsCount } : any) => {
+
+  const resetPage = useResetRecoilState(pagination);
 
     const [conditional, setConditional] = useState(false);
 
     const onClickAcceptHandler = () => {
         setConditional(true);
+        resetPage();
     };
     
     const onClickChatting = () => {
         setConditional(false);
     };
 
-  return (
-    <ButtonWrapper>
-        {data.data.info.goodsResponseDtoList.checkSameUser ? (
+    const acceptButton = () => {
+      if (
+        data.data.info.goodsResponseDtoList.checkSameUser ||
+        data.data.info.goodsResponseDtoList.goodsStatus === "ONAUCTION"||
+        data.data.info.goodsResponseDtoList.goodsStatus === "TRADING"||
+        data.data.info.goodsResponseDtoList.goodsStatus === "BIDDING"
+      ) {
+        return (
           <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
             교환신청
           </StButton>
-        ) : (
+        )
+      } else {
+        return (
           <StButton buttonColor="#FFCA64" onClick={onClickAcceptHandler}>
             교환신청
           </StButton>
-        )}
+        )
+      };
+    };
+
+  return (
+    <ButtonWrapper>
+        {acceptButton()}
         {data.data.info.goodsResponseDtoList.checkSameUser ? (
           <StButton buttonColor="#D5D4D4" style={{ color: "#fff", cursor: "default" }}>
             찜하기
