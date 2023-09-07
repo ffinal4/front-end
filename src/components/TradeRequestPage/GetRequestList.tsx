@@ -55,7 +55,7 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
   };
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <TabContainer>
         <GetRequest>받은 요청</GetRequest>
         <SendRequest onClick={sendRequestOnclick}>보낸 요청</SendRequest>
@@ -101,6 +101,7 @@ export const TradeRequestListContainer = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
+  margin-top: 84px;
 `;
 
 export const FilterContainer = styled.div`

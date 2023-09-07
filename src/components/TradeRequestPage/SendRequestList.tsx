@@ -58,7 +58,7 @@ const SendRequestList: React.FC<SendRequestListProps> = ({
   };
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <TabContainer>
         <GetRequests onClick={getRequestOnclick}>받은 요청</GetRequests>
         <SendRequests>보낸 요청</SendRequests>

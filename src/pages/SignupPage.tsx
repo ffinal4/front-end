@@ -239,7 +239,7 @@ const SignupPage = () => {
             중복 확인
           </StButton>
         </NickNameContainer>
-        {/* <ValidateMessage>{errors?.nickname?.message}</ValidateMessage> */}
+        <NickNameError>{errors?.nickname?.message}</NickNameError>
         {nicknameError && <Content color="red">* 중복된 닉네임입니다.</Content>}
         {isAvailable && (
           <Content color="#46A75B">* 사용 가능한 닉네임입니다.</Content>
@@ -326,7 +326,6 @@ const ValidateMessage = styled.div`
   height: 24px;
   margin-left: 250px;
   color: red;
-  margin-top: 10px;
   font-family: Pretendard;
   font-size: 16px;
 `;
@@ -337,6 +336,7 @@ const Content = styled.div<{ color: string }>`
   font-size: 16px;
   color: ${(props) => props.color};
   margin-top: 10px;
+  margin-bottom: 40px;
 `;
 
 const PwContainer = styled.div`
@@ -353,7 +353,7 @@ const PwInputContainer = styled.div`
   position: relative;
 `;
 
-const PwVisibleButton = styled.div`
+export const PwVisibleButton = styled.div`
   cursor: pointer;
   width: 25px;
   height: 25px;
@@ -362,7 +362,7 @@ const PwVisibleButton = styled.div`
   right: 12px;
 `;
 
-const PwImg = styled.img`
+export const PwImg = styled.img`
   width: 24px;
   height: 24px;
 `;
@@ -449,6 +449,11 @@ const NickNameContainer = styled.div`
   padding-top: 30px;
   display: flex;
   align-items: center;
+`;
+
+const NickNameError = styled.div`
+  font-family: Pretendard;
+  font-size: 16px;
 `;
 
 const AssignButtonContainer = styled.div`

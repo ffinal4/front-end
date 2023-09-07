@@ -15,6 +15,7 @@ import { pagination } from "../store/pagination";
 import { filterAsc, filterCategory } from "../store/filterCategory";
 import AscFilterButton from "../components/common/AscFilterButton";
 import LoadingSpinner from "../components/common/LoadingSpinner";
+import EmptyList from "../components/common/EmptyList";
 
 const AuctionListPage = () => {
   const currentPage = useRecoilValue(pagination);
@@ -57,9 +58,12 @@ const AuctionListPage = () => {
       <AscFilterButton />
       <FilterButton />
       <CardContainer>
-        {data?.data.info.content.map((item: any) => {
-          return <AuctionCard item={item} key={item.auctionid} />;
-        })}
+        {(data?.data.info.content.length > 0)
+          ? data?.data.info.content.map((item: any) => {
+            return <AuctionCard item={item} key={item.auctionid} />
+          })
+          : <EmptyList />
+        }
       </CardContainer>
       <Paging />
     </AuctionListPageContainer>
@@ -83,8 +87,11 @@ const CardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 40px 16px;
+
+  @media screen and (max-width: 1136px) {
+    justify-content: center;
+  }
 `;
 
 const ImageContainer = styled.div`
