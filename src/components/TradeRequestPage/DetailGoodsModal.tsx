@@ -100,6 +100,7 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
           <DetailWrapper>
           <DetailOutWrapper ref={divTwoRef}>
           {modalData?.map((item : any) => {
+            const inputData = item?.content.split('\n');
             return (
               <div>
           <div style={{ display: "flex", gap: "30px" }}>
@@ -123,7 +124,13 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
           <InfoContainer>
             <InfoTextTitle>{item?.title}</InfoTextTitle>
             <InfoTextContent>
-              {item?.content}
+              {inputData.map((item : any) => {
+                        return (
+                            (item === inputData[inputData.length - 1])
+                                ? <div>{item}</div>
+                                : <div>{item}<br /></div>
+                        )
+                    })}
             </InfoTextContent>
           </InfoContainer>
           </div>
