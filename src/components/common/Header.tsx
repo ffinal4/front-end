@@ -98,6 +98,7 @@ const Header = () => {
           <LogoContainer
             onClick={() => {
               navigate("/");
+              window.scrollTo(0, 0);
             }}
           >
             {isLoggedIn ? (

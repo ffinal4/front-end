@@ -21,7 +21,7 @@ const RecommendCard = ({ data, auction } : any) => {
     }, [slideRange]);
 
     const moveToNextSlide = () => {
-        if (currentImg === imageLength) return;
+        if (currentImg === imageLength - 1) return;
         setCurrentImg(currentImg + 1);
     };
 
@@ -36,7 +36,7 @@ const RecommendCard = ({ data, auction } : any) => {
             {(auction)
                 ? <HeaderText>지금 경매 중인 다른 물건들</HeaderText>
                 : <HeaderText>이런 물건은 어떠세요?</HeaderText>}
-            {(data?.length > 0) && <TitleText>{currentImg + 1}/{imageLength + 1}</TitleText>}
+            {(data?.length > 0) && <TitleText>{currentImg + 1}/{(imageLength >= 5) ? imageLength : imageLength + 1}</TitleText>}
         </HeadLineContainer>
         <RecommendList>
             {(data?.length > 4)
@@ -60,66 +60,6 @@ const RecommendCard = ({ data, auction } : any) => {
                             </ImageCard>
                     )
                 })}
-                {/* <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard>
-                <ImageCard>
-                    <ItemCard />
-                </ImageCard> */}
             </CardListContainer>
         </RecommendList>
     </LayoutContainer>

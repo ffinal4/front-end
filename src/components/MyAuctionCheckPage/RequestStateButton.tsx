@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import { StBasicButton } from "../../styles/BasicButton";
 import { styled } from "styled-components";
-import {
-  ButtonContainer,
-  Img,
-  StChatBt,
-  WaitingStateContainer,
-} from "../TradeRequestPage/RequestStateButton";
+import { ButtonContainer, Img, StChatBt, WaitingStateContainer } from "../TradeRequestPage/RequestStateButton";
 import chat from "../../assets/icon/Chatting.png";
 import eye from "../../assets/icon/openeye.png";
 import { useNavigate } from "react-router-dom";
 import AuctionCompleteModal from "./AuctionCompleteModal";
 import SuccessBIdModal from "../AuctionDetailPage/SuccessBIdModal";
 import SellerPickModal from "../AuctionDetailPage/SellerPickModal";
+import { useRecoilState } from "recoil";
+import { makeChatAuctionBuyerId, makeChatAuctionGoodsId } from "../../store/chatting";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   item: any;
   setDto: React.Dispatch<React.SetStateAction<any>>;
-  setSellerPicks: React.Dispatch<React.SetStateAction<{ pickModal: boolean, successBidModal: boolean }>>;
-  sellerPicks: { pickModal: boolean, successBidModal: boolean };
+  setSellerPicks: React.Dispatch<React.SetStateAction<{ pickModal: boolean; successBidModal: boolean }>>;
+  sellerPicks: { pickModal: boolean; successBidModal: boolean };
 }
 
 const RequestStateButton: React.FC<RequestStateButtonProps> = ({
@@ -29,7 +26,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   item,
   setDto,
   setSellerPicks,
-  sellerPicks
+  sellerPicks,
 }) => {
   const navigate = useNavigate();
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
@@ -37,26 +34,32 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   const [bidIdData, setBidIdData] = useState<{ requestId: number[] }>({
     requestId: [],
   });
+  const [, setAucGoodsId] = useRecoilState(makeChatAuctionGoodsId);
+  const [, setAucBuyerId] = useRecoilState(makeChatAuctionBuyerId);
+
   const { request } = requestState;
   const testListResponseDto = item?.testListResponseDto;
 
   const completeModalClick = () => {
     if (item?.bidListResponseDtos) {
-      const bidIdList = item?.bidListResponseDtos.map((id : any) => id.bidId);
-      setBidIdData({...bidIdData, requestId: bidIdList});
-    };
+      const bidIdList = item?.bidListResponseDtos.map((id: any) => id.bidId);
+      setBidIdData({ ...bidIdData, requestId: bidIdList });
+    }
     setCompleteModalOpen(!completeModalOpen);
   };
 
   const sellerPickOnclick = () => {
     setDto(item?.testListResponseDto.auctionId);
-    setSellerPicks({...sellerPicks, pickModal: true});
+    setSellerPicks({ ...sellerPicks, pickModal: true });
     // setRequestState({ ...requestState, request: "경매중" });
   };
+  console.log("아이템@@@@@@@@@@@@@@@@@@@@@@@", item.bidListResponseDtos);
 
   const bidGoodsSelectOnclick = () => {
     setDto(item?.testListResponseDto.auctionId);
-    setSellerPicks({...sellerPicks, successBidModal: true});
+    setSellerPicks({ ...sellerPicks, successBidModal: true });
+    setAucGoodsId(testListResponseDto.goodsId);
+    // setAucBuyerId();
   };
 
   const stateButton = () => {
@@ -75,32 +78,29 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     if (testListResponseDto.auctionStatus === "TRADING") {
       return (
         <ButtonContainer>
-            <StAuctionCompleteBt
-              buttonColor="#58ABF7"
-              onClick={completeModalClick}
-            >
-              완료
-            </StAuctionCompleteBt>
-            {completeModalOpen && (
-              <ModalContainer>
-                <AuctionCompleteModal
-                  completeModalOpen={completeModalOpen}
-                  setCompleteModalOpen={setCompleteModalOpen}
-                  auctionId={item?.testListResponseDto.auctionId}
-                  bidIdData={bidIdData}
-                />
-              </ModalContainer>
-            )}
-            <StChatBt
-              buttonColor="white"
-              onClick={() => {
-                navigate("/chat");
-              }}
-            >
-              채팅하기
-              <Img src={chat} />
-            </StChatBt>
-          </ButtonContainer>
+          <StAuctionCompleteBt buttonColor="#58ABF7" onClick={completeModalClick}>
+            완료
+          </StAuctionCompleteBt>
+          {completeModalOpen && (
+            <ModalContainer>
+              <AuctionCompleteModal
+                completeModalOpen={completeModalOpen}
+                setCompleteModalOpen={setCompleteModalOpen}
+                auctionId={item?.testListResponseDto.auctionId}
+                bidIdData={bidIdData}
+              />
+            </ModalContainer>
+          )}
+          <StChatBt
+            buttonColor="white"
+            onClick={() => {
+              navigate("/chat");
+            }}
+          >
+            채팅하기
+            <Img src={chat} />
+          </StChatBt>
+        </ButtonContainer>
       );
     }
 
@@ -108,10 +108,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
       if (item?.bidListResponseDtos.length > 0) {
         return (
           <ButtonContainer>
-            <StAuctionCompleteBt
-              buttonColor="#58ABF7"
-              onClick={completeModalClick}
-            >
+            <StAuctionCompleteBt buttonColor="#58ABF7" onClick={completeModalClick}>
               완료
             </StAuctionCompleteBt>
             {completeModalOpen && (
@@ -137,20 +134,17 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
         );
       } else {
         if (testListResponseDto.bidCount === 0) {
-          return
+          return;
         } else {
           return (
             <div>
-              <StAuctionGoodsSelectBt
-                buttonColor="#58ABF7"
-                onClick={bidGoodsSelectOnclick}
-              >
+              <StAuctionGoodsSelectBt buttonColor="#58ABF7" onClick={bidGoodsSelectOnclick}>
                 입찰품 선택
               </StAuctionGoodsSelectBt>
             </div>
           );
-        };
-      };
+        }
+      }
     }
 
     // if (request === "DONE") {
@@ -186,11 +180,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
     // }
     // 교환완료
     if (testListResponseDto.auctionStatus === "DONE") {
-      return (
-        <StAuctionTradeCompleteBt buttonColor="white">
-          자세히보기
-        </StAuctionTradeCompleteBt>
-      );
+      return <StAuctionTradeCompleteBt buttonColor="white">자세히보기</StAuctionTradeCompleteBt>;
     }
   };
 

@@ -62,7 +62,10 @@ const ItemCardContainer = styled.div`
   flex-wrap: wrap;
   gap: 40px 16px;
   margin-bottom: 100px;
-  justify-content: center;
+  
+  @media screen and (max-width: 1136px) {
+    justify-content: center;
+  }
 `;
 
 const GoodsConditionContainer = styled.div`

@@ -1,16 +1,20 @@
 import React from "react";
 import { styled } from "styled-components";
+import defaultProfile from "../../assets/images/defaultprofile.png";
+import { useRecoilValue } from "recoil";
+import { myProfileImage } from "../../store/chatting";
 
 const MyChat = ({ item }: any) => {
   const hours = new Date(item.time).getHours();
   const minutes = new Date(item.time).getMinutes();
   const amPm = hours < 12 ? "오전" : "오후";
   const formattedTime = `${amPm} ${hours % 12}:${minutes.toString().padStart(2, "0")}`;
+  const myImage = useRecoilValue(myProfileImage);
   return (
     <MyChatContainer>
       <Time>{formattedTime}</Time>
       <TextBox>{item.message}</TextBox>
-      <UserImage />
+      <UserImage src={myImage ? myImage : defaultProfile} />
     </MyChatContainer>
   );
 };
@@ -51,10 +55,11 @@ const TextBox = styled.div`
   background: var(--black-white-gray-100, #39373a);
 `;
 
-const UserImage = styled.div`
+const UserImage = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 48px;
   border: 1px solid var(--black-white-black, #222020);
+  background-color: #ffff;
 `;
 export default MyChat;

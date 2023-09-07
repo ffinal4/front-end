@@ -4,7 +4,7 @@ import MyChat from "./MyChat";
 import YourChat from "./YourChat";
 import LoadingSpinner from "../common/LoadingSpinner";
 
-const ChattingRoomCardList = ({ data, webSocketMsg, isLoading }: any) => {
+const ChattingRoomCardList = ({ data, webSocketMsg, isLoading, otherUserNickname }: any) => {
   const messageEndRef = useRef<any>(null);
   useEffect(() => {
     messageEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -15,26 +15,24 @@ const ChattingRoomCardList = ({ data, webSocketMsg, isLoading }: any) => {
 
   return (
     <ChattingRoomCardListContainer>
-      {data
-        ?.slice(0)
-        .reverse()
-        .map((item: any) => {
-          return (
-            <div>
-              {item.checkSameUser ? <MyChat item={item} key={item.time} /> : <YourChat item={item} key={item.time} />}
-            </div>
-          );
-        })}
-      <div>
-        {webSocketMsg.map((item: any) => {
-          return (
-            <div>
-              {item.message}
+      {data?.map((item: any) => {
+        return (
+          <div>
+            {item.checkSameUser ? <MyChat item={item} key={item.time} /> : <YourChat item={item} key={item.time} />}
+          </div>
+        );
+      })}
+      {webSocketMsg.map((item: any) => {
+        return (
+          <div>
+            {otherUserNickname === item.nickname ? (
+              <YourChat item={item} key={item.time} />
+            ) : (
               <MyChat item={item} key={item.time} />
-            </div>
-          );
-        })}
-      </div>
+            )}
+          </div>
+        );
+      })}
       <div ref={messageEndRef}></div>
     </ChattingRoomCardListContainer>
   );
@@ -49,7 +47,7 @@ const ChattingRoomCardListContainer = styled.div`
   overflow: hidden;
   height: calc(100vh - 223px);
   overflow-y: scroll;
-  padding: 10px 40px 70px 40px;
+  padding: 130px 40px 70px 40px;
 `;
 
 export default ChattingRoomCardList;

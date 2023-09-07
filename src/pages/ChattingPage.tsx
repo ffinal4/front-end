@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import ChattingList from "../components/ChattingPage/ChattingList";
 import ChattingRoom from "../components/ChattingPage/ChattingRoom";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { useQuery } from "react-query";
 import { getChatApi } from "../api/chat";
+import { useRecoilState } from "recoil";
+import { myProfileImage } from "../store/chatting";
 
 const ChattingPage = () => {
   const [chatRoomOpen, setChatRoomOpen] = useState(false);
+  const [, setMyprofileImage] = useRecoilState(myProfileImage);
   const { isLoading, error, data } = useQuery("getChatData", getChatApi, {
     refetchOnWindowFocus: false,
   });
+
+  useEffect(() => {
+    if (data !== null) {
+      setMyprofileImage(data?.data[0].myImageUrl);
+    }
+  }, []);
   if (isLoading) return <LoadingSpinner />;
   console.log("채팅페이지데이터", data);
   if (error) {
@@ -20,8 +29,8 @@ const ChattingPage = () => {
   return (
     <ChattingPageContainer>
       <ChatWrap>
-        <ChattingList chatList={data?.data} setChatRoomOpen={setChatRoomOpen} />
-        {chatRoomOpen && <ChattingRoom setChatRoomOpen={setChatRoomOpen} />}
+        <ChattingList chatList={data?.data[0].chatRoomResponseDtos} setChatRoomOpen={setChatRoomOpen} />
+        {chatRoomOpen && <ChattingRoom setChatRoomOpen={setChatRoomOpen} myProfileImage={data?.data[0].myImageUrl} />}
       </ChatWrap>
     </ChattingPageContainer>
   );

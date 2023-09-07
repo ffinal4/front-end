@@ -148,7 +148,7 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
               );
             })
           ) : (
-            <EmptyPocket />
+            <EmptyPocket pocketStatus={0} />
           )}
         </PocketListContainer>
         <Paging />

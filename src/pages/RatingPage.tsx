@@ -160,7 +160,7 @@ const RatingPage = () => {
                 }}
                 onClick={() => {
                   queryClient.invalidateQueries("ratingStart");
-                  setAddPrice({ ...addPrice, success: false, price: 0 });
+                  setAddPrice({ ...addPrice, success: false, price: 0, detailInfo: false });
                 }}
               >
                 이어하기
@@ -268,6 +268,8 @@ const ImageContainer = styled.div<{ src: string }>`
   height: 368px;
   background-image: ${(props) => `url(${props.src})`};
   background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   border-radius: 10px;
   position: relative;
 `;

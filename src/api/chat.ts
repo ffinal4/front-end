@@ -11,3 +11,15 @@ export const getChatDetailApi = async (roomId: string) => {
   const res = await instance.get(`/api/chat/room/${roomId}`);
   return res;
 };
+
+// 채팅방 생성(교환요청 수락시 post)
+export const postMakeChatApi = async (goodsId: any, body: any) => {
+  const res = await instance.post(`/api/chat/room/${goodsId}`, body);
+  return res;
+};
+
+// 거래 취소
+export const postDenyChatApi = async (userId: number) => {
+  const res = await instance.post(`/api/${userId}/me`);
+  return res;
+};

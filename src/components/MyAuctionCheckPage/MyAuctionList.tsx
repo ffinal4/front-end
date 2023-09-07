@@ -110,21 +110,12 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   }
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <TabContainer>
         <GetRequest>내 경매</GetRequest>
         <SendRequest onClick={myAuctionOnclick}>입찰 경매</SendRequest>
       </TabContainer>
-      {/* <RequestStateContainer>
-        <RequestStateNumber>
-          <DotImg src={bluedot} />
-          경매중 10
-        </RequestStateNumber>
-        <RequestIngNumber>
-          <DotImg src={blackdot} />
-          경매완료 2
-        </RequestIngNumber>
-      </RequestStateContainer> */}
+
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter

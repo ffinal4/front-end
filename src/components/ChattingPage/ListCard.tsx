@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
-import { chatOtherUserData } from "../../store/chatting";
-
+import { chatOtherUserData, otherProfileImage } from "../../store/chatting";
+import defauProfile from "../../assets/images/defaultprofile.png";
 const ListCard = ({ item, setChatRoomOpen }: any) => {
-  const [otherUser, setOtherUser] = useRecoilState(chatOtherUserData);
-
+  const [, setOtherUser] = useRecoilState(chatOtherUserData);
+  const [, setOtherImage] = useRecoilState(otherProfileImage);
   return (
     <ListCardContainer
       onClick={() => {
-        setChatRoomOpen(true);
         setOtherUser(item);
+        setOtherImage(item?.otherImageUrl);
+        setChatRoomOpen(true);
       }}
     >
       <UserContainer>
         <UserImageContainer>
-          <UserImage src={item?.userImageUrl} />
+          <UserImage src={item?.otherImageUrl ? item?.otherImageUrl : defauProfile} />
           <TextContainer>
             <UserName>{item?.nickname}</UserName>
             <Content>{item?.recentMessage}</Content>
@@ -54,7 +55,7 @@ const UserImage = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 380px;
-  background-color: gray;
+  background-color: #ffff;
 `;
 
 const TextContainer = styled.div`

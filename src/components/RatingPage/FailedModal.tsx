@@ -55,7 +55,7 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
                     buttonColor='#FBD8BF'
                     onClick={() => {
                         queryClient.invalidateQueries('ratingStart')
-                        setAddPrice({ ...addPrice, gameover: false, price: 0 })
+                        setAddPrice({ ...addPrice, gameover: false, price: 0, detailInfo: false })
                         // setAddPrice({ ...addPrice, price: 0 })
                     }}
                 >다시하기</OnemoreBtn>

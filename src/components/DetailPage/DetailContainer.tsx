@@ -31,8 +31,7 @@ const DetailContainer = ({ data } : any) => {
   };
 
   const RequestStatus = () => {
-    if (data.data.info.goodsResponseDtoList.goodsStatus === "ONAUCTION"
-    || data.data.info.goodsResponseDtoList.goodsStatus === "BIDDING") {
+    if (data.data.info.goodsResponseDtoList.goodsStatus === "TRADING") {
       return <RequestCondition>
         <GoodsCondition>
           <Circle />
@@ -41,6 +40,14 @@ const DetailContainer = ({ data } : any) => {
       </RequestCondition>
     } else if (data.data.info.goodsResponseDtoList.goodsStatus === "SOLDOUT") {
       return <Finished>거래완료</Finished>
+    } else if (data.data.info.goodsResponseDtoList.goodsStatus === "ONAUCTION"
+      || data.data.info.goodsResponseDtoList.goodsStatus === "BIDDING") {
+      return <RequestCondition>
+        <GoodsCondition>
+          <Circle style={{backgroundColor: "#58ABF7"}} />
+          경매중
+        </GoodsCondition>
+      </RequestCondition>
     } else {
       return
     };
@@ -96,6 +103,13 @@ const LayoutContainer = styled.div`
       align-items: center;
       gap: 20px;
     }
+    @media screen and (max-width: 375px) {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      max-width: 375px;
+    }   
 `;
 
 // const EmptyBox = styled.div<{ src: string }>`
@@ -111,6 +125,10 @@ const SlideWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+
+  @media screen and (max-width: 375px) {
+      max-width: 100%;
+    }
 `;
 
 const ImageBox = styled.div<{ src : string }>`
@@ -120,6 +138,9 @@ const ImageBox = styled.div<{ src : string }>`
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  @media screen and (max-width: 375px) {
+    max-width: 375px;
+  }
 `;
 
 const ImageOutContainer = styled.div`
@@ -136,6 +157,9 @@ const ImageOutContainer = styled.div`
     margin: 0px;
     width: 464px;
   }
+  @media screen and (max-width: 375px) {
+    max-width: 375px;
+  }
 `;
 
 const SlideBtnWrapper = styled.div`
@@ -144,6 +168,9 @@ const SlideBtnWrapper = styled.div`
     position: absolute;
     justify-content: space-between;
     z-index: 200;
+    @media screen and (max-width: 375px) {
+    max-width: 375px;
+  }
 `;
 
 const SlideButton = styled.div`

@@ -89,14 +89,15 @@ const EditProfilePage = () => {
     console.log("이미지 업로드", uploadImage);
 
     try {
-      if (uploadImage[0]) {
-        if (uploadImage[0] === undefined || uploadImage[0] === imageData) {
-          formData.append("image", "");
-        } else {
-          uploadImage.forEach((blobImage: any, index: any) => {
-            formData.append("image", blobImage, `image${index + 1}.jpg`);
-          });
-        }
+      if (uploadImage.length === 0 || uploadImage[0] === imageData) {
+        formData.append("image", "");
+        // formData.append('image', JSON.stringify([]));
+        const imageForm = formData.get("image");
+        console.log(imageForm, "확인");
+      } else {
+        uploadImage.forEach((blobImage: any, index: any) => {
+          formData.append("image", blobImage, `image${index + 1}.jpg`);
+        });
       }
 
       formData.append(

@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 import ListCard from "./ListCard";
 
 const ChattingList = ({ chatList, setChatRoomOpen }: any) => {
+  console.log("chatList", chatList);
+
   return (
     <ChattingListContainer>
       {chatList.map((item: any) => {

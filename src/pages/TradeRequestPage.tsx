@@ -87,6 +87,8 @@ export const SubTitle = styled.div`
 export const TabContainer = styled.div`
   display: flex;
   margin-left: 40px;
+  position: absolute;
+  top: -42px;
 `;
 
 export const GetRequest = styled.div`
@@ -113,6 +115,7 @@ export const SendRequest = styled.div`
   border-radius: 5px 5px 0px 0px;
   font-family: Pretendard;
   cursor: pointer;
+  border-bottom: 2px solid black;
 `;
 
 export const GetRequests = styled.div`
@@ -122,7 +125,7 @@ export const GetRequests = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #efefef;
-
+  border-bottom: 2px solid black;
   border-radius: 5px 5px 0px 0px;
   font-family: Pretendard;
   cursor: pointer;
