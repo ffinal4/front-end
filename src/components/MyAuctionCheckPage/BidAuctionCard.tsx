@@ -60,7 +60,7 @@ const BidAuctionCard = ({ item }: any) => {
           color="white"
           border="#58ABF7"
         >
-          거래진행중
+          교환진행중
         </StRequestState>
       );
     } else if (bidListResponseDtos.bidStatus === "DONE") {
