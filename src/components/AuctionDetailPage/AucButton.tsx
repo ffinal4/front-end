@@ -3,18 +3,24 @@ import { styled } from 'styled-components';
 import { StBasicButton } from '../../styles/BasicButton';
 import BidModal from './BidModal';
 import CardZzimBtn from '../common/CardZzimBtn';
+import { useResetRecoilState } from 'recoil';
+import { pagination } from '../../store/pagination';
 
 const AucButton = ({ data, bid, setConditional, conditional, sellerPicks, setSellerPicks } : any) => {
+
+  const resetPage = useResetRecoilState(pagination);
 
     const [expired, setExpired] = useState(data?.data.info.auctionResponseDto.leftTime.expired);
     const onClickBidHandler = () => {
       setConditional({ ...conditional, bid: true });
+      resetPage();
     };
     const onClickSuccessBiddHandler = () => {
       setConditional({ ...conditional, bid: true });
     }; 
     const onClickChatting = () => {
       setConditional({ ...conditional, bid: false });
+      resetPage();
     };
 
   return (

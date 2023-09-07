@@ -11,7 +11,7 @@ const DetailInfo = ({ item } : any) => {
 
   return (
     <InfoContainer>
-      <InfoTitle>스타벅스</InfoTitle>
+      <InfoTitle>{item?.title}</InfoTitle>
       <UserNameContainer></UserNameContainer>
       <UserNameContainer
         style={{ border: "none", paddingTop: "16px", position: "relative" }}

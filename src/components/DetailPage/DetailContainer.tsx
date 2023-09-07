@@ -31,8 +31,7 @@ const DetailContainer = ({ data } : any) => {
   };
 
   const RequestStatus = () => {
-    if (data.data.info.goodsResponseDtoList.goodsStatus === "ONAUCTION"
-    || data.data.info.goodsResponseDtoList.goodsStatus === "BIDDING") {
+    if (data.data.info.goodsResponseDtoList.goodsStatus === "TRADING") {
       return <RequestCondition>
         <GoodsCondition>
           <Circle />
@@ -41,6 +40,14 @@ const DetailContainer = ({ data } : any) => {
       </RequestCondition>
     } else if (data.data.info.goodsResponseDtoList.goodsStatus === "SOLDOUT") {
       return <Finished>거래완료</Finished>
+    } else if (data.data.info.goodsResponseDtoList.goodsStatus === "ONAUCTION"
+      || data.data.info.goodsResponseDtoList.goodsStatus === "BIDDING") {
+      return <RequestCondition>
+        <GoodsCondition>
+          <Circle style={{backgroundColor: "#58ABF7"}} />
+          경매중
+        </GoodsCondition>
+      </RequestCondition>
     } else {
       return
     };
