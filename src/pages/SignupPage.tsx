@@ -353,7 +353,7 @@ const PwInputContainer = styled.div`
   position: relative;
 `;
 
-const PwVisibleButton = styled.div`
+export const PwVisibleButton = styled.div`
   cursor: pointer;
   width: 25px;
   height: 25px;
@@ -362,7 +362,7 @@ const PwVisibleButton = styled.div`
   right: 12px;
 `;
 
-const PwImg = styled.img`
+export const PwImg = styled.img`
   width: 24px;
   height: 24px;
 `;
