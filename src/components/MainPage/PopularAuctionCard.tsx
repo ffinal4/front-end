@@ -110,6 +110,7 @@ const AddressImage = styled.img`
 const ItemTitle = styled.div`
   color: #000;
   /* KOR/Kor B 20 */
+  font-family: "Pretendard";
   font-size: 20px;
   font-weight: 700;
   margin-top: 10px;
@@ -133,6 +134,7 @@ const ItemContent = styled.div`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   height: 48px;
+  font-family: "Pretendard";
   font-size: 16px;
   line-height: 150%; /* 24px */
   font-weight: 400;
