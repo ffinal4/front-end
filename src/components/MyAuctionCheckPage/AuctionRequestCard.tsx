@@ -120,10 +120,15 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
             현재 총 {testListResponseDto.bidCount} 명이 경매에 입찰했어요.
           </GoodsTitle>
           <Address>
-            경매 종료까지 {testListResponseDto.timeRemaining.days}:
-            {testListResponseDto.timeRemaining.hours}:
-            {testListResponseDto.timeRemaining.minutes}:
-            {testListResponseDto.timeRemaining.seconds}
+            경매 종료까지 {testListResponseDto.timeRemaining.hours < 10
+              ? `0${testListResponseDto.timeRemaining.hours}`
+              : testListResponseDto.timeRemaining.hours}:
+            {testListResponseDto.timeRemaining.minutes < 10
+              ? `0${testListResponseDto.timeRemaining.minutes}`
+              : testListResponseDto.timeRemaining.minutes}:
+            {testListResponseDto.timeRemaining.seconds < 10
+              ? `0${testListResponseDto.timeRemaining.seconds}`
+              : testListResponseDto.timeRemaining.seconds}
           </Address>
         </div>
       );
@@ -146,7 +151,7 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
               <div>
                 <Title>입찰</Title>
                 <GoodsTitle>
-                  {item?.bidListResponseDtos[0].title} 외 {item?. bidListResponseDtos.length - 1} 개
+                  {item?.bidListResponseDtos[0].title} 외 {item?.bidListResponseDtos.length - 1} 개
                 </GoodsTitle>
                 <Address>{item?.bidListResponseDtos[0].location}</Address>
               </div>
