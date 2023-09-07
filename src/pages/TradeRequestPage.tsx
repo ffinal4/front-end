@@ -76,7 +76,7 @@ export const Title = styled.div`
 export const Container = styled.div``;
 
 export const SubTitle = styled.div`
-  font-family: Pretendard;
+  font-family: "Pretendard";
   font-size: 20px;
   font-weight: 700;
   line-height: 150%;

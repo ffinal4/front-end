@@ -125,7 +125,12 @@ const TradeReceiveCard = ({ item, data }: any) => {
       } else {
         return (
           <GoodsContainer>
-            <GoodsImg src={goodsListResponseDtos[0].imageUrl} />
+            <GoodsImg
+              src={goodsListResponseDtos[0].imageUrl}
+              onClick={() =>
+                navigate(`/detail/${goodsListResponseDtos[0].goodsId}`)
+              }
+            />
           </GoodsContainer>
         );
       }
@@ -134,9 +139,17 @@ const TradeReceiveCard = ({ item, data }: any) => {
     if (item?.requestStatus === "REQUEST" || "DONE" || "CANCEL") {
       return (
         <GoodsContainer>
-          <GoodsImg src={goodsListResponseDtos[0].imageUrl} />
+          <GoodsImg
+            src={goodsListResponseDtos[0].imageUrl}
+            onClick={() =>
+              navigate(`/detail/${goodsListResponseDtos[0].goodsId}`)
+            }
+          />
           <ExchangeImg src={goodsexchange} />
-          <GoodsImg src={goodsListResponseDto.imageUrl} />
+          <GoodsImg
+            src={goodsListResponseDto.imageUrl}
+            onClick={() => navigate("/mypocket")}
+          />
         </GoodsContainer>
       );
     }

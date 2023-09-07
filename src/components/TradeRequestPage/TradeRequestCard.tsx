@@ -111,9 +111,19 @@ const TradeRequestCard = ({ item, data }: any) => {
       } else {
         return (
           <GoodsContainer>
-            <GoodsImg src={goodsListResponseDto.imageUrl} />
+            <GoodsImg
+              src={goodsListResponseDto.imageUrl}
+              onClick={() =>
+                navigate(`/detail/${goodsListResponseDto.goodsId}`)
+              }
+            />
             <ExchangeImg src={goodsexchange} />
-            <GoodsImg src={goodsListResponseDtos.imageUrl} />
+            <GoodsImg
+              src={goodsListResponseDtos.imageUrl}
+              onClick={() => {
+                navigate("/mypocket");
+              }}
+            />
           </GoodsContainer>
         );
       }

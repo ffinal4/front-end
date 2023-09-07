@@ -64,12 +64,10 @@ const EditProfilePage = () => {
         setNicknameChecked(true);
         setIsAvailable(true);
         setNicknameError(null);
-        console.log("사용가능한 닉네임 입니다.", res);
       }
     } catch (error) {
       setIsAvailable(false);
       setNicknameError("중복된 닉네임 입니다.");
-      console.log("중복된 닉네임 입니다.", error);
     }
   };
   const [address, setAddress] = useState(location || "");
@@ -93,6 +91,7 @@ const EditProfilePage = () => {
     try {
       if (uploadImage[0]) {
         if (uploadImage[0] === undefined || uploadImage[0] === imageData) {
+          formData.append("image", "");
         } else {
           uploadImage.forEach((blobImage: any, index: any) => {
             formData.append("image", blobImage, `image${index + 1}.jpg`);
