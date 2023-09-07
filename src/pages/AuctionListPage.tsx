@@ -83,8 +83,11 @@ const CardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 40px 16px;
+
+  @media screen and (max-width: 1136px) {
+    justify-content: center;
+  }
 `;
 
 const ImageContainer = styled.div`
