@@ -7,8 +7,6 @@ import { useNavigate } from "react-router-dom";
 import defaultUser from "../../assets/images/defaultprofile.png";
 
 const RankList = ({ data }: any) => {
-  console.log(data);
-
   const navigate = useNavigate();
   return (
     <RankListContainer>
@@ -39,26 +37,26 @@ const RankList = ({ data }: any) => {
           >
             <UserContainer>
               <p>1</p>
-              <UserImage src={data[0].userImage ? data[0].userImage : defaultUser} />
-              <p>{data[0].nickName}</p>
+              <UserImage src={data[0]?.userImage ? data[0].userImage : defaultUser} />
+              <p>{data[0]?.nickName}</p>
             </UserContainer>
-            <Count>{data[0].maxRatingCount}</Count>
+            <Count>{data[0]?.maxRatingCount}</Count>
           </RankContainer>
           <RankContainer>
             <UserContainer>
               <p>2</p>
-              <UserImage src={data[1].userImage ? data[1].userImage : defaultUser} />
-              <p>{data[1].nickName}</p>
+              <UserImage src={data[1]?.userImage ? data[1].userImage : defaultUser} />
+              <p>{data[1]?.nickName}</p>
             </UserContainer>
-            <Count>{data[1].maxRatingCount}</Count>
+            <Count>{data[1]?.maxRatingCount}</Count>
           </RankContainer>
           <RankContainer>
             <UserContainer>
               <p>3</p>
-              <UserImage src={data[2].userImage ? data[2].userImage : defaultUser} />
-              <p>{data[2].nickName}</p>
+              <UserImage src={data[2]?.userImage ? data[2].userImage : defaultUser} />
+              <p>{data[2]?.nickName}</p>
             </UserContainer>
-            <Count>{data[2].maxRatingCount}</Count>
+            <Count>{data[2]?.maxRatingCount}</Count>
           </RankContainer>
         </RankSection>
       </SectionContainer>
