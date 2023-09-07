@@ -36,7 +36,7 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({ requestState, s
     try {
       const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
       if (res.status == 200) {
-        const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
+        // const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
         console.log("채팅 생성 성공", res);
       }
     } catch (error) {
