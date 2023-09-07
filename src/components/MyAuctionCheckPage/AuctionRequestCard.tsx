@@ -82,7 +82,7 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
           color="white"
           border="#58ABF7"
         >
-          거래진행중
+          교환진행중
         </StRequestState>
       );
     }
