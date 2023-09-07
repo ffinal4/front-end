@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import Swal from "sweetalert2";
 import {
@@ -13,6 +13,9 @@ import { StBasicInput } from "../styles/BasicInput";
 import { useForm } from "react-hook-form";
 import { postPasswordChangeApi } from "../api/users";
 import { useNavigate } from "react-router-dom";
+import { PwImg, PwVisibleButton } from "./SignupPage";
+import openeye from "../assets/icon/openeye.png";
+import closeeye from "../assets/icon/closeeye.png";
 
 interface PwChangeForm {
   newPassword: string;
@@ -22,6 +25,7 @@ interface PwChangeForm {
 
 const PasswordChangePage = () => {
   const navigate = useNavigate();
+  const [pwType, setpwType] = useState({ type: "password", visible: false });
   const {
     register,
     handleSubmit,
@@ -51,6 +55,17 @@ const PasswordChangePage = () => {
     }
   });
 
+  const onClickPasswordType = (event: any) => {
+    event.preventDefault();
+    setpwType(() => {
+      if (!pwType.visible) {
+        return { type: "text", visible: true };
+      } else {
+        return { type: "password", visible: false };
+      }
+    });
+  };
+
   return (
     <div>
       <TitleContainer>
@@ -76,10 +91,17 @@ const PasswordChangePage = () => {
         <ResetPwContainer>
           <Label>비밀번호 재설정</Label>
           <ResetPwInputContainer>
+            <PwVisibleButton onClick={onClickPasswordType}>
+              {pwType.visible ? (
+                <PwImg src={closeeye} />
+              ) : (
+                <PwImg src={openeye} />
+              )}
+            </PwVisibleButton>
             <StBasicInput
               focusBorderColor="#46A75B"
               borderColor={errors.newPassword ? "red" : "#ADADAD"}
-              type="password"
+              type={pwType.type}
               placeholder="새 비밀번호를 입력해주세요."
               {...register("newPassword", {
                 minLength: {
@@ -106,7 +128,7 @@ const PasswordChangePage = () => {
               <StBasicInput
                 focusBorderColor="#46A75B"
                 borderColor={errors.newPassword ? "red" : "#ADADAD"}
-                type="password"
+                type={pwType.type}
                 placeholder="비밀번호를 확인해주세요."
                 {...register("confirmPassword", {
                   validate: {
@@ -163,6 +185,7 @@ const ResetPwContainer = styled.div`
 
 const ResetPwInputContainer = styled.div`
   width: 656px;
+  position: relative;
 `;
 
 const PwContent = styled.div`
