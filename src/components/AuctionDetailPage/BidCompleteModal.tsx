@@ -50,7 +50,7 @@ const BidCompleteModal = ({
         postChatBody
       );
       if (res.status == 200) {
-        const res = await postMakeChatApi(aucGoodsId, postChatBody);
+        // const res = await postMakeChatApi(aucGoodsId, postChatBody);
         console.log("채팅 생성 성공", res);
       }
     } catch (error) {

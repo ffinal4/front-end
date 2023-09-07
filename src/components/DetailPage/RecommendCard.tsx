@@ -21,8 +21,13 @@ const RecommendCard = ({ data, auction } : any) => {
     }, [slideRange]);
 
     const moveToNextSlide = () => {
-        if (currentImg === imageLength - 1) return;
-        setCurrentImg(currentImg + 1);
+        if (imageLength < 5) {
+            if (currentImg === imageLength) return;
+            setCurrentImg(currentImg + 1);
+        } else {
+            if (currentImg === imageLength - 1) return;
+            setCurrentImg(currentImg + 1);
+        };
     };
 
     const moveToPrevSlide = () => {
