@@ -85,7 +85,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   console.log(data, "입찰경매현황 데이터");
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <TabContainer>
         <GetRequests onClick={bidAuctionOnclick}>내 경매</GetRequests>
         <SendRequests>입찰 경매</SendRequests>

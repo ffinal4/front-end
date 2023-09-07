@@ -39,7 +39,9 @@ interface MyAuctionListProps {
   dropdownMenu: string;
   setAuctionFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setDropdownMenu: React.Dispatch<React.SetStateAction<string>>;
-  setFilterTap: React.Dispatch<React.SetStateAction<{ myAuctionTap: boolean; bidAuctionTap: boolean }>>;
+  setFilterTap: React.Dispatch<
+    React.SetStateAction<{ myAuctionTap: boolean; bidAuctionTap: boolean }>
+  >;
 }
 
 const MyAuctionList: React.FC<MyAuctionListProps> = ({
@@ -73,8 +75,9 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
 
   console.log("filter", category);
 
-  const { data, isLoading, error }: any = useQuery(["getMyAuctionCheckData", currentPage, category], () =>
-    getMyAuctionCheckApi(currentPage, category)
+  const { data, isLoading, error }: any = useQuery(
+    ["getMyAuctionCheckData", currentPage, category],
+    () => getMyAuctionCheckApi(currentPage, category)
   );
 
   useEffect(() => {
@@ -107,21 +110,12 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   }
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <TabContainer>
         <GetRequest>내 경매</GetRequest>
         <SendRequest onClick={myAuctionOnclick}>입찰 경매</SendRequest>
       </TabContainer>
-      {/* <RequestStateContainer>
-        <RequestStateNumber>
-          <DotImg src={bluedot} />
-          경매중 10
-        </RequestStateNumber>
-        <RequestIngNumber>
-          <DotImg src={blackdot} />
-          경매완료 2
-        </RequestIngNumber>
-      </RequestStateContainer> */}
+
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter
@@ -164,10 +158,18 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
             })}
         </CardContainer>
         {pickModal && (
-          <SellerPickModal setSellerPicks={setSellerPicks} sellerPicks={sellerPicks} auctionId={testListResponseDto} />
+          <SellerPickModal
+            setSellerPicks={setSellerPicks}
+            sellerPicks={sellerPicks}
+            auctionId={testListResponseDto}
+          />
         )}
         {successBidModal && (
-          <SuccessBIdModal setSellerPicks={setSellerPicks} sellerPicks={sellerPicks} auctionId={testListResponseDto} />
+          <SuccessBIdModal
+            setSellerPicks={setSellerPicks}
+            sellerPicks={sellerPicks}
+            auctionId={testListResponseDto}
+          />
         )}
         {detailModalOpen && (
           <DetailGoodsModal
