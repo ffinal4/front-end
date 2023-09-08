@@ -10,6 +10,8 @@ const MyChat = ({ item }: any) => {
   const amPm = hours < 12 ? "오전" : "오후";
   const formattedTime = `${amPm} ${hours % 12}:${minutes.toString().padStart(2, "0")}`;
   const myImage = useRecoilValue(myProfileImage);
+  console.log("123", myImage);
+
   return (
     <MyChatContainer>
       <Time>{formattedTime}</Time>
