@@ -9,7 +9,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { chatOtherUserData } from "../../store/chatting";
 import { Stomp } from "@stomp/stompjs";
 
-const ChattingRoom = ({ setChatRoomOpen }: any) => {
+const ChattingRoom = ({ myProfileImage }: any) => {
   const otherUserData = useRecoilValue(chatOtherUserData);
   const [webSocketMsg, setWebSocketMsg] = useState<string[]>([]);
   const accessToken = localStorage.getItem("accessToken") || "";
