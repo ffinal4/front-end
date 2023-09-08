@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +27,20 @@ const SignupPage = () => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
   const [nicknameChecked, setNicknameChecked] = useState(false);
+
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setOpenPostcode(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const onClickPasswordType = (event: any) => {
     event.preventDefault();
@@ -194,7 +208,7 @@ const SignupPage = () => {
         <CheckPwValidateMessage>
           {errors?.confirmPassword?.message}
         </CheckPwValidateMessage>
-        <AddressContainer>
+        <AddressContainer ref={divRef}>
           <Label>주소</Label>
           <AddressInputContainer>
             <KakaoApi
