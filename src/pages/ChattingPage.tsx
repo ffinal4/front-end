@@ -7,6 +7,7 @@ import { useQuery } from "react-query";
 import { getChatApi } from "../api/chat";
 import { useRecoilState } from "recoil";
 import { myProfileImage } from "../store/chatting";
+import noChat from "../assets/images/nochat.png";
 
 const ChattingPage = () => {
   const [chatRoomOpen, setChatRoomOpen] = useState(false);
@@ -27,12 +28,22 @@ const ChattingPage = () => {
   }
 
   return (
-    <ChattingPageContainer>
-      <ChatWrap>
-        <ChattingList chatList={data?.data[0].chatRoomResponseDtos} setChatRoomOpen={setChatRoomOpen} />
-        {chatRoomOpen && <ChattingRoom setChatRoomOpen={setChatRoomOpen} myProfileImage={data?.data[0].myImageUrl} />}
-      </ChatWrap>
-    </ChattingPageContainer>
+    <div>
+      {data?.data[0].chatRoomResponseDtos.length === 0 ? (
+        <NochatContainer>
+          <Nochat src={noChat} />
+        </NochatContainer>
+      ) : (
+        <ChattingPageContainer>
+          <ChatWrap>
+            <ChattingList chatList={data?.data[0].chatRoomResponseDtos} setChatRoomOpen={setChatRoomOpen} />
+            {chatRoomOpen && (
+              <ChattingRoom setChatRoomOpen={setChatRoomOpen} myProfileImage={data?.data[0].myImageUrl} />
+            )}
+          </ChatWrap>
+        </ChattingPageContainer>
+      )}
+    </div>
   );
 };
 
@@ -49,5 +60,15 @@ const ChattingPageContainer = styled.div`
   background-color: #fcf6e9;
   height: calc(100vh - 103px);
 `;
+const Nochat = styled.img`
+  width: 500px;
+`;
 
+const NochatContainer = styled.div`
+  padding-top: 200px;
+  padding-bottom: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 export default ChattingPage;
