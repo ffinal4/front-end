@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { styled } from "styled-components";
 import KakaoApi from "../common/KakaoApi";
 
 const MainTradingAddress = (props: any) => {
   const { openPostcode, setOpenPostcode, address, setAddress, data } = props;
+
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setOpenPostcode(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div>
       <AddressLabelContainer>
         <AddressLabel>주거래지역</AddressLabel>
         <CurrentAddress>{data.data.info.location}</CurrentAddress>
       </AddressLabelContainer>
-      <AddressContainer>
+      <AddressContainer ref={divRef}>
         <KakaoApi
           address={address}
           setAddress={setAddress}

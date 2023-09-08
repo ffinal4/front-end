@@ -56,16 +56,19 @@ const FilterDropdownMenu = (props: any) => {
 export const FilterDropdownContainer = styled.div`
   width: 176px;
   background-color: white;
-  border-bottom: 1px solid black;
+  box-shadow: rgba(63, 71, 77, 0.2) 0px 4px 10px 0px;
 `;
 
 export const RequestState = styled.div`
-  border-bottom: 1px solid gray;
   cursor: pointer;
   height: 44px;
   display: flex;
   align-items: center;
   padding: 10px 10px 10px 20px;
   font-family: Pretendard;
+
+  &:hover {
+    background-color: #efefef;
+  }
 `;
 export default FilterDropdownMenu;
