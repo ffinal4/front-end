@@ -15,9 +15,12 @@ const ChattingPage = () => {
   const { isLoading, error, data } = useQuery("getChatData", getChatApi, {
     refetchOnWindowFocus: false,
   });
+  console.log(data?.data[0].myImageUrl);
 
   useEffect(() => {
     if (data !== null) {
+      console.log("이미지넣음");
+
       setMyprofileImage(data?.data[0].myImageUrl);
     }
   }, []);
@@ -37,9 +40,7 @@ const ChattingPage = () => {
         <ChattingPageContainer>
           <ChatWrap>
             <ChattingList chatList={data?.data[0].chatRoomResponseDtos} setChatRoomOpen={setChatRoomOpen} />
-            {chatRoomOpen && (
-              <ChattingRoom setChatRoomOpen={setChatRoomOpen} myProfileImage={data?.data[0].myImageUrl} />
-            )}
+            {chatRoomOpen && <ChattingRoom setChatRoomOpen={setChatRoomOpen} />}
           </ChatWrap>
         </ChattingPageContainer>
       )}
