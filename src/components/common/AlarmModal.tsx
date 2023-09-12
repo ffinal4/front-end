@@ -2,7 +2,66 @@ import React, { useEffect, useRef } from 'react'
 import { styled } from 'styled-components';
 import Default from '../../assets/images/defaultprofile.png'
 
-const AlarmModal = ({ setAlarmModalOpen } : any) => {
+const AlarmModal = ({ setAlarmModalOpen, alarms } : any) => {
+
+  const dataStatus = ( item : any ) => {
+    if (item?.notificationStatus === "REQUEST") {
+      return (
+        <Title
+          style={{color: "#EC8D49"}}
+        >교환신청
+        </Title>
+      )
+    };
+    if (item?.notificationStatus === "REQUESTEND") {
+      return (
+        <Title
+          style={{color: "#39373A"}}
+        >교환완료
+        </Title>
+      )
+    };
+    if (item?.notificationStatus === "REQUESTREFUSE") {
+      return (
+        <Title
+          style={{color: "#39373A"}}
+        >교환거절
+        </Title>
+      )
+    };
+    if (item?.notificationStatus === "AUCTION") {
+      return (
+        <Title
+          style={{color: "#58ABF7"}}
+        >새로운입찰
+        </Title>
+      )
+    };
+    if (item?.notificationStatus === "AUCTIONPICK") {
+      return (
+        <Title
+          style={{color: "#58ABF7"}}
+        >낙찰성공
+        </Title>
+      )
+    };
+    if (item?.notificationStatus === "AUCTIONEND") {
+      return (
+        <Title
+          style={{color: "#58ABF7"}}
+        >경매완료
+        </Title>
+      )
+    };
+    if (item?.notificationStatus === "CHAT") {
+      return (
+        <Title
+          style={{color: "#39373A"}}
+        >새로운채팅
+        </Title>
+      )
+    };
+  };
 
   return (
       <ModalContainer>
@@ -10,14 +69,26 @@ const AlarmModal = ({ setAlarmModalOpen } : any) => {
           <Triangle />
         </TriangleWrapper>
         <ModalWrapper>
-            <EmptyModalContainer
-              style={{borderRadius: "5px",
-                padding: "20px",
-                display: "flex",
-                justifyContent: "center"}}
-            >
-              <Content style={{color: "#ADADAD"}}>새로운 알림이 없어요.</Content>
-            </EmptyModalContainer>
+            {alarms
+              ? alarms.map((item : any) => {
+                return (
+                  <ModalLineContainer style={{borderRadius: "5px 5px 0px 0px"}} >
+                    <ImageBox src={item?.goodsImage} />
+                    <TextLine>
+                      {dataStatus(item)}
+                      <Content>{item?.content}</Content>
+                    </TextLine>
+                  </ModalLineContainer>
+                )
+              })
+              : <EmptyModalContainer
+                style={{borderRadius: "5px",
+                  padding: "20px",
+                  display: "flex",
+                  justifyContent: "center"}}
+              >
+                <Content style={{color: "#ADADAD"}}>새로운 알림이 없어요.</Content>
+              </EmptyModalContainer>}
             {/* <ModalLineContainer style={{borderRadius: "5px 5px 0px 0px"}} >
               <ImageBox src={Default} />
               <TextLine>
@@ -69,6 +140,22 @@ const ModalContainer = styled.div`
   position: relative;
   box-shadow: 1px 1px 8px 0px #c7c7c7;
   border-radius: 5px;
+
+  ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #39373A;
+        border-radius: 5px;
+        
+        &:hover {
+            background-color: #524f53;
+        }
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #D5D4D4;
+        border-radius: 5px;
+    }
 `;
 
 const TriangleWrapper = styled.div`
@@ -93,6 +180,7 @@ const ModalWrapper = styled.div`
   width: 396px;
   max-height: 424px;
   background-color: #FCFCFC;
+  overflow-y: auto;
 `;
 
 const EmptyModalContainer = styled.div`
@@ -117,10 +205,13 @@ const ModalLineContainer = styled.div`
   }
 `;
 
-const ImageBox = styled.img`
+const ImageBox = styled.div<{ src : string }>`
   width: 56px;
   height: 56px;
-  object-fit: contain;
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   border-radius: 100%;
 `;
 
