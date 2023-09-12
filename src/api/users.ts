@@ -80,3 +80,9 @@ export const getChattingListApi = async () => {
   const res = await instance.get(`/api/users/2/chats`);
   return res;
 };
+
+// 메세지 알림 목록
+export const getNotificationsApi = async () => {
+  const res = await instance.get(`/api/notifications`);
+  return res;
+};
