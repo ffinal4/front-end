@@ -65,7 +65,7 @@
   <br>
   <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" >
    <img src="https://img.shields.io/badge/axios-007CE2?style=for-the-badge&logo=axios&logoColor=white" >
-   <img src="https://img.shields.io/badge/React-Query-FF4154?style=for-the-badge&logo=React-Query&logoColor=white">
+   <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
   <br>
   <img src="https://img.shields.io/badge/WebRTC-232F3E?style=for-the-badge&logo=WebRTC&logoColor=white">
   <br>
