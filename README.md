@@ -1,1 +1,118 @@
-<a>peeppo.site<a/>
+![image](https://github.com/ffinal4/front-end/assets/107457719/60e884e6-d7d9-44c9-8277-a2cab9b46832)
+
+# [PEEPPO](https://peeppo.site/)
+
+### 프로젝트 소개
+
+핍포(PEEPPO)는 몰래보다(Peeping)와 주머니(Pocket)의 합성어로, 주머니를 몰래 살펴본다는 뜻을 가지고 있어요. 내 물건을 상대방의 물건과 물물교환할 수 있는 플랫폼입니다.
+
+<br/>
+<br/>
+
+### 📆 프로젝트 기간
+
+- 2023 07.28 ~ 2023.09.08
+
+<br/>
+
+### 😎 Members
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href=""><img src="width="50px;" alt=""/><br /><sub><b>FE 팀장 : 박준영</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 서명진</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 이승재</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>DE 팀원 : 윤지숙 </b></sub></a><br /></td>
+     <tr/>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀장 : 이지원 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀원 : 김지훈</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀원 : 이지원</b></sub></a><br /></td>
+    </tr>
+  </tbody>
+</table>
+
+<br/>
+
+## 프로젝트 기능 소개
+
+#### 🐰 물물교환
+
+- 솰라솰라
+
+#### 🦊 경매
+
+- 솰라솰라
+
+<br/>
+<br/>
+
+## 🏗 Architecture
+
+![image](https://github.com/ffinal4/front-end/assets/107457719/54dcd52b-e8b0-4982-853d-7e113540b137)
+
+<br/>
+<br/>
+
+## 🛠 Tools
+
+
+#### Frontend
+
+<p>
+  <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  <br>
+  <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" >
+   <img src="https://img.shields.io/badge/axios-007CE2?style=for-the-badge&logo=axios&logoColor=white" >
+   <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
+  <br>
+  <img src="https://img.shields.io/badge/recoil-FF4154?style=for-the-badge&logo=recoily&logoColor=white">
+  <img src="https://img.shields.io/badge/WebRTC-232F3E?style=for-the-badge&logo=WebRTC&logoColor=white">
+  <br>
+
+</p>
+
+#### Dev tools
+
+<p> 
+  <img src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white">
+  <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white">
+  <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white">
+</p>
+
+<br>
+<br>
+
+## 🔥 Trouble Shooting
+
+### Issue1 이미지 로딩 딜레이 이슈
+
+메인페이지, 물물교환리스트, 경매리스트 페이지 로딩 시간이 길어지는 문제가 발생
+
+#### 원인
+
+이미지가 캐시 되지 않거나, 브라우저 캐시가 비어있어 이미지를 다시 다운로드해야 했기 때문
+
+#### 해결 순서
+
+1. 캐시스토리지에 CashName 생성
+2. 
+3. 
+
+<br/>
+
+### Issue2 
+
+####  원인
+
+
+
+#### 해결 순서
+
+
+<br>
+<br>
+
+
