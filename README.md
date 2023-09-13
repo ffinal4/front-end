@@ -46,7 +46,7 @@
 
 ## Architecture
 
-![initial](https://github.com/ffinal4/front-end/issues/224#issuecomment-1717427414)
+![image](https://github.com/ffinal4/front-end/assets/107457719/54dcd52b-e8b0-4982-853d-7e113540b137)
 
 <br/>
 <br/>
