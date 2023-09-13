@@ -1,6 +1,6 @@
 ## 👜 프로젝트 소개
 핍포(PEEPPO)는 몰래보다(Peeping)와 주머니(Pocket)의 합성어로, 주머니를 몰래 살펴본다는 뜻을 가지고 있어요. 내 물건을 상대방의 물건과 물물교환할 수 있는 플랫폼입니다.
-<img href="https://user-images.githubusercontent.com/107457719/267630196-21e9aeca-fddc-48bc-b7c6-4a16e2c2a79a.png" width="500" height="900"/>
+<img href="https://user-images.githubusercontent.com/107457719/267630196-21e9aeca-fddc-48bc-b7c6-4a16e2c2a79a.png" width="900" height="400"/>
 
 
 <br/>
