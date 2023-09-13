@@ -46,7 +46,7 @@
 
 ## Architecture
 
-아키텍쳐 넣기
+![initial](https://github.com/ffinal4/front-end/issues/224#issuecomment-1717427414)
 
 <br/>
 <br/>
