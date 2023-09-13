@@ -1,5 +1,6 @@
 ![image](https://github.com/ffinal4/front-end/assets/107457719/60e884e6-d7d9-44c9-8277-a2cab9b46832)
 
+# [PEEPPO](https://peeppo.site/)
 
 ### 프로젝트 소개
 
@@ -67,6 +68,7 @@
    <img src="https://img.shields.io/badge/axios-007CE2?style=for-the-badge&logo=axios&logoColor=white" >
    <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
   <br>
+  <img src="https://img.shields.io/badge/recoil-FF4154?style=for-the-badge&logo=recoily&logoColor=white">
   <img src="https://img.shields.io/badge/WebRTC-232F3E?style=for-the-badge&logo=WebRTC&logoColor=white">
   <br>
 
@@ -85,29 +87,29 @@
 
 ## 🔥 Trouble Shooting
 
-### Issue1
+### Issue1 이미지 로딩 딜레이 이슈
 
-
+메인페이지, 물물교환리스트, 경매리스트 페이지 로딩 시간이 길어지는 문제가 발생
 
 #### 원인
 
-
+이미지가 캐시 되지 않거나, 브라우저 캐시가 비어있어 이미지를 다시 다운로드해야 했기 때문
 
 #### 해결 순서
 
-1. 
+1. 캐시스토리지에 CashName 생성
 2. 
 3. 
 
 <br/>
 
-### Issue2 (WebRTC 관련 에러 핸들링)
+### Issue2 
 
-####  차단했을 경우
+####  원인
 
 
 
-#### r 에서 접속할 경우
+#### 해결 순서
 
 
 <br>
