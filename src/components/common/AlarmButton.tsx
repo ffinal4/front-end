@@ -103,6 +103,8 @@ const AlarmButton = () => {
         };
       };
       connectToSSE();
+      } else {
+        return;
       };
      }, []);
 
