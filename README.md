@@ -26,31 +26,7 @@
   </tbody>
 </table>
 
-<br/>
 
-
-### 📍 프로젝트 아키텍쳐
-<img src ="" alt="">
-
-  <img src="https://user-images.githubusercontent.com/88864019/170627059-f7b49422-9d78-491e-8602-a1b603bab5bc.png"/>
-  
-# [Will BE](https://willbedeveloper.com/)
-
-<b>개발자로 취업하고싶은 사람들을 위한 화상면접 연습 커뮤니티</b>
-
-<br />
-
-## Why Will-Be ?
-
-### 요즘 화상 면접 안보는 곳 있나요? WillBe와 함께 준비해볼까요 👨‍💻
-
-<br />
-
-면접을 연습한 적은 있지만, 본인의 모습을 직접 녹화해 보신 적 있으신가요?<br/>
-긴장하면 나오는 목소리 톤, 어울리지 않는 제스처 등 소리내어 연습하는 것만으로 알 수 있을까요?<br/>
-윌비와 함께 내가 모르는 나의 면접 습관을 알고 강점은 더 강하게 약점은 기록하며 보완해보세요!
-
-<br/>
 
 
 ## 프로젝트 기능 소개
@@ -68,7 +44,7 @@
 
 ## Architecture
 
-![WillBe-service_architecture](https://user-images.githubusercontent.com/88864019/171544168-af0d6f37-406d-4ba0-98bb-8aa30fefe4c0.jpg)
+아키텍쳐 넣기
 
 <br/>
 <br/>
