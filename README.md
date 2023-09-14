@@ -19,10 +19,10 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="width="50px;" alt=""/><br /><sub><b>FE 팀장 : 박준영</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 서명진</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 이승재</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>DE 팀원 : 윤지숙 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="50px;" alt=""/><br /><sub><b>FE 팀장 : 박준영</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 서명진</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 이승재</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="50px;" alt=""/><br /><sub><b>DE 팀원 : 윤지숙 </b></sub></a><br /></td>
      <tr/>
       <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀장 : 이지원 </b></sub></a><br /></td>
       <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀원 : 김지훈</b></sub></a><br /></td>
