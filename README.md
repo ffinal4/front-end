@@ -35,18 +35,22 @@
 
 ## 프로젝트 기능 소개
 
-#### 포켓경매
+#### 물물교환 경매 시스템 / 입찰
 
-![image](https://github.com/ffinal4/front-end/assets/107457719/2dec5ce1-9862-4ee5-8f05-0e1c2c137041)
+![image](https://github.com/ffinal4/front-end/assets/107457719/3f3e8c0a-aa51-4eca-8371-72cfd03546bb)
 
 
-#### 🦊 경매
+#### 게임을 통한 물건 레이팅
 
-- 솰라솰라
+![image](https://github.com/ffinal4/front-end/assets/107457719/90e8245a-d1e9-4d0a-996c-848952b04db6)
+
+
+#### 나의 교환 상태 확인 / 채팅을 통한 교환
+
+![image](https://github.com/ffinal4/front-end/assets/107457719/095d637f-b00a-43d9-86cd-50f1d673e17e)
 
 <br/>
 <br/>
-
 ## 🏗 Architecture
 
 ![image](https://github.com/ffinal4/front-end/assets/107457719/54dcd52b-e8b0-4982-853d-7e113540b137)
