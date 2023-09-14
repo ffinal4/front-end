@@ -37,7 +37,7 @@
 
 #### 포켓경매
 
-![image](https://github.com/ffinal4/front-end/assets/107457719/2dec5ce1-9862-4ee5-8f05-0e1c2c137041)
+![image](https://github.com/ffinal4/front-end/assets/107457719/3f3e8c0a-aa51-4eca-8371-72cfd03546bb)
 
 
 #### 🦊 경매
