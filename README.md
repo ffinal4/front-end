@@ -19,15 +19,14 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="" width="10px;" alt=""/><br /><sub><b>FE 팀장 : 박준영</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="10px;" alt=""/><br /><sub><b>FE 팀원 : 서명진</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="10px;" alt=""/><br /><sub><b>FE 팀원 : 이승재</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="10px;" alt=""/><br /><sub><b>DE 팀원 : 윤지숙</b></sub></a><br /></td>
-    </tr>
-    <tr>
-      <td align="center"><a href=""><img src="" width="10px;" alt=""/><br /><sub><b>BE 팀장 : 이지원</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="10px;" alt=""/><br /><sub><b>BE 팀원 : 김지훈</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="10px;" alt=""/><br /><sub><b>BE 팀원 : 이지원</b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/LOCA525"><img src="https://avatars.githubusercontent.com/u/98865366?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀장 : 박준영</b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/myeongjin99"><img src="https://avatars.githubusercontent.com/u/107457719?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 서명진</b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/seungjaelee2684"><img src="https://avatars.githubusercontent.com/u/135948012?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 이승재</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="50px;" alt=""/><br /><sub><b>DE 팀원 : 윤지숙 </b></sub></a><br /></td>
+     <tr/>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀장 : 이지원 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀원 : 김지훈</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀원 : 이지원</b></sub></a><br /></td>
     </tr>
   </tbody>
 </table>
