@@ -56,6 +56,41 @@
 
 ![image](https://github.com/ffinal4/front-end/assets/107457719/54dcd52b-e8b0-4982-853d-7e113540b137)
 
+## 🏗 기술적 의사결정
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">TypeScript</td>
+      <td align="center" width="800px;"></td>
+    <tr/>
+    <tr>
+      <td align="center">React Query</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">Recoil</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">Styled-Components</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">Axios</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">WebSocket</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">Useform</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+  </tbody>
+</table>
+
 <br/>
 <br/>
 
