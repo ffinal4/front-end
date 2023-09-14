@@ -22,7 +22,7 @@
       <td align="center"><a href="https://github.com/LOCA525"><img src="https://avatars.githubusercontent.com/u/98865366?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀장 : 박준영</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/myeongjin99"><img src="https://avatars.githubusercontent.com/u/107457719?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 서명진</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/seungjaelee2684"><img src="https://avatars.githubusercontent.com/u/135948012?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 이승재</b></sub></a><br /></td>
-      <td align="center"><a href="https://www.figma.com/file/aL874LElbs7lkXTpuuhARZ/PEEPPO?type=design&node-id=716-29&mode=design&t=rULoSuZSLt8VHmZ9-0"><img src="https://files.slack.com/files-tmb/T03GJEFQ63V-F05SABEEBJN-c4b304b194/layer_3_720.png" width="50px;" alt=""/><br /><sub><b>디자이너 : 윤지숙 </b></sub></a><br /></td>
+      <td align="center"><a href="https://www.figma.com/file/aL874LElbs7lkXTpuuhARZ/PEEPPO?type=design&node-id=716-29&mode=design&t=rULoSuZSLt8VHmZ9-0"><img src="https://peeppo.site/static/media/mascot1.46c313e9e42df5129ff0f32c94ccc94d.svg" width="50px;" alt=""/><br /><sub><b>디자이너 : 윤지숙 </b></sub></a><br /></td>
      <tr/>
       <td align="center"><a href="https://github.com/jiooong"><img src="https://avatars.githubusercontent.com/u/102176567?v=4" width="50px;" alt=""/><br /><sub><b>BE 팀장 : 이지원 </b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/K-IMjihun"><img src="https://avatars.githubusercontent.com/u/62210749?v=4" width="50px;" alt=""/><br /><sub><b>BE 팀원 : 김지훈</b></sub></a><br /></td>
@@ -58,57 +58,42 @@
 
 ## 🏗 기술적 의사결정
 
+<br/>
 <table>
   <tbody>
     <tr>
-      <td align="center">TypeScript</td>
-      <td align="center" width="800px;"></td>
-    <tr/>
-    <tr>
-      <td align="center">React Query</td>
-      <td align="center" width="800px;"></td>
+      <th align="center">TypeScript</th>
+      <td align="center" width="800px;">프로젝트의 규모가 크고 협업에서의 원활한 의사소통의 목적으로 정적 타입 검사를 통해 런타임 오류를 사전에 방지하고 코드의 가독성과 유지보수성을 향상시키기 위해 채택.</td>
     </tr>
     <tr>
-      <td align="center">Recoil</td>
-      <td align="center" width="800px;"></td>
+      <th align="center">React Query</th>
+      <td align="center" width="800px;">서버 데이터 관리를 간편하게 하고, 데이터 캐싱, 재시도 및 상태 관리를 효율적으로 처리가능하고 데이터의 일관성과 성능을 유지, 데이터 요청과 상태를 실시간으로 모니터링하고 디버깅하면서 개발 생산성을 높이고 문제를 신속하게 해결할 수 있는 React Query를 도입.</td>
     </tr>
     <tr>
-      <td align="center">Styled-Components</td>
-      <td align="center" width="800px;"></td>
+      <th align="center">Recoil</th>
+      <td align="center" width="800px;">단순 부모, 자식 컴포넌트사이가 아닌 여러 컴포넌트 간 데이터 공유와 관리를 유연하고 간편하게 처리할 수 있는 라이브러리. 선택적인 렌더링을 통해 컴포넌트 간 리렌더링 최적화를 통해 애플리케이션 성능을 향상시키고 불필요한 리렌더링을 방지하기 위해 도입.</td>
     </tr>
     <tr>
-      <td align="center">Axios</td>
-      <td align="center" width="800px;"></td>
+      <th align="center">Styled-Components</th>
+      <td align="center" width="800px;">CSS-in-JS 접근 방식을 사용해 스타일을 관리하기로 결정. 컴포넌트 기반 스타일링을 통해 코드의 모듈성과 재사용성을 높이고 컴포넌트와 관련된 스타일을 한 곳에서 직관적으로 관리할 수 있어 유지보수가 용이해 선택.</td>
     </tr>
     <tr>
-      <td align="center">WebSocket</td>
-      <td align="center" width="800px;"></td>
+      <th align="center">Axios</th>
+      <td align="center" width="800px;">다양한 HTTP 요청 메서드(GET, POST, PUT, DELETE 등)를 지원하고 요청과 응답을 인터셉터(Interceptor)를 통해 처리해 요청과 응답을 중앙에서 관리하고 로깅할 수 있으며 네트워크 요청의 효율성과 신뢰성을 높이고 클라이언트와 서버 간의 통신을 관리하기 위한 일관된 패턴을 구축할 수 있는 라이브러리.</td>
     </tr>
     <tr>
-      <td align="center">Useform</td>
-      <td align="center" width="800px;"></td>
+      <th align="center">WebSocket(STOMP)</th>
+      <td align="center" width="800px;">HTTP 요청과 달리 연결을 유지하며 데이터를 주고받을 수 있어, 긴 Polling이나 다른 비효율적인 방법 대신 빠르고 효율적인 실시간 통신을 구현할 수 있기에 실시간 채팅기능 구현을 위해 웹소켓을 사용.</td>
+    </tr>
+    <tr>
+      <th align="center">Useform</th>
+      <td align="center" width="800px;">입력 필드를 처리하는 상태(state)를 간소화하고, 동시에 컴포넌트가 관리해야 하는 상태의 수도 감소하여 컴포넌트의 렌더링 횟수를 최소화하기 위해 useForm을 활용</td>
     </tr>
   </tbody>
 </table>
 
 <br/>
 <br/>
-
-- 프로젝트 관리 : 애자일 방법론을 따라 Jira를 활용하여 이슈를 생성하고 관리
-
-- 버전 관리와 협업: GitHub를 통해 코드를 버전 관리하고, 브랜치와 커밋을 통해 코드 협업을 체계적으로 진행했습니다. 또한 커밋 컨벤션을 준수하여 코드의 가독성을 높임
-
-- 프로그래밍 언어와 스타일링: TypeScript를 기반으로 개발을 진행하고, 컴포넌트 단위로 분리하여 스타일드 컴포넌트를 사용하여 CSS를 작성
-
-- 효율적인 통신 : 백엔드와의 효율적인 통신을 위해 React Query를 선택
-
-- 상태 관리 : Recoil을 활용하여 전역 상태를 관리하여 복잡한 상태 로직을 캡슐화하고 컴포넌트 간 데이터 교환을 단순화
-
-- 입력 필드 관리: useForm을 활용하여 입력 필드를 처리하는 상태를 간소화하고, 컴포넌트의 렌더링 횟수를 최소화
-
-- 실시간 채팅 기능: 웹소켓(STOMP) 기술을 활용하여 실시간 채팅 기능을 구현
-
-- CI/CD 환경 구축: 배포의 편의성을 높이기 위해 netlify를 사용하여 CI/CD 환경을 구축
 
 ## 🛠 Tools
 
