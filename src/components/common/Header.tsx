@@ -71,9 +71,9 @@ const Header = () => {
         </LogoContainer>
       );
     } else if (
-      location.pathname.includes("/tradeList")
-      || location.pathname.includes("/traderequest")
-      || location.pathname.includes("/detail")
+      location.pathname.includes("/tradeList") ||
+      location.pathname.includes("/traderequest") ||
+      location.pathname.includes("/detail")
     ) {
       return (
         <LogoContainer>

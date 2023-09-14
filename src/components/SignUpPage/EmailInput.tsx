@@ -55,12 +55,19 @@ const EmailInput: React.FC<EmailInputProps> = ({
 
 const EmailInputContainer = styled.div`
   width: 272px;
+  @media screen and (max-width: 376px) {
+    width: 299px;
+  }
 `;
 
 const EmailContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 44px;
+  @media screen and (max-width: 376px) {
+    flex-direction: column;
+    margin-top: 30px;
+  }
 `;
 
 const AtContainer = styled.div`

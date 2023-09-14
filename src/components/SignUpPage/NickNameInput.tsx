@@ -98,10 +98,16 @@ const SecondLabel = styled.div`
   font-weight: 700;
   margin-right: 50px;
   font-family: Pretendard;
+  @media screen and (max-width: 376px) {
+    font-size: 16px;
+  }
 `;
 
 const NickNameInputContainer = styled.div`
   width: 464px;
+  @media screen and (max-width: 376px) {
+    width: 229px;
+  }
 `;
 
 const StButton = styled(StBasicButton)`

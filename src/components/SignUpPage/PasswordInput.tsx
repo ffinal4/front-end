@@ -107,11 +107,17 @@ const PwContainer = styled.div`
   padding-top: 30px;
   margin-top: 30px;
   margin-bottom: 10px;
+  @media screen and (max-width: 376px) {
+    flex-direction: column;
+  }
 `;
 
 const PwInputContainer = styled.div`
   width: 656px;
   position: relative;
+  @media screen and (max-width: 376px) {
+    width: 343px;
+  }
 `;
 
 const PwValidateMessage = styled.div`
@@ -133,12 +139,18 @@ const PwContent = styled.div`
 const CheckPwInputContainer = styled.div`
   width: 656px;
   position: relative;
+  @media screen and (max-width: 376px) {
+    width: 343px;
+  }
 `;
 
 const CheckPwContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  @media screen and (max-width: 376px) {
+    flex-direction: column;
+  }
 `;
 
 const CheckPwValidateMessage = styled.div`

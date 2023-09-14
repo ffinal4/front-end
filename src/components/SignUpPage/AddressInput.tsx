@@ -48,6 +48,9 @@ const AddressContainer = styled.div`
 const AddressInputContainer = styled.div`
   width: 656px;
   display: flex;
+  @media screen and (max-width: 376px) {
+    width: 229px;
+  }
 `;
 const AddressContent = styled.div`
   width: 100%;

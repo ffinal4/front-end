@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
@@ -11,11 +11,23 @@ import footer from "../assets/images/footer.png";
 import vector from "../assets/images/vector.png";
 import firstbox from "../assets/images/firstbox.png";
 import secondbox from "../assets/images/secondbox.png";
+import MobileLoginPage from "./MobileLoginPage";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [mobileLogin, setMobileLogin] = useState<number>(window.innerWidth);
+
+  const handleResize = () => {
+    setMobileLogin(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
   const emailOnchange = (event: any) => {
     setEmail(event.target.value);
@@ -57,79 +69,85 @@ const LoginPage = () => {
   };
 
   return (
-    <LoginPageContainer>
-      <LoginContainer>
-        <LogInForm onSubmit={loginOnclick}>
-          <TitleContainer>
-            <LogoContainer>
-              <Logo src={eyeImage} />
-            </LogoContainer>
-            <Title>로그인</Title>
-            <SubTitle>주머니 핍핑, 시작해볼까요?</SubTitle>
-          </TitleContainer>
-          <InputContainer>
-            <EmailInputContainer>
-              <StBasicInput
-                focusBorderColor="#222020"
-                borderColor="#222020"
-                type="email"
-                value={email}
-                onChange={emailOnchange}
-                placeholder="아이디를 입력해주세요."
-              />
-            </EmailInputContainer>
-            <PwInputContainer>
-              <StBasicInput
-                focusBorderColor="#222020"
-                borderColor="#222020"
-                type="password"
-                value={password}
-                onChange={passwordOnchange}
-                placeholder="비밀번호를 입력해주세요."
-              />
-            </PwInputContainer>
-          </InputContainer>
-          <SecondContainer>
-            <SearchContainer>
-              <SearchId>아이디찾기</SearchId>
-              <BoxContainer />
-              <SearchPw>비밀번호 찾기</SearchPw>
-            </SearchContainer>
-            <LoginStateContainer>
-              <MaintainLogin>로그인 상태 유지</MaintainLogin>
-              <CheckInput type="checkbox" />
-            </LoginStateContainer>
-          </SecondContainer>
-          <ButtonContainer>
-            <StButton
-              buttonColor="#FFCA64;"
-              type="submit"
-              onClick={loginOnclick}
-            >
-              로그인
-            </StButton>
-          </ButtonContainer>
-          <SignUpContainer>
-            <Content>아직 핍포 회원이 아니신가요?</Content>
-            <SignupLink onClick={() => navigate("/signup")}>
-              회원가입
-            </SignupLink>
-          </SignUpContainer>
-        </LogInForm>
-      </LoginContainer>
-      <Box>
-        <img src={firstbox} alt="" />
-        <SecondDiv>
-          <img src={secondbox} alt="" />
-        </SecondDiv>
-      </Box>
-      <FooterContainer>
-        <FirstFooter>
-          <FirstImg src={footer} />
-          <SecondImg src={vector} />
-        </FirstFooter>
-      </FooterContainer>
-    </LoginPageContainer>
+    <>
+      {mobileLogin <= 375 ? (
+        <MobileLoginPage />
+      ) : (
+        <LoginPageContainer>
+          <LoginContainer>
+            <LogInForm onSubmit={loginOnclick}>
+              <TitleContainer>
+                <LogoContainer>
+                  <Logo src={eyeImage} />
+                </LogoContainer>
+                <Title>로그인</Title>
+                <SubTitle>주머니 핍핑, 시작해볼까요?</SubTitle>
+              </TitleContainer>
+              <InputContainer>
+                <EmailInputContainer>
+                  <StBasicInput
+                    focusBorderColor="#222020"
+                    borderColor="#222020"
+                    type="email"
+                    value={email}
+                    onChange={emailOnchange}
+                    placeholder="아이디를 입력해주세요."
+                  />
+                </EmailInputContainer>
+                <PwInputContainer>
+                  <StBasicInput
+                    focusBorderColor="#222020"
+                    borderColor="#222020"
+                    type="password"
+                    value={password}
+                    onChange={passwordOnchange}
+                    placeholder="비밀번호를 입력해주세요."
+                  />
+                </PwInputContainer>
+              </InputContainer>
+              <SecondContainer>
+                <SearchContainer>
+                  <SearchId>아이디찾기</SearchId>
+                  <BoxContainer />
+                  <SearchPw>비밀번호 찾기</SearchPw>
+                </SearchContainer>
+                <LoginStateContainer>
+                  <MaintainLogin>로그인 상태 유지</MaintainLogin>
+                  <CheckInput type="checkbox" />
+                </LoginStateContainer>
+              </SecondContainer>
+              <ButtonContainer>
+                <StButton
+                  buttonColor="#FFCA64;"
+                  type="submit"
+                  onClick={loginOnclick}
+                >
+                  로그인
+                </StButton>
+              </ButtonContainer>
+              <SignUpContainer>
+                <Content>아직 핍포 회원이 아니신가요?</Content>
+                <SignupLink onClick={() => navigate("/signup")}>
+                  회원가입
+                </SignupLink>
+              </SignUpContainer>
+            </LogInForm>
+          </LoginContainer>
+          <Box>
+            <img src={firstbox} alt="" />
+            <SecondDiv>
+              <img src={secondbox} alt="" />
+            </SecondDiv>
+          </Box>
+          <FooterContainer>
+            <FirstFooter>
+              <FirstImg src={footer} />
+              <SecondImg src={vector} />
+            </FirstFooter>
+          </FooterContainer>
+        </LoginPageContainer>
+      )}
+    </>
   );
 };
 
