@@ -19,14 +19,14 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="width="50px;" alt=""/><br /><sub><b>FE 팀장 : 박준영</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 서명진</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 이승재</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>DE 팀원 : 윤지숙 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/LOCA525"><img src="https://avatars.githubusercontent.com/u/98865366?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀장 : 박준영</b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/myeongjin99"><img src="https://avatars.githubusercontent.com/u/107457719?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 서명진</b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/seungjaelee2684"><img src="https://avatars.githubusercontent.com/u/135948012?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 이승재</b></sub></a><br /></td>
+      <td align="center"><a href="https://www.figma.com/file/aL874LElbs7lkXTpuuhARZ/PEEPPO?type=design&node-id=716-29&mode=design&t=rULoSuZSLt8VHmZ9-0"><img src="https://files.slack.com/files-tmb/T03GJEFQ63V-F05SABEEBJN-c4b304b194/layer_3_720.png" width="50px;" alt=""/><br /><sub><b>디자이너 : 윤지숙 </b></sub></a><br /></td>
      <tr/>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀장 : 이지원 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀원 : 김지훈</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀원 : 이지원</b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/jiooong"><img src="https://avatars.githubusercontent.com/u/102176567?v=4" width="50px;" alt=""/><br /><sub><b>BE 팀장 : 이지원 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/K-IMjihun"><img src="https://avatars.githubusercontent.com/u/62210749?v=4" width="50px;" alt=""/><br /><sub><b>BE 팀원 : 김지훈</b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/stoow1"><img src="https://avatars.githubusercontent.com/u/134283428?v=4" width="50px;" alt=""/><br /><sub><b>BE 팀원 : 이지원</b></sub></a><br /></td>
     </tr>
   </tbody>
 </table>
@@ -35,13 +35,19 @@
 
 ## 프로젝트 기능 소개
 
-#### 🐰 물물교환
+#### 물물교환 경매 시스템 / 입찰
 
-- 솰라솰라
+![image](https://github.com/ffinal4/front-end/assets/107457719/3f3e8c0a-aa51-4eca-8371-72cfd03546bb)
 
-#### 🦊 경매
 
-- 솰라솰라
+#### 게임을 통한 물건 레이팅
+
+![image](https://github.com/ffinal4/front-end/assets/107457719/90e8245a-d1e9-4d0a-996c-848952b04db6)
+
+
+#### 나의 교환 상태 확인 / 채팅을 통한 교환
+
+![image](https://github.com/ffinal4/front-end/assets/107457719/095d637f-b00a-43d9-86cd-50f1d673e17e)
 
 <br/>
 <br/>
@@ -50,8 +56,59 @@
 
 ![image](https://github.com/ffinal4/front-end/assets/107457719/54dcd52b-e8b0-4982-853d-7e113540b137)
 
+## 🏗 기술적 의사결정
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">TypeScript</td>
+      <td align="center" width="800px;"></td>
+    <tr/>
+    <tr>
+      <td align="center">React Query</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">Recoil</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">Styled-Components</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">Axios</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">WebSocket</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+    <tr>
+      <td align="center">Useform</td>
+      <td align="center" width="800px;"></td>
+    </tr>
+  </tbody>
+</table>
+
 <br/>
 <br/>
+
+- 프로젝트 관리 : 애자일 방법론을 따라 Jira를 활용하여 이슈를 생성하고 관리
+
+- 버전 관리와 협업: GitHub를 통해 코드를 버전 관리하고, 브랜치와 커밋을 통해 코드 협업을 체계적으로 진행했습니다. 또한 커밋 컨벤션을 준수하여 코드의 가독성을 높임
+
+- 프로그래밍 언어와 스타일링: TypeScript를 기반으로 개발을 진행하고, 컴포넌트 단위로 분리하여 스타일드 컴포넌트를 사용하여 CSS를 작성
+
+- 효율적인 통신 : 백엔드와의 효율적인 통신을 위해 React Query를 선택
+
+- 상태 관리 : Recoil을 활용하여 전역 상태를 관리하여 복잡한 상태 로직을 캡슐화하고 컴포넌트 간 데이터 교환을 단순화
+
+- 입력 필드 관리: useForm을 활용하여 입력 필드를 처리하는 상태를 간소화하고, 컴포넌트의 렌더링 횟수를 최소화
+
+- 실시간 채팅 기능: 웹소켓(STOMP) 기술을 활용하여 실시간 채팅 기능을 구현
+
+- CI/CD 환경 구축: 배포의 편의성을 높이기 위해 netlify를 사용하여 CI/CD 환경을 구축
 
 ## 🛠 Tools
 
@@ -89,17 +146,22 @@
 
 ### Issue1 이미지 로딩 딜레이 이슈
 
-메인페이지, 물물교환리스트, 경매리스트 페이지 로딩 시간이 길어지는 문제가 발생
+메인페이지, 물물교환리스트, 경매리스트 이미지 로딩 시간이 길어지는 문제가 발생
 
 #### 원인
 
 이미지가 캐시 되지 않거나, 브라우저 캐시가 비어있어 이미지를 다시 다운로드해야 했기 때문
 
-#### 해결 순서
+#### 해결방안
 
 1. 캐시스토리지에 CashName 생성
-2. 
-3. 
+2. try 블록 내부에서 캐시 스토리지를 열고, 주어진 url과 일치하는 캐시를 확인
+3. 이미지 데이터를 캐시에서 찾았으면, 해당 데이터를 출력
+4. 이미지 데이터를 캐시에서 찾지 못한 경우, Axios를 사용하여 데이터 가져오기
+5. Axios로부터 받은 데이터를 Blob 형식으로 변환
+
+결과 : 이미지 캐싱 처리를 도입한 결과, LightHouse평가에서 성능이 75에서 87로 향상되어 페이지 로딩속도가 개선
+
 
 <br/>
 
