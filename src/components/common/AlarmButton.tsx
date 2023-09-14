@@ -16,7 +16,7 @@ const AlarmButton = () => {
 
   const onClickOpenModalHandler = () => {
     setAlarmModalOpen(!alarmModalOpen);
-    // setIsAlarms(false);
+    setIsAlarms(false);
     // if (alarmRef.current) {
     //   alarmRef.current.style.opacity = "1";
     //   alarmRef.current.style.transition = "all 0.2s ease-in-out";
@@ -26,7 +26,7 @@ const AlarmButton = () => {
     //   if (alarmRef.current) {
     //     alarmRef.current.style.opacity = "0"
     //     alarmRef.current.style.transition = "all 0.2s ease-in-out";
-    //   alarmRef.current.style.transform = "translateY(-5px)";
+    //     alarmRef.current.style.transform = "translateY(-5px)";
     //   };
     // }, 2000);
   };
@@ -82,7 +82,7 @@ const AlarmButton = () => {
               if (alarmRef.current) {
                 alarmRef.current.style.opacity = "0"
                 alarmRef.current.style.transition = "all 0.2s ease-in-out";
-              alarmRef.current.style.transform = "translateY(-5px)";
+                alarmRef.current.style.transform = "translateY(-5px)";
               };
             }, 2000);
             setIsAlarms(true);
