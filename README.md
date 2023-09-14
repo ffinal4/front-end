@@ -25,7 +25,7 @@ What's in my bag'과 같이 다른 사람의 가방을 엿보는 콘텐츠에서
       <td align="center"><a href="https://github.com/LOCA525"><img src="https://avatars.githubusercontent.com/u/98865366?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀장 : 박준영</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/myeongjin99"><img src="https://avatars.githubusercontent.com/u/107457719?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 서명진</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/seungjaelee2684"><img src="https://avatars.githubusercontent.com/u/135948012?v=4" width="50px;" alt=""/><br /><sub><b>FE 팀원 : 이승재</b></sub></a><br /></td>
-      <td align="center"><a href="https://www.figma.com/file/aL874LElbs7lkXTpuuhARZ/PEEPPO?type=design&node-id=716-29&mode=design&t=rULoSuZSLt8VHmZ9-0"><img src="https://peeppo.site/static/media/mascot1.46c313e9e42df5129ff0f32c94ccc94d.svg" width="30px;" alt=""/><br /><sub><b>디자이너 : 윤지숙 </b></sub></a><br /></td>
+      <td align="center"><a href="https://www.figma.com/file/aL874LElbs7lkXTpuuhARZ/PEEPPO?type=design&node-id=716-29&mode=design&t=rULoSuZSLt8VHmZ9-0"><img src="https://peeppo.site/static/media/mascot1.46c313e9e42df5129ff0f32c94ccc94d.svg" width="35px;" alt=""/><br /><sub><b>디자이너 : 윤지숙 </b></sub></a><br /></td>
      <tr/>
       <td align="center"><a href="https://github.com/jiooong"><img src="https://avatars.githubusercontent.com/u/102176567?v=4" width="50px;" alt=""/><br /><sub><b>BE 팀장 : 이지원 </b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/K-IMjihun"><img src="https://avatars.githubusercontent.com/u/62210749?v=4" width="50px;" alt=""/><br /><sub><b>BE 팀원 : 김지훈</b></sub></a><br /></td>
