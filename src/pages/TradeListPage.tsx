@@ -13,8 +13,10 @@ import { useRecoilValue } from "recoil";
 import { filterAsc, filterCategory } from "../store/filterCategory";
 import AscFilterButton from "../components/common/AscFilterButton";
 import LoadingSpinner from "../components/common/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 const TradeListPage = () => {
+  const navigate = useNavigate();
   const currentPage = useRecoilValue(pagination);
   const currentCategory = useRecoilValue(filterCategory);
   const currentAsc = useRecoilValue(filterAsc);
@@ -39,6 +41,13 @@ const TradeListPage = () => {
           POCKET TRADE
         </TitleText>
       </TitleContainer>
+      <UploadBtn
+        onClick={() => {
+          navigate("/upload");
+        }}
+      >
+        물건 올리기
+      </UploadBtn>
       <HorizontalLine />
       <AscFilterButton />
       <FilterButton />
@@ -52,11 +61,32 @@ const TradeListPageContainer = styled.div`
   width: 100%;
 `;
 
+const UploadBtn = styled.div`
+  border-radius: 5px;
+  border: 2px solid var(--black-white-black, #222020);
+  background: var(--orange-orange-100, #ec8d49);
+  display: flex;
+  width: 176px;
+  padding: 10px 0px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  color: var(--black-white-white, #fcfcfc);
+  /* WEB/KOR/Kor B 16 */
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+  margin-bottom: 80px;
+  cursor: pointer;
+`;
+
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 `;
 const TitleImage = styled.img`
   width: 66px;
