@@ -17,7 +17,7 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
             if (getPoint < resData.totalPoint) {
                 setGetPoint(getPoint + 1);
             };
-        }, 50);
+        }, 60);
         return () => clearInterval(interVal);
     }, [getPoint]);
 

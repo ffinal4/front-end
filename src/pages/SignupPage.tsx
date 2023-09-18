@@ -3,11 +3,11 @@ import { styled } from "styled-components";
 import { StBasicButton } from "../styles/BasicButton";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { StBasicInput } from "../styles/BasicInput";
-import KakaoApi from "../components/common/KakaoApi";
-import { postNicknameApi, postSignupApi } from "../api/users";
-import openeye from "../assets/icon/openeye.png";
-import closeeye from "../assets/icon/closeeye.png";
+import { postSignupApi } from "../api/users";
+import PasswordInput from "../components/SignUpPage/PasswordInput";
+import EmailInput from "../components/SignUpPage/EmailInput";
+import AddressInput from "../components/SignUpPage/AddressInput";
+import NickNameInput from "../components/SignUpPage/NickNameInput";
 
 interface SignupForm {
   email: string;
@@ -20,15 +20,13 @@ interface SignupForm {
 
 const SignupPage = () => {
   const navigate = useNavigate();
-
+  const divRef = useRef<HTMLDivElement>(null);
   const [address, setAddress] = useState(""); //주소
   const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
   const [pwType, setpwType] = useState({ type: "password", visible: false });
   const [isAvailable, setIsAvailable] = useState(false);
   const [nicknameError, setNicknameError] = useState<string | null>(null);
   const [nicknameChecked, setNicknameChecked] = useState(false);
-
-  const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -41,41 +39,6 @@ const SignupPage = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-
-  const onClickPasswordType = (event: any) => {
-    event.preventDefault();
-    setpwType(() => {
-      if (!pwType.visible) {
-        return { type: "text", visible: true };
-      } else {
-        return { type: "password", visible: false };
-      }
-    });
-  };
-
-  //닉네임 중복 확인 통신
-  const checkNicknameAvailability = async (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    const formData = getValues();
-    const newNick = formData.nickname;
-    const nickData = { nickname: newNick };
-    console.log(nickData, "nick");
-    try {
-      const res = await postNicknameApi(nickData);
-      console.log(res);
-      if (res.status === 200) {
-        setNicknameChecked(true);
-        setIsAvailable(true);
-        setNicknameError(null);
-        console.log("사용가능한 닉네임 입니다.", res);
-      }
-    } catch (error) {
-      setIsAvailable(false);
-      setNicknameError("중복된 닉네임 입니다.");
-      console.log("중복된 닉네임 입니다.", error);
-    }
-  };
 
   const {
     register,
@@ -114,150 +77,29 @@ const SignupPage = () => {
         <Title>READY TO PEEPO?</Title>
       </TitleContainer>
       <SignUpContainer>
-        <EmailContainer>
-          <Label>이메일(아이디)</Label>
-          <EmailInputContainer>
-            <StBasicInput
-              borderColor={errors.email ? "red" : "#ADADAD"}
-              focusBorderColor="#46A75B"
-              type="email"
-              placeholder="이메일을 입력해주세요"
-              {...register("email", {
-                pattern: {
-                  value: /^[a-zA-Z\d]{3,}$/,
-                  message: "3자 이상 입력해주세요. ",
-                },
-              })}
-            />
-          </EmailInputContainer>
-
-          <AtContainer>@</AtContainer>
-          <SelectContainer>
-            <EmailSelect
-              {...register("select", { required: "필수입력 항목입니다." })}
-            >
-              <option value="">선택해주세요</option>
-              <option value="@naver.com">naver.com</option>
-              <option value="@hanmail.net">hanmail.net</option>
-              <option value="@daum.net">daum.net</option>
-              <option value="@gmail.com">gmail.com</option>
-              <option value="@nate.com">nate.com</option>
-              <option value="@hotmail.com">hotmail.com</option>
-              <option value="@outlook.com">outlook.com</option>
-              <option value="@icloud.com">icloud.com</option>
-            </EmailSelect>
-          </SelectContainer>
-        </EmailContainer>
-        <ValidateMessage>{errors?.email?.message}</ValidateMessage>
-        <PwContainer>
-          <Label>비밀번호</Label>
-          <PwInputContainer>
-            <PwVisibleButton onClick={onClickPasswordType}>
-              {pwType.visible ? (
-                <PwImg src={closeeye} />
-              ) : (
-                <PwImg src={openeye} />
-              )}
-            </PwVisibleButton>
-            <StBasicInput
-              borderColor={errors.password ? "red" : "#ADADAD"}
-              focusBorderColor="#46A75B"
-              type={pwType.type}
-              placeholder="비밀번호를 입력해주세요."
-              {...register("password", {
-                minLength: {
-                  value: 8,
-                  message: "비밀번호는 8자 이상이어야 합니다.",
-                },
-                pattern: {
-                  value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,15}$/,
-                  message:
-                    "- 영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를 작성해주세요.",
-                },
-              })}
-            />
-          </PwInputContainer>
-        </PwContainer>
-        <ContentContainer>
-          <PwContent>
-            - 영문, 숫자, 특수문자 각 1개 이상을 포함한 8자리 이상의 비밀번호를
-            작성해주세요.
-          </PwContent>
-        </ContentContainer>
-        <PwValidateMessage>{errors?.password?.message}</PwValidateMessage>
-        <CheckPwContainer>
-          <Label>비밀번호 확인</Label>
-          <CheckPwInputContainer>
-            <StBasicInput
-              borderColor={errors.password ? "red" : "#ADADAD"}
-              focusBorderColor="#46A75B"
-              type={pwType.type}
-              placeholder="비밀번호를 입력해주세요."
-              {...register("confirmPassword", {
-                validate: {
-                  check: (value) => {
-                    if (getValues("password") !== value) {
-                      return "비밀번호가 일치하지 않습니다.";
-                    }
-                  },
-                },
-              })}
-            />
-          </CheckPwInputContainer>
-        </CheckPwContainer>
-        <CheckPwValidateMessage>
-          {errors?.confirmPassword?.message}
-        </CheckPwValidateMessage>
-        <AddressContainer ref={divRef}>
-          <Label>주소</Label>
-          <AddressInputContainer>
-            <KakaoApi
-              address={address}
-              setAddress={setAddress}
-              openPostcode={openPostcode}
-              setOpenPostcode={setOpenPostcode}
-            />
-          </AddressInputContainer>
-        </AddressContainer>
-        <ContentContainer>
-          <AddressContent>
-            - 입력된 주소는 나의 주거래 지역으로 표시됩니다.
-          </AddressContent>
-        </ContentContainer>
-        <NickNameContainer>
-          <SecondLabel>닉네임</SecondLabel>
-          <NickNameInputContainer>
-            <StBasicInput
-              borderColor={errors.nickname ? "red" : "#ADADAD"}
-              focusBorderColor="#46A75B"
-              type="text"
-              placeholder="한글, 영문, 숫자를 이용한 2~15자"
-              {...register("nickname", {
-                minLength: {
-                  value: 2,
-                  message: "2자 이상 15자 이하로 입력해주세요.",
-                },
-                maxLength: {
-                  value: 15,
-                  message: "2자 이상 15자 이하로 입력해주세요.",
-                },
-                pattern: {
-                  value: /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,15}$/,
-                  message: "영문 대소문자, 글자 단위 한글, 숫자만 가능합니다.",
-                },
-              })}
-            />
-          </NickNameInputContainer>
-
-          <StButton buttonColor="#FDD988;" onClick={checkNicknameAvailability}>
-            중복 확인
-          </StButton>
-        </NickNameContainer>
-        <NickNameError>{errors?.nickname?.message}</NickNameError>
-        {nicknameError && <Content color="red">* 중복된 닉네임입니다.</Content>}
-        {isAvailable && (
-          <Content color="#46A75B">* 사용 가능한 닉네임입니다.</Content>
-        )}
+        <EmailInput register={register} errors={errors} getValues={getValues} />
+        <PasswordInput
+          pwType={pwType}
+          setpwType={setpwType}
+          register={register}
+          errors={errors}
+          getValues={getValues}
+        />
+        <AddressInput
+          address={address}
+          setAddress={setAddress}
+          openPostcode={openPostcode}
+          setOpenPostcode={setOpenPostcode}
+        />
+        <NickNameInput
+          isAvailable={isAvailable}
+          setIsAvailable={setIsAvailable}
+          nicknameError={nicknameError}
+          setNicknameError={setNicknameError}
+          setNicknameChecked={setNicknameChecked}
+          register={register}
+          errors={errors}
+        />
       </SignUpContainer>
       <AssignButtonContainer>
         <StBasicButton
@@ -298,73 +140,13 @@ const SignUpContainer = styled.div`
   margin: auto;
 `;
 
-const EmailInputContainer = styled.div`
-  width: 272px;
-`;
-
-const EmailContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 44px;
-`;
-
-const Label = styled.div`
+export const Label = styled.div`
   font-family: Pretendard;
   font-size: 20px;
   width: 180px;
   font-weight: 700;
   display: flex;
   margin-right: 70px;
-`;
-
-const AtContainer = styled.div`
-  padding: 0px 16px 0px 16px;
-`;
-
-const SelectContainer = styled.div`
-  width: 337px;
-`;
-
-const EmailSelect = styled.select`
-  width: 100%;
-  height: 44px;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #adadad;
-  font-family: Pretendard;
-`;
-
-const ValidateMessage = styled.div`
-  width: 465px;
-  height: 24px;
-  margin-left: 250px;
-  color: red;
-  font-family: Pretendard;
-  font-size: 16px;
-`;
-
-const Content = styled.div<{ color: string }>`
-  padding-left: 250px;
-  font-family: Pretendard;
-  font-size: 16px;
-  color: ${(props) => props.color};
-  margin-top: 10px;
-  margin-bottom: 40px;
-`;
-
-const PwContainer = styled.div`
-  border-top: 1px solid #adadad;
-  display: flex;
-  align-items: center;
-  padding-top: 30px;
-  margin-top: 30px;
-  margin-bottom: 10px;
-`;
-
-const PwInputContainer = styled.div`
-  width: 656px;
-  position: relative;
 `;
 
 export const PwVisibleButton = styled.div`
@@ -381,93 +163,8 @@ export const PwImg = styled.img`
   height: 24px;
 `;
 
-const PwValidateMessage = styled.div`
-  width: 656px;
-  height: 24px;
-  margin-left: 250px;
-  color: red;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  font-family: Pretendard;
-  font-size: 16px;
-`;
-const CheckPwInputContainer = styled.div`
-  width: 656px;
-  position: relative;
-`;
-
-const CheckPwContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
-const CheckPwValidateMessage = styled.div`
-  width: 656px;
-  height: 24px;
-  margin-left: 250px;
-  color: red;
-  margin-bottom: 30px;
-  font-family: Pretendard;
-  font-size: 16px;
-`;
-const AddressContainer = styled.div`
-  border-top: 1px solid #adadad;
-  padding-top: 30px;
-  display: flex;
-  align-items: center;
-`;
-
-const AddressInputContainer = styled.div`
-  width: 656px;
-  display: flex;
-`;
-
-const SecondLabel = styled.div`
-  font-size: 20px;
-  width: 200px;
-  font-weight: 700;
-  margin-right: 50px;
-  font-family: Pretendard;
-`;
-
-const NickNameInputContainer = styled.div`
-  width: 464px;
-`;
-
-const StButton = styled(StBasicButton)`
-  margin-left: 20px;
-  border: 1px solid #222020;
-`;
-
-const ContentContainer = styled.div`
+export const ContentContainer = styled.div`
   padding-left: 250px;
-`;
-
-const PwContent = styled.div`
-  font-family: Pretendard;
-  color: #adadad;
-`;
-
-const AddressContent = styled.div`
-  width: 100%;
-  height: 24px;
-  font-family: Pretendard;
-  color: #adadad;
-  margin-top: 10px;
-  margin-bottom: 30px;
-`;
-
-const NickNameContainer = styled.div`
-  border-top: 1px solid #adadad;
-  padding-top: 30px;
-  display: flex;
-  align-items: center;
-`;
-
-const NickNameError = styled.div`
-  font-family: Pretendard;
-  font-size: 16px;
 `;
 
 const AssignButtonContainer = styled.div`
