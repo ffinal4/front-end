@@ -17,6 +17,18 @@ const AlarmButton = () => {
   const onClickOpenModalHandler = () => {
     setAlarmModalOpen(!alarmModalOpen);
     setIsAlarms(false);
+    // if (alarmRef.current) {
+    //   alarmRef.current.style.opacity = "1";
+    //   alarmRef.current.style.transition = "all 0.2s ease-in-out";
+    //   alarmRef.current.style.transform = "translateY(5px)";
+    // }
+    // setTimeout(() => {
+    //   if (alarmRef.current) {
+    //     alarmRef.current.style.opacity = "0"
+    //     alarmRef.current.style.transition = "all 0.2s ease-in-out";
+    //     alarmRef.current.style.transform = "translateY(-5px)";
+    //   };
+    // }, 2000);
   };
 
   const divRef = useRef<HTMLDivElement>(null);
@@ -61,7 +73,6 @@ const AlarmButton = () => {
         eventSource.addEventListener('sse', (e : any) => {
           // const { data: receivedConnectData } = e;
           if (e.data !== "connected!") {
-            
             if (alarmRef.current) {
               alarmRef.current.style.opacity = "1";
               alarmRef.current.style.transition = "all 0.2s ease-in-out";
@@ -71,9 +82,9 @@ const AlarmButton = () => {
               if (alarmRef.current) {
                 alarmRef.current.style.opacity = "0"
                 alarmRef.current.style.transition = "all 0.2s ease-in-out";
-              alarmRef.current.style.transform = "translateY(-5px)";
+                alarmRef.current.style.transform = "translateY(-5px)";
               };
-            }, 3000);
+            }, 2000);
             setIsAlarms(true);
           };
           console.log('connect event data: ', e);  // "connected!"
@@ -103,6 +114,8 @@ const AlarmButton = () => {
         };
       };
       connectToSSE();
+      } else {
+        return;
       };
      }, []);
 
@@ -144,16 +157,16 @@ const AlarmModalWrapper = styled.div`
 
 const NotificationAlert = styled.div`
   width: 400px;
-  height: 30px;
+  height: 40px;
   display: flex;
   opacity: 0;
   justify-content: center;
   align-items: center;
   position: absolute;
-  background-color: #e9a270;
-  border-radius: 5px;
-  top: 100px;
-  right: 300px;
+  background-color: #a5a7ca;
+  border-radius: 10px;
+  top: 105px;
+  right: 200px;
   z-index: 999;
 `;
 
