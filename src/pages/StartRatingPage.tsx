@@ -53,7 +53,6 @@ const StartRatingPage = () => {
 
 const MainLayoutContainer = styled.div`
   width: 100%;
-  height: 963px;
   background-color: #fcfcfc;
 `;
 
@@ -61,7 +60,7 @@ const MainLayout = styled.div`
   width: 100%;
   max-width: 1136px;
   margin: 0 auto;
-  padding: 220px 0 100px 0;
+  padding: 100px 0 0 0;
   display: flex;
   justify-content: center;
 

@@ -10,7 +10,7 @@ const DetailContainer = ({ data } : any) => {
   
   const divRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
-  const imageWidth: number = 464;
+  const imageWidth = 464;
   const SlideRange: number = currentImg * imageWidth;
 
   useEffect(() => {
