@@ -31,6 +31,7 @@ import TermsOfServicePage from "./pages/TermsOfServicePage";
 import SearchPage from "./pages/SearchPage";
 import ChattingPage2 from "./pages/ChattingPage2";
 import PasswordChangePage from "./pages/PasswordChangePage";
+import HelperButton from "./components/common/Helper/HelperButton";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +78,7 @@ function App() {
                 <Route path="/auctionlist" element={<AuctionListPage />} />
               </Route>
             </Routes>
+            <HelperButton />
             <Footer />
           </BrowserRouter>
         </QueryClientProvider>

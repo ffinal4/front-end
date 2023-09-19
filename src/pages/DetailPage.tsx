@@ -24,6 +24,7 @@ const DetailPage = () => {
     }
   }, []);
   console.log("data", data);
+  console.log("화면크기", window.innerWidth);
 
   const [detailTap, setDetailTap] = useState({
     giveTap: true,
