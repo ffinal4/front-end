@@ -27,8 +27,8 @@ const CloseBtnContainer = styled.div`
   height: 44px;
   object-fit: contain;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 50px;
+  right: 50px;
   z-index: 999;
   border: 4px solid #222020;
   background-color: #fcfcfc;

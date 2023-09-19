@@ -5,8 +5,8 @@
     border-radius: 10px;
     background-color: #fcfcfc;
     position: fixed;
-    bottom: 70px;
-    right: 20px;
+    bottom: 100px;
+    right: 50px;
     z-index: 9999;
     display: flex;
     justify-content: center;
