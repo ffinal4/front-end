@@ -41,7 +41,7 @@ const TitleUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
                 <Text color={(titleInput.title.length >= 40) ? "red" : "#000"}>{titleInput.title.length}/40</Text>
             </Wrapper>
             {(failedUpload && uploadData.data.title === "")
-                && <Text color={"#DF3737"}>* 제목을 입력해주세요.</Text>
+                && <Text color={"#DF3737"} style={{width: "100%"}}>* 제목을 입력해주세요.</Text>
             }
             </OutWrapper>
         </LineContainer>
@@ -53,6 +53,11 @@ const LineContainer = styled.div`
     display: flex;
     padding: 30px 0px 30px 0px;
     border-bottom: 2px solid #EAEAEA;
+
+    @media screen and (max-width: 375px) {
+        display: grid;
+        gap: 14px;
+    }
 `;
 
 const RequiredText = styled.div`
@@ -68,10 +73,6 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    @media screen and (max-width: 843px) {
-        display: grid;
-    }
 `;
 
 const TitleInput = styled.input`
@@ -104,6 +105,9 @@ const Text = styled.div<{ color: string }>`
         display: flex;
         justify-content: end;
         width: 100%;
+    }
+    @media screen and (max-width: 375px) {
+        width: 55px;
     }
 `;
 

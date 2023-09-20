@@ -14,10 +14,10 @@ const MyPocketBtn = ({ navigate } : any) => {
       navigate("/mypocket");
     }}>
         <Wrapper>
-        <InBoxWrapper>
-            <InBox src={MyPocket} />
-        </InBoxWrapper>
-        <Text>내 주머니</Text>
+          <InBoxWrapper>
+              <InBox src={MyPocket} />
+          </InBoxWrapper>
+          <Text>내 주머니</Text>
         </Wrapper>
     </OutBox>
   )

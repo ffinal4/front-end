@@ -46,6 +46,11 @@ const LineContainer = styled.div`
     display: flex;
     padding: 30px 0px 30px 0px;
     border-bottom: 2px solid #EAEAEA;
+
+    @media screen and (max-width: 375px) {
+        display: grid;
+        gap: 14px;
+    }
 `;
 
 const RequiredText = styled.div`

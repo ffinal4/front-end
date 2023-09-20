@@ -19,13 +19,15 @@ const ProfileContent = ({ data }: any) => {
   return (
     <LeftContainer>
       <LeftContentContainer>
-        <ImageContainer
-          src={
-            data.data.info.image === null
-              ? Defaultprofile
-              : data.data.info.image
-          }
-        />
+        <ImageWrapper>
+          <ImageContainer
+            src={
+              data.data.info.image === null
+                ? Defaultprofile
+                : data.data.info.image
+            }
+          />
+        </ImageWrapper>
         <ContentInBox>
           <ContentLine>
             <TypeContainer>이메일(아이디)</TypeContainer>
@@ -39,11 +41,16 @@ const ProfileContent = ({ data }: any) => {
             <TypeContainer>주거래지역</TypeContainer>
             <TextContainer>{data.data.info.location}</TextContainer>
           </ContentLine>
+          <HiddenLine>
+            <TypeContainer>나의 포인트</TypeContainer>
+            <TextContainer>{data.data.info.userPoint}p</TextContainer>
+          </HiddenLine>
         </ContentInBox>
         <ButtonBox>
-          <Button onClick={onclickAddEmailHandler}>프로필수정</Button>
           <Button
-            style={{ width: "93px" }}
+            onClick={onclickAddEmailHandler}
+            style={{ width: "81px" }}>프로필수정</Button>
+          <Button
             onClick={() => navigate("/passwordchange")}
           >
             비밀번호변경
@@ -63,15 +70,6 @@ const LeftContainer = styled.div`
   }
 `;
 
-const TitleContainer = styled.div`
-  width: 100%;
-  font-family: "Lemon/Milk", sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: normal;
-  padding: 0px 0px 10px 0px;
-`;
-
 const LeftContentContainer = styled.div`
   display: flex;
   height: 204px;
@@ -86,6 +84,13 @@ const LeftContentContainer = styled.div`
 
   @media screen and (max-width: 1136px) {
     width: 100%;
+    height: 265px;
+    display: grid;
+    gap: 16px;
+    justify-content: center;
+    padding: 24px;
+    border-bottom: 2px solid #222020;
+    border-radius: 5px;
   }
 `;
 
@@ -98,6 +103,11 @@ const ImageContainer = styled.div<{ src: string }>`
   border-radius: 100%;
   background-size: cover;
   background-image: ${(props) => `url(${props.src})`};
+
+  @media screen and (max-width: 375px) {
+    max-width: 70px;
+    min-height: 70px;
+  }
 `;
 
 const ContentInBox = styled.div`
@@ -108,6 +118,8 @@ const ContentInBox = styled.div`
 
   @media screen and (max-width: 1136px) {
     width: 100%;
+    gap: 8px;
+    padding: 0px;
   }
 `;
 
@@ -124,7 +136,9 @@ const TypeContainer = styled.div`
   width: 192px;
 
   @media screen and (max-width: 1144px) {
-    width: 130px;
+    width: 107px;
+    font-size: 14px;
+    line-height: 140%;
   }
 `;
 
@@ -133,6 +147,11 @@ const TextContainer = styled.div`
   font-size: 16px;
   font-weight: 700;
   line-height: 150%;
+
+  @media screen and (max-width: 1144px) {
+    font-size: 14px;
+    line-height: 140%;
+  }
 `;
 
 const ButtonBox = styled.div`
@@ -142,13 +161,21 @@ const ButtonBox = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+
+  @media screen and (max-width: 1144px) {
+    display: grid;
+    justify-content: center;
+    gap: 5px;
+    top: 10px;
+    right: 10px;
+  }
 `;
 
 const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 81px;
+  width: 93px;
   height: 32px;
   color: #39373a;
   border-radius: 5px;
@@ -161,6 +188,28 @@ const Button = styled.div`
 
   &:hover {
     background-color: #e9e9e9;
+  }
+
+  @media screen and (max-width: 1144px) {
+    font-size: 12px;
+    font-weight: 400;
+    width: 81px;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  @media screen and (max-width: 1144px) {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+const HiddenLine = styled.div`
+  display: none;
+  align-items: center;
+
+  @media screen and (max-width: 1144px) {
+    display: flex;
   }
 `;
 

@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import { styled } from 'styled-components';
 import Default from '../../assets/images/defaultprofile.png'
+import { useNavigate } from 'react-router-dom';
 
 const AlarmModal = ({ setAlarmModalOpen, alarms } : any) => {
+
+  const navigate = useNavigate();
 
   const dataStatus = ( item : any ) => {
     if (item?.notificationStatus === "REQUEST") {
@@ -63,6 +66,20 @@ const AlarmModal = ({ setAlarmModalOpen, alarms } : any) => {
     };
   };
 
+  const onClickMoveHandler = (item : any) => {
+    if (item?.notificationStatus === "REQUEST"
+      || item?.notificationStatus === "REQUESTEND"
+      || item?.notificationStatus === "REQUESTREFUSE") {
+        navigate("/traderequest");
+    } else if (item?.notificationStatus === "AUCTION"
+    || item?.notificationStatus === "AUCTIONPICK"
+    || item?.notificationStatus === "AUCTIONEND") {
+      navigate("/auctioncheck");
+    } else {
+      navigate("/chat");
+    };
+  };
+
   return (
       <ModalContainer>
         <TriangleWrapper>
@@ -72,7 +89,10 @@ const AlarmModal = ({ setAlarmModalOpen, alarms } : any) => {
             {alarms
               ? alarms.map((item : any) => {
                 return (
-                  <ModalLineContainer style={{borderRadius: "5px 5px 0px 0px"}} >
+                  <ModalLineContainer
+                    style={{borderRadius: "5px 5px 0px 0px"}}
+                    onClick={() => onClickMoveHandler(item)}  
+                  >
                     <ImageBox src={item?.goodsImage} />
                     <TextLine>
                       {dataStatus(item)}
@@ -89,46 +109,6 @@ const AlarmModal = ({ setAlarmModalOpen, alarms } : any) => {
               >
                 <Content style={{color: "#ADADAD"}}>새로운 알림이 없어요.</Content>
               </EmptyModalContainer>}
-            {/* <ModalLineContainer style={{borderRadius: "5px 5px 0px 0px"}} >
-              <ImageBox src={Default} />
-              <TextLine>
-                <Title
-                  style={{color: "#EC8D49"}}
-                >교환신청
-                </Title>
-                <Content>스타벅스 블랙퍼스트 500g 홀빈 원두커피 블렌더 코스트코</Content>
-              </TextLine>
-            </ModalLineContainer>
-            <ModalLineContainer>
-              <ImageBox src={Default} />
-              <TextLine>
-                <Title
-                  style={{color: "#58ABF7"}}
-                >교환신청
-                </Title>
-                <Content>스타벅스 블랙퍼스트 500g 홀빈 원두커피 블렌더 코스트코</Content>
-              </TextLine>
-            </ModalLineContainer>
-            <ModalLineContainer>
-              <ImageBox src={Default} />
-              <TextLine>
-                <Title
-                  style={{color: "#39373A"}}
-                >교환신청
-                </Title>
-                <Content>스타벅스 블랙퍼스트 500g 홀빈 원두커피 블렌더 코스트코</Content>
-              </TextLine>
-            </ModalLineContainer>
-            <ModalLineContainer style={{borderRadius: "0px 0px 5px 5px"}}>
-              <ImageBox src={Default} />
-              <TextLine>
-                <Title
-                  style={{color: "#EC8D49"}}
-                >교환신청
-                </Title>
-                <Content>스타벅스 블랙퍼스트 500g 홀빈 원두커피 블렌더 코스트코</Content>
-              </TextLine>
-            </ModalLineContainer> */}
         </ModalWrapper>
       </ModalContainer>
   )
@@ -140,6 +120,7 @@ const ModalContainer = styled.div`
   position: relative;
   box-shadow: 1px 1px 8px 0px #c7c7c7;
   border-radius: 5px;
+  z-index: 1000;
 
   ::-webkit-scrollbar {
         width: 10px;

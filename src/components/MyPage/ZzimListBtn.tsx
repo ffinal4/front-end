@@ -15,10 +15,10 @@ const ZzimListBtn = ({ navigate } : any) => {
         navigate("/zzimlist");
     }}>
         <Wrapper>
-        <InBoxWrapper>
-            <InBox src={Like} />
-        </InBoxWrapper>
-        <Text>찜한 목록</Text>
+          <InBoxWrapper>
+              <InBox src={Like} />
+          </InBoxWrapper>
+          <Text>찜한 목록</Text>
         </Wrapper>
     </OutBox>
   )

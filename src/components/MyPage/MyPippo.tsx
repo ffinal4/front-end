@@ -16,29 +16,14 @@ const MyPippo = ({ data } : any) => {
   }, [point])
 
   return (
-
-      <RightContentContainer>
-        <InContainer>
-          <PointCount>{point}P</PointCount>
-          <PointText>나의 포인트</PointText>
-        </InContainer>
-      </RightContentContainer>
-
+    <RightContentContainer>
+      <InContainer>
+        <PointCount>{point}P</PointCount>
+        <PointText>나의 포인트</PointText>
+      </InContainer>
+    </RightContentContainer>
   )
 };
-
-const RightContainer = styled.div`
-  min-width: 176px;
-`;
-
-const TitleContainer = styled.div`
-  width: 100%;
-  font-family: "Lemon/Milk", sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: normal;
-  padding: 0px 0px 10px 0px;
-`;
 
 const RightContentContainer = styled.div`
   min-width: 272px;
@@ -53,6 +38,9 @@ const RightContentContainer = styled.div`
 
   @media screen and (max-width: 1136px) {
     width: 100%;
+  }
+  @media screen and (max-width: 1144px) {
+    display: none;
   }
 `;
 
@@ -82,15 +70,6 @@ const PointCount = styled.div`
   font-size: 40px;
   font-weight: 700;
   line-height: 110%;
-`;
-
-const ImageCard = styled.div<{ src: string }>`
-  width: 80px;
-  height: 80px;
-  background-image: url(${(props) => props.src});
-  background-color: #D9D9D9;
-  background-size: cover;
-  cursor: pointer;
 `;
 
 export default MyPippo;

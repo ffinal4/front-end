@@ -117,6 +117,11 @@ const LastLineContainer = styled.div`
     display: flex;
     padding: 30px 0px 60px 0px;
     border-bottom: 4px solid;
+
+    @media screen and (max-width: 375px) {
+        display: grid;
+        gap: 14px;
+    }
 `;
 
 const RequiredText = styled.div`
@@ -231,11 +236,19 @@ const TitleInput = styled.input`
     font-size: 16px;
     font-weight: 400;
     line-height: 150%;
+
+    @media screen and (max-width: 375px) {
+        max-width: 320px;
+    }
 `;
 
 const SelectContainer = styled.div`
     margin: 40px 0px 0px 0px;
     position: absolute;
+
+    @media screen and (max-width: 375px) {
+        left: 0px;
+    }
 `;
 
 export default WantedUpload;

@@ -12,10 +12,10 @@ const AuctionStatus = ({ navigate } : any) => {
   return (
     <OutBox onClick={() => navigate("/auctioncheck")}>
         <Wrapper>
-        <InBoxWrapper>
-            <InBox src={Auction} />
-        </InBoxWrapper>
-        <Text>경매 현황</Text>
+          <InBoxWrapper>
+              <InBox src={Auction} />
+          </InBoxWrapper>
+          <Text>경매 현황</Text>
         </Wrapper>
     </OutBox>
   )

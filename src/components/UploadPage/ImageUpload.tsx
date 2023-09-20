@@ -17,41 +17,27 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
   });
 
   const [imageUrlLists, setImageUrlLists] = useState<string[]>([]);
-  // const [imagesBlobFile, setImagesBlobFile] = useState<File[]>([]);
 
   const formData = new FormData();
   const onChangeFileHandler = (event: ChangeEvent<HTMLInputElement>) => {
     console.log("fileList", event.target.files);
-
     const fileList = event.target.files;
-    // let imageUrlLists: string[] = [];
-
     if (fileList && fileList.length > 0) {
       for (let i = 0; i < fileList.length; i++) {
         const blobImage = fileList[i];
         const fileUrl = URL.createObjectURL(fileList[i]);
-        // uploadImages.images.push(blobImage);
-        // imagesBlobFile.push(blobImage);
         uploadImages.push(blobImage);
-
         imageUrlLists.push(fileUrl);
-
-        // console.log(fileList);
-        // console.log(fileUrl);
-        // console.log("imageUrlLists", imageUrlLists);
       }
       console.log("imageUrlLists", imageUrlLists);
       console.log("uploadImages", uploadImages);
     }
-    // const SliceFile = imageUrlLists.slice(0,3)
-    // const ObjectFile = SliceFile.forEach((element, index) => { obj['key' + index] = element; });
     setFile({
       ...file,
       default: { ...file.default, imageUrl: imageUrlLists[0] },
       second: { ...file.second, imageUrl: imageUrlLists[1] },
       third: { ...file.third, imageUrl: imageUrlLists[2] },
     });
-    // console.log("cut", imageUrlLists.slice(0,3), "no", imageUrlLists)
   };
 
   const onClickChangeHandler = (id: number) => {
@@ -98,10 +84,6 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
     });
   };
 
-  // useEffect(() => {
-  //   uploadImages.push(imagesFile.slice(0,3));
-  // }, [imageUrlLists]);
-
   return (
     <LineContainer>
       <RequiredText
@@ -134,7 +116,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
                 <InputLabel htmlFor="files">
                   <InputStyleWrapper>
                     <InputStyleBox src={Camera} />
-                    <Text style={{ color: "#717171" }}>이미지추가</Text>
+                    <Text style={{ color: "#ADADAD" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
                 <UploadInputBox
@@ -160,7 +142,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
                 <InputLabel htmlFor="files">
                   <InputStyleWrapper>
                     <InputStyleBox src={Camera} />
-                    <Text style={{ color: "#717171" }}>이미지추가</Text>
+                    <Text style={{ color: "#ADADAD" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
                 <UploadInputBox
@@ -186,7 +168,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
                 <InputLabel htmlFor="files">
                   <InputStyleWrapper>
                     <InputStyleBox src={Camera} />
-                    <Text style={{ color: "#717171" }}>이미지추가</Text>
+                    <Text style={{ color: "#ADADAD" }}>이미지추가</Text>
                   </InputStyleWrapper>
                 </InputLabel>
                 <UploadInputBox
@@ -207,7 +189,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
             <InputLabel htmlFor="files">
               <InputStyleWrapper>
                 <InputStyleBox src={Camera} />
-                <Text style={{ color: "#717171" }}>이미지등록</Text>
+                <Text style={{ color: "#ADADAD" }}>이미지등록</Text>
               </InputStyleWrapper>
             </InputLabel>
             <UploadInputBox
@@ -219,7 +201,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
             <InputLabel htmlFor="files">
               <InputStyleWrapper>
                 <InputStyleBox src={Camera} />
-                <Text style={{ color: "#717171" }}>이미지등록</Text>
+                <Text style={{ color: "#ADADAD" }}>이미지등록</Text>
               </InputStyleWrapper>
             </InputLabel>
             <UploadInputBox
@@ -231,7 +213,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
             <InputLabel htmlFor="files">
               <InputStyleWrapper>
                 <InputStyleBox src={Camera} />
-                <Text style={{ color: "#717171" }}>이미지등록</Text>
+                <Text style={{ color: "#ADADAD" }}>이미지등록</Text>
               </InputStyleWrapper>
             </InputLabel>
             <UploadInputBox
@@ -264,6 +246,11 @@ const LineContainer = styled.div`
   display: flex;
   padding: 30px 0px 30px 0px;
   border-bottom: 2px solid #eaeaea;
+
+  @media screen and (max-width: 375px) {
+    display: grid;
+    gap: 14px;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -283,8 +270,8 @@ const ImageContainer = styled.div`
   gap: 16px;
   display: flex;
 
-  @media screen and (max-width: 843px) {
-    display: grid;
+  @media screen and (max-width: 375px) {
+    gap: 15px;
   }
 `;
 
@@ -308,6 +295,11 @@ const FirstImage = styled.div`
   line-height: 150%;
   background-color: #ec8d49;
   color: #fff;
+  border-radius: 5px 0px 0px 0px;
+
+  @media screen and (max-width: 375px) {
+    font-size: 12px;
+  }
 `;
 
 const ImageThumbnailContainer = styled.div`
@@ -315,7 +307,13 @@ const ImageThumbnailContainer = styled.div`
   height: 176px;
   overflow: hidden;
   position: relative;
+  border-radius: 5px;
   cursor: pointer;
+
+  @media screen and (max-width: 375px) {
+    width: 104px;
+    height: 104px;
+  }
 `;
 
 const InputLabel = styled.label`
@@ -325,7 +323,13 @@ const InputLabel = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
   cursor: pointer;
+
+  @media screen and (max-width: 375px) {
+    width: 104px;
+    height: 104px;
+  }
 `;
 
 const InputStyleWrapper = styled.div`
@@ -373,6 +377,11 @@ const RemoveBtnWrapper = styled.div`
 
   @media screen and (max-width: 1136px) {
     margin: 0px;
+  }
+  @media screen and (max-width: 375px) {
+    position: absolute;
+    top: 242px;
+    right: 10px;
   }
 `;
 
