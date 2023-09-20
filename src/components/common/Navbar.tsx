@@ -119,6 +119,10 @@ const CategoryHeaderContainer = styled.div`
   height: 60px;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 375px) {
+    height: 48px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -134,6 +138,10 @@ const Wrapper = styled.div`
 const CategoryContainer = styled.div`
   cursor: pointer;
   position: relative;
+
+  @media screen and (max-width: 375px) {
+    display: none;
+  }
 `;
 
 const CategoryImgWrapper = styled.div`
@@ -148,6 +156,10 @@ const MenuContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 60px;
+
+  @media screen and (max-width: 375px) {
+    margin-left: 0px;
+  }
 `;
 
 const Menu = styled.div`
@@ -157,5 +169,11 @@ const Menu = styled.div`
   margin-right: 40px;
   font-weight: 400;
   width: 56px;
+
+  @media screen and (max-width: 375px) {
+    margin-left: 16px;
+    margin-right: 16px;
+    font-size: 16px;
+  }
 `;
 export default Navbar;

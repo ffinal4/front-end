@@ -41,11 +41,6 @@ const JoinBidCard = ({
                             </CheckBox>
                         </CheckContainer>
                     </div>}
-                {/* <CardLocationContainer />
-                <LocatinoWrapper>
-                    <LocationIcon src={Location} alt='' />
-                    <LocationText>{item?.location}</LocationText>
-                </LocatinoWrapper> */}
             </CardImgContainer>
             <TitleContainer>{item?.title}</TitleContainer>
             <ContentContainer >
@@ -61,6 +56,11 @@ const CardContainer = styled.div`
     width: 176px;
     height: 229px;
     cursor: pointer;
+
+    @media screen and (max-width: 375px) {
+        width: 164px;
+        height: 221px; 
+    }
 `;
 
 const CardImgContainer = styled.div<{ src: string }>`
@@ -72,6 +72,11 @@ const CardImgContainer = styled.div<{ src: string }>`
     background-position: center center;
     background-repeat: no-repeat;
     position: relative;
+
+    @media screen and (max-width: 375px) {
+        width: 164px;
+        height: 164px; 
+    }
 `;
 
 const CardLocationContainer = styled.div`
@@ -142,6 +147,11 @@ const CheckOutContainer = styled.div`
     top: 0;
     left: 0;
     z-index: 1005;
+
+    @media screen and (max-width: 375px) {
+        width: 164px;
+        height: 164px; 
+    }
 `;
 
 const CheckContainer = styled.div`
@@ -156,6 +166,11 @@ const CheckContainer = styled.div`
     justify-content: center;
     align-items: center;
     z-index: 999;
+
+    @media screen and (max-width: 375px) {
+        width: 164px;
+        height: 164px; 
+    }
 `;
 
 const CheckBox = styled.div`

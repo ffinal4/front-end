@@ -44,16 +44,6 @@ const AucBidInfo = ({ productData } : any) => {
                     )
                     : <EmptyPocket pocketStatus={3} />
                 }
-                {/* <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard /> */}
             </CardListContainer>
         </InfoTextContainer>
         <Paging />
@@ -71,9 +61,13 @@ const InfoContainer = styled.div`
     width: 100%;
     border-top: 2px solid #000;
     border-bottom: 2px solid #D9D9D9;
-    margin: 42px 0px 60px 0px;
+    margin: 41px 0px 60px 0px;
     padding: 0px 0px 93px 0px;
     display: grid;
+
+    @media screen and (max-width: 375px) {
+        margin: 37px 0px 60px 0px;
+    }
 `;
 
 const InfoTextContainer = styled.div`

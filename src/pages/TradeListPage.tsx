@@ -80,6 +80,11 @@ const UploadBtn = styled.div`
   line-height: 150%; /* 24px */
   margin-bottom: 80px;
   cursor: pointer;
+
+  @media screen and (max-width: 375px) {
+    width: 104px;
+    height: 40px;
+  }
 `;
 
 const TitleContainer = styled.div`

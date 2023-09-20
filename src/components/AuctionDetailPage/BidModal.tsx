@@ -185,6 +185,10 @@ export const ModalContainer = styled.div`
     width: 100%;
     left: 0;
   }
+  @media screen and (max-width: 375px) {
+    padding: 20px 10px;
+    min-height: 1330px;
+  }
 `;
 
 export const ModalTitle = styled.div`
@@ -251,6 +255,10 @@ export const PocketListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+
+  @media screen and (max-width: 375px) {
+    gap: 10px;
+  }
 `;
 
 export const CloseBtn = styled.img`
@@ -274,6 +282,11 @@ export const GoodsConditionContainer = styled.div`
   background-color: #ffffff;
   opacity: 0.8;
   border-radius: 0px 0px 10px 10px;
+
+  @media screen and (max-width: 375px) {
+    height: 36px;
+    bottom: 56px;
+  }
 `;
 
 export const GoodsCondition = styled.div`
@@ -292,6 +305,12 @@ export const GoodsCondition = styled.div`
   gap: 10px;
   color: #222020;
   padding: 0px 0px 0px 15px;
+
+  @media screen and (max-width: 375px) {
+    height: 36px;
+    bottom: 57px;
+    font-size: 14px;
+  }
 `;
 
 export const Circle = styled.div`
@@ -299,6 +318,11 @@ export const Circle = styled.div`
   height: 18px;
   border-radius: 100%;
   background-color: #58abf7;
+
+  @media screen and (max-width: 375px) {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 export const NotRatingProduct = styled.div`
@@ -311,6 +335,11 @@ export const NotRatingProduct = styled.div`
   border-radius: 10px;
   background-color: #fcfcfc;
   opacity: 0.4;
+
+  @media screen and (max-width: 375px) {
+    width: 164px;
+    height: 164px; 
+  }
 `;
 
 export const DoneContainer = styled.div`
@@ -329,6 +358,11 @@ export const DoneContainer = styled.div`
   font-weight: 700;
   line-height: 150%;
   color: #fcfcfc;
+
+  @media screen and (max-width: 375px) {
+    width: 164px;
+    height: 164px; 
+  }
 `;
 
 export default BidModal;

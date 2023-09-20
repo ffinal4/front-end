@@ -28,10 +28,14 @@ const InfoContainer = styled.div`
     width: 100%;
     border-top: 2px solid #000;
     border-bottom: 2px solid #D9D9D9;
-    margin: 42px 0px 60px 0px;
+    margin: 41px 0px 60px 0px;
     display: flex;
     justify-content: space-between;
     padding: 60px 0px 100px 0px;
+
+    @media screen and (max-width: 375px) {
+        margin: 37px 0px 60px 0px;
+    }
 `;
 
 const InfoTextContainer = styled.div`

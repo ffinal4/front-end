@@ -29,11 +29,16 @@ const CloseBtnContainer = styled.div`
   position: fixed;
   bottom: 50px;
   right: 50px;
-  z-index: 999;
+  z-index: 10000;
   border: 4px solid #222020;
   background-color: #fcfcfc;
   border-radius: 100%;
   cursor: pointer;
+
+  @media screen and (max-width: 375px) {
+    bottom: 0;
+    right: 0;
+}
 `;
 
 export default HelperButton;

@@ -29,7 +29,9 @@ const MyPage = () => {
 
   return (
     <AllLayoutContainer>
-      <LayoutImage src={Background} />
+      <LayoutImageWrapper>
+        <LayoutImage src={Background} />
+      </LayoutImageWrapper>
         <MyPageTitle>MY PAGE</MyPageTitle>
         <MyPageContentContainer>
           <ProfileContent data={data} />
@@ -44,6 +46,9 @@ const AllLayoutContainer = styled.div`
   padding-top: 200px;
   width: 100%;
   background-color: #fcf6e9;
+`;
+
+const LayoutImageWrapper = styled.div`
   overflow: hidden;
 `;
 
@@ -55,6 +60,10 @@ const LayoutImage = styled.img`
   top: 170px;
   left: 0;
   z-index: 0;
+
+  @media screen and (max-width: 375px) {
+    display: none;
+  }
 `;
 
 const MyPageTitle = styled.div`
