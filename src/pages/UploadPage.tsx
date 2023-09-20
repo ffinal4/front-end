@@ -60,20 +60,6 @@ const UploadPage = () => {
   const formData = new FormData();
 
   const onClickUploadHandler = async () => {
-    // if (
-    //   uploadImages.length === 0
-    //   ||uploadData.data.title === ""
-    //   || uploadData.data.content === ""
-    //   || uploadData.data.tradeType === ""
-    //   || uploadData.data.category === ""
-    //   || uploadData.data.goodsCondition === ""
-    //   || uploadData.wanted.title === ""
-    //   || uploadData.wanted.content === ""
-    //   || uploadData.wanted.category === ""
-    // ) {setFailedUpload(true);} else {setFailedUpload(false);};
-    // formData.append("data", uploadData)
-
-    // formData.append("sellerPrice", new Blob([JSON.stringify(uploadPrice.sellerPrice)], { type: "application/json" }));
     if (
       uploadData.data.ratingCheck === true &&
       uploadData.data.sellerPrice === ""
@@ -87,9 +73,6 @@ const UploadPage = () => {
       uploadData.data.tradeType === "" ||
       uploadData.data.category === "" ||
       uploadData.data.goodsCondition === "" ||
-      // uploadData.wanted.title === "" ||
-      // uploadData.wanted.content === "" ||
-      // uploadData.wanted.category === "" ||
       (uploadData.data.ratingCheck === true &&
         uploadData.data.sellerPrice === "")
     ) {
@@ -106,15 +89,9 @@ const UploadPage = () => {
         try {
           console.log(uploadImages, uploadData);
           const sliceImages = uploadImages.slice(0, 3);
-          // const formData = new FormData();
-          // const newData = JSON.stringify(uploadData.data);
-          // const newWanted = JSON.stringify(uploadData.wanted);
           sliceImages.forEach((blobImage, index) => {
             formData.append("images", blobImage, `image${index + 1}.jpg`);
           });
-          // const upLoadData = [uploadData.data]
-          // const upLoadWanted = [uploadData.wanted]
-          // formData.append("images", uploadImages)
           formData.append(
             "data",
             new Blob([JSON.stringify(uploadData.data)], {
@@ -127,8 +104,6 @@ const UploadPage = () => {
               type: "application/json",
             })
           );
-          // formData.append("data", JSON.stringify(uploadData.data));
-          // formData.append("wanted", JSON.stringify(uploadData.wanted));
           formData.forEach(function (value, key) {
             console.log(key + ": " + value);
           });
@@ -155,15 +130,9 @@ const UploadPage = () => {
         try {
           console.log(uploadImages, uploadData);
           const sliceImages = uploadImages.slice(0, 3);
-          // const formData = new FormData();
-          // const newData = JSON.stringify(uploadData.data);
-          // const newWanted = JSON.stringify(uploadData.wanted);
           sliceImages.forEach((blobImage, index) => {
             formData.append("images", blobImage, `image${index + 1}.jpg`);
           });
-          // const upLoadData = [uploadData.data]
-          // const upLoadWanted = [uploadData.wanted]
-          // formData.append("images", uploadImages)
           formData.append(
             "data",
             new Blob([JSON.stringify(uploadData.data)], {
@@ -176,8 +145,6 @@ const UploadPage = () => {
               type: "application/json",
             })
           );
-          // formData.append("data", JSON.stringify(uploadData.data));
-          // formData.append("wanted", JSON.stringify(uploadData.wanted));
           formData.forEach(function (value, key) {
             console.log(key + ": " + value);
           });
@@ -276,6 +243,11 @@ const PageHeader = styled.div`
   font-size: 40px;
   font-weight: 700;
   line-height: 110%;
+
+  @media screen and (max-width: 375px) {
+    font-size: 24px;
+    padding-left: 16px;
+  }
 `;
 
 const PageContainer = styled.div`
@@ -290,6 +262,10 @@ const PageContainer = styled.div`
 const TitleWrapper = styled.div`
   display: flex;
   margin: 16px 0px 20px 0px;
+
+  @media screen and (max-width: 375px) {
+    align-items: center;
+  }
 `;
 
 const PageTitle = styled.div`
@@ -298,6 +274,13 @@ const PageTitle = styled.div`
   font-weight: 800;
   line-height: 150%;
   margin: 0px 20px 0px 0px;
+
+  @media screen and (max-width: 375px) {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 140%;
+    padding-left: 16px;
+  }
 `;
 
 const PageSubtitle = styled.div`
@@ -306,6 +289,12 @@ const PageSubtitle = styled.div`
   font-weight: 400;
   line-height: 150%;
   padding: 17px 0px 0px 0px;
+
+  @media screen and (max-width: 375px) {
+    font-size: 14px;
+    line-height: 140%;
+    padding: 0px;
+  }
 `;
 
 const BtnWrapper = styled.div`

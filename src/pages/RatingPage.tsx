@@ -230,6 +230,10 @@ const RatingContainer = styled.div`
   border: 2px solid #39373a;
   position: relative;
   padding: 60px 96px 64px 96px;
+
+  @media screen and (max-width: 375px) {
+    width: 100%;
+  }
 `;
 
 const PocketTopIconContainer = styled.div`
@@ -255,6 +259,10 @@ const DetailInfoWrapper = styled.div`
   gap: 36px;
   padding: 0px 0px 40px 0px;
   position: relative;
+
+  @media screen and (max-width: 375px) {
+    display: grid;;
+  }
 `;
 
 const PocketImage = styled.img`
@@ -272,6 +280,11 @@ const ImageContainer = styled.div<{ src: string }>`
   background-repeat: no-repeat;
   border-radius: 10px;
   position: relative;
+
+  @media screen and (max-width: 375px) {
+    max-width: 240px;
+    height: 240px;
+  }
 `;
 
 const LikeBtn = styled.div`
@@ -308,6 +321,11 @@ const AnswerCountContainer = styled.div`
   line-height: 150%;
   border-radius: 10px;
   gap: 16px;
+
+  @media screen and (max-width: 375px) {
+    top: -40px;
+    left: 45px;
+  }
 `;
 
 const AnswerCount = styled.div`

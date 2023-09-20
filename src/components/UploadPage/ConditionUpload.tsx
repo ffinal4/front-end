@@ -23,9 +23,6 @@ const ConditionUpload = ({ uploadData, setUploadData, failedUpload } : any) => {
     });
   };
 
-  // console.log("wow", formatted);
-  // console.log("price", price);
-
   return (
     <LineContainer>
         <RequiredText
@@ -65,6 +62,11 @@ const LineContainer = styled.div`
   display: flex;
   padding: 30px 0px 30px 0px;
   border-bottom: 2px solid #eaeaea;
+
+  @media screen and (max-width: 375px) {
+    display: grid;
+    gap: 14px;
+  }
 `;
 
 const RequiredText = styled.div`
@@ -88,7 +90,7 @@ const Wrapper = styled.div`
   gap: 16px;
 
   @media screen and (max-width: 843px) {
-    display: grid;
+    gap: 15px;
   }
 `;
 

@@ -10,12 +10,16 @@ import {
   filterName,
 } from "../../store/filterCategory";
 import { pagination } from "../../store/pagination";
+import search from "../../assets/icon/search.png";
+import NavSearchBar from "./NavSearchBar/NavSearchBar";
 
 const Navbar = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
+  const [clickSearch, setClickSearch] = useState<boolean>(false);
+  const [searchInput, setSearchInput] = useState("");
   const [pathnames, setPathnames] = useState(0);
   const resetCategory = useResetRecoilState(filterCategory);
   const resetCategoryName = useResetRecoilState(filterName);
@@ -23,6 +27,20 @@ const Navbar = () => {
   const resetAsc = useResetRecoilState(filterAsc);
   const tradeListOnclick = () => {
     navigate("/tradeList");
+  };
+
+
+  const onClickSearchHandler = () => {
+    if (clickSearch) {
+      if (searchInput === "") {
+        setClickSearch(false);
+      } else {
+        navigate(`search/${searchInput}`);
+        setSearchInput("");
+      };
+    } else {
+      setClickSearch(true);
+    };
   };
 
   useEffect(() => {
@@ -38,6 +56,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    setClickSearch(false);
     if (location.pathname.includes("/auction")) {
       return setPathnames(1);
     } else if (
@@ -50,7 +69,7 @@ const Navbar = () => {
       return setPathnames(3);
     } else {
       return setPathnames(0);
-    }
+    };
   }, [location.pathname]);
 
   return (
@@ -110,6 +129,18 @@ const Navbar = () => {
             레이팅
           </Menu>
         </MenuContainer>
+        <SearchIcon
+          src={search}
+          alt=""
+          onClick={onClickSearchHandler}
+        />
+        {(clickSearch)
+          && <NavSearchBar
+            clickSearch={clickSearch}
+            setClickSearch={setClickSearch}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+          />}
       </Wrapper>
     </CategoryHeaderContainer>
   );
@@ -176,4 +207,16 @@ const Menu = styled.div`
     font-size: 16px;
   }
 `;
+
+const SearchIcon = styled.img`
+  display: none;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+
+  @media screen and (max-width: 500px) {
+    display: block;
+  }
+`;
+
 export default Navbar;

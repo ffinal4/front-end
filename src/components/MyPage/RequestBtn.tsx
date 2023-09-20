@@ -15,10 +15,10 @@ const RequestBtn = ({ navigate } : any) => {
         navigate("/traderequest");
     }}>
         <Wrapper>
-        <InBoxWrapper>
-            <InBox src={Exchange} />
-        </InBoxWrapper>
-        <Text>교환 요청</Text>
+          <InBoxWrapper>
+              <InBox src={Exchange} />
+          </InBoxWrapper>
+          <Text>교환 요청</Text>
         </Wrapper>
     </OutBox>
   )

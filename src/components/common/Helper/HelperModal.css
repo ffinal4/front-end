@@ -28,23 +28,6 @@
     animation: fade_in_1 1.5s forwards;
 }
 
-/* .ModalContainer.large {
-    width: 375px;
-    height: 600px;
-    border: 1px solid;
-    border-radius: 10px;
-    background-color: #fcfcfc;
-    position: fixed;
-    bottom: 65px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    opacity: 1;
-} */
-
 @keyframes fade_in_1 {
     0%, 10% {
         opacity: 0;

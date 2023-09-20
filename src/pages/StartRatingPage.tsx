@@ -83,6 +83,10 @@ const RatingReadyContainer = styled.div`
   padding: 192px 93px 109px 93px;
   border-radius: 20px;
   position: relative;
+
+  @media screen and (max-width: 375px) {
+    padding: 112px 33px 59px 33px;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -98,6 +102,10 @@ const TitleContainer = styled.div`
   line-height: 110%;
   color: #ffca64;
   padding: 0px 0px 16px 0px;
+
+  @media screen and (max-width: 375px) {
+    font-size: 24px;
+  }
 `;
 
 const SubtitleContainer = styled.div`
@@ -106,6 +114,10 @@ const SubtitleContainer = styled.div`
   font-weight: 700;
   line-height: 150%;
   color: #39373a;
+
+  @media screen and (max-width: 375px) {
+    font-size: 14px;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -118,6 +130,10 @@ const Text = styled.div`
   font-weight: 400;
   line-height: 150%;
   color: #39373a;
+
+  @media screen and (max-width: 375px) {
+    font-size: 12px;
+  }
 `;
 
 const BottomWrapper = styled.div`
@@ -137,6 +153,13 @@ const ImageContainer = styled.div<{ src: string }>`
   right: 68px;
   bottom: 108px;
   z-index: 0;
+
+  @media screen and (max-width: 375px) {
+    width: 102px;
+    height: 115px;
+    bottom: 210px;
+    right: 40px;
+  }
 `;
 
 export default StartRatingPage;
