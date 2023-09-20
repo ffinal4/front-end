@@ -82,6 +82,10 @@ const StButton = styled(StBasicButton)`
   font-weight: 700;
   line-height: 150%; /* 24px */
   margin-top: 40px;
+
+  @media screen and (max-width: 375px) {
+    font-size: 12px;
+  }
 `;
 const CardContainer = styled.div`
   width: 100%;

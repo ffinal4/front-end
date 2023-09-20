@@ -11,6 +11,8 @@ interface HelperProps {
 
 const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
 
+  let scrollBar = document.getElementById("scroll");
+
   const [chatList, setChatList] = useState<string[]>([]);
   const [chatText, setChatText] = useState<{ content : string }>({
     content: "" 
@@ -30,6 +32,9 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
     e.preventDefault();
     setChatList([...chatList, content]);
     setChatText({...chatText, content: ""});
+    if (scrollBar) {
+      scrollBar.scrollTop = scrollBar.scrollHeight;
+    };
   };
 
   return (
@@ -39,7 +44,7 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
           <ClossBtn onClick={() => setIsHelper(false)}>{"<"}</ClossBtn>
           <NameContainer>PEEPPOCHAT</NameContainer>
         </CloseBtnContainer>
-        <ChatTextOutContainer>
+        <ChatTextOutContainer id='scroll'>
           <LeftChatContainer>
             <ProfileLineContainer>
               <ProfileImage src={ProfileImg} />
@@ -58,11 +63,16 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
               </RightChatContainer>
             )}
         </ChatTextOutContainer>
+        <ButtonWrapper>
+          <Button>버튼</Button>
+          <Button>버튼</Button>
+          <Button>버튼</Button>
+        </ButtonWrapper>
         <ChatInputBoxContainer
           typeof='onSumbit'
           name='input'
           onSubmit={(e) => onSubmitHandler(e)}
-          style={{border: `${focus ? "1px solid #0fc4ac" : "none"}`}}
+          style={{border: `${focus ? "1px solid #0fc4ac" : "1px solid #ffb37c"}`}}
         >
           <ChatInputContainer
             type='text'
@@ -279,6 +289,40 @@ const RightChatBox = styled.div`
   color: #FCFCFC;
   display: flex;
   align-items: center;
+`;
+
+const ButtonWrapper = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: end;
+  gap: 5px;
+`;
+
+const Button = styled.div`
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: #EC8D49;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Pretendard";
+  font-size: 12px;
+  font-weight: 400;
+  color: #FCFCFC;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffb37c;
+  }
+
+  &:active {
+    background-color: #EC8D49;
+    font-size: 13px;
+  }
 `;
 
 export default HelperModal;

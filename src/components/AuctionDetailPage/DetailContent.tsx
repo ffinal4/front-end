@@ -128,8 +128,9 @@ const InfoContainer = styled.div`
   width: 100%;
   
   @media screen and (max-width: 834px) {
-    width: 100%;
+    max-width: 260px;
     display: grid;
+    margin-left: 70px;
   }
 `;
 

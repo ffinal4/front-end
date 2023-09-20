@@ -9,20 +9,20 @@ const GiveInfo = ({ data } : any) => {
     const inputData = contentData.split("\n");
 
   return (
-        <InfoContainer>
-            <InfoTextContainer>
-                <InfoTextTitle>상품정보</InfoTextTitle>
-                <InfoTextContent>
-                    {inputData?.map((item : string) => {
-                        return (
-                            (item === inputData[inputData.length - 1])
-                                ? <div>{item}</div>
-                                : <div>{item}<br /></div>
-                        )
-                    })}
-                </InfoTextContent>
-            </InfoTextContainer>
-        </InfoContainer>
+    <InfoContainer>
+        <InfoTextContainer>
+            <InfoTextTitle>상품정보</InfoTextTitle>
+            <InfoTextContent>
+                {inputData?.map((item : string) => {
+                    return (
+                        (item === inputData[inputData.length - 1])
+                            ? <div>{item}</div>
+                            : <div>{item}<br /></div>
+                    )
+                })}
+            </InfoTextContent>
+        </InfoTextContainer>
+    </InfoContainer>
   )
 };
 
@@ -30,7 +30,7 @@ const InfoContainer = styled.div`
     width: 100%;
     border-top: 2px solid #000;
     border-bottom: 2px solid #D9D9D9;
-    margin: 42px 0px 60px 0px;
+    margin: 41px 0px 60px 0px;
     display: flex;
     justify-content: space-between;
     padding: 60px 0px 100px 0px;

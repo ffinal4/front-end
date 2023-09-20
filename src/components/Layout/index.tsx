@@ -17,7 +17,7 @@ export const StMainLayout = styled.div`
     padding: 80px 0 100px 0;
   }
   @media screen and (max-width: 375px) {
-    padding: 80px 0 100px 0;
+    padding: 120px 0 100px 0;
   }
 `;
 

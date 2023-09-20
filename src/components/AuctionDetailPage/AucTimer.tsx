@@ -100,6 +100,12 @@ const FinishContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 999;
+
+  @media screen and (max-width: 375px) {
+    min-width: 343px;
+    height: 343px;
+    border-radius: 10px;
+  }
 `;
 
 const FinishText = styled.div`

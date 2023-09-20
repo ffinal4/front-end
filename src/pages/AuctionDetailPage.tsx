@@ -106,53 +106,6 @@ const PageLayout = styled.div`
   padding: 0px 0px 60px 0px;
 `;
 
-const FilterContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: end;
-  align-items: center;
-  margin: 0px 0px 20px 0px;
-  gap: 20px;
-  width: 100%;
-`;
-
-const FilterLeftWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-`;
-
-const FilterWrapper = styled.div`
-  display: inline-flex;
-  padding: 10px 60px 10px 10px;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 150%;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 1px solid;
-`;
-
-const ChoiceBox = styled.div`
-  width: 24px;
-  height: 24px;
-  background-color: #d9d9d9;
-  cursor: pointer;
-`;
-
-const ModifyContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 150%;
-`;
-
 const PageContainer = styled.div`
   width: 100%;
 
@@ -179,6 +132,11 @@ const TapClickButton = styled.div`
   border: 2px solid #000;
   border-bottom: 4px solid #fff;
   border-radius: 5px 5px 0px 0px;
+
+  @media screen and (max-width: 375px) {
+    width: 110px;
+    height: 40px;
+  }
 `;
 
 const TapDefaultButton = styled.div`
@@ -193,6 +151,11 @@ const TapDefaultButton = styled.div`
   border-bottom: 2px solid #000;
   border-radius: 5px 5px 0px 0px;
   cursor: pointer;
+
+  @media screen and (max-width: 375px) {
+    width: 110px;
+    height: 40px;
+  }
 `;
 
 const LayoutContainer = styled.div`

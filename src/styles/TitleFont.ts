@@ -9,6 +9,11 @@ export const StTitle = styled.div<{ marginbottom: string; textalign: string }>`
   line-height: 110%; /* 44px */
   margin-bottom: ${(props) => props.marginbottom};
   text-align: ${(props) => props.textalign};
+
+  @media screen and (max-width: 375px) {
+    font-size: 24px;
+    line-height: normal;
+  }
 `;
 
 export const StSubTitle = styled.div<{ marginbottom: string; textalign: string }>`
@@ -21,4 +26,9 @@ export const StSubTitle = styled.div<{ marginbottom: string; textalign: string }
   line-height: 150%; /* 30px */
   margin-bottom: ${(props) => props.marginbottom};
   text-align: ${(props) => props.textalign};
+
+   @media screen and (max-width: 375px) {
+    font-size: 14px;
+    line-height: 140%;
+  }
 `;

@@ -5,13 +5,13 @@
     position: fixed;
     bottom: 50px;
     right: 50px;
-    z-index: 9999;
+    z-index: 10000;
     cursor: pointer;
 }
 
-.ButtonContainer:hover {
-    width: 46px;
-    height: 46px;
-    bottom: 49px;
-    right: 49px;
+@media screen and (max-width: 375px) {
+    .ButtonContainer {
+        bottom: 0;
+        right: 0;
+    }
 }

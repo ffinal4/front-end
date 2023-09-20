@@ -184,12 +184,16 @@ const HeaderLayout = styled.div`
   top: 0;
   left: 0;
   background-color: #fff;
-  border-bottom: 1px solid #222020;
+  box-shadow: 1px 1px 8px 0px #c7c7c7;
 `;
 
 const HeaderoutContainer = styled.div`
   width: 100%;
   border-bottom: 1px solid #d5d4d4;
+
+  @media screen and (max-width: 375px) {
+    padding: 0px 16px;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -200,8 +204,15 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   font-size: 18px;
   margin: 0 auto;
+
   @media screen and (max-width: 1136px) {
     width: 100%;
+  }
+  @media screen and (max-width: 375px) {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 48px;
   }
 `;
 
@@ -211,17 +222,31 @@ const LogoContainer = styled.div`
   align-items: center;
   width: 174px;
   height: 41px;
+
+  @media screen and (max-width: 375px) {
+    max-width: 112px;
+  }
 `;
 
 const Logo = styled.img`
   width: 38px;
   height: 38px;
   margin-right: 10px;
+
+  @media screen and (max-width: 375px) {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 const LogoTitle = styled.img`
   width: 120px;
   height: 24px;
+
+  @media screen and (max-width: 375px) {
+    width: 80px;
+    height: 16px;
+  }
 `;
 
 export const BoxContainer = styled.div`
@@ -328,4 +353,8 @@ const Logout = styled.div`
   font-weight: 400;
   line-height: 150%;
   width: 56px;
+
+  @media screen and (max-width: 375px) {
+    margin-left: 16px;
+  }
 `;

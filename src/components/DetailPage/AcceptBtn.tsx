@@ -79,14 +79,7 @@ const ButtonWrapper = styled.div`
   width: 100%;
   gap: 16px;
   padding: 10px 0px 0px 0px;
-
-
-  @media screen and (max-width: 375px) {
-    display: grid;
-  }
 `;
-
-
 
 const StButton = styled(StBasicButton)`
   border: 1px solid #222020;
