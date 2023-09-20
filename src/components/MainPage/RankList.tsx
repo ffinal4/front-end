@@ -31,7 +31,7 @@ const RankList = ({ data }: any) => {
           <RankContainer
             style={{
               background: "var(--yellow-yellow-100, #FFCA64)",
-              width: "560px",
+              width: `${(window.innerWidth <= 375) ? "343px" : "560px"}`,
               color: " var(--black-white-black, #222020)",
             }}
           >
@@ -73,6 +73,11 @@ const RankListContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 375px) {
+    padding: 30px 0;
+    height: 600px;
+  }
 `;
 
 const SectionContainer = styled.div`
@@ -80,10 +85,22 @@ const SectionContainer = styled.div`
   height: 368px;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 375px) {
+    display: grid;
+    justify-content: center;
+  }
 `;
 
 const TitleSection = styled.div`
   margin-top: 20px;
+
+  @media screen and (max-width: 375px) {
+    display: grid;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: 0px;
+  }
 `;
 const UserContainer = styled.div`
   display: flex;
@@ -96,6 +113,11 @@ const Count = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: 110%; /* 44px */
+
+  @media screen and (max-width: 375px) {
+    font-size: 20px;
+    line-height: normal;
+  }
 `;
 const RankSection = styled.div`
   color: var(--black-white-gray-60, #adadad);
@@ -104,6 +126,11 @@ const RankSection = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 30px */
+  @media screen and (max-width: 375px) {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 140%;
+  }
 `;
 
 const RankContainer = styled.div`
@@ -118,6 +145,11 @@ const RankContainer = styled.div`
   border-radius: 56px;
   margin-bottom: 16px;
   margin-left: auto;
+
+  @media screen and (max-width: 375px) {
+    width: 283px;
+    height: 68px;
+  }
 `;
 
 const UserImage = styled.img`
@@ -126,6 +158,11 @@ const UserImage = styled.img`
   border-radius: 80px;
   /* background: url(<path-to-image>), lightgray 50% / cover no-repeat; */
   margin: 0 20px;
+
+  @media screen and (max-width: 375px) {
+    width: 48px;
+    height: 48px;
+  }
 `;
 const MoreBtn = styled(StBasicButton)`
   border: 2px solid var(--black-white-black, #222020);

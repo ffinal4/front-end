@@ -101,7 +101,8 @@ const DetailInfo = ({ data }: any) => {
 const InfoContainer = styled.div`
   width: 100%;
   @media screen and (max-width: 834px) {
-    max-width: 100%;
+    margin-left: 60px;
+    max-width: 343px;
     display: grid;
   }
 `;

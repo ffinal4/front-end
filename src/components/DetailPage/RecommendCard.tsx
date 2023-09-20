@@ -75,6 +75,10 @@ const LayoutContainer = styled.div`
     display: grid;
     gap: 30px;
     width: 100%;
+
+    @media screen and (max-width: 375px) {
+        width: 375px;
+    }
 `;
 
 const HeadLineContainer = styled.div`
@@ -102,6 +106,10 @@ const RecommendList = styled.div`
     width: 100%;
     position: relative;
     overflow: hidden;
+
+    @media screen and (max-width: 375px) {
+        width: 375px;
+    }
 `;
 
 const CardListContainer = styled.div`
@@ -109,6 +117,10 @@ const CardListContainer = styled.div`
     width: 100%;
     height: 100%;
     gap: 16px;
+
+    @media screen and (max-width: 375px) {
+        width: 375px;
+    }
 `;
 
 const ImageCard = styled.div`

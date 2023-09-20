@@ -10,7 +10,7 @@ const DetailContainer = ({ data } : any) => {
   
   const divRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
-  const imageWidth: number = 464;
+  const imageWidth = 464;
   const SlideRange: number = currentImg * imageWidth;
 
   useEffect(() => {
@@ -108,18 +108,10 @@ const LayoutContainer = styled.div`
       justify-content: center;
       align-items: center;
       gap: 20px;
-      max-width: 375px;
+      min-width: 343px;
+      overflow: hidden;
     }   
 `;
-
-// const EmptyBox = styled.div<{ src: string }>`
-//     width: 100%;
-//     height: 100%;
-//     background-color: #D9D9D9;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// `;
 
 const SlideWrapper = styled.div`
   display: flex;
@@ -127,8 +119,8 @@ const SlideWrapper = styled.div`
   height: 100%;
 
   @media screen and (max-width: 375px) {
-      max-width: 100%;
-    }
+    max-width: 343px;
+  }
 `;
 
 const ImageBox = styled.div<{ src : string }>`
@@ -139,7 +131,8 @@ const ImageBox = styled.div<{ src : string }>`
   background-position: center center;
   background-repeat: no-repeat;
   @media screen and (max-width: 375px) {
-    max-width: 375px;
+    min-width: 343px;
+    height: 343px;
   }
 `;
 
@@ -158,7 +151,8 @@ const ImageOutContainer = styled.div`
     width: 464px;
   }
   @media screen and (max-width: 375px) {
-    max-width: 375px;
+    min-width: 343px;
+    height: 343px;
   }
 `;
 
@@ -169,7 +163,7 @@ const SlideBtnWrapper = styled.div`
     justify-content: space-between;
     z-index: 200;
     @media screen and (max-width: 375px) {
-    max-width: 375px;
+    max-width: 343px;
   }
 `;
 
@@ -214,6 +208,11 @@ const RequestCondition = styled.div`
   padding: 20px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 13.54%, rgba(0, 0, 0, 0.20) 28.13%, rgba(0, 0, 0, 0.00) 39.06%);
   z-index: 198;
+
+  @media screen and (max-width: 375px) {
+    width: 343px;
+    height: 343px;
+  }
 `;
 
 const GoodsCondition = styled.div`
@@ -251,6 +250,11 @@ const Finished = styled.div`
   font-weight: 800;
   line-height: 150%;
   color: #FCFCFC;
+
+  @media screen and (max-width: 375px) {
+    width: 343px;
+    height: 343px;
+  }
 `;
 
 export default DetailContainer;

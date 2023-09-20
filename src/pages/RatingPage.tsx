@@ -93,7 +93,7 @@ const RatingPage = () => {
           <DetailInfoWrapper>
             <ImageContainer src={data.data.info.imageUrl}>
               <AnswerCountContainer>
-                정답횟수
+                연속정답횟수
                 <AnswerCount>{data.data.info.score}</AnswerCount>
               </AnswerCountContainer>
             </ImageContainer>

@@ -77,12 +77,22 @@ const LayoutContainer = styled.div`
       display: flex;
       gap: 112px;
       width: 100%;
+
       @media screen and (max-width: 1136px) {
         display: grid;
         justify-content: center;
         align-items: center;
         gap: 20px;
       }
+      @media screen and (max-width: 375px) {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        min-width: 343px;
+        overflow: hidden;
+        border-radius: 10px;
+    }
   `;
 
 const SlideWrapper = styled.div`
@@ -98,6 +108,12 @@ const ImageBox = styled.div<{ src: string }>`
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+
+    @media screen and (max-width: 375px) {
+      min-width: 400px;
+      height: 400px;
+      border-radius: 10px;
+    }
   `;
 
 const ImageOutContainer = styled.div`
@@ -114,6 +130,11 @@ const ImageOutContainer = styled.div`
       margin: 0px;
       width: 464px;
     }
+    @media screen and (max-width: 375px) {
+      min-width: 343px;
+      height: 343px;
+      border-radius: 10px;
+    }
   `;
 
 const SlideBtnWrapper = styled.div`
@@ -122,6 +143,9 @@ const SlideBtnWrapper = styled.div`
       position: absolute;
       justify-content: space-between;
       z-index: 1000;
+    @media screen and (max-width: 375px) {
+      width: 343px;
+    }
   `;
 
 const SlideButton = styled.div`
@@ -148,6 +172,10 @@ const SlidePageBarWrapper = styled.div`
     bottom: 20px;
     gap: 16px;
     z-index: 999;
+
+    @media screen and (max-width: 375px) {
+      width: 343px;
+    }
   `;
 
 const SlidePageBar = styled.div<{ backgdcolor: string }>`

@@ -1,0 +1,17 @@
+.ButtonContainer {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 375px) {
+    .ButtonContainer {
+        bottom: 0;
+        right: 0;
+    }
+}

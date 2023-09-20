@@ -31,41 +31,45 @@ const AucWantedInfo = ({ data } : any) => {
 };
 
 const InfoContainer = styled.div`
-width: 100%;
-border-top: 2px solid #000;
-border-bottom: 2px solid #D9D9D9;
-margin: 42px 0px 60px 0px;
-display: flex;
-justify-content: space-between;
-padding: 60px 0px 100px 0px;
+    width: 100%;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #D9D9D9;
+    margin: 41px 0px 60px 0px;
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 0px 100px 0px;
+
+    @media screen and (max-width: 375px) {
+        margin: 37px 0px 60px 0px;
+    }
 `;
 
 const InfoTextContainer = styled.div`
-width: 100%;
+    width: 100%;
 `;
 
 const InfoTextTitle = styled.div`
-width: 100%;
-font-family: "Pretendard";
-font-size: 20px;
-font-weight: 700;
-line-height: 150%;
+    width: 100%;
+    font-family: "Pretendard";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 150%;
 `;
 
 const TextTitleContainer = styled.div`
-width: 100%;
-margin: 0px 0px 20px 0px;
+    width: 100%;
+    margin: 0px 0px 20px 0px;
 `;
 
 const InfoTextContent = styled.div`
-width: 100%;
-font-family: "Pretendard";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 150%;
-word-break: break-word;
-display: -webkit-box-vertical;
+    width: 100%;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    word-break: break-word;
+    display: -webkit-box-vertical;
 `;
 
 export default AucWantedInfo;
