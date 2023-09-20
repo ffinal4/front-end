@@ -37,13 +37,17 @@ const Pocket = () => {
 };
 
 const LayoutContainer = styled.div`
-  /* position: absolute; */
   height: 425px;
   width: 100%;
   background-color: #ffca64;
 
   @media screen and (max-width: 1144px) {
     height: 100vh;
+  }
+  @media screen and (max-width: 375px) {
+    height: 500px;
+    position: absolute;
+    top: 580px;
   }
 `;
 
@@ -74,6 +78,12 @@ const BoxContainer = styled.div`
   justify-content: center;
   width: 100%;
   gap: 16px;
+
+  @media screen and (max-width: 375px) {
+    padding: 0px 16px;
+    gap: 10px;
+    display: grid;
+  }
 `;
 
 export const OutBox = styled.div`
@@ -89,12 +99,24 @@ export const OutBox = styled.div`
   &:hover {
     border: 2px solid #D5D4D4;
   }
+
+  @media screen and (max-width: 375px) {
+    width: 343px;
+    height: 68px;
+    padding: 16px 24px;
+  }
 `;
 
 export const Wrapper = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 375px) {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
 `;
 
 export const InBoxWrapper = styled.div`
@@ -103,12 +125,22 @@ export const InBoxWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0px 0px 10px 0px;
+
+  @media screen and (max-width: 375px) {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export const InBox = styled.img`
   width: 36px;
   height: 36px;
   object-fit: contain;
+
+  @media screen and (max-width: 375px) {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export const Text = styled.div`

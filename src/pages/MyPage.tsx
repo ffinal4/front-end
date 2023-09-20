@@ -32,12 +32,12 @@ const MyPage = () => {
       <LayoutImageWrapper>
         <LayoutImage src={Background} />
       </LayoutImageWrapper>
-        <MyPageTitle>MY PAGE</MyPageTitle>
-        <MyPageContentContainer>
-          <ProfileContent data={data} />
-          <MyPippo data={data} />
-        </MyPageContentContainer>
-        <Pocket />
+      <MyPageTitle>MY PAGE</MyPageTitle>
+      <MyPageContentContainer>
+        <ProfileContent data={data} />
+        <MyPippo data={data} />
+      </MyPageContentContainer>
+      <Pocket />
     </AllLayoutContainer>
   );
 };
@@ -46,6 +46,9 @@ const AllLayoutContainer = styled.div`
   padding-top: 200px;
   width: 100%;
   background-color: #fcf6e9;
+  @media screen and (max-width: 375px) {
+    height: 1300px;
+  }
 `;
 
 const LayoutImageWrapper = styled.div`
@@ -87,6 +90,8 @@ const MyPageContentContainer = styled.div`
   @media screen and (max-width: 1144px) {
     display: grid;
     justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
 

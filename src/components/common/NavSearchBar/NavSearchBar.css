@@ -1,0 +1,25 @@
+.InputContainer {
+    position: absolute;
+    width: 330px;
+    display: flex;
+    align-items: center;
+}
+
+.InputContainer {
+    animation: input_ani 0.8s forwards;
+}
+
+@keyframes input_ani {
+    0% {
+        opacity: 0;
+        transform: translateX(50%) scaleX(0);
+    }
+    30% {
+        opacity: 0.5;
+        transform: translateX(50%) scaleX(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scaleX(1);
+    }
+}

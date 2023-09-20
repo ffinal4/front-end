@@ -55,6 +55,10 @@ const Background = styled.div`
     display: grid;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 375px) {
+        max-width: 100%;
+    }
 `;
 
 const ModalContainer = styled.div`
@@ -87,12 +91,21 @@ const ModalTitleContainer = styled.div`
     color: #EC8D49;
     display: flex;
     justify-content: center;
+
+    @media screen and (max-width: 375px) {
+        width: 375px;
+        left: 85px;
+    }
 `;
 
 const ContentContainer = styled.div`
     width: 100%;
     display: grid;
     gap: 10px;
+
+    @media screen and (max-width: 375px) {
+        max-width: 375px;
+    }
 `;
 
 const BtnWrapper = styled.div`

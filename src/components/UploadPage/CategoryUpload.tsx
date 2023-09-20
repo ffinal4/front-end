@@ -79,6 +79,10 @@ export const RequiredText = styled.div`
   font-weight: 700;
   line-height: 150%;
   min-width: 191px;
+
+  @media screen and (max-width: 375px) {
+    min-width: 116px;
+  }
 `;
 
 export const SelectBar = styled.div`
@@ -113,6 +117,10 @@ export const SelectContainer = styled.div`
   padding: 40px 0px 0px 0px;
   position: absolute;
   z-index: 1000;
+
+  @media screen and (max-width: 375px) {
+    left: -137px;
+  }
 `;
 
 export const RightWrapper = styled.div`

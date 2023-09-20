@@ -16,10 +16,10 @@ const MyChatBtn = ({ navigate } : any) => {
         }}
     >
         <Wrapper>
-        <InBoxWrapper>
-            <InBox src={MyChat} />
-        </InBoxWrapper>
-        <Text>내 채팅</Text>
+          <InBoxWrapper>
+              <InBox src={MyChat} />
+          </InBoxWrapper>
+          <Text>내 채팅</Text>
         </Wrapper>
     </OutBox>
   )

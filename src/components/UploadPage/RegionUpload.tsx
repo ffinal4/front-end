@@ -29,6 +29,10 @@ const RequiredText = styled.div`
     line-height: 150%;
     min-width: 191px;
     color: #222020;
+
+    @media screen and (max-width: 375px) {
+      min-width: 116px;
+    }
 `;
 
 const Wrapper = styled.div`

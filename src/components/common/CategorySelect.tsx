@@ -79,6 +79,11 @@ const CategoryContainer = styled.div`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  
+  @media screen and (max-width: 1000px) {
+    width: 375px;
+    height: 530px;
+  }
 `;
 
 const CategoryHeader = styled.div`
@@ -95,6 +100,11 @@ const CategoryHeader = styled.div`
     line-height: 150%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+
+    @media screen and (max-width: 1000px) {
+      height: 44px;
+      padding: 15px;
+    }
 `;
 
 const CategoryWrapper = styled.div`
@@ -115,6 +125,11 @@ const CategoryKindWrapper = styled.div`
   &:hover {
     font-weight: 700;
     background-color: #efefef;
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 15px 0px 15px 15px;
+    width: 187px;
   }
 `;
 
