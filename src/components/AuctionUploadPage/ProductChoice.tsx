@@ -95,6 +95,11 @@ const UploadContainer = styled.div`
         background-color: #D5D4D4;
         border-radius: 5px;
     }
+
+    @media screen and (max-width: 375px) {
+        display: grid;
+        gap: 20px;
+    }
 `;
 
 const RequiredText = styled.div`
@@ -104,6 +109,13 @@ const RequiredText = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: 150%;
+
+    @media screen and (max-width: 375px) {
+        width: 122px;
+        padding-left: 16px;
+        font-size: 16px;
+        line-height: 140%;
+    }
 `;
 
 const MyPocketWrapper = styled.div`
@@ -119,6 +131,11 @@ const MyPocketContainer = styled.div`
     flex-wrap: wrap;
     overflow: auto;
     gap: 16px;
+
+    @media screen and (max-width: 375px) {
+        width: 360px;
+        justify-content: center;
+    }
 `;
 
 const LineWrapper = styled.div`
@@ -143,6 +160,10 @@ const SeeButtonWrapper = styled.div`
 
 const InfoWrapper = styled.div`
     width: 1136px;
+
+    @media screen and (max-width: 375px) {
+        width: 363px;
+    }
 `;
 
 const FailedText = styled.div`
@@ -168,6 +189,11 @@ const NotRatingProduct = styled.div`
     border-radius: 10px;
     background-color: #FCFCFC;
     opacity: 0.4;
+
+    @media screen and (max-width: 375px) {
+        width: 140px;
+        height: 260px;
+    }
 `;
 
 export default ProductChoice;

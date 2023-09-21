@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import HorizontalLine from "../components/common/HorizontalLine";
@@ -9,8 +9,8 @@ import ItemCardList from "../components/common/ItemCardList";
 import { useQuery } from "react-query";
 import { getGoodsApi } from "../api/goods";
 import { pagination } from "../store/pagination";
-import { useRecoilValue } from "recoil";
-import { filterAsc, filterCategory } from "../store/filterCategory";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { filterAsc, filterCategory, filterName } from "../store/filterCategory";
 import AscFilterButton from "../components/common/AscFilterButton";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,9 @@ const TradeListPage = () => {
   const navigate = useNavigate();
   const currentPage = useRecoilValue(pagination);
   const currentCategory = useRecoilValue(filterCategory);
+  const [categorySelect, setCategorySelect] = useRecoilState(filterCategory);
+  const [currentFilterName, setCurrentFilterName] = useRecoilState(filterName);
+  const resetPage = useResetRecoilState(pagination);
   const currentAsc = useRecoilValue(filterAsc);
   const { isLoading, error, data } = useQuery(
     ["tradeListPageData", currentPage, currentCategory, currentAsc],
@@ -27,6 +30,39 @@ const TradeListPage = () => {
       refetchOnWindowFocus: false,
     }
   );
+
+  interface Kind {
+    category: string | null;
+    name: string;
+  }
+
+  const categoryArray: Kind[] = [
+    { category: null, name: "전체" },
+    { category: "WOMAN", name: "여성패션/잡화" },
+    { category: "MAN", name: "남성패션/잡화" },
+    { category: "FURNITURE", name: "가구/인테리어" },
+    { category: "HOBBY", name: "취미/게임/음반/굿즈" },
+    { category: "BOOK", name: "도서" },
+    { category: "BEAUTY", name: "뷰티/미용" },
+    { category: "BABY", name: "유아동/유아물품" },
+    { category: "KITCHEN", name: "생활주방용품" },
+    { category: "TICKET", name: "티켓/교환권" },
+    { category: "SPORTS", name: "스포츠/레저" },
+    { category: "PET", name: "반려동물용품" },
+    { category: "DIGITAL", name: "디지털기기" },
+    { category: "ELECTRONICS", name: "가전제품" },
+    { category: "ART", name: "예술/희귀/수집품" },
+    { category: "PLANT", name: "식물" },
+    { category: "FOOD", name: "가공식품" },
+    { category: "ETC", name: "기타물품" },
+  ];
+
+  const onClickFilterHandler = (item : Kind) => {
+    setCategorySelect(`&category=${item.category}`);
+    setCurrentFilterName(item.name);
+    resetPage();
+  };
+
   if (isLoading) return <LoadingSpinner />;
   console.log("물물교환페이지데이터", data);
   if (error) {
@@ -48,6 +84,23 @@ const TradeListPage = () => {
       >
         물건 올리기
       </UploadBtn>
+      <CategoryContainer>
+        {categoryArray.map((item : Kind) => {
+          return (
+            (currentFilterName === item.name)
+              ? <CategoryButton
+                key={item.name}
+                style={{backgroundColor: "#ec8d49", color: "#FCFCFC"}}>
+                {item.name}
+              </CategoryButton>
+              : <CategoryButton
+                key={item.name}
+                onClick={() => onClickFilterHandler(item)}>
+                {item.name}
+              </CategoryButton>
+          )
+        })}
+      </CategoryContainer>
       <HorizontalLine />
       <AscFilterButton />
       <FilterButton />
@@ -84,6 +137,7 @@ const UploadBtn = styled.div`
   @media screen and (max-width: 375px) {
     width: 104px;
     height: 40px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -92,6 +146,10 @@ const TitleContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 40px;
+
+  @media screen and (max-width: 375px) {
+    display: none;
+  }
 `;
 const TitleImage = styled.img`
   width: 66px;
@@ -101,6 +159,40 @@ const TitleImage = styled.img`
 
 const TitleText = styled(StTitle)`
   color: var(--orange-orange-100, #ec8d49);
+`;
+
+const CategoryContainer = styled.div`
+  display: none;
+  
+  @media screen and (max-width: 375px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 370px;
+    gap: 10px;
+    margin-bottom: 40px;
+    padding: 10px;
+    overflow-x: auto;
+  }
+`;
+
+const CategoryButton = styled.div`
+  height: 25px;
+  border: 1px solid #39373A;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Pretendard";
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 140%;
+  padding: 0px 20px;
+  color: #39373A;
+
+  &:hover {
+    background-color: #ec8d49;
+  }
 `;
 
 export default TradeListPage;

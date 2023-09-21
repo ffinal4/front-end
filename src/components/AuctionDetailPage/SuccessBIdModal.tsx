@@ -25,9 +25,8 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import { postMakeChatApi } from "../../api/chat";
 import { goodsAuctionId } from "../../store/Auction";
 
-const SuccessBIdModal = ({ sellerPicks, setSellerPicks }: any) => {
+const SuccessBIdModal = ({ sellerPicks, setSellerPicks, auctionId }: any) => {
 
-  const auctionId = useRecoilValue(goodsAuctionId);
   const currentPage = useRecoilValue(pagination);
   const { isLoading, error, data }: any = useQuery(
     ["auctionBid", currentPage, auctionId],
