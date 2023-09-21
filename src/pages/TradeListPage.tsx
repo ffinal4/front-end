@@ -174,7 +174,7 @@ const CategoryContainer = styled.div`
 `;
 
 const CategoryButton = styled.div`
-  height: 25px;
+  height: 30px;
   border: 1px solid #39373A;
   border-radius: 50px;
   display: flex;
@@ -184,7 +184,7 @@ const CategoryButton = styled.div`
   font-size: 8px;
   font-weight: 400;
   line-height: 140%;
-  padding: 0px 20px;
+  padding: 0px 25px;
   color: #39373A;
 
   &:hover {

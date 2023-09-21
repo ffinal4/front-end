@@ -10,22 +10,24 @@ const Footer = () => {
         <LogoContainer>
           <LogoTitle src={Logo} />
         </LogoContainer>
-        <MemberContainer>
-          <Position>FRONTEND</Position>
-          <Name onClick={() => window.open("https://github.com/LOCA525")}>박준영</Name>
-          <Name onClick={() => window.open("https://github.com/myeongjin99")}>서명진</Name>
-          <Name onClick={() => window.open("https://github.com/seungjaelee2684")}>이승재</Name>
-        </MemberContainer>
-        <MemberContainer>
-          <Position>BACKEND</Position>
-          <Name onClick={() => window.open("https://github.com/jiooong")}>이지원 ♀</Name>
-          <Name onClick={() => window.open("https://github.com/K-IMjihun")}>김지훈</Name>
-          <Name onClick={() => window.open("https://github.com/stoow1")}>이지원 ♂</Name>
-        </MemberContainer>
-        <MemberContainer>
-          <Position>DESIGN</Position>
-          <Name onClick={() => window.open("https://www.figma.com/file/aL874LElbs7lkXTpuuhARZ/항해99-4조?type=design&node-id=716%3A29&mode=design&t=iv4Sq7t46PMtYKlH-1")}>윤지숙</Name>
-        </MemberContainer>
+        <NameContainer>
+          <MemberContainer>
+            <Position>FRONTEND</Position>
+            <Name onClick={() => window.open("https://github.com/LOCA525")}>박준영</Name>
+            <Name onClick={() => window.open("https://github.com/myeongjin99")}>서명진</Name>
+            <Name onClick={() => window.open("https://github.com/seungjaelee2684")}>이승재</Name>
+          </MemberContainer>
+          <MemberContainer>
+            <Position>BACKEND</Position>
+            <Name onClick={() => window.open("https://github.com/jiooong")}>이지원 ♀</Name>
+            <Name onClick={() => window.open("https://github.com/K-IMjihun")}>김지훈</Name>
+            <Name onClick={() => window.open("https://github.com/stoow1")}>이지원 ♂</Name>
+          </MemberContainer>
+          <MemberContainer>
+            <Position>DESIGN</Position>
+            <Name onClick={() => window.open("https://www.figma.com/file/aL874LElbs7lkXTpuuhARZ/항해99-4조?type=design&node-id=716%3A29&mode=design&t=iv4Sq7t46PMtYKlH-1")}>윤지숙</Name>
+          </MemberContainer>
+        </NameContainer>
       </ContentContainer>
     </FooterContainer>
   );
@@ -44,6 +46,11 @@ const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 375px) {
+    display: grid;
+    justify-content: center;
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -70,6 +77,10 @@ const Position = styled.span`
   font-weight: 500;
   line-height: normal;
   margin-right: 10px;
+
+  @media screen and (max-width: 375px) {
+    display: none;
+  }
 `;
 
 const Name = styled.span`
@@ -87,5 +98,15 @@ const Name = styled.span`
     color: #394772;
     border-bottom: 1px solid #394772;
   }
+
+  @media screen and (max-width: 375px) {
+    margin-left: 5px;
+    font-size: 12px;
+  }
 `;
+
+const NameContainer = styled.div`
+  display: flex;
+`;
+
 export default Footer;

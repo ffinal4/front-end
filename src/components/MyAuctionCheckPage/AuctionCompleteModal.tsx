@@ -94,6 +94,11 @@ export const ModalContainer = styled.div`
   z-index: 9999;
   border: 2px solid black;
   border-radius: 10px;
+
+  @media screen and (max-width: 375px) {
+    width: 343px;
+    height: 220px;
+  }
 `;
 
 export const CancelButtonContainer = styled.div`
@@ -101,6 +106,10 @@ export const CancelButtonContainer = styled.div`
   justify-content: end;
   margin-top: 20px;
   margin-right: 20px;
+
+  @media screen and (max-width: 375px) {
+    margin-top: 16px;
+  }
 `;
 
 export const CancelImg = styled.img`
@@ -122,9 +131,16 @@ export const Title = styled.div`
   line-height: 110%;
   text-align: center;
   width: 576px;
-
   border-bottom: 2px solid #d5d4d4;
   padding-bottom: 20px;
+
+  @media screen and (max-width: 375px) {
+    width: 80%;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: normal;
+    padding-bottom: 16px;
+  }
 `;
 
 export const Content = styled.div`
@@ -136,6 +152,14 @@ export const Content = styled.div`
   font-weight: 700;
   line-height: 150%;
   padding-top: 30px;
+
+  @media screen and (max-width: 375px) {
+    padding-top: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 140%;
+    padding-bottom: 0px;
+  }
 `;
 
 export const SubContent = styled.div`
@@ -147,12 +171,23 @@ export const SubContent = styled.div`
   font-weight: 400;
   line-height: 150%;
   margin-top: 6px;
+
+  @media screen and (max-width: 375px) {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    padding-bottom: 16px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;
+
+  @media screen and (max-width: 375px) {
+    margin-top: -5px;
+  }
 `;
 
 const StRejectButton = styled(StBasicButton)`

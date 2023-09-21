@@ -66,6 +66,11 @@ const PocketImg = styled.img`
     width: 48px;
     height: 48px;
     object-fit: contain;
+
+    @media screen and (max-width: 375px) {
+      width: 28px;
+      height: 28px;      
+    }
 `;
 
 export default SecessionModal;
