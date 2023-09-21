@@ -25,17 +25,25 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import { postMakeChatApi } from "../../api/chat";
 import { goodsAuctionId } from "../../store/Auction";
 
-const SuccessBIdModal = ({ sellerPicks, setSellerPicks, auctionId }: any) => {
+interface SuccessBidModalProps {
+  sellerPicks: {pickModal: boolean, successBidModal: boolean};
+  setSellerPicks: React.Dispatch<React.SetStateAction<{
+    pickModal: boolean,
+    successBidModal: boolean
+  }>>;
+  auctionId: number | null;
+}
+
+const SuccessBIdModal : React.FC<SuccessBidModalProps> = ({ sellerPicks, setSellerPicks, auctionId }) => {
 
   const currentPage = useRecoilValue(pagination);
-  const { isLoading, error, data }: any = useQuery(
+  const { isLoading, isError, error, data }: any = useQuery(
     ["auctionBid", currentPage, auctionId],
     () => getAuctionBidListApi(currentPage, auctionId),
     {
       refetchOnWindowFocus: false,
     }
   );
-  console.log("입찰품 목록(낙찰)", data);
 
   const [wonBidChoice, setWonBidChoice] = useState({
     sureModal: false,
@@ -46,15 +54,14 @@ const SuccessBIdModal = ({ sellerPicks, setSellerPicks, auctionId }: any) => {
   const [bidSellerPick, setBidSellerPick] = useState<{ bidId: number[] }>({
     bidId: [],
   });
-  console.log("확인", bidSellerPick);
 
   const onClickChoiceHandler = () => {
-    setSellerPicks({ ...sellerPicks, SuccessBidModal: false });
+    setSellerPicks({ ...sellerPicks, successBidModal: false });
     setWonBidChoice({ ...wonBidChoice, sureModal: true });
   };
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div>

@@ -16,10 +16,7 @@ const SearchPage = () => {
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <LoadingSpinner />;
-  console.log("검색데이터", data);
-  if (error) {
-    console.log(error);
-  }
+  if (error) {};
   return (
     <div>
       <TitleContainer>

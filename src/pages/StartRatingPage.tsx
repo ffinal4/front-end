@@ -12,14 +12,12 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 const StartRatingPage = () => {
   const navigate = useNavigate();
 
-  const { isLoading, error, data }: any = useQuery("ratingRaking", getRatingRakingApi, {
+  const { isLoading, isError, error, data }: any = useQuery("ratingRaking", getRatingRakingApi, {
     refetchOnWindowFocus: false,
   });
 
-  console.log("랭킹데이터", data);
-
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <MainLayoutContainer>

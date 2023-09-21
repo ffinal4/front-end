@@ -53,7 +53,6 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   const resetPage = useResetRecoilState(pagination);
   const [category, setCategory] = useState<string | null>("");
   const [filter, setFilter] = useState("전체");
-  console.log("filter", category);
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -78,11 +77,7 @@ const BidAuctionList: React.FC<BidAuctionListProps> = ({
   };
 
   if (isLoading) return <LoadingSpinner />;
-  console.log("입찰경매현황 데이터", data);
-  if (error) {
-    console.log(error);
-  }
-  console.log(data, "입찰경매현황 데이터");
+  if (error) {};
 
   return (
     <div style={{ position: "relative" }}>

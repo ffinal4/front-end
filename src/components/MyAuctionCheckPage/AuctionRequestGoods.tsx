@@ -26,15 +26,6 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
   const testListResponseDto = item?.testListResponseDto;
   const bidListResponseDtos = item?.bidListResponseDtos;
   const auctionId = testListResponseDto?.auctionId;
-  
-
-//   const mutation = useMutation(() => getAuctionBidDetailApi(auctionId, userId), {
-//     onSuccess: (res) => {
-//         console.log("상세보기", res)
-//         setDetailModalOpen(true);
-//         setDetailData(res);
-//     }
-// });
 
   const onCilckDetailModalHandler = async () => {
     if (item?.bidListResponseDtos) {
@@ -43,14 +34,10 @@ const AuctionRequestGoods: React.FC<AuctionRequestGoodsProps> = ({
         const res = await getAuctionBidDetailApi(auctionId, userId);
         if (res.status === 200) {
           setDetailModalOpen(true);
-          console.log("상세보기", res)
           setDetailModalOpen(true);
           setDetailData(res);
         };
       } catch {
-        if (Error) {
-          console.log(Error);
-        };
       };
     };
   };

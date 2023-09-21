@@ -28,10 +28,7 @@ const MyPocketPage = () => {
     }
   );
   if (isLoading) return <LoadingSpinner />;
-  console.log("마이포켓데이터", data);
-  if (error) {
-    console.log(error);
-  }
+  if (error) {};
   return (
     <MyPocketPageContainer>
       <TitleContainer>

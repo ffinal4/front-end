@@ -48,7 +48,6 @@ const AucBidCard = ({
 
   const mutation = useMutation(() => getAuctionBidDetailApi(auctionId, userId), {
     onSuccess: (res) => {
-      console.log("상세보기", res);
       setDetailModalOpen(true);
       setDetailData(res);
     },
@@ -69,15 +68,12 @@ const AucBidCard = ({
             }
           }
           setBidSellerPick({ ...bidSellerPick, bidId: emptyArray });
-          console.log("test", bidSellerPick);
         } else {
           setBidSellerPick({ ...bidSellerPick, bidId: checkBox });
         }
       }
     }
   }, [checkBox]);
-  console.log("선택", checkBox);
-  console.log("유저아이디", buyerId);
 
   const cardCondition = () => {
     if (choice) {

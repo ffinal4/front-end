@@ -28,7 +28,6 @@ const AucModalBtn = ({ data, navigate }: any) => {
     () => deleteGoodsApi(goodsId),
     {
       onSuccess: (res) => {
-        console.log("삭제성공!", res);
         Swal.fire({
           icon: "success",
           text: "게시글이 삭제되었습니다.",
@@ -40,13 +39,11 @@ const AucModalBtn = ({ data, navigate }: any) => {
   );
   const cancelMutate = useMutation(() => deleteAuctionCancelApi(auctionId), {
     onSuccess: (res) => {
-      console.log("경매취소성공!", res);
       Swal.fire({
         icon: "success",
         text: "경매가 취소되었습니다.",
         confirmButtonColor: "#58abf7",
       });
-
       navigate("/");
     },
   });

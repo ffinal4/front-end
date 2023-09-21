@@ -77,18 +77,6 @@ const ContentContainer = styled.div<{ src : string }>`
   }
 `;
 
-const ExplainContainer = styled.div`
-  margin-bottom: 40px;
-`;
-
-const Explain = styled.div`
-  font-family: "Pretendard";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 27px */
-`;
-
 const MainStBasicButton = styled(StBasicButton)`
   border: 2px solid var(--black-white-black, #222020);
   font-size: 16px;
@@ -109,27 +97,4 @@ const MainStBasicButton = styled(StBasicButton)`
   }
 `;
 
-const SmallPocketImage = styled.img`
-  width: 100px;
-  position: absolute;
-  top: 552px;
-`;
-
-const MascotImage = styled.img`
-  width: 312px;
-  position: absolute;
-  top: 223px;
-  right: 20%;
-  @media screen and (max-width: 1000px) {
-    width: 200px;
-    top: 370px;
-    right: 10%;
-  }
-  @media screen and (max-width: 600px) {
-    top: 450px;
-    width: 150px;
-    right: 0;
-  }
-  
-`;
 export default Banner;

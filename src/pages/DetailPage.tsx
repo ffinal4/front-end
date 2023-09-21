@@ -14,17 +14,9 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const DetailPage = () => {
   const { goodsId }: any = useParams();
-  const { data, isLoading, error }: any = useQuery(["DetailData", goodsId], () => getDetailPageApi(goodsId), {
+  const { data, isLoading, isError, error }: any = useQuery(["DetailData", goodsId], () => getDetailPageApi(goodsId), {
     refetchOnWindowFocus: false,
   });
-  const [view, setView] = useRecoilState<any>(RecentlyView);
-  useEffect(() => {
-    if (data) {
-      setView([...view, { goodsId: goodsId, image: data.data.info.goodsResponseDtoList.images[0] }]);
-    }
-  }, []);
-  console.log("data", data);
-  console.log("화면크기", window.innerWidth);
 
   const [detailTap, setDetailTap] = useState({
     giveTap: true,
@@ -47,7 +39,7 @@ const DetailPage = () => {
   };
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <PageLayout>

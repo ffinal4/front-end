@@ -19,7 +19,7 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const RatingPage = () => {
   const queryClient = useQueryClient();
-  const { isLoading, data, error, isError, status }: any = useQuery("ratingStart", getRatingStartApi, {
+  const { isLoading, data, error, isError }: any = useQuery("ratingStart", getRatingStartApi, {
     refetchOnWindowFocus: false,
   });
 
@@ -66,7 +66,6 @@ const RatingPage = () => {
           setAddPrice({ ...addPrice, success: true });
         }
         setResData(info);
-        console.log("결과는", res.data.info);
       }
     } catch {
       if (error) {

@@ -28,9 +28,6 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
   const newAuctionId = productData.data.info.auctionResponseDto.auctionId;
   const newData = data?.data.info.goodsListResponseDto.content;
 
-  console.log("내주머니입찰데이터", newAuctionId);
-  console.log("내주머니입찰데이터", data);
-
   const [bidCheck, setBidCheck] = useState(false);
   const [checkBox, setCheckBox] = useState<any[]>([]);
   const [ratingPrice, setRatingPrice] = useState<number>(0);
@@ -42,7 +39,6 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
 
   const mutation = useMutation(() => postAuctionBidApi(myPocketGoods, newAuctionId), {
     onSuccess: (res) => {
-      console.log("입찰성공!", res);
       queryClient.invalidateQueries("auctionBid");
       setBidCheck(true);
     },
@@ -51,11 +47,9 @@ const BidModal = ({ conditional, setConditional, productData }: any) => {
   const onClickBidHandler = () => {
     mutation.mutate();
   };
-  console.log("선택", checkBox);
-  console.log("선택", myPocketGoods);
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div>

@@ -18,14 +18,12 @@ const MyPage = () => {
       const localLocation = localStorage.getItem("location");
       if (data.data.info.location !== localLocation) {
         localStorage.setItem("location", data.data.info.location);
-        console.log("test");
       }
     }
   }, []);
 
   if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error: {error.message}</p>;
-  console.log("myPage", data);
 
   return (
     <AllLayoutContainer>

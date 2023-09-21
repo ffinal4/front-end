@@ -38,10 +38,6 @@ const MyPickBar = ({ view } : any) => {
                     />
                 )
             })}
-            {/* <ImageBox src={Image}/>
-            <ImageBox src={Image}/>
-            <ImageBox src={Image}/>
-            <ImageBox src={Image}/> */}
         </PickImageContainer>
         <TopMoveButton onClick={onClickScrollButton} id='scrollToTopButton'>TOP</TopMoveButton>
     </PickBarContainer>

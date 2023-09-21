@@ -9,7 +9,6 @@ const RegionUpload = ({ locationData } : any) => {
         <RequiredText>주거래지역</RequiredText>
           <Wrapper style={{gap: "39px"}}>
             <Text>{locationData}</Text>
-            {/* <StBasicButton buttonColor="#D9D9D9">직접입력</StBasicButton> */}
           </Wrapper>
     </LineContainer>
   )

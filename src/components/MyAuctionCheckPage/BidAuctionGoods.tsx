@@ -55,42 +55,6 @@ const BidAuctionGoods: React.FC<BidAuctionGoodsProps> = ({
         </GoodsContainer>
       );
     };
-    // if (request === "BIDDING") {
-    //   return (
-    //     <GoodsContainer>
-    //       <GoodsImg src={testListResponseDto.image} />
-    //       <ExchangeImg src={timer} />
-    //       <GoodsImg src={bidListResponseDtos.goodsImg} />
-    //     </GoodsContainer>
-    //   );
-    // }
-    // if (request === "SUCCESS") {
-    //   return (
-    //     <GoodsContainer>
-    //       <GoodsImg src={testListResponseDto.image} />
-    //       <ExchangeImg src={timer} />
-    //       <GoodsImg src={bidListResponseDtos.goodsImg} />
-    //     </GoodsContainer>
-    //   );
-    // }
-    // if (request === "DONE") {
-    //   return (
-    //     <GoodsContainer>
-    //       <GoodsImg src={testListResponseDto.image} />
-    //       <ExchangeImg src={timer} />
-    //       <GoodsImg src={bidListResponseDtos.goodsImg} />
-    //     </GoodsContainer>
-    //   );
-    // }
-    // if (request === "FAIL") {
-    //   return (
-    //     <GoodsContainer>
-    //       <GoodsImg src={testListResponseDto.image} />
-    //       <ExchangeImg src={timer} />
-    //       <GoodsImg src={bidListResponseDtos.goodsImg} />
-    //     </GoodsContainer>
-    //   );
-    // }
   };
 
   return <div>{bidAuctionGoodsState()}</div>;
