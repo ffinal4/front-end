@@ -176,7 +176,6 @@ const AuctionUploadPage = () => {
                 }
               }
             }
-            // const jsonBid = JSON.stringify(newBid);
           }}
         >
           {" "}
@@ -200,6 +199,11 @@ const PageTitleContainer = styled.div`
   font-weight: 700;
   line-height: 110%;
   padding: 0px 0px 16px 0px;
+
+  @media screen and (max-width: 375px) {
+    font-size: 24px;
+    padding-left: 16px;
+  }
 `;
 
 const KoreanTitle = styled.div`
@@ -210,6 +214,13 @@ const KoreanTitle = styled.div`
   font-weight: 800;
   line-height: 150%;
   padding: 0px 0px 20px 0px;
+
+  @media screen and (max-width: 375px) {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 140%;
+    padding-left: 16px;
+  }
 `;
 
 const Text = styled.div`
@@ -218,11 +229,22 @@ const Text = styled.div`
   font-weight: 400;
   line-height: 150%;
   color: #808080;
+
+  @media screen and (max-width: 375px) {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 140%;
+    padding-left: 16px;
+  }
 `;
 
 const TextWrapper = styled.div`
   width: 100%;
   padding: 0px 0px 40px 0px;
+
+  @media screen and (max-width: 375px) {
+    width: 343px;
+  }
 `;
 
 const AuctionUploadContainer = styled.div`
@@ -237,13 +259,11 @@ const PeriodUploadContainer = styled.div`
   padding: 0px 0px 30px 0px;
   display: flex;
   border-bottom: 2px solid #eaeaea;
-`;
 
-const UploadContainer = styled.div`
-  width: 100%;
-  padding: 30px 0px;
-  display: flex;
-  border-bottom: 2px solid #eaeaea;
+  @media screen and (max-width: 375px) {
+    display: grid;
+    gap: 20px;
+  }
 `;
 
 const RequiredText = styled.div`
@@ -253,6 +273,13 @@ const RequiredText = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: 150%;
+
+  @media screen and (max-width: 375px) {
+    width: 112px;
+    padding-left: 16px;
+    font-size: 16px;
+    line-height: 140%;
+  }
 `;
 
 const FirstWrapper = styled.div`
@@ -266,6 +293,13 @@ const ButtonWrapper = styled.div`
   gap: 16px;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 375px) {
+    width: 343px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
 `;
 
 const LineWrapper = styled.div`
@@ -293,6 +327,11 @@ const LastLineContainer = styled.div`
   padding: 30px 0px;
   display: flex;
   border-bottom: 4px solid #181818;
+
+  @media screen and (max-width: 375px) {
+    display: grid;
+    gap: 20px;
+  }
 `;
 
 const Button = styled(StBasicButton)`
@@ -308,6 +347,10 @@ const InputWrapper = styled.div`
   border-radius: 5px;
   background-color: #fcfcfc;
   padding: 0px 20px 0px 0px;
+
+  @media screen and (max-width: 375px) {
+      margin-left: 20px;
+  }
 `;
 
 const RemoveBtn = styled.div`
@@ -333,6 +376,10 @@ const BottomBtnWrapper = styled.div`
   display: grid;
   justify-content: center;
   gap: 10px;
+
+  @media screen and (max-width: 375px) {
+    width: 370px;
+  }
 `;
 
 const PriceBtn = styled(StBasicButton)`

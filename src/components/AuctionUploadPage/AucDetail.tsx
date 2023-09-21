@@ -94,6 +94,11 @@ const ImageBox = styled.div<{ src: string }>`
     height: 464px;
     background-image: ${(props) => `url(${props.src})`};
     background-size: cover;
+
+    @media screen and (max-width: 375px) {
+        min-width: 225px;
+        height: 225px;
+    }
   `;
 
 const ImageOutContainer = styled.div`
@@ -109,8 +114,10 @@ const ImageOutContainer = styled.div`
     overflow: hidden;
   
     @media screen and (max-width: 1136px) {
-      margin: 0px;
-      width: 464px;
+        margin: 0px;
+        min-width: 225px;
+        max-width: 225px;
+        height: 225px;
     }
   `;
 
@@ -120,6 +127,9 @@ const SlideBtnWrapper = styled.div`
       position: absolute;
       justify-content: space-between;
       z-index: 200;
+      @media screen and (max-width: 1136px) {
+        width: 225px;
+        }
   `;
 
 const SlideButton = styled.div`

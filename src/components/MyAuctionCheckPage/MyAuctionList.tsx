@@ -31,6 +31,7 @@ import Paging from "../common/Paging/Paging";
 import { pagination } from "../../store/pagination";
 import LoadingSpinner from "../common/LoadingSpinner";
 import DetailGoodsModal from "../TradeRequestPage/DetailGoodsModal";
+import { goodsAuctionId } from "../../store/Auction";
 
 interface MyAuctionListProps {
   filterTap: any;
@@ -52,6 +53,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   setFilterTap,
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
+  const auctionId = useRecoilValue(goodsAuctionId);
   const currentPage = useRecoilValue(pagination);
   const resetPage = useResetRecoilState(pagination);
   const [category, setCategory] = useState<string | null>("");
@@ -150,12 +152,14 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
           <SellerPickModal
             setSellerPicks={setSellerPicks}
             sellerPicks={sellerPicks}
+            auctionId={auctionId}
           />
         )}
         {successBidModal && (
           <SuccessBIdModal
             setSellerPicks={setSellerPicks}
             sellerPicks={sellerPicks}
+            auctionId={auctionId}
           />
         )}
         {detailModalOpen && (
