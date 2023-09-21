@@ -38,10 +38,9 @@ const EditProfilePage = () => {
   } = useForm<EditForm>({ mode: "onBlur" });
 
   // 개인정보 가져오기
-  const { isLoading, error, data }: any = useQuery("myPageData", getMypageApi, {
+  const { isLoading, error, isError, data }: any = useQuery("myPageData", getMypageApi, {
     refetchOnWindowFocus: false,
   });
-  console.log("개인정보수정페이지", data);
 
   const imageData = data?.data.info.image;
   const nicknameData = data?.data.info.nickname;
@@ -56,7 +55,7 @@ const EditProfilePage = () => {
     const formData = getValues();
     const newNick = formData.nickname || nicknameData;
     const nickData = { nickname: newNick };
-    console.log(nickData, "nick");
+
     try {
       const res = await postNicknameApi(nickData);
       console.log(res);
@@ -85,15 +84,10 @@ const EditProfilePage = () => {
       },
     };
 
-    console.log("주소, 닉네임", allRequest);
-    console.log("이미지 업로드", uploadImage);
-
     try {
       if (uploadImage.length === 0 || uploadImage[0] === imageData) {
         formData.append("image", "");
-        // formData.append('image', JSON.stringify([]));
         const imageForm = formData.get("image");
-        console.log(imageForm, "확인");
       } else {
         uploadImage.forEach((blobImage: any, index: any) => {
           formData.append("image", blobImage, `image${index + 1}.jpg`);
@@ -107,17 +101,12 @@ const EditProfilePage = () => {
         })
       );
 
-      formData.forEach(function (value, key) {
-        console.log(key + ": " + value);
-      });
       const res = await pathchProfileEditApi(formData);
 
       if (res.status === 200) {
-        console.log("개인정보수정완료", res);
         navigate("/mypage");
       }
     } catch (error) {
-      console.log("개인정보수정실패", error);
     }
   });
 
@@ -126,7 +115,7 @@ const EditProfilePage = () => {
   };
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
   return (
     <div>
       <EditProfilePageContainer>

@@ -25,7 +25,6 @@ const ModalBtn = ({ data, navigate }: any) => {
     () => deleteGoodsApi(data.data.info.goodsResponseDtoList.goodsId),
     {
       onSuccess: (res) => {
-        console.log("삭제성공!", res);
         Swal.fire({
           icon: "success",
           text: "게시글이 삭제되었습니다.",

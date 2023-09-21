@@ -50,10 +50,8 @@ const Header = () => {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("location");
-      console.log(res);
       setIsLoggedIn(false);
     } catch (error) {
-      console.log("로그아웃실패", error);
     }
   };
 

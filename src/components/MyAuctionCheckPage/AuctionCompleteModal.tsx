@@ -24,12 +24,10 @@ const AuctionCompleteModal: React.FC<AuctionCompleteModalProps> = ({
 
   const requestCompleteOnclick = async () => {
     if (auctionId && bidIdData) {
-      console.log("bidIdData", bidIdData);
       try {
         const res = await postAuctionDoneApi(bidIdData, auctionId);
         if (res.status === 200) {
           setCompleteModalOpen(false);
-          console.log("거래완료!", res);
           Swal.fire({
             icon: "success",
             text: "교환이 완료되었습니다! 상대방이 교환완료를 진행해야 완료상태가 됩니다.",
@@ -38,11 +36,10 @@ const AuctionCompleteModal: React.FC<AuctionCompleteModalProps> = ({
           queryClient.invalidateQueries("getMyAuctionCheckData");
         };
       } catch (error) {
-        console.log(error);
       };
     };
-    // setRequestState({ ...requestState, request: "" });
   };
+  
   return (
     <div>
       <ModalBackground />

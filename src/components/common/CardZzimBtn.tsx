@@ -12,7 +12,6 @@ const CardZzimBtn = ({ checkZzim, goodsId, isCard, isAuction, buttonColor, fontC
   const [isZzim, setIsZzim] = useState(false);
   const zzimMutate = useMutation(() => postZzimApi({ goodsId: goodsId }), {
     onSuccess: (res) => {
-      console.log("찜성공!", res);
       setIsZzim(!isZzim);
       if (isZzim) {
         setDibsCount(dibsCount - 1);

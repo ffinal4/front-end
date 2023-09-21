@@ -104,42 +104,8 @@ const BidAuctionCard = ({ item }: any) => {
         </div>
       );
     };
-    // if (request === "BIDDING") {
-    //   return (
-    //     <div>
-    //       <Title>입찰</Title>
-    //       <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
-    //       <Address>{bidListResponseDtos.location}</Address>
-    //     </div>
-    //   );
-    // }
-    // if (request === "SUCCESS") {
-    //   return (
-    //     <div>
-    //       <Title>입찰</Title>
-    //       <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
-    //       <Address>{bidListResponseDtos.location}</Address>
-    //     </div>
-    //   );
-    // }
-    // if (request === "DONE") {
-    //   return (
-    //     <div>
-    //       <Title>입찰</Title>
-    //       <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
-    //       <Address>{bidListResponseDtos.location}</Address>
-    //     </div>
-    //   );
-    // }
-    // if (request === "FAIL") {
-    //   return (
-    //     <div>
-    //       <Title>입찰</Title>
-    //       <GoodsTitle>{bidListResponseDtos.title}</GoodsTitle>
-    //       <Address>{bidListResponseDtos.location}</Address>
-    //     </div>
-    //   );
   };
+  
   return (
     <CardContainer style={{ border: `${border}`, opacity: `${opacity}` }}>
       <Container>

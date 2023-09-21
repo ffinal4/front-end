@@ -34,13 +34,6 @@ const NavSearchBar : React.FC<NavSearchBarProps> = ({ clickSearch, setClickSearc
   )
 };
 
-const InputContainer = styled.form`
-  position: absolute;
-  width: 330px;
-  display: flex;
-  align-items: center;
-`;
-
 const SearchInput = styled.input`
   border: 1px solid #efefef;
   border-radius: 10px;

@@ -9,7 +9,6 @@ import {
 } from "../AuctionDetailPage/BidModal";
 
 const ItemCardList = ({ data, allList, isPocket }: any) => {
-  const myLocation = localStorage.getItem("location");
 
   return (
     <ItemCardContainer>

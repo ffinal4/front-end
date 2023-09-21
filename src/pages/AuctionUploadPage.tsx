@@ -13,11 +13,9 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 const AuctionUploadPage = () => {
   const navigate = useNavigate();
 
-  const { isLoading, error, data }: any = useQuery("AuctionMyPocket", getAuctionUploadApi, {
+  const { isLoading, error, isError, data }: any = useQuery("AuctionMyPocket", getAuctionUploadApi, {
     refetchOnWindowFocus: false,
   });
-
-  console.log("경매물품등록내주머니데이터", data);
 
   const [failed, setFailed] = useState(false);
   const [myPocketGoods, setMyPocketGoods] = useState<{
@@ -59,10 +57,9 @@ const AuctionUploadPage = () => {
   const onClickRemovePriceHandler = () => {
     setProductBid({ ...productBid, lowPrice: 0 });
   };
-  console.log("productBid", productBid);
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <PageLayoutContainer>

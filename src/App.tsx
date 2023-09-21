@@ -29,7 +29,6 @@ import ScrollTop from "./utils/ScrollTop";
 import { RecoilRoot } from "recoil";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import SearchPage from "./pages/SearchPage";
-import ChattingPage2 from "./pages/ChattingPage2";
 import PasswordChangePage from "./pages/PasswordChangePage";
 import HelperButton from "./components/common/Helper/HelperButton";
 

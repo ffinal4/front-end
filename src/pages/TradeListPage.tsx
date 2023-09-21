@@ -23,7 +23,7 @@ const TradeListPage = () => {
   const [currentFilterName, setCurrentFilterName] = useRecoilState(filterName);
   const resetPage = useResetRecoilState(pagination);
   const currentAsc = useRecoilValue(filterAsc);
-  const { isLoading, error, data } = useQuery(
+  const { isLoading, error, isError, data } = useQuery(
     ["tradeListPageData", currentPage, currentCategory, currentAsc],
     () => getGoodsApi(currentPage, currentCategory, currentAsc),
     {
@@ -64,10 +64,7 @@ const TradeListPage = () => {
   };
 
   if (isLoading) return <LoadingSpinner />;
-  console.log("물물교환페이지데이터", data);
-  if (error) {
-    console.log(error);
-  }
+  if (error) {};
 
   return (
     <TradeListPageContainer>

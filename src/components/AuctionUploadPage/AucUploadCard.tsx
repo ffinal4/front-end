@@ -15,7 +15,6 @@ const AucUploadCard = (props : any) => {
         };
         return setMyPocketGoods({...myPocketGoods, goodsId: item.goodsId});
     };
-    // console.log(checkBox, "checkBox");
 
   return (
     <CardContainer onClick={() => onClickCheckHandler(item)}>

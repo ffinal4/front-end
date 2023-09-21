@@ -30,7 +30,6 @@ const KakaoApi = (props: any) => {
 
   const addressOnchange = (event: any) => {
     setAddress(event.target.value);
-    console.log(event.target.value);
   };
   const handle = {
     // 버튼 클릭 이벤트

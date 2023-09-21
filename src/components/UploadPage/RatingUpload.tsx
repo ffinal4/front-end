@@ -16,13 +16,11 @@ const RatingUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
     const onCheckYesRatingHandler = () => {
         setRatingChecks({...ratingChecks, ratingCheck: true});
         setUploadData({...uploadData, data: {...uploadData.data, ratingCheck: true}});
-        console.log("YES", uploadData);
     };
     const onCheckNoRatingHandler = () => {
         setRatingChecks({...ratingChecks, ratingCheck: false});
         setConditionProduct({...conditionProduct, price: ""});
         setUploadData({...uploadData, data: {...uploadData.data, ratingCheck: false, sellerPrice: ""}});
-        console.log("NO", uploadData);
     };
 
     const memoizedCallback = useCallback((event : React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +30,6 @@ const RatingUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
             ...conditionProduct,
             [name]: numValue
         });
-        console.log("price", price);
     }, [conditionProduct]);
 
     const numericValue = parseFloat(price);
@@ -40,7 +37,6 @@ const RatingUpload = ({ setUploadData, uploadData, failedUpload } : any) => {
 
     const onBlurChangeHandler = () => {
         setUploadData({...uploadData, data: {...uploadData.data, sellerPrice: price}});
-        console.log("ddd", uploadData);
     };
 
   return (

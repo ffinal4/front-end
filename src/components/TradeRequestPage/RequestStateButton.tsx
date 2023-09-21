@@ -36,24 +36,18 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({ requestState, s
     try {
       const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
       if (res.status == 200) {
-        // const res = await postMakeChatApi(item.goodsListResponseDto.goodsId, postChatBody);
-        console.log("채팅 생성 성공", res);
       }
     } catch (error) {
-      console.log("채팅 생성에러", error);
     }
   };
 
   // 교환요청 수락api
   const mutation = useMutation(() => postAcceptTradeApi(item.goodsListResponseDto.goodsId, requestGoods), {
     onSuccess: (res) => {
-      console.log("교환요청수락성공!", res);
       queryClient.invalidateQueries("getTradeReceiveRequestData");
       postChat();
     },
   });
-  console.log(newGoodsData, "id");
-  console.log(requestGoods, "요청수락물건아이디");
 
   const rejectModalClick = () => {
     setRejectModalOpen(!rejectModalOpen);

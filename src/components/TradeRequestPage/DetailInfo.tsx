@@ -18,13 +18,6 @@ const DetailInfo = ({ item } : any) => {
       >
         <TextWrapper
           style={{ gap: "8px" }}
-          //   onClick={() => {
-          //     if (data.data.info.checkSameUser) {
-          //       navigate("/mypocket");
-          //     } else {
-          //       navigate(`/userpocket/${data.data.info.nickname}`);
-          //     }
-          //   }}
         >
           <ColorText color="#39373A">{item?.nickname}</ColorText>
           <SmallBox src={Layer} style={{ cursor: "pointer" }} />
@@ -39,7 +32,6 @@ const DetailInfo = ({ item } : any) => {
             <ColorText color="#ADADAD">3일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
-            {/* <ModalBtn data={data} navigate={navigate} /> */}
           </TextWrapper>
         </BoxWrapper>
       </UserNameContainer>
@@ -71,8 +63,7 @@ const DetailInfo = ({ item } : any) => {
 
 const InfoContainer = styled.div`
   width: 450px;
-  /* width: 100%; */
-  /* border: 1px solid black; */
+  
   @media screen and (max-width: 834px) {
     width: 100%;
     display: grid;

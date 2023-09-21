@@ -35,7 +35,6 @@ const NickNameInput: React.FC<NickNameInputProps> = ({
     const formData = getValues();
     const newNick = formData.nickname;
     const nickData = { nickname: newNick };
-    console.log(nickData, "nick");
     try {
       const res = await postNicknameApi(nickData);
       console.log(res);
@@ -43,12 +42,10 @@ const NickNameInput: React.FC<NickNameInputProps> = ({
         setNicknameChecked(true);
         setIsAvailable(true);
         setNicknameError(null);
-        console.log("사용가능한 닉네임 입니다.", res);
       }
     } catch (error) {
       setIsAvailable(false);
       setNicknameError("중복된 닉네임 입니다.");
-      console.log("중복된 닉네임 입니다.", error);
     }
   };
 

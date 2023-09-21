@@ -50,16 +50,13 @@ const BidCompleteModal = ({
         postChatBody
       );
       if (res.status == 200) {
-        console.log("채팅 생성 성공", res);
       }
     } catch (error) {
-      console.log("채팅 생성에러", error);
     }
   };
 
   const mutation = useMutation(() => postAucEndApi(bidSellerPick, auctionId), {
     onSuccess: (res) => {
-      console.log("선택완료!", res);
       setWonBidChoice({ ...wonBidChoice, sureModal: false });
       setWonBidChoice({ ...wonBidChoice, chatModal: true });
       postChat();

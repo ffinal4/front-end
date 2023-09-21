@@ -13,14 +13,13 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const AuctionDetailPage = () => {
   const { auctionId }: any = useParams();
-  const { data, isLoading, error }: any = useQuery(
+  const { data, isLoading, isError, error }: any = useQuery(
     ["AuctionDetailData", auctionId],
     () => getAuctionDetailApi(auctionId),
     {
       refetchOnWindowFocus: false,
     }
   );
-  console.log("경매물품상세페이지데이터", data);
 
   const [detailTap, setDetailTap] = useState({
     bid: true,
@@ -55,7 +54,7 @@ const AuctionDetailPage = () => {
   };
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <PageLayout>

@@ -19,7 +19,7 @@ const UserPocketPage = () => {
   const page = useRecoilValue(pagination);
   const asc = useRecoilValue(filterAsc);
 
-  const { isLoading, error, data } = useQuery(
+  const { isLoading, isError, error, data } = useQuery(
     ["myPocketData", nickname, page, asc],
     () => getUserPocketApi(nickname, page, asc),
     {
@@ -27,10 +27,7 @@ const UserPocketPage = () => {
     }
   );
   if (isLoading) return <LoadingSpinner />;
-  console.log("남의포켓데이터", data);
-  if (error) {
-    console.log(error);
-  }
+  if (isError) {};
   return (
     <UserPocketContainer>
       <TitleContainer>

@@ -41,11 +41,7 @@ const GetRequestList: React.FC<GetRequestListProps> = ({
   );
 
   if (isLoading) return <LoadingSpinner />;
-  console.log("교환요청받은 데이터", data);
-  if (error) {
-    console.log(error);
-  }
-  console.log(data, "교환요청받은 데이터");
+  if (error) {};
 
   const sendRequestOnclick = () => {
     setFilterTap({

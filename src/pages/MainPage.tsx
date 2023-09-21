@@ -10,14 +10,11 @@ import RankList from "../components/MainPage/RankList";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const MainPage = () => {
-  const { isLoading, error, data } = useQuery("getMaintPageData", getMainPageApi, {
+  const { isLoading, error, isError, data } = useQuery("getMaintPageData", getMainPageApi, {
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <LoadingSpinner />;
-  console.log("메인페이지데이터", data);
-  if (error) {
-    console.log(error);
-  }
+  if (isError) {}
   return (
     <div>
       <Banner />

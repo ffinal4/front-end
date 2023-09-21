@@ -24,7 +24,6 @@ const DetailInfo = ({ data }: any) => {
   const currentDate: any = new Date();
   const newDate = currentDate - targetDate;
   const result = Math.floor(newDate / (1000 * 60 * 60 * 24));
-  console.log("며칠전", result);
   const resetCategory = useResetRecoilState(filterCategory);
   const resetCategoryName = useResetRecoilState(filterName);
   const restPage = useResetRecoilState(pagination);

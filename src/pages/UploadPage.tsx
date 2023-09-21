@@ -65,7 +65,6 @@ const UploadPage = () => {
       uploadData.data.sellerPrice === ""
     ) {
       setFailedUpload(true);
-      console.log(uploadImages, uploadData);
     }
     if (
       uploadImages.length === 0 ||
@@ -87,7 +86,6 @@ const UploadPage = () => {
         });
         if (uploadData.wanted.category === "ETC") {
         try {
-          console.log(uploadImages, uploadData);
           const sliceImages = uploadImages.slice(0, 3);
           sliceImages.forEach((blobImage, index) => {
             formData.append("images", blobImage, `image${index + 1}.jpg`);
@@ -104,9 +102,6 @@ const UploadPage = () => {
               type: "application/json",
             })
           );
-          formData.forEach(function (value, key) {
-            console.log(key + ": " + value);
-          });
   
           const res = await postUploadApi(formData);
           if (res.status === 200) {
@@ -123,12 +118,10 @@ const UploadPage = () => {
             text: "이미지의 크기가 너무 커요!",
             confirmButtonColor: "#ffca64",
           });
-          console.log(error);
         }
       }
       } else {
         try {
-          console.log(uploadImages, uploadData);
           const sliceImages = uploadImages.slice(0, 3);
           sliceImages.forEach((blobImage, index) => {
             formData.append("images", blobImage, `image${index + 1}.jpg`);
@@ -145,9 +138,6 @@ const UploadPage = () => {
               type: "application/json",
             })
           );
-          formData.forEach(function (value, key) {
-            console.log(key + ": " + value);
-          });
   
           const res = await postUploadApi(formData);
           if (res.status === 200) {
@@ -164,7 +154,6 @@ const UploadPage = () => {
             text: "이미지의 크기가 너무 커요!",
             confirmButtonColor: "#ffca64",
           });
-          console.log(error);
         }
       };
     }

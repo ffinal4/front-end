@@ -39,7 +39,6 @@ const PasswordChangePage = () => {
       originPassword: data.originPassword,
       password: data.newPassword,
     };
-    console.log(body, "데이터");
     try {
       const res = await postPasswordChangeApi(body);
       if (res.status === 200) {
@@ -51,7 +50,6 @@ const PasswordChangePage = () => {
         navigate("/login");
       }
     } catch (error) {
-      console.log(error);
     }
   });
 

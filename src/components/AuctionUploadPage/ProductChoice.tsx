@@ -21,8 +21,6 @@ const ProductChoice = ({ setMyPocketGoods, myPocketGoods, data, failed } : any) 
         setSeeInfo(!seeInfo);
     };
 
-    // console.log(findedData, "findedData");
-
   return (
     <div>
         <UploadContainer>
