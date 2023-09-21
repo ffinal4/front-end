@@ -60,7 +60,7 @@ const PocketContainer = styled.div`
   background-color: #ffca64;
   
   @media screen and (max-width: 1144px) {
-    height: 100vh;
+    height: 720px;
   }
 `;
 
@@ -70,6 +70,10 @@ const PocketInline = styled.div`
   display: grid;
   justify-content: center;
   background-color: #ffca64;
+
+  @media screen and (max-width: 375px) {
+    height: 400px;
+  }
 `;
 
 const BoxContainer = styled.div`
@@ -154,6 +158,10 @@ export const Text = styled.div`
 const ResignWrapper = styled.div`
   width: 100vh;
   padding: 0px 392px 0px 392px;
+
+  @media screen and (max-width: 375px) {
+    padding: 100px 0px 0px 20px;
+  }
 `;
 
 const Resign = styled.div`

@@ -72,7 +72,6 @@ const AlarmButton = () => {
             }, 2000);
             setIsAlarms(true);
           };
-          console.log('connect event data: ', e);  // "connected!"
         });
     
         eventSource.onerror = (e: any) => {
