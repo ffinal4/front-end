@@ -6,14 +6,6 @@ import { pagination } from "../../../store/pagination";
 
 const Paging = () => {
   const [page, setPage] = useRecoilState<number>(pagination);
-  // const resetPage = useResetRecoilState(pagination);
-  // // 컴포넌트 언마운트시 페이지값 1로 초기화
-  // // 언마운트시로 하니까 렌더링 에러 발생중
-  // useEffect(() => {
-  //   return () => {
-  //     resetPage();
-  //   };
-  // }, []);
   const handlePageChange = (page: number) => {
     setPage(page);
     window.scrollTo(0, 0);

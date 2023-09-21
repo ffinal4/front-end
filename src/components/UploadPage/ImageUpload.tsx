@@ -18,9 +18,7 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
 
   const [imageUrlLists, setImageUrlLists] = useState<string[]>([]);
 
-  const formData = new FormData();
   const onChangeFileHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log("fileList", event.target.files);
     const fileList = event.target.files;
     if (fileList && fileList.length > 0) {
       for (let i = 0; i < fileList.length; i++) {
@@ -29,8 +27,6 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
         uploadImages.push(blobImage);
         imageUrlLists.push(fileUrl);
       }
-      console.log("imageUrlLists", imageUrlLists);
-      console.log("uploadImages", uploadImages);
     }
     setFile({
       ...file,
@@ -70,7 +66,6 @@ const ImageUpload = ({ setUploadImages, uploadImages, failedUpload }: any) => {
       second: { ...file.second, imageUrl: imageUrlLists[1] },
       third: { ...file.third, imageUrl: imageUrlLists[2] },
     });
-    console.log(uploadImages, "uploadImages");
   };
 
   const onClickRemoveHandler = () => {

@@ -69,9 +69,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   });
   const { pickModal, successBidModal } = sellerPicks;
 
-  console.log("filter", category);
-
-  const { data, isLoading, error }: any = useQuery(
+  const { data, isLoading, isError, error }: any = useQuery(
     ["getMyAuctionCheckData", currentPage, category],
     () => getMyAuctionCheckApi(currentPage, category)
   );
@@ -95,12 +93,9 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
       bidAuctionTap: true,
     });
   };
-  console.log("경매현황페이지 내경매 데이터", data);
 
   if (isLoading) return <LoadingSpinner />;
-  console.log("내경매현황 데이터", data);
-  if (error) {
-    console.log(error);
+  if (isError) {
   }
 
   return (
@@ -118,7 +113,6 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
             }}
           >
             <div>{filter}</div>
-            {/* {dropdownMenu} */}
             <ArrowImg src={arrow} />
           </Filter>
           {auctionFilterOpen && (

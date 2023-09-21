@@ -7,8 +7,6 @@ const NotDataModal = () => {
 
     const navigate = useNavigate();
 
-    const [getPoint, setGetPoint] = useState(0);
-
   return (
     <div>
         <Background>     

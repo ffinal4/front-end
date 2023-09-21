@@ -48,11 +48,6 @@ const FilterDropdownMenu = (props: any) => {
               </div>
             )
           })}
-        {/* <RequestState onClick={requestStateOnclick}>전체</RequestState>
-        <RequestState onClick={requestStateOnclick}>입찰중</RequestState>
-        <RequestState onClick={requestStateOnclick}>입찰성공</RequestState>
-        <RequestState onClick={requestStateOnclick}>교환완료</RequestState>
-        <RequestState onClick={requestStateOnclick}>입찰실패</RequestState> */}
       </FilterDropdownContainer>
     </div>
   );

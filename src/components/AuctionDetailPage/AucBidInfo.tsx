@@ -20,7 +20,6 @@ const AucBidInfo = ({ productData } : any) => {
     });
     const [detailData, setDetailData] = useState<any>();
     const [detailModalOpen, setDetailModalOpen] = useState(false);
-    console.log("입찰품 목록", data);
 
   return (
     <InfoContainer>

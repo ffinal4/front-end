@@ -21,7 +21,7 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
   detailModalOpen,
   setDetailModalOpen,
 }) => {
-  // const arrImages: string[] = data.data.info.images;
+
   const modalData = detailData?.data.info;
   const divRef = useRef<HTMLDivElement>(null);
   const divTwoRef = useRef<HTMLDivElement>(null);

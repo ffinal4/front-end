@@ -51,11 +51,9 @@ const AlarmButton = () => {
             if (res.status === 200) {
               setAlarms(res?.data.info);
               if (alarmData) {
-                console.log("알림데이터", alarms);
               }; 
             };
           } catch (error) {
-            console.log("에러", error);
           };
         };
         eventSource.addEventListener('sse', (e : any) => {
@@ -80,7 +78,6 @@ const AlarmButton = () => {
         eventSource.onerror = (e: any) => {
           // 종료 또는 에러 발생 시 할 일
           eventSource.close();
-          console.log("에러발생", e);
           let retryCount = 0;
           if (retryCount < 5) {
             retryCount++;
@@ -88,7 +85,6 @@ const AlarmButton = () => {
               connectToSSE();// 다시 연결 시도
             }, 2000);
           } else {
-            console.log('Max retry count reached. Stopping retries.');
           }
         };
       };

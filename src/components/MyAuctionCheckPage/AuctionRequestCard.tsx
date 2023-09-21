@@ -136,8 +136,6 @@ const AuctionRequestCard = ({ setDetailData, item, setSellerPicks, sellerPicks, 
     //경매종료
     if (testListResponseDto.auctionStatus === "END") {
       if (testListResponseDto.bidCount === 0) {
-        // bidCount가 0이면 request를 "CANCEL"로 변경
-        // setRequestState({ request: "CANCEL" });
         return (
           <div>
             <Title>경매상황</Title>
@@ -173,10 +171,6 @@ const AuctionRequestCard = ({ setDetailData, item, setSellerPicks, sellerPicks, 
                 현재 총 {testListResponseDto.bidCount} 명이 입찰중이에요.
               </GoodsTitle>
               <Address>
-                {/* 입찰품 선택까지 {testListResponseDto.timeRemaining.days}:
-              {testListResponseDto.timeRemaining.hours}:
-              {testListResponseDto.timeRemaining.minutes}:
-              {testListResponseDto.timeRemaining.seconds} */}
               입찰품을 선택해주세요.
               </Address>
             </div>
@@ -185,9 +179,7 @@ const AuctionRequestCard = ({ setDetailData, item, setSellerPicks, sellerPicks, 
       }
     }
     // 교환완료
-    if (testListResponseDto.auctionStatus === "DONE"
-      // || testListResponseDto.auctionStatus === "TRADING"
-      ) {
+    if (testListResponseDto.auctionStatus === "DONE") {
       return (
         <div>
           <Title>입찰</Title>

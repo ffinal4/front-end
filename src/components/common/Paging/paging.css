@@ -58,13 +58,7 @@ ul.pagination li.active {
   border-radius: 0px 0px 10px 10px;
 }
 
-ul.pagination li a:hover,
-ul.pagination li a.active {
-  /* color: var(--orange-orange-100, #ec8d49); */
-}
-
 .page-selection {
   width: 48px;
   height: 30px;
-  /* background-color: var(--orange-orange-100, #ec8d49); */
 }

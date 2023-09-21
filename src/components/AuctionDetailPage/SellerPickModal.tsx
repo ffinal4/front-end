@@ -10,14 +10,22 @@ import { getAuctionBidListApi, postSellerPicksApi } from '../../api/acution';
 import { useRecoilValue } from 'recoil';
 import { pagination } from '../../store/pagination';
 import LoadingSpinner from '../common/LoadingSpinner';
-import { goodsAuctionId } from '../../store/Auction';
 
-const SellerPickModal = ({ sellerPicks, setSellerPicks, auctionId } : any) => {
+interface SuccessBidModalProps {
+    sellerPicks: {pickModal: boolean, successBidModal: boolean};
+    setSellerPicks: React.Dispatch<React.SetStateAction<{
+      pickModal: boolean,
+      successBidModal: boolean
+    }>>;
+    auctionId: number | null;
+}
+
+const SellerPickModal : React.FC<SuccessBidModalProps> = ({ sellerPicks, setSellerPicks, auctionId }) => {
 
     const queryClient = useQueryClient();
 
     const currentPage = useRecoilValue(pagination);
-    const { isLoading, error, data } : any = useQuery(["auctionBid", currentPage, auctionId], () => getAuctionBidListApi(currentPage, auctionId), {
+    const { isLoading, isError, error, data } : any = useQuery(["auctionBid", currentPage, auctionId], () => getAuctionBidListApi(currentPage, auctionId), {
         refetchOnWindowFocus: false,
     });
 
@@ -28,17 +36,13 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks, auctionId } : any) => {
 
     const mutation = useMutation(() => postSellerPicksApi(bidSellerPick, auctionId), {
         onSuccess: (res) => {
-            console.log("선택완료!", res)
             queryClient.invalidateQueries("auctionBid");
             setSellerPicks({...sellerPicks, pickModal: false});
         },
     });
 
-    console.log("입찰품 목록(낙찰)", data);
-    console.log("선택", checkBox);
-
     if (isLoading) return <LoadingSpinner />;
-    if (error) return <p>Error: {error.message}</p>;
+    if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div>
@@ -88,15 +92,6 @@ const SellerPickModal = ({ sellerPicks, setSellerPicks, auctionId } : any) => {
                     )
                     : <EmptyPocket pocketStatus={3} />
                 }
-                {/* <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard />
-                <AucBidCard /> */}
             </MainContainer>
             <Paging />
         </ModalContainer>

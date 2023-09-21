@@ -50,10 +50,8 @@ const Header = () => {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("location");
-      console.log(res);
       setIsLoggedIn(false);
     } catch (error) {
-      console.log("로그아웃실패", error);
     }
   };
 
@@ -311,6 +309,11 @@ const LoginLink = styled.div`
   display: flex;
   align-items: center;
   font-family: "Pretendard";
+  transition: all 0.3s;
+
+  &:hover {
+    color: #f9b482;
+  }
 `;
 
 const SignupLink = styled.div`
@@ -322,6 +325,11 @@ const SignupLink = styled.div`
   display: flex;
   align-items: center;
   font-family: "Pretendard";
+  transition: all 0.3s;
+
+  &:hover {
+    color: #f9b482;
+  }
 `;
 
 const AllIconContainer = styled.div`
@@ -359,6 +367,11 @@ const MyPocketLink = styled.div`
   line-height: 150%;
   color: #39373A;
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    color: #f9b482;
+  }
 
   @media screen and (max-width: 375px) {
     font-size: 10px;
@@ -376,6 +389,11 @@ const Logout = styled.div`
   font-weight: 400;
   line-height: 150%;
   width: 56px;
+  transition: all 0.3s;
+
+  &:hover {
+    color: #f9b482;
+  }
 
   @media screen and (max-width: 375px) {
     margin-left: 10px;

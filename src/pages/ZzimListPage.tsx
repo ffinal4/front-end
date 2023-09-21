@@ -11,14 +11,11 @@ import Paging from "../components/common/Paging/Paging";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const ZzimListPage = () => {
-  const { isLoading, error, data } = useQuery("ZzimListPageData", getZzimPageApi, {
+  const { isLoading, isError, error, data } = useQuery("ZzimListPageData", getZzimPageApi, {
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <LoadingSpinner />;
-  console.log("찜 리스트페이지데이터", data);
-  if (error) {
-    console.log(error);
-  }
+  if (isError) {};
 
   return (
     <div>

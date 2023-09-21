@@ -51,20 +51,16 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   const sellerPickOnclick = () => {
     setAuctionId(item?.testListResponseDto.auctionId);
     setSellerPicks({ ...sellerPicks, pickModal: true });
-    // setRequestState({ ...requestState, request: "경매중" });
   };
-  console.log("아이템@@@@@@@@@@@@@@@@@@@@@@@", item.bidListResponseDtos);
 
   const bidGoodsSelectOnclick = () => {
     setAuctionId(item?.testListResponseDto.auctionId);
     setSellerPicks({ ...sellerPicks, successBidModal: true });
     setAucGoodsId(testListResponseDto.goodsId);
-    // setAucBuyerId();
   };
 
   const stateButton = () => {
     // 경매중
-
     if (testListResponseDto.auctionStatus === "AUCTION") {
       return (
         <div>
@@ -146,38 +142,6 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
         }
       }
     }
-
-    // if (request === "DONE") {
-    //   return (
-    //     <ButtonContainer>
-    //       <StAuctionCompleteBt
-    //         buttonColor="#58ABF7"
-    //         onClick={completeModalClick}
-    //       >
-    //         완료
-    //       </StAuctionCompleteBt>
-    //       {completeModalOpen && (
-    //         <ModalContainer>
-    //           <AuctionCompleteModal
-    //             completeModalOpen={completeModalOpen}
-    //             setCompleteModalOpen={setCompleteModalOpen}
-    //             requestState={requestState}
-    //             setRequestState={setRequestState}
-    //           />
-    //         </ModalContainer>
-    //       )}
-    //       <StChatBt
-    //         buttonColor="white"
-    //         onClick={() => {
-    //           navigate("/chat");
-    //         }}
-    //       >
-    //         채팅하기
-    //         <Img src={chat} />
-    //       </StChatBt>
-    //     </ButtonContainer>
-    //   );
-    // }
     // 교환완료
     if (testListResponseDto.auctionStatus === "DONE") {
       return <StAuctionTradeCompleteBt buttonColor="white">자세히보기</StAuctionTradeCompleteBt>;
@@ -202,11 +166,6 @@ export const StAuctionGoodsSelectBt = styled(StBasicButton)`
 export const StAuctionTradeCompleteBt = styled(StBasicButton)`
   border: 1px solid #d5d4d4;
 `;
-
-// const StAuctionfailBt = styled(StBasicButton)`
-//   border: 1px solid #d5d4d4;
-//   margin-top: 80px;
-// `;
 
 export const ModalContainer = styled.div`
   width: 100%;

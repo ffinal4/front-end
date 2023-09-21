@@ -30,10 +30,7 @@ const AuctionListPage = () => {
     }
   );
   if (isLoading) return <LoadingSpinner />;
-  console.log("옥션페이지데이터", data);
-  if (error) {
-    console.log(error);
-  }
+  if (error) {};
   return (
     <AuctionListPageContainer>
       <TitleContainer>

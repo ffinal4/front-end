@@ -47,12 +47,9 @@ const TradeCompleteModal: React.FC<TradeCompleteModalProps> = ({
   // 교환완료 api
   const completeMutation = useMutation(() => completeTradeApi(completeGoods), {
     onSuccess: (res) => {
-      console.log("교환완료 성공", res);
       queryClient.invalidateQueries("getTradeReceiveRequestData");
     },
   });
-  console.log(newGoodsData, "교환완료goodsId들");
-  console.log(completeGoods, "교환완료requestId");
 
   return (
     <div>

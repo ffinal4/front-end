@@ -21,8 +21,6 @@ const DetailContent = ({ data }: any) => {
   const currentDate : any = new Date();
   const newDate = currentDate - targetDate;
   const result = Math.floor(newDate / (1000 * 60 * 60 * 24));
-  console.log("며칠전", result);
-  // console.log("newData", newData);
 
   const [conditional, setConditional] = useState({
     bid: false,
@@ -34,12 +32,6 @@ const DetailContent = ({ data }: any) => {
   });
   const { bid, modal } = conditional;
   const { pickModal, successBidModal } = sellerPicks;
-
-  
-
-  const onClickMenuOpenHandler = () => {
-    setConditional({ ...conditional, modal: !modal });
-  };
 
   return (
     <InfoContainer>

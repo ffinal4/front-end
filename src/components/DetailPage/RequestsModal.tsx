@@ -40,10 +40,7 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
   );
 
   const newProductData = productData.data.info.goodsResponseDtoList.goodsId;
-  // const newAuctionId = productData.data.info.auctionId
   const newData = data?.data.info.goodsListResponseDto;
-
-  console.log("내주머니입찰데이터", newData);
 
   const [checkBox, setCheckBox] = useState<any[]>([]);
   const [ratingPrice, setRatingPrice] = useState<number>(0);
@@ -55,13 +52,10 @@ const RequestsModal = ({ productData, conditional, setConditional }: any) => {
 
   const mutation = useMutation(() => postRequestsApi(myPocketGoods, newProductData), {
     onSuccess: (res) => {
-      console.log("입찰성공!", res);
       setConditional({ ...conditional, bid: false });
       window.location.replace("/traderequest");
     },
   });
-
-  console.log(myPocketGoods, newProductData);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;

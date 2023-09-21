@@ -63,11 +63,9 @@ const SignupPage = () => {
     try {
       const res = await postSignupApi(allForm);
       if (res.status === 200) {
-        console.log("회원가입성공", res);
         navigate("/login");
       }
     } catch (error) {
-      console.log(error);
     }
   });
 
