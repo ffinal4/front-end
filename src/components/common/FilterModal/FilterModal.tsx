@@ -1,7 +1,8 @@
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { styled } from "styled-components";
-import { filterCategory, filterName } from "../../store/filterCategory";
-import { pagination } from "../../store/pagination";
+import { filterCategory, filterName } from "../../../store/filterCategory";
+import { pagination } from "../../../store/pagination";
+import './FilterModal.css';
 
 const FilterModal = ({ filterClick }: any) => {
   const [categorySelect, setCategorySelect] = useRecoilState(filterCategory);
@@ -35,7 +36,7 @@ const FilterModal = ({ filterClick }: any) => {
   ];
 
   return (
-    <CategoryContainer>
+    <div className="CategoryContainer">
       <CategoryHeader>전체카테고리</CategoryHeader>
       <CategoryWrapper>
         {categoryArray.map((item) => {
@@ -68,7 +69,7 @@ const FilterModal = ({ filterClick }: any) => {
           );
         })}
       </CategoryWrapper>
-    </CategoryContainer>
+    </div>
   );
 };
 

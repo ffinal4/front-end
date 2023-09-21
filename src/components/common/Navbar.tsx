@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import category from "../../assets/icon/category.png";
 import { useLocation, useNavigate } from "react-router-dom";
-import FilterModal from "./FilterModal";
+import FilterModal from "./FilterModal/FilterModal";
 import { useResetRecoilState } from "recoil";
 import {
   filterAsc,

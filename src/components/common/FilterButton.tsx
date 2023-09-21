@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { styled } from "styled-components";
 import { filterName } from "../../store/filterCategory";
 import arrow from "../../assets/icon/downarrow.png";
-import FilterModal from "./FilterModal";
+import FilterModal from "./FilterModal/FilterModal";
 
 const FilterButton = () => {
   const currentFilter = useRecoilValue(filterName);
@@ -53,6 +53,6 @@ const ModalContainer = styled.div`
   z-index: 999;
   position: absolute;
   top: 45px;
-  left: -823px;
+  left: -765px;
 `;
 export default FilterButton;
