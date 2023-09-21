@@ -64,9 +64,9 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
             )}
         </ChatTextOutContainer>
         <ButtonWrapper>
-          <Button>버튼</Button>
-          <Button>버튼</Button>
-          <Button>버튼</Button>
+          <Button>물물교환이란?</Button>
+          <Button>포켓경매란?</Button>
+          <Button>레이팅이란?</Button>
         </ButtonWrapper>
         <ChatInputBoxContainer
           typeof='onSumbit'

@@ -29,7 +29,7 @@ export const postAuctionBidApi = async (body: BidPick, auctionId: number) => {
 };
 
 // 입찰 전체 조회
-export const getAuctionBidListApi = async (page: number, auctionId: number) => {
+export const getAuctionBidListApi = async (page: number, auctionId: number | null) => {
   const res = await instance.get(`/api/auction/${auctionId}/bid/page/${page}`);
   return res;
 };
@@ -53,7 +53,7 @@ export const getBidAuctionApi = async (page: number, status: string | null) => {
 };
 
 // 경매 등록자가 관심있는 입찰품 선택
-export const postSellerPicksApi = async (body: any, auctionId: number) => {
+export const postSellerPicksApi = async (body: any, auctionId: number | null) => {
   const res = await instance.post(`/api/auction/${auctionId}/choice/bids`, body);
   return res;
 };

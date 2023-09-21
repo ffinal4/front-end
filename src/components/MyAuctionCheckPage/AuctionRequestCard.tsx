@@ -14,7 +14,7 @@ import RequestStateButton from "./RequestStateButton";
 import { StRequestState } from "../../styles/RequestStateBox";
 import AuctionRequestGoods from "./AuctionRequestGoods";
 
-const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, sellerPicks, setDetailModalOpen }: any) => {
+const AuctionRequestCard = ({ setDetailData, item, setSellerPicks, sellerPicks, setDetailModalOpen }: any) => {
   const testListResponseDto = item?.testListResponseDto;
   const [requestState, setRequestState] = useState({
     request: testListResponseDto.auctionStatus,
@@ -233,7 +233,6 @@ const AuctionRequestCard = ({ setDetailData, item, setDto, setSellerPicks, selle
           requestState={requestState}
           setRequestState={setRequestState}
           item={item}
-          setDto={setDto}
           setSellerPicks={setSellerPicks}
           sellerPicks={sellerPicks}
         />

@@ -10,11 +10,13 @@ import { getAuctionBidListApi, postSellerPicksApi } from '../../api/acution';
 import { useRecoilValue } from 'recoil';
 import { pagination } from '../../store/pagination';
 import LoadingSpinner from '../common/LoadingSpinner';
+import { goodsAuctionId } from '../../store/Auction';
 
-const SellerPickModal = ({ sellerPicks, setSellerPicks, auctionId } : any) => {
+const SellerPickModal = ({ sellerPicks, setSellerPicks } : any) => {
 
     const queryClient = useQueryClient();
 
+    const auctionId = useRecoilValue(goodsAuctionId);
     const currentPage = useRecoilValue(pagination);
     const { isLoading, error, data } : any = useQuery(["auctionBid", currentPage, auctionId], () => getAuctionBidListApi(currentPage, auctionId), {
         refetchOnWindowFocus: false,
