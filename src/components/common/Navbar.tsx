@@ -82,7 +82,7 @@ const Navbar = () => {
         >
           <CategoryImg src={category} />
           <CategoryImgWrapper>
-            {isCategoryOpen && <FilterModal filterClick={tradeListOnclick} />}
+            {isCategoryOpen && <FilterModal header={true} filterClick={tradeListOnclick} />}
           </CategoryImgWrapper>
         </CategoryContainer>
         <MenuContainer>
