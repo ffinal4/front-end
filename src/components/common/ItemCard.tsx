@@ -31,10 +31,6 @@ const ItemCard = ({ item, isPocket }: any) => {
           navigate(`/detail/${item.goodsId}`);
         }}
       />
-      {/* <AddressContent>
-        <AddressImage src={locationImage} />
-        {item?.location}
-      </AddressContent> */}
       {item?.checkSameUser ? (
         <div></div>
       ) : isPocket ? (

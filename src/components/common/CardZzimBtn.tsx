@@ -52,7 +52,7 @@ const ZzimBtn = styled.img`
 `;
 
 const ZzimBtnContainer = styled.div`
-  background: var(--black-white-white, #fcfcfc);
+  background: #FFFFFF;
   width: 48px;
   height: 48px;
   border-radius: 10px 0px;

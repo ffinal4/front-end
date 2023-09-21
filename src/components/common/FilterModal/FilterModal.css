@@ -12,8 +12,26 @@
     user-select: none;
 }
 
+.CategoryWrapper {
+    width: 1000px;
+    height: 310px;
+    position: absolute;
+    box-shadow: 1px 1px 8px 0px #c7c7c7;
+    background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .CategoryContainer {
     animation: filter_open 0.3s ease-in-out;
+}
+
+.CategoryWrapper {
+    animation: filter_open_list 0.3s ease-in-out;
 }
 
 @keyframes filter_open {
@@ -24,6 +42,21 @@
     30% {
         opacity: 0.5;
         transform: translateX(-50%) scaleX(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scaleX(1);
+    }
+}
+
+@keyframes filter_open_list {
+    0% {
+        opacity: 0;
+        transform: translateX(50%) scaleX(0);
+    }
+    30% {
+        opacity: 0.5;
+        transform: translateX(50%) scaleX(0);
     }
     100% {
         opacity: 1;

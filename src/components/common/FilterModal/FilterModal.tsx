@@ -4,7 +4,7 @@ import { filterCategory, filterName } from "../../../store/filterCategory";
 import { pagination } from "../../../store/pagination";
 import './FilterModal.css';
 
-const FilterModal = ({ filterClick }: any) => {
+const FilterModal = ({ filterClick, header }: any) => {
   const [categorySelect, setCategorySelect] = useRecoilState(filterCategory);
   const [, setCurrentFilterName] = useRecoilState(filterName);
   const resetPage = useResetRecoilState(pagination);
@@ -36,7 +36,7 @@ const FilterModal = ({ filterClick }: any) => {
   ];
 
   return (
-    <div className="CategoryContainer">
+    <div className={header ? "CategoryContainer" : "CategoryWrapper"}>
       <CategoryHeader>전체카테고리</CategoryHeader>
       <CategoryWrapper>
         {categoryArray.map((item) => {
