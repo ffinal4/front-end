@@ -4,35 +4,26 @@ import { StBasicButton } from "../../styles/BasicButton";
 import samllPocketImage from "../../assets/images/smallPocket.svg";
 import MasCotImage from "../../assets/images/mascot1.svg";
 import { StTitle } from "../../styles/TitleFont";
-import bannerBackground from "../../assets/images/banner2.png";
+import bannerBackground from "../../assets/images/bannerImage.png";
+import bannerImage from "../../assets/images/bannerbackgroud.png";
+import EmptyBanner from "../../assets/images/emptybanner.png"
 import { useNavigate } from "react-router-dom";
 const Banner = () => {
   const navigate = useNavigate();
   return (
     <BannerContainer>
       <FirstBg background={bannerBackground}>
-        <ContentContainer>
-          <StTitle marginbottom={"20px"} textalign="left">
-            LET’s peeping pockets!
-          </StTitle>
-          <ExplainContainer>
-            <Explain>혹시 처치 곤란이었던 물건이 있지는 않으신가요?</Explain>
-            <Explain> 지금 핍포에서 내가 필요한 물건으로 교환해보세요!</Explain>
-          </ExplainContainer>
-
+        <ContentContainer src={bannerImage}>
           <MainStBasicButton
-            buttonColor="#FCFCFC"
+            buttonColor="#FFCA64"
             onClick={() => {
-              navigate("/serviceuse");
+              navigate("/upload");
             }}
           >
-            핍포 알아보기
+            물건 등록하기
           </MainStBasicButton>
-          <SmallPocketImage src={samllPocketImage} />
-          <MascotImage src={MasCotImage} />
         </ContentContainer>
       </FirstBg>
-      {/* <SecondBg /> */}
     </BannerContainer>
   );
 };
@@ -50,16 +41,40 @@ const FirstBg = styled.div<{ background: string }>`
   background-size: 100% 508px;
   background-repeat: no-repeat;
   background-image: url(${(props) => props.background});
-  /* background-color: #ffca64; */
+
   @media screen and (max-width: 1136px) {
     padding: 0 20px 0 20px;
   }
+  @media screen and (max-width: 375px) {
+    padding: 0px;
+    height: 320px;
+    background-image: url(${EmptyBanner});
+  }
 `;
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.div<{ src : string }>`
   margin: 0 auto;
-  max-width: 1136px;
-  padding-top: 124px;
+  max-width: 1023px;
+  height: 513px;
+  padding-top: 400px;
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: 1023px 513px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    background-size: 100%;
+    padding-top: 300px;
+  }
+  @media screen and (max-width: 375px) {
+    width: 375px;
+    height: 250px;
+    background-size: 375px 250px;
+    padding-top: 200px;
+  }
 `;
 
 const ExplainContainer = styled.div`
@@ -82,6 +97,16 @@ const MainStBasicButton = styled(StBasicButton)`
   font-weight: 700;
   box-shadow: 1px 2px 5px 0px rgba(34, 32, 32, 0.1);
   line-height: 150%; /* 24px */
+  color: #222020;
+
+  @media screen and (max-width: 375px) {
+    width: 80px;
+    height: 30px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 140%;
+    padding: 0px;
+  }
 `;
 
 const SmallPocketImage = styled.img`
@@ -105,5 +130,6 @@ const MascotImage = styled.img`
     width: 150px;
     right: 0;
   }
+  
 `;
 export default Banner;

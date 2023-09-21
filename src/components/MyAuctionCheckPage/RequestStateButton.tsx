@@ -10,12 +10,12 @@ import SuccessBIdModal from "../AuctionDetailPage/SuccessBIdModal";
 import SellerPickModal from "../AuctionDetailPage/SellerPickModal";
 import { useRecoilState } from "recoil";
 import { makeChatAuctionBuyerId, makeChatAuctionGoodsId } from "../../store/chatting";
+import { goodsAuctionId } from "../../store/Auction";
 
 interface RequestStateButtonProps {
   requestState: { request: string };
   setRequestState: React.Dispatch<React.SetStateAction<{ request: string }>>;
   item: any;
-  setDto: React.Dispatch<React.SetStateAction<any>>;
   setSellerPicks: React.Dispatch<React.SetStateAction<{ pickModal: boolean; successBidModal: boolean }>>;
   sellerPicks: { pickModal: boolean; successBidModal: boolean };
 }
@@ -24,11 +24,11 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   requestState,
   setRequestState,
   item,
-  setDto,
   setSellerPicks,
   sellerPicks,
 }) => {
   const navigate = useNavigate();
+  const [, setAuctionId] = useRecoilState(goodsAuctionId);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
   const [bidSelectModal, setBidSelectModal] = useState<boolean>(false);
   const [bidIdData, setBidIdData] = useState<{ requestId: number[] }>({
@@ -49,14 +49,14 @@ const RequestStateButton: React.FC<RequestStateButtonProps> = ({
   };
 
   const sellerPickOnclick = () => {
-    setDto(item?.testListResponseDto.auctionId);
+    setAuctionId(item?.testListResponseDto.auctionId);
     setSellerPicks({ ...sellerPicks, pickModal: true });
     // setRequestState({ ...requestState, request: "경매중" });
   };
   console.log("아이템@@@@@@@@@@@@@@@@@@@@@@@", item.bidListResponseDtos);
 
   const bidGoodsSelectOnclick = () => {
-    setDto(item?.testListResponseDto.auctionId);
+    setAuctionId(item?.testListResponseDto.auctionId);
     setSellerPicks({ ...sellerPicks, successBidModal: true });
     setAucGoodsId(testListResponseDto.goodsId);
     // setAucBuyerId();
