@@ -162,6 +162,7 @@ What's in my bag'과 같이 다른 사람의 가방을 엿보는 콘텐츠에서
   
   결과 ↓
   <br/>
+  ![image](https://user-images.githubusercontent.com/135948012/269682349-e19c77a2-49f1-4fa0-89c0-d671b450d832.png)
 </details>
 
 
