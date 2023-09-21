@@ -47,6 +47,11 @@ const CardContainer = styled.div`
     height: 333px;
     margin-bottom: 40px;
     cursor: pointer;
+
+    @media screen and (max-width: 375px) {
+        max-width: 140px;
+        height: 260px;
+    }
 `;
 
 const CardImgContainer = styled.div<{ src : string }>`
@@ -56,41 +61,11 @@ const CardImgContainer = styled.div<{ src : string }>`
     background-image: ${(props) => `url(${props.src})`};
     background-size: cover;
     position: relative;
-`;
 
-const CardLocationContainer = styled.div`
-    width: 100%;
-    height: 44px;
-    border-radius: 10px 10px 0px 0px;
-    color: #fff;
-    background-color: #222020;
-    opacity: 0.2;
-    display: flex;
-    align-items: center;
-    
-`;
-
-const LocatinoWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    top: 10px;
-    left: 20px;
-    position: absolute;
-    z-index: 20;
-`;
-
-const LocationText = styled.div`
-    color: #fff;
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
-`;
-
-const LocationIcon = styled.img`
-    width: 18px;
-    height: 18px;
+    @media screen and (max-width: 375px) {
+        max-width: 140px;
+        height: 140px;
+    }
 `;
 
 const TitleContainer = styled.div`
@@ -120,6 +95,11 @@ const CheckOutContainer = styled.div`
     top: 0;
     left: 0;
     z-index: 888;
+
+    @media screen and (max-width: 375px) {
+        max-width: 140px;
+        height: 140px;
+    }
 `;
 
 const CheckContainer = styled.div`
@@ -134,6 +114,11 @@ const CheckContainer = styled.div`
     justify-content: center;
     align-items: center;
     z-index: 999;
+
+    @media screen and (max-width: 375px) {
+        max-width: 140px;
+        height: 140px;
+    }
 `;
 
 const CheckBox = styled.div`
@@ -145,48 +130,21 @@ const CheckBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 375px) {
+        max-width: 60px;
+        height: 60px;
+    }
 `;
 
 const CheckImage = styled.img`
     width: 48px;
     height: 48px;
-`;
 
-const GoodsConditionContainer = styled.div`
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    z-index: 1001;
-    width: 100%;
-    height: 48px;
-    background-color: #FFFFFF;
-    opacity: 0.8;
-    border-radius: 0px 0px 10px 10px;
-`;
-
-const GoodsCondition = styled.div`
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    z-index: 1003;
-    width: 100%;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 150%;
-    gap: 10px;
-    color: #222020;
-    padding: 0px 0px 0px 15px;
-`;
-
-const Circle = styled.div`
-    width: 18px;
-    height: 18px;
-    border-radius: 100%;
-    background-color: #EC8D49;
+    @media screen and (max-width: 375px) {
+        max-width: 32px;
+        height: 32px;
+    }
 `;
 
 export default AucUploadCard;

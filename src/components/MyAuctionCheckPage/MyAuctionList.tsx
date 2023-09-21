@@ -23,15 +23,15 @@ import blackdot from "../../assets/icon/blackdot.png";
 import { useQuery } from "react-query";
 import { getMyAuctionCheckApi } from "../../api/acution";
 import AuctionFilterDropdownMenu from "./AuctionFilterDropdownMenu";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { auctionCategory, myAuctionFilter } from "../../store/filterCategory";
 import SellerPickModal from "../AuctionDetailPage/SellerPickModal";
 import SuccessBIdModal from "../AuctionDetailPage/SuccessBIdModal";
 import Paging from "../common/Paging/Paging";
 import { pagination } from "../../store/pagination";
 import LoadingSpinner from "../common/LoadingSpinner";
-import { FilterToEnum } from "../../utils/EnumFilter";
 import DetailGoodsModal from "../TradeRequestPage/DetailGoodsModal";
+import { goodsAuctionId } from "../../store/Auction";
 
 interface MyAuctionListProps {
   filterTap: any;
@@ -53,6 +53,7 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
   setFilterTap,
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
+  const auctionId = useRecoilValue(goodsAuctionId);
   const currentPage = useRecoilValue(pagination);
   const resetPage = useResetRecoilState(pagination);
   const [category, setCategory] = useState<string | null>("");
@@ -67,11 +68,6 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
     successBidModal: false,
   });
   const { pickModal, successBidModal } = sellerPicks;
-
-  // interface Kind {
-  //   filter: string | null;
-  //   name: string;
-  // }
 
   console.log("filter", category);
 
@@ -91,8 +87,6 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-
-  const [testListResponseDto, setTestListResponseDto] = useState<any>();
 
   const myAuctionOnclick = () => {
     resetPage();
@@ -115,7 +109,6 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
         <GetRequest>내 경매</GetRequest>
         <SendRequest onClick={myAuctionOnclick}>입찰 경매</SendRequest>
       </TabContainer>
-
       <TradeRequestListContainer>
         <FilterContainer>
           <Filter
@@ -140,7 +133,6 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
             </FilterdropdownMenuContainer>
           )}
         </FilterContainer>
-
         <CardContainer>
           {data?.data.content.length > 0 &&
             data?.data.content?.map((item: any) => {
@@ -148,7 +140,6 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
                 <AuctionRequestCard
                   key={item.auctionId}
                   item={item}
-                  setDto={setTestListResponseDto}
                   setSellerPicks={setSellerPicks}
                   sellerPicks={sellerPicks}
                   setDetailModalOpen={setDetailModalOpen}
@@ -161,14 +152,14 @@ const MyAuctionList: React.FC<MyAuctionListProps> = ({
           <SellerPickModal
             setSellerPicks={setSellerPicks}
             sellerPicks={sellerPicks}
-            auctionId={testListResponseDto}
+            auctionId={auctionId}
           />
         )}
         {successBidModal && (
           <SuccessBIdModal
             setSellerPicks={setSellerPicks}
             sellerPicks={sellerPicks}
-            auctionId={testListResponseDto}
+            auctionId={auctionId}
           />
         )}
         {detailModalOpen && (

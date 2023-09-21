@@ -17,18 +17,6 @@ const AlarmButton = () => {
   const onClickOpenModalHandler = () => {
     setAlarmModalOpen(!alarmModalOpen);
     setIsAlarms(false);
-    // if (alarmRef.current) {
-    //   alarmRef.current.style.opacity = "1";
-    //   alarmRef.current.style.transition = "all 0.2s ease-in-out";
-    //   alarmRef.current.style.transform = "translateY(5px)";
-    // }
-    // setTimeout(() => {
-    //   if (alarmRef.current) {
-    //     alarmRef.current.style.opacity = "0"
-    //     alarmRef.current.style.transition = "all 0.2s ease-in-out";
-    //     alarmRef.current.style.transform = "translateY(-5px)";
-    //   };
-    // }, 2000);
   };
 
   const divRef = useRef<HTMLDivElement>(null);
@@ -71,7 +59,6 @@ const AlarmButton = () => {
           };
         };
         eventSource.addEventListener('sse', (e : any) => {
-          // const { data: receivedConnectData } = e;
           if (e.data !== "connected!") {
             if (alarmRef.current) {
               alarmRef.current.style.opacity = "1";
@@ -89,14 +76,6 @@ const AlarmButton = () => {
           };
           console.log('connect event data: ', e);  // "connected!"
         });
-
-        // eventSource.onmessage = (e) => {
-        //   // 메세지 날라올 시 할 일
-        //   console.log("메세지", e);
-        // };
-        // eventSource.addEventListener('sse', (e) => {
-        //   console.log('connect event data: ', e);  // "connected!"
-        // });
     
         eventSource.onerror = (e: any) => {
           // 종료 또는 에러 발생 시 할 일
@@ -141,18 +120,33 @@ const AlarmWrapper = styled.div`
     margin-right: 20px;
     position: relative;
     cursor: pointer;
+
+    @media screen and (max-width: 375px) {
+      width: 14px;
+      height: 14px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
 `;
 
 const Alarm = styled.img`
     width: 24px;
     height: 24px;
     object-fit: contain;
+    @media screen and (max-width: 375px) {
+      width: 14px;
+      height: 14px;
+    }
 `;
 
 const AlarmModalWrapper = styled.div`
   top: 50px;
   left: -185px;
   position: absolute;
+
+  @media screen and (max-width: 375px) {
+    left: -215px;
+  }
 `;
 
 const NotificationAlert = styled.div`

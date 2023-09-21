@@ -10,6 +10,7 @@ import { getAuctionBidListApi, postSellerPicksApi } from '../../api/acution';
 import { useRecoilValue } from 'recoil';
 import { pagination } from '../../store/pagination';
 import LoadingSpinner from '../common/LoadingSpinner';
+import { goodsAuctionId } from '../../store/Auction';
 
 const SellerPickModal = ({ sellerPicks, setSellerPicks, auctionId } : any) => {
 

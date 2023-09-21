@@ -126,7 +126,9 @@ const Header = () => {
           {isLoggedIn ? (
             <AllIconContainer>
               <IconContainer>
-                <AlarmButton />
+                <div>
+                  <AlarmButton />
+                </div>
                 <Mypage
                   src={mypage}
                   onClick={() => {
@@ -137,16 +139,16 @@ const Header = () => {
                     resetAsc();
                   }}
                 />
-                <Peeppo
-                  src={peeppo}
+                <MyPocketLink
                   onClick={() => {
                     navigate("/myPocket");
                     resetCategory();
                     resetCategoryName();
                     restPage();
                     resetAsc();
-                  }}
-                />
+                  }}>
+                  내 주머니
+                </MyPocketLink>
               </IconContainer>
               <Logout onClick={logoutOnclick}>로그아웃</Logout>
             </AllIconContainer>
@@ -224,7 +226,7 @@ const LogoContainer = styled.div`
   height: 41px;
 
   @media screen and (max-width: 375px) {
-    max-width: 112px;
+    max-width: 100px;
   }
 `;
 
@@ -325,11 +327,16 @@ const SignupLink = styled.div`
 const AllIconContainer = styled.div`
   display: flex;
   font-family: "Pretendard";
+  align-items: center;
 `;
 
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 375px) {
+    width: 100%;
+  }
 `;
 
 const Mypage = styled.img`
@@ -337,12 +344,28 @@ const Mypage = styled.img`
   height: 24px;
   margin-right: 20px;
   cursor: pointer;
+
+  @media screen and (max-width: 375px) {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+  }
 `;
 
-const Peeppo = styled.img`
-  width: 24px;
-  height: 24px;
+const MyPocketLink = styled.div`
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 150%;
+  color: #39373A;
   cursor: pointer;
+
+  @media screen and (max-width: 375px) {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 140%;
+    width: 100%;
+  }
 `;
 
 const Logout = styled.div`
@@ -355,6 +378,11 @@ const Logout = styled.div`
   width: 56px;
 
   @media screen and (max-width: 375px) {
-    margin-left: 16px;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 140%;
+    width: 70px;
+    margin-left: 20px;
   }
 `;

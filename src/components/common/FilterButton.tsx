@@ -38,6 +38,10 @@ const FilterContainer = styled.div`
   margin-bottom: 30px;
   cursor: pointer;
   position: relative;
+
+  @media screen and (max-width: 375px) {
+   display: none;
+  }
 `;
 
 const FilterBox = styled.img`
