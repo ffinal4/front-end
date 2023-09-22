@@ -199,6 +199,10 @@ const MainLayoutContainer = styled.div`
   width: 100%;
   height: 963px;
   background-color: #f8f3ef;
+
+  @media screen and (max-width: 375px) {
+    height: 1180px;
+  }
 `;
 
 const MainLayout = styled.div`
@@ -208,10 +212,6 @@ const MainLayout = styled.div`
   padding: 220px 0 50px 0;
   display: grid;
   justify-content: center;
-
-  /* @media screen and (max-width: 1136px) {
-        padding: 80px 200px 100px 200px;
-    } */
 
   @media screen and (max-width: 834px) {
     padding: 80px 0 100px 0;
@@ -231,7 +231,11 @@ const RatingContainer = styled.div`
   padding: 60px 96px 64px 96px;
 
   @media screen and (max-width: 375px) {
-    width: 100%;
+    width: 335px;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid #39373a;
+    margin-top: 60px;
+    height: 900px;
   }
 `;
 
@@ -242,6 +246,7 @@ const PocketTopIconContainer = styled.div`
   position: absolute;
   top: -20px;
   right: -30px;
+  z-index: 10;
 `;
 
 const PocketBottomIconContainer = styled.div`
@@ -281,25 +286,9 @@ const ImageContainer = styled.div<{ src: string }>`
   position: relative;
 
   @media screen and (max-width: 375px) {
-    max-width: 240px;
+    min-width: 240px;
     height: 240px;
   }
-`;
-
-const LikeBtn = styled.div`
-  width: 48px;
-  height: 48px;
-  border-radius: 0px 10px;
-  background-color: #fcfcfc;
-  color: #d5d4d4;
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 36px;
-  cursor: pointer;
 `;
 
 const AnswerCountContainer = styled.div`
@@ -373,6 +362,11 @@ const ButtonWrapper = styled.div`
   align-items: center;
   gap: 16px;
   padding: 20px 0px 0px 0px;
+
+  @media screen and (max-width: 375px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 const PriceButton = styled(StBasicButton)`
@@ -464,12 +458,22 @@ const FaildContainer = styled.div`
   left: 192px;
   position: absolute;
   z-index: 1000;
+
+  @media screen and (max-width: 375px) {
+    max-width: 370px;
+    top: 100px;
+    left: 0px;
+  }
 `;
 
 const ModalContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: end;
+
+  @media screen and (max-width: 375px) {
+    margin-top: 50px;
+  }
 `;
 
 export default RatingPage;

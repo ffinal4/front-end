@@ -13,6 +13,7 @@ export const StBasicButton = styled.button<{
   height: 44px;
   border-radius: 5px;
   background-color: ${(props) => props.buttonColor};
+  user-select: none;
   cursor: pointer;
 
   @media screen and (max-width: 375px) {

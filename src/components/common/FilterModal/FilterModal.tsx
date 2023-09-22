@@ -73,20 +73,6 @@ const FilterModal = ({ filterClick, header }: any) => {
   );
 };
 
-const CategoryContainer = styled.div`
-  width: 1000px;
-  height: 310px;
-  position: absolute;
-  box-shadow: 1px 1px 8px 0px #c7c7c7;
-  background-color: white;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-`;
-
 const CategoryHeader = styled.div`
   width: 100%;
   height: 54px;
@@ -99,6 +85,7 @@ const CategoryHeader = styled.div`
   font-size: 18px;
   font-weight: 700;
   line-height: 150%;
+  border-radius: 5px 5px 0px 0px;
 `;
 
 const CategoryWrapper = styled.div`
