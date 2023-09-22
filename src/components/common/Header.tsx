@@ -256,6 +256,10 @@ export const BoxContainer = styled.div`
   border-radius: 2px;
   margin-left: 20px;
   font-weight: 400;
+
+  @media screen and (max-width: 375px) {
+    margin-left: 8px;
+  }
 `;
 
 const InputContainer = styled.form`
@@ -263,6 +267,7 @@ const InputContainer = styled.form`
   display: flex;
   align-items: center;
   position: relative;
+
   @media screen and (max-width: 700px) {
     width: 300px;
   }

@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import './HelperModal.css'
 import styled from 'styled-components';
 import SubmitBtn from '../../../assets/icon/submitbtn.png'
 import ProfileImg from '../../../assets/images/mascot1.svg'
+import Arrow from '../../../assets/icon/leftarrow.png'
 
 interface HelperProps {
   isHelper: boolean;
@@ -50,7 +51,7 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
     <div className='ModalContainer'>
       <ModalInContainer>
         <CloseBtnContainer>
-          <ClossBtn onClick={() => setIsHelper(false)}>{"<"}</ClossBtn>
+          <ClossBtn src={Arrow} onClick={() => setIsHelper(false)} />
           <NameContainer>PEEPPOCHAT</NameContainer>
         </CloseBtnContainer>
         <ChatTextOutContainer id='scroll'>
@@ -85,11 +86,11 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
           <Button>포켓경매란?</Button>
           <Button>레이팅이란?</Button>
         </ButtonWrapper>
-        <ChatInputBoxContainer
+        <form
+          className={focus ? 'ChatInputBox' : 'NotFocus'}
           typeof='onSumbit'
           name='input'
           onSubmit={(e) => onSubmitHandler(e)}
-          style={{border: `${focus ? "1px solid #0fc4ac" : "1px solid #ffb37c"}`}}
         >
           <ChatInputContainer
             type='text'
@@ -111,7 +112,7 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
               }
             />
           </SumbitBtnContainer>
-        </ChatInputBoxContainer>
+        </form>
       </ModalInContainer>
     </div>
   )
@@ -155,15 +156,13 @@ const CloseBtnContainer = styled.div`
   position: relative;
 `;
 
-const ClossBtn = styled.div`
-  color: #EC8D49;
+const ClossBtn = styled.img`
   width: 30px;
   height: 30px;
+  object-fit: contain;
   display: flex;
   justify-content: center;
   align-items: end;
-  font-size: 30px;
-  font-weight: 700;
   position: absolute;
   top: 10px;
   left: 0;
@@ -172,8 +171,9 @@ const ClossBtn = styled.div`
   border-radius: 100%;
 
   &:hover {
-    font-size: 31px;
-    background-color: #ffb37c;
+    width: 31px;
+    height: 31px;
+    background-color: #EC8D49;
   }
 `;
 
@@ -188,21 +188,6 @@ const ChatTextOutContainer = styled.div`
   width: 100%;
   height: 380px;
   overflow-y: auto;
-`;
-
-const ChatInputBoxContainer = styled.form`
-  width: 100%;
-  max-height: 60px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px;
-  background-color: #ffb37c;
-  border-radius: 50px;
-
-  &:hover {
-    box-shadow: 0px 0px 5px 0px #ffb37c;
-  }
 `;
 
 const ChatInputContainer = styled.input`

@@ -11,6 +11,7 @@ import footer from "../assets/images/footer.png";
 import vector from "../assets/images/vector.png";
 import firstbox from "../assets/images/firstbox.png";
 import secondbox from "../assets/images/secondbox.png";
+import Arrow from "../assets/icon/leftarrow.png"
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -23,6 +24,10 @@ const LoginPage = () => {
 
   const passwordOnchange = (event: any) => {
     setPassword(event.target.value);
+  };
+
+  const onClickGoBackHandler = () => {
+    window.history.back();
   };
 
   const loginOnclick = async (event: any) => {
@@ -57,6 +62,7 @@ const LoginPage = () => {
 
   return (
     <LoginPageContainer>
+      <ArrowIcon src={Arrow} onClick={onClickGoBackHandler} />
       <LoginContainer>
         <LogInForm onSubmit={loginOnclick}>
           <TitleContainer>
@@ -136,6 +142,27 @@ const LoginPageContainer = styled.div`
   background-color: #fcf6e9;
   position: relative;
   padding-top: 240px;
+
+  @media screen and (max-width: 375px) {
+    padding-top: 167px;
+    z-index: 9999;
+  }
+`;
+
+const ArrowIcon = styled.img`
+  display: none;
+
+  @media screen and (max-width: 375px) {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    z-index: 10000;
+    object-fit: contain;
+    display: block;
+    top: 24px;
+    left: 16px;
+    cursor: pointer;
+  } 
 `;
 
 const LoginContainer = styled.div`
@@ -149,11 +176,25 @@ const LoginContainer = styled.div`
   box-shadow: black 0px 0px 0px 2px inset,
     rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,
     rgb(255, 255, 255) 20px -20px 0px -3px, rgb(0, 0, 0) 20px -20px;
+
+  @media screen and (max-width: 375px) {
+    box-shadow: none;
+    border: none;
+    background-color: #fcf6e9;
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    height: 600px;
+  }
 `;
 
 const LogInForm = styled.form`
   padding: 56px 96px 56px 96px;
   margin: auto;
+
+  @media screen and (max-width: 375px) {
+    padding: 24px 16px 24px 16px;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -169,6 +210,12 @@ const LogoContainer = styled.div`
   height: 54px;
   margin: 0 auto;
   margin-top: 56px;
+
+  @media screen and (max-width: 375px) {
+    margin-top: 0px;
+    width: 48px;
+    height: 48px;
+  }
 `;
 
 const Logo = styled.img`
@@ -180,12 +227,21 @@ const Title = styled.div`
   font-weight: 800;
   margin-top: 10px;
   font-family: "Pretendard";
+
+  @media screen and (max-width: 375px) {
+    font-size: 24px;
+    font-weight: 700;
+  }
 `;
 
 const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 400;
   font-family: "Pretendard";
+
+  @media screen and (max-width: 375px) {
+    font-size: 14px;
+  }
 `;
 
 const InputContainer = styled.div`
@@ -212,6 +268,10 @@ const SearchId = styled.span`
   font-family: "Pretendard";
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 375px) {
+    font-size: 14px;
+  }
 `;
 
 const SearchPw = styled.span`
@@ -222,9 +282,18 @@ const SearchPw = styled.span`
   font-family: "Pretendard";
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 375px) {
+    padding-left: 8px;
+    font-size: 14px;
+  }
 `;
 const MaintainLogin = styled.span`
   font-family: "Pretendard";
+
+  @media screen and (max-width: 375px) {
+    font-size: 14px;
+  }
 `;
 
 const SecondContainer = styled.div`
@@ -292,6 +361,10 @@ const Box = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  @media screen and (max-width: 375px) {
+    display: none;
+  }
+  
 `;
 
 const FooterContainer = styled.div`
@@ -301,6 +374,10 @@ const FooterContainer = styled.div`
   top: 830px;
   background-color: #ffca64;
   z-index: 999;
+
+  @media screen and (max-width: 375px) {
+    display: none;
+  }
 `;
 
 const FirstFooter = styled.div`
