@@ -94,10 +94,18 @@ const AlarmButton = () => {
      }, []);
 
   return (
-    <AlarmWrapper ref={divRef} onClick={onClickOpenModalHandler}>
+    <AlarmWrapper>
         {isAlarms
-          ? <Alarm src={NotiAlarm} />
-          : <Alarm src={alarm} />}
+          ? <Alarm
+            src={NotiAlarm}
+            ref={divRef}
+            onClick={onClickOpenModalHandler}
+          />
+          : <Alarm
+            src={alarm}
+            ref={divRef}
+            onClick={onClickOpenModalHandler}
+          />}
         <NotificationAlert ref={alarmRef}>
           <NotificationText>새로운 알림이 도착했습니다.</NotificationText>
         </NotificationAlert>
@@ -114,7 +122,6 @@ const AlarmWrapper = styled.div`
     height: 24px;
     margin-right: 20px;
     position: relative;
-    cursor: pointer;
 
     @media screen and (max-width: 375px) {
       width: 14px;
@@ -124,10 +131,13 @@ const AlarmWrapper = styled.div`
     }
 `;
 
-const Alarm = styled.img`
+const Alarm = styled.div<{ src : string }>`
     width: 24px;
     height: 24px;
-    object-fit: contain;
+    background-image: url(${(props) => props.src});
+    background-size: cover;
+    cursor: pointer;
+
     @media screen and (max-width: 375px) {
       width: 14px;
       height: 14px;
