@@ -22,7 +22,7 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
     }, [getPoint]);
 
   return (
-    <div>
+    <DivWrapper>
         <ModalBackground />
         <ModalContainer>
             <ModalTitleContainer>
@@ -61,9 +61,18 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
                 >다시하기</OnemoreBtn>
             </BtnWrapper>
         </ModalContainer>
-    </div>
+    </DivWrapper>
   )
 };
+
+const DivWrapper = styled.div`
+    width: 100%;
+
+    @media screen and (max-width: 375px) {
+        min-width: 300px;
+        padding: 10px 20px 10px 20px;
+    }
+`;
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -85,6 +94,11 @@ const ModalContainer = styled.div`
     padding: 54px 96px 40px 96px;
     position: relative;
     z-index: 999;
+
+    @media screen and (max-width: 375px) {
+        min-width: 300px;
+        padding: 10px 20px 10px 20px;
+    }
 `;
 
 const ModalTitleContainer = styled.div`
@@ -105,6 +119,13 @@ const ModalTitleContainer = styled.div`
     left: 48px;
     background-color: #FCFCFC;
     color: #EC8D49;
+
+    @media screen and (max-width: 375px) {
+        max-width: 300px;
+        top: -51px;
+        left: 48px;
+        font-size: 20px;
+    }
 `;
 
 const ContentContainer = styled.div`

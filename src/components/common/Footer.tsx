@@ -58,11 +58,6 @@ const LogoContainer = styled.div`
   align-items: center;
 `;
 
-const LogoMascot = styled.img`
-  width: 31.5px;
-  margin-right: 10px;
-`;
-
 const LogoTitle = styled.img`
   width: 120px;
 `;
@@ -76,7 +71,8 @@ const Position = styled.span`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-left: 24px;
 
   @media screen and (max-width: 375px) {
     display: none;

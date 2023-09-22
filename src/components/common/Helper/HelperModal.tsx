@@ -13,7 +13,12 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
 
   let scrollBar = document.getElementById("scroll");
 
-  const [chatList, setChatList] = useState<string[]>([]);
+  type ChatType = {
+    mychat: boolean,
+    contents: string
+  };
+
+  const [chatList, setChatList] = useState<ChatType[]>([]);
   const [chatText, setChatText] = useState<{ content : string }>({
     content: "" 
   });
@@ -30,7 +35,11 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
 
   const onSubmitHandler = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setChatList([...chatList, content]);
+    if (content !== "") {
+      setChatList([...chatList, {mychat: true, contents: content} ]);
+    } else {
+      setChatList([])
+    };
     setChatText({...chatText, content: ""});
     if (scrollBar) {
       scrollBar.scrollTop = scrollBar.scrollHeight;
@@ -55,9 +64,17 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
           {chatList.length > 0
             && (
               <RightChatContainer>
-              {chatList?.map((item : string) => {
+              {chatList?.map((item : ChatType) => {
                 return (
-                  <RightChatBox>{item}</RightChatBox>
+                  (item.mychat)
+                    ? <RightChatBox>{item.contents}</RightChatBox>
+                    : <div>
+                    <ProfileLineContainer>
+                      <ProfileImage src={ProfileImg} />
+                      <ProfileName>PEEPPOCHAT</ProfileName>
+                    </ProfileLineContainer>
+                    <LeftChatBox>{item.contents}</LeftChatBox>
+                  </div> 
                 )
               })}
               </RightChatContainer>
@@ -88,7 +105,7 @@ const HelperModal : React.FC<HelperProps> = ({ isHelper, setIsHelper }) => {
             <SubmitButton
               src={SubmitBtn}
               onClick={() => {
-                  setChatList([...chatList, content])
+                  setChatList([...chatList, {mychat: true, contents: content} ]);
                   setChatText({...chatText, content: ""})
                 }
               }
@@ -313,6 +330,8 @@ const Button = styled.div`
   font-size: 12px;
   font-weight: 400;
   color: #FCFCFC;
+  box-shadow: 1px 1px 4px 0px #EC8D49;
+  user-select: none;
   cursor: pointer;
 
   &:hover {
@@ -321,7 +340,7 @@ const Button = styled.div`
 
   &:active {
     background-color: #EC8D49;
-    font-size: 13px;
+    font-size: 11px;
   }
 `;
 

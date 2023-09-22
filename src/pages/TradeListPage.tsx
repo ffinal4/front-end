@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import eyeImage from "../assets/images/eye.svg";
 import HorizontalLine from "../components/common/HorizontalLine";
@@ -17,12 +17,14 @@ import { useNavigate } from "react-router-dom";
 
 const TradeListPage = () => {
   const navigate = useNavigate();
+
   const currentPage = useRecoilValue(pagination);
   const currentCategory = useRecoilValue(filterCategory);
   const [categorySelect, setCategorySelect] = useRecoilState(filterCategory);
   const [currentFilterName, setCurrentFilterName] = useRecoilState(filterName);
   const resetPage = useResetRecoilState(pagination);
   const currentAsc = useRecoilValue(filterAsc);
+
   const { isLoading, error, isError, data } = useQuery(
     ["tradeListPageData", currentPage, currentCategory, currentAsc],
     () => getGoodsApi(currentPage, currentCategory, currentAsc),
@@ -58,13 +60,19 @@ const TradeListPage = () => {
   ];
 
   const onClickFilterHandler = (item : Kind) => {
-    setCategorySelect(`&category=${item.category}`);
-    setCurrentFilterName(item.name);
-    resetPage();
+    if (item.category !== null) {
+      setCategorySelect(`&category=${item.category}`);
+      setCurrentFilterName(item.name);
+      resetPage();
+    } else {
+      setCategorySelect("");
+      setCurrentFilterName(item.name);
+      resetPage();
+    };
   };
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) {};
+  if (isError) {};
 
   return (
     <TradeListPageContainer>
@@ -82,21 +90,23 @@ const TradeListPage = () => {
         물건 올리기
       </UploadBtn>
       <CategoryContainer>
-        {categoryArray.map((item : Kind) => {
-          return (
-            (currentFilterName === item.name)
-              ? <CategoryButton
-                key={item.name}
-                style={{backgroundColor: "#ec8d49", color: "#FCFCFC"}}>
-                {item.name}
-              </CategoryButton>
-              : <CategoryButton
-                key={item.name}
-                onClick={() => onClickFilterHandler(item)}>
-                {item.name}
-              </CategoryButton>
-          )
-        })}
+        <CategoryWrapper id="images">
+          {categoryArray.map((item : Kind) => {
+            return (
+              (currentFilterName === item.name)
+                ? <CategoryButton
+                  key={item.name}
+                  style={{backgroundColor: "#ec8d49", color: "#FCFCFC"}}>
+                  {item.name}
+                </CategoryButton>
+                : <CategoryButton
+                  key={item.name}
+                  onClick={() => onClickFilterHandler(item)}>
+                  {item.name}
+                </CategoryButton>
+            )
+          })}
+        </CategoryWrapper>
       </CategoryContainer>
       <HorizontalLine />
       <AscFilterButton />
@@ -109,6 +119,24 @@ const TradeListPage = () => {
 
 const TradeListPageContainer = styled.div`
   width: 100%;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #39373A;
+    border-radius: 5px;
+        
+    &:hover {
+      background-color: #524f53;
+    }
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #D5D4D4;
+    border-radius: 5px;
+  }
 `;
 
 const UploadBtn = styled.div`
@@ -132,9 +160,10 @@ const UploadBtn = styled.div`
   cursor: pointer;
 
   @media screen and (max-width: 375px) {
-    width: 104px;
-    height: 40px;
-    margin-bottom: 20px;
+    width: 84px;
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 12px;
   }
 `;
 
@@ -145,13 +174,19 @@ const TitleContainer = styled.div`
   margin-bottom: 40px;
 
   @media screen and (max-width: 375px) {
-    display: none;
+    margin-bottom: 10px;
   }
 `;
 const TitleImage = styled.img`
   width: 66px;
   height: 54px;
   margin-bottom: 16px;
+
+  @media screen and (max-width: 375px) {
+    margin-bottom: 10px;
+    width: 42px;
+    height: 30px;
+  }
 `;
 
 const TitleText = styled(StTitle)`
@@ -162,14 +197,12 @@ const CategoryContainer = styled.div`
   display: none;
   
   @media screen and (max-width: 375px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 370px;
-    gap: 10px;
-    margin-bottom: 40px;
-    padding: 10px;
+    width: 365px;
+    padding: 20px 0px;
     overflow-x: auto;
+    display: block;
+    margin: 0px auto 10px auto;
+    user-select: none;
   }
 `;
 
@@ -186,10 +219,18 @@ const CategoryButton = styled.div`
   line-height: 140%;
   padding: 0px 25px;
   color: #39373A;
+  box-shadow: 1px 1px 3px 0px #c7c7c7;
 
   &:hover {
     background-color: #ec8d49;
   }
+`;
+
+const CategoryWrapper = styled.div`
+  width: 1000px;
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export default TradeListPage;

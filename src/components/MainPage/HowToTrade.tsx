@@ -75,6 +75,11 @@ const HowToTradeContainer = styled.div`
   margin-bottom: 200px;
   position: relative;
   z-index: 0;
+
+  @media screen and (max-width: 375px) {
+    height: 2000px;
+    padding: 60px 10px 0px 10px;
+  }
 `;
 
 const MascotImage = styled.img`
@@ -122,6 +127,10 @@ const CardListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+
+  @media screen and (max-width: 375px) {
+    height: 1600px;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -134,6 +143,10 @@ const CardContainer = styled.div`
 
   /* Shadow */
   box-shadow: 1px 2px 5px 0px rgba(34, 32, 32, 0.1);
+
+  @media screen and (max-width: 375px) {
+    height: 375px;
+  }
 `;
 
 const ContentTitle = styled.div`
@@ -172,5 +185,9 @@ const LastContent = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 24px */
+
+  @media screen and (max-width: 375px) {
+    max-width: 360px;
+  }
 `;
 export default HowToTrade;
