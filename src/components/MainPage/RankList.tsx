@@ -31,7 +31,7 @@ const RankList = ({ data }: any) => {
           <RankContainer
             style={{
               background: "var(--yellow-yellow-100, #FFCA64)",
-              width: `${(window.innerWidth <= 375) ? "343px" : "560px"}`,
+              width: `${(window.innerWidth <= 500) ? "343px" : "560px"}`,
               color: " var(--black-white-black, #222020)",
             }}
           >
@@ -74,9 +74,9 @@ const RankListContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 30px 0;
-    height: 600px;
+    height: 650px;
   }
 `;
 
@@ -86,7 +86,7 @@ const SectionContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: grid;
     justify-content: center;
   }
@@ -95,7 +95,7 @@ const SectionContainer = styled.div`
 const TitleSection = styled.div`
   margin-top: 20px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: grid;
     justify-content: center;
     margin-bottom: 40px;
@@ -114,7 +114,7 @@ const Count = styled.div`
   font-weight: 700;
   line-height: 110%; /* 44px */
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 20px;
     line-height: normal;
   }
@@ -126,7 +126,7 @@ const RankSection = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 30px */
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 14px;
     font-weight: 600;
     line-height: 140%;
@@ -146,7 +146,7 @@ const RankContainer = styled.div`
   margin-bottom: 16px;
   margin-left: auto;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 283px;
     height: 68px;
   }
@@ -159,7 +159,7 @@ const UserImage = styled.img`
   /* background: url(<path-to-image>), lightgray 50% / cover no-repeat; */
   margin: 0 20px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 48px;
     height: 48px;
   }

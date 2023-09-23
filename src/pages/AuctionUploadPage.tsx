@@ -197,7 +197,7 @@ const PageTitleContainer = styled.div`
   line-height: 110%;
   padding: 0px 0px 16px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 24px;
     padding-left: 16px;
   }
@@ -212,7 +212,7 @@ const KoreanTitle = styled.div`
   line-height: 150%;
   padding: 0px 0px 20px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 16px;
     font-weight: 700;
     line-height: 140%;
@@ -227,7 +227,7 @@ const Text = styled.div`
   line-height: 150%;
   color: #808080;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 10px;
     font-weight: 400;
     line-height: 140%;
@@ -239,8 +239,8 @@ const TextWrapper = styled.div`
   width: 100%;
   padding: 0px 0px 40px 0px;
 
-  @media screen and (max-width: 375px) {
-    width: 343px;
+  @media screen and (max-width: 500px) {
+    width: 468px;
   }
 `;
 
@@ -257,7 +257,7 @@ const PeriodUploadContainer = styled.div`
   display: flex;
   border-bottom: 2px solid #eaeaea;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: grid;
     gap: 20px;
   }
@@ -271,7 +271,7 @@ const RequiredText = styled.div`
   font-weight: 700;
   line-height: 150%;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 112px;
     padding-left: 16px;
     font-size: 16px;
@@ -291,8 +291,8 @@ const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 375px) {
-    width: 343px;
+  @media screen and (max-width: 500px) {
+    width: 468px;
     justify-content: center;
     flex-wrap: wrap;
     gap: 24px;
@@ -325,7 +325,7 @@ const LastLineContainer = styled.div`
   display: flex;
   border-bottom: 4px solid #181818;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: grid;
     gap: 20px;
   }
@@ -345,7 +345,7 @@ const InputWrapper = styled.div`
   background-color: #fcfcfc;
   padding: 0px 20px 0px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
       margin-left: 20px;
   }
 `;
@@ -374,7 +374,7 @@ const BottomBtnWrapper = styled.div`
   justify-content: center;
   gap: 10px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 370px;
   }
 `;

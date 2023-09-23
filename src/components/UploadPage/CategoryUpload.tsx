@@ -80,7 +80,7 @@ export const RequiredText = styled.div`
   line-height: 150%;
   min-width: 191px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     min-width: 116px;
   }
 `;
@@ -118,7 +118,7 @@ export const SelectContainer = styled.div`
   position: absolute;
   z-index: 1000;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     left: -137px;
   }
 `;

@@ -68,7 +68,7 @@ const FailedModal = ({ addPrice, setAddPrice, resData } : any) => {
 const DivWrapper = styled.div`
     width: 100%;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         min-width: 300px;
         padding: 10px 20px 10px 20px;
     }
@@ -95,7 +95,7 @@ const ModalContainer = styled.div`
     position: relative;
     z-index: 999;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         min-width: 300px;
         padding: 10px 20px 10px 20px;
     }
@@ -120,7 +120,7 @@ const ModalTitleContainer = styled.div`
     background-color: #FCFCFC;
     color: #EC8D49;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         max-width: 300px;
         top: -51px;
         left: 48px;

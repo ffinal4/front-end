@@ -16,7 +16,7 @@ export const StBasicButton = styled.button<{
   user-select: none;
   cursor: pointer;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 104px;
     height: 40px;
   }

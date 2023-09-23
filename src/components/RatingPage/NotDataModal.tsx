@@ -54,7 +54,7 @@ const Background = styled.div`
     justify-content: center;
     align-items: center;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         max-width: 100%;
     }
 `;
@@ -90,7 +90,7 @@ const ModalTitleContainer = styled.div`
     display: flex;
     justify-content: center;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 375px;
         left: 85px;
     }
@@ -101,8 +101,8 @@ const ContentContainer = styled.div`
     display: grid;
     gap: 10px;
 
-    @media screen and (max-width: 375px) {
-        max-width: 375px;
+    @media screen and (max-width: 500px) {
+        max-width: 500px;
     }
 `;
 

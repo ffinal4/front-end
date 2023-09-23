@@ -62,7 +62,7 @@ const LineContainer = styled.div`
   padding: 30px 0px 30px 0px;
   border-bottom: 2px solid #eaeaea;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: grid;
     gap: 14px;
   }

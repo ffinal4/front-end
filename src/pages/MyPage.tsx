@@ -44,7 +44,7 @@ const AllLayoutContainer = styled.div`
   padding-top: 200px;
   width: 100%;
   background-color: #fcf6e9;
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 1300px;
   }
 `;
@@ -62,7 +62,7 @@ const LayoutImage = styled.img`
   left: 0;
   z-index: 0;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: none;
   }
 `;

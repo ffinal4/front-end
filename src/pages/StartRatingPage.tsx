@@ -69,7 +69,7 @@ const MainLayout = styled.div`
   @media screen and (max-width: 834px) {
     padding: 80px 0 100px 0;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 80px 0 100px 0;
   }
 `;
@@ -82,7 +82,7 @@ const RatingReadyContainer = styled.div`
   border-radius: 20px;
   position: relative;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 112px 33px 59px 33px;
   }
 `;
@@ -101,7 +101,7 @@ const TitleContainer = styled.div`
   color: #ffca64;
   padding: 0px 0px 16px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 24px;
   }
 `;
@@ -113,7 +113,7 @@ const SubtitleContainer = styled.div`
   line-height: 150%;
   color: #39373a;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 14px;
   }
 `;
@@ -129,7 +129,7 @@ const Text = styled.div`
   line-height: 150%;
   color: #39373a;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 12px;
   }
 `;
@@ -152,7 +152,7 @@ const ImageContainer = styled.div<{ src: string }>`
   bottom: 108px;
   z-index: 0;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 102px;
     height: 115px;
     bottom: 210px;

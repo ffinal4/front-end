@@ -57,7 +57,7 @@ const CardContainer = styled.div`
     height: 229px;
     cursor: pointer;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 164px;
         height: 221px; 
     }
@@ -73,45 +73,10 @@ const CardImgContainer = styled.div<{ src: string }>`
     background-repeat: no-repeat;
     position: relative;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 164px;
         height: 164px; 
     }
-`;
-
-const CardLocationContainer = styled.div`
-    width: 100%;
-    height: 44px;
-    border-radius: 10px 10px 0px 0px;
-    color: #fff;
-    background-color: #222020;
-    opacity: 0.2;
-    display: flex;
-    align-items: center;
-    
-`;
-
-const LocatinoWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    top: 10px;
-    left: 20px;
-    position: absolute;
-    z-index: 20;
-`;
-
-const LocationText = styled.div`
-    color: #fff;
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
-`;
-
-const LocationIcon = styled.img`
-    width: 18px;
-    height: 18px;
 `;
 
 const TitleContainer = styled.div`
@@ -148,7 +113,7 @@ const CheckOutContainer = styled.div`
     left: 0;
     z-index: 1005;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 164px;
         height: 164px; 
     }
@@ -167,7 +132,7 @@ const CheckContainer = styled.div`
     align-items: center;
     z-index: 999;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 164px;
         height: 164px; 
     }

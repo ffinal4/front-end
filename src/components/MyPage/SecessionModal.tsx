@@ -67,7 +67,7 @@ const PocketImg = styled.img`
     height: 48px;
     object-fit: contain;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
       width: 28px;
       height: 28px;      
     }

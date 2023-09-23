@@ -74,15 +74,6 @@ const LayoutContainer = styled.div`
       }
   `;
 
-// const EmptyBox = styled.div<{ src: string }>`
-//     width: 100%;
-//     height: 100%;
-//     background-color: #D9D9D9;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// `;
-
 const SlideWrapper = styled.div`
     display: flex;
     width: 100%;
@@ -95,7 +86,7 @@ const ImageBox = styled.div<{ src: string }>`
     background-image: ${(props) => `url(${props.src})`};
     background-size: cover;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         min-width: 225px;
         height: 225px;
     }

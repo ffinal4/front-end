@@ -242,7 +242,7 @@ const LineContainer = styled.div`
   padding: 30px 0px 30px 0px;
   border-bottom: 2px solid #eaeaea;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: grid;
     gap: 14px;
   }
@@ -265,7 +265,7 @@ const ImageContainer = styled.div`
   gap: 16px;
   display: flex;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     gap: 15px;
   }
 `;
@@ -292,7 +292,7 @@ const FirstImage = styled.div`
   color: #fff;
   border-radius: 5px 0px 0px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 12px;
   }
 `;
@@ -305,7 +305,7 @@ const ImageThumbnailContainer = styled.div`
   border-radius: 5px;
   cursor: pointer;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 104px;
     height: 104px;
   }
@@ -321,7 +321,7 @@ const InputLabel = styled.label`
   border-radius: 5px;
   cursor: pointer;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 104px;
     height: 104px;
   }
@@ -373,7 +373,7 @@ const RemoveBtnWrapper = styled.div`
   @media screen and (max-width: 1136px) {
     margin: 0px;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     position: absolute;
     top: 242px;
     right: 10px;

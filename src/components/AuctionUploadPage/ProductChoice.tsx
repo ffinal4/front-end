@@ -94,7 +94,7 @@ const UploadContainer = styled.div`
         border-radius: 5px;
     }
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         display: grid;
         gap: 20px;
     }
@@ -108,7 +108,7 @@ const RequiredText = styled.div`
     font-weight: 700;
     line-height: 150%;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 122px;
         padding-left: 16px;
         font-size: 16px;
@@ -130,8 +130,8 @@ const MyPocketContainer = styled.div`
     overflow: auto;
     gap: 16px;
 
-    @media screen and (max-width: 375px) {
-        width: 360px;
+    @media screen and (max-width: 500px) {
+        width: 485px;
         justify-content: center;
     }
 `;
@@ -159,8 +159,8 @@ const SeeButtonWrapper = styled.div`
 const InfoWrapper = styled.div`
     width: 1136px;
 
-    @media screen and (max-width: 375px) {
-        width: 363px;
+    @media screen and (max-width: 500px) {
+        width: 488px;
     }
 `;
 
@@ -188,7 +188,7 @@ const NotRatingProduct = styled.div`
     background-color: #FCFCFC;
     opacity: 0.4;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 140px;
         height: 260px;
     }

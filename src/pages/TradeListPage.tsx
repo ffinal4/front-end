@@ -90,7 +90,7 @@ const TradeListPage = () => {
         물건 올리기
       </UploadBtn>
       <CategoryContainer>
-        <CategoryWrapper id="images">
+        <CategoryWrapper>
           {categoryArray.map((item : Kind) => {
             return (
               (currentFilterName === item.name)
@@ -121,8 +121,6 @@ const TradeListPageContainer = styled.div`
   width: 100%;
 
   ::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
     display: none;
   }
   ::-webkit-scrollbar-thumb {
@@ -159,7 +157,7 @@ const UploadBtn = styled.div`
   margin-bottom: 80px;
   cursor: pointer;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 84px;
     height: 30px;
     margin-bottom: 10px;
@@ -173,7 +171,7 @@ const TitleContainer = styled.div`
   align-items: center;
   margin-bottom: 40px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     margin-bottom: 10px;
   }
 `;
@@ -182,7 +180,7 @@ const TitleImage = styled.img`
   height: 54px;
   margin-bottom: 16px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     margin-bottom: 10px;
     width: 42px;
     height: 30px;
@@ -196,10 +194,10 @@ const TitleText = styled(StTitle)`
 const CategoryContainer = styled.div`
   display: none;
   
-  @media screen and (max-width: 375px) {
-    width: 365px;
+  @media screen and (max-width: 500px) {
+    width: 100%;
     padding: 20px 0px;
-    overflow-x: auto;
+    overflow-x: scroll;
     display: block;
     margin: 0px auto 10px auto;
     user-select: none;

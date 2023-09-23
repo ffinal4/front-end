@@ -76,6 +76,10 @@ const LayoutContainer = styled.div`
     gap: 30px;
     width: 100%;
 
+    @media screen and (max-width: 500px) {
+        width: 100%;
+    }
+
     @media screen and (max-width: 375px) {
         width: 375px;
     }
@@ -107,6 +111,10 @@ const RecommendList = styled.div`
     position: relative;
     overflow: hidden;
 
+    @media screen and (max-width: 500px) {
+        width: 100%;
+    }
+
     @media screen and (max-width: 375px) {
         width: 375px;
     }
@@ -118,6 +126,10 @@ const CardListContainer = styled.div`
     height: 100%;
     gap: 16px;
 
+    @media screen and (max-width: 500px) {
+        width: 100%;
+    }
+
     @media screen and (max-width: 375px) {
         width: 375px;
     }
@@ -126,56 +138,6 @@ const CardListContainer = styled.div`
 const ImageCard = styled.div`
     width: 272px;
     height: 100%;
-`;
-
-const CardContainer = styled.div`
-    width: 272px;
-    display: grid;
-`;
-
-const CardImage = styled.div`
-    width: 272px;
-    height: 272px;
-    background-color: #D9D9D9;
-    position: relative;
-`;
-
-const LikeButton = styled.div`
-    width: 48px;
-    height: 48px;
-    background-color: #969696;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 36px;
-    color: #fff;
-    cursor: pointer;
-
-    &:hover {
-        color: #000;
-    }
-`;
-
-const ContentContainer = styled.div`
-    padding: 16px 0px 10px 0px;
-`;
-
-const UserInfo = styled.div`
-    font-family: "Pretendard";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 150%;
-    color: #757575;
-`;
-
-const Content = styled.div`
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
 `;
 
 const SlideBtnWrapper = styled.div`
