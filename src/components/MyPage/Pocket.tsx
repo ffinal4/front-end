@@ -44,7 +44,7 @@ const LayoutContainer = styled.div`
   @media screen and (max-width: 1144px) {
     height: 100vh;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 500px;
     position: absolute;
     top: 580px;
@@ -71,7 +71,7 @@ const PocketInline = styled.div`
   justify-content: center;
   background-color: #ffca64;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 400px;
   }
 `;
@@ -83,7 +83,7 @@ const BoxContainer = styled.div`
   width: 100%;
   gap: 16px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 0px 16px;
     gap: 10px;
     display: grid;
@@ -104,7 +104,7 @@ export const OutBox = styled.div`
     border: 2px solid #D5D4D4;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 343px;
     height: 68px;
     padding: 16px 24px;
@@ -116,7 +116,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: flex;
     gap: 10px;
     width: 100%;
@@ -130,7 +130,7 @@ export const InBoxWrapper = styled.div`
   align-items: center;
   padding: 0px 0px 10px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 24px;
     height: 24px;
   }
@@ -141,7 +141,7 @@ export const InBox = styled.img`
   height: 36px;
   object-fit: contain;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 24px;
     height: 24px;
   }
@@ -159,7 +159,7 @@ const ResignWrapper = styled.div`
   width: 100vh;
   padding: 0px 392px 0px 392px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 100px 0px 0px 20px;
   }
 `;

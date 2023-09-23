@@ -103,7 +103,7 @@ const LayoutContainer = styled.div`
       align-items: center;
       gap: 20px;
     }
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
       display: grid;
       justify-content: center;
       align-items: center;
@@ -118,7 +118,7 @@ const SlideWrapper = styled.div`
   width: 100%;
   height: 100%;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     max-width: 343px;
   }
 `;
@@ -130,7 +130,7 @@ const ImageBox = styled.div<{ src : string }>`
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     min-width: 343px;
     height: 343px;
   }
@@ -150,7 +150,7 @@ const ImageOutContainer = styled.div`
     margin: 0px;
     width: 464px;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     min-width: 343px;
     height: 343px;
   }
@@ -162,7 +162,7 @@ const SlideBtnWrapper = styled.div`
     position: absolute;
     justify-content: space-between;
     z-index: 200;
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
     max-width: 343px;
   }
 `;
@@ -209,7 +209,7 @@ const RequestCondition = styled.div`
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 13.54%, rgba(0, 0, 0, 0.20) 28.13%, rgba(0, 0, 0, 0.00) 39.06%);
   z-index: 198;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 343px;
     height: 343px;
   }
@@ -251,7 +251,7 @@ const Finished = styled.div`
   line-height: 150%;
   color: #FCFCFC;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 343px;
     height: 343px;
   }

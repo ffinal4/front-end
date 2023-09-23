@@ -47,7 +47,7 @@ const CardContainer = styled.div`
     margin-bottom: 40px;
     cursor: pointer;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         max-width: 140px;
         height: 260px;
     }
@@ -61,7 +61,7 @@ const CardImgContainer = styled.div<{ src : string }>`
     background-size: cover;
     position: relative;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         max-width: 140px;
         height: 140px;
     }
@@ -95,7 +95,7 @@ const CheckOutContainer = styled.div`
     left: 0;
     z-index: 888;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         max-width: 140px;
         height: 140px;
     }
@@ -114,7 +114,7 @@ const CheckContainer = styled.div`
     align-items: center;
     z-index: 999;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         max-width: 140px;
         height: 140px;
     }
@@ -130,7 +130,7 @@ const CheckBox = styled.div`
     justify-content: center;
     align-items: center;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         max-width: 60px;
         height: 60px;
     }
@@ -140,7 +140,7 @@ const CheckImage = styled.img`
     width: 48px;
     height: 48px;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         max-width: 32px;
         height: 32px;
     }

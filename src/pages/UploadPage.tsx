@@ -233,7 +233,7 @@ const PageHeader = styled.div`
   font-weight: 700;
   line-height: 110%;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 24px;
     padding-left: 16px;
   }
@@ -252,7 +252,7 @@ const TitleWrapper = styled.div`
   display: flex;
   margin: 16px 0px 20px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     align-items: center;
   }
 `;
@@ -264,7 +264,7 @@ const PageTitle = styled.div`
   line-height: 150%;
   margin: 0px 20px 0px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 16px;
     font-weight: 700;
     line-height: 140%;
@@ -279,7 +279,7 @@ const PageSubtitle = styled.div`
   line-height: 150%;
   padding: 17px 0px 0px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 14px;
     line-height: 140%;
     padding: 0px;

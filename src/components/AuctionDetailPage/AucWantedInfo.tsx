@@ -39,7 +39,7 @@ const InfoContainer = styled.div`
     justify-content: space-between;
     padding: 60px 0px 100px 0px;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         margin: 37px 0px 60px 0px;
     }
 `;

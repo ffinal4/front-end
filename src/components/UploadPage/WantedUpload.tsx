@@ -118,7 +118,7 @@ const LastLineContainer = styled.div`
     padding: 30px 0px 60px 0px;
     border-bottom: 4px solid;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         display: grid;
         gap: 14px;
     }
@@ -237,7 +237,7 @@ const TitleInput = styled.input`
     font-weight: 400;
     line-height: 150%;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         max-width: 320px;
     }
 `;
@@ -246,7 +246,7 @@ const SelectContainer = styled.div`
     margin: 40px 0px 0px 0px;
     position: absolute;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         left: 0px;
     }
 `;

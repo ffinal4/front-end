@@ -200,7 +200,7 @@ const MainLayoutContainer = styled.div`
   height: 963px;
   background-color: #f8f3ef;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 1180px;
   }
 `;
@@ -216,7 +216,7 @@ const MainLayout = styled.div`
   @media screen and (max-width: 834px) {
     padding: 80px 0 100px 0;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 80px 0 100px 0;
   }
 `;
@@ -230,7 +230,7 @@ const RatingContainer = styled.div`
   position: relative;
   padding: 60px 96px 64px 96px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 335px;
     padding: 10px 20px 10px 20px;
     border: 1px solid #39373a;
@@ -264,7 +264,7 @@ const DetailInfoWrapper = styled.div`
   padding: 0px 0px 40px 0px;
   position: relative;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: grid;;
   }
 `;
@@ -285,7 +285,7 @@ const ImageContainer = styled.div<{ src: string }>`
   border-radius: 10px;
   position: relative;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     min-width: 240px;
     height: 240px;
   }
@@ -310,7 +310,7 @@ const AnswerCountContainer = styled.div`
   border-radius: 10px;
   gap: 16px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     top: -40px;
     left: 45px;
   }
@@ -363,7 +363,7 @@ const ButtonWrapper = styled.div`
   gap: 16px;
   padding: 20px 0px 0px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -459,7 +459,7 @@ const FaildContainer = styled.div`
   position: absolute;
   z-index: 1000;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     max-width: 370px;
     top: 100px;
     left: 0px;
@@ -471,7 +471,7 @@ const ModalContainer = styled.div`
   display: flex;
   justify-content: end;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     margin-top: 50px;
   }
 `;

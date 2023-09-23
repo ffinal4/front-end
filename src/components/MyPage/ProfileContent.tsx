@@ -104,7 +104,7 @@ const ImageContainer = styled.div<{ src: string }>`
   background-size: cover;
   background-image: ${(props) => `url(${props.src})`};
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     max-width: 70px;
     min-height: 70px;
   }
