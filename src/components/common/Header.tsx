@@ -191,7 +191,7 @@ const HeaderoutContainer = styled.div`
   width: 100%;
   border-bottom: 1px solid #d5d4d4;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 0px 16px;
   }
 `;
@@ -208,7 +208,7 @@ const HeaderContainer = styled.div`
   @media screen and (max-width: 1136px) {
     width: 100%;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -223,7 +223,7 @@ const LogoContainer = styled.div`
   width: 174px;
   height: 41px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     max-width: 100px;
   }
 `;
@@ -233,7 +233,7 @@ const Logo = styled.img`
   height: 38px;
   margin-right: 10px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 24px;
     height: 24px;
   }
@@ -243,7 +243,7 @@ const LogoTitle = styled.img`
   width: 120px;
   height: 24px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 80px;
     height: 16px;
   }
@@ -257,7 +257,7 @@ export const BoxContainer = styled.div`
   margin-left: 20px;
   font-weight: 400;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     margin-left: 8px;
   }
 `;
@@ -347,7 +347,7 @@ const IconContainer = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 100%;
   }
 `;
@@ -358,7 +358,7 @@ const Mypage = styled.img`
   margin-right: 20px;
   cursor: pointer;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 14px;
     height: 14px;
     margin-right: 5px;
@@ -378,7 +378,7 @@ const MyPocketLink = styled.div`
     color: #f9b482;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 10px;
     font-weight: 600;
     line-height: 140%;
@@ -400,7 +400,7 @@ const Logout = styled.div`
     color: #f9b482;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     margin-left: 10px;
     font-size: 10px;
     font-weight: 400;

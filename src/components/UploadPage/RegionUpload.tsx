@@ -29,7 +29,7 @@ const RequiredText = styled.div`
     min-width: 191px;
     color: #222020;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
       min-width: 116px;
     }
 `;

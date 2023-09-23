@@ -45,7 +45,7 @@ const FirstBg = styled.div<{ background: string }>`
   @media screen and (max-width: 1136px) {
     padding: 0 20px 0 20px;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 0px;
     height: 320px;
     background-image: url(${EmptyBanner});
@@ -69,7 +69,7 @@ const ContentContainer = styled.div<{ src : string }>`
     background-size: 100%;
     padding-top: 300px;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 375px;
     height: 250px;
     background-size: 375px 250px;
@@ -87,7 +87,7 @@ const MainStBasicButton = styled(StBasicButton)`
   line-height: 150%; /* 24px */
   color: #222020;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 80px;
     height: 30px;
     font-size: 10px;

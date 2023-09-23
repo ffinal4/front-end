@@ -76,7 +76,7 @@ const HowToTradeContainer = styled.div`
   position: relative;
   z-index: 0;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 2000px;
     padding: 60px 10px 0px 10px;
   }
@@ -128,7 +128,7 @@ const CardListContainer = styled.div`
   flex-wrap: wrap;
   gap: 16px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 1600px;
   }
 `;
@@ -144,7 +144,7 @@ const CardContainer = styled.div`
   /* Shadow */
   box-shadow: 1px 2px 5px 0px rgba(34, 32, 32, 0.1);
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 375px;
   }
 `;
@@ -186,7 +186,7 @@ const LastContent = styled.div`
   font-weight: 400;
   line-height: 150%; /* 24px */
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     max-width: 360px;
   }
 `;

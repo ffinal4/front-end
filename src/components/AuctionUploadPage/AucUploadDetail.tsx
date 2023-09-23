@@ -122,7 +122,7 @@ const TapClickButton = styled.div`
     border-bottom: 4px solid #fff;
     border-radius: 5px 5px 0px 0px;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 112px;
     }
 `;
@@ -141,7 +141,7 @@ const TapDefaultButton = styled.div`
     border-radius: 5px 5px 0px 0px;
     cursor: pointer;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 112px;
     }
 `;
@@ -164,7 +164,7 @@ const InfoNextContainer = styled.div`
     justify-content: space-between;
     padding: 60px 0px 100px 0px;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         margin: 41px 0px 0px 0px;
     }
 `;

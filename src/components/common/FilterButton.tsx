@@ -39,7 +39,7 @@ const FilterContainer = styled.div`
   cursor: pointer;
   position: relative;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
    display: none;
   }
 `;

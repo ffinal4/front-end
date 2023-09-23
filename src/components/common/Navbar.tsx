@@ -151,7 +151,7 @@ const CategoryHeaderContainer = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 48px;
   }
 `;
@@ -170,7 +170,7 @@ const CategoryContainer = styled.div`
   cursor: pointer;
   position: relative;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: none;
   }
 `;
@@ -188,7 +188,7 @@ const MenuContainer = styled.div`
   align-items: center;
   margin-left: 60px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     margin-left: 0px;
   }
 `;
@@ -201,7 +201,7 @@ const Menu = styled.div`
   font-weight: 400;
   width: 56px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     margin-left: 16px;
     margin-right: 16px;
     font-size: 16px;

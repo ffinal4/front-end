@@ -101,7 +101,7 @@ const FinishContainer = styled.div`
   align-items: center;
   z-index: 999;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     min-width: 343px;
     height: 343px;
     border-radius: 10px;

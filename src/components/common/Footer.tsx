@@ -47,7 +47,7 @@ const ContentContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: grid;
     justify-content: center;
   }
@@ -74,7 +74,7 @@ const Position = styled.span`
   margin-right: 5px;
   margin-left: 24px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: none;
   }
 `;
@@ -95,7 +95,7 @@ const Name = styled.span`
     border-bottom: 1px solid #394772;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     margin-left: 5px;
     font-size: 12px;
   }

@@ -54,7 +54,7 @@ const LineContainer = styled.div`
     padding: 30px 0px 30px 0px;
     border-bottom: 2px solid #EAEAEA;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         display: grid;
         gap: 14px;
     }
@@ -106,7 +106,7 @@ const Text = styled.div<{ color: string }>`
         justify-content: end;
         width: 100%;
     }
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
         width: 55px;
     }
 `;

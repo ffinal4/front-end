@@ -84,6 +84,7 @@ const AlarmButton = () => {
               connectToSSE();// 다시 연결 시도
             }, 2000);
           } else {
+            return;
           }
         };
       };
@@ -123,11 +124,11 @@ const AlarmWrapper = styled.div`
     margin-right: 20px;
     position: relative;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
       width: 14px;
       height: 14px;
       margin-right: 5px;
-      margin-bottom: 5px;
+      margin-bottom: -1px;
     }
 `;
 
@@ -138,7 +139,7 @@ const Alarm = styled.div<{ src : string }>`
     background-size: cover;
     cursor: pointer;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 500px) {
       width: 14px;
       height: 14px;
     }
@@ -149,7 +150,7 @@ const AlarmModalWrapper = styled.div`
   left: -185px;
   position: absolute;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     left: -215px;
   }
 `;

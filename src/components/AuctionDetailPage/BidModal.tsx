@@ -179,7 +179,7 @@ export const ModalContainer = styled.div`
     width: 100%;
     left: 0;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 20px 10px;
     min-height: 1330px;
   }
@@ -250,7 +250,7 @@ export const PocketListContainer = styled.div`
   flex-wrap: wrap;
   gap: 16px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     gap: 10px;
   }
 `;
@@ -277,7 +277,7 @@ export const GoodsConditionContainer = styled.div`
   opacity: 0.8;
   border-radius: 0px 0px 10px 10px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 36px;
     bottom: 56px;
   }
@@ -300,7 +300,7 @@ export const GoodsCondition = styled.div`
   color: #222020;
   padding: 0px 0px 0px 15px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     height: 36px;
     bottom: 57px;
     font-size: 14px;
@@ -313,7 +313,7 @@ export const Circle = styled.div`
   border-radius: 100%;
   background-color: #58abf7;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 16px;
     height: 16px;
   }
@@ -330,7 +330,7 @@ export const NotRatingProduct = styled.div`
   background-color: #fcfcfc;
   opacity: 0.4;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 164px;
     height: 164px; 
   }
@@ -353,7 +353,7 @@ export const DoneContainer = styled.div`
   line-height: 150%;
   color: #fcfcfc;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 164px;
     height: 164px; 
   }

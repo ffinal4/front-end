@@ -21,9 +21,9 @@ const EmptyImageContainer = styled.div`
   justify-content: center;
   position: relative;
 
-  @media screen and (max-width: 375px) {
-    width: 343px;
-    height: 250px;
+  @media screen and (max-width: 500px) {
+    width: 486px;
+    height: 350px;
     padding: 50px 0px 50px 0px;
   }
 `;
@@ -33,9 +33,9 @@ const EmptyImage = styled.img`
   height: 305px;
   object-fit: contain;
 
-  @media screen and (max-width: 375px) {
-    width: 330px;
-    height: 250px;
+  @media screen and (max-width: 500px) {
+    width: 455px;
+    height: 350px;
   }
 `;
 
@@ -48,7 +48,7 @@ const HiddenButton = styled.div`
   left: 209px;
   z-index: 100;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 82px;
     height: 20px;
     top: 185px;

@@ -143,7 +143,7 @@ const LoginPageContainer = styled.div`
   position: relative;
   padding-top: 240px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding-top: 167px;
     z-index: 9999;
   }
@@ -152,7 +152,7 @@ const LoginPageContainer = styled.div`
 const ArrowIcon = styled.img`
   display: none;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 36px;
     height: 36px;
     position: absolute;
@@ -177,7 +177,7 @@ const LoginContainer = styled.div`
     rgb(255, 255, 255) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px,
     rgb(255, 255, 255) 20px -20px 0px -3px, rgb(0, 0, 0) 20px -20px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     box-shadow: none;
     border: none;
     background-color: #fcf6e9;
@@ -192,7 +192,7 @@ const LogInForm = styled.form`
   padding: 56px 96px 56px 96px;
   margin: auto;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding: 24px 16px 24px 16px;
   }
 `;
@@ -211,7 +211,7 @@ const LogoContainer = styled.div`
   margin: 0 auto;
   margin-top: 56px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     margin-top: 0px;
     width: 48px;
     height: 48px;
@@ -228,7 +228,7 @@ const Title = styled.div`
   margin-top: 10px;
   font-family: "Pretendard";
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 24px;
     font-weight: 700;
   }
@@ -239,7 +239,7 @@ const SubTitle = styled.div`
   font-weight: 400;
   font-family: "Pretendard";
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 14px;
   }
 `;
@@ -269,7 +269,7 @@ const SearchId = styled.span`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 14px;
   }
 `;
@@ -283,7 +283,7 @@ const SearchPw = styled.span`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     padding-left: 8px;
     font-size: 14px;
   }
@@ -291,7 +291,7 @@ const SearchPw = styled.span`
 const MaintainLogin = styled.span`
   font-family: "Pretendard";
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 14px;
   }
 `;
@@ -361,7 +361,7 @@ const Box = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: none;
   }
   
@@ -375,7 +375,7 @@ const FooterContainer = styled.div`
   background-color: #ffca64;
   z-index: 999;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     display: none;
   }
 `;
