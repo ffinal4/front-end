@@ -8,6 +8,12 @@ import { ValueToEnum } from "../../utils/EnumCategory";
 const DetailInfo = ({ item } : any) => {
 
   const categorys = item?.category;
+  const createdDate = item.createdAt
+  const splitDate = createdDate.split("T")[0];
+  const targetDate: any = new Date(splitDate);
+  const currentDate: any = new Date();
+  const newDate = currentDate - targetDate;
+  const result = Math.floor(newDate / (1000 * 60 * 60 * 24));
 
   return (
     <InfoContainer>
@@ -29,7 +35,7 @@ const DetailInfo = ({ item } : any) => {
           </TextWrapper>
           <TextWrapper>
             <SmallBox src={Time} />
-            <ColorText color="#ADADAD">3일 전</ColorText>
+            <ColorText color="#ADADAD">{result === -1 ? "0" : result}일 전</ColorText>
           </TextWrapper>
           <TextWrapper>
           </TextWrapper>

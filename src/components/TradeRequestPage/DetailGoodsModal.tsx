@@ -21,7 +21,7 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
   detailModalOpen,
   setDetailModalOpen,
 }) => {
-
+  
   const modalData = detailData?.data.info;
   const divRef = useRef<HTMLDivElement>(null);
   const divTwoRef = useRef<HTMLDivElement>(null);
@@ -31,8 +31,6 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
   const [activePage, setActivePage] = useState<number>(0);
   const productWidth: number = 752;
   const productSlideRange: number = activePage * productWidth;
-
-  
 
   useEffect(() => {
     if (divRef.current) {
@@ -119,7 +117,7 @@ const DetailGoodsModal: React.FC<DetailGoodsModalProps> = ({
                 </SlideButton>
               </SlideBtnWrapper>
             </ImageOutContainer>
-            <DetailInfo item={item} />
+            <DetailInfo item={item}/>
           </div>
           <InfoContainer>
             <InfoTextTitle>{item?.title}</InfoTextTitle>
