@@ -33,6 +33,10 @@ const BannerContainer = styled.div`
   padding-top: 120px;
   position: relative;
   margin-bottom: 200px;
+
+  @media screen and (max-width: 500px) {
+    padding-top: 97px;
+  }
 `;
 
 const FirstBg = styled.div<{ background: string }>`
@@ -67,13 +71,18 @@ const ContentContainer = styled.div<{ src : string }>`
   @media screen and (max-width: 1023px) {
     width: 100%;
     background-size: 100%;
-    padding-top: 300px;
+    padding-top: 350px;
   }
+
+  @media screen and (max-width: 685px) {
+    padding-top: 330px;
+  }
+
   @media screen and (max-width: 500px) {
     width: 375px;
     height: 250px;
     background-size: 375px 250px;
-    padding-top: 200px;
+    padding-top: 190px;
   }
 `;
 
@@ -87,13 +96,25 @@ const MainStBasicButton = styled(StBasicButton)`
   line-height: 150%; /* 24px */
   color: #222020;
 
+  @media screen and (max-width: 1023px) {
+    width: 110px;
+    height: 40px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 140%;
+    padding: 0px;
+  }
+
+  @media screen and (max-width: 685px) {
+    width: 100px;
+    height: 36px;
+    font-size: 12px;
+  }
+
   @media screen and (max-width: 500px) {
     width: 80px;
     height: 30px;
     font-size: 10px;
-    font-weight: 600;
-    line-height: 140%;
-    padding: 0px;
   }
 `;
 
