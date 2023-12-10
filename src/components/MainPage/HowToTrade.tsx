@@ -76,9 +76,13 @@ const HowToTradeContainer = styled.div`
   position: relative;
   z-index: 0;
 
+  @media screen and (max-width: 1320px) {
+    height: 1500px;
+    padding: 60px 10px 0px 10px;
+  }
+
   @media screen and (max-width: 500px) {
     height: 2000px;
-    padding: 60px 10px 0px 10px;
   }
 `;
 

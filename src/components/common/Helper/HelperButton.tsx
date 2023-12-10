@@ -35,10 +35,15 @@ const CloseBtnContainer = styled.div`
   border-radius: 100%;
   cursor: pointer;
 
+  @media screen and (max-width: 1600px) {
+    bottom: 30px;
+    right: 15px;
+  }
+
   @media screen and (max-width: 500px) {
     bottom: 0;
     right: 0;
-}
+  }
 `;
 
 export default HelperButton;
