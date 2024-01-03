@@ -80,7 +80,7 @@ const StButton = styled(StBasicButton)`
   line-height: 150%; /* 24px */
   margin-top: 40px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     font-size: 12px;
   }
 `;

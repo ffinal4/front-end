@@ -64,6 +64,10 @@ const MoreBtn = styled(StBasicButton)`
   box-shadow: 1px 2px 5px 0px rgba(34, 32, 32, 0.1);
   position: absolute;
   bottom: -22px;
+
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 `;
 
 const LastText = styled.div`
