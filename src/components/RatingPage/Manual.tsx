@@ -52,6 +52,11 @@ const Modal = styled.img`
     top: -200px;
     left: -85px;
     z-index: 999;
+
+    @media screen and (max-width: 500px) {
+        top: -210px;
+        left: -5px;
+    }
 `;
 
 export default Manual;
