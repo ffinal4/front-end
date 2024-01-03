@@ -154,6 +154,10 @@ const CloseBtnContainer = styled.div`
   border-bottom: 2px solid #EC8D49;
   padding: 10px;
   position: relative;
+
+  @media screen and (max-width: 500px) {
+    min-width: 355px;
+  }
 `;
 
 const ClossBtn = styled.img`
@@ -188,6 +192,10 @@ const ChatTextOutContainer = styled.div`
   width: 100%;
   height: 380px;
   overflow-y: auto;
+
+  @media screen and (max-width: 500px) {
+    height: 540px;
+  }
 `;
 
 const ChatInputContainer = styled.input`

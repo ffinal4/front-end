@@ -41,8 +41,8 @@ const CloseBtnContainer = styled.div`
   }
 
   @media screen and (max-width: 500px) {
-    bottom: 0;
-    right: 0;
+    bottom: 20px;
+    right: 10px;
   }
 `;
 

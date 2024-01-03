@@ -10,9 +10,8 @@ export const StTitle = styled.div<{ marginbottom: string; textalign: string }>`
   margin-bottom: ${(props) => props.marginbottom};
   text-align: ${(props) => props.textalign};
 
-  @media screen and (max-width: 375px) {
-    font-size: 24px;
-    line-height: normal;
+  @media screen and (max-width: 500px) {
+    text-indent: 40px;
   }
 `;
 
@@ -27,8 +26,7 @@ export const StSubTitle = styled.div<{ marginbottom: string; textalign: string }
   margin-bottom: ${(props) => props.marginbottom};
   text-align: ${(props) => props.textalign};
 
-   @media screen and (max-width: 375px) {
-    font-size: 14px;
-    line-height: 140%;
+  @media screen and (max-width: 500px) {
+    text-indent: 40px;
   }
 `;
