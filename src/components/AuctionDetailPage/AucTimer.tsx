@@ -102,7 +102,7 @@ const FinishContainer = styled.div`
   z-index: 999;
 
   @media screen and (max-width: 500px) {
-    min-width: 343px;
+    width: 343px;
     height: 343px;
     border-radius: 10px;
   }
