@@ -89,6 +89,10 @@ const ButtonWrapper = styled.div`
 
 const StButton = styled(StBasicButton)`
   color: #fcfcfc;
+
+  @media screen and (max-width: 836px) {
+    width: 100%;
+  }
 `;
 
 export default AucButton;

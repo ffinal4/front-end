@@ -132,9 +132,8 @@ const TapClickButton = styled.div`
   border-bottom: 4px solid #fff;
   border-radius: 5px 5px 0px 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 110px;
-    height: 40px;
   }
 `;
 
@@ -151,15 +150,15 @@ const TapDefaultButton = styled.div`
   border-radius: 5px 5px 0px 0px;
   cursor: pointer;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 500px) {
     width: 110px;
-    height: 40px;
   }
 `;
 
 const LayoutContainer = styled.div`
   padding: 60px 0px 87px 0px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 `;
 
