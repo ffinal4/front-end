@@ -147,18 +147,6 @@ const ImageOutContainer = styled.div`
   }
 `;
 
-const SlideBtnWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  position: absolute;
-  justify-content: space-between;
-  z-index: 200;
-
-  @media screen and (max-width: 500px) {
-    max-width: 343px;
-  }
-`;
-
 const SlideButton = styled.div`
   width: 48px;
   height: 48px;
