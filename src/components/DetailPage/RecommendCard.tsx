@@ -45,14 +45,17 @@ const RecommendCard = ({ data, auction } : any) => {
         </HeadLineContainer>
         <RecommendList>
             {(data?.length > 4)
-                && <SlideBtnWrapper>
-                <SlideButton onClick={moveToPrevSlide}>
+                && <SlideButton
+                    style={{left: "0"}}
+                    onClick={moveToPrevSlide}>
                     <img src={ArrowLeft} alt=''/>
-                </SlideButton>
-                <SlideButton onClick={moveToNextSlide}>
+                </SlideButton>}
+            {(data?.length > 4)
+                && <SlideButton
+                    style={{right: "0"}}
+                    onClick={moveToNextSlide}>
                     <img src={ArrowRight} alt=''/>
-                </SlideButton>
-            </SlideBtnWrapper>}
+                </SlideButton>}
             <CardListContainer ref={slideRef}>
                 {data?.map((item : any) => {
                     return (
@@ -89,6 +92,7 @@ const HeadLineContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 `;
 
 const HeaderText = styled.div`
@@ -125,14 +129,6 @@ const CardListContainer = styled.div`
     width: 100%;
     height: 100%;
     gap: 16px;
-
-    @media screen and (max-width: 500px) {
-        width: 100%;
-    }
-
-    @media screen and (max-width: 375px) {
-        width: 375px;
-    }
 `;
 
 const ImageCard = styled.div`
@@ -142,7 +138,6 @@ const ImageCard = styled.div`
 
 const SlideBtnWrapper = styled.div`
     width: 100%;
-    margin: 113px 0px auto 0px;
     display: flex;
     position: absolute;
     justify-content: space-between;
@@ -153,6 +148,8 @@ const SlideButton = styled.div`
     width: 48px;
     height: 48px;
     background-color: #222020;
+    position: absolute;
+    top: 112px;
     display: flex;
     justify-content: center;
     align-items: center;

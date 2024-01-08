@@ -95,7 +95,8 @@ const UploadContainer = styled.div`
     }
 
     @media screen and (max-width: 500px) {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         gap: 20px;
     }
 `;
@@ -129,11 +130,6 @@ const MyPocketContainer = styled.div`
     flex-wrap: wrap;
     overflow: auto;
     gap: 16px;
-
-    @media screen and (max-width: 500px) {
-        width: 485px;
-        justify-content: center;
-    }
 `;
 
 const LineWrapper = styled.div`
@@ -159,8 +155,8 @@ const SeeButtonWrapper = styled.div`
 const InfoWrapper = styled.div`
     width: 1136px;
 
-    @media screen and (max-width: 500px) {
-        width: 488px;
+    @media screen and (max-width: 1136px) {
+        width: 100%;
     }
 `;
 

@@ -139,7 +139,7 @@ const SignUpContainer = styled.div`
 `;
 
 export const Label = styled.div`
-  font-family: Pretendard;
+  font-family: "Pretendard";
   font-size: 20px;
   width: 180px;
   font-weight: 700;
