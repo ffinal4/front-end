@@ -55,8 +55,8 @@ const AucInfoDetail = ({ findedData }: any) => {
 const InfoContainer = styled.div`
       width: 100%;
       @media screen and (max-width: 834px) {
-        width: 100%;
-        display: grid;
+        display: flex;
+        flex-direction: column;
       }
 `;
 
@@ -98,7 +98,8 @@ const SmallBox = styled.img`
 `;
 
 const TextContainer = styled.div`
-      display: grid;
+      display: flex;
+      flex-direction: column;
       padding: 24px 0px 40px 0px;
       gap: 10px;
 `;

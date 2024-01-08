@@ -186,7 +186,8 @@ const AuctionUploadPage = () => {
 
 const PageLayoutContainer = styled.div`
   width: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
 `;
 
 const PageTitleContainer = styled.div`
@@ -199,7 +200,6 @@ const PageTitleContainer = styled.div`
 
   @media screen and (max-width: 500px) {
     font-size: 24px;
-    padding-left: 16px;
   }
 `;
 
@@ -216,7 +216,6 @@ const KoreanTitle = styled.div`
     font-size: 16px;
     font-weight: 700;
     line-height: 140%;
-    padding-left: 16px;
   }
 `;
 
@@ -231,17 +230,12 @@ const Text = styled.div`
     font-size: 10px;
     font-weight: 400;
     line-height: 140%;
-    padding-left: 16px;
   }
 `;
 
 const TextWrapper = styled.div`
   width: 100%;
   padding: 0px 0px 40px 0px;
-
-  @media screen and (max-width: 500px) {
-    width: 468px;
-  }
 `;
 
 const AuctionUploadContainer = styled.div`
@@ -273,7 +267,6 @@ const RequiredText = styled.div`
 
   @media screen and (max-width: 500px) {
     width: 112px;
-    padding-left: 16px;
     font-size: 16px;
     line-height: 140%;
   }
@@ -292,10 +285,9 @@ const ButtonWrapper = styled.div`
   align-items: center;
 
   @media screen and (max-width: 500px) {
-    width: 468px;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 8px;
   }
 `;
 
@@ -344,10 +336,6 @@ const InputWrapper = styled.div`
   border-radius: 5px;
   background-color: #fcfcfc;
   padding: 0px 20px 0px 0px;
-
-  @media screen and (max-width: 500px) {
-      margin-left: 20px;
-  }
 `;
 
 const RemoveBtn = styled.div`
@@ -373,10 +361,6 @@ const BottomBtnWrapper = styled.div`
   display: grid;
   justify-content: center;
   gap: 10px;
-
-  @media screen and (max-width: 500px) {
-    width: 370px;
-  }
 `;
 
 const PriceBtn = styled(StBasicButton)`

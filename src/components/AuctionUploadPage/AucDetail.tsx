@@ -67,10 +67,11 @@ const LayoutContainer = styled.div`
       gap: 112px;
       width: 100%;
       @media screen and (max-width: 1136px) {
-        display: grid;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 20px;
+        gap: 40px;
+        padding: 30px 0px 24px 0px;
       }
   `;
 
@@ -120,7 +121,7 @@ const SlideBtnWrapper = styled.div`
       z-index: 200;
       @media screen and (max-width: 1136px) {
         width: 225px;
-        }
+    }
   `;
 
 const SlideButton = styled.div`

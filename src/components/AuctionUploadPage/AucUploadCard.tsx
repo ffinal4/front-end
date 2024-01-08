@@ -74,6 +74,10 @@ const TitleContainer = styled.div`
     font-weight: 700;
     line-height: 150%;
     padding: 10px 0px 0px 0px;
+
+    @media screen and (max-width: 500px) {
+        font-size: 14px;
+    }
 `;
 
 const ContentContainer = styled.div`
@@ -82,6 +86,10 @@ const ContentContainer = styled.div`
     font-weight: 400;
     line-height: 150%;
     color: #ADADAD;
+
+    @media screen and (max-width: 500px) {
+        font-size: 10px;
+    }
 `;
 
 const CheckOutContainer = styled.div`
