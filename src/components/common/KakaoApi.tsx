@@ -13,10 +13,10 @@ const KakaoApi = (props: any) => {
     contentBgColor: "#FFFFFF", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
     pageBgColor: "#FFFFFF", //페이지 배경색
     textColor: "#444444", //기본 글자색
-    queryTextColor: "#222222", //검색창 글자색
+    queryTextColor: "#222020", //검색창 글자색
     postcodeTextColor: "red", //우편번호 글자색
     emphTextColor: "#EC8D49", //강조 글자색
-    outlineColor: "#F6EFFF", //테두리 };
+    outlineColor: "#e0e0e0", //테두리
   };
 
   const postCodeStyle = {
@@ -46,7 +46,7 @@ const KakaoApi = (props: any) => {
   };
 
   return (
-    <>
+    <AddressLayoutContainer>
       <AddressContainer>
         <StBasicInput
           focusBorderColor="#46A75B"
@@ -68,9 +68,14 @@ const KakaoApi = (props: any) => {
         )}
         주소찾기
       </StButton>
-    </>
+    </AddressLayoutContainer>
   );
 };
+
+const AddressLayoutContainer = styled.div`
+  position: relative;
+  display: flex;
+`;
 
 const StButton = styled(StBasicButton)`
   margin-left: 20px;
