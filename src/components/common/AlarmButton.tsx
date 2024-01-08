@@ -119,30 +119,34 @@ const AlarmButton = () => {
 };
 
 const AlarmWrapper = styled.div`
-    width: 24px;
-    height: 24px;
-    margin-right: 20px;
-    position: relative;
+  width: 24px;
+  height: 24px;
+  margin-right: 20px;
+  position: relative;
 
-    @media screen and (max-width: 500px) {
-      width: 14px;
-      height: 14px;
-      margin-right: 5px;
-      margin-bottom: -1px;
-    }
+  @media screen and (max-width: 1136px) {
+    margin-right: 10px;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    margin-bottom: -1px;
+  }
 `;
 
 const Alarm = styled.div<{ src : string }>`
-    width: 24px;
-    height: 24px;
-    background-image: url(${(props) => props.src});
-    background-size: cover;
-    cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background-image: url(${(props) => props.src});
+  background-size: cover;
+  cursor: pointer;
 
-    @media screen and (max-width: 500px) {
-      width: 14px;
-      height: 14px;
-    }
+  @media screen and (max-width: 500px) {
+    width: 14px;
+    height: 14px;
+  }
 `;
 
 const AlarmModalWrapper = styled.div`
