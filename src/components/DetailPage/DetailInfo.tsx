@@ -98,11 +98,10 @@ const DetailInfo = ({ data }: any) => {
 };
 
 const InfoContainer = styled.div`
-  width: 100%;
+  width: 560px;
+  
   @media screen and (max-width: 834px) {
-    margin-left: 60px;
-    max-width: 343px;
-    display: grid;
+    width: 100%;
   }
 `;
 

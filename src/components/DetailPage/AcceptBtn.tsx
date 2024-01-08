@@ -76,6 +76,7 @@ const AcceptBtn = ({ data, dibsCount, setDibsCount } : any) => {
 
 const ButtonWrapper = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
   gap: 16px;
   padding: 10px 0px 0px 0px;
@@ -84,6 +85,10 @@ const ButtonWrapper = styled.div`
 const StButton = styled(StBasicButton)`
   border: 1px solid #222020;
   color: #222020;
+
+  @media screen and (max-width: 836px) {
+    width: 100%;
+  }
 `;
 
 export default AcceptBtn;

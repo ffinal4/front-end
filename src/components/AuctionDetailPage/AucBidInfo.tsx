@@ -60,7 +60,7 @@ const InfoContainer = styled.div`
     width: 100%;
     border-top: 2px solid #000;
     border-bottom: 2px solid #D9D9D9;
-    margin: 41px 0px 60px 0px;
+    margin: 42px 0px 60px 0px;
     padding: 0px 0px 93px 0px;
     display: grid;
 

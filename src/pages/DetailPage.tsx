@@ -80,10 +80,6 @@ const PageLayout = styled.div`
 
 const PageContainer = styled.div`
   width: 100%;
-
-  @media screen and (max-width: 1136px) {
-    padding: 0px 20px 0px 20px;
-  }
 `;
 
 const TapContainer = styled.div`
@@ -122,7 +118,9 @@ const TapDefaultButton = styled.div`
 
 const LayoutContainer = styled.div`
   padding: 60px 0px 87px 0px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   width: 100%;
 `;
 
