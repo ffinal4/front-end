@@ -4,19 +4,19 @@ import ArrowLeft from '../../assets/images/arrowleft.png'
 import ArrowRight from '../../assets/images/arrowright.png'
 import DetailInfo from './DetailInfo';
 
-const DetailContainer = ({ data } : any) => {
+const DetailContainer = ({ data }: any) => {
 
-  const arrImages : string[] = data.data.info.goodsResponseDtoList.images;
-  
+  const arrImages: string[] = data.data.info.goodsResponseDtoList.images;
+
   const divRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState<number>(0);
-  const imageWidth = 464;
+  const imageWidth = 100;
   const SlideRange: number = currentImg * imageWidth;
 
   useEffect(() => {
     if (divRef.current) {
       divRef.current.style.transition = "all 0.5s ease-in-out";
-      divRef.current.style.transform = `translateX(-${SlideRange}px)`;
+      divRef.current.style.transform = `translateX(-${SlideRange}%)`;
     }
   }, [SlideRange]);
 
@@ -44,7 +44,7 @@ const DetailContainer = ({ data } : any) => {
       || data.data.info.goodsResponseDtoList.goodsStatus === "BIDDING") {
       return <RequestCondition>
         <GoodsCondition>
-          <Circle style={{backgroundColor: "#58ABF7"}} />
+          <Circle style={{ backgroundColor: "#58ABF7" }} />
           경매중
         </GoodsCondition>
       </RequestCondition>
@@ -57,33 +57,33 @@ const DetailContainer = ({ data } : any) => {
     <LayoutContainer>
       <ImageOutContainer>
         {RequestStatus()}
-        <SlideBtnWrapper>
-          <SlideButton
-            onClick={moveToPrevBtn}
-            style={{
-              opacity: `${(currentImg === 0 || arrImages.length === 1) ? "0" : "0.4"}`,
-              cursor: `${(currentImg === 0 || arrImages.length === 1) ? "default" : "pointer"}`
-            }}>
-            <img src={ArrowLeft} alt=''/>
-          </SlideButton>
-          <SlideButton
-            onClick={moveToNextBtn}
-            style={{
-              opacity: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "0" : "0.4"}`,
-              cursor: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "default" : "pointer"}`
-            }}>
-          <img src={ArrowRight} alt=''/>
-          </SlideButton>
-        </SlideBtnWrapper>
+        <SlideButton
+          onClick={moveToPrevBtn}
+          style={{
+            opacity: `${(currentImg === 0 || arrImages.length === 1) ? "0" : "0.4"}`,
+            cursor: `${(currentImg === 0 || arrImages.length === 1) ? "default" : "pointer"}`,
+            left: "0"
+          }}>
+          <img src={ArrowLeft} alt='' />
+        </SlideButton>
+        <SlideButton
+          onClick={moveToNextBtn}
+          style={{
+            opacity: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "0" : "0.4"}`,
+            cursor: `${(arrImages.length === 1 || currentImg === (arrImages.length - 1)) ? "default" : "pointer"}`,
+            right: "2px"
+          }}>
+          <img src={ArrowRight} alt='' />
+        </SlideButton>
         <SlideWrapper ref={divRef}>
-          {arrImages.map((item) => <ImageBox src={item}/>)}
+          {arrImages.map((item) => <ImageBox src={item} />)}
         </SlideWrapper>
         <SlidePageBarWrapper>
           {arrImages.map((item) =>
             (currentImg === arrImages.indexOf(item))
-              ? <SlidePageBar backgroundcolor='#fff'></SlidePageBar>
-              : <SlidePageBar backgroundcolor='#9e9e9e'></SlidePageBar>
-            )}
+              ? <SlidePageBar backgroundcolor='#ffffffce'></SlidePageBar>
+              : <SlidePageBar backgroundcolor='#9e9e9ece'></SlidePageBar>
+          )}
         </SlidePageBarWrapper>
       </ImageOutContainer>
       <DetailInfo data={data} />
@@ -92,95 +92,95 @@ const DetailContainer = ({ data } : any) => {
 };
 
 const LayoutContainer = styled.div`
-    padding: 60px 0px 87px 0px;
-    display: flex;
-    gap: 112px;
-    width: 100%;
+  padding: 60px 0px 87px 0px;
+  display: flex;
+  gap: 112px;
+  width: 100%;
 
-    @media screen and (max-width: 1136px) {
-      display: grid;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-    }
-    @media screen and (max-width: 500px) {
-      display: grid;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      min-width: 343px;
-      overflow: hidden;
-    }   
+  @media screen and (max-width: 1136px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+  }
+
+  @media screen and (max-width: 500px) {
+    padding: 40px 0px 67px 0px;
+  }   
 `;
 
 const SlideWrapper = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
-
-  @media screen and (max-width: 500px) {
-    max-width: 343px;
-  }
+  align-items: center;
 `;
 
-const ImageBox = styled.div<{ src : string }>`
+const ImageBox = styled.div<{ src: string }>`
   min-width: 464px;
   height: 464px;
   background-image: ${(props) => `url(${props.src})`};
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+
   @media screen and (max-width: 500px) {
-    min-width: 343px;
-    height: 343px;
+    min-width: 342px;
+    height: 342px;
   }
 `;
 
 const ImageOutContainer = styled.div`
-  min-width: 464px;
+  width: 464px;
   height: 464px;
   border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: 1px solid #e9e9e9;
   position: relative;
   overflow: hidden;
 
   @media screen and (max-width: 1136px) {
-    margin: 0px;
     width: 464px;
   }
+
   @media screen and (max-width: 500px) {
-    min-width: 343px;
-    height: 343px;
+    width: 342px;
+    height: 342px;
   }
 `;
 
 const SlideBtnWrapper = styled.div`
-    width: 100%;
-    display: flex;
-    position: absolute;
-    justify-content: space-between;
-    z-index: 200;
-    @media screen and (max-width: 500px) {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  z-index: 200;
+
+  @media screen and (max-width: 500px) {
     max-width: 343px;
   }
 `;
 
 const SlideButton = styled.div`
-    width: 48px;
-    height: 48px;
-    background-color: #222020;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    z-index: 200;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 208px;
+  background-color: #222020;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  z-index: 200;
 
-    &:hover {
-        background-color: #b3b3b3;
-        opacity: 0.7;  
-    }
+  &:hover {
+    background-color: #b3b3b3;
+    opacity: 0.7;  
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 38px;
+    height: 38px;
+    top: 158px;
+  }
 `;
 
 const SlidePageBarWrapper = styled.div`
@@ -190,6 +190,7 @@ const SlidePageBarWrapper = styled.div`
   position: absolute;
   bottom: 20px;
   gap: 16px;
+  width: 100%;
 `;
 
 const SlidePageBar = styled.div<{ backgroundcolor: string }>`
@@ -197,7 +198,7 @@ const SlidePageBar = styled.div<{ backgroundcolor: string }>`
   height: 10px;
   border-radius: 100%;
   background-color: ${(props) => props.backgroundcolor};
-  opacity: 0.8;
+  box-shadow: #222020 0 2px 5px 0;
 `;
 
 const RequestCondition = styled.div`
