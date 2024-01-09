@@ -268,8 +268,16 @@ const InputContainer = styled.form`
   align-items: center;
   position: relative;
 
+  @media screen and (max-width: 1136px) {
+    width: 500px;
+  }
+
+  @media screen and (max-width: 916px) {
+    width: 400px;
+  }
+
   @media screen and (max-width: 700px) {
-    width: 300px;
+    width: 200px;
   }
 `;
 
@@ -279,6 +287,7 @@ const SearchButton = styled.button`
   cursor: pointer;
   position: absolute;
   margin-left: 20px;
+
   @media screen and (max-width: 500px) {
     display: none;
   }
@@ -358,6 +367,10 @@ const Mypage = styled.img`
   margin-right: 20px;
   cursor: pointer;
 
+  @media screen and (max-width: 1320px) {
+    margin-right: 10px;
+  }
+
   @media screen and (max-width: 500px) {
     width: 14px;
     height: 14px;
@@ -378,8 +391,12 @@ const MyPocketLink = styled.div`
     color: #f9b482;
   }
 
+  @media screen and (max-width: 1136px) {
+    font-size: 14px;
+  }
+
   @media screen and (max-width: 500px) {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 140%;
     width: 100%;
@@ -400,12 +417,16 @@ const Logout = styled.div`
     color: #f9b482;
   }
 
+  @media screen and (max-width: 1136px) {
+    font-size: 14px;
+    margin-left: 30px;
+  }
+
   @media screen and (max-width: 500px) {
     margin-left: 10px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 140%;
     width: 70px;
-    margin-left: 20px;
   }
 `;

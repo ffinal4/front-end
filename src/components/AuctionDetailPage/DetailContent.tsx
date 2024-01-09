@@ -120,9 +120,8 @@ const InfoContainer = styled.div`
   width: 100%;
   
   @media screen and (max-width: 834px) {
-    max-width: 260px;
-    display: grid;
-    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
   }
 `;
 

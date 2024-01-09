@@ -63,10 +63,6 @@ const InfoContainer = styled.div`
     margin: 42px 0px 60px 0px;
     padding: 0px 0px 93px 0px;
     display: grid;
-
-    @media screen and (max-width: 500px) {
-        margin: 37px 0px 60px 0px;
-    }
 `;
 
 const InfoTextContainer = styled.div`
