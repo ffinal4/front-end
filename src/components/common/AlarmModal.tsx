@@ -123,20 +123,22 @@ const ModalContainer = styled.div`
   z-index: 1000;
 
   ::-webkit-scrollbar {
-        width: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: #39373A;
-        border-radius: 5px;
+      width: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #39373A;
+    border-radius: 5px;
         
-        &:hover {
-            background-color: #524f53;
-        }
+    &:hover {
+      background-color: #676568;
     }
-    ::-webkit-scrollbar-track {
-        background-color: #D5D4D4;
-        border-radius: 5px;
-    }
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #D5D4D4;
+    border-radius: 5px;
+  }
 `;
 
 const TriangleWrapper = styled.div`
