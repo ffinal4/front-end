@@ -209,9 +209,6 @@ const HeaderContainer = styled.div`
     width: 100%;
   }
   @media screen and (max-width: 500px) {
-    display: flex;
-    align-items: center;
-    justify-content: start;
     height: 48px;
   }
 `;
@@ -279,6 +276,10 @@ const InputContainer = styled.form`
   @media screen and (max-width: 700px) {
     width: 200px;
   }
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `;
 
 const SearchButton = styled.button`
@@ -287,10 +288,6 @@ const SearchButton = styled.button`
   cursor: pointer;
   position: absolute;
   margin-left: 20px;
-
-  @media screen and (max-width: 500px) {
-    display: none;
-  }
 `;
 
 const SearchInput = styled.input`
@@ -301,11 +298,9 @@ const SearchInput = styled.input`
   height: 44px;
   font-size: 16px;
   padding-left: 50px;
+
   @media screen and (max-width: 700px) {
     width: 300px;
-  }
-  @media screen and (max-width: 500px) {
-    display: none;
   }
 `;
 
